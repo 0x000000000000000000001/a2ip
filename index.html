@@ -2,6 +2,32 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <style>
+      * {
+        transition: all 0.3s ease;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(-45deg, hsl(354, 97%, 23%), hsl(353.91, 81.74%, 47.25%), hsl(354, 79%, 69%));
+        background-size: 400% 400%;
+        animation: bodyGradient 15s ease infinite;
+      }
+
+      @keyframes bodyGradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
   </head>
   <body>
     <script type="module">

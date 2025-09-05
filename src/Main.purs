@@ -2,36 +2,62 @@ module Main (main) where
 
 import Prelude hiding (div)
 
-import CSS (StyleM, backgroundColor, color, em, fontSize, fromInt, margin, minHeight, padding, px, vh, white)
+import CSS (StyleM, backgroundColor, borderRadius, display, flex, flexDirection, flexGrow, fromInt, margin, marginLeft, minHeight, padding, pct, rem, row, vh, width)
+import Component.Menu as Menu
+import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Halogen.Aff (awaitBody)
-import Halogen.HTML (HTML, div, text)
+import Halogen.HTML (div, slot, text)
 import Halogen.HTML.CSS (style)
 import Halogen.VDom.Driver (runUI)
+import Type.Proxy (Proxy(..))
 
-appStyles :: StyleM Unit
-appStyles = do
-  backgroundColor (fromInt 0xFF0000) 
+type Slots = ( menu :: H.Slot (Const Void) Void Unit )
+
+type AppState = Unit
+
+data AppAction = AppAction
+
+mainLayoutStyles :: StyleM Unit
+mainLayoutStyles = do
+  display flex
+  flexDirection row
   minHeight (vh 100.0)
-  padding (px 20.0) (px 20.0) (px 20.0) (px 20.0)
-  color white
-  margin (px 0.0) (px 0.0) (px 0.0) (px 0.0)
-  fontSize (em 1.2)
 
-component :: forall m. MonadAff m => H.Component (HTML Void) Unit Unit m
+component :: forall q o m. MonadAff m => H.Component q Unit o m
 component = H.mkComponent
   { initialState: \_ -> unit
-  , render: \_ -> view
-  , eval: H.mkEval H.defaultEval
+  , render: render
+  , eval: H.mkEval H.defaultEval { handleAction = handleAction }
   }
-  where 
-    view =
-      div
-        [ style appStyles ]
-        [ text "Coucou Adèle, ma chérie que j'aime !" ]
+
+handleAction :: forall o m. MonadAff m => AppAction -> H.HalogenM AppState AppAction Slots o m Unit
+handleAction = case _ of
+  AppAction -> pure unit
+
+render :: forall m. MonadAff m => AppState -> H.ComponentHTML AppAction Slots m
+render _ =
+  div
+    [ style mainLayoutStyles ]
+    [ slot (Proxy :: Proxy "menu") unit Menu.component unit (const AppAction)
+    , div [ style do
+        marginLeft (rem Menu.foldWidth)
+        flexGrow 1.0
+        display flex
+      ]
+      [ div [ style do
+          backgroundColor (fromInt 0xffffff)
+          padding (rem 1.0) (rem 1.0) (rem 1.0) (rem 1.0)
+          width (pct 100.0)
+          margin (rem 2.0) (rem 2.0) (rem 2.0) (rem 2.0)
+          borderRadius (rem 0.6) (rem 0.6) (rem 0.6) (rem 0.6)
+        ]
+        [ text "Hello World!" ]
+      ]
+    ]
 
 main :: Effect Unit
 main = launchAff_ do
