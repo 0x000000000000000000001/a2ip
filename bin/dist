@@ -1,0 +1,17 @@
+#!/bin/sh
+# For legacy reasons, this script is used to bundle the application.
+
+set -e
+
+old_wd=$(pwd)
+
+dir=$(dirname "$0")/..
+cd "$dir"
+
+echo "Removing existing bundle (if present)..."
+rm -fv dist/index.js
+
+echo "Launching spago bundle-app..."
+spago bundle-app --to dist/index.js
+
+cd "$old_wd"
