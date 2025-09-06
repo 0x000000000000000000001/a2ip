@@ -1,9 +1,4 @@
-module Component.Menu
-  ( Action
-  , Output(..)
-  , component
-  , foldWidth
-  ) where
+module Component.Menu.Style (foldWidth, stylesheet) where
 
 import Prelude hiding (top, div)
 
@@ -14,6 +9,7 @@ import CSS.Common (center, visible, hidden)
 import CSS.Cursor (pointer)
 import CSS.Overflow (overflow)
 import CSS.Overflow as Overflow
+import Component.Menu (foldWidth)
 import Data.NonEmpty (singleton)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
@@ -22,12 +18,6 @@ import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Utils (class_, ourRed)
-
-type State = { isUnfold :: Boolean }
-
-data Action = ToggleFolding Boolean
-
-data Output = MenuOutput
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -126,17 +116,6 @@ stylesheet s = HCSS.stylesheet do
   itemIconContainerStyle s
   itemIconStyle
 
-component :: forall q o m. MonadAff m => H.Component q Unit o m
-component = H.mkComponent
-  { initialState: \_ -> { isUnfold: false }
-  , render
-  , eval: H.mkEval H.defaultEval { handleAction = handleAction }
-  }
-
-handleAction :: forall o m. MonadAff m => Action -> H.HalogenM State Action () o m Unit
-handleAction = case _ of
-  ToggleFolding bool -> H.modify_ _ { isUnfold = bool }
-
 itemIconContainerBoxShadow :: Number -> Number -> CSS.CSS
 itemIconContainerBoxShadow x y = boxShadow $ singleton $ white `bsColor` shadow (rem x) (rem y)
 
@@ -153,49 +132,3 @@ itemIconContainerStyle s = do
     justifyContent center
     alignSelf center
     when s.isUnfold $ itemIconContainerBoxShadow 0.12 0.12
-
-render :: forall m. State -> H.ComponentHTML Action () m
-render s =
-  nav
-    [ class_ menuClassName
-    , HE.onMouseEnter \_ -> ToggleFolding true
-    , HE.onMouseLeave \_ -> ToggleFolding false
-    ]
-    [ stylesheet s
-    , img
-        [ class_ logoClassName
-        , HP.src "assets/images/logo.png"
-        , HP.alt "Logo"
-        ]
-    , item "Accueil" "home"
-    , item "Bureau et collaborateurs" "armchair"
-    , item "Adhésions" "writing"
-    , item "Séminaires" "micro"
-    , item "Colloques" "micro-2"
-    , item "Archives" "archive"
-    , item "Publications des membres" "book"
-    , item "Contact et mentions légales" "contact"
-    ]
-  where
-  item :: forall w i. String -> String -> HTML w i
-  item label iconFileName =
-    div [ class_ itemClassName ]
-      [ div
-          [ class_ $ itemIconContainerClassName
-          ]
-          [ img
-              [ class_ itemIconClassName
-              , HP.src (fromString "assets/images/component/menu/" <> iconFileName <> ".png")
-              , HP.alt label
-              ]
-          ]
-      , div
-          [ HCSS.style do
-              visibility if s.isUnfold then visible else hidden
-              opacity (if s.isUnfold then 1.0 else 0.0)
-              flexGrow 1.0
-              minWidth (rem unfoldWidth)
-              marginLeft (rem 1.4)
-          ]
-          [ text label ]
-      ]
