@@ -1,8 +1,4 @@
-module Component.Menu.Core
-  ( Action
-  , Output(..)
-  , component
-  ) where
+module Component.Menu.Component (component) where
 
 import Prelude hiding (top, div)
 
@@ -21,20 +17,12 @@ import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Utils (class_, ourRed)
-
-type State = { isUnfold :: Boolean }
-
-data Action = ToggleFolding Boolean
-
-data Output = MenuOutput
+import Component.Menu.Type (State)
+import Component.Menu.Render (render)
 
 component :: forall q o m. MonadAff m => H.Component q Unit o m
 component = H.mkComponent
   { initialState: \_ -> { isUnfold: false }
-  , render: render
+  , render
   , eval: H.mkEval H.defaultEval { handleAction = handleAction }
   }
-
-handleAction :: forall o m. MonadAff m => Action -> H.HalogenM State Action () o m Unit
-handleAction = case _ of
-  ToggleFolding bool -> H.modify_ _ { isUnfold = bool }

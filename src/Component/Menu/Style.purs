@@ -1,23 +1,33 @@
-module Component.Menu.Style (foldWidth, stylesheet) where
+module Component.Menu.Style
+  ( foldWidth
+  , unfoldWidth
+  , stylesheet
+  , itemClass
+  , itemClassName
+  , itemIconClass
+  , itemIconClassName
+  , itemIconContainerClass
+  , itemIconContainerClassName
+  , logoClass
+  , logoClassName
+  , menuClass
+  , menuClassName
+  ) where
 
 import Prelude hiding (top, div)
 
-import CSS (Selector, alignItems, alignSelf, backgroundColor, borderRadius, borderRight, boxShadow, color, column, cursor, display, fixed, flex, flexDirection, flexGrow, flexStart, fromString, graytone, height, hover, justifyContent, key, left, margin, marginLeft, minWidth, opacity, padding, position, rem, rgba, solid, top, vh, visibility, white, width, zIndex, (&), (?), (|*))
+import CSS (Selector, alignItems, alignSelf, backgroundColor, borderRadius, borderRight, boxShadow, color, column, cursor, display, fixed, flex, flexDirection, flexStart, fromString, graytone, height, hover, justifyContent, key, left, margin, marginLeft, minWidth, padding, position, rem, rgba, solid, top, vh, white, width, zIndex, (&), (?), (|*))
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
-import CSS.Common (center, visible, hidden)
+import CSS.Common (center)
 import CSS.Cursor (pointer)
 import CSS.Overflow (overflow)
 import CSS.Overflow as Overflow
-import Component.Menu (foldWidth)
+import Component.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Effect.Aff.Class (class MonadAff)
-import Halogen as H
-import Halogen.HTML (HTML, div, img, nav, text)
+import Halogen.HTML (HTML)
 import Halogen.HTML.CSS as HCSS
-import Halogen.HTML.Events as HE
-import Halogen.HTML.Properties as HP
-import Utils (class_, ourRed)
+import Utils (ourRed)
 
 foldWidth :: Number
 foldWidth = 6.2

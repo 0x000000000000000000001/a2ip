@@ -3,7 +3,8 @@ module Main (main) where
 import Prelude hiding (div)
 
 import CSS (StyleM, backgroundColor, borderRadius, display, flex, flexDirection, flexGrow, fromInt, margin, marginLeft, minHeight, padding, pct, rem, row, vh, width)
-import Component.Menu as Menu
+import Component.Menu.Core as MenuCore
+import Component.Menu.Style as MenuStyle
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
@@ -44,7 +45,7 @@ render _ =
     [ style mainLayoutStyles ]
     [ slot (Proxy :: Proxy "menu") unit Menu.component unit (const AppAction)
     , div [ style do
-        marginLeft (rem Menu.foldWidth)
+        marginLeft (rem MenuStyle.foldWidth)
         flexGrow 1.0
         display flex
       ]

@@ -2,21 +2,16 @@ module Component.Menu.Render (render) where
 
 import Prelude hiding (top, div)
 
-import CSS (Selector, alignItems, alignSelf, backgroundColor, borderRadius, borderRight, boxShadow, color, column, cursor, display, fixed, flex, flexDirection, flexGrow, flexStart, fromString, graytone, height, hover, justifyContent, key, left, margin, marginLeft, minWidth, opacity, padding, position, rem, rgba, solid, top, vh, visibility, white, width, zIndex, (&), (?), (|*))
-import CSS as CSS
-import CSS.Box (bsColor, shadow)
-import CSS.Common (center, visible, hidden)
-import CSS.Cursor (pointer)
-import CSS.Overflow (overflow)
-import CSS.Overflow as Overflow
-import Data.NonEmpty (singleton)
-import Effect.Aff.Class (class MonadAff)
+import CSS (flexGrow, fromString, marginLeft, minWidth, opacity, rem, visibility)
+import CSS.Common (hidden, visible)
+import Component.Menu.Style (itemClassName, itemIconClassName, itemIconContainerClassName, logoClassName, menuClassName, stylesheet, unfoldWidth)
+import Component.Menu.Type (Action(..), State)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Utils (class_, ourRed)
+import Utils (class_)
 
 render :: forall m. State -> H.ComponentHTML Action () m
 render s =
