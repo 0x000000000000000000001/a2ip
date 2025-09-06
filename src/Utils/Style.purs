@@ -1,14 +1,20 @@
 module Utils.Style
-  ( class_
+  ( (?)
+  , class_
+  , deep
+  , with
   , ourRed
   , select
-  , (?)
+  , (|*)
+  , (&)
   ) where
 
 import Prelude
 
+import CSS (Refinement, Selector)
 import CSS as CSS
 import CSS.Color (Color, hsl)
+import CSS.Selector as CSSS
 import Data.Maybe (fromMaybe)
 import Data.String (Pattern(..), stripPrefix)
 import Halogen.HTML as HH
@@ -23,7 +29,22 @@ class_ :: forall r i. String -> HH.IProp (class :: String | r) i
 class_ className = HP.class_ $ HH.ClassName $
   fromMaybe className (stripPrefix (Pattern ".") className)
 
-infixr 5 select as ?
-
 select :: String -> CSS.CSS -> CSS.CSS
 select sel rs = CSS.select (CSS.fromString sel) rs
+
+infixr 5 select as ?
+
+-- | The deep selector composer.
+-- | Maps to `sel1 sel2` in CSS.
+deep :: Selector -> String -> Selector
+deep a b = CSSS.deep a (CSS.fromString b)
+
+infix 6 deep as |*
+
+-- | The filter selector composer, adds a filter to a selector.
+-- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
+-- | depending on the filter.
+with :: String -> Refinement -> Selector
+with s r = CSSS.with (CSS.fromString s) r
+
+infix 6 with as &

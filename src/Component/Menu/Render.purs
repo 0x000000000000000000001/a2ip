@@ -4,7 +4,7 @@ import Prelude hiding (top, div)
 
 import CSS (flexGrow, fromString, marginLeft, minWidth, opacity, rem, visibility)
 import CSS.Common (hidden, visible)
-import Component.Menu.Style (itemClassName, itemIconClassName, itemIconContainerClassName, logoClassName, menuClassName, stylesheet, unfoldWidth)
+import Component.Menu.Style (itemClass, itemIconClass, itemIconContainerClass, logoClass, class', stylesheet, unfoldWidth)
 import Component.Menu.Type (Action(..), State)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
@@ -30,13 +30,13 @@ items =
 render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
-    [ class_ menuClassName
+    [ class_ Style.class_
     , HE.onMouseEnter $ const $ ToggleFolding true
     , HE.onMouseLeave $ const $ ToggleFolding false
     ]
     ( [ stylesheet s
       , img
-          [ class_ logoClassName
+          [ class_ logoClass
           , HP.src "assets/images/logo.png"
           , HP.alt "Logo"
           ]
@@ -45,12 +45,12 @@ render s =
   where
   item :: forall w i. String -> String -> HTML w i
   item label iconFileName =
-    div [ class_ itemClassName ]
+    div [ class_ itemClass ]
       [ div
-          [ class_ $ itemIconContainerClassName
+          [ class_ $ itemIconContainerClass
           ]
           [ img
-              [ class_ itemIconClassName
+              [ class_ itemIconClass
               , HP.src (fromString "assets/images/component/menu/" <> iconFileName <> ".png")
               , HP.alt label
               ]

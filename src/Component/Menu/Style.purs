@@ -1,22 +1,17 @@
 module Component.Menu.Style
-  ( foldWidth
-  , unfoldWidth
-  , stylesheet
+  ( class'
+  , foldWidth
   , itemClass
-  , itemClassName
   , itemIconClass
-  , itemIconClassName
   , itemIconContainerClass
-  , itemIconContainerClassName
-  , logoClass
-  , logoClassName
-  , menuClass
-  , menuClassName
-  ) where
+  , stylesheet
+  , unfoldWidth
+  )
+  where
 
 import Prelude hiding (top, div)
 
-import CSS (Selector, alignItems, alignSelf, backgroundColor, borderRadius, borderRight, boxShadow, color, column, cursor, display, fixed, flex, flexDirection, flexStart, fromString, graytone, height, hover, justifyContent, key, left, margin, marginLeft, minWidth, padding, position, rem, rgba, solid, top, vh, white, width, zIndex, (&), (|*))
+import CSS (Selector, alignItems, alignSelf, backgroundColor, borderRadius, borderRight, boxShadow, color, column, cursor, display, fixed, flex, flexDirection, flexStart, fromString, graytone, height, hover, justifyContent, key, left, margin, marginLeft, minWidth, padding, position, rem, rgba, solid, top, vh, white, width, zIndex)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
@@ -27,7 +22,7 @@ import Component.Menu.Type (State)
 import Data.NonEmpty (singleton)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS as HCSS
-import Utils.Style (ourRed, (?))
+import Utils.Style (ourRed, (?), (|*), (&))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -38,24 +33,24 @@ unfoldWidth = 3.4 * foldWidth
 iconWidth :: Number
 iconWidth = 3.2
 
-menuClassName :: String
-menuClassName = ".menu"
+class' :: String
+class' = ".menu"
 
-logoClassName :: String
-logoClassName = menuClassName <> "__logo"
+logoClass :: String
+logoClass = class' <> "__logo"
 
-itemClassName :: String
-itemClassName = menuClassName <> "__item"
+itemClass :: String
+itemClass = class' <> "__item"
 
-itemIconContainerClassName :: String
-itemIconContainerClassName = itemIconClassName <> "-container"
+itemIconContainerClass :: String
+itemIconContainerClass = itemIconClass <> "-container"
 
-itemIconClassName :: String
-itemIconClassName = itemClassName <> "__icon"
+itemIconClass :: String
+itemIconClass = itemClass <> "__icon"
 
 logoStyle :: CSS.CSS
 logoStyle = do
-  logoClassName ? do
+  logoClass ? do
     width (rem $ iconWidth * 1.2)
     margin (rem 1.4) (rem 1.0) (rem 1.0) (rem 1.0)
     key (fromString "filter") "invert(1)"
@@ -64,7 +59,7 @@ logoStyle = do
 
 itemStyle :: CSS.CSS
 itemStyle = do
-  itemClassName ? do
+  itemClass ? do
     color (graytone 0.9)
     display flex
     justifyContent center
@@ -75,10 +70,10 @@ itemStyle = do
   hoverSel ? do
     backgroundColor ourRed
 
-  hoverSel |* itemIconContainerClassName ? (itemIconContainerBoxShadow 0.22 (-0.10))
+  hoverSel |* itemIconContainerClass ? (itemIconContainerBoxShadow 0.22 (-0.10))
 
   where
-  hoverSel = itemClassName & hover
+  hoverSel = itemClass & hover
 
 itemIconStyle :: CSS.CSS
 itemIconStyle = do
@@ -89,7 +84,7 @@ itemIconStyle = do
 
 style :: State -> CSS.CSS
 style s = do
-  menuClassName ? do
+  class' ? do
     width (rem if s.isUnfold then unfoldWidth else foldWidth)
     backgroundColor (rgba 0 0 0 if s.isUnfold then 0.85 else 0.3)
     position fixed
@@ -108,7 +103,7 @@ itemIconContainerBoxShadow x y = boxShadow $ singleton $ bsColor white $ shadow 
 
 itemIconContainerStyle :: State -> CSS.CSS
 itemIconContainerStyle s = do
-  itemIconContainerClassName ? do
+  itemIconContainerClass ? do
     backgroundColor (rgba 0 0 0 0.2)
     borderRadius (rem 5.0) (rem 5.0) (rem 5.0) (rem 5.0)
     minWidth (rem iconWidth)
