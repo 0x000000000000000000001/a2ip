@@ -1,10 +1,13 @@
 module Utils.Style
   ( class_
   , ourRed
+  , select
+  , (?)
   ) where
 
 import Prelude
 
+import CSS as CSS
 import CSS.Color (Color, hsl)
 import Data.Maybe (fromMaybe)
 import Data.String (Pattern(..), stripPrefix)
@@ -19,3 +22,8 @@ ourRed = hsl 353.91 0.8174 0.4725
 class_ :: forall r i. String -> HH.IProp (class :: String | r) i
 class_ className = HP.class_ $ HH.ClassName $
   fromMaybe className (stripPrefix (Pattern ".") className)
+
+infixr 5 select as ?
+
+select :: String -> CSS.CSS -> CSS.CSS
+select sel rs = CSS.select (CSS.fromString sel) rs
