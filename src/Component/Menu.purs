@@ -92,8 +92,8 @@ itemStyle = do
 
   hoverSel |* itemIconContainerClass ? (itemIconContainerBoxShadow 0.22 (-0.10))
 
-  where 
-    hoverSel = itemClass & hover
+  where
+  hoverSel = itemClass & hover
 
 itemIconStyle :: CSS.CSS
 itemIconStyle = do
