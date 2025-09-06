@@ -13,7 +13,6 @@ import CSS.Common (center, visible, hidden)
 import CSS.Cursor (pointer)
 import CSS.Overflow (overflow)
 import CSS.Overflow as Overflow
-import Component.Menu.Render (render)
 import Data.NonEmpty (singleton)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
