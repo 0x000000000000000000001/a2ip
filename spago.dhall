@@ -11,8 +11,10 @@ You can edit this file as you like.
   , "effect"
   , "halogen"
   , "halogen-css"
+  , "maybe"
   , "nonempty"
   , "prelude"
+  , "strings"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]

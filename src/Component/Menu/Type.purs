@@ -5,12 +5,12 @@ module Component.Menu.Type
   , State
   ) where
 
-import Prelude (Void)
+import Prelude (Unit, Void)
 
 type State = { isUnfold :: Boolean }
 
 data Action = ToggleFolding Boolean
 
-type Input = Void
+type Input = Unit
 
 type Output = Void
