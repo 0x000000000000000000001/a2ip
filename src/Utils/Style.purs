@@ -1,4 +1,4 @@
-module Utils
+module Utils.Style
   ( class_
   , ourRed
   ) where

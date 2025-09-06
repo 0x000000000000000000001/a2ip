@@ -9,7 +9,7 @@ import Component.Menu.HandleAction (handleAction)
 
 component :: forall q o m. MonadAff m => H.Component q Unit o m
 component = H.mkComponent
-  { initialState: \_ -> { isUnfold: false }
+  { initialState: const { isUnfold: false }
   , render
   , eval: H.mkEval H.defaultEval { handleAction = handleAction }
   }

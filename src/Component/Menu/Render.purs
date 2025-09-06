@@ -11,30 +11,37 @@ import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Utils (class_)
+import Utils.Style (class_)
+
+newtype Item = Item { label :: String, iconFileName :: String, children :: Array Item }
+
+items :: Array Item
+items =
+  [ Item { label: "Accueil", iconFileName: "home", children: [] }
+  , Item { label: "Bureau et collaborateurs", iconFileName: "armchair", children: [] }
+  , Item { label: "Adhésions", iconFileName: "writing", children: [] }
+  , Item { label: "Séminaires", iconFileName: "micro", children: [] }
+  , Item { label: "Colloques", iconFileName: "micro-2", children: [] }
+  , Item { label: "Archives", iconFileName: "archive", children: [] }
+  , Item { label: "Publications des membres", iconFileName: "book", children: [] }
+  , Item { label: "Contact et mentions légales", iconFileName: "contact", children: [] }
+  ]
 
 render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
     [ class_ menuClassName
-    , HE.onMouseEnter \_ -> ToggleFolding true
-    , HE.onMouseLeave \_ -> ToggleFolding false
+    , HE.onMouseEnter $ const $ ToggleFolding true
+    , HE.onMouseLeave $ const $ ToggleFolding false
     ]
-    [ stylesheet s
-    , img
-        [ class_ logoClassName
-        , HP.src "assets/images/logo.png"
-        , HP.alt "Logo"
-        ]
-    , item "Accueil" "home"
-    , item "Bureau et collaborateurs" "armchair"
-    , item "Adhésions" "writing"
-    , item "Séminaires" "micro"
-    , item "Colloques" "micro-2"
-    , item "Archives" "archive"
-    , item "Publications des membres" "book"
-    , item "Contact et mentions légales" "contact"
-    ]
+    ( [ stylesheet s
+      , img
+          [ class_ logoClassName
+          , HP.src "assets/images/logo.png"
+          , HP.alt "Logo"
+          ]
+      ] <> (items <#> \(Item { label, iconFileName }) -> item label iconFileName)
+    )
   where
   item :: forall w i. String -> String -> HTML w i
   item label iconFileName =

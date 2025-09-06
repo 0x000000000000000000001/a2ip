@@ -27,7 +27,7 @@ import Component.Menu.Type (State)
 import Data.NonEmpty (singleton)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS as HCSS
-import Utils (ourRed)
+import Utils.Style (ourRed)
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -127,7 +127,7 @@ stylesheet s = HCSS.stylesheet do
   itemIconStyle
 
 itemIconContainerBoxShadow :: Number -> Number -> CSS.CSS
-itemIconContainerBoxShadow x y = boxShadow $ singleton $ white `bsColor` shadow (rem x) (rem y)
+itemIconContainerBoxShadow x y = boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)
 
 itemIconContainerStyle :: State -> CSS.CSS
 itemIconContainerStyle s = do
@@ -137,7 +137,7 @@ itemIconContainerStyle s = do
     minWidth (rem iconWidth)
     width (rem iconWidth)
     height (rem iconWidth)
-    marginLeft (rem $ (foldWidth / 2.0 - iconWidth / 2.0))
+    marginLeft (rem $ (foldWidth - iconWidth) / 2.0)
     display flex
     justifyContent center
     alignSelf center
