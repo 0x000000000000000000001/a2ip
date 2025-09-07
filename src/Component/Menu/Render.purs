@@ -30,7 +30,7 @@ items =
 render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
-    [ class_ Style.class_
+    [ class_ class'
     , HE.onMouseEnter $ const $ ToggleFolding true
     , HE.onMouseLeave $ const $ ToggleFolding false
     ]
