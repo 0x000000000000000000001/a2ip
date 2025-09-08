@@ -10,7 +10,7 @@ import CSS as CSS
 import Utils.Style ((<?))
 
 classId :: String
-classId = "c093a814-b70b-4ef6-941a-79b79959f3e4"
+classId = "U9Q6qc5VD"
 
 style :: CSS.CSS
 style = do

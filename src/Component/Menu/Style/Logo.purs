@@ -13,7 +13,7 @@ import Component.Menu.Style.Item.Icon.Container as ItemIconContainer
 import Utils.Style ((<?))
 
 classId :: String
-classId = "e5b0045a-f64b-4f2d-9972-2c9993b89447"
+classId = "X9vrSpzg4"
 
 style :: CSS.CSS
 style = do

@@ -21,7 +21,7 @@ unfoldWidth :: Number
 unfoldWidth = 3.4 * foldWidth
 
 classId :: String
-classId = "b7048b27-8d89-4f9e-bd71-6dda6fc4e9b9"
+classId = "AN5rFmTQb"
 
 style :: State -> CSS.CSS
 style s = do
