@@ -4,7 +4,7 @@ import Prelude hiding (top, div)
 
 import CSS (flexGrow, fromString, marginLeft, minWidth, opacity, rem, visibility)
 import CSS.Common (hidden, visible)
-import Component.Menu.Style (itemClass, itemIconClass, itemIconContainerClass, logoClass, class', stylesheet, unfoldWidth)
+import Component.Menu.Style.Style (itemClass, itemIconClass, itemIconContainerClass, logoClass, class', stylesheet, unfoldWidth)
 import Component.Menu.Type (Action(..), State)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
