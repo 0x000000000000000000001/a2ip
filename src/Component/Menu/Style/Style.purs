@@ -48,7 +48,7 @@ style s = do
 sheet :: forall p i. State -> HTML p i
 sheet s = HCSS.stylesheet do
   style s
-  logoStyle
+  logosty
   itemStyle
   itemIconContainerStyle s
   itemIconStyle

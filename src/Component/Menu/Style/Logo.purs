@@ -1,7 +1,6 @@
 module Component.Menu.Style.Logo
   ( class'
-  )
-  where
+  ) where
 
 import Prelude hiding (top, div)
 
