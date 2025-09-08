@@ -4,7 +4,7 @@ import Prelude hiding (div)
 
 import CSS (StyleM, backgroundColor, borderRadius, display, flex, flexDirection, flexGrow, fromInt, margin, marginLeft, minHeight, padding, pct, rem, row, vh, width)
 import Component.Menu.Component as MenuComponent
-import Component.Menu.Style.Style as MenuStyle
+import Component.Menu.Style.Menu as MenuStyle
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (launchAff_)

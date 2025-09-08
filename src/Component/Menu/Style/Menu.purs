@@ -1,11 +1,11 @@
-module Component.Menu.Style.Style
-  ( class'
+module Component.Menu.Style.Menu
+  ( classId
   , foldWidth
   , unfoldWidth
   , style
   ) where
 
-import Prelude
+import Prelude hiding (top)
 
 import CSS (alignItems, backgroundColor, borderRight, column, display, fixed, flex, flexDirection, flexStart, height, left, position, rem, rgba, solid, top, vh, width, zIndex)
 import CSS as CSS
@@ -20,8 +20,8 @@ foldWidth = 6.2
 unfoldWidth :: Number
 unfoldWidth = 3.4 * foldWidth
 
-class' :: String
-class' = ".menu"
+classId :: String
+classId = "b7048b27-8d89-4f9e-bd71-6dda6fc4e9b9"
 
 style :: State -> CSS.CSS
 style s = do

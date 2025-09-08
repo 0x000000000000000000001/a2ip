@@ -16,15 +16,15 @@ import Data.NonEmpty (singleton)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS as HCSS
 import Utils.Style (ourRed, (?), (|*), (&))
-import Component.Menu.Style.Style (iconWidth, class')
+import Component.Menu.Style.Item.Icon.Icon as Icon
 
-class' :: String
-class' = class' <> "__logo"
+classId :: String
+classId = "18c917b2-3715-43f3-86db-d3527bd8c4d6"
 
 style :: CSS.CSS
 style = do
-  class' ? do
-    width (rem $ iconWidth * 1.2)
+  classId ? do
+    width (rem $ Icon.width * 1.2)
     margin (rem 1.4) (rem 1.0) (rem 1.0) (rem 1.0)
     key (fromString "filter") "invert(1)"
     cursor pointer

@@ -4,7 +4,6 @@ import Prelude hiding (top, div)
 
 import CSS (flexGrow, fromString, marginLeft, minWidth, opacity, rem, visibility)
 import CSS.Common (hidden, visible)
-import Component.Menu.Style.Style (itemClass, itemIconClass, itemIconContainerClass, logoClass, class', stylesheet, unfoldWidth)
 import Component.Menu.Type (Action(..), State)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
@@ -12,6 +11,8 @@ import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Utils.Style (class_)
+import Component.Menu.Style.Item.Item as Item
+import Component.Menu.Style.Item.Icon.Icon as ItemIcon
 
 newtype Item = Item { label :: String, iconFileName :: String, children :: Array Item }
 
@@ -34,7 +35,7 @@ render s =
     , HE.onMouseEnter $ const $ ToggleFolding true
     , HE.onMouseLeave $ const $ ToggleFolding false
     ]
-    ( [ stylesheet s
+    ( [ sheet s
       , img
           [ class_ logoClass
           , HP.src "assets/images/logo.png"
@@ -45,12 +46,12 @@ render s =
   where
   item :: forall w i. String -> String -> HTML w i
   item label iconFileName =
-    div [ class_ itemClass ]
+    div [ class_ Item.class' ]
       [ div
-          [ class_ $ itemIconContainerClass
+          [ class_ $ ItemIcon.containerClass
           ]
           [ img
-              [ class_ itemIconClass
+              [ class_ ItemIcon.class'
               , HP.src (fromString "assets/images/component/menu/" <> iconFileName <> ".png")
               , HP.alt label
               ]

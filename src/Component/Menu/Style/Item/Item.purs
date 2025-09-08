@@ -16,9 +16,10 @@ import Data.NonEmpty (singleton)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS as HCSS
 import Utils.Style (ourRed, (?), (|*), (&))
+import Component.Menu.Style.Item.Icon.Container as IconContainer
 
-class' :: String
-class' = class' <> "__item"
+classId :: String
+classId = "fe61a278-61b4-4080-9122-482005b5b14a"
 
 style :: CSS.CSS
 style = do
@@ -33,7 +34,7 @@ style = do
   hoverSel ? do
     backgroundColor ourRed
 
-  hoverSel |* containerClass ? (itemIconContainerBoxShadow 0.22 (-0.10))
+  hoverSel |* IconContainer.class' ? (IconContainer.boxShadow 0.22 (-0.10))
 
   where
   hoverSel = class' & hover
