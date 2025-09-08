@@ -20,7 +20,7 @@ width :: Number
 width = 3.2
 
 classId :: String
-classId = "52837475-7c75-4cae-8e03-a71ef6825e4d"
+classId = "a4d16989-f174-4759-ace4-1a795253dd8f"
 
 boxShadow :: Number -> Number -> CSS.CSS
 boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)
