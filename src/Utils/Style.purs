@@ -1,12 +1,12 @@
 module Utils.Style
-  ( (?)
-  , class_
+  ( class_
   , deep
   , with
   , ourRed
   , select
-  , (|*)
-  , (&)
+  , (<?)
+  , (<|*)
+  , (<&)
   ) where
 
 import Prelude
@@ -35,14 +35,14 @@ stripDotPrefixFromClassName className =
 select :: String -> CSS.CSS -> CSS.CSS
 select sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
 
-infixr 5 select as ?
+infixr 5 select as <?
 
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
 deep :: Selector -> String -> Selector
 deep a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
 
-infix 6 deep as |*
+infix 6 deep as <|*
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
@@ -50,4 +50,4 @@ infix 6 deep as |*
 with :: String -> Refinement -> Selector
 with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
 
-infix 6 with as &
+infix 6 with as <&

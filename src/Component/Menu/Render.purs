@@ -4,6 +4,12 @@ import Prelude hiding (top, div)
 
 import CSS (flexGrow, fromString, marginLeft, minWidth, opacity, rem, visibility)
 import CSS.Common (hidden, visible)
+import Component.Menu.Style.Item.Icon.Container as ItemIconContainer
+import Component.Menu.Style.Item.Icon.Icon as ItemIcon
+import Component.Menu.Style.Item.Item as Item
+import Component.Menu.Style.Logo as Logo
+import Component.Menu.Style.Menu (classId, unfoldWidth)
+import Component.Menu.Style.Sheet (sheet)
 import Component.Menu.Type (Action(..), State)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
@@ -11,8 +17,6 @@ import Halogen.HTML.CSS as HCSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Utils.Style (class_)
-import Component.Menu.Style.Item.Item as Item
-import Component.Menu.Style.Item.Icon.Icon as ItemIcon
 
 newtype Item = Item { label :: String, iconFileName :: String, children :: Array Item }
 
@@ -31,13 +35,13 @@ items =
 render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
-    [ class_ class'
+    [ class_ classId
     , HE.onMouseEnter $ const $ ToggleFolding true
     , HE.onMouseLeave $ const $ ToggleFolding false
     ]
     ( [ sheet s
       , img
-          [ class_ logoClass
+          [ class_ Logo.classId
           , HP.src "assets/images/logo.png"
           , HP.alt "Logo"
           ]
@@ -46,12 +50,12 @@ render s =
   where
   item :: forall w i. String -> String -> HTML w i
   item label iconFileName =
-    div [ class_ Item.class' ]
+    div [ class_ Item.classId ]
       [ div
-          [ class_ $ ItemIcon.containerClass
+          [ class_ $ ItemIconContainer.classId
           ]
           [ img
-              [ class_ ItemIcon.class'
+              [ class_ ItemIcon.classId
               , HP.src (fromString "assets/images/component/menu/" <> iconFileName <> ".png")
               , HP.alt label
               ]
