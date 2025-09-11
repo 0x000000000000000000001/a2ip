@@ -5,12 +5,14 @@ module Component.Menu.Style.Item.Item
 
 import Prelude hiding (top, div)
 
-import CSS (alignItems, backgroundColor, color, cursor, display, flex, graytone, hover, justifyContent, padding, rem, (?))
+import CSS (alignItems, backgroundColor, color, cursor, display, flex, graytone, height, hover, justifyContent, padding, pct, position, relative, rem, width, (?))
 import CSS as CSS
 import CSS.Common (center)
 import CSS.Cursor (pointer)
+import Component.Menu.Style.Item.Children as Children
 import Component.Menu.Style.Item.Icon.Container as IconContainer
-import Utils.Style (ourRed, (<?), (<|*), (<&))
+import Component.Menu.Style.Item.Label as Label
+import Utils.Style (deep, ourRed, (<&), (<?))
 
 classId :: String
 classId = "hJyLm9YwK"
@@ -24,11 +26,18 @@ style = do
     alignItems center
     cursor pointer
     padding (rem 0.7) (rem 0.0) (rem 0.7) (rem 0.0)
+    position relative
+    width (pct 100.0)
+    height $ rem IconContainer.width
+    CSS.key (CSS.fromString "transition") "background-color 0s"
 
-  hoverSel ? do
+  h ? do
     backgroundColor ourRed
 
-  (hoverSel <|* IconContainer.classId) ? (IconContainer.boxShadow 0.22 (-0.10))
+  d Children.classId ? (display flex)
+  d IconContainer.classId ? (IconContainer.boxShadow 0.22 (-0.10))
+  d Label.classId ? (width $ pct 100.0)
 
   where
-  hoverSel = classId <& hover
+  h = classId <& hover
+  d = deep h

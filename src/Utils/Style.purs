@@ -4,6 +4,9 @@ module Utils.Style
   , with
   , ourRed
   , select
+  , padding
+  , margin
+  , borderWidth
   , (<?)
   , (<|*)
   , (<&)
@@ -31,6 +34,15 @@ class_ className = HP.class_ $ HH.ClassName $ stripDotPrefixFromClassName classN
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className =
   fromMaybe className (stripPrefix (Pattern ".") className)
+
+padding :: Number -> CSS.CSS
+padding p = CSS.padding (CSS.rem p) (CSS.rem p) (CSS.rem p) (CSS.rem p)
+
+margin :: Number -> CSS.CSS
+margin m = CSS.margin (CSS.rem m) (CSS.rem m) (CSS.rem m) (CSS.rem m)
+
+borderWidth :: Number -> CSS.CSS
+borderWidth w = CSS.key (CSS.fromString "border-width") w
 
 select :: String -> CSS.CSS -> CSS.CSS
 select sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
