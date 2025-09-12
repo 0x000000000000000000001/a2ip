@@ -8,14 +8,17 @@ You can edit this file as you like.
   , "console"
   , "const"
   , "css"
+  , "datetime"
   , "effect"
   , "halogen"
   , "halogen-css"
   , "maybe"
   , "nonempty"
+  , "now"
   , "prelude"
   , "routing"
   , "strings"
+  , "transformers"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
