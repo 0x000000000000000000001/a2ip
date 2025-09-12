@@ -13,14 +13,17 @@ import Component.Menu.Style.Logo as Logo
 import Component.Menu.Style.Menu (classId)
 import Component.Menu.Style.Sheet (sheet)
 import Component.Menu.Type (Action(..), State)
+import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
+import Router.Routes (Route(..))
 import Utils.Style (class_)
 
 type Item r =
   ( label :: String
+  , route :: Maybe Route
   | r
   )
 
@@ -29,22 +32,23 @@ newtype ChildItem = ChildItem { | Item () }
 
 items :: Array ParentItem
 items =
-  [ ParentItem { label: "Accueil", iconFileName: "home", children: [] }
-  , ParentItem { label: "Bureau et collaborateurs", iconFileName: "armchair", children: [] }
-  , ParentItem { label: "Adhésions", iconFileName: "writing", children: [] }
+  [ ParentItem { label: "Accueil", route: Just Home, iconFileName: "home", children: [] }
+  , ParentItem { label: "Bureau et collaborateurs", route: Just About, iconFileName: "armchair", children: [] }
+  , ParentItem { label: "Adhésions", route: Nothing, iconFileName: "writing", children: [] }
   , ParentItem
       { label: "Séminaires"
+      , route: Nothing
       , iconFileName: "micro"
       , children:
-          [ ChildItem { label: "Malaise dans la civilisation aujourd'hui" }
-          , ChildItem { label: "Écrire l'histoire de la psychanalyse" }
-          , ChildItem { label: "Politique et religion" }
+          [ ChildItem { label: "Malaise dans la civilisation aujourd'hui", route: Nothing }
+          , ChildItem { label: "Écrire l'histoire de la psychanalyse", route: Nothing }
+          , ChildItem { label: "Politique et religion", route: Nothing }
           ]
       }
-  , ParentItem { label: "Colloques", iconFileName: "micro-2", children: [] }
-  , ParentItem { label: "Archives", iconFileName: "archive", children: [] }
-  , ParentItem { label: "Publications des membres", iconFileName: "book", children: [] }
-  , ParentItem { label: "Contact et mentions légales", iconFileName: "contact", children: [] }
+  , ParentItem { label: "Colloques", route: Nothing, iconFileName: "micro-2", children: [] }
+  , ParentItem { label: "Archives", route: Nothing, iconFileName: "archive", children: [] }
+  , ParentItem { label: "Publications des membres", route: Nothing, iconFileName: "book", children: [] }
+  , ParentItem { label: "Contact et mentions légales", route: Nothing, iconFileName: "contact", children: [] }
   ]
 
 render :: forall m. State -> H.ComponentHTML Action () m
