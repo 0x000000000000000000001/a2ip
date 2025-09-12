@@ -18,7 +18,7 @@ import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Router.Routes (Route(..))
+import Route (Route(..))
 import Utils.Style (class_, emptyAttr)
 
 type Item r =

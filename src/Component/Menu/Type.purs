@@ -6,7 +6,7 @@ module Component.Menu.Type
   ) where
 
 import Prelude (Unit, Void)
-import Router.Routes (Route)
+import Route (Route)
 
 type State = { isUnfold :: Boolean }
 
