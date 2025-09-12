@@ -7,6 +7,8 @@ module Route
 
 import Prelude
 
+import Data.Maybe (Maybe(..))
+
 data Route 
   = Home
   | About  
@@ -21,8 +23,8 @@ routeToString = case _ of
   About -> "/about"
   NotFound -> "/404"
 
-parseRoute :: String -> Route
+parseRoute :: String -> Maybe Route
 parseRoute = case _ of
-  "/" -> Home
-  "/about" -> About
-  _ -> NotFound
+  "/" -> Just Home
+  "/about" -> Just About
+  _ -> Nothing

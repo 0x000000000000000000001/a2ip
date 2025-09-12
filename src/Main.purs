@@ -2,28 +2,36 @@ module Main (main) where
 
 import Prelude hiding (div)
 
+import AppM (runAppM)
 import CSS (StyleM, backgroundColor, borderRadius, display, flex, flexDirection, flexGrow, fromInt, margin, marginLeft, minHeight, padding, pct, rem, row, vh, width)
 import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
 import Component.Menu.Component as MenuComponent
 import Component.Menu.Style.Menu as MenuStyle
 import Data.Const (Const)
+import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Halogen as H
 import Halogen.Aff (awaitBody)
-import Halogen.HTML (div, slot, text)
+import Halogen.HTML (div, slot)
 import Halogen.HTML.CSS (style)
 import Halogen.VDom.Driver (runUI)
+import Route (parseRoute)
+import Router.Router as Router
+import Routing.Hash (matchesWith)
 import Type.Proxy (Proxy(..))
-import AppM (runAppM)
 
-type Slots = ( menu :: H.Slot (Const Void) Void Unit )
+type Slots = 
+  ( menu :: H.Slot (Const Void) Void Unit
+  , router :: H.Slot Router.Query Void Unit
+  )
 
-type AppState = Unit
+type State = Unit
 
-data AppAction = AppAction
+data Action
 
 mainLayoutStyles :: StyleM Unit
 mainLayoutStyles = do
@@ -35,18 +43,14 @@ component :: forall q o m. MonadAff m => Navigate m => Log m => H.Component q Un
 component = H.mkComponent
   { initialState: \_ -> unit
   , render
-  , eval: H.mkEval H.defaultEval { handleAction = handleAction }
+  , eval: H.mkEval H.defaultEval
   }
 
-handleAction :: forall o m. MonadAff m => AppAction -> H.HalogenM AppState AppAction Slots o m Unit
-handleAction = case _ of
-  AppAction -> pure unit
-
-render :: forall m. MonadAff m => Navigate m => Log m => AppState -> H.ComponentHTML AppAction Slots m
+render :: forall m. MonadAff m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
 render _ =
   div
     [ style mainLayoutStyles ]
-    [ slot (Proxy :: Proxy "menu") unit MenuComponent.component unit (const AppAction)
+    [ slot (Proxy :: Proxy "menu") unit MenuComponent.component unit absurd
     , div [ style do
         marginLeft (rem MenuStyle.foldWidth)
         flexGrow 1.0
@@ -59,11 +63,15 @@ render _ =
           margin (rem 2.0) (rem 2.0) (rem 2.0) (rem 2.0)
           borderRadius (rem 0.6) (rem 0.6) (rem 0.6) (rem 0.6)
         ]
-        [ text "Hello World!" ]
+        [ slot (Proxy :: Proxy "router") unit Router.component unit absurd ]
       ]
     ]
 
 main :: Effect Unit
 main = launchAff_ do
   body <- awaitBody
-  void $ runUI (H.hoist runAppM component) unit body
+  io <- runUI (H.hoist runAppM component) unit body
+  -- Listens to URL hash changes and updates the router state accordingly
+  liftEffect $ matchesWith parseRoute
+    \old' new -> when (old' /= Just new) $
+      launchAff_ $ io.query $ H.mkTell $ Router.Navigate new
