@@ -6,10 +6,13 @@ module Component.Menu.Type
   ) where
 
 import Prelude (Unit, Void)
+import Router.Routes (Route)
 
 type State = { isUnfold :: Boolean }
 
-data Action = ToggleFolding Boolean
+data Action 
+  = ToggleFolding Boolean
+  | NavigateToRoute Route
 
 type Input = Unit
 

@@ -6,8 +6,9 @@ import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Component.Menu.Render (render)
 import Component.Menu.HandleAction (handleAction)
+import Component.Menu.Type (Output)
 
-component :: forall q o m. MonadAff m => H.Component q Unit o m
+component :: forall q m. MonadAff m => H.Component q Unit Output m
 component = H.mkComponent
   { initialState: const { isUnfold: false }
   , render

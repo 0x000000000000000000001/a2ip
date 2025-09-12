@@ -19,7 +19,7 @@ import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 import Router.Routes (Route(..))
-import Utils.Style (class_)
+import Utils.Style (class_, emptyAttr)
 
 type Item r =
   ( label :: String
@@ -64,12 +64,17 @@ render s =
           , HP.src "assets/images/logo.png"
           , HP.alt "Logo"
           ]
-      ] <> (items <#> \(ParentItem { label, iconFileName, children }) -> item label iconFileName children)
+      ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
     )
   where
-  item :: forall w i. String -> String -> Array ChildItem -> HTML w i
-  item label' iconFileName children =
-    div [ class_ Item.classId ]
+  item :: forall w. String -> Maybe Route -> String -> Array ChildItem -> HTML w Action
+  item label' route iconFileName children =
+    div 
+      [ class_ Item.classId
+      , case route of
+          Just route_ -> HE.onClick $ const $ NavigateToRoute route_
+          Nothing -> emptyAttr
+      ]
       [ div
           [ class_ $ ItemIconContainer.classId ]
           [ img

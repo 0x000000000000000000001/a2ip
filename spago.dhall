@@ -14,6 +14,7 @@ You can edit this file as you like.
   , "maybe"
   , "nonempty"
   , "prelude"
+  , "routing"
   , "strings"
   ]
 , packages = ./packages.dhall

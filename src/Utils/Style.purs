@@ -4,6 +4,7 @@ module Utils.Style
   , with
   , ourRed
   , select
+  , emptyAttr
   , padding
   , margin
   , borderWidth
@@ -30,6 +31,9 @@ ourRed = hsl 353.91 0.8174 0.4725
 -- | It automatically removes any "." prefix from the class name.
 class_ :: forall r i. String -> HH.IProp (class :: String | r) i
 class_ className = HP.class_ $ HH.ClassName $ stripDotPrefixFromClassName className
+
+emptyAttr :: forall r i. HH.IProp (class :: String | r) i
+emptyAttr = class_ ""
 
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className =
