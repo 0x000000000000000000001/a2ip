@@ -1,4 +1,4 @@
-module Router.Routes
+module Route
   ( Route(..)
   , parseRoute
   , routeToString

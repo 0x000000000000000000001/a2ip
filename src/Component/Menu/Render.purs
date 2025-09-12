@@ -74,6 +74,7 @@ render s =
       , case route of
           Just route_ -> HE.onClick $ const $ NavigateToRoute route_
           Nothing -> emptyAttr
+          , HE.onClick $ const $ Log "this is a test"
       ]
       [ div
           [ class_ $ ItemIconContainer.classId ]
