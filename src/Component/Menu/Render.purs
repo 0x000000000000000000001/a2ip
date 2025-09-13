@@ -13,12 +13,12 @@ import Component.Menu.Style.Logo as Logo
 import Component.Menu.Style.Menu (classId)
 import Component.Menu.Style.Sheet (sheet)
 import Component.Menu.Type (Action(..), State)
+import Component.Router.Route (Route(..))
 import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Component.Router.Route (Route(..))
 import Utils.Style (class_)
 
 type Item r =
@@ -55,7 +55,7 @@ render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
     [ class_ classId
-    , HE.onMouseEnter $ const $ ToggleFolding false
+    , HE.onMouseOver $ const $ ToggleFolding false
     , HE.onMouseLeave $ const $ ToggleFolding true
     ]
     ( [ sheet s
@@ -72,7 +72,7 @@ render s =
     div
       ( [ class_ Item.classId ] <>
           ( case route of
-              Just route_ -> [ HE.onClick $ const $ NavigateToRoute route_ ]
+              Just route_ -> [ HE.onClick $ const $ Navigate route_ ]
               Nothing -> []
           )
       )

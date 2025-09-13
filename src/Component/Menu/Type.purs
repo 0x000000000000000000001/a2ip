@@ -12,7 +12,7 @@ type State = { isUnfold :: Boolean }
 
 data Action 
   = ToggleFolding Boolean
-  | NavigateToRoute Route
+  | Navigate Route
 
 type Input = Unit
 
