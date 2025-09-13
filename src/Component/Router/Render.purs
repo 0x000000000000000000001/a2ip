@@ -16,4 +16,3 @@ renderRoute :: forall w i. Route -> H.ComponentHTML i () w
 renderRoute = case _ of
   Home -> div [] [ text "🏠 Page d'accueil" ]
   About -> div [] [ text "ℹ️ À propos" ]
-  NotFound -> div [] [ text "❌ Page non trouvée" ]

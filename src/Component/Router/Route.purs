@@ -1,30 +1,24 @@
 module Component.Router.Route
   ( Route(..)
-  , parseRoute
-  , routeToString
-  )
-  where
+  , routeCodec
+  ) where
 
 import Prelude
 
-import Data.Maybe (Maybe(..))
+import Data.Generic.Rep (class Generic)
+import Routing.Duplex (RouteDuplex', path, root)
+import Routing.Duplex.Generic (sum, noArgs)
 
-data Route 
+data Route
   = Home
-  | About  
-  | NotFound
+  | About
 
+derive instance genericRoute :: Generic Route _
 derive instance eqRoute :: Eq Route
 derive instance ordRoute :: Ord Route
 
-routeToString :: Route -> String
-routeToString = case _ of
-  Home -> "/"
-  About -> "/about"
-  NotFound -> "/404"
-
-parseRoute :: String -> Maybe Route
-parseRoute = case _ of
-  "/" -> Just Home
-  "/about" -> Just About
-  _ -> Nothing
+routeCodec :: RouteDuplex' Route
+routeCodec = root $ sum
+  { "Home": path "home" noArgs
+  , "About": path "about" noArgs
+  }
