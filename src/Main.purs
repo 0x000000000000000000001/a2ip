@@ -18,7 +18,7 @@ import Effect.Aff (launchAff_)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class (liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML (div, slot)
 import Halogen.HTML.CSS (style)
 import Halogen.VDom.Driver (runUI)
@@ -70,10 +70,9 @@ render _ =
     ]
 
 main :: Effect Unit
-main = launchAff_ do
+main = runHalogenAff do
   body <- awaitBody
   io <- runUI (H.hoist runAppM component) unit body
-  -- Listens to URL hash changes and updates the router state accordingly
   liftEffect $ matchesWith (parse routeCodec)
-    \old' new -> when (old' /= Just new) $  
-      launchAff_ $ io.query $ H.mkTell $ RouterType.Navigate new
+    \old' new -> when (old' /= Just new) $   
+      launchAff_ $ void $ io.query $ H.mkTell $ RouterType.Navigate new

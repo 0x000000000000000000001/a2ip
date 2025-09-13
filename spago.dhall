@@ -20,7 +20,6 @@ You can edit this file as you like.
   , "routing-duplex"
   , "strings"
   , "transformers"
-  , "uuid"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]

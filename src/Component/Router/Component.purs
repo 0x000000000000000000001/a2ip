@@ -7,9 +7,10 @@ import Component.Router.Render (render)
 import Component.Router.Route (Route(..))
 import Component.Router.Type (Query)
 import Effect.Aff.Class (class MonadAff)
+import Effect.Class (class MonadEffect)
 import Halogen as H
 
-component :: forall i o m. MonadAff m => H.Component Query i o m
+component :: forall i o m. MonadAff m => MonadEffect m => H.Component Query i o m
 component = H.mkComponent
   { initialState: const { route: Home }
   , render: render

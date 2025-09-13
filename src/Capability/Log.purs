@@ -30,7 +30,7 @@ instance logHalogenM :: Log m => Log (HalogenM state action slots output m) wher
 
 instance logAppM :: Log AppM where
   logEntry level message = liftEffect nowDateTime >>= pure <<< { level, message, timestamp: _ }
-  log = Console.log <<< show
+  log entry = Console.log $ show entry.level <> ": " <> entry.message
 
 derive instance genericLogLevel :: Generic LogLevel _
 

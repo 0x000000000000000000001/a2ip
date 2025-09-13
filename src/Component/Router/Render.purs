@@ -10,7 +10,9 @@ import Halogen.HTML (div, text)
 render :: forall m. State -> H.ComponentHTML Action () m
 render { route } =
   div []
-    [ renderRoute route ]
+    [ text $ "🔄 Current route: " <> show route
+    , div [] [ renderRoute route ]
+    ]
 
 renderRoute :: forall w i. Route -> H.ComponentHTML i () w
 renderRoute = case _ of
