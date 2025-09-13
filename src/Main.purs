@@ -17,12 +17,13 @@ import Halogen.Aff (awaitBody)
 import Halogen.HTML (div, slot)
 import Halogen.HTML.CSS (style)
 import Halogen.VDom.Driver (runUI)
-import Component.Router.Router as Router
+import Component.Router.Type as RouterType
+import Component.Router.Component as Router
 import Type.Proxy (Proxy(..))
 
 type Slots = 
   ( menu :: H.Slot (Const Void) Void Unit
-  , router :: H.Slot Router.Query Void Unit
+  , router :: H.Slot RouterType.Query Void Unit
   )
 
 type State = Unit
