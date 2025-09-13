@@ -1,4 +1,4 @@
-module Route
+module Component.Router.Route
   ( Route(..)
   , parseRoute
   , routeToString

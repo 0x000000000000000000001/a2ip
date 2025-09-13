@@ -6,7 +6,7 @@ import AppM (AppM)
 import Control.Monad.Trans.Class (lift)
 import Effect.Class (liftEffect)
 import Halogen (HalogenM)
-import Route (Route, routeToString)
+import Component.Router.Route (Route, routeToString)
 import Routing.Hash (setHash)
 
 class Monad m <= Navigate m where

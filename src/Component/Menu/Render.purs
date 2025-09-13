@@ -18,8 +18,8 @@ import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Route (Route(..))
-import Utils.Style (class_, emptyAttr)
+import Component.Router.Route (Route(..))
+import Utils.Style (class_)
 
 type Item r =
   ( label :: String
@@ -55,8 +55,8 @@ render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
     [ class_ classId
-    , HE.onMouseEnter $ const $ ToggleFolding true
-    , HE.onMouseLeave $ const $ ToggleFolding false
+    , HE.onMouseEnter $ const $ ToggleFolding false
+    , HE.onMouseLeave $ const $ ToggleFolding true
     ]
     ( [ sheet s
       , img
@@ -69,12 +69,13 @@ render s =
   where
   item :: forall w. String -> Maybe Route -> String -> Array ChildItem -> HTML w Action
   item label' route iconFileName children =
-    div 
-      [ class_ Item.classId
-      , case route of
-          Just route_ -> HE.onClick $ const $ NavigateToRoute route_
-          Nothing -> emptyAttr
-      ]
+    div
+      ( [ class_ Item.classId ] <>
+          ( case route of
+              Just route_ -> [ HE.onClick $ const $ NavigateToRoute route_ ]
+              Nothing -> []
+          )
+      )
       [ div
           [ class_ $ ItemIconContainer.classId ]
           [ img
@@ -85,7 +86,7 @@ render s =
       , div
           [ class_ Label.classId ]
           [ text label' ]
-      , div 
-      [ class_ Children.classId ]
+      , div
+          [ class_ Children.classId ]
           (children <#> \(ChildItem { label }) -> div [ class_ Child.classId ] [ text label ])
       ]

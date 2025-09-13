@@ -9,5 +9,5 @@ import Halogen as H
 
 handleAction :: forall m. MonadAff m => Navigate m => Action -> H.HalogenM State Action () Output m Unit
 handleAction = case _ of
-  ToggleFolding bool -> H.modify_ _ { isUnfold = bool }
+  ToggleFolding bool -> H.modify_ _ { isUnfold = not bool }
   NavigateToRoute route -> navigate route

@@ -31,13 +31,13 @@ style = do
     height $ rem IconContainer.width
     CSS.key (CSS.fromString "transition") "background-color 0s"
 
-  h ? do
+  hover' ? do
     backgroundColor ourRed
 
-  d Children.classId ? (display flex)
-  d IconContainer.classId ? (IconContainer.boxShadow 0.22 (-0.10))
-  d Label.classId ? (width $ pct 100.0)
+  o Children.classId ? (display flex)
+  o IconContainer.classId ? (IconContainer.boxShadow 0.22 (-0.10))
+  o Label.classId ? (width $ pct 100.0)
 
   where
-  h = classId <& hover
-  d = deep h
+  hover' = classId <& hover
+  o = deep hover'

@@ -9,19 +9,15 @@ import Capability.Navigate (class Navigate)
 import Component.Menu.Component as MenuComponent
 import Component.Menu.Style.Menu as MenuStyle
 import Data.Const (Const)
-import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Class (liftEffect)
 import Halogen as H
 import Halogen.Aff (awaitBody)
 import Halogen.HTML (div, slot)
 import Halogen.HTML.CSS (style)
 import Halogen.VDom.Driver (runUI)
-import Route (parseRoute)
-import Router.Router as Router
-import Routing.Hash (matchesWith)
+import Component.Router.Router as Router
 import Type.Proxy (Proxy(..))
 
 type Slots = 
@@ -70,8 +66,8 @@ render _ =
 main :: Effect Unit
 main = launchAff_ do
   body <- awaitBody
-  io <- runUI (H.hoist runAppM component) unit body
+  void $ runUI (H.hoist runAppM component) unit body
   -- Listens to URL hash changes and updates the router state accordingly
-  liftEffect $ matchesWith parseRoute
-    \old' new -> when (old' /= Just new) $
-      launchAff_ $ io.query $ H.mkTell $ Router.Navigate new
+  --liftEffect $ matchesWith parseRoute
+    --\old' new -> when (old' /= Just new) $
+      --launchAff_ $ io.query $ H.mkTell $ Router.Navigate new
