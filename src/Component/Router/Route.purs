@@ -23,6 +23,6 @@ instance showRoute :: Show Route where
 
 routeCodec :: RouteDuplex' Route
 routeCodec = root $ sum
-  { "Home": path "home" noArgs
+  { "Home": noArgs
   , "About": path "about" noArgs
   }
