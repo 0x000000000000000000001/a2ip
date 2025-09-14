@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Icon.Container
+module Component.Router.Menu.Style.Item.Icon.Container
   ( classId
   , style
   , boxShadow
@@ -11,8 +11,8 @@ import CSS (alignSelf, backgroundColor, borderRadius, display, flex, height, jus
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
-import Component.Menu.Style.Menu as MenuStyle
-import Component.Menu.Type (State)
+import Component.Router.Menu.Style.Menu as MenuStyle
+import Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
 import Utils.Style ((<?))
 

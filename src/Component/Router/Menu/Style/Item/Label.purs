@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Label
+module Component.Router.Menu.Style.Item.Label
   ( classId
   , style
   ) where
@@ -10,7 +10,7 @@ import CSS as CSS
 import CSS.Common (hidden, visible)
 import CSS.Overflow as Overflow
 import CSS.Overflow (overflow)
-import Component.Menu.Type (State)
+import Component.Router.Menu.Type (State)
 import Utils.Style ((<?))
 
 classId :: String

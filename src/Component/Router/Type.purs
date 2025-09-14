@@ -1,8 +1,14 @@
 module Component.Router.Type where
 
-import Prelude hiding (div)
+import Prelude
 
 import Component.Router.Route (Route)
+import Data.Const (Const)
+import Halogen (Slot)
+
+type Slots = 
+  ( menu :: Slot (Const Void) Void Unit
+  )
 
 type State = { route :: Route }
 

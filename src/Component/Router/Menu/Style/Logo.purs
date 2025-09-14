@@ -1,4 +1,4 @@
-module Component.Menu.Style.Logo
+module Component.Router.Menu.Style.Logo
   ( classId
   , style
   ) where
@@ -9,7 +9,7 @@ import CSS (alignSelf, cursor, fromString, key, margin, rem, width)
 import CSS as CSS
 import CSS.Common (center)
 import CSS.Cursor (pointer)
-import Component.Menu.Style.Item.Icon.Container as ItemIconContainer
+import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import Utils.Style ((<?))
 
 classId :: String

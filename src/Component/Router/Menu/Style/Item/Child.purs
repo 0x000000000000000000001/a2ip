@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Child
+module Component.Router.Menu.Style.Item.Child
   ( classId
   , style
   ) where

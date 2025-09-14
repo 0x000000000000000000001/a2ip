@@ -1,4 +1,4 @@
-module Component.Menu.Type
+module Component.Router.Menu.Type
   ( Action(..)
   , Input
   , Output

@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Icon.Icon
+module Component.Router.Menu.Style.Item.Icon.Icon
   ( classId
   , style
   ) where

@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Children
+module Component.Router.Menu.Style.Item.Children
   ( classId
   , style
   ) where
@@ -8,7 +8,7 @@ import Prelude hiding (top, div)
 import CSS (absolute, backgroundColor, display, displayNone, flexWrap, position, rem, rgba, top, transform, wrap)
 import CSS as CSS
 import CSS.Transform (translateX)
-import Component.Menu.Style.Menu (backgroundBlackAlpha)
+import Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
 import Utils.Style ((<?))
 
 classId :: String

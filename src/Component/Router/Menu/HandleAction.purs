@@ -1,9 +1,9 @@
-module Component.Menu.HandleAction (handleAction) where
+module Component.Router.Menu.HandleAction (handleAction) where
 
 import Prelude hiding (top, div)
 
 import Capability.Navigate (class Navigate, navigate)
-import Component.Menu.Type (Action(..), State, Output)
+import Component.Router.Menu.Type (Action(..), State, Output)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 

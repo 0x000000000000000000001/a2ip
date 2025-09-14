@@ -1,18 +1,18 @@
-module Component.Menu.Render (render) where
+module Component.Router.Menu.Render (render) where
 
 import Prelude hiding (top, div)
 
 import CSS (fromString)
-import Component.Menu.Style.Item.Child as Child
-import Component.Menu.Style.Item.Children as Children
-import Component.Menu.Style.Item.Icon.Container as ItemIconContainer
-import Component.Menu.Style.Item.Icon.Icon as ItemIcon
-import Component.Menu.Style.Item.Item as Item
-import Component.Menu.Style.Item.Label as Label
-import Component.Menu.Style.Logo as Logo
-import Component.Menu.Style.Menu (classId)
-import Component.Menu.Style.Sheet (sheet)
-import Component.Menu.Type (Action(..), State)
+import Component.Router.Menu.Style.Item.Child as Child
+import Component.Router.Menu.Style.Item.Children as Children
+import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
+import Component.Router.Menu.Style.Item.Icon.Icon as ItemIcon
+import Component.Router.Menu.Style.Item.Item as Item
+import Component.Router.Menu.Style.Item.Label as Label
+import Component.Router.Menu.Style.Logo as Logo
+import Component.Router.Menu.Style.Menu (classId)
+import Component.Router.Menu.Style.Sheet (sheet)
+import Component.Router.Menu.Type (Action(..), State)
 import Component.Router.Route (Route(..))
 import Data.Maybe (Maybe(..))
 import Halogen as H

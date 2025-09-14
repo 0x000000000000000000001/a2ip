@@ -1,4 +1,4 @@
-module Component.Menu.Style.Item.Item
+module Component.Router.Menu.Style.Item.Item
   ( classId
   , style
   ) where
@@ -9,9 +9,9 @@ import CSS (alignItems, backgroundColor, color, cursor, display, flex, graytone,
 import CSS as CSS
 import CSS.Common (center)
 import CSS.Cursor (pointer)
-import Component.Menu.Style.Item.Children as Children
-import Component.Menu.Style.Item.Icon.Container as IconContainer
-import Component.Menu.Style.Item.Label as Label
+import Component.Router.Menu.Style.Item.Children as Children
+import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
+import Component.Router.Menu.Style.Item.Label as Label
 import Utils.Style (deep, ourRed, (<&), (<?))
 
 classId :: String

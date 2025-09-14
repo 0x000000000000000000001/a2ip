@@ -1,12 +1,12 @@
-module Component.Menu.Component (component) where
+module Component.Router.Menu.Component (component) where
 
 import Prelude hiding (top, div)
 
 import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
-import Component.Menu.HandleAction (handleAction)
-import Component.Menu.Render (render)
-import Component.Menu.Type (Output)
+import Component.Router.Menu.HandleAction (handleAction)
+import Component.Router.Menu.Render (render)
+import Component.Router.Menu.Type (Output)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 
