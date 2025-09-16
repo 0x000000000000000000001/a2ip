@@ -17,7 +17,6 @@ type State =
   , data :: Maybe (Array (Array String))
   }
 
--- Component actions
 data Action
   = LoadData
 
