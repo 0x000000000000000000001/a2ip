@@ -16,7 +16,6 @@ component = H.mkComponent
   { initialState: const 
       { isLoading: true
       , data: Nothing
-      , error: Nothing
       }
   , render 
   , eval: H.mkEval H.defaultEval 

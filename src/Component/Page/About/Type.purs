@@ -20,7 +20,6 @@ type Data =
 type State =
   { isLoading :: Boolean
   , data :: Maybe Data
-  , error :: Maybe String
   }
 
 -- Component actions
