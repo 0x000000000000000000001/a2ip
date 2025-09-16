@@ -6,7 +6,7 @@ import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), State)
 import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
-import Effect.Exception (Error, error)
+import Effect.Exception (Error)
 import Halogen as H
 import Data.Either (Either(..))
 import Effect.Aff (delay)

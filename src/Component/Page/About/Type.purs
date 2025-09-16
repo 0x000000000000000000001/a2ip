@@ -33,4 +33,5 @@ data Action
   | SheetDataLoaded SheetData
   | SheetDataFailed Error
 
+type Query :: forall k. k -> Type
 type Query = Const Void
