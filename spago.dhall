@@ -5,6 +5,8 @@ You can edit this file as you like.
 { name = "halo"
 , dependencies =
   [ "aff"
+  , "affjax"
+  , "affjax-web"
   , "arrays"
   , "console"
   , "const"
@@ -12,10 +14,11 @@ You can edit this file as you like.
   , "datetime"
   , "effect"
   , "either"
-  , "except ions"
+  , "exceptions"
   , "formatters"
   , "halogen"
   , "halogen-css"
+  , "http-methods"
   , "maybe"
   , "nonempty"
   , "now"
@@ -24,6 +27,7 @@ You can edit this file as you like.
   , "routing-duplex"
   , "strings"
   , "transformers"
+  , "web-fetch"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
