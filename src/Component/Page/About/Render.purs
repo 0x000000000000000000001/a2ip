@@ -15,7 +15,7 @@ import Halogen.HTML as HH
 render :: forall m. MonadAff m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
 render state =
   div_
-    [ h1_ [ text "About Page" ]
+    [ h1_ [ text "About Page" ] 
     , case state of
         { isLoading: true } -> 
           div_ [ text "Loading Google Sheets data..." ]
@@ -26,10 +26,10 @@ render state =
             , text $ "Failed to load data: " <> errorMsg
             ]
             
-        { sheetData: Just sheetData, isLoading: false } ->
+        { data: Just data_, isLoading: false } ->
           div_
-            [ h2_ [ text sheetData.title ]
-            , renderTable sheetData.rows
+            [ h2_ [ text data_.title ]
+            , renderTable data_.rows
             ]
             
         _ ->

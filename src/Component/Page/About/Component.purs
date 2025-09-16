@@ -15,12 +15,12 @@ component :: forall o m. MonadAff m => Navigate m => Log m => H.Component Query 
 component = H.mkComponent
   { initialState: const 
       { isLoading: true
-      , sheetData: Nothing
+      , data: Nothing
       , error: Nothing
       }
-  , render
+  , render 
   , eval: H.mkEval H.defaultEval 
       { handleAction = handleAction
-      , initialize = Just Initialize
+      , initialize = Just LoadSheetData
       }
   }
