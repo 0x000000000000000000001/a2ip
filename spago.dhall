@@ -18,7 +18,6 @@ You can edit this file as you like.
   , "formatters"
   , "halogen"
   , "halogen-css"
-  , "http-methods"
   , "maybe"
   , "nonempty"
   , "now"
@@ -27,7 +26,6 @@ You can edit this file as you like.
   , "routing-duplex"
   , "strings"
   , "transformers"
-  , "web-fetch"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
