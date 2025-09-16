@@ -12,19 +12,14 @@ type Output = Void
 type Slots :: forall k. Row k
 type Slots = ()
 
-type Data =
-  { title :: String
-  , rows :: Array (Array String)
-  }
-
 type State =
   { isLoading :: Boolean
-  , data :: Maybe Data
+  , data :: Maybe (Array (Array String))
   }
 
 -- Component actions
 data Action
-  = LoadSheetData
+  = LoadData
 
 type Query :: forall k. k -> Type
 type Query = Const Void
