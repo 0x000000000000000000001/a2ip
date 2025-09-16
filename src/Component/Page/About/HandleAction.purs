@@ -4,13 +4,16 @@ import Prelude
 
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), State)
+import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
+import Data.Time.Duration (Milliseconds(..))
+import Effect.Aff (delay)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error)
 import Halogen as H
-import Data.Either (Either(..))
-import Effect.Aff (delay)
-import Data.Time.Duration (Milliseconds(..))
+
+googleSheetLink :: String
+googleSheetLink = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE/edit?usp=sharing"
 
 -- Sample data to simulate Google Sheets response
 mockData :: { title :: String, rows :: Array (Array String) }
@@ -36,17 +39,12 @@ handleAction = case _ of
 
     case result of
       Left err -> do
-        let errorMsg = show err
-        log Error $ "Failed to load sheet data: " <> errorMsg
-        H.modify_ _ { isLoading = false, error = Just errorMsg }
+        log Error $ "Failed to load sheet data: " <> show err
       Right data_ -> do 
         log Info $ "Sheet data loaded successfully: " <> data_.title
         H.modify_ _ { isLoading = false, data = Just data_ } 
       
 fetchGoogleSheetData :: forall m. MonadAff m => m (Either Error { title :: String, rows :: Array (Array String) })
 fetchGoogleSheetData = H.liftAff do
-  -- Simulate potential error
-  -- pure $ Left (error "Simulated API error")
-  
   -- Simulate successful fetch with mock data
   pure $ Right mockData
