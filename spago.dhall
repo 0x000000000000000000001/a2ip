@@ -7,7 +7,6 @@ You can edit this file as you like.
   [ "aff"
   , "affjax"
   , "affjax-web"
-  , "arrays"
   , "console"
   , "const"
   , "css"
