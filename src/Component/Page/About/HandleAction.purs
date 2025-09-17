@@ -18,6 +18,24 @@ import Halogen as H
 googleSheetCsvLink :: String
 googleSheetCsvLink = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE/export?format=csv"
 
+portraitViewUrlPrefix :: String
+portraitViewUrlPrefix = "https://drive.google.com/file/d/"
+
+portraitViewUrlSuffix :: String
+portraitViewUrlSuffix = "/view"
+
+extractPortraitIdFromViewUrl :: String -> String
+extractPortraitIdFromViewUrl url =
+  let
+    withoutPrefix = case split (Pattern portraitViewUrlPrefix) url of
+      [ _, rest ] -> rest
+      _ -> url
+    id = case split (Pattern portraitViewUrlSuffix) withoutPrefix of
+      [ idPart, _ ] -> idPart
+      _ -> withoutPrefix
+  in
+    id
+
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
   LoadData -> do
@@ -58,6 +76,7 @@ parseCsvRowWithMapping mappingKeys row =
     , job: getValue "job"
     , email: getValue "email"
     , phone: getValue "phone"
+    , portraitId: extractPortraitIdFromViewUrl (getValue "portraitId")
     }
 
 getColByKey :: String -> Array String -> Array String -> String
@@ -87,4 +106,3 @@ parseCsvRow row = parseCsvRow_ row [] "" false
           if inQuotes then parseCsvRow_ rest fields (currentField <> ",") inQuotes
           else parseCsvRow_ rest (fields <> [ trim currentField ]) "" false
         char -> parseCsvRow_ rest fields (currentField <> char) inQuotes
-  

@@ -19,6 +19,7 @@ type Member =
   , job :: String
   , phone :: String
   , email :: String
+  , portraitId :: String
   }
 
 type State =
