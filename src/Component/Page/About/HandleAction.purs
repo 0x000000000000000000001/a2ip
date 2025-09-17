@@ -87,3 +87,4 @@ parseCsvRow row = parseCsvRow_ row [] "" false
           if inQuotes then parseCsvRow_ rest fields (currentField <> ",") inQuotes
           else parseCsvRow_ rest (fields <> [ trim currentField ]) "" false
         char -> parseCsvRow_ rest fields (currentField <> char) inQuotes
+  
