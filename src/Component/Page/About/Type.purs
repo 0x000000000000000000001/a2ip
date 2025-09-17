@@ -12,13 +12,21 @@ type Output = Void
 type Slots :: forall k. Row k
 type Slots = ()
 
-type State =
-  { isLoading :: Boolean
-  , data :: Maybe (Array (Array String))
+type Member =
+  { lastname :: String
+  , firstname :: String
+  , role :: String
+  , job :: String
+  , phone :: String
+  , email :: String
   }
 
-data Action
-  = LoadData
+type State =
+  { isLoading :: Boolean
+  , data :: Maybe (Array Member)
+  }
+
+data Action = LoadData
 
 type Query :: forall k. k -> Type
 type Query = Const Void
