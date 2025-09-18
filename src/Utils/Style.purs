@@ -2,14 +2,18 @@ module Utils.Style
   ( class_
   , deep
   , with
+  , with_
   , ourRed
+  , ourFontRed
   , select
   , padding
   , margin
+  , raw
   , borderWidth
   , (<?)
-  , (<|*)
+  , (|*>)
   , (<&)
+  , (<&>)
   ) where
 
 import Prelude
@@ -26,6 +30,9 @@ import Halogen.HTML.Properties as HP
 ourRed :: Color
 ourRed = hsl 353.91 0.8174 0.4725
 
+ourFontRed :: Color
+ourFontRed = hsl 353.91 0.8174 0.35
+
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
 class_ :: forall r i. String -> HH.IProp (class :: String | r) i
@@ -34,6 +41,9 @@ class_ className = HP.class_ $ HH.ClassName $ stripDotPrefixFromClassName classN
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className =
   fromMaybe className (stripPrefix (Pattern ".") className)
+
+raw :: String -> String -> CSS.CSS
+raw key value = CSS.key (CSS.fromString key) value
 
 padding :: Number -> CSS.CSS
 padding p = CSS.padding (CSS.rem p) (CSS.rem p) (CSS.rem p) (CSS.rem p)
@@ -54,7 +64,7 @@ infixr 5 select as <?
 deep :: Selector -> String -> Selector
 deep a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
 
-infix 6 deep as <|*
+infix 6 deep as |*>
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
@@ -63,3 +73,9 @@ with :: String -> Refinement -> Selector
 with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
 
 infix 6 with as <&
+
+-- | See with 
+with_ :: String -> String -> Selector
+with_ s r = with s (CSS.fromString r)
+
+infix 6 with_ as <&>

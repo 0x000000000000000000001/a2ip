@@ -43,9 +43,9 @@ handleAction = case _ of
 
     case result of
       Left err -> log Error $ "Failed to load sheet data: " <> show err
-      Right data_ -> H.modify_ _ { isLoading = false, data = Just data_ }
+      Right members_ -> H.modify_ _ { members = members_ }
 
-fetchData :: forall m. MonadAff m => m (Either Error (Array Member))
+fetchData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchData = H.liftAff do
   result <- get string googleSheetCsvLink
 
@@ -53,7 +53,7 @@ fetchData = H.liftAff do
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> pure $ Right $ parseCsv response.body
 
-parseCsv :: String -> Array Member
+parseCsv :: String -> Array (Maybe Member)
 parseCsv csvText =
   let
     rows = split (Pattern "\n") $ trim csvText
@@ -64,20 +64,21 @@ parseCsv csvText =
   in
     map (parseCsvRowWithMapping mappingRow) dataRows
 
-parseCsvRowWithMapping :: Array String -> String -> Member
+parseCsvRowWithMapping :: Array String -> String -> Maybe Member
 parseCsvRowWithMapping mappingKeys row =
   let
     cols = parseCsvRow row
     getValue key = getColByKey key mappingKeys cols
   in
-    { lastname: getValue "lastname"
-    , firstname: getValue "firstname"
-    , role: getValue "role"
-    , job: getValue "job"
-    , email: getValue "email"
-    , phone: getValue "phone"
-    , portraitId: extractPortraitIdFromViewUrl (getValue "portraitId")
-    }
+    Just
+      { lastname: getValue "lastname"
+      , firstname: getValue "firstname"
+      , role: getValue "role"
+      , job: getValue "job"
+      , email: getValue "email"
+      , phone: getValue "phone"
+      , portraitId: extractPortraitIdFromViewUrl (getValue "portraitId")
+      }
 
 getColByKey :: String -> Array String -> Array String -> String
 getColByKey key mappingKeys dataColumns =

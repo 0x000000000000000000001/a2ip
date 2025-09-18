@@ -23,8 +23,7 @@ type Member =
   }
 
 type State =
-  { isLoading :: Boolean
-  , data :: Maybe (Array Member)
+  { members :: Array (Maybe Member)
   }
 
 data Action = LoadData
