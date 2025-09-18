@@ -12,9 +12,8 @@ import Component.Page.About.Style.Card.Line as CardLine
 import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, State, Slots, Member)
-import Data.Array (length, replicate)
-import Data.Maybe (Maybe, maybe)
+import Component.Page.About.Type (Action, Slots, State, Member)
+import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
@@ -24,7 +23,7 @@ import Halogen.HTML.Properties (src)
 import Utils.Style (class_, classes)
 
 mockImages :: Boolean
-mockImages = true
+mockImages = false
 
 googleDriveImageUrlTemplatePlaceholder :: String
 googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
@@ -60,7 +59,18 @@ renderMemberCard member =
     ]
     ( [ div [ class_ CardNames.classId ] [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ])
-      ] <> lines member
+      ] <>
+        ( lines $ fromMaybe
+            { lastname: ""
+            , firstname: ""
+            , role: ""
+            , job: ""
+            , phone: ""
+            , email: ""
+            , portraitId: ""
+            }
+            member
+        )
     )
   where
   isLoading = maybe true (const false) member
