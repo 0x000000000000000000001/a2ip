@@ -1,5 +1,6 @@
 module Utils.Style
   ( class_
+  , classes
   , deep
   , with
   , with_
@@ -8,6 +9,7 @@ module Utils.Style
   , select
   , padding
   , margin
+  , nothing
   , raw
   , borderWidth
   , (<?)
@@ -22,6 +24,7 @@ import CSS (Refinement, Selector)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Selector as CSSS
+import Data.Array (fold)
 import Data.Maybe (fromMaybe)
 import Data.String (Pattern(..), stripPrefix)
 import Halogen.HTML as HH
@@ -38,13 +41,19 @@ ourFontRed = hsl 353.91 0.8174 0.35
 class_ :: forall r i. String -> HH.IProp (class :: String | r) i
 class_ className = HP.class_ $ HH.ClassName $ stripDotPrefixFromClassName className
 
+classes :: forall r i. Array String -> HH.IProp (class :: String | r) i
+classes classNames = HP.classes $ HH.ClassName <$> (stripDotPrefixFromClassName <$> classNames)
+
 stripDotPrefixFromClassName :: String -> String
-stripDotPrefixFromClassName className =
+stripDotPrefixFromClassName className = 
   fromMaybe className (stripPrefix (Pattern ".") className)
 
 raw :: String -> String -> CSS.CSS
 raw key value = CSS.key (CSS.fromString key) value
 
+nothing :: CSS.CSS
+nothing = pure unit
+  
 padding :: Number -> CSS.CSS
 padding p = CSS.padding (CSS.rem p) (CSS.rem p) (CSS.rem p) (CSS.rem p)
 
@@ -74,8 +83,8 @@ with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
 
 infix 6 with as <&
 
--- | See with 
+-- | See `with` 
 with_ :: String -> String -> Selector
-with_ s r = with s (CSS.fromString r)
+with_ s r = with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 with_ as <&>

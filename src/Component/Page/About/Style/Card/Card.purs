@@ -6,9 +6,10 @@ module Component.Page.About.Style.Card.Card
 
 import Prelude hiding (top)
 
-import CSS (pct, width, (?))
+import CSS (pct, rem, width, (?))
 import CSS as CSS
-import Utils.Style (padding, (<?), (<&>))
+import Utils.Style (deep, padding, nothing, (<&>), (<?))
+import Component.Page.About.Style.Card.Portrait as Portrait
 
 classId :: String
 classId = "xt156nvNM"
@@ -23,6 +24,11 @@ style = do
     padding 1.0
 
   loading ? do
-    padding 10.0 
+    nothing
 
-    where loading = classId <&> classIdWhenLoading
+  o Portrait.classId ? do
+    width (rem 2.0)
+
+  where
+  loading = classId <&> classIdWhenLoading
+  o = deep loading

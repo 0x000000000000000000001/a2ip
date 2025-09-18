@@ -8,8 +8,8 @@ import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
-import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Card.Names as CardNames
+import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, State, Slots, Member)
 import Data.Maybe (Maybe, maybe)
@@ -19,7 +19,7 @@ import Halogen as H
 import Halogen.HTML (div, img, p_, text)
 import Halogen.HTML as HH
 import Halogen.HTML.Properties (src)
-import Utils.Style (class_)
+import Utils.Style (class_, classes)
 
 googleDriveImageUrlTemplatePlaceholder :: String
 googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
@@ -42,9 +42,10 @@ render state =
 renderMemberCard :: forall w i. Maybe Member -> HH.HTML w i
 renderMemberCard member =
   div
-    ([ class_ Card.classId ]
-      <> maybe ([ class_ Card.classIdWhenLoading ]) (const []) member
-    )
+    [ classes $
+      [ Card.classId ]
+      <> maybe ([ Card.classIdWhenLoading ]) (const []) member
+    ]
     [ div [ class_ CardNames.classId ] [ text $ maybe "Unknown" (\m -> m.firstname <> " " <> m.lastname) member ]
     -- , img [ src $ generateGoogleDriveImageUrl member.portraitId ]
     , img [ class_ CardPortrait.classId, src $ mockImageUrl ]
