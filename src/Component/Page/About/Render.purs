@@ -20,7 +20,7 @@ import Halogen as H
 import Halogen.HTML (div, img, text)
 import Halogen.HTML as HH
 import Halogen.HTML.Properties (src)
-import Utils.Style (class_, classes)
+import Utils.Style (class_, classes) 
 
 mockImages :: Boolean
 mockImages = false
@@ -42,10 +42,6 @@ render state =
   div
     [ class_ classId ]
     ([ sheet ] <> (map renderMemberCard state.members))
-
--- Dynamically generate labels from the Member type
-labels :: Array String
-labels = [ "role", "job", "phone", "email" ]
 
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
