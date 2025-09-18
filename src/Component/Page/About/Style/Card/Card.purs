@@ -25,7 +25,7 @@ style :: CSS.CSS
 style = do
   classId <? do
     width (rem 30.0)
-    padding 2.0
+    padding 1.4
     textAlign center
     display flex
     justifyContent CSS.center

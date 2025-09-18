@@ -8,7 +8,7 @@ import Prelude hiding (top)
 import CSS (alignContent, display, flex, flexStart, flexWrap, justifyContent, wrap)
 import CSS as CSS
 import CSS.Common (center)
-import Utils.Style ((<?))
+import Utils.Style (padding, (<?))
 
 classId :: String
 classId = "mH916ksxM"
@@ -20,3 +20,4 @@ style = do
     justifyContent center
     alignContent flexStart
     flexWrap wrap
+    padding 1.3

@@ -23,6 +23,9 @@ import Halogen.HTML as HH
 import Halogen.HTML.Properties (src)
 import Utils.Style (class_, classes)
 
+mockImages :: Boolean
+mockImages = true
+
 googleDriveImageUrlTemplatePlaceholder :: String
 googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
 
@@ -45,6 +48,9 @@ render state =
 labels :: Array String
 labels = [ "role", "job", "phone", "email" ]
 
+loadingPlaceholder :: String
+loadingPlaceholder = "__loading__"
+
 renderMemberCard :: forall w i. Maybe Member -> HH.HTML w i
 renderMemberCard member =
   div
@@ -52,24 +58,22 @@ renderMemberCard member =
         [ Card.classId ]
           <> if isLoading then [ Card.classIdWhenLoading ] else []
     ]
-    ( [ div [ class_ CardNames.classId ] [ text $ maybe "names" (\m -> m.firstname <> " " <> m.lastname) member ]
-      , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ mockImageUrl ])
+    ( [ div [ class_ CardNames.classId ] [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
+      , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ])
       ] <> (maybe dummyLines realLines member)
     )
   where
   isLoading = maybe true (const false) member
-  dummyLines = replicate (length labels) (div [ classes [ CardLine.classId ] ] [ text "loading" ])
-  realLines = \m -> [
-    div
-      [ classes [ CardLine.classId, CardLine.classIdWhen "role" ] ]
-      [ text $ m.role ],
-      div
-      [ classes [ CardLine.classId, CardLine.classIdWhen "job" ] ]
-      [ text $ m.job ],
-      div
-      [ classes [ CardLine.classId, CardLine.classIdWhen "phone" ] ]
-      [ text $ m.phone ],
-      div
-      [ classes [ CardLine.classId, CardLine.classIdWhen "email" ] ]
-      [ text $ m.email ]
-  ]
+  dummyLines = replicate (length labels) (div [ classes [ CardLine.classId ] ] [ text loadingPlaceholder ])
+  realLine getter key = \m ->
+    if getter m == "" then []
+    else
+      [ div
+          [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
+          [ text $ getter m ]
+      ]
+  realLines = (\m -> realLine _.role "role"
+        <> realLine _.job "job"
+        <> realLine _.phone "phone"
+        <> realLine _.email "email"
+    )

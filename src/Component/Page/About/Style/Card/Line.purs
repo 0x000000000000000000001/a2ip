@@ -24,7 +24,7 @@ style = do
     raw "transition" "background-color 0s; color 0s"
 
   __role ? do 
-    fontSize (pct 100.0)
+    fontSize (pct 110.0)
     fontWeight bold
 
   where 
