@@ -19,8 +19,8 @@ style = do
     width (pct 100.0)
     CSS.key (CSS.fromString "transition") "background-color 0s"
 
-  hover' ? do
+  __hover ? do
     backgroundColor red
 
   where 
-  hover' = classId <& hover
+  __hover = classId <& hover 

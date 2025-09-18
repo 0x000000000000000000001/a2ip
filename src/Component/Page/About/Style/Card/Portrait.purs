@@ -22,5 +22,5 @@ style = do
     height (rem width)
     raw "object-fit" "cover"
     border solid (rem 0.3) red
-    borderRadius (rem 0.0) (rem 40.0) (rem 40.0) (rem 40.0)
-    marginTop (rem 0.3)
+    borderRadius (rem 40.0) (rem 40.0) (rem 40.0) (rem 40.0)
+    marginTop (rem 0.4)

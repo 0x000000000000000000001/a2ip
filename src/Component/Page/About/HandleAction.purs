@@ -49,9 +49,12 @@ fetchData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchData = H.liftAff do
   result <- get string googleSheetCsvLink
 
-  case result of
-    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
-    Right response -> pure $ Right $ parseCsv response.body
+  -- Debug
+  pure $ Left $ error "Simulated error for testing"
+
+  -- case result of
+  --   Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
+  --   Right response -> pure $ Right $ parseCsv response.body
 
 parseCsv :: String -> Array (Maybe Member)
 parseCsv csvText =
@@ -68,7 +71,7 @@ parseCsvRowWithMapping :: Array String -> String -> Maybe Member
 parseCsvRowWithMapping mappingKeys row =
   let
     cols = parseCsvRow row
-    getValue key = getColByKey key mappingKeys cols
+    getValue key = trim $ getColByKey key mappingKeys cols
   in
     Just
       { lastname: getValue "lastname"

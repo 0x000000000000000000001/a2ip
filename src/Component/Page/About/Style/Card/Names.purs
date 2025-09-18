@@ -5,7 +5,7 @@ module Component.Page.About.Style.Card.Names
 
 import Prelude hiding (top)
 
-import CSS (bold, color, fontSize, fontWeight, pct)
+import CSS (bold, color, fontSize, fontWeight, pct, width)
 import CSS as CSS
 import Utils.Style (fontRed, raw, (<?))
 
@@ -16,6 +16,7 @@ style :: CSS.CSS
 style = do
   classId <? do
     fontWeight bold
-    fontSize (pct 120.0)
+    fontSize (pct 130.0)
     color fontRed
-    raw "transition" "background-color 0s"
+    width (pct 80.0)
+    raw "transition" "background-color 0s; color 0s"

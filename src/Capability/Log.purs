@@ -18,7 +18,13 @@ instance logHalogenM :: Log m => Log (HalogenM state action slots output m) wher
   log level message = lift (log level message)
 
 instance logAppM :: Log AppM where
-  log level message = Console.log $ show level <> ": " <> message
+  log level message = 
+    let message_ = show level <> ": " <> message
+    in case level of
+      Debug -> Console.debug message_
+      Info -> Console.info message_
+      Warning -> Console.warn message_
+      Error -> Console.error message_
 
 derive instance genericLogLevel :: Generic Level _
 

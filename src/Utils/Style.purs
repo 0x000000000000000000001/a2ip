@@ -1,13 +1,14 @@
 module Utils.Style
   ( class_
   , classes
-  , deep
-  , with
+  , deep_
+  , _with
+  , _with_
   , with_
   , red
   , fontRed
   , loadingGrey
-  , select
+  , _select
   , padding
   , margin
   , nothing
@@ -17,6 +18,7 @@ module Utils.Style
   , (|*>)
   , (<&)
   , (<&>)
+  , (&>)
   ) where
 
 import Prelude
@@ -67,28 +69,34 @@ margin m = CSS.margin (CSS.rem m) (CSS.rem m) (CSS.rem m) (CSS.rem m)
 borderWidth :: Number -> CSS.CSS
 borderWidth w = CSS.key (CSS.fromString "border-width") w
 
-select :: String -> CSS.CSS -> CSS.CSS
-select sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
+_select :: String -> CSS.CSS -> CSS.CSS
+_select sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
 
-infixr 5 select as <?
+infixr 5 _select as <?
 
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
-deep :: Selector -> String -> Selector
-deep a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
+deep_ :: Selector -> String -> Selector
+deep_ a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
 
-infix 6 deep as |*>
+infix 6 deep_ as |*>
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
 -- | depending on the filter.
-with :: String -> Refinement -> Selector
-with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
+_with :: String -> Refinement -> Selector
+_with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
 
-infix 6 with as <&
+infix 6 _with as <&
 
 -- | See `with` 
-with_ :: String -> String -> Selector
-with_ s r = with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+_with_ :: String -> String -> Selector
+_with_ s r = _with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
 
-infix 6 with_ as <&>
+infix 6 _with_ as <&>
+
+-- | See `with` 
+with_ :: Selector -> String -> Selector
+with_ s r = CSSS.with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+
+infix 6 with_ as &>

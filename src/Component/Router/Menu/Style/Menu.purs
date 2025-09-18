@@ -40,5 +40,8 @@ style s = do
     flexDirection column
     alignItems flexStart
 
-  classId <& hover ? do 
+  __hover ? do 
     borderWidth 0.0
+
+  where 
+  __hover = classId <& hover

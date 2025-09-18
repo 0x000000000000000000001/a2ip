@@ -6,12 +6,15 @@ module Component.Page.About.Style.Card.Card
 
 import Prelude hiding (top)
 
-import CSS (backgroundColor, borderColor, borderRadius, color, pct, rem, width, (?))
-import CSS as CSS
+import CSS (CSS) as CSS
+import CSS (alignItems, backgroundColor, borderColor, borderRadius, color, column, display, flex, flexDirection, flexWrap, fromString, justifyContent, pct, rem, width, wrap, (&), (?))
+import CSS.Common (center) as CSS
+import CSS.TextAlign (center, textAlign)
+import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
-import Utils.Style (deep, loadingGrey, nothing, padding, raw, (<&>), (<?))
-
+import Utils.Style (deep_, loadingGrey, nothing, padding, (&>), (<&>), (<?))
+ 
 classId :: String
 classId = "xt156nvNM"
 
@@ -21,22 +24,41 @@ classIdWhenLoading = "vrptC0jM2"
 style :: CSS.CSS
 style = do
   classId <? do
-    width (pct 33.33)
-    padding 1.0
+    width (rem 30.0)
+    padding 2.0
+    textAlign center
+    display flex
+    justifyContent CSS.center
+    alignItems CSS.center
+    flexWrap wrap
+    flexDirection column
 
-  loading ? do
+  __loading ? do
     nothing
 
-  o Portrait.classId ? do
+  ____portrait ? do
     backgroundColor loadingGrey
     borderColor loadingGrey
 
-  o Names.classId ? do
+  ____names ? do
     color loadingGrey
     backgroundColor loadingGrey
     borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
-    width (pct 70.0)
-    
+    width (pct 40.0)
+
+  ____line ? do
+    color loadingGrey
+    backgroundColor loadingGrey
+    borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
+    width (pct 60.0)
+
+    ______when2nd ? do
+      width (pct 45.0)
+
   where
-  loading = classId <&> classIdWhenLoading
-  o = deep loading
+  __loading = classId <&> classIdWhenLoading
+  deepLoading = deep_ __loading
+  ____portrait = deepLoading Portrait.classId
+  ____names = deepLoading Names.classId
+  ____line = deepLoading Line.classId
+  ______when2nd = ____line &> Line.classIdWhenSecond
