@@ -7,11 +7,11 @@ import Prelude hiding (top)
 
 import CSS (border, borderRadius, height, rem, solid, marginTop)
 import CSS as CSS
-import Utils.Style (ourRed, raw, (<?))
+import Utils.Style (red, raw, (<?))
 
 classId :: String
 classId = "yg13inAyQ"
-
+ 
 width :: Number
 width = 12.0
 
@@ -21,6 +21,6 @@ style = do
     CSS.width (rem width)
     height (rem width)
     raw "object-fit" "cover"
-    border solid (rem 0.3) ourRed
+    border solid (rem 0.3) red
     borderRadius (rem 0.0) (rem 40.0) (rem 40.0) (rem 40.0)
     marginTop (rem 0.3)

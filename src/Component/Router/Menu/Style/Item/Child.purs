@@ -7,7 +7,7 @@ import Prelude hiding (top, div)
 
 import CSS (backgroundColor, hover, pct, width, (?))
 import CSS as CSS
-import Utils.Style (ourRed, padding, (<&), (<?))
+import Utils.Style (red, padding, (<&), (<?))
 
 classId :: String
 classId = "A9EgPEH39"
@@ -20,7 +20,7 @@ style = do
     CSS.key (CSS.fromString "transition") "background-color 0s"
 
   hover' ? do
-    backgroundColor ourRed
+    backgroundColor red
 
   where 
   hover' = classId <& hover

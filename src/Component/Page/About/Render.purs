@@ -43,14 +43,16 @@ renderMemberCard :: forall w i. Maybe Member -> HH.HTML w i
 renderMemberCard member =
   div
     [ classes $
-      [ Card.classId ]
-      <> maybe ([ Card.classIdWhenLoading ]) (const []) member
+        [ Card.classId ]
+          <> if isLoading then [ Card.classIdWhenLoading ] else []
     ]
     [ div [ class_ CardNames.classId ] [ text $ maybe "Unknown" (\m -> m.firstname <> " " <> m.lastname) member ]
     -- , img [ src $ generateGoogleDriveImageUrl member.portraitId ]
-    , img [ class_ CardPortrait.classId, src $ mockImageUrl ]
+    , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ mockImageUrl ])
     , p_ [ text $ maybe "Unknown" _.role member ]
     , p_ [ text $ maybe "Unknown" _.job member ]
     , p_ [ text $ maybe "Unknown" _.phone member ]
     , p_ [ text $ maybe "Unknown" _.email member ]
     ]
+  where
+  isLoading = maybe true (const false) member

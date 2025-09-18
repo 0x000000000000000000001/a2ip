@@ -6,10 +6,11 @@ module Component.Page.About.Style.Card.Card
 
 import Prelude hiding (top)
 
-import CSS (pct, rem, width, (?))
+import CSS (backgroundColor, borderColor, borderRadius, color, pct, rem, width, (?))
 import CSS as CSS
-import Utils.Style (deep, padding, nothing, (<&>), (<?))
+import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
+import Utils.Style (deep, loadingGrey, nothing, padding, raw, (<&>), (<?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -27,8 +28,15 @@ style = do
     nothing
 
   o Portrait.classId ? do
-    width (rem 2.0)
+    backgroundColor loadingGrey
+    borderColor loadingGrey
 
+  o Names.classId ? do
+    color loadingGrey
+    backgroundColor loadingGrey
+    borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
+    width (pct 70.0)
+    
   where
   loading = classId <&> classIdWhenLoading
   o = deep loading

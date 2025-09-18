@@ -12,7 +12,7 @@ import CSS.Cursor (pointer)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Utils.Style (deep, ourRed, (<&), (<?))
+import Utils.Style (deep, raw, red, (<&), (<?))
 
 classId :: String
 classId = "hJyLm9YwK"
@@ -29,10 +29,10 @@ style = do
     position relative
     width (pct 100.0)
     height $ rem IconContainer.width
-    CSS.key (CSS.fromString "transition") "background-color 0s"
+    raw "transition" "background-color 0s"
 
   hover' ? do
-    backgroundColor ourRed
+    backgroundColor red
 
   o Children.classId ? (display flex)
   o IconContainer.classId ? (IconContainer.boxShadow 0.22 (-0.10))
