@@ -13,8 +13,8 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, State, Slots, Member)
-import Data.Array (filter, replicate)
-import Data.Maybe (Maybe, maybe)
+import Data.Array (filter, length, mapWithIndex, replicate, (!!))
+import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
@@ -55,10 +55,15 @@ renderMemberCard member =
       -- , img [ src $ generateGoogleDriveImageUrl member.portraitId ]
       , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ mockImageUrl ])
       ] <>
-        ( (\i -> div [ class_ CardLine.classId ] [ text i ])
-            <$>
-              maybe (replicate 4 loadingTextPlaceholder) (\m -> [ m.role, m.job, m.phone, m.email ] # filter (_ /= "")) member
+        ( mapWithIndex
+            ( \idx info ->
+                div
+                  [ classes [ CardLine.classId, CardLine.classIdWhen $ fromMaybe "" (labels !! idx) ] ] 
+                  [ text info ] 
+            )
+            (maybe (replicate (length labels) loadingTextPlaceholder) (\m -> (labels <#> (m !! _)) # filter (_ /= "")) member)
         )
     )
   where
   isLoading = maybe true (const false) member
+  labels = ["role", "job", "phone", "email"]

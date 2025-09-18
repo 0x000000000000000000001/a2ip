@@ -14,6 +14,7 @@ module Utils.Style
   , nothing
   , raw
   , borderWidth
+  , hash9
   , (<?)
   , (|*>)
   , (<&)
@@ -27,9 +28,12 @@ import CSS (Refinement, Selector)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Selector as CSSS
-import Data.Array (fold)
-import Data.Maybe (fromMaybe)
+import Data.Array (foldl, (!!))
+import Data.Char (toCharCode)
+import Data.Int (rem)
+import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
+import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 
@@ -100,3 +104,43 @@ with_ :: Selector -> String -> Selector
 with_ s r = CSSS.with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 with_ as &>
+
+-- | Fast polynomial hash function that generates a 9-character identifier
+-- | Perfect for CSS class names with very low collision probability
+hash9 :: forall a. Show a => a -> String
+hash9 input = 
+  let
+    str = show input
+    -- Multiple hash values for better distribution
+    hash1 = foldl (\acc char -> ((acc * 31) + toCharCode char) `rem` 238328) 5381 (toCharArray str)  -- 62^3
+    hash2 = foldl (\acc char -> ((acc * 37) + toCharCode char) `rem` 238328) 7919 (toCharArray str)  -- 62^3
+    hash3 = foldl (\acc char -> ((acc * 41) + toCharCode char) `rem` 238328) 1009 (toCharArray str)  -- 62^3
+    
+    -- Base62 characters for CSS-safe identifiers (using 'o' instead of '0')
+    chars = [ 'o','1','2','3','4','5','6','7','8','9'
+      ,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+      ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z'
+      ]
+    letters = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+        ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
+        ]
+    
+    -- Extract character from hash value
+    getChar :: Int -> String
+    getChar n = 
+      case chars !! (n `rem` 62) of
+        Just c -> fromCharArray [c]
+        Nothing -> "o"
+    -- Extract letter for first char
+    getLetter :: Int -> String
+    getLetter n = 
+      case letters !! (n `rem` 52) of
+        Just c -> fromCharArray [c]
+        Nothing -> "A"
+        
+  in
+  -- Use different positions from each hash for better distribution
+  getLetter hash1 <>
+  getChar (hash1 / 62) <> getChar (hash1 / 3844) <>
+  getChar hash2 <> getChar (hash2 / 62) <> getChar (hash2 / 3844) <>
+  getChar hash3 <> getChar (hash3 / 62) <> getChar (hash3 / 3844)

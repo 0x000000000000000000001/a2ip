@@ -18,6 +18,7 @@ You can edit this file as you like.
   , "formatters"
   , "halogen"
   , "halogen-css"
+  , "integers"
   , "maybe"
   , "nonempty"
   , "now"

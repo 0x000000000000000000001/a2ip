@@ -1,6 +1,6 @@
 module Component.Page.About.Style.Card.Line
   ( classId
-  , classIdWhenSecond
+  , classIdWhen
   , style
   ) where
 
@@ -8,14 +8,14 @@ import Prelude hiding (top)
 
 import CSS (marginTop, rem, pct, width)
 import CSS as CSS
-import Utils.Style (raw, (<?))
+import Utils.Style (hash9, raw, (<?))
 
 classId :: String
 classId = "wNMB3qHPD"
 
-classIdWhenSecond :: String
-classIdWhenSecond = "kvYjNVj86"
-
+classIdWhen :: String -> String
+classIdWhen = hash9
+ 
 style :: CSS.CSS
 style = do
   classId <? do
