@@ -16,7 +16,7 @@ style :: CSS.CSS
 style = do
   classId <? do
     fontWeight bold
-    fontSize (pct 130.0)
+    fontSize (pct 140.0)
     color fontRed
     width (pct 80.0)
     raw "transition" "background-color 0s; color 0s"

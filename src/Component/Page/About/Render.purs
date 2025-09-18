@@ -13,8 +13,8 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, State, Slots, Member)
-import Data.Array (filter, length, mapWithIndex, replicate, (!!))
-import Data.Maybe (Maybe, fromMaybe, maybe)
+import Data.Array (length, replicate)
+import Data.Maybe (Maybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
@@ -41,8 +41,9 @@ render state =
     [ class_ classId ]
     ([ sheet ] <> (map renderMemberCard state.members))
 
-loadingTextPlaceholder :: String
-loadingTextPlaceholder = "__loading_text__"
+-- Dynamically generate labels from the Member type
+labels :: Array String
+labels = [ "role", "job", "phone", "email" ]
 
 renderMemberCard :: forall w i. Maybe Member -> HH.HTML w i
 renderMemberCard member =
@@ -51,19 +52,24 @@ renderMemberCard member =
         [ Card.classId ]
           <> if isLoading then [ Card.classIdWhenLoading ] else []
     ]
-    ( [ div [ class_ CardNames.classId ] [ text $ maybe loadingTextPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
-      -- , img [ src $ generateGoogleDriveImageUrl member.portraitId ]
+    ( [ div [ class_ CardNames.classId ] [ text $ maybe "names" (\m -> m.firstname <> " " <> m.lastname) member ]
       , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ mockImageUrl ])
-      ] <>
-        ( mapWithIndex
-            ( \idx info ->
-                div
-                  [ classes [ CardLine.classId, CardLine.classIdWhen $ fromMaybe "" (labels !! idx) ] ] 
-                  [ text info ] 
-            )
-            (maybe (replicate (length labels) loadingTextPlaceholder) (\m -> (labels <#> (m !! _)) # filter (_ /= "")) member)
-        )
+      ] <> (maybe dummyLines realLines member)
     )
   where
   isLoading = maybe true (const false) member
-  labels = ["role", "job", "phone", "email"]
+  dummyLines = replicate (length labels) (div [ classes [ CardLine.classId ] ] [ text "loading" ])
+  realLines = \m -> [
+    div
+      [ classes [ CardLine.classId, CardLine.classIdWhen "role" ] ]
+      [ text $ m.role ],
+      div
+      [ classes [ CardLine.classId, CardLine.classIdWhen "job" ] ]
+      [ text $ m.job ],
+      div
+      [ classes [ CardLine.classId, CardLine.classIdWhen "phone" ] ]
+      [ text $ m.phone ],
+      div
+      [ classes [ CardLine.classId, CardLine.classIdWhen "email" ] ]
+      [ text $ m.email ]
+  ]

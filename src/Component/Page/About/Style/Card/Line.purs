@@ -6,9 +6,9 @@ module Component.Page.About.Style.Card.Line
 
 import Prelude hiding (top)
 
-import CSS (marginTop, rem, pct, width)
+import CSS (bold, fontSize, fontWeight, marginTop, pct, rem, width, (?))
 import CSS as CSS
-import Utils.Style (hash9, raw, (<?))
+import Utils.Style (hash9, raw, (<&>), (<?))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -22,3 +22,10 @@ style = do
     marginTop (rem 0.6)
     width (pct 75.0)
     raw "transition" "background-color 0s; color 0s"
+
+  __role ? do 
+    fontSize (pct 100.0)
+    fontWeight bold
+
+  where 
+  __role = classId <&> classIdWhen "role"
