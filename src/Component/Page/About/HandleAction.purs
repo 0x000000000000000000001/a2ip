@@ -50,11 +50,11 @@ fetchData = H.liftAff do
   result <- get string googleSheetCsvLink
 
   -- Debug
-  -- pure $ Left $ error "Simulated error for testing"
+  pure $ Left $ error "Simulated error for testing"
 
-  case result of
-    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
-    Right response -> pure $ Right $ parseCsv response.body
+  -- case result of
+  --   Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
+  --   Right response -> pure $ Right $ parseCsv response.body
 
 parseCsv :: String -> Array (Maybe Member)
 parseCsv csvText =

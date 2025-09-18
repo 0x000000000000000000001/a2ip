@@ -65,15 +65,15 @@ renderMemberCard member =
   where
   isLoading = maybe true (const false) member
   dummyLines = replicate (length labels) (div [ classes [ CardLine.classId ] ] [ text loadingPlaceholder ])
-  realLine getter key = \m ->
-    if getter m == "" then []
+  realLine getter key member_ =
+    if getter member_ == "" then []
     else
       [ div
           [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-          [ text $ getter m ]
+          [ text $ getter member_ ]
       ]
-  realLines = (\m -> realLine _.role "role"
-        <> realLine _.job "job"
-        <> realLine _.phone "phone"
-        <> realLine _.email "email"
-    )
+  realLines member_ =
+    realLine _.role "role" member_
+      <> realLine _.job "job" member_
+      <> realLine _.phone "phone" member_
+      <> realLine _.email "email" member_

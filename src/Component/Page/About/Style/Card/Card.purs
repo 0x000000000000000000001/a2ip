@@ -52,11 +52,11 @@ style = do
     borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
     width (pct 60.0)
 
-  ______2nd ? do
+  ______phone ? do
     width (pct 30.0)
     height (rem 1.6)
 
-  ______3rd ? do
+  ______email ? do
     width (pct 45.0)
 
   where
@@ -65,5 +65,5 @@ style = do
   ____portrait = deepLoading Portrait.classId
   ____names = deepLoading Names.classId
   ____line = deepLoading Line.classId
-  ______2nd = ____line &> (Line.classIdWhen "phone") 
-  ______3rd = ____line &> (Line.classIdWhen "email")  
+  ______phone = ____line &> (Line.classIdWhen "phone") 
+  ______email = ____line &> (Line.classIdWhen "email")  
