@@ -60,20 +60,19 @@ renderMemberCard member =
     ]
     ( [ div [ class_ CardNames.classId ] [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ])
-      ] <> (maybe dummyLines realLines member)
+      ] <> lines member
     )
   where
   isLoading = maybe true (const false) member
-  dummyLines = replicate (length labels) (div [ classes [ CardLine.classId ] ] [ text loadingPlaceholder ])
-  realLine getter key member_ =
-    if getter member_ == "" then []
+  line getter key member_ =
+    if not isLoading && getter member_ == "" then []
     else
       [ div
           [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-          [ text $ getter member_ ]
+          [ text $ if isLoading then loadingPlaceholder else getter member_ ]
       ]
-  realLines member_ =
-    realLine _.role "role" member_
-      <> realLine _.job "job" member_
-      <> realLine _.phone "phone" member_
-      <> realLine _.email "email" member_
+  lines member_ =
+    line _.role "role" member_
+      <> line _.job "job" member_
+      <> line _.phone "phone" member_
+      <> line _.email "email" member_
