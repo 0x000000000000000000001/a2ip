@@ -53,8 +53,13 @@ renderMemberCard member =
         [ Card.classId ]
           <> if isLoading then [ Card.classIdWhenLoading ] else []
     ]
-    ( [ div [ class_ CardNames.classId ] [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
-      , img ([ class_ CardPortrait.classId ] <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ])
+    ( [ div
+          [ class_ CardNames.classId ]
+          [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
+      , img
+          ( [ class_ CardPortrait.classId ]
+              <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
+          )
       ] <> lines
     )
   where

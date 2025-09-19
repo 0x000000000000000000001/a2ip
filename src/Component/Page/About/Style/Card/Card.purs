@@ -7,13 +7,13 @@ module Component.Page.About.Style.Card.Card
 import Prelude hiding (top)
 
 import CSS (CSS) as CSS
-import CSS (alignItems, column, flexDirection, justifyContent, (?))
+import CSS (alignItems, column, flexDirection, justifyContent, (&), (?))
 import CSS.Common (center) as CSS
 import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
-import Utils.Style (borderRadius1, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?))
+import Utils.Style (before, borderRadius1, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, raw, widthPct, widthRem, (&.), (.&.), (.?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -49,6 +49,9 @@ style = do
     borderRadius1 0.3
     widthPct 60.0
 
+  ______before ? do
+    raw "content" ""
+
   ______phone ? do
     widthPct 30.0
     heightRem 1.6
@@ -62,5 +65,6 @@ style = do
   ____portrait = deepClassLoading Portrait.classId
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId
-  ______phone = ____line &. (Line.classIdWhen "phone") 
-  ______email = ____line &. (Line.classIdWhen "email")  
+  ______before = ____line & before
+  ______phone = ____line &. Line.classIdWhen "phone"
+  ______email = ____line &. Line.classIdWhen "email"
