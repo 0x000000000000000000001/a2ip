@@ -5,10 +5,10 @@ module Component.Page.About.Style.About
 
 import Prelude hiding (top)
 
-import CSS (alignContent, display, flex, flexStart, flexWrap, justifyContent, wrap)
+import CSS (alignContent, flexStart, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Utils.Style (padding, (.?))
+import Utils.Style (displayFlex, flexWrap, padding1, (.?))
 
 classId :: String
 classId = "mH916ksxM"
@@ -16,8 +16,8 @@ classId = "mH916ksxM"
 style :: CSS.CSS
 style = do
   classId .? do
-    display flex
+    displayFlex
     justifyContent center
     alignContent flexStart
-    flexWrap wrap
-    padding 1.3
+    flexWrap
+    padding1 1.3

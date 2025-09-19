@@ -7,14 +7,14 @@ module Component.Router.Menu.Style.Item.Icon.Container
 
 import Prelude hiding (top, div)
 
-import CSS (alignSelf, backgroundColor, borderRadius, display, flex, height, justifyContent, marginLeft, minWidth, rem, rgba, white)
+import CSS (alignSelf, backgroundColor, justifyContent, rem, rgba, white)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Utils.Style ((.?))
+import Utils.Style (borderRadius1, displayFlex, heightRem, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -29,12 +29,12 @@ style :: State -> CSS.CSS
 style s = do
   classId .? do
     backgroundColor (rgba 0 0 0 0.2)
-    borderRadius (rem 5.0) (rem 5.0) (rem 5.0) (rem 5.0)
-    minWidth (rem width)
-    CSS.width (rem width)
-    height (rem width)
-    marginLeft (rem $ (MenuStyle.foldWidth - width) / 2.0)
-    display flex
-    justifyContent center
+    borderRadius1 5.0
+    minWidthRem width
+    widthRem width
+    heightRem width
+    marginLeft $ (MenuStyle.foldWidth - width) / 2.0
+    displayFlex
+    justifyContent center 
     alignSelf center
     when s.isUnfold $ boxShadow 0.12 0.12

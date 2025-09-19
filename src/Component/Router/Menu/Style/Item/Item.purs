@@ -5,43 +5,42 @@ module Component.Router.Menu.Style.Item.Item
 
 import Prelude hiding (top, div)
 
-import CSS (alignItems, backgroundColor, color, cursor, display, flex, graytone, height, hover, justifyContent, padding, pct, position, relative, rem, width, (?))
+import CSS (alignItems, color, graytone, hover, justifyContent, (?))
 import CSS as CSS
 import CSS.Common (center)
-import CSS.Cursor (pointer)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Utils.Style (deepClass, raw, red, (.&), (.?))
+import Utils.Style (backgroundColorRed, cursorPointer, positionRelative, deepClass, displayFlex, heightRem, padding2, raw, widthPct100, (.&), (.?))
 
-classId :: String
+classId :: String 
 classId = "hJyLm9YwK"
 
 style :: CSS.CSS
 style = do
   classId .? do
     color (graytone 0.9)
-    display flex
+    displayFlex
     justifyContent center
     alignItems center
-    cursor pointer
-    padding (rem 0.7) (rem 0.0) (rem 0.7) (rem 0.0)
-    position relative
-    width (pct 100.0)
-    height $ rem IconContainer.width
+    cursorPointer
+    padding2 0.7 0.0
+    positionRelative 
+    widthPct100
+    heightRem IconContainer.width
     raw "transition" "background-color 0s"
  
   __hover ? do
-    backgroundColor red
+    backgroundColorRed
 
   ____children ? do 
-    display flex
+    displayFlex
 
   ____iconContainer ? do
     IconContainer.boxShadow 0.22 0.10
 
   ____label ? do
-    width (pct 100.0)
+    widthPct100
 
   where
   __hover = classId .& hover

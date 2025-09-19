@@ -7,13 +7,13 @@ module Component.Page.About.Style.Card.Card
 import Prelude hiding (top)
 
 import CSS (CSS) as CSS
-import CSS (alignItems, backgroundColor, borderColor, borderRadius, color, column, display, flex, flexDirection, flexWrap, height, justifyContent, pct, rem, width, wrap, (?))
+import CSS (alignItems, column, flexDirection, justifyContent, (?))
 import CSS.Common (center) as CSS
 import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
-import Utils.Style (deepClass, loadingGrey, nothing, padding, (&.), (.&.), (.?))
+import Utils.Style (borderRadius1, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -24,40 +24,37 @@ classIdWhenLoading = "vrptC0jM2"
 style :: CSS.CSS
 style = do
   classId .? do
-    width (rem 30.0)
-    padding 1.4
+    widthRem 30.0
+    padding1 1.4
     textAlign center
-    display flex
+    displayFlex
     justifyContent CSS.center
     alignItems CSS.center
-    flexWrap wrap
+    flexWrap
     flexDirection column
 
   __loading ? do
     nothing
 
   ____portrait ? do
-    backgroundColor loadingGrey
-    borderColor loadingGrey
+    loading
 
   ____names ? do
-    color loadingGrey
-    backgroundColor loadingGrey
-    borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
-    width (pct 40.0)
+    loading
+    borderRadius1 0.3
+    widthPct 40.0
 
   ____line ? do
-    color loadingGrey
-    backgroundColor loadingGrey
-    borderRadius (rem 0.3) (rem 0.3) (rem 0.3) (rem 0.3)
-    width (pct 60.0)
+    loading
+    borderRadius1 0.3
+    widthPct 60.0
 
   ______phone ? do
-    width (pct 30.0)
-    height (rem 1.6)
+    widthPct 30.0
+    heightRem 1.6
 
   ______email ? do
-    width (pct 45.0)
+    widthPct 45.0
 
   where
   __loading = classId .&. classIdWhenLoading

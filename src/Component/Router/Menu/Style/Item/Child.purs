@@ -5,9 +5,9 @@ module Component.Router.Menu.Style.Item.Child
 
 import Prelude hiding (top, div)
 
-import CSS (backgroundColor, hover, pct, width, (?))
+import CSS (hover, (?))
 import CSS as CSS
-import Utils.Style (red, padding, (.&), (.?))
+import Utils.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?))
 
 classId :: String
 classId = "A9EgPEH39"
@@ -15,12 +15,12 @@ classId = "A9EgPEH39"
 style :: CSS.CSS
 style = do
   classId .? do
-    padding 0.8
-    width (pct 100.0)
-    CSS.key (CSS.fromString "transition") "background-color 0s"
+    padding1 0.8
+    widthPct100
+    raw "transition" "background-color 0s"
 
   __hover ? do
-    backgroundColor red
+    backgroundColorRed
 
   where 
   __hover = classId .& hover 

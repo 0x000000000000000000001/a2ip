@@ -5,9 +5,9 @@ module Component.Router.Style.Router
 
 import Prelude hiding (top)
 
-import CSS (display, flex, flexDirection, minHeight, row, vh)
+import CSS (minHeight, vh)
 import CSS as CSS
-import Utils.Style ((.?))
+import Utils.Style (displayFlex, (.?))
 
 classId :: String
 classId = "DDGK8gCXg"
@@ -15,6 +15,5 @@ classId = "DDGK8gCXg"
 style :: CSS.CSS
 style = do
   classId .? do
-    display flex
-    flexDirection row
+    displayFlex
     minHeight (vh 100.0)

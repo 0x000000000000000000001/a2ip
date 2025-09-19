@@ -5,32 +5,82 @@ module Utils.Style
   , (.?)
   , (|*.)
   , after
+  , backgroundColorRed
+  , backgroundColorWhite
   , backgroundWhite
   , before
+  , bold
+  , borderRadius1
+  , borderRadius4
   , borderWidth
+  , bottom0
   , classSelect
   , classWith
   , classWithClass
   , class_
   , classes
+  , colorRed
+  , cursorPointer
   , deepClass
+  , displayFlex
+  , displayNone
+  , flexGrow1
+  , flexWrap
   , fontRed
+  , fontSizePct
   , hash9
+  , heightPct
+  , heightRem
+  , left0
+  , loading
   , loadingGrey
-  , margin
+  , margin1
+  , margin2
+  , margin4
+  , marginBottom
+  , marginLeft
+  , marginRight
+  , marginTop
+  , maxHeightPct
+  , maxHeightRem
+  , maxWidthPct
+  , maxWidthPct100
+  , maxWidthRem
+  , minHeightPct
+  , minHeightRem
+  , minWidthPct
+  , minWidthPct100
+  , minWidthRem
   , nothing
-  , padding
+  , overflowHidden
+  , padding1
+  , padding2
+  , padding4
+  , paddingBottom
+  , paddingLeft
+  , paddingRight
+  , paddingTop
+  , positionAbsolute
+  , positionFixed
+  , positionRelative
   , raw
   , red
+  , right0
+  , top0
+  , widthPct
+  , widthPct100
+  , widthRem
   , withClass
   )
   where
 
 import Prelude
 
-import CSS (Refinement(..), Selector)
+import CSS (Refinement, Selector, StyleM, backgroundColor, borderColor, color, cursor, flexGrow)
 import CSS as CSS
 import CSS.Color (Color, hsl)
+import CSS.Cursor (pointer)
+import CSS.Overflow (hidden, overflow)
 import CSS.Selector as CSSS
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
@@ -70,12 +120,171 @@ raw key value = CSS.key (CSS.fromString key) value
 
 nothing :: CSS.CSS
 nothing = pure unit
-  
-padding :: Number -> CSS.CSS
-padding p = CSS.padding (CSS.rem p) (CSS.rem p) (CSS.rem p) (CSS.rem p)
 
-margin :: Number -> CSS.CSS
-margin m = CSS.margin (CSS.rem m) (CSS.rem m) (CSS.rem m) (CSS.rem m)
+displayNone :: CSS.CSS
+displayNone = CSS.display CSS.displayNone
+
+positionAbsolute :: CSS.CSS
+positionAbsolute = CSS.position CSS.absolute
+
+positionRelative :: CSS.CSS
+positionRelative = CSS.position CSS.relative
+
+positionFixed :: CSS.CSS
+positionFixed = CSS.position CSS.fixed
+
+topRem :: Number -> CSS.CSS
+topRem t = CSS.top (CSS.rem t)
+
+leftRem :: Number -> CSS.CSS
+leftRem l = CSS.left (CSS.rem l)
+
+bottomRem :: Number -> CSS.CSS
+bottomRem b = CSS.bottom (CSS.rem b)
+
+rightRem :: Number -> CSS.CSS
+rightRem r = CSS.right (CSS.rem r)
+
+top0 :: CSS.CSS
+top0 = topRem 0.0
+
+left0 :: CSS.CSS
+left0 = leftRem 0.0
+
+bottom0 :: CSS.CSS
+bottom0 = bottomRem 0.0
+
+right0 :: CSS.CSS
+right0 = rightRem 0.0
+
+overflowHidden :: CSS.CSS
+overflowHidden = overflow hidden
+
+flexWrap :: CSS.CSS
+flexWrap = CSS.flexWrap CSS.wrap
+
+flexGrow1 :: CSS.CSS
+flexGrow1 = flexGrow 1.0
+
+fontSizePct :: Number -> CSS.CSS
+fontSizePct p = CSS.fontSize (CSS.pct p)
+
+bold :: CSS.CSS
+bold = CSS.fontWeight CSS.bold
+
+loading :: StyleM Unit
+loading = do 
+  backgroundColor loadingGrey
+  borderColor loadingGrey
+  color loadingGrey
+
+backgroundColorRed :: CSS.CSS
+backgroundColorRed = CSS.backgroundColor red
+
+colorRed :: CSS.CSS
+colorRed = CSS.color fontRed
+
+backgroundColorWhite :: CSS.CSS
+backgroundColorWhite = CSS.backgroundColor backgroundWhite
+
+displayFlex :: CSS.CSS
+displayFlex = CSS.display CSS.flex
+
+cursorPointer :: CSS.CSS
+cursorPointer = cursor pointer
+
+widthRem :: Number -> CSS.CSS
+widthRem w = CSS.width (CSS.rem w)
+
+widthPct :: Number -> CSS.CSS
+widthPct w = CSS.width (CSS.pct w)
+
+widthPct100 :: CSS.CSS
+widthPct100 = widthPct 100.0
+
+minWidthRem :: Number -> CSS.CSS
+minWidthRem w = CSS.minWidth (CSS.rem w)
+
+minWidthPct :: Number -> CSS.CSS
+minWidthPct w = CSS.minWidth (CSS.pct w)
+
+minWidthPct100 :: CSS.CSS
+minWidthPct100 = minWidthPct 100.0
+
+maxWidthRem :: Number -> CSS.CSS
+maxWidthRem w = CSS.maxWidth (CSS.rem w)
+
+maxWidthPct :: Number -> CSS.CSS
+maxWidthPct w = CSS.maxWidth (CSS.pct w)
+
+maxWidthPct100 :: CSS.CSS
+maxWidthPct100 = maxWidthPct 100.0
+
+heightRem :: Number -> CSS.CSS
+heightRem h = CSS.height (CSS.rem h)
+
+heightPct :: Number -> CSS.CSS
+heightPct h = CSS.height (CSS.pct h)
+
+minHeightRem :: Number -> CSS.CSS
+minHeightRem h = CSS.minHeight (CSS.rem h)
+
+minHeightPct :: Number -> CSS.CSS
+minHeightPct h = CSS.minHeight (CSS.pct h)
+
+maxHeightRem :: Number -> CSS.CSS
+maxHeightRem h = CSS.maxHeight (CSS.rem h)
+
+maxHeightPct :: Number -> CSS.CSS
+maxHeightPct h = CSS.maxHeight (CSS.pct h)
+
+padding4 :: Number -> Number -> Number -> Number -> CSS.CSS
+padding4 t r b l = CSS.padding (CSS.rem t) (CSS.rem r) (CSS.rem b) (CSS.rem l)
+  
+padding1 :: Number -> CSS.CSS
+padding1 p = padding4 p p p p
+
+padding2 :: Number -> Number -> CSS.CSS
+padding2 v h = padding4 v h v h
+
+paddingLeft :: Number -> CSS.CSS
+paddingLeft p = CSS.paddingLeft (CSS.rem p)
+
+paddingRight :: Number -> CSS.CSS
+paddingRight p = CSS.paddingRight (CSS.rem p)
+
+paddingBottom :: Number -> CSS.CSS
+paddingBottom p = CSS.paddingBottom (CSS.rem p)
+
+paddingTop :: Number -> CSS.CSS
+paddingTop p = CSS.paddingTop (CSS.rem p)
+
+margin4 :: Number -> Number -> Number -> Number -> CSS.CSS
+margin4 t r b l = CSS.margin (CSS.rem t) (CSS.rem r) (CSS.rem b) (CSS.rem l)
+
+margin1 :: Number -> CSS.CSS
+margin1 m = margin4 m m m m
+
+margin2 :: Number -> Number -> CSS.CSS
+margin2 v h = margin4 v h v h
+
+marginLeft :: Number -> CSS.CSS
+marginLeft m = CSS.marginLeft (CSS.rem m)
+
+marginRight :: Number -> CSS.CSS
+marginRight m = CSS.marginRight (CSS.rem m)
+
+marginTop :: Number -> CSS.CSS
+marginTop m = CSS.marginTop (CSS.rem m)
+
+marginBottom :: Number -> CSS.CSS
+marginBottom m = CSS.marginBottom (CSS.rem m)
+
+borderRadius4 :: Number -> Number -> Number -> Number -> CSS.CSS
+borderRadius4 tl tr br bl = CSS.borderRadius (CSS.rem tl) (CSS.rem tr) (CSS.rem br) (CSS.rem bl)
+
+borderRadius1 :: Number -> CSS.CSS
+borderRadius1 r = borderRadius4 r r r r
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = CSS.key (CSS.fromString "border-width") w

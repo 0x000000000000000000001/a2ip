@@ -13,7 +13,7 @@ import Component.Router.Menu.Style.Menu as MenuStyle
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Utils.Style (backgroundWhite, margin, padding, raw, red, (.?))
+import Utils.Style (backgroundColorWhite, backgroundWhite, borderRadius1, borderRadius4, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?))
 
 classId :: String
 classId = "MvOJiB63k"
@@ -24,13 +24,13 @@ bodyGradientAnimationId = "yw65DgoVL"
 style :: CSS.CSS
 style = do
   classId .? do
-    CSS.margin (rem 2.0) (rem 2.0) (rem 2.0) (rem $ 2.0 + MenuStyle.foldWidth)
-    display flex
-    backgroundColor backgroundWhite
-    padding 1.0
-    borderRadius (rem 0.6) (rem 0.6) (rem 0.6) (rem 0.6)
-    overflow Overflow.hidden
-    flexGrow 1.0
+    margin4 2.0 2.0 2.0 $ 2.0 + MenuStyle.foldWidth
+    displayFlex
+    backgroundColorWhite
+    padding1 1.0
+    borderRadius1 0.6
+    overflowHidden 
+    flexGrow1
 
   star ? do
     raw "transition" "all 0.3s ease"
@@ -44,8 +44,8 @@ style = do
   )
 
   body ? do 
-    margin 0.0
-    padding 0.0
+    margin1 0.0
+    padding1 0.0
     background $ linearGradient (angular $ deg $ -45.0) [
       Tuple (saturate 0.1 $ darken 0.1 red) (pct 25.0),
       Tuple red (pct 50.0),

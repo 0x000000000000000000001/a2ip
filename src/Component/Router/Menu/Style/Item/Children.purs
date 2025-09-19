@@ -5,11 +5,11 @@ module Component.Router.Menu.Style.Item.Children
 
 import Prelude hiding (top, div)
 
-import CSS (absolute, backgroundColor, display, displayNone, flexWrap, position, rem, rgba, top, transform, wrap)
+import CSS (backgroundColor, pct, rgba, transform)
 import CSS as CSS
 import CSS.Transform (translateX)
 import Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
-import Utils.Style ((.?))
+import Utils.Style (displayNone, flexWrap, positionAbsolute, top0, (.?))
 
 classId :: String
 classId = "YLBJc5NfZ"
@@ -17,9 +17,9 @@ classId = "YLBJc5NfZ"
 style :: CSS.CSS
 style = do
   classId .? do
-    transform $ translateX (CSS.pct 100.0)
+    transform $ translateX (pct 100.0)
     backgroundColor (rgba 0 0 0 backgroundBlackAlpha)
-    position absolute
-    top (rem 0.0)
-    display displayNone
-    flexWrap wrap
+    positionAbsolute
+    top0
+    displayNone
+    flexWrap

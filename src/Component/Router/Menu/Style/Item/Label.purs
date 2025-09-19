@@ -5,15 +5,13 @@ module Component.Router.Menu.Style.Item.Label
 
 import Prelude hiding (top, div)
 
-import CSS (flexGrow, marginLeft, opacity, rem, visibility, width)
+import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
-import CSS.Overflow as Overflow
-import CSS.Overflow (overflow)
 import Component.Router.Menu.Type (State)
-import Utils.Style ((.?))
+import Utils.Style (marginLeft, flexGrow1, overflowHidden, widthRem, (.?))
 
-classId :: String
+classId :: String 
 classId = "uLX54Ih61"
 
 style :: State -> CSS.CSS
@@ -21,7 +19,7 @@ style s = do
   classId .? do
     visibility if s.isUnfold then visible else hidden
     opacity (if s.isUnfold then 1.0 else 0.0)
-    flexGrow 1.0
-    marginLeft (rem 1.4)
-    width (rem 10.0)
-    overflow Overflow.hidden
+    flexGrow1
+    marginLeft 1.4
+    widthRem 10.0
+    overflowHidden

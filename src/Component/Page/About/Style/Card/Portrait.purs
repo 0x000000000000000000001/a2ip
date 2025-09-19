@@ -5,9 +5,9 @@ module Component.Page.About.Style.Card.Portrait
 
 import Prelude hiding (top)
 
-import CSS (border, borderRadius, height, rem, solid, marginTop)
+import CSS (border, rem, solid)
 import CSS as CSS
-import Utils.Style (red, raw, (.?))
+import Utils.Style (borderRadius1, heightRem, marginTop, raw, red, widthRem, (.?))
 
 classId :: String
 classId = "yg13inAyQ"
@@ -18,9 +18,9 @@ width = 12.0
 style :: CSS.CSS
 style = do
   classId .? do
-    CSS.width (rem width)
-    height (rem width)
+    widthRem width
+    heightRem width
     raw "object-fit" "cover"
     border solid (rem 0.3) red
-    borderRadius (rem 40.0) (rem 40.0) (rem 40.0) (rem 40.0)
-    marginTop (rem 0.4)
+    borderRadius1 40.0
+    marginTop 0.4
