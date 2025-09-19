@@ -8,6 +8,7 @@ module Utils.Style
   , red
   , fontRed
   , loadingGrey
+  , backgroundWhite
   , _select
   , padding
   , margin
@@ -45,6 +46,9 @@ fontRed = hsl 353.91 0.8174 0.35
 
 loadingGrey :: Color
 loadingGrey = hsl 0.0 0.0 0.9
+
+backgroundWhite :: Color
+backgroundWhite = hsl 196.0 1.0 0.98
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
