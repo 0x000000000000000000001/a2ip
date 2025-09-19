@@ -12,14 +12,14 @@ import CSS.Cursor (pointer)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Utils.Style (deep_, raw, red, (<&), (<?))
+import Utils.Style (deepClass, raw, red, (.&), (.?))
 
 classId :: String
 classId = "hJyLm9YwK"
 
 style :: CSS.CSS
 style = do
-  classId <? do
+  classId .? do
     color (graytone 0.9)
     display flex
     justifyContent center
@@ -44,8 +44,8 @@ style = do
     width (pct 100.0)
 
   where
-  __hover = classId <& hover
-  deepHover = deep_ __hover
-  ____children = deepHover Children.classId
-  ____iconContainer = deepHover IconContainer.classId
-  ____label = deepHover Label.classId
+  __hover = classId .& hover
+  deepClassHover = deepClass __hover
+  ____children = deepClassHover Children.classId
+  ____iconContainer = deepClassHover IconContainer.classId
+  ____label = deepClassHover Label.classId

@@ -11,7 +11,7 @@ import Prelude hiding (top)
 import CSS (alignItems, backgroundColor, borderRight, column, display, fixed, flex, flexDirection, flexStart, height, hover, left, position, rem, rgba, solid, top, vh, width, zIndex, (?))
 import CSS as CSS
 import Component.Router.Menu.Type (State)
-import Utils.Style (borderWidth, (<&), (<?))
+import Utils.Style (borderWidth, (.&), (.?))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -27,7 +27,7 @@ classId = "AN5rFmTQb"
 
 style :: State -> CSS.CSS
 style s = do
-  classId <? do
+  classId .? do
     width (rem if s.isUnfold then unfoldWidth else foldWidth)
     backgroundColor (rgba 0 0 0 if s.isUnfold then backgroundBlackAlpha else 0.3)
     position fixed
@@ -40,8 +40,8 @@ style s = do
     flexDirection column
     alignItems flexStart
 
-  __hover ? do 
+  o_hover ? do 
     borderWidth 0.0
 
   where 
-  __hover = classId <& hover
+  o_hover = classId .& hover

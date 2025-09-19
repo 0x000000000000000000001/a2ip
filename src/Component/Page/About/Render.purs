@@ -23,7 +23,7 @@ import Halogen.HTML.Properties (src)
 import Utils.Style (class_, classes) 
 
 mockImages :: Boolean
-mockImages = false
+mockImages = true
 
 googleDriveImageUrlTemplatePlaceholder :: String
 googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"

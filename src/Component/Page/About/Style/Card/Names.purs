@@ -7,14 +7,14 @@ import Prelude hiding (top)
 
 import CSS (bold, color, fontSize, fontWeight, pct, width)
 import CSS as CSS
-import Utils.Style (fontRed, raw, (<?))
+import Utils.Style (fontRed, raw, (.?))
 
 classId :: String
 classId = "eq6HaLP07"
 
 style :: CSS.CSS
 style = do
-  classId <? do
+  classId .? do
     fontWeight bold
     fontSize (pct 140.0)
     color fontRed

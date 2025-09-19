@@ -9,14 +9,14 @@ import CSS (absolute, backgroundColor, display, displayNone, flexWrap, position,
 import CSS as CSS
 import CSS.Transform (translateX)
 import Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
-import Utils.Style ((<?))
+import Utils.Style ((.?))
 
 classId :: String
 classId = "YLBJc5NfZ"
 
 style :: CSS.CSS
 style = do
-  classId <? do
+  classId .? do
     transform $ translateX (CSS.pct 100.0)
     backgroundColor (rgba 0 0 0 backgroundBlackAlpha)
     position absolute

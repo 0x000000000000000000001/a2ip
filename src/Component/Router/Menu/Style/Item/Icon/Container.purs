@@ -14,7 +14,7 @@ import CSS.Common (center)
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Utils.Style ((<?))
+import Utils.Style ((.?))
 
 width :: Number
 width = 3.2
@@ -27,7 +27,7 @@ boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem 
 
 style :: State -> CSS.CSS
 style s = do
-  classId <? do
+  classId .? do
     backgroundColor (rgba 0 0 0 0.2)
     borderRadius (rem 5.0) (rem 5.0) (rem 5.0) (rem 5.0)
     minWidth (rem width)

@@ -10,14 +10,14 @@ import CSS as CSS
 import CSS.Common (center)
 import CSS.Cursor (pointer)
 import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
-import Utils.Style ((<?))
+import Utils.Style ((.?))
 
 classId :: String
 classId = "X9vrSpzg4"
 
 style :: CSS.CSS
 style = do
-  classId <? do
+  classId .? do
     width (rem $ ItemIconContainer.width * 1.2)
     margin (rem 1.4) (rem 1.0) (rem 1.0) (rem 1.0)
     key (fromString "filter") "invert(1)"

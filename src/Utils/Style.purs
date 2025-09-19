@@ -1,31 +1,34 @@
 module Utils.Style
-  ( class_
-  , classes
-  , deep_
-  , _with
-  , _with_
-  , with_
-  , red
-  , fontRed
-  , loadingGrey
+  ( (&.)
+  , (.&)
+  , (.&.)
+  , (.?)
+  , (|*.)
+  , after
   , backgroundWhite
-  , _select
-  , padding
+  , before
+  , borderWidth
+  , classSelect
+  , classWith
+  , classWithClass
+  , class_
+  , classes
+  , deepClass
+  , fontRed
+  , hash9
+  , loadingGrey
   , margin
   , nothing
+  , padding
   , raw
-  , borderWidth
-  , hash9
-  , (<?)
-  , (|*>)
-  , (<&)
-  , (<&>)
-  , (&>)
-  ) where
+  , red
+  , withClass
+  )
+  where
 
 import Prelude
 
-import CSS (Refinement, Selector)
+import CSS (Refinement(..), Selector)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Selector as CSSS
@@ -77,37 +80,43 @@ margin m = CSS.margin (CSS.rem m) (CSS.rem m) (CSS.rem m) (CSS.rem m)
 borderWidth :: Number -> CSS.CSS
 borderWidth w = CSS.key (CSS.fromString "border-width") w
 
-_select :: String -> CSS.CSS -> CSS.CSS
-_select sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
+classSelect :: String -> CSS.CSS -> CSS.CSS
+classSelect sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
 
-infixr 5 _select as <?
+infixr 5 classSelect as .?
 
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
-deep_ :: Selector -> String -> Selector
-deep_ a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
+deepClass :: Selector -> String -> Selector
+deepClass a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
 
-infix 6 deep_ as |*>
+infix 6 deepClass as |*.
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
 -- | depending on the filter.
-_with :: String -> Refinement -> Selector
-_with s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
+classWith :: String -> Refinement -> Selector
+classWith s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
 
-infix 6 _with as <&
-
--- | See `with` 
-_with_ :: String -> String -> Selector
-_with_ s r = _with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
-
-infix 6 _with_ as <&>
+infix 6 classWith as .&
 
 -- | See `with` 
-with_ :: Selector -> String -> Selector
-with_ s r = CSSS.with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+classWithClass :: String -> String -> Selector
+classWithClass s r = classWith s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
 
-infix 6 with_ as &>
+infix 6 classWithClass as .&.
+
+-- | See `with` 
+withClass :: Selector -> String -> Selector
+withClass s r = CSSS.with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+
+infix 6 withClass as &.
+
+after :: Refinement
+after = CSS.fromString "::after"
+
+before :: Refinement
+before = CSS.fromString "::before"
 
 -- | Fast polynomial hash function that generates a 9-character identifier
 -- | Perfect for CSS class names with very low collision probability

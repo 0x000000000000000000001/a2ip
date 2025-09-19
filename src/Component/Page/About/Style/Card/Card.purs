@@ -13,7 +13,7 @@ import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
-import Utils.Style (deep_, loadingGrey, nothing, padding, (&>), (<&>), (<?))
+import Utils.Style (deepClass, loadingGrey, nothing, padding, (&.), (.&.), (.?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -23,7 +23,7 @@ classIdWhenLoading = "vrptC0jM2"
 
 style :: CSS.CSS
 style = do
-  classId <? do
+  classId .? do
     width (rem 30.0)
     padding 1.4
     textAlign center
@@ -60,10 +60,10 @@ style = do
     width (pct 45.0)
 
   where
-  __loading = classId <&> classIdWhenLoading
-  deepLoading = deep_ __loading
-  ____portrait = deepLoading Portrait.classId
-  ____names = deepLoading Names.classId
-  ____line = deepLoading Line.classId
-  ______phone = ____line &> (Line.classIdWhen "phone") 
-  ______email = ____line &> (Line.classIdWhen "email")  
+  __loading = classId .&. classIdWhenLoading
+  deepClassLoading = deepClass __loading
+  ____portrait = deepClassLoading Portrait.classId
+  ____names = deepClassLoading Names.classId
+  ____line = deepClassLoading Line.classId
+  ______phone = ____line &. (Line.classIdWhen "phone") 
+  ______email = ____line &. (Line.classIdWhen "email")  
