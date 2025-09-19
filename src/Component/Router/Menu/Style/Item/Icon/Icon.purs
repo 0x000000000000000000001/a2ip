@@ -5,9 +5,9 @@ module Component.Router.Menu.Style.Item.Icon.Icon
 
 import Prelude hiding (top, div)
 
-import CSS (fromString, key, margin, rem)
+import CSS (fromString, key)
 import CSS as CSS
-import Utils.Style ((.?))
+import Utils.Style (margin1, (.?))
 
 classId :: String
 classId = "U9Q6qc5VD"
@@ -15,6 +15,6 @@ classId = "U9Q6qc5VD"
 style :: CSS.CSS
 style = do
   classId .? do
-    margin (rem 0.8) (rem 0.8) (rem 0.8) (rem 0.8)
+    margin1 0.8
     key (fromString "filter") "invert(1)"
     key (fromString "object-fit") "contain"
