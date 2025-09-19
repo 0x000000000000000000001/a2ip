@@ -15,8 +15,11 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
 
-googleSheetCsvLink :: String
-googleSheetCsvLink = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE/export?format=csv"
+googleSheetUrl :: String
+googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
+
+googleSheetCsvDownloadUrl :: String
+googleSheetCsvDownloadUrl = googleSheetUrl <> "/export?format=csv"
 
 portraitViewUrlPrefix :: String
 portraitViewUrlPrefix = "https://drive.google.com/file/d/"
@@ -47,7 +50,7 @@ handleAction = case _ of
 
 fetchData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchData = H.liftAff do
-  result <- get string googleSheetCsvLink
+  result <- get string googleSheetCsvDownloadUrl
 
   -- Debug
   -- pure $ Left $ error "Simulated error for testing"
