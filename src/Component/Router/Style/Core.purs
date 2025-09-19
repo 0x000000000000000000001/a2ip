@@ -5,15 +5,13 @@ module Component.Router.Style.Core
 
 import Prelude hiding (top)
 
-import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, borderRadius, by, darken, deg, desaturate, display, ease, flex, flexGrow, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, rem, sansSerif, saturate, sec, star, (?))
+import CSS (angular, animation, background, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, sansSerif, saturate, sec, star, (?))
 import CSS as CSS
-import CSS.Overflow (overflow)
-import CSS.Overflow as Overflow
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Utils.Style (backgroundColorWhite, backgroundWhite, borderRadius1, borderRadius4, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?))
+import Utils.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?))
 
 classId :: String
 classId = "MvOJiB63k"

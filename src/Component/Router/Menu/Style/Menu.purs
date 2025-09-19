@@ -8,7 +8,7 @@ module Component.Router.Menu.Style.Menu
 
 import Prelude hiding (top)
 
-import CSS (alignItems, backgroundColor, borderRight, column, display, fixed, flex, flexDirection, flexStart, height, hover, left, position, rem, rgba, solid, top, vh, width, zIndex, (?))
+import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh, zIndex, (?))
 import CSS as CSS
 import Component.Router.Menu.Type (State)
 import Utils.Style (borderWidth, displayFlex, left0, positionFixed, top0, widthRem, (.&), (.?))
