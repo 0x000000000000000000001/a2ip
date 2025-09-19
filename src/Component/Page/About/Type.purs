@@ -12,6 +12,15 @@ type Output = Void
 type Slots :: forall k. Row k
 type Slots = ()
 
+type State =
+  { members :: Array (Maybe Member)
+  }
+
+data Action = LoadData
+
+type Query :: forall k. k -> Type
+type Query = Const Void
+
 type Member =
   { lastname :: String
   , firstname :: String
@@ -42,12 +51,3 @@ email = "email"
 
 portraitId :: String
 portraitId = "portraitId"
-
-type State =
-  { members :: Array (Maybe Member)
-  }
-
-data Action = LoadData
-
-type Query :: forall k. k -> Type
-type Query = Const Void
