@@ -6,10 +6,10 @@ import Affjax as AX
 import Affjax.ResponseFormat (string)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
-import Component.Page.About.Type (Action(..), State, Member)
+import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
+import Data.Array (index, drop, findIndex) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
-import Data.Array (index, drop, findIndex) as Array
 import Data.String (Pattern(..), split, trim, take, drop)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
@@ -74,16 +74,16 @@ parseCsvRowWithMapping :: Array String -> String -> Maybe Member
 parseCsvRowWithMapping mappingKeys row =
   let
     cols = parseCsvRow row
-    getValue key = trim $ getColByKey key mappingKeys cols
+    val key = trim $ getColByKey key mappingKeys cols
   in
     Just
-      { lastname: getValue "lastname"
-      , firstname: getValue "firstname"
-      , role: getValue "role"
-      , job: getValue "job"
-      , email: getValue "email"
-      , phone: getValue "phone"
-      , portraitId: extractPortraitIdFromViewUrl (getValue "portraitId")
+      { lastname: val lastname
+      , firstname: val firstname
+      , role: val role
+      , job: val job
+      , email: val email
+      , phone: val phone
+      , portraitId: extractPortraitIdFromViewUrl $ val portraitId
       }
 
 getColByKey :: String -> Array String -> Array String -> String

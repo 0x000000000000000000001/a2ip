@@ -13,6 +13,7 @@ import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
+import Component.Page.About.Type (email, phone)
 import Utils.Style (before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?))
 
 classId :: String
@@ -66,5 +67,5 @@ style = do
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId
   ______before = ____line & before
-  ______phone = ____line &. Line.classIdWhen "phone"
-  ______email = ____line &. Line.classIdWhen "email"
+  ______phone = ____line &. Line.classIdWhen phone
+  ______email = ____line &. Line.classIdWhen email 

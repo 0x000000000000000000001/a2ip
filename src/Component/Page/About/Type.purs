@@ -22,6 +22,27 @@ type Member =
   , portraitId :: String
   }
 
+lastname :: String 
+lastname = "lastname"
+
+firstname :: String 
+firstname = "firstname"
+
+role :: String  
+role = "role"
+
+job :: String
+job = "job"
+
+phone :: String
+phone = "phone"
+
+email :: String
+email = "email"
+
+portraitId :: String
+portraitId = "portraitId"
+
 type State =
   { members :: Array (Maybe Member)
   }
