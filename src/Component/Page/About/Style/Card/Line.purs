@@ -6,7 +6,7 @@ module Component.Page.About.Style.Card.Line
 
 import Prelude hiding (top)
 
-import CSS (fontSize, fontWeight, pct, rem, width, (&), (?))
+import CSS ((&), (?))
 import CSS as CSS
 import Utils.Style (before, bold, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?))
 
