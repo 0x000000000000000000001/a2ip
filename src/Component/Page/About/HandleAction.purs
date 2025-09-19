@@ -10,16 +10,25 @@ import Component.Page.About.Type (Action(..), Member, State, email, firstname, j
 import Data.Array (index, drop, findIndex) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
-import Data.String (Pattern(..), split, trim, take, drop)
+import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, trim)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
 
+membersTabId :: String
+membersTabId = "0"
+
+commiteeTabId :: String
+commiteeTabId = "2092489064"
+
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
 
-googleSheetCsvDownloadUrl :: String
-googleSheetCsvDownloadUrl = googleSheetUrl <> "/export?format=csv"
+googleSheetCsvDownloadUrlTemplate :: String
+googleSheetCsvDownloadUrlTemplate = googleSheetUrl <> "/export?format=csv&gid=..."
+
+googleSheetCsvDownloadUrl :: String -> String 
+googleSheetCsvDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetCsvDownloadUrlTemplate
 
 portraitViewUrlPrefix :: String
 portraitViewUrlPrefix = "https://drive.google.com/file/d/"
@@ -50,7 +59,7 @@ handleAction = case _ of
 
 fetchData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchData = H.liftAff do
-  result <- get string googleSheetCsvDownloadUrl
+  result <- get string $ googleSheetCsvDownloadUrl membersTabId
 
   -- Debug
   -- pure $ Left $ error "Simulated error for testing"

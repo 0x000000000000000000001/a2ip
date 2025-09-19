@@ -26,7 +26,7 @@ style = do
 
   __role ? do 
     bold
-    fontSizePct 110.0
+    fontSizePct 125.0
 
   __email ? do 
     nothing
