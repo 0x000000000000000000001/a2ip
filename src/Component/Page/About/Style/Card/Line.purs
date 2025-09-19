@@ -8,7 +8,7 @@ import Prelude hiding (top)
 
 import CSS ((&), (?))
 import CSS as CSS
-import Utils.Style (before, bold, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?))
+import Utils.Style (before, bold, content, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -31,13 +31,13 @@ style = do
     nothing
 
   a___before ? do 
-    raw "content" "\"✉️  \""
+    content "✉️  "
 
   __phone ? do 
     nothing
 
   b___before ? do 
-    raw "content" "\"📞  \""
+    content "📞  "
 
   where 
   __role = classId .&. classIdWhen "role"

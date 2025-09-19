@@ -20,6 +20,7 @@ module Utils.Style
   , class_
   , classes
   , colorRed
+  , content
   , cursorPointer
   , deepClass
   , displayFlex
@@ -177,6 +178,9 @@ loading = do
   backgroundColor loadingGrey
   borderColor loadingGrey
   color loadingGrey
+
+content :: String -> CSS.CSS
+content s = raw "content" $ "\"" <> s <> "\""
 
 backgroundColorRed :: CSS.CSS
 backgroundColorRed = CSS.backgroundColor red

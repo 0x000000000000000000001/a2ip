@@ -13,7 +13,7 @@ import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
-import Utils.Style (before, borderRadius1, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, raw, widthPct, widthRem, (&.), (.&.), (.?))
+import Utils.Style (before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -50,7 +50,7 @@ style = do
     widthPct 60.0
 
   ______before ? do
-    raw "content" ""
+    content ""
 
   ______phone ? do
     widthPct 30.0
