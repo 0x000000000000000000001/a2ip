@@ -7,11 +7,13 @@ import Effect (Effect)
 import Effect.Aff (Aff, makeAff, nonCanceler)
 import Effect.Exception (Error)
 
-foreign import unzipImpl :: String -> String -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit
+import Data.ArrayBuffer.Types (ArrayBuffer)
 
-unzipNExtractHtml :: String -> String -> Aff String
-unzipNExtractHtml htmlFilename zipContent = makeAff \cb -> do
+foreign import unzipImpl :: String -> ArrayBuffer -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit
+
+unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Aff String
+unzipGoogleSheetAndExtractHtml htmlFilename zipContent = makeAff \cb -> do
   unzipImpl htmlFilename zipContent 
-    (\err -> cb (Left err))
-    (\content -> cb (Right content))
+    (\err -> cb $ Left err)
+    (\content -> cb $ Right content)
   pure nonCanceler

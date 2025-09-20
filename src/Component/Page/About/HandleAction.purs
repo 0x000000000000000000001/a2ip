@@ -1,9 +1,12 @@
-module Component.Page.About.HandleAction where
+module Component.Page.About.HandleAction
+  ( handleAction
+  )
+  where
 
 import Prelude
 
 import Affjax as AX
-import Affjax.ResponseFormat (string)
+import Affjax.ResponseFormat (string, arrayBuffer)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
@@ -14,7 +17,7 @@ import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, tr
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
-import Utils.File.Unzip (unzipNExtractHtml)
+import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 
 tabIdToName :: String -> Maybe String
 tabIdToName tabId 
@@ -40,14 +43,11 @@ googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW
 googleSheetCsvDownloadUrlTemplate :: String
 googleSheetCsvDownloadUrlTemplate = googleSheetUrl <> "/export?format=csv&gid=..."
 
-googleSheetHtmlZipDownloadUrlTemplate :: String
-googleSheetHtmlZipDownloadUrlTemplate = googleSheetUrl <> "/export?format=zip&gid=..."
+googleSheetHtmlZipDownloadUrl :: String
+googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
 googleSheetCsvDownloadUrl :: String -> String
 googleSheetCsvDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetCsvDownloadUrlTemplate
-
-googleSheetHtmlZipDownloadUrl :: String -> String
-googleSheetHtmlZipDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetHtmlZipDownloadUrlTemplate
 
 portraitViewUrlPrefix :: String
 portraitViewUrlPrefix = "https://drive.google.com/file/d/"
@@ -88,7 +88,7 @@ fetchCsvData = H.liftAff do
   result <- get string $ googleSheetCsvDownloadUrl membersTabId
 
   -- Debug
-  -- pure $ Left $ error "Simulated error for testing"
+  -- pure $ Left $ error $ "Simulated error for testing on: " <> googleSheetCsvDownloadUrl membersTabId
 
   case result of
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
@@ -96,15 +96,21 @@ fetchCsvData = H.liftAff do
 
 fetchHtmlZipData :: forall m. MonadAff m => String -> m (Either Error String)
 fetchHtmlZipData tabId = H.liftAff do
-  result <- get string $ googleSheetHtmlZipDownloadUrl tabId
+  result <- get arrayBuffer googleSheetHtmlZipDownloadUrl
 
   -- Debug
-  -- pure $ Left $ error "Simulated error for testing"
+  -- pure $ Left $ error $ "Simulated error for testing on: " <> googleSheetHtmlZipDownloadUrl
 
   case result of
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> do
-      htmlContent <- unzipNExtractHtml (fromMaybe "" $ tabIdToName tabId) response.body
+      let tabName = fromMaybe "" $ tabIdToName tabId
+      htmlContent <- unzipGoogleSheetAndExtractHtml tabName response.body
+      
+      -- Debug mode: return error with content for inspection
+      -- pure $ Left $ error htmlContent
+
+      -- Production mode: return the content
       pure $ Right htmlContent
 
 parseCsv :: String -> Array (Maybe Member)
