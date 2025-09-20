@@ -10,10 +10,11 @@ import Affjax.ResponseFormat (string, arrayBuffer)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Data.Array (index, drop, findIndex) as Array
+import Data.Array (index, drop, findIndex, snoc, foldl, mapMaybe) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, trim)
+import Data.String as String
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
@@ -67,6 +68,71 @@ extractPortraitIdFromViewUrl url =
   in
     id
 
+extractTableFromHtml :: String -> String
+extractTableFromHtml htmlContent =
+  let
+    tableStart = case split (Pattern "<table") htmlContent of
+      [ _, rest ] -> "<table" <> rest
+      _ -> htmlContent
+    
+    ans = case split (Pattern "</table>") tableStart of
+      [ table, _ ] -> table <> "</table>"
+      _ -> tableStart
+  in
+    ans
+
+-- Extract mapping keys from the first data row of the table (headers)
+extractMappingKeysFromTable :: String -> Array String
+extractMappingKeysFromTable html = 
+  let tableHtml = extractTableFromHtml html
+      rows = String.split (String.Pattern "<tr") tableHtml
+      -- Debug: log the number of rows found
+      rowCount = show (Array.length rows)
+      firstDataRow = Array.index rows 1  -- Skip the first empty split result
+  in case firstDataRow of
+       Just row -> 
+         let cells = String.split (String.Pattern "<td") row
+             -- Debug: log the number of cells found  
+             cellCount = show (Array.length cells)
+             cellContents = Array.mapMaybe extractCellContent (Array.drop 1 cells)
+             mappingKeys = map headerToMappingKey cellContents
+         in mappingKeys
+       Nothing -> []
+  where
+    extractCellContent :: String -> Maybe String
+    extractCellContent cell = 
+      case String.indexOf (String.Pattern "</td>") cell of
+        Just endIdx -> 
+          let cellContent = String.take endIdx cell
+              -- Remove all HTML tags using a simple approach
+              withoutTags = removeHtmlTags cellContent
+          in if String.trim withoutTags == "" then Nothing else Just (String.trim withoutTags)
+        Nothing -> Nothing
+    
+    removeHtmlTags :: String -> String
+    removeHtmlTags str = 
+      let chars = String.toCodePointArray str
+          result = Array.foldl processChar { inTag: false, result: [] } chars
+      in String.fromCodePointArray result.result
+      where
+        processChar acc codePoint
+          | codePoint == String.codePointFromChar '<' = acc { inTag = true }
+          | codePoint == String.codePointFromChar '>' = acc { inTag = false }
+          | acc.inTag = acc
+          | otherwise = acc { result = Array.snoc acc.result codePoint }
+
+-- Convert header text to mapping key format
+headerToMappingKey :: String -> String
+headerToMappingKey header = case header of
+  "Prénom" -> "firstname"
+  "Nom" -> "lastname" 
+  "Fonction A2IP" -> "role"
+  "Profession" -> "job"
+  "Email" -> "email"
+  "Numéro de tél" -> "phone"
+  "Lien ou ID du portrait" -> "portraitId"
+  _ -> header -- Keep original if no mapping found
+
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
   LoadCsvData -> do
@@ -81,7 +147,9 @@ handleAction = case _ of
     
     case result of
       Left err -> log Error $ "Failed to load HTML data: " <> show err
-      Right htmlContent -> log Info $ "HTML content loaded: " <> htmlContent
+      Right htmlTable -> do
+        let mappingKeys = extractMappingKeysFromTable htmlTable
+        log Info $ "HTML table loaded with mapping keys: " <> show mappingKeys
 
 fetchCsvData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchCsvData = H.liftAff do
@@ -105,13 +173,12 @@ fetchHtmlZipData tabId = H.liftAff do
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> do
       let tabName = fromMaybe "" $ tabIdToName tabId
-      htmlContent <- unzipGoogleSheetAndExtractHtml tabName response.body
-      
-      -- Debug mode: return error with content for inspection
-      -- pure $ Left $ error htmlContent
 
-      -- Production mode: return the content
-      pure $ Right htmlContent
+      htmlContent <- unzipGoogleSheetAndExtractHtml tabName response.body
+
+      let tableOnly = extractTableFromHtml htmlContent
+      
+      pure $ Right tableOnly
 
 parseCsv :: String -> Array (Maybe Member)
 parseCsv csvText =
