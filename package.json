@@ -9,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
   "devDependencies": {
     "purescript": "^0.14.1",
     "spago": "^0.20.0"

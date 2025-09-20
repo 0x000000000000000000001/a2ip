@@ -16,7 +16,7 @@ type State =
   { members :: Array (Maybe Member)
   }
 
-data Action = LoadData
+data Action = LoadCsvData | LoadHtmlData
 
 type Query :: forall k. k -> Type
 type Query = Const Void

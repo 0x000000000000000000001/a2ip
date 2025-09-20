@@ -7,6 +7,7 @@ import Affjax.ResponseFormat (string)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
+import Utils.File.Unzip (unzipNExtractHtml)
 import Data.Array (index, drop, findIndex) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
@@ -15,11 +16,23 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
 
+tabIdToName :: String -> Maybe String
+tabIdToName tabId = case tabId of
+  membersTabId -> Just membersTabName
+  commiteeTabId -> Just commiteeTabName
+  _ -> Nothing
+
 membersTabId :: String
 membersTabId = "0"
 
+membersTabName :: String
+membersTabName = "Membres A2IP"
+
 commiteeTabId :: String
 commiteeTabId = "2092489064"
+
+commiteeTabName :: String
+commiteeTabName = "Comité international"
 
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
@@ -32,6 +45,9 @@ googleSheetHtmlZipDownloadUrlTemplate = googleSheetUrl <> "/export?format=zip&gi
 
 googleSheetCsvDownloadUrl :: String -> String
 googleSheetCsvDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetCsvDownloadUrlTemplate
+
+googleSheetHtmlZipDownloadUrl :: String -> String
+googleSheetHtmlZipDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetHtmlZipDownloadUrlTemplate
 
 portraitViewUrlPrefix :: String
 portraitViewUrlPrefix = "https://drive.google.com/file/d/"
@@ -53,12 +69,19 @@ extractPortraitIdFromViewUrl url =
 
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
-  LoadData -> do
+  LoadCsvData -> do
     result <- H.liftAff $ fetchCsvData
 
     case result of
       Left err -> log Error $ "Failed to load sheet data: " <> show err
       Right members_ -> H.modify_ _ { members = members_ }
+  
+  LoadHtmlData -> do
+    result <- H.liftAff $ fetchHtmlZipData membersTabId
+    
+    case result of
+      Left err -> log Error $ "Failed to load HTML data: " <> show err
+      Right htmlContent -> log Info $ "HTML content loaded: " <> htmlContent
 
 fetchCsvData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
 fetchCsvData = H.liftAff do
@@ -70,6 +93,20 @@ fetchCsvData = H.liftAff do
   case result of
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> pure $ Right $ parseCsv response.body
+
+fetchHtmlZipData :: forall m. MonadAff m => String -> m (Either Error String)
+fetchHtmlZipData tabId = fetchHtmlZipDataWithFilename tabId ""
+
+fetchHtmlZipDataWithFilename :: forall m. MonadAff m => String -> String -> m (Either Error String)
+fetchHtmlZipDataWithFilename tabId filename = H.liftAff do
+  result <- get string $ googleSheetHtmlZipDownloadUrl tabId
+  case result of
+    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
+    Right response -> do
+      htmlContent <- if filename == "" 
+                    then unzipData response.body
+                    else unzipDataWithFilename filename response.body
+      pure $ Right htmlContent
 
 parseCsv :: String -> Array (Maybe Member)
 parseCsv csvText =
@@ -102,7 +139,7 @@ parseCsvRowWithMapping mappingKeys row =
   in
     Just
       { lastname: val lastname
-      , firstname: val firstname
+      , firstname: val firstname 
       , role: val role
       , job: val job
       , email: val email
@@ -126,17 +163,3 @@ parseCsvRow row = parseCsvRow_ row [] "" false
           if inQuotes then parseCsvRow_ rest fields (currentField <> ",") inQuotes
           else parseCsvRow_ rest (fields <> [ trim currentField ]) "" false
         char -> parseCsvRow_ rest fields (currentField <> char) inQuotes
-
-fetchZipData :: forall m. MonadAff m => String -> m (Either Error String)
-fetchZipData tabId = H.liftAff do
-  result <- get string $ googleSheetHtmlZipDownloadUrl tabId
-
-  case result of
-    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
-    Right response -> pure $ Right response.body
-
-googleSheetHtmlZipDownloadUrl :: String -> String
-googleSheetHtmlZipDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetHtmlZipDownloadUrlTemplate
-
-unzipData :: String -> Either Error String
-unzipData zipContent = Left $ error "ZIP extraction not implemented - consider using a JavaScript library via FFI"
