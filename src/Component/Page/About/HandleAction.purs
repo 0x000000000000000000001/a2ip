@@ -6,14 +6,14 @@ module Component.Page.About.HandleAction
 import Prelude
 
 import Affjax as AX
-import Affjax.ResponseFormat (string, arrayBuffer)
+import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
-import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Data.Array (index, drop, findIndex, snoc, foldl, mapMaybe, length, take) as Array
+import Component.Page.About.Type (Action(..), Member, State)
+import Data.Array (index, drop, findIndex, mapMaybe, length, range, take, foldl, snoc) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), fromMaybe)
-import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, trim)
+import Data.String (Pattern(..), split, trim)
 import Data.String as String
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
@@ -41,14 +41,12 @@ commiteeTabName = "Comité international"
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
 
-googleSheetCsvDownloadUrlTemplate :: String
-googleSheetCsvDownloadUrlTemplate = googleSheetUrl <> "/export?format=csv&gid=..."
+
 
 googleSheetHtmlZipDownloadUrl :: String
 googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
-googleSheetCsvDownloadUrl :: String -> String
-googleSheetCsvDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetCsvDownloadUrlTemplate
+
 
 portraitViewUrlPrefix :: String
 portraitViewUrlPrefix = "https://drive.google.com/file/d/"
@@ -81,18 +79,18 @@ extractTableFromHtml htmlContent =
   in
     ans
 
--- Extract mapping keys from the first data row of the table (headers)
-extractMappingKeysFromTable :: String -> Array String
-extractMappingKeysFromTable html = 
+-- Extract cell contents from the nth row of the table (0-indexed)
+extractRowCells :: String -> Int -> Array String
+extractRowCells html rowIndex = 
   let tableHtml = extractTableFromHtml html
       rows = String.split (String.Pattern "<tr") tableHtml
-      firstDataRow = Array.index rows 2  -- Row 2 contains the actual headers with "Prénom", "Nom", etc.
-  in case firstDataRow of
+      targetRow = Array.index rows rowIndex
+  in case targetRow of
        Just row -> 
          let cells = String.split (String.Pattern "<td") row
-             cellContents = Array.mapMaybe extractCellContent (Array.drop 1 cells)
-             mappingKeys = map headerToMappingKey cellContents
-         in mappingKeys
+             -- Use map instead of mapMaybe to preserve empty cells and column alignment
+             cellContents = map (fromMaybe "") $ map extractCellContent (Array.drop 1 cells)
+         in cellContents
        Nothing -> []
   where
     extractCellContent :: String -> Maybe String
@@ -100,12 +98,56 @@ extractMappingKeysFromTable html =
       case String.indexOf (String.Pattern "</td>") cell of
         Just endIdx -> 
           let cellContent = String.take endIdx cell
-              -- Extract content after the last '>' character
-              content = case String.lastIndexOf (String.Pattern ">") cellContent of
-                Just lastGtIdx -> String.drop (lastGtIdx + 1) cellContent
+              -- First extract content after the closing > of the opening tag
+              afterOpenTag = case String.indexOf (String.Pattern ">") cellContent of
+                Just gtIdx -> String.drop (gtIdx + 1) cellContent
                 Nothing -> cellContent
-          in if String.trim content == "" then Nothing else Just (String.trim content)
+              -- Then extract text content, handling links and other HTML
+              textContent = extractTextFromHtml afterOpenTag
+              -- Decode HTML entities
+              decodedContent = decodeHtmlEntities textContent
+              trimmedContent = String.trim decodedContent
+          -- Return empty string for empty cells instead of Nothing to preserve column alignment
+          in Just trimmedContent
         Nothing -> Nothing
+    
+    extractTextFromHtml :: String -> String
+    extractTextFromHtml str = 
+      -- Use a more robust approach to remove all HTML tags while preserving text content
+      let withoutTags = removeAllHtmlTagsRobust str
+      in String.trim withoutTags
+    
+    removeAllHtmlTagsRobust :: String -> String
+    removeAllHtmlTagsRobust str = 
+      let chars = String.toCodePointArray str
+          result = Array.foldl processChar { inTag: false, result: [], skipSpace: false } chars
+      in String.fromCodePointArray result.result
+      where
+        processChar acc codePoint
+          | codePoint == String.codePointFromChar '<' = acc { inTag = true }
+          | codePoint == String.codePointFromChar '>' = acc { inTag = false, skipSpace = true }
+          | acc.inTag = acc
+          | codePoint == String.codePointFromChar ' ' && acc.skipSpace = acc { skipSpace = false }
+          | otherwise = acc { result = Array.snoc acc.result codePoint, skipSpace = false }
+    
+    decodeHtmlEntities :: String -> String
+    decodeHtmlEntities str = 
+      str
+        # String.replace (String.Pattern "&#39;") (String.Replacement "'")
+        # String.replace (String.Pattern "&quot;") (String.Replacement "\"")
+        # String.replace (String.Pattern "&amp;") (String.Replacement "&")
+        # String.replace (String.Pattern "&lt;") (String.Replacement "<")
+        # String.replace (String.Pattern "&gt;") (String.Replacement ">")
+        # String.replace (String.Pattern "&nbsp;") (String.Replacement " ")
+
+-- Extract mapping keys from the headers row (row 2 contains "Prénom", "Nom", etc.)
+extractMappingKeysFromTable :: String -> Array String
+extractMappingKeysFromTable html = 
+  let headerCells = extractRowCells html 2  -- Row 2 contains the actual headers
+      -- Only take the first 7 columns that have meaningful headers
+      meaningfulHeaders = Array.take 7 headerCells
+      mappingKeys = map headerToMappingKey meaningfulHeaders
+  in mappingKeys
 
 -- Convert header text to mapping key format
 headerToMappingKey :: String -> String
@@ -122,81 +164,79 @@ headerToMappingKey header = case header of
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
   LoadCsvData -> do
-    result <- H.liftAff $ fetchCsvData
+    result <- H.liftAff $ fetchHtmlData membersTabId
 
     case result of
       Left err -> log Error $ "Failed to load sheet data: " <> show err
       Right members_ -> H.modify_ _ { members = members_ }
   
   LoadHtmlData -> do
-    result <- H.liftAff $ fetchHtmlZipData membersTabId
-    
+    result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
     case result of
-      Left err -> log Error $ "Failed to load HTML data: " <> show err
-      Right htmlTable -> do
-        let tableHtml = extractTableFromHtml htmlTable
+      Left err -> log Error $ "Failed to fetch ZIP: " <> AX.printError err
+      Right response -> do
+        let tabName = fromMaybe "" $ tabIdToName membersTabId
+        htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+        let mappingKeys = extractMappingKeysFromTable htmlContent
+        log Info $ "Mapping keys: " <> show mappingKeys
+        -- Debug first few data rows
+        let row4 = extractRowCells htmlContent 4
+            row5 = extractRowCells htmlContent 5
+        log Info $ "Row 4 (Sophie) data: " <> show row4
+        log Info $ "Row 5 (Christelle) data: " <> show row5
+        
+        -- Debug: Let's look at the raw HTML for Sophie's row to see the job cell
+        let tableHtml = extractTableFromHtml htmlContent
             rows = String.split (String.Pattern "<tr") tableHtml
-            rowCount = Array.length rows
-        log Info $ "Table extracted, found " <> show rowCount <> " rows"
-        -- Check the first few rows to find the one with actual data
-        case Array.index rows 1 of
-          Just row1 -> log Info $ "Row 1: " <> String.take 200 row1
-          Nothing -> pure unit
-        case Array.index rows 2 of
-          Just row2 -> log Info $ "Row 2: " <> String.take 200 row2
-          Nothing -> pure unit
-        case Array.index rows 3 of
-          Just row3 -> log Info $ "Row 3: " <> String.take 200 row3
-          Nothing -> pure unit
-        let mappingKeys = extractMappingKeysFromTable htmlTable
-        log Info $ "HTML table loaded with mapping keys: " <> show mappingKeys
+        case Array.index rows 4 of
+          Just sophieRow -> do
+            let cells = String.split (String.Pattern "<td") sophieRow
+            case Array.index cells 4 of  -- Job cell should be index 4 (0-based, skip first empty)
+              Just jobCell -> log Info $ "Sophie's job cell HTML: " <> String.take 300 jobCell
+              Nothing -> log Info $ "Sophie's job cell not found"
+          Nothing -> log Info $ "Sophie's row not found"
+        
+        -- Process the data
+        let members_ = parseHtml htmlContent
+        log Info $ "HTML data loaded successfully with " <> show (Array.length members_) <> " members"
+        H.modify_ _ { members = members_ }
 
-fetchCsvData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
-fetchCsvData = H.liftAff do
-  result <- get string $ googleSheetCsvDownloadUrl membersTabId
-
-  -- Debug
-  -- pure $ Left $ error $ "Simulated error for testing on: " <> googleSheetCsvDownloadUrl membersTabId
-
-  case result of
-    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
-    Right response -> pure $ Right $ parseCsv response.body
-
-fetchHtmlZipData :: forall m. MonadAff m => String -> m (Either Error String)
-fetchHtmlZipData tabId = H.liftAff do
+fetchHtmlData :: forall m. MonadAff m => String -> m (Either Error (Array (Maybe Member)))
+fetchHtmlData tabId = H.liftAff do
   result <- get arrayBuffer googleSheetHtmlZipDownloadUrl
-
-  -- Debug
-  -- pure $ Left $ error $ "Simulated error for testing on: " <> googleSheetHtmlZipDownloadUrl
 
   case result of
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> do
       let tabName = fromMaybe "" $ tabIdToName tabId
-
       htmlContent <- unzipGoogleSheetAndExtractHtml tabName response.body
+      pure $ Right $ parseHtml htmlContent
 
-      let tableOnly = extractTableFromHtml htmlContent
-      
-      pure $ Right tableOnly
 
-parseCsv :: String -> Array (Maybe Member)
-parseCsv csvText =
+
+parseHtml :: String -> Array (Maybe Member)
+parseHtml htmlContent =
   let
-    rows = split (Pattern "\n") $ trim csvText
-    mappingRow = case Array.index rows 1 of
-      Just row -> map trim $ parseCsvRow row -- Trim keys immediately
-      Nothing -> []
-    dataRows = Array.drop 2 rows
+    mappingKeys = extractMappingKeysFromTable htmlContent
+    -- Skip rows 0,1,2,3 (header stuff) and start from row 4 for actual data
+    dataRowIndexes = Array.range 4 9  -- Assuming max 6 data rows, adjust as needed
+    dataRows = Array.mapMaybe (\i -> 
+      let allRowCells = extractRowCells htmlContent i
+          -- Only take the first 7 columns to match the mapping keys
+          rowCells = Array.take 7 allRowCells
+      in if Array.length rowCells > 0 then Just { index: i, cells: rowCells } else Nothing
+    ) dataRowIndexes
   in
-    map (parseCsvRowWithMapping mappingRow) dataRows
+    map (\rowData -> parseHtmlRowWithMappingDebug mappingKeys rowData.cells rowData.index) dataRows
 
-parseCsvRowWithMapping :: Array String -> String -> Maybe Member
-parseCsvRowWithMapping mappingKeys row =
+parseHtmlRowWithMappingDebug :: Array String -> Array String -> Int -> Maybe Member
+parseHtmlRowWithMappingDebug mappingKeys rowCells _ =
+  parseHtmlRowWithMapping mappingKeys rowCells
+
+parseHtmlRowWithMapping :: Array String -> Array String -> Maybe Member
+parseHtmlRowWithMapping mappingKeys rowCells =
   let
-    cols = parseCsvRow row
-
-    val key = trim $ colByKey key cols
+    val key = trim $ colByKey key rowCells
 
     col :: Int -> Array String -> String
     col pos arr = case Array.index arr pos of
@@ -210,28 +250,13 @@ parseCsvRowWithMapping mappingKeys row =
         Nothing -> ""
   in
     Just
-      { lastname: val lastname
-      , firstname: val firstname 
-      , role: val role
-      , job: val job
-      , email: val email
-      , phone: val phone
-      , portraitId: extractPortraitIdFromViewUrl $ val portraitId
+      { lastname: val "lastname"
+      , firstname: val "firstname"
+      , role: val "role"
+      , job: val "job"
+      , email: val "email"
+      , phone: val "phone"
+      , portraitId: extractPortraitIdFromViewUrl $ val "portraitId"
       }
 
-parseCsvRow :: String -> Array String
-parseCsvRow row = parseCsvRow_ row [] "" false
-  where
-  parseCsvRow_ :: String -> Array String -> String -> Boolean -> Array String
-  parseCsvRow_ "" fields currentField _ = fields <> [ trim currentField ]
-  parseCsvRow_ str fields currentField inQuotes =
-    let
-      firstChar = take 1 str
-      rest = drop 1 str
-    in
-      case firstChar of
-        "\"" -> parseCsvRow_ rest fields currentField (not inQuotes)
-        "," ->
-          if inQuotes then parseCsvRow_ rest fields (currentField <> ",") inQuotes
-          else parseCsvRow_ rest (fields <> [ trim currentField ]) "" false
-        char -> parseCsvRow_ rest fields (currentField <> char) inQuotes
+
