@@ -10,7 +10,7 @@ import Affjax.ResponseFormat (string, arrayBuffer)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Data.Array (index, drop, findIndex, snoc, foldl, mapMaybe) as Array
+import Data.Array (index, drop, findIndex, snoc, foldl, mapMaybe, length, take) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, trim)
@@ -86,14 +86,10 @@ extractMappingKeysFromTable :: String -> Array String
 extractMappingKeysFromTable html = 
   let tableHtml = extractTableFromHtml html
       rows = String.split (String.Pattern "<tr") tableHtml
-      -- Debug: log the number of rows found
-      rowCount = show (Array.length rows)
-      firstDataRow = Array.index rows 1  -- Skip the first empty split result
+      firstDataRow = Array.index rows 2  -- Row 2 contains the actual headers with "Prénom", "Nom", etc.
   in case firstDataRow of
        Just row -> 
          let cells = String.split (String.Pattern "<td") row
-             -- Debug: log the number of cells found  
-             cellCount = show (Array.length cells)
              cellContents = Array.mapMaybe extractCellContent (Array.drop 1 cells)
              mappingKeys = map headerToMappingKey cellContents
          in mappingKeys
@@ -104,22 +100,12 @@ extractMappingKeysFromTable html =
       case String.indexOf (String.Pattern "</td>") cell of
         Just endIdx -> 
           let cellContent = String.take endIdx cell
-              -- Remove all HTML tags using a simple approach
-              withoutTags = removeHtmlTags cellContent
-          in if String.trim withoutTags == "" then Nothing else Just (String.trim withoutTags)
+              -- Extract content after the last '>' character
+              content = case String.lastIndexOf (String.Pattern ">") cellContent of
+                Just lastGtIdx -> String.drop (lastGtIdx + 1) cellContent
+                Nothing -> cellContent
+          in if String.trim content == "" then Nothing else Just (String.trim content)
         Nothing -> Nothing
-    
-    removeHtmlTags :: String -> String
-    removeHtmlTags str = 
-      let chars = String.toCodePointArray str
-          result = Array.foldl processChar { inTag: false, result: [] } chars
-      in String.fromCodePointArray result.result
-      where
-        processChar acc codePoint
-          | codePoint == String.codePointFromChar '<' = acc { inTag = true }
-          | codePoint == String.codePointFromChar '>' = acc { inTag = false }
-          | acc.inTag = acc
-          | otherwise = acc { result = Array.snoc acc.result codePoint }
 
 -- Convert header text to mapping key format
 headerToMappingKey :: String -> String
@@ -148,6 +134,20 @@ handleAction = case _ of
     case result of
       Left err -> log Error $ "Failed to load HTML data: " <> show err
       Right htmlTable -> do
+        let tableHtml = extractTableFromHtml htmlTable
+            rows = String.split (String.Pattern "<tr") tableHtml
+            rowCount = Array.length rows
+        log Info $ "Table extracted, found " <> show rowCount <> " rows"
+        -- Check the first few rows to find the one with actual data
+        case Array.index rows 1 of
+          Just row1 -> log Info $ "Row 1: " <> String.take 200 row1
+          Nothing -> pure unit
+        case Array.index rows 2 of
+          Just row2 -> log Info $ "Row 2: " <> String.take 200 row2
+          Nothing -> pure unit
+        case Array.index rows 3 of
+          Just row3 -> log Info $ "Row 3: " <> String.take 200 row3
+          Nothing -> pure unit
         let mappingKeys = extractMappingKeysFromTable htmlTable
         log Info $ "HTML table loaded with mapping keys: " <> show mappingKeys
 
