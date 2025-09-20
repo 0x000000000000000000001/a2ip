@@ -113,22 +113,50 @@ extractRowCells html rowIndex =
     
     extractTextFromHtml :: String -> String
     extractTextFromHtml str = 
-      -- Use a more robust approach to remove all HTML tags while preserving text content
-      let withoutTags = removeAllHtmlTagsRobust str
-      in String.trim withoutTags
+      -- Simple and robust approach: extract text and preserve simple links
+      let textWithLinks = extractTextAndLinks str
+      in String.trim textWithLinks
     
-    removeAllHtmlTagsRobust :: String -> String
-    removeAllHtmlTagsRobust str = 
+    extractTextAndLinks :: String -> String
+    extractTextAndLinks str = 
+      case String.indexOf (String.Pattern "<a ") str of
+        Just linkStart ->
+          let beforeLink = String.take linkStart str
+              afterLinkStart = String.drop linkStart str
+          in case String.indexOf (String.Pattern "href=\"") afterLinkStart of
+            Just hrefStart ->
+              case String.indexOf (String.Pattern "\"") (String.drop (hrefStart + 6) afterLinkStart) of
+                Just hrefEnd ->
+                  let hrefValue = String.take hrefEnd (String.drop (hrefStart + 6) afterLinkStart)
+                      afterHref = String.drop (hrefStart + 6 + hrefEnd) afterLinkStart
+                  in case String.indexOf (String.Pattern ">") afterHref of
+                    Just tagEnd ->
+                      let afterTagEnd = String.drop (tagEnd + 1) afterHref
+                      in case String.indexOf (String.Pattern "</a>") afterTagEnd of
+                        Just linkTextEnd ->
+                          let linkText = String.take linkTextEnd afterTagEnd
+                              afterLink = String.drop (linkTextEnd + 4) afterTagEnd
+                              cleanBefore = removeAllTags beforeLink
+                              cleanAfter = extractTextAndLinks afterLink
+                              linkHtml = "<a href=\"" <> hrefValue <> "\">" <> linkText <> "</a>"
+                          in cleanBefore <> linkHtml <> cleanAfter
+                        Nothing -> removeAllTags str
+                    Nothing -> removeAllTags str
+                Nothing -> removeAllTags str
+            Nothing -> removeAllTags str
+        Nothing -> removeAllTags str
+    
+    removeAllTags :: String -> String
+    removeAllTags str =
       let chars = String.toCodePointArray str
-          result = Array.foldl processChar { inTag: false, result: [], skipSpace: false } chars
+          result = Array.foldl processChar { inTag: false, result: [] } chars
       in String.fromCodePointArray result.result
       where
         processChar acc codePoint
           | codePoint == String.codePointFromChar '<' = acc { inTag = true }
-          | codePoint == String.codePointFromChar '>' = acc { inTag = false, skipSpace = true }
+          | codePoint == String.codePointFromChar '>' = acc { inTag = false }
           | acc.inTag = acc
-          | codePoint == String.codePointFromChar ' ' && acc.skipSpace = acc { skipSpace = false }
-          | otherwise = acc { result = Array.snoc acc.result codePoint, skipSpace = false }
+          | otherwise = acc { result = Array.snoc acc.result codePoint }
     
     decodeHtmlEntities :: String -> String
     decodeHtmlEntities str = 

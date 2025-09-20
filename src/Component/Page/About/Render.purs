@@ -13,13 +13,13 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
-import Data.Maybe (Maybe, fromMaybe, maybe)
+import Data.Maybe (Maybe(..), fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
+import Data.String as String
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
-import Halogen.HTML (div, img, text)
-import Halogen.HTML as HH
-import Halogen.HTML.Properties (src)
+import Halogen.HTML (div, img, text, a)
+import Halogen.HTML.Properties (href, target, src)
 import Utils.Style (class_, classes)
 
 mockImages :: Boolean
@@ -46,7 +46,7 @@ render state =
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: forall w i. Maybe Member -> HH.HTML w i
+renderMemberCard :: forall m. Maybe Member -> H.ComponentHTML Action Slots m
 renderMemberCard member =
   div
     [ classes $
@@ -82,8 +82,38 @@ renderMemberCard member =
     else
       [ div
           [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-          [ text $ getter member_ ]
+          [ renderContent $ getter member_ ]
       ]
+  
+  renderContent :: forall n. String -> H.ComponentHTML Action Slots n  
+  renderContent content =
+    case parseLink content of
+      Just { before, linkText, linkUrl, after } ->
+        div []
+          [ text before
+          , a [ href linkUrl, target "_blank" ] [ text linkText ]
+          , text after
+          ]
+      Nothing -> text content
+  
+  parseLink :: String -> Maybe { before :: String, linkText :: String, linkUrl :: String, after :: String }
+  parseLink str =
+    case String.indexOf (String.Pattern "<a href=\"") str of
+      Just startIdx ->
+        let before = String.take startIdx str
+            afterStart = String.drop startIdx str
+        in case String.indexOf (String.Pattern "\">") afterStart of
+          Just closeQuoteIdx ->
+            let linkUrl = String.take (closeQuoteIdx - 9) (String.drop 9 afterStart)
+                afterLinkStart = String.drop (closeQuoteIdx + 2) afterStart
+            in case String.indexOf (String.Pattern "</a>") afterLinkStart of
+              Just linkEndIdx ->
+                let linkText = String.take linkEndIdx afterLinkStart
+                    after = String.drop (linkEndIdx + 4) afterLinkStart
+                in Just { before, linkText, linkUrl, after }
+              Nothing -> Nothing
+          Nothing -> Nothing
+      Nothing -> Nothing
 
   lines =
     line _.role role
