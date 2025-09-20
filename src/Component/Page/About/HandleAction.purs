@@ -205,28 +205,7 @@ handleAction = case _ of
       Right response -> do
         let tabName = fromMaybe "" $ tabIdToName membersTabId
         htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-        let mappingKeys = extractMappingKeysFromTable htmlContent
-        log Info $ "Mapping keys: " <> show mappingKeys
-        -- Debug first few data rows
-        let row4 = extractRowCells htmlContent 4
-            row5 = extractRowCells htmlContent 5
-        log Info $ "Row 4 (Sophie) data: " <> show row4
-        log Info $ "Row 5 (Christelle) data: " <> show row5
-        
-        -- Debug: Let's look at the raw HTML for Sophie's row to see the job cell
-        let tableHtml = extractTableFromHtml htmlContent
-            rows = String.split (String.Pattern "<tr") tableHtml
-        case Array.index rows 4 of
-          Just sophieRow -> do
-            let cells = String.split (String.Pattern "<td") sophieRow
-            case Array.index cells 4 of  -- Job cell should be index 4 (0-based, skip first empty)
-              Just jobCell -> log Info $ "Sophie's job cell HTML: " <> String.take 300 jobCell
-              Nothing -> log Info $ "Sophie's job cell not found"
-          Nothing -> log Info $ "Sophie's row not found"
-        
-        -- Process the data
         let members_ = parseHtml htmlContent
-        log Info $ "HTML data loaded successfully with " <> show (Array.length members_) <> " members"
         H.modify_ _ { members = members_ }
 
 fetchHtmlData :: forall m. MonadAff m => String -> m (Either Error (Array (Maybe Member)))
@@ -252,14 +231,10 @@ parseHtml htmlContent =
       let allRowCells = extractRowCells htmlContent i
           -- Only take the first 7 columns to match the mapping keys
           rowCells = Array.take 7 allRowCells
-      in if Array.length rowCells > 0 then Just { index: i, cells: rowCells } else Nothing
+      in if Array.length rowCells > 0 then Just rowCells else Nothing
     ) dataRowIndexes
   in
-    map (\rowData -> parseHtmlRowWithMappingDebug mappingKeys rowData.cells rowData.index) dataRows
-
-parseHtmlRowWithMappingDebug :: Array String -> Array String -> Int -> Maybe Member
-parseHtmlRowWithMappingDebug mappingKeys rowCells _ =
-  parseHtmlRowWithMapping mappingKeys rowCells
+    map (parseHtmlRowWithMapping mappingKeys) dataRows
 
 parseHtmlRowWithMapping :: Array String -> Array String -> Maybe Member
 parseHtmlRowWithMapping mappingKeys rowCells =
