@@ -126,3 +126,17 @@ parseCsvRow row = parseCsvRow_ row [] "" false
           if inQuotes then parseCsvRow_ rest fields (currentField <> ",") inQuotes
           else parseCsvRow_ rest (fields <> [ trim currentField ]) "" false
         char -> parseCsvRow_ rest fields (currentField <> char) inQuotes
+
+fetchZipData :: forall m. MonadAff m => String -> m (Either Error String)
+fetchZipData tabId = H.liftAff do
+  result <- get string $ googleSheetHtmlZipDownloadUrl tabId
+
+  case result of
+    Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
+    Right response -> pure $ Right response.body
+
+googleSheetHtmlZipDownloadUrl :: String -> String
+googleSheetHtmlZipDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetHtmlZipDownloadUrlTemplate
+
+unzipData :: String -> Either Error String
+unzipData zipContent = Left $ error "ZIP extraction not implemented - consider using a JavaScript library via FFI"
