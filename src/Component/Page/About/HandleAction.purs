@@ -7,20 +7,20 @@ import Affjax.ResponseFormat (string)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Utils.File.Unzip (unzipNExtractHtml)
 import Data.Array (index, drop, findIndex) as Array
 import Data.Either (Either(..))
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), Replacement(..), drop, replace, split, take, trim)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (Error, error)
 import Halogen as H
+import Utils.File.Unzip (unzipNExtractHtml)
 
 tabIdToName :: String -> Maybe String
-tabIdToName tabId = case tabId of
-  membersTabId -> Just membersTabName
-  commiteeTabId -> Just commiteeTabName
-  _ -> Nothing
+tabIdToName tabId 
+  | tabId == membersTabId = Just membersTabName
+  | tabId == commiteeTabId = Just commiteeTabName
+  | otherwise = Nothing
 
 membersTabId :: String
 membersTabId = "0"
@@ -95,17 +95,16 @@ fetchCsvData = H.liftAff do
     Right response -> pure $ Right $ parseCsv response.body
 
 fetchHtmlZipData :: forall m. MonadAff m => String -> m (Either Error String)
-fetchHtmlZipData tabId = fetchHtmlZipDataWithFilename tabId ""
-
-fetchHtmlZipDataWithFilename :: forall m. MonadAff m => String -> String -> m (Either Error String)
-fetchHtmlZipDataWithFilename tabId filename = H.liftAff do
+fetchHtmlZipData tabId = H.liftAff do
   result <- get string $ googleSheetHtmlZipDownloadUrl tabId
+
+  -- Debug
+  -- pure $ Left $ error "Simulated error for testing"
+
   case result of
     Left err -> pure $ Left $ error $ "HTTP error: " <> AX.printError err
     Right response -> do
-      htmlContent <- if filename == "" 
-                    then unzipData response.body
-                    else unzipDataWithFilename filename response.body
+      htmlContent <- unzipNExtractHtml (fromMaybe "" $ tabIdToName tabId) response.body
       pure $ Right htmlContent
 
 parseCsv :: String -> Array (Maybe Member)

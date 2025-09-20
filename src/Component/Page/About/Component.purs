@@ -20,6 +20,6 @@ component = H.mkComponent
   , render
   , eval: H.mkEval H.defaultEval
       { handleAction = handleAction
-      , initialize = Just LoadCsvData
-      }
+      , initialize = Just LoadHtmlData
+      } 
   }

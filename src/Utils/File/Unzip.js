@@ -1,15 +1,19 @@
-import JSZip from 'jszip';
-
+// JSZip will be loaded from CDN and available as global variable
 export const unzipImpl = function(filename) {
   return function(zipContent) {
     return function(onError) {
       return function(onSuccess) {
         return function() {
           try {
+            // Check if JSZip is available globally
+            if (typeof JSZip === 'undefined') {
+              onError(new Error('JSZip library not found. Please include JSZip from CDN.'));
+              return;
+            }
+            
             const zip = new JSZip();
             return zip.loadAsync(zipContent, { base64: false })
               .then(function(zip) {
-                // Récupérer le fichier spécifié ou le premier fichier HTML
                 const files = Object.keys(zip.files);
                 let targetFile;
                 
@@ -29,16 +33,17 @@ export const unzipImpl = function(filename) {
                 
                 return zip.files[targetFile].async('string');
               })
-            .then(function(content) {
-              onSuccess(content);
-            })
-            .catch(function(error) {
-              onError(error);
-            });
-        } catch (error) {
-          onError(error);
-        }
+              .then(function(content) {
+                onSuccess(content);
+              })
+              .catch(function(error) {
+                onError(error);
+              });
+          } catch (error) {
+            onError(error);
+          }
+        };
       };
     };
   };
-};
+}
