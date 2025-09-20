@@ -27,7 +27,10 @@ googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW
 googleSheetCsvDownloadUrlTemplate :: String
 googleSheetCsvDownloadUrlTemplate = googleSheetUrl <> "/export?format=csv&gid=..."
 
-googleSheetCsvDownloadUrl :: String -> String 
+googleSheetHtmlZipDownloadUrlTemplate :: String
+googleSheetHtmlZipDownloadUrlTemplate = googleSheetUrl <> "/export?format=zip&gid=..."
+
+googleSheetCsvDownloadUrl :: String -> String
 googleSheetCsvDownloadUrl tabId = replace (Pattern "...") (Replacement tabId) googleSheetCsvDownloadUrlTemplate
 
 portraitViewUrlPrefix :: String
@@ -51,14 +54,14 @@ extractPortraitIdFromViewUrl url =
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
   LoadData -> do
-    result <- H.liftAff $ fetchData
+    result <- H.liftAff $ fetchCsvData
 
     case result of
       Left err -> log Error $ "Failed to load sheet data: " <> show err
       Right members_ -> H.modify_ _ { members = members_ }
 
-fetchData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
-fetchData = H.liftAff do
+fetchCsvData :: forall m. MonadAff m => m (Either Error (Array (Maybe Member)))
+fetchCsvData = H.liftAff do
   result <- get string $ googleSheetCsvDownloadUrl membersTabId
 
   -- Debug
@@ -83,7 +86,19 @@ parseCsvRowWithMapping :: Array String -> String -> Maybe Member
 parseCsvRowWithMapping mappingKeys row =
   let
     cols = parseCsvRow row
-    val key = trim $ getColByKey key mappingKeys cols
+
+    val key = trim $ colByKey key cols
+
+    col :: Int -> Array String -> String
+    col pos arr = case Array.index arr pos of
+      Just value -> trim value
+      Nothing -> ""
+
+    colByKey :: String -> Array String -> String
+    colByKey key dataColumns =
+      case Array.findIndex (_ == key) mappingKeys of
+        Just i -> col i dataColumns
+        Nothing -> ""
   in
     Just
       { lastname: val lastname
@@ -94,17 +109,6 @@ parseCsvRowWithMapping mappingKeys row =
       , phone: val phone
       , portraitId: extractPortraitIdFromViewUrl $ val portraitId
       }
-
-getColByKey :: String -> Array String -> Array String -> String
-getColByKey key mappingKeys dataColumns =
-  case Array.findIndex (_ == key) mappingKeys of
-    Just index -> getCol index dataColumns
-    Nothing -> ""
-
-getCol :: Int -> Array String -> String
-getCol pos arr = case Array.index arr pos of
-  Just value -> trim value
-  Nothing -> ""
 
 parseCsvRow :: String -> Array String
 parseCsvRow row = parseCsvRow_ row [] "" false

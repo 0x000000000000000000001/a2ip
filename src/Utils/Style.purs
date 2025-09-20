@@ -68,6 +68,7 @@ module Utils.Style
   , red
   , right0
   , top0
+  , userSelectNone
   , widthPct
   , widthPct100
   , widthRem
@@ -121,6 +122,9 @@ raw key value = CSS.key (CSS.fromString key) value
 
 nothing :: CSS.CSS
 nothing = pure unit
+
+userSelectNone :: CSS.CSS
+userSelectNone = raw "user-select" "none"
 
 displayNone :: CSS.CSS
 displayNone = CSS.display CSS.displayNone
@@ -291,7 +295,7 @@ borderRadius1 :: Number -> CSS.CSS
 borderRadius1 r = borderRadius4 r r r r
 
 borderWidth :: Number -> CSS.CSS
-borderWidth w = CSS.key (CSS.fromString "border-width") w
+borderWidth w = raw "border-width" $ show w
 
 classSelect :: String -> CSS.CSS -> CSS.CSS
 classSelect sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs

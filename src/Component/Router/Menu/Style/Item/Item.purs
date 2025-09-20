@@ -11,7 +11,7 @@ import CSS.Common (center)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Utils.Style (backgroundColorRed, cursorPointer, positionRelative, deepClass, displayFlex, heightRem, padding2, raw, widthPct100, (.&), (.?))
+import Utils.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?))
 
 classId :: String 
 classId = "hJyLm9YwK"
@@ -29,6 +29,7 @@ style = do
     widthPct100
     heightRem IconContainer.width
     raw "transition" "background-color 0s"
+    userSelectNone
  
   __hover ? do
     backgroundColorRed

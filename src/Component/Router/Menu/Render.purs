@@ -55,8 +55,8 @@ render :: forall m. State -> H.ComponentHTML Action () m
 render s =
   nav
     [ class_ classId
-    , HE.onMouseOver $ const $ ToggleFolding false
-    , HE.onMouseLeave $ const $ ToggleFolding true
+    , if s.isUnfold then HE.onMouseLeave $ const $ ToggleFolding true
+      else HE.onMouseEnter $ const $ ToggleFolding false
     ]
     ( [ sheet s
       , img
