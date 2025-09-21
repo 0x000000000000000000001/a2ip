@@ -34,7 +34,7 @@ maxDataRows = 6
 maxColumns :: Int
 maxColumns = 7
 
-extractTableFromHtml :: String -> String
+extractTableFromHtml :: String -> Maybe String
 extractTableFromHtml htmlContent =
   let
     tableStart = case split (Pattern "<table") htmlContent of
@@ -45,7 +45,7 @@ extractTableFromHtml htmlContent =
       [ table, _ ] -> table <> "</table>"
       _ -> tableStart
   in
-    result
+    Just result
 
 -- Table Row Processing
 extractTableRows :: String -> Array String
@@ -64,7 +64,7 @@ extractCellsFromRow row =
 extractRowCells :: String -> Int -> Array String
 extractRowCells html rowIndex = 
   let tableHtml = extractTableFromHtml html
-      rows = extractTableRows tableHtml
+      rows = extractTableRows $ fromMaybe "" tableHtml
       maybeRow = getRowAt rowIndex rows
   in case maybeRow of
        Just row -> extractCellsFromRow row

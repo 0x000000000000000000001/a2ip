@@ -2,56 +2,70 @@
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts first table when multiple tables exist",
     {
-      "timestamp": "1758463978504.0",
+      "timestamp": "1758465251343.0",
       "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts table from complete HTML",
     {
-      "timestamp": "1758463978504.0",
-      "success": false
+      "timestamp": "1758465251343.0",
+      "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758463978504.0",
-      "success": true
+      "timestamp": "1758465251343.0",
+      "success": false
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles empty string",
     {
-      "timestamp": "1758463978504.0",
-      "success": true
+      "timestamp": "1758465251343.0",
+      "success": false
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles incomplete table (no closing tag)",
     {
-      "timestamp": "1758463978504.0",
+      "timestamp": "1758464861711.0",
       "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles mixed case HTML tags",
     {
-      "timestamp": "1758463978504.0",
+      "timestamp": "1758465152780.0",
       "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles self-closing elements within table",
     {
-      "timestamp": "1758463978504.0",
+      "timestamp": "1758465152780.0",
       "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758465251343.0",
+      "success": false
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758465251343.0",
+      "success": false
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml returns original HTML when no table found",
     {
-      "timestamp": "1758463978504.0",
+      "timestamp": "1758464861711.0",
       "success": true
     }
   ],
