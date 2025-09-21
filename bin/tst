@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+old_wd=$(pwd)
+
+dir=$(dirname "$0")/..
+cd "$dir"
+
+echo "🧪 Running tests..."
+spago test
+
+cd "$old_wd"

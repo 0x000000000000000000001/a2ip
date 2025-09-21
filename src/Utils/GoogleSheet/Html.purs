@@ -19,7 +19,7 @@ import Data.Array (drop, findIndex, index, length, mapMaybe, range, take) as Arr
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), split, trim)
 import Data.String as String
-import Utils.Html.Clean (extractCellContent)
+import Utils.Html.Clean (extractTextFromHtml, decodeHtmlEntities, extractCellContent)
 
 -- Constants for Google Sheets structure
 headerRowIndex :: Int
@@ -34,7 +34,6 @@ maxDataRows = 6
 maxColumns :: Int
 maxColumns = 7
 
--- Table Extraction
 extractTableFromHtml :: String -> String
 extractTableFromHtml htmlContent =
   let
