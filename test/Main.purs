@@ -3,13 +3,12 @@ module Test.Main where
 import Prelude
 
 import Effect (Effect)
-import Effect.Class.Console (log)
-import Test.Utils.GoogleSheet.Html (testExtractTableFromHtml)
+import Effect.Aff (launchAff_)
+import Test.Spec.Reporter.Console (consoleReporter)
+import Test.Spec.Runner (runSpec)
+
+import Test.Utils.GoogleSheet.Html as GoogleSheetHtmlTests
 
 main :: Effect Unit
-main = do
-  log "🧪 Running tests..."
-  log ""
-  testExtractTableFromHtml
-  log ""
-  log "🎉 All tests completed!"
+main = launchAff_ $ runSpec [consoleReporter] do
+  GoogleSheetHtmlTests.spec
