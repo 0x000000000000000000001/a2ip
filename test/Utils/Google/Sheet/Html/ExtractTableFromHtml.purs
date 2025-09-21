@@ -3,15 +3,16 @@ module Test.Utils.Google.Sheet.Html.ExtractTableFromHtml where
 import Prelude
 
 import Data.String (Pattern(..), contains, length)
-import Test.Spec (Spec, describe, it)
+import Test.Spec (Spec, it)
 import Test.Spec.Assertions (shouldEqual, shouldSatisfy)
+import Test.Utils.Describe (autoDescribeFunction)
 import Utils.Google.Sheet.Html (extractTableFromHtml)
 
 -- | Test suite for extractTableFromHtml function
 spec :: Spec Unit
-spec = describe "extractTableFromHtml" do
+spec = autoDescribeFunction do
   
-  it "extracts table from complete HTML" do
+  it "extracts table from complete HTML" do 
     let htmlWithTable = """
       <html>
         <head><title>Test</title></head>
@@ -33,13 +34,18 @@ spec = describe "extractTableFromHtml" do
     """
     
     let result = extractTableFromHtml htmlWithTable
-    result `shouldSatisfy` contains (Pattern "<table")
-    result `shouldSatisfy` contains (Pattern "</table>")
-    result `shouldSatisfy` contains (Pattern "Header 1")
-    result `shouldSatisfy` contains (Pattern "Data 1")
-    -- Should not contain content outside the table
-    result `shouldSatisfy` (not <<< contains (Pattern "Some content before"))
-    result `shouldSatisfy` (not <<< contains (Pattern "Some content after"))
+    result `shouldEqual` """
+        <table class="some-class" id="data-table">
+            <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            </tr>
+            <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            </tr>
+        </table>
+    """
   
   it "returns original HTML when no table found" do
     let htmlWithoutTable = """

@@ -1,5 +1,285 @@
 [
   [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758463978504.0",
+      "success": false
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml handles mixed case HTML tags",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml handles self-closing elements within table",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extractTableFromHtml returns original HTML when no table found",
+    {
+      "timestamp": "1758463978504.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml extracts table from complete HTML",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml handles empty string",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml handles mixed case HTML tags",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml handles self-closing elements within table",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  :: extracttablefromhtml returns original HTML when no table found",
+    {
+      "timestamp": "1758463749520.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml extracts table from complete HTML",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml handles empty string",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml handles mixed case HTML tags",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml handles self-closing elements within table",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  ::extracttablefromhtml returns original HTML when no table found",
+    {
+      "timestamp": "1758463741455.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles mixed case HTML tags",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles self-closing elements within table",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  Utils.Google.Sheet.Html.ExtractTableFromHtml returns original HTML when no table found",
+    {
+      "timestamp": "1758463230218.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml extracts table from complete HTML",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml handles empty string",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml handles mixed case HTML tags",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml handles self-closing elements within table",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Google.Sheet.Html  extracttablefromhtml returns original HTML when no table found",
+    {
+      "timestamp": "1758463661365.0",
+      "success": true
+    }
+  ],
+  [
     " Utils.Google.Sheet.Html extractTableFromHtml extracts first table when multiple tables exist",
     {
       "timestamp": "1758462775215.0",
@@ -52,6 +332,62 @@
     " Utils.Google.Sheet.Html extractTableFromHtml returns original HTML when no table found",
     {
       "timestamp": "1758462775215.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined extracts table from complete HTML",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined handles empty string",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined handles incomplete table (no closing tag)",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined handles mixed case HTML tags",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined handles self-closing elements within table",
+    {
+      "timestamp": "1758463795036.0",
+      "success": true
+    }
+  ],
+  [
+    " undefined  :: undefined returns original HTML when no table found",
+    {
+      "timestamp": "1758463795036.0",
       "success": true
     }
   ]

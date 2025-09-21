@@ -7,14 +7,6 @@ old_wd=$(pwd)
 dir=$(dirname "$0")/..
 cd "$dir"
 
-# Separated by whitespaces
-blacklist="runSpec.*deprecated"
-
-echo "🧪 Running tests...\n"
-output=$(spago test 2>&1)
-for pattern in $blacklist; do
-  output=$(echo "$output" | grep -v "$pattern")
-done
-echo "$output"
+spago test
 
 cd "$old_wd"

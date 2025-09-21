@@ -3,9 +3,9 @@ module Test.Utils.Google.Sheet.Html where
 import Prelude
 
 import Test.Spec (Spec)
-import Test.Utils.Describe (autoDescribe)
-import Test.Utils.Google.Sheet.Html.ExtractTableFromHtml as ExtractTableFromHtmlTests
+import Test.Utils.Describe (autoDescribeModule)
+import Test.Utils.Google.Sheet.Html.ExtractTableFromHtml as ExtractTableFromHtml
 
 spec :: Spec Unit
-spec = autoDescribe do
-  ExtractTableFromHtmlTests.spec
+spec = autoDescribeModule do
+  ExtractTableFromHtml.spec
