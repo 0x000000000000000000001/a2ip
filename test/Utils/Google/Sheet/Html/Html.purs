@@ -7,5 +7,5 @@ import Test.Utils.Describe (autoDescribe)
 import Test.Utils.Google.Sheet.Html.ExtractTableFromHtml as ExtractTableFromHtmlTests
 
 spec :: Spec Unit
-spec = autoDescribe do  -- 🎯 POINT BARRE !
+spec = autoDescribe do
   ExtractTableFromHtmlTests.spec
