@@ -21,7 +21,7 @@ import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
-import Utils.GoogleSheet.Html (extractMappingKeysFromTable, extractRowCells, getValueByKey)
+import Utils.Google.Sheet.Html (extractMappingKeysFromTable, extractRowCells, getValueByKey)
 
 membersTabId :: String
 membersTabId = "0"

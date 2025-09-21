@@ -1,4 +1,4 @@
-module Utils.GoogleSheet.Html
+module Utils.Google.Sheet.Html
   ( extractTableFromHtml
   , extractRowCells
   , extractMappingKeysFromTable
@@ -19,7 +19,7 @@ import Data.Array (drop, findIndex, index, length, mapMaybe, range, take) as Arr
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), split, trim)
 import Data.String as String
-import Utils.Html.Clean (extractTextFromHtml, decodeHtmlEntities, extractCellContent)
+import Utils.Html.Clean (extractCellContent)
 
 -- Constants for Google Sheets structure
 headerRowIndex :: Int
