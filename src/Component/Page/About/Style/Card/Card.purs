@@ -1,13 +1,15 @@
 module Component.Page.About.Style.Card.Card
   ( classId
+  , classIdWhenLoaded
   , classIdWhenLoading
   , style
-  ) where
+  )
+  where
 
 import Prelude hiding (top)
 
 import CSS (CSS) as CSS
-import CSS (alignItems, column, flexDirection, justifyContent, (&), (?))
+import CSS (alignItems, column, flexDirection, hover, justifyContent, (&), (?))
 import CSS.Common (center) as CSS
 import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
@@ -22,6 +24,9 @@ classId = "xt156nvNM"
 classIdWhenLoading :: String
 classIdWhenLoading = "vrptC0jM2"
 
+classIdWhenLoaded :: String
+classIdWhenLoaded = "FI8nIaPpM"
+
 style :: CSS.CSS
 style = do
   classId .? do
@@ -33,6 +38,15 @@ style = do
     alignItems CSS.center
     flexWrap
     flexDirection column
+
+  __loaded ? do 
+    nothing
+
+  ____hover ? do
+    nothing
+
+  ______portrait ? do
+    borderRadius1 0.3
 
   __loading ? do
     nothing
@@ -61,6 +75,10 @@ style = do
     widthPct 45.0
 
   where
+  __loaded = classId .&. classIdWhenLoaded
+  ____hover = __loaded & hover
+  deepClassHover = deepClass ____hover
+  ______portrait = deepClassHover Portrait.classId
   __loading = classId .&. classIdWhenLoading
   deepClassLoading = deepClass __loading
   ____portrait = deepClassLoading Portrait.classId
@@ -68,4 +86,4 @@ style = do
   ____line = deepClassLoading Line.classId
   ______before = ____line & before
   ______phone = ____line &. Line.classIdWhen phone
-  ______email = ____line &. Line.classIdWhen email 
+  ______email = ____line &. Line.classIdWhen email

@@ -51,7 +51,7 @@ renderMemberCard member =
   div
     [ classes $
         [ Card.classId ]
-          <> if isLoading then [ Card.classIdWhenLoading ] else []
+          <> if isLoading then [ Card.classIdWhenLoading ] else [ Card.classIdWhenLoaded ]
     ]
     ( [ div
           [ class_ CardNames.classId ]
