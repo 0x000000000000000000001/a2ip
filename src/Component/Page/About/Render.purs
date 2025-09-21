@@ -18,7 +18,7 @@ import Data.String (Pattern(..), Replacement(..), replace)
 import Data.String as String
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
-import Halogen.HTML (div, img, text, a)
+import Halogen.HTML (div, img, text, a, span_, strong_, em_, p_)
 import Halogen.HTML.Properties (href, target, src)
 import Utils.Style (class_, classes)
 
@@ -86,34 +86,100 @@ renderMemberCard member =
       ]
   
   renderContent :: forall n. String -> H.ComponentHTML Action Slots n  
-  renderContent content =
-    case parseLink content of
-      Just { before, linkText, linkUrl, after } ->
-        div []
-          [ text before
-          , a [ href linkUrl, target "_blank" ] [ text linkText ]
-          , text after
-          ]
-      Nothing -> text content
+  renderContent content = renderHtml content
   
-  parseLink :: String -> Maybe { before :: String, linkText :: String, linkUrl :: String, after :: String }
-  parseLink str =
-    case String.indexOf (String.Pattern "<a href=\"") str of
-      Just startIdx ->
-        let before = String.take startIdx str
-            afterStart = String.drop startIdx str
-        in case String.indexOf (String.Pattern "\">") afterStart of
-          Just closeQuoteIdx ->
-            let linkUrl = String.take (closeQuoteIdx - 9) (String.drop 9 afterStart)
-                afterLinkStart = String.drop (closeQuoteIdx + 2) afterStart
-            in case String.indexOf (String.Pattern "</a>") afterLinkStart of
-              Just linkEndIdx ->
-                let linkText = String.take linkEndIdx afterLinkStart
-                    after = String.drop (linkEndIdx + 4) afterLinkStart
-                in Just { before, linkText, linkUrl, after }
-              Nothing -> Nothing
+  renderHtml :: forall n. String -> H.ComponentHTML Action Slots n
+  renderHtml htmlString = 
+    case parseHtmlElement htmlString of
+      Just elements -> div [] elements
+      Nothing -> text htmlString
+  
+  parseHtmlElement :: forall n. String -> Maybe (Array (H.ComponentHTML Action Slots n))
+  parseHtmlElement str = 
+    Just $ parseHtmlElements str
+  
+  parseHtmlElements :: forall n. String -> Array (H.ComponentHTML Action Slots n)
+  parseHtmlElements str = 
+    parseNextElement str []
+    where
+      parseNextElement :: String -> Array (H.ComponentHTML Action Slots n) -> Array (H.ComponentHTML Action Slots n)
+      parseNextElement content acc =
+        case String.indexOf (String.Pattern "<") content of
+          Nothing -> 
+            -- No more tags, add remaining text if any
+            if String.trim content == "" 
+            then acc 
+            else acc <> [text content]
+          Just tagStart ->
+            let beforeTag = String.take tagStart content
+                afterTagStart = String.drop tagStart content
+                accWithText = if String.trim beforeTag == "" 
+                             then acc 
+                             else acc <> [text beforeTag]
+            in case parseTag afterTagStart of
+              Just { element, remaining } ->
+                parseNextElement remaining (accWithText <> [element])
+              Nothing ->
+                -- Could not parse tag, treat as text
+                accWithText <> [text afterTagStart]
+      
+      parseTag :: String ->  Maybe { element :: H.ComponentHTML Action Slots n, remaining :: String }
+      parseTag content =
+        case String.indexOf (String.Pattern ">") content of
+          Nothing -> Nothing -- Malformed tag
+          Just closingBracket ->
+            let tagContent = String.take (closingBracket + 1) content
+                remaining = String.drop (closingBracket + 1) content
+            in parseSpecificTag tagContent remaining
+      
+      parseSpecificTag :: String -> String -> Maybe { element :: H.ComponentHTML Action Slots n, remaining :: String }
+      parseSpecificTag tagStr remaining =
+        -- Parse <a href="...">...</a>
+        if String.indexOf (String.Pattern "<a ") tagStr == Just 0 then
+          parseAnchorTag tagStr remaining
+        -- Parse <span>...</span>  
+        else if String.indexOf (String.Pattern "<span") tagStr == Just 0 then
+          parseSimpleTag "span" tagStr remaining (\children -> span_ children)
+        -- Parse <strong>...</strong>
+        else if String.indexOf (String.Pattern "<strong") tagStr == Just 0 then
+          parseSimpleTag "strong" tagStr remaining (\children -> strong_ children)
+        -- Parse <em>...</em>
+        else if String.indexOf (String.Pattern "<em") tagStr == Just 0 then
+          parseSimpleTag "em" tagStr remaining (\children -> em_ children)
+        -- Parse <p>...</p>
+        else if String.indexOf (String.Pattern "<p") tagStr == Just 0 then
+          parseSimpleTag "p" tagStr remaining (\children -> p_ children)
+        else 
+          Nothing
+      
+      parseAnchorTag :: String -> String -> Maybe { element :: H.ComponentHTML Action Slots n, remaining :: String }
+      parseAnchorTag tagStr remaining =
+        case String.indexOf (String.Pattern "href=\"") tagStr of
           Nothing -> Nothing
-      Nothing -> Nothing
+          Just hrefStart ->
+            case String.indexOf (String.Pattern "\"") (String.drop (hrefStart + 6) tagStr) of
+              Nothing -> Nothing
+              Just hrefEnd ->
+                let hrefValue = String.take hrefEnd (String.drop (hrefStart + 6) tagStr)
+                in case String.indexOf (String.Pattern "</a>") remaining of
+                  Nothing -> Nothing
+                  Just closeTagIdx ->
+                    let linkText = String.take closeTagIdx remaining
+                        afterCloseTag = String.drop (closeTagIdx + 4) remaining
+                        linkElement = a [ href hrefValue, target "_blank" ] [ text linkText ]
+                    in Just { element: linkElement, remaining: afterCloseTag }
+      
+      parseSimpleTag :: String -> String -> String -> (Array (H.ComponentHTML Action Slots n) -> H.ComponentHTML Action Slots n) -> Maybe { element :: H.ComponentHTML Action Slots n, remaining :: String }
+      parseSimpleTag tagName _ remaining createElement =
+        let closeTag = "</" <> tagName <> ">"
+        in case String.indexOf (String.Pattern closeTag) remaining of
+          Nothing -> Nothing
+          Just closeTagIdx ->
+            let innerContent = String.take closeTagIdx remaining
+                afterCloseTag = String.drop (closeTagIdx + String.length closeTag) remaining
+                innerElements = parseHtmlElements innerContent
+                element = createElement innerElements
+            in Just { element, remaining: afterCloseTag }
 
   lines =
     line _.role role

@@ -113,50 +113,75 @@ extractRowCells html rowIndex =
     
     extractTextFromHtml :: String -> String
     extractTextFromHtml str = 
-      -- Simple and robust approach: extract text and preserve simple links
-      let textWithLinks = extractTextAndLinks str
-      in String.trim textWithLinks
+      -- Preserve all HTML but clean unwanted attributes
+      let cleanedHtml = cleanHtmlAttributes str
+      in String.trim cleanedHtml
     
-    extractTextAndLinks :: String -> String
-    extractTextAndLinks str = 
-      case String.indexOf (String.Pattern "<a ") str of
-        Just linkStart ->
-          let beforeLink = String.take linkStart str
-              afterLinkStart = String.drop linkStart str
-          in case String.indexOf (String.Pattern "href=\"") afterLinkStart of
-            Just hrefStart ->
-              case String.indexOf (String.Pattern "\"") (String.drop (hrefStart + 6) afterLinkStart) of
-                Just hrefEnd ->
-                  let hrefValue = String.take hrefEnd (String.drop (hrefStart + 6) afterLinkStart)
-                      afterHref = String.drop (hrefStart + 6 + hrefEnd) afterLinkStart
-                  in case String.indexOf (String.Pattern ">") afterHref of
-                    Just tagEnd ->
-                      let afterTagEnd = String.drop (tagEnd + 1) afterHref
-                      in case String.indexOf (String.Pattern "</a>") afterTagEnd of
-                        Just linkTextEnd ->
-                          let linkText = String.take linkTextEnd afterTagEnd
-                              afterLink = String.drop (linkTextEnd + 4) afterTagEnd
-                              cleanBefore = removeAllTags beforeLink
-                              cleanAfter = extractTextAndLinks afterLink
-                              linkHtml = "<a href=\"" <> hrefValue <> "\">" <> linkText <> "</a>"
-                          in cleanBefore <> linkHtml <> cleanAfter
-                        Nothing -> removeAllTags str
-                    Nothing -> removeAllTags str
-                Nothing -> removeAllTags str
-            Nothing -> removeAllTags str
-        Nothing -> removeAllTags str
+    cleanHtmlAttributes :: String -> String
+    cleanHtmlAttributes str = 
+      cleanAttributesInTags str
     
-    removeAllTags :: String -> String
-    removeAllTags str =
+    cleanAttributesInTags :: String -> String
+    cleanAttributesInTags str =
       let chars = String.toCodePointArray str
-          result = Array.foldl processChar { inTag: false, result: [] } chars
+          result = Array.foldl processChar { inTag: false, result: [], tagContent: [] } chars
       in String.fromCodePointArray result.result
       where
         processChar acc codePoint
-          | codePoint == String.codePointFromChar '<' = acc { inTag = true }
-          | codePoint == String.codePointFromChar '>' = acc { inTag = false }
-          | acc.inTag = acc
+          | codePoint == String.codePointFromChar '<' = acc { inTag = true, tagContent = [codePoint] }
+          | codePoint == String.codePointFromChar '>' && acc.inTag = 
+              let cleanedTag = cleanTag (String.fromCodePointArray acc.tagContent <> ">")
+                  cleanedTagChars = String.toCodePointArray cleanedTag
+              in acc { inTag = false, result = acc.result <> cleanedTagChars, tagContent = [] }
+          | acc.inTag = acc { tagContent = Array.snoc acc.tagContent codePoint }
           | otherwise = acc { result = Array.snoc acc.result codePoint }
+    
+    cleanTag :: String -> String
+    cleanTag tag =
+      -- Remove style, class, id, and data-* attributes from HTML tags
+      tag
+        # removeAttribute "style"
+        # removeAttribute "class" 
+        # removeAttribute "id"
+        # removeDataAttributes
+    
+    removeAttribute :: String -> String -> String
+    removeAttribute attrName tag =
+      let pattern = Pattern (" " <> attrName <> "=\"")
+          parts = split pattern tag
+      in case parts of
+        [before, after] ->
+          case String.indexOf (Pattern "\"") after of
+            Just endQuote ->
+              let afterAttr = String.drop (endQuote + 1) after
+                  -- Remove any trailing space if it was between attributes
+                  cleanAfter = case String.take 1 afterAttr of
+                    " " -> afterAttr
+                    _ -> afterAttr
+              in before <> cleanAfter
+            Nothing -> tag -- Malformed attribute, keep original
+        _ -> tag -- Attribute not found, keep original
+    
+    removeDataAttributes :: String -> String
+    removeDataAttributes tag =
+      -- Remove all data-* attributes using regex-like approach
+      removeDataAttr tag
+      where
+        removeDataAttr str =
+          case String.indexOf (Pattern " data-") str of
+            Just dataStart ->
+              let beforeData = String.take dataStart str
+                  afterDataStart = String.drop dataStart str
+              in case String.indexOf (Pattern "=\"") afterDataStart of
+                Just eqStart ->
+                  case String.indexOf (Pattern "\"") (String.drop (eqStart + 2) afterDataStart) of
+                    Just endQuote ->
+                      let afterDataAttr = String.drop (eqStart + 2 + endQuote + 1) afterDataStart
+                      in removeDataAttr (beforeData <> afterDataAttr)
+                    Nothing -> str -- Malformed, keep original
+                Nothing -> str -- Malformed, keep original
+            Nothing -> str -- No more data attributes
+
     
     decodeHtmlEntities :: String -> String
     decodeHtmlEntities str = 
