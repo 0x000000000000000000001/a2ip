@@ -10,7 +10,7 @@ import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get)
 import Capability.Log (class Log, log, Level(..))
 import Component.Page.About.Type (Action(..), Member, State)
-import Data.Array (index, drop, findIndex, mapMaybe, length, range, take, foldl, snoc) as Array
+import Data.Array (drop, findIndex, foldl, index, length, mapMaybe, range, snoc, take) as Array
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), split, trim)
