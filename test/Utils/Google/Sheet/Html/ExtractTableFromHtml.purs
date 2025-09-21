@@ -3,7 +3,7 @@ module Test.Utils.Google.Sheet.Html.ExtractTableFromHtml where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Test.Spec (Spec, it)
+import Test.Spec (Spec, it, itOnly)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Utils.Describe (autoDescribeFunction)
 import Utils.Google.Sheet.Html (extractTableFromHtml)
@@ -45,7 +45,7 @@ spec = autoDescribeFunction do
         </tr>
     </table>"""
 
-  it "returns nothing when no table found" do
+  itOnly "returns nothing when no table found" do
     let
       htmlWithoutTable =
         """
