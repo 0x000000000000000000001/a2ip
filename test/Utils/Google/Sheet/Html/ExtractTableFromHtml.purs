@@ -4,12 +4,12 @@ import Prelude
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it, itOnly)
-import Test.Spec.Assertions (shouldEqual)
+import Test.Utils.Assert ((===))
 import Test.Utils.Describe (autoDescribeFunction)
 import Utils.Google.Sheet.Html (extractTableFromHtml)
-
+ 
 spec :: Spec Unit
-spec = autoDescribeFunction do
+spec = autoDescribeFunction do  
 
   it "extracts table from complete HTML" do
     let
@@ -33,19 +33,19 @@ spec = autoDescribeFunction do
 </html>"""
 
     let result = extractTableFromHtml htmlWithTable
-    result `shouldEqual` Just
+    result === Just
       """<table class="some-class" id="data-table">
         <tr>
             <th>Header 1</th>
             <th>Header 2</th>
-        </tr>
+        </tr> 
         <tr>
             <td>Data 1</td>
             <td>Data 2</td>
         </tr>
     </table>"""
 
-  itOnly "returns nothing when no table found" do
+  it "returns nothing when no table found" do
     let
       htmlWithoutTable =
         """
@@ -59,21 +59,21 @@ spec = autoDescribeFunction do
     """
 
     let result = extractTableFromHtml htmlWithoutTable
-    result `shouldEqual` Nothing
+    result === Nothing
 
   it "returns nothing when incomplete table (no closing tag)" do
     let htmlIncompleteTable = "before<table>content"
     let result = extractTableFromHtml htmlIncompleteTable
-    result `shouldEqual` Nothing
+    result === Nothing
 
-  it "extracts first table when multiple tables exist" do
-    let htmlMultipleTables = "prefix<table>content</table>suffix"
+  itOnly "extracts first table when multiple tables exist" do
+    let htmlMultipleTables = "prefix<table>content 1</table>infix<table>content 2</table>suffix"
     let result = extractTableFromHtml htmlMultipleTables
-    result `shouldEqual` Just "<table>content</table>"
+    result === Just "<table>content 1</table>"
 
   it "handles empty string" do
     let result = extractTableFromHtml ""
-    result `shouldEqual` Nothing
+    result === Nothing
 
   it "handles complex table with attributes and nested elements" do
     let
@@ -98,7 +98,7 @@ spec = autoDescribeFunction do
     """
 
     let result = extractTableFromHtml htmlComplexTable
-    result `shouldEqual` Just
+    result === Just
       """<table class="some-class" id="data-table">
         <tr>
             <th>Header 1</th>

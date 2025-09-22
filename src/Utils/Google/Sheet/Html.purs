@@ -36,16 +36,13 @@ maxColumns = 7
 
 extractTableFromHtml :: String -> Maybe String
 extractTableFromHtml htmlContent =
-  let
-    tableStart = case split (Pattern "<table") htmlContent of
-      [ _, rest ] -> "<table" <> rest
-      _ -> htmlContent
-    
-    result = case split (Pattern "</table>") tableStart of
-      [ table, _ ] -> table <> "</table>"
-      _ -> tableStart
-  in
-    Just result
+  case split (Pattern "<table") htmlContent of
+    [ _, rest ] -> 
+      let tableStart = "<table" <> rest
+      in case split (Pattern "</table>") tableStart of
+           [ table, _ ] -> Just (table <> "</table>")
+           _ -> Nothing
+    _ -> Nothing
 
 -- Table Row Processing
 extractTableRows :: String -> Array String
