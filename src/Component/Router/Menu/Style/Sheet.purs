@@ -4,7 +4,7 @@ module Component.Router.Menu.Style.Sheet
 
 import Prelude
 
-import Component.Router.Menu.Style.Item.Item as Item
+import Component.Router.Menu.Style.Item.Index as Item
 import Component.Router.Menu.Style.Logo as Logo
 import Component.Router.Menu.Style.Menu as Menu
 import Component.Router.Menu.Type (State)
@@ -14,5 +14,5 @@ import Halogen.HTML.CSS (stylesheet)
 sheet :: forall p i. State -> HTML p i
 sheet s = stylesheet do
   Menu.style s
-  Item.style
+  Item.style s
   Logo.style
