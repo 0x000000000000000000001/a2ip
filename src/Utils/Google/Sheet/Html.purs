@@ -48,7 +48,22 @@ extractTableFromHtml htmlContent =
           in Just extractedTable
 
 extractTableRows :: String -> Array String
-extractTableRows tableHtml = String.split (String.Pattern "<tr") tableHtml
+extractTableRows tableHtml = 
+  let rawRows = String.split (String.Pattern "<tr") tableHtml
+      cleanedRows = Array.mapMaybe extractRowContent (Array.drop 1 rawRows)
+  in cleanedRows
+  where
+    extractRowContent :: String -> Maybe String
+    extractRowContent rowSegment =
+      case String.indexOf (String.Pattern ">") rowSegment of
+        Nothing -> Nothing
+        Just startIdx ->
+          let afterOpenTag = String.drop (startIdx + 1) rowSegment
+          in case String.indexOf (String.Pattern "</tr>") afterOpenTag of
+            Nothing -> Nothing
+            Just endIdx ->
+              let content = String.take endIdx afterOpenTag
+              in Just (String.trim content)
 
 getRowAt :: Int -> Array String -> Maybe String
 getRowAt rowIndex rows = Array.index rows rowIndex
