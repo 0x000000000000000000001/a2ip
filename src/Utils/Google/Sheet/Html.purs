@@ -34,6 +34,8 @@ maxDataRows = 6
 maxColumns :: Int
 maxColumns = 7
 
+-- | Extracts the first <table>...</table> block from the given HTML string.
+-- |
 -- | ```purescript
 -- | >>> extractTableFromHtml "<html><body><table><tr><td>1</td></tr></table></body></html>"
 -- | Just "<table><tr><td>1</td></tr></table>"
@@ -51,6 +53,8 @@ extractTableFromHtml htmlContent =
               extractedTable = String.take tableLength afterTableStart
           in Just extractedTable
 
+-- | Extracts the rows from a <table>...</table> block.
+-- |
 -- | ```purescript
 -- | >>> extractTableRows "<table><tr><td>1</td></tr><tr><td>2</td></tr></table>"
 -- | ["<td>1</td>", "<td>2</td>"]

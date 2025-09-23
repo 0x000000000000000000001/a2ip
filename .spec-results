@@ -1976,49 +1976,49 @@
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows accepts malformed HTML",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
@@ -2032,21 +2032,21 @@
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows extracts rows from simple table HTML",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows handles HTML without tr elements",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows handles empty string",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
@@ -2060,21 +2060,21 @@
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows handles table with nested elements in rows",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows handles table with no rows",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableRows handles table with thead and tbody sections",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657186584.0",
       "success": true
     }
   ],
@@ -2088,21 +2088,21 @@
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
@@ -2116,21 +2116,21 @@
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
@@ -2144,21 +2144,21 @@
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
     {
-      "timestamp": "1758654040090.0",
+      "timestamp": "1758657249231.0",
       "success": true
     }
   ],
@@ -2166,6 +2166,314 @@
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
     {
       "timestamp": "1758645655171.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows handles empty string",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows handles table with no rows",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Sheet.Html.ExtractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657249231.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758657271633.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows handles empty string",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows handles table with no rows",
+    {
+      "timestamp": "1758657261323.0",
+      "success": true
+    }
+  ],
+  [
+    ". Utils.Google.Sheet.Html.ExtractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657261323.0",
       "success": true
     }
   ],
@@ -2285,6 +2593,622 @@
     "Single Test extracts table from complete HTML",
     {
       "timestamp": "1758465465860.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) handles URL without /view suffix",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) handles URL without prefix",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) handles empty string and returns nothing",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive (extractPortraitIdFromViewUrl) returns nothing when no patterns match",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive :: extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Drive.extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) extracts table from complete HTML",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) handles empty string",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableFromHtml) returns nothing when no table found",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) accepts malformed HTML",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) handles HTML without tr elements",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) handles empty string",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) handles table with nested elements in rows",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) handles table with no rows",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html (extractTableRows) handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657585397.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows handles empty string",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html :: extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657443803.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows handles empty string",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows handles table with no rows",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.ExtractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657622529.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows handles empty string",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Google.Sheet.Html.extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758657543512.0",
       "success": true
     }
   ],
