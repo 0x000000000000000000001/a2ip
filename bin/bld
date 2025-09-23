@@ -1,0 +1,10 @@
+#!/bin/sh
+
+old_wd=$(pwd)
+
+dir=$(dirname "$0")/..
+cd "$dir"
+
+spago build
+
+cd "$old_wd"
