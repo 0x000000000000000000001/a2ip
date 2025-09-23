@@ -4,7 +4,7 @@ import Prelude
 
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Function.Here (here)
+import Test.Utils.Bdd.Describe.Here (here)
 import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
 
 spec :: Spec Unit

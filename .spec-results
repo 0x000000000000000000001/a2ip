@@ -1,5 +1,229 @@
 [
   [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "                  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    "            Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758645190828.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    .     . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
+    " .   .    . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758645209261.0",
+      "success": true
+    }
+  ],
+  [
     " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
     {
       "timestamp": "1758630732695.0",
@@ -38,6 +262,118 @@
     " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
     {
       "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  :: extractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758643192965.0",
+      "success": true
+    }
+  ],
+  [
+    " Index/  Index/  Index/  Index/  :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758643192965.0",
       "success": true
     }
   ],
@@ -574,6 +910,1014 @@
     }
   ],
   [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  :: extractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Drive.Index  Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758642022536.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google.Index  Utils.Google.Sheet.Index  Utils.Google.Sheet.Html.Index  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758643817305.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Drive.Index/  :: Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index/  Utils.Google.Index/  Utils.Google.Sheet.Index/  Utils.Google.Sheet.Html.Index/  :: Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758643507978.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive handles URL without /view suffix",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive handles URL without prefix",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive handles empty string",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: drive returns original string when no patterns match",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Drive/  :: extractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758643223791.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html extracts table from complete HTML",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html handles empty string",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils/  Google/  Sheet/  Html/  :: html returns nothing when no table found",
+    {
+      "timestamp": "1758642921895.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\     \\ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\   \\    \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758645123536.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644952860.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_  \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " \\_  \\_  \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644864161.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles URL without /view suffix",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles URL without prefix",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles empty string",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } returns original string when no patterns match",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } extracts table from complete HTML",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } handles empty string",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
+    " function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    }/  :: function(lowerFirst) {\n        try {\n            const stack = new Error().stack;\n            // console.log(stack);\n            const lines = stack.split('    at ');\n        \n            let ans = '';\n            \n            for (let i = 0; i < lines.length; i++) {\n                const line = lines[i];\n                console.log(line);\n                \n                const match = line.match(/Test\\.(.+)\\//);\n        \n                if (match && match.length > 1) {\n                    ans = match[1];\n                }\n            }\n\n            const parts = ans.split('.');\n            ans = parts[parts.length - 1];\n\n            if (functionInsteadOfModule) {\n                // Lower case the first letter\n                ans = ans.charAt(0).toLowerCase() + ans.slice(1);\n            }\n            \n            return ans;\n        } catch (e) {\n            console.error(e);\n        }\n    } returns nothing when no table found",
+    {
+      "timestamp": "1758643167745.0",
+      "success": true
+    }
+  ],
+  [
     " undefined  :: undefined extracts first table when multiple tables exist",
     {
       "timestamp": "1758463795036.0",
@@ -630,9 +1974,793 @@
     }
   ],
   [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758645280019.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ :: extractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
+    "Index/ Index/ Index/ Index/ :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758642733416.0",
+      "success": true
+    }
+  ],
+  [
     "Single Test extracts table from complete HTML",
     {
       "timestamp": "1758465465860.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Drive.Index Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Index Utils.Google.Index Utils.Google.Sheet.Index Utils.Google.Sheet.Html.Index Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644683509.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\ \\ \\ \\ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758645226899.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_     \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_   \\_    \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644937811.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "\\_ \\_ \\_ \\_ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644802657.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758644796264.0",
       "success": true
     }
   ]
