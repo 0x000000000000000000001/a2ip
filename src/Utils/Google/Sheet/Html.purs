@@ -1,5 +1,6 @@
 module Utils.Google.Sheet.Html
   ( extractTableFromHtml
+  , extractTableRows
   , extractRowCells
   , extractMappingKeysFromTable
   , extractDataRows
@@ -21,7 +22,6 @@ import Data.String (Pattern(..), trim)
 import Data.String as String
 import Utils.Html.Clean (extractCellContent)
 
--- Constants for Google Sheets structure
 headerRowIndex :: Int
 headerRowIndex = 2
 
@@ -59,7 +59,6 @@ extractCellsFromRow row =
       cellContents = map (fromMaybe "") $ map extractCellContent (Array.drop 1 cells)
   in cellContents
 
--- Main function - Extract cell contents from the nth row of the table (0-indexed)
 extractRowCells :: String -> Int -> Array String
 extractRowCells html rowIndex = 
   let tableHtml = extractTableFromHtml html
@@ -69,7 +68,6 @@ extractRowCells html rowIndex =
        Just row -> extractCellsFromRow row
        Nothing -> []
 
--- Data Row Processing with configurable parameters
 generateDataRowIndexes :: Int -> Int -> Array Int
 generateDataRowIndexes startIndex maxRows = Array.range startIndex (startIndex + maxRows - 1)
 
@@ -84,7 +82,6 @@ extractDataRows htmlContent =
   let rowIndexes = generateDataRowIndexes dataStartRowIndex maxDataRows
   in Array.mapMaybe (extractRowCellsIfNotEmpty htmlContent maxColumns) rowIndexes
 
--- Generic Data Access Functions
 getColumnAt :: Int -> Array String -> String
 getColumnAt pos arr = case Array.index arr pos of
   Just value -> trim value
@@ -100,11 +97,9 @@ getValueByKey :: Array String -> Array String -> String -> String
 getValueByKey mappingKeys rowCells key = 
   trim $ findColumnByKey key mappingKeys rowCells
 
--- Generic Header Processing
 getMeaningfulHeaders :: Int -> Array String -> Array String
 getMeaningfulHeaders maxCols headerCells = Array.take maxCols headerCells
 
--- Generic mapping extraction function that accepts a header mapper function
 extractMappingKeysFromTable :: (String -> String) -> String -> Array String
 extractMappingKeysFromTable headerMapper html = 
   html
