@@ -462,6 +462,118 @@
     }
   ],
   [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl extracts from real Google Drive portrait URL",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl handles empty string",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Drive  :: extractPortraitIdFromViewUrl returns original string when no patterns match",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
+    " Utils.Index  Utils.Google  Utils.Google.Sheet  Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758641868053.0",
+      "success": true
+    }
+  ],
+  [
     " undefined  :: undefined extracts first table when multiple tables exist",
     {
       "timestamp": "1758463795036.0",

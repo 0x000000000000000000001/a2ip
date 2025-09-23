@@ -1,4 +1,4 @@
-module Test.Utils.Google.Drive where
+module Test.Utils.Google.Drive.Index where
 
 import Prelude
 

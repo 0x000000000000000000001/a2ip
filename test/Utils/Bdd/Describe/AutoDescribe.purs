@@ -1,4 +1,4 @@
-module Test.Utils.Bdd.AutoDescribe
+module Test.Utils.Bdd.Describe.AutoDescribe
   ( autoDescribe
   ) where
 

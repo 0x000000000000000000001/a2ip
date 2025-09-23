@@ -1,4 +1,4 @@
-module Test.Utils.Google where
+module Test.Utils.Google.Index where
 
 import Prelude
 
