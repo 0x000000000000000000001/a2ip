@@ -47,9 +47,14 @@ extractTableFromHtml htmlContent =
               extractedTable = String.take tableLength afterTableStart
           in Just extractedTable
 
+-- Internal function that returns raw row segments for cell extraction
+extractTableRowsRaw :: String -> Array String
+extractTableRowsRaw tableHtml = String.split (String.Pattern "<tr") tableHtml
+
+-- Public API function that returns cleaned row contents
 extractTableRows :: String -> Array String
 extractTableRows tableHtml = 
-  let rawRows = String.split (String.Pattern "<tr") tableHtml
+  let rawRows = extractTableRowsRaw tableHtml
       cleanedRows = Array.mapMaybe extractRowContent (Array.drop 1 rawRows)
   in cleanedRows
   where
@@ -77,7 +82,7 @@ extractCellsFromRow row =
 extractRowCells :: String -> Int -> Array String
 extractRowCells html rowIndex = 
   let tableHtml = extractTableFromHtml html
-      rows = extractTableRows $ fromMaybe "" tableHtml
+      rows = extractTableRowsRaw $ fromMaybe "" tableHtml
       maybeRow = getRowAt rowIndex rows
   in case maybeRow of
        Just row -> extractCellsFromRow row
