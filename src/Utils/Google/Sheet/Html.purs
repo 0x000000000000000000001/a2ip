@@ -17,7 +17,7 @@ import Prelude
 
 import Data.Array (drop, findIndex, index, length, mapMaybe, range, take) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
-import Data.String (Pattern(..), split, trim)
+import Data.String (Pattern(..), trim)
 import Data.String as String
 import Utils.Html.Clean (extractCellContent)
 
@@ -36,15 +36,17 @@ maxColumns = 7
 
 extractTableFromHtml :: String -> Maybe String
 extractTableFromHtml htmlContent =
-  case split (Pattern "<table") htmlContent of
-    [ _, rest ] -> 
-      let tableStart = "<table" <> rest
-      in case split (Pattern "</table>") tableStart of
-           [ table, _ ] -> Just (table <> "</table>")
-           _ -> Nothing
-    _ -> Nothing
+  case String.indexOf (Pattern "<table") htmlContent of
+    Nothing -> Nothing
+    Just startIndex ->
+      let afterTableStart = String.drop startIndex htmlContent
+      in case String.indexOf (Pattern "</table>") afterTableStart of
+        Nothing -> Nothing
+        Just endIndexRelative ->
+          let tableLength = endIndexRelative + String.length "</table>"
+              extractedTable = String.take tableLength afterTableStart
+          in Just extractedTable
 
--- Table Row Processing
 extractTableRows :: String -> Array String
 extractTableRows tableHtml = String.split (String.Pattern "<tr") tableHtml
 

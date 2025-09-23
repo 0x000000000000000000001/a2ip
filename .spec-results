@@ -1,29 +1,71 @@
 [
   [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
+    " :: html  Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758630732695.0",
+      "success": true
+    }
+  ],
+  [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts first table when multiple tables exist",
     {
-      "timestamp": "1758536836193.0",
-      "success": false
+      "timestamp": "1758630769483.0",
+      "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml extracts table from complete HTML",
     {
-      "timestamp": "1758535760328.0",
+      "timestamp": "1758630769483.0",
       "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758465636820.0",
-      "success": false
+      "timestamp": "1758630769483.0",
+      "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml handles empty string",
     {
-      "timestamp": "1758536697367.0",
+      "timestamp": "1758630769483.0",
       "success": true
     }
   ],
@@ -51,14 +93,14 @@
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when incomplete table (no closing tag)",
     {
-      "timestamp": "1758536648539.0",
+      "timestamp": "1758630769483.0",
       "success": true
     }
   ],
   [
     " Utils.Google.Sheet.Html  :: extractTableFromHtml returns nothing when no table found",
     {
-      "timestamp": "1758536587152.0",
+      "timestamp": "1758630769483.0",
       "success": true
     }
   ],
