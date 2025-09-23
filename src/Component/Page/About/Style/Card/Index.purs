@@ -15,5 +15,5 @@ sheet :: forall p i. HTML p i
 sheet = stylesheet do
   style   
   Portrait.style
-  Names.style
+  Names.style 
   Line.style
