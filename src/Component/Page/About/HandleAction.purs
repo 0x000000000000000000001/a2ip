@@ -108,7 +108,7 @@ createMemberFromRow mappingKeys rowCells =
     , job: getValue "job"
     , email: getValue "email"
     , phone: getValue "phone"
-    , portraitId: extractPortraitIdFromViewUrl $ getValue "portraitId"
+    , portraitId: fromMaybe "" $ extractPortraitIdFromViewUrl $ getValue "portraitId"
     }
 
 parseHtmlRowWithMapping :: Array String -> Array String -> Maybe Member

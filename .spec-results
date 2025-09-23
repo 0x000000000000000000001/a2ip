@@ -1976,63 +1976,63 @@
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . . Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
@@ -2046,21 +2046,21 @@
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
@@ -2072,16 +2072,30 @@
     }
   ],
   [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758646230952.0",
+      "success": true
+    }
+  ],
+  [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758646230952.0",
+      "success": true
+    }
+  ],
+  [
+    ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758646230952.0",
       "success": true
     }
   ],
   [
     ". . . Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns original string when no patterns match",
     {
-      "timestamp": "1758645280019.0",
+      "timestamp": "1758645655171.0",
       "success": true
     }
   ],

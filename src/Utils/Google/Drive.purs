@@ -5,6 +5,8 @@ module Utils.GoogleDrive
   )
   where
 
+import Prelude
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split)
 
 portraitViewUrlPrefix :: String
@@ -13,14 +15,24 @@ portraitViewUrlPrefix = "https://drive.google.com/file/d/"
 portraitViewUrlSuffix :: String
 portraitViewUrlSuffix = "/view"
 
-extractPortraitIdFromViewUrl :: String -> String
+extractPortraitIdFromViewUrl :: String -> Maybe String
 extractPortraitIdFromViewUrl url =
   let
+    hasPrefix = case split (Pattern portraitViewUrlPrefix) url of
+      [ _, _ ] -> true
+      _ -> false
+    
     withoutPrefix = case split (Pattern portraitViewUrlPrefix) url of
       [ _, rest ] -> rest
       _ -> url
+      
     fileId = case split (Pattern portraitViewUrlSuffix) withoutPrefix of
       [ idPart, _ ] -> idPart
       _ -> withoutPrefix
   in
-    fileId
+    if not hasPrefix
+    then Nothing 
+    else if fileId == ""
+    then Nothing
+    else Just fileId
+  
