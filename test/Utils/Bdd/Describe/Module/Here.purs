@@ -5,7 +5,7 @@ module Test.Utils.Bdd.Describe.Module.Here
 import Prelude
 
 import Test.Spec (Spec)
-import Test.Utils.Bdd.Describe (autoDescribe)
+import Test.Utils.Bdd.AutoDescribe (autoDescribe)
 
 here :: Spec Unit -> Spec Unit
 here = autoDescribe true false ""
