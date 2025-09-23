@@ -13,11 +13,8 @@ import Component.Page.About.Type (Action(..), Member, State)
 import Data.Array (length, mapMaybe, range, take) as Array
 import Data.ArrayBuffer.Types (ArrayBuffer)
 import Data.Either (Either(..))
-
 import Data.Maybe (Maybe(..), fromMaybe)
-
 import Effect.Aff.Class (class MonadAff)
-
 import Halogen as H
 import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
