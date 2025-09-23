@@ -4,8 +4,8 @@ import Prelude
 
 import Test.Spec (Spec)
 import Test.Utils.Bdd.Describe.Module.Here (here)
-import Test.Utils.Google.Drive as Drive
-import Test.Utils.Google.Sheet as Sheet
+import Test.Utils.Google.Drive.Index as Drive
+import Test.Utils.Google.Sheet.Index as Sheet
 
 spec :: Spec Unit
 spec = here do
