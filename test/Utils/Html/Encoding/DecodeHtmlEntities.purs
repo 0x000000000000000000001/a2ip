@@ -15,7 +15,7 @@ spec = here do
     decodeHtmlEntities "&amp;" === "&"
     decodeHtmlEntities "&quot;hello&quot;" === "\"hello\""
     decodeHtmlEntities "&#39;world&#39;" === "'world'"
-    decodeHtmlEntities "&nbsp;" === "?"
+    decodeHtmlEntities "&nbsp;" === "a" -- U+00A0 non-breaking space
 
   it "decodes complex HTML with multiple entities" do
     let input = "&lt;p class=&quot;text&quot;&gt;Hello &amp; world&lt;/p&gt;"
@@ -24,7 +24,7 @@ spec = here do
 
   it "decodes numeric character references" do
     decodeHtmlEntities "&#60;div&#62;" === "<div>"
-    decodeHtmlEntities "&#x3C;div&s#x3E;" === "<div>"
+    decodeHtmlEntities "&#x3C;div&#x3E;" === "<div>"
     decodeHtmlEntities "&#233;" === "é"
 
   it "handles strings without entities" do

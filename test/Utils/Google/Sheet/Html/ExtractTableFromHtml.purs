@@ -75,7 +75,7 @@ spec = here do
       htmlComplexTable =
         """
       <div class="container">
-        <table class="dat a-table" style="width: 100%" data-test="value">
+        <table class="data-table" style="width: 100%" data-test="value">
           <thead>
             <tr>
               <th colspan="2">Complex Header</th>

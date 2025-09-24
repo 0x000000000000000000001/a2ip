@@ -5,6 +5,6 @@ old_wd=$(pwd)
 dir=$(dirname "$0")/..
 cd "$dir"
 
-spago build
+spago build --purs-args "-g js,sourcemaps"
 
 cd "$old_wd"
