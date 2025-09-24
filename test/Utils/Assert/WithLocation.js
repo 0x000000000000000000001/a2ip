@@ -1,8 +1,7 @@
-import { SourceMapConsumer } from 'source-map';
+import { SourceMapConsumer } from 'source-map-js';
 import fs from 'fs';
 
-// Version synchrone pure qui utilise les source maps
-export const _captureStackTraceSync = function(unit) {
+export const captureStackTrace = function() {
     try {
         const stack = new Error().stack;
         if (!stack) return "line:?";
@@ -31,26 +30,31 @@ export const _captureStackTraceSync = function(unit) {
                 // Utiliser les source maps pour la vraie position
                 try {
                     const sourceMapPath = `./output/${moduleName}/index.js.map`;
+
+                    // console.log(sourceMapPath);
                     
                     if (fs.existsSync(sourceMapPath)) {
                         const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
                         const sourceMap = JSON.parse(sourceMapContent);
+
+                        // console.log(sourceMap, jsLine, jsColumn, `./output/${moduleName}/index.js`);
                         
-                        // Utiliser SourceMapConsumer pour mapper JS → PureScript
+                        // API synchrone de source-map-js
                         const consumer = new SourceMapConsumer(sourceMap);
                         const originalPosition = consumer.originalPositionFor({
                             line: jsLine,
                             column: jsColumn
                         });
-                        
-                        consumer.destroy();
-                        
+                        // console.log(originalPosition);
+
                         if (originalPosition && originalPosition.source && originalPosition.line) {
                             // Convertir le chemin source en chemin relatif propre
                             let sourcePath = originalPosition.source;
                             if (sourcePath.startsWith('../../')) {
                                 sourcePath = sourcePath.substring(6); // Enlever '../../'
                             }
+
+                            console.log(`${sourcePath}:${originalPosition.line}`);
                             
                             return `${sourcePath}:${originalPosition.line}`;
                         }
@@ -62,6 +66,7 @@ export const _captureStackTraceSync = function(unit) {
                     return `${filePath}:${approximateLine}`;
                     
                 } catch (e) {
+                    console.log(e);
                     // Fallback en cas d'erreur avec les source maps
                     const filePath = moduleName.replace(/^Test\./, 'test/').replace(/\./g, '/') + '.purs';
                     const approximateLine = Math.max(1, jsLine - 2);

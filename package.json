@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "spago build --purs-args \"-g js,sourcemaps\"",
-    "build:dev": "spago build --purs-args \"-g js,sourcemaps\"", 
+    "build:dev": "spago build --purs-args \"-g js,sourcemaps\"",
     "test": "npm run build:dev && spago test",
     "test:watch": "spago test --watch --purs-args \"-g js,sourcemaps\""
   },
@@ -15,7 +15,8 @@
   "dependencies": {
     "he": "^1.2.0",
     "jszip": "^3.10.1",
-    "source-map": "^0.7.6"
+    "source-map": "^0.7.6",
+    "source-map-js": "^1.2.1"
   },
   "devDependencies": {
     "purescript": "^0.14.1",

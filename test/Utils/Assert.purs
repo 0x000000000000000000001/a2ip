@@ -4,7 +4,7 @@ import Prelude
 
 import Effect.Aff (Aff)
 import Test.Spec.Assertions (fail)
-import Test.Utils.Assert.WithLocation (captureStackTrace)
+import Test.Utils.Assert.WithLocation (captureStackTrace) 
 
 shouldEqual :: forall t. Show t => Eq t => t -> t -> Aff Unit
 shouldEqual v1 v2 = do

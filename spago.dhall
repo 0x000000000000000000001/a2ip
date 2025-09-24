@@ -24,6 +24,7 @@ You can edit this file as you like.
   , "nonempty"
   , "now"
   , "prelude"
+  , "refs"
   , "routing"
   , "routing-duplex"
   , "spec"

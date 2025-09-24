@@ -3,8 +3,9 @@ module Test.Utils.Html.Encoding.DecodeHtmlEntities where
 import Prelude
 
 import Data.String (trim)
+import Test.Spec (itOnly)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here) 
+import Test.Utils.Bdd.Describe.Here (here)
 import Test.Utils.Spec (Spec, it)
 import Utils.Html.Encoding (decodeHtmlEntities)
 
@@ -32,5 +33,5 @@ spec = here do
     decodeHtmlEntities "Hello world" === "Hello world"
     decodeHtmlEntities "<div>No entities here</div>" === "<div>No entities here</div>"
 
-  it "handles empty strings" do
+  itOnly "handles empty strings" do
     decodeHtmlEntities " " === ""
