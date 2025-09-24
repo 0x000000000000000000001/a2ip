@@ -1,6 +1,5 @@
 module Utils.Html.Clean
-  ( decodeHtmlEntities
-  , removeAttribute
+  ( removeAttribute
   , removeDataAttributes
   , cleanTag
   , cleanHtmlAttributes
@@ -20,17 +19,7 @@ import Data.Array (foldl, snoc) as Array
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split)
 import Data.String as String
-
--- HTML Entity Decoding
-decodeHtmlEntities :: String -> String
-decodeHtmlEntities str = 
-  str
-    # String.replace (String.Pattern "&#39;") (String.Replacement "'")
-    # String.replace (String.Pattern "&quot;") (String.Replacement "\"")
-    # String.replace (String.Pattern "&amp;") (String.Replacement "&")
-    # String.replace (String.Pattern "&lt;") (String.Replacement "<")
-    # String.replace (String.Pattern "&gt;") (String.Replacement ">")
-    # String.replace (String.Pattern "&nbsp;") (String.Replacement " ")
+import Utils.Html.Encoding (decodeHtmlEntities)
 
 -- HTML Attribute Cleaning
 removeAttribute :: String -> String -> String

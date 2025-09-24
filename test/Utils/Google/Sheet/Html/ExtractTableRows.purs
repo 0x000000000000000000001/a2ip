@@ -3,9 +3,9 @@ module Test.Utils.Google.Sheet.Html.ExtractTableRows where
 import Prelude
 
 import Data.Array as Array
-import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Bdd.Describe.Here (here)
+import Test.Utils.Spec (Spec, it)
 import Utils.Google.Sheet.Html (extractTableRows)
 
 spec :: Spec Unit

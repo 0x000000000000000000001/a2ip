@@ -2725,63 +2725,63 @@
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without /view suffix",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles URL without prefix",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles empty string and returns nothing",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl returns nothing when no patterns match",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
@@ -3033,91 +3033,91 @@
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml extracts first table when multiple tables exist",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml extracts table from complete HTML",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml handles empty string",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when incomplete table (no closing tag)",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows accepts malformed HTML",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows extracts rows from simple table HTML",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows handles HTML without tr elements",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows handles empty string",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows handles table with nested elements in rows",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows handles table with no rows",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows handles table with thead and tbody sections",
     {
-      "timestamp": "1758657924045.0",
+      "timestamp": "1758718727412.0",
       "success": true
     }
   ],
@@ -3209,6 +3209,97 @@
     "Utils.Google.Sheet.Html.extractTableRows handles table with thead and tbody sections",
     {
       "timestamp": "1758657543512.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758718727412.0",
+      "success": false
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.EncodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.EncodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758718727412.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities decodes common HTML entities",
+    {
+      "timestamp": "1758718023774.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758718023774.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities decodes numeric character references",
+    {
+      "timestamp": "1758718023774.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities encodes HTML entities",
+    {
+      "timestamp": "1758718023774.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities handles empty strings",
+    {
+      "timestamp": "1758718023774.0",
+      "success": true
+    }
+  ],
+  [
+    "Utils.Html.Entities handles strings without entities",
+    {
+      "timestamp": "1758718023774.0",
       "success": true
     }
   ],
@@ -3769,6 +3860,3051 @@
     "_ _ _ _ Utils.Google.Sheet.Html.ExtractTableFromHtml returns nothing when no table found",
     {
       "timestamp": "1758644796264.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows handles empty string",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758718917977.0",
+      "success": false
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:decodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:encodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "src/Utils/Html/Encoding.purs:encodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758718917977.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 handles URL without /view suffix",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 handles URL without prefix",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 handles empty string and returns nothing",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:1 returns nothing when no patterns match",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs:extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl handles URL without /view suffix",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl handles URL without prefix",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl handles empty string and returns nothing",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs → src/Utils/Google/Drive.purs@extractPortraitIdFromViewUrl returns nothing when no patterns match",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :14 extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :14)extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :19 extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :19)extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :24 handles URL without /view suffix",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :24)handles URL without /view suffix",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :28 handles URL without prefix",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :28)handles URL without prefix",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :32 returns nothing when no patterns match",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :32)returns nothing when no patterns match",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :36 handles empty string and returns nothing",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :36)handles empty string and returns nothing",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :40 handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :40)handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :44 extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :44)extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :48 handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities :48)handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments (#8)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments (line:42)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments (line:43)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments (line:44)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts ID from URL with extra path segments (line:49)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from URL with additional parameters (#2)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from URL with additional parameters (line:18)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from URL with additional parameters (line:19)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from complete Google Drive view URL (#1)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from complete Google Drive view URL (line:14)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities extracts file ID from complete Google Drive view URL (line:15)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix) (#9)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix) (line:46)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix) (line:47)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix) (line:48)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL with only file ID (no prefix or suffix) (line:54)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without /view suffix",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without /view suffix (#3)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without /view suffix (line:22)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without /view suffix (line:23)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without /view suffix (line:24)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix (#4)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix (line:26)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix (line:27)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix (line:28)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles URL without prefix (line:29)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing (#6)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing (line:34)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing (line:35)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing (line:36)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles empty string and returns nothing (line:39)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID (#7)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID (line:38)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID (line:39)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID (line:40)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities handles malformed URL with prefix but no ID (line:44)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match (#5)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match (line:30)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match (line:31)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match (line:32)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs @decodeHtmlEntities returns nothing when no patterns match (line:34)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs handles URL without /view suffix",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs handles URL without prefix",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs handles empty string and returns nothing",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:1 → src/Utils/Google/Drive.purs returns nothing when no patterns match",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 handles URL without /view suffix",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 handles URL without prefix",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 handles empty string and returns nothing",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Drive/ExtractPortraitIdFromViewUrl.purs:12 → src/Utils/Google/Drive.purs:15 returns nothing when no patterns match",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles empty string",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 extracts table from complete HTML",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 handles empty string",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:1 returns nothing when no table found",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs:extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml extracts table from complete HTML",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml handles empty string",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs → src/Utils/Google/Sheet/Html.purs@extractTableFromHtml returns nothing when no table found",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :14 extracts table from complete HTML",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :14)extracts table from complete HTML",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :47 returns nothing when no table found",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :47)returns nothing when no table found",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :62 returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :62)returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :66 extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :66)extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :70 handles empty string",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :70)handles empty string",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :73 handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758725637192.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :73)handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758725630168.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist (#4)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist (line:18)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist (line:19)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist (line:26)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts first table when multiple tables exist (line:66)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML (#1)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML (line:14)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML (line:15)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML (line:16)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts table from complete HTML (line:26)",
+    {
+      "timestamp": "1758724963293.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements (#6)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements (line:20)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements (line:21)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements (line:34)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles complex table with attributes and nested elements (line:73)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (#5)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:19)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:20)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:30)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:70)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag) (#3)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag) (line:17)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag) (line:18)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag) (line:22)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when incomplete table (no closing tag) (line:62)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (#2)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (line:16)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (line:17)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (line:18)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (line:26)",
+    {
+      "timestamp": "1758724963293.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities returns nothing when no table found (line:47)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs extracts table from complete HTML",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs handles empty string",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:1 → src/Utils/Google/Sheet/Html.purs returns nothing when no table found",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 extracts table from complete HTML",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 handles empty string",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableFromHtml.purs:12 → src/Utils/Google/Sheet/Html.purs:10 returns nothing when no table found",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 accepts malformed HTML",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 extracts rows from simple table HTML",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 handles HTML without tr elements",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 handles empty string",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 handles table with nested elements in rows",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 handles table with no rows",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:1 handles table with thead and tbody sections",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles empty string",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs:extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows accepts malformed HTML",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows extracts rows from simple table HTML",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows handles HTML without tr elements",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows handles empty string",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows handles table with nested elements in rows",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows handles table with no rows",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs → src/Utils/Google/Sheet/Html.purs@extractTableRows handles table with thead and tbody sections",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :14 extracts rows from simple table HTML",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :14)extracts rows from simple table HTML",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :19 handles table with no rows",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :19)handles table with no rows",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :23 handles table with nested elements in rows",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :23)handles table with nested elements in rows",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :27 handles empty string",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :27)handles empty string",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :31 handles HTML without tr elements",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :31)handles HTML without tr elements",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :35 handles table with thead and tbody sections",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :35)handles table with thead and tbody sections",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :39 accepts malformed HTML",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities :39)accepts malformed HTML",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (#7)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (line:38)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (line:39)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (line:40)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (line:42)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities accepts malformed HTML (line:83)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts rows from simple table HTML",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts rows from simple table HTML (#1)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts rows from simple table HTML (line:14)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts rows from simple table HTML (line:15)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities extracts rows from simple table HTML (line:17)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (#5)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (line:30)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (line:31)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (line:32)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (line:34)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles HTML without tr elements (line:56)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (#4)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:26)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:27)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:28)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:30)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles empty string (line:51)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (#3)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (line:22)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (line:23)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (line:24)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (line:26)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with nested elements in rows (line:37)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (#2)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (line:18)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (line:19)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (line:20)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (line:22)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with no rows (line:32)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (#6)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (line:34)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (line:35)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (line:36)",
+    {
+      "timestamp": "1758726099901.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (line:38)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs @decodeHtmlEntities handles table with thead and tbody sections (line:61)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs accepts malformed HTML",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs extracts rows from simple table HTML",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs handles HTML without tr elements",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs handles empty string",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs handles table with nested elements in rows",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs handles table with no rows",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:1 → src/Utils/Google/Sheet/Html.purs handles table with thead and tbody sections",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 accepts malformed HTML",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 extracts rows from simple table HTML",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 handles HTML without tr elements",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 handles empty string",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 handles table with nested elements in rows",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 handles table with no rows",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Google/Sheet/Html/ExtractTableRows.purs:12 → src/Utils/Google/Sheet/Html.purs:25 handles table with thead and tbody sections",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758719249298.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:encodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding.purs → src/Utils/Html/Encoding.purs:encodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719249298.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 decodes common HTML entities",
+    {
+      "timestamp": "1758720113338.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 decodes numeric character references",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 handles empty strings",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 handles strings without entities",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758719317182.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:decodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@decodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758719518612.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@decodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@decodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@decodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :13 decodes common HTML entities",
+    {
+      "timestamp": "1758725637192.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :13)decodes common HTML entities",
+    {
+      "timestamp": "1758725630168.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :20 decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :20)decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :25 decodes numeric character references",
+    {
+      "timestamp": "1758725637192.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :25)decodes numeric character references",
+    {
+      "timestamp": "1758725630168.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :29 handles strings without entities",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :29)handles strings without entities",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :32 handles empty strings",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :32)handles empty strings",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities",
+    {
+      "timestamp": "1758721557309.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities (#1)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities (line:12)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities (line:13)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities (line:14)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes common HTML entities (line:16)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758721557309.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities (#2)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities (line:12)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities (line:18)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities (line:20)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes complex HTML with multiple entities (line:25)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references",
+    {
+      "timestamp": "1758721557309.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references (#3)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references (line:12)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references (line:22)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references (line:25)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities decodes numeric character references (line:26)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758721557309.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (#5)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:12)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:30)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:32)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:34)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities",
+    {
+      "timestamp": "1758721557309.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (#4)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (line:12)",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (line:26)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (line:29)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (line:30)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles strings without entities (line:31)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs decodes common HTML entities",
+    {
+      "timestamp": "1758720882348.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs decodes numeric character references",
+    {
+      "timestamp": "1758720882348.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs handles empty strings",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs handles strings without entities",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:20 decodes common HTML entities",
+    {
+      "timestamp": "1758720755331.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:20 decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:20 decodes numeric character references",
+    {
+      "timestamp": "1758720755331.0",
+      "success": false
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:20 handles empty strings",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/DecodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:20 handles strings without entities",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 encodes HTML entities",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:1 handles empty strings",
+    {
+      "timestamp": "1758720113338.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:encodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs:encodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719317182.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@encodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs → src/Utils/Html/Encoding.purs@encodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758719518612.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :13 encodes HTML entities",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :13)encodes HTML entities",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :17 handles empty strings",
+    {
+      "timestamp": "1758725637192.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities :17)handles empty strings",
+    {
+      "timestamp": "1758725630168.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities encodes HTML entities",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities encodes HTML entities (#1)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities encodes HTML entities (line:13)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities encodes HTML entities (line:14)",
+    {
+      "timestamp": "1758725265621.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities encodes HTML entities (line:15)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings",
+    {
+      "timestamp": "1758724864915.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (#2)",
+    {
+      "timestamp": "1758725943090.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:17)",
+    {
+      "timestamp": "1758725561714.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:18)",
+    {
+      "timestamp": "1758731487295.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs @decodeHtmlEntities handles empty strings (line:20)",
+    {
+      "timestamp": "1758727730151.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs encodes HTML entities",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:1 → src/Utils/Html/Encoding.purs handles empty strings",
+    {
+      "timestamp": "1758720882348.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:30 encodes HTML entities",
+    {
+      "timestamp": "1758720755331.0",
+      "success": true
+    }
+  ],
+  [
+    "test/Utils/Html/Encoding/EncodeHtmlEntities.purs:12 → src/Utils/Html/Encoding.purs:30 handles empty strings",
+    {
+      "timestamp": "1758720755331.0",
       "success": true
     }
   ]

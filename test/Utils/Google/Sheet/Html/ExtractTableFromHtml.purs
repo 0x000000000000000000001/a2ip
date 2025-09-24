@@ -3,9 +3,9 @@ module Test.Utils.Google.Sheet.Html.ExtractTableFromHtml where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here)  
+import Test.Utils.Bdd.Describe.Here (here)
+import Test.Utils.Spec (Spec, it)  
 import Utils.Google.Sheet.Html (extractTableFromHtml)
  
 spec :: Spec Unit
@@ -75,7 +75,7 @@ spec = here do
       htmlComplexTable =
         """
       <div class="container">
-        <table class="data-table" style="width: 100%" data-test="value">
+        <table class="dat a-table" style="width: 100%" data-test="value">
           <thead>
             <tr>
               <th colspan="2">Complex Header</th>

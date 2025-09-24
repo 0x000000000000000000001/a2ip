@@ -3,9 +3,9 @@ module Test.Utils.Google.Drive.ExtractPortraitIdFromViewUrl where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Bdd.Describe.Here (here)
+import Test.Utils.Spec (Spec, it)
 import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
 
 spec :: Spec Unit
