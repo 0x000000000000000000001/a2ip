@@ -4,22 +4,21 @@ import fs from 'fs';
 export const captureStackTrace = function() {
     try {
         const stack = new Error().stack;
-        if (!stack) return "line:?";
+
+        if (!stack) return '';
         
         const lines = stack.split('\n');
         
-        // Rechercher dans toute la stack trace les modules de test
         for (let i = lines.length - 1; i >= 0; i--) {
             const line = lines[i];
             
-            // Chercher les références aux modules compilés de test
-            const match = line.match(/file:\/\/.*?\/output\/(Test\.Utils\..*?)\/index\.js:(\d+):(\d+)/);
+            const match = line.match(/file:\/\/.*?\/output\/(Test\..*?)\/index\.js:(\d+):(\d+)/);
             if (match) {
                 const moduleName = match[1];
-                const jsLine = parseInt(match[2], 10);
-                const jsColumn = parseInt(match[3], 10);
+
+                const jsLine = parseInt(match[2]);
+                const jsColumn = parseInt(match[3]);
                 
-                // Utiliser les source maps pour la vraie position
                 try {
                     const sourceMapPath = `./output/${moduleName}/index.js.map`;
 
@@ -37,9 +36,7 @@ export const captureStackTrace = function() {
                         });
                         if (
                             moduleName.endsWith('DecodeHtmlEntities')
-                            && jsLine == 35
-                            && jsColumn == 17
-                        ) console.log(originalPosition, `./output/${moduleName}/index.js`, consumer.hasContentsOfAllSources());
+                        ) console.log(jsLine, jsColumn, originalPosition, `./output/${moduleName}/index.js`, consumer.hasContentsOfAllSources());
 
                         if (originalPosition && originalPosition.source && originalPosition.line) {
                             // Convertir le chemin source en chemin relatif propre
@@ -60,8 +57,8 @@ export const captureStackTrace = function() {
             }
         }
         
-        return "line:no-match";
+        return '';
     } catch (error) {
-        return `line:error`;
+        return '';
     }
 };
