@@ -9,7 +9,7 @@ export const captureStackTrace = function() {
         const lines = stack.split('\n');
         
         // Rechercher dans toute la stack trace les modules de test
-        for (let i = 0; i < lines.length; i++) {
+        for (let i = lines.length - 1; i >= 0; i--) {
             const line = lines[i];
             
             // Chercher les références aux modules compilés de test
@@ -18,14 +18,6 @@ export const captureStackTrace = function() {
                 const moduleName = match[1];
                 const jsLine = parseInt(match[2], 10);
                 const jsColumn = parseInt(match[3], 10);
-                
-                // Ignorer nos propres modules utilitaires pour chercher le vrai module de test
-                if (moduleName === 'Test.Utils.Assert.WithLocation' || 
-                    moduleName === 'Test.Utils.Assert' ||
-                    moduleName === 'Test.Utils.Spec' ||
-                    moduleName === 'Test.Utils.Bdd.Describe.Here') {
-                    continue;
-                }
                 
                 // Utiliser les source maps pour la vraie position
                 try {
@@ -37,15 +29,17 @@ export const captureStackTrace = function() {
                         const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
                         const sourceMap = JSON.parse(sourceMapContent);
 
-                        // console.log(sourceMap, jsLine, jsColumn, `./output/${moduleName}/index.js`);
-                        
                         // API synchrone de source-map-js
                         const consumer = new SourceMapConsumer(sourceMap);
                         const originalPosition = consumer.originalPositionFor({
                             line: jsLine,
                             column: jsColumn
                         });
-                        // console.log(originalPosition);
+                        if (
+                            moduleName.endsWith('DecodeHtmlEntities')
+                            && jsLine == 35
+                            && jsColumn == 17
+                        ) console.log(originalPosition, `./output/${moduleName}/index.js`, consumer.hasContentsOfAllSources());
 
                         if (originalPosition && originalPosition.source && originalPosition.line) {
                             // Convertir le chemin source en chemin relatif propre
@@ -54,23 +48,14 @@ export const captureStackTrace = function() {
                                 sourcePath = sourcePath.substring(6); // Enlever '../../'
                             }
 
-                            console.log(`${sourcePath}:${originalPosition.line}`);
-                            
                             return `${sourcePath}:${originalPosition.line}`;
                         }
                     }
                     
-                    // Fallback si pas de source map ou mapping échoue
-                    const filePath = moduleName.replace(/^Test\./, 'test/').replace(/\./g, '/') + '.purs';
-                    const approximateLine = Math.max(1, jsLine - 2);
-                    return `${filePath}:${approximateLine}`;
-                    
+                    return '';
                 } catch (e) {
                     console.log(e);
-                    // Fallback en cas d'erreur avec les source maps
-                    const filePath = moduleName.replace(/^Test\./, 'test/').replace(/\./g, '/') + '.purs';
-                    const approximateLine = Math.max(1, jsLine - 2);
-                    return `${filePath}:${approximateLine}`;
+                    return '';
                 }
             }
         }

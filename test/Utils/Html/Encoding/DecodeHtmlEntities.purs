@@ -35,3 +35,4 @@ spec = here do
 
   itOnly "handles empty strings" do
     decodeHtmlEntities " " === ""
+    decodeHtmlEntities "1" === "1"
