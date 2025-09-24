@@ -1,7 +1,7 @@
 import { SourceMapConsumer } from 'source-map';
 import fs from 'fs';
 
-// Version synchrone pure qui capture immédiatement
+// Version synchrone pure qui utilise les source maps
 export const _captureStackTraceSync = function(unit) {
     try {
         const stack = new Error().stack;
@@ -18,6 +18,7 @@ export const _captureStackTraceSync = function(unit) {
             if (match) {
                 const moduleName = match[1];
                 const jsLine = parseInt(match[2], 10);
+                const jsColumn = parseInt(match[3], 10);
                 
                 // Ignorer nos propres modules utilitaires pour chercher le vrai module de test
                 if (moduleName === 'Test.Utils.Assert.WithLocation' || 
@@ -27,77 +28,44 @@ export const _captureStackTraceSync = function(unit) {
                     continue;
                 }
                 
-                // Convertir le nom du module en chemin de fichier
-                // Test.Utils.Html.Encoding.DecodeHtmlEntities → test/Utils/Html/Encoding/DecodeHtmlEntities.purs
-                const filePath = moduleName.replace(/^Test\./, 'test/')
-                                          .replace(/\./g, '/') + '.purs';
-                
-                // Essayer de trouver la ligne exacte en analysant le code JS et le fichier PureScript
+                // Utiliser les source maps pour la vraie position
                 try {
-                    // Lire le fichier JS pour extraire des indices sur l'assertion exacte
-                    const jsFilePath = `./output/${moduleName}/index.js`;
-                    const jsContent = fs.readFileSync(jsFilePath, 'utf8');
-                    const jsLines = jsContent.split('\n');
-                    const jsLineContent = jsLines[jsLine - 1]; // 0-based array
+                    const sourceMapPath = `./output/${moduleName}/index.js.map`;
                     
-                    // Essayer d'extraire des indices de l'assertion JS
-                    let searchPattern = null;
-                    
-                    // Chercher des patterns comme decodeHtmlEntities("...") ou ("...")
-                    const patterns = [
-                        /decodeHtmlEntities\("([^"]*)"\).*?\("([^"]*)"\)/,  // decodeHtmlEntities("x")...("y")
-                        /decodeHtmlEntities\('([^']*)'\).*?\('([^']*)'\)/,   // decodeHtmlEntities('x')...('y')
-                        /decodeHtmlEntities\("([^"]*)"\)/,                   // juste decodeHtmlEntities("x")
-                        /\("([^"]*)"\)\)\("([^"]*)"\)$/                      // ("x"))("y") à la fin
-                    ];
-                    
-                    for (const pattern of patterns) {
-                        const match = jsLineContent.match(pattern);
-                        if (match) {
-                            if (match[1] !== undefined && match[2] !== undefined) {
-                                // Pattern avec deux parties (input et expected)
-                                searchPattern = `"${match[1]}" === "${match[2]}"`;
-                            } else if (match[1] !== undefined) {
-                                // Pattern avec juste l'input
-                                searchPattern = `"${match[1]}"`;
+                    if (fs.existsSync(sourceMapPath)) {
+                        const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
+                        const sourceMap = JSON.parse(sourceMapContent);
+                        
+                        // Utiliser SourceMapConsumer pour mapper JS → PureScript
+                        const consumer = new SourceMapConsumer(sourceMap);
+                        const originalPosition = consumer.originalPositionFor({
+                            line: jsLine,
+                            column: jsColumn
+                        });
+                        
+                        consumer.destroy();
+                        
+                        if (originalPosition && originalPosition.source && originalPosition.line) {
+                            // Convertir le chemin source en chemin relatif propre
+                            let sourcePath = originalPosition.source;
+                            if (sourcePath.startsWith('../../')) {
+                                sourcePath = sourcePath.substring(6); // Enlever '../../'
                             }
-                            break;
+                            
+                            return `${sourcePath}:${originalPosition.line}`;
                         }
                     }
                     
-                    // Lire le fichier PureScript et chercher la ligne exacte
-                    const pursContent = fs.readFileSync(filePath, 'utf8');
-                    const pursLines = pursContent.split('\n');
-                    
-                    if (searchPattern) {
-                        // Chercher la ligne qui contient notre pattern spécifique
-                        for (let lineNum = 1; lineNum <= pursLines.length; lineNum++) {
-                            const line = pursLines[lineNum - 1]; // 0-based array
-                            if (line && line.includes(searchPattern)) {
-                                return `${filePath}:${lineNum}`;
-                            }
-                        }
-                    }
-                    
-                    // Fallback: chercher toute ligne avec une assertion proche de jsLine
-                    const baseApprox = Math.max(1, jsLine - 5);
-                    const endApprox = Math.min(pursLines.length, jsLine + 5);
-                    
-                    for (let lineNum = baseApprox; lineNum <= endApprox; lineNum++) {
-                        const line = pursLines[lineNum - 1]; // 0-based array
-                        if (line && (line.includes('===') || line.includes('shouldEqual'))) {
-                            return `${filePath}:${lineNum}`;
-                        }
-                    }
-                    
-                    // Fallback à l'approximation simple
-                    const approximatePursLine = Math.max(1, jsLine - 2);
-                    return `${filePath}:${approximatePursLine}`;
+                    // Fallback si pas de source map ou mapping échoue
+                    const filePath = moduleName.replace(/^Test\./, 'test/').replace(/\./g, '/') + '.purs';
+                    const approximateLine = Math.max(1, jsLine - 2);
+                    return `${filePath}:${approximateLine}`;
                     
                 } catch (e) {
-                    // Fallback à l'approximation simple si erreur
-                    const approximatePursLine = Math.max(1, jsLine - 2);
-                    return `${filePath}:${approximatePursLine}`;
+                    // Fallback en cas d'erreur avec les source maps
+                    const filePath = moduleName.replace(/^Test\./, 'test/').replace(/\./g, '/') + '.purs';
+                    const approximateLine = Math.max(1, jsLine - 2);
+                    return `${filePath}:${approximateLine}`;
                 }
             }
         }
