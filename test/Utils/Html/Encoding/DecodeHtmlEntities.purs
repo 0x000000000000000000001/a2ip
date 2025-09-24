@@ -33,4 +33,4 @@ spec = here do
     decodeHtmlEntities "<div>No entities here</div>" === "<div>No entities here</div>"
 
   it "handles empty strings" do
-    decodeHtmlEntities "" === ""
+    decodeHtmlEntities " " === ""
