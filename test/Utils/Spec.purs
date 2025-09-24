@@ -12,9 +12,6 @@ import Test.Spec as TestSpec
 -- FFI function to get incremental test number
 foreign import getItCallLine :: Unit -> Int
 
--- Enhanced `it` function that automatically adds line number to test name
+-- Simple `it` function that just passes through the description
 it :: String -> Aff Unit -> Spec Unit  
-it description test = do
-  let lineNumber = getItCallLine unit
-  let enhancedDescription = description <> " (line:" <> show lineNumber <> ")"
-  TestSpec.it enhancedDescription test
+it description test = TestSpec.it (description) test

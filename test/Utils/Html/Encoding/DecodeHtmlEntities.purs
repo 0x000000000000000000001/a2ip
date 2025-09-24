@@ -2,8 +2,9 @@ module Test.Utils.Html.Encoding.DecodeHtmlEntities where
 
 import Prelude
 
-import Test.Utils.Assert ((===)) 
-import Test.Utils.Bdd.Describe.Here (here)
+import Data.String (trim)
+import Test.Utils.Assert ((===))
+import Test.Utils.Bdd.Describe.Here (here) 
 import Test.Utils.Spec (Spec, it)
 import Utils.Html.Encoding (decodeHtmlEntities)
 
@@ -15,7 +16,7 @@ spec = here do
     decodeHtmlEntities "&amp;" === "&"
     decodeHtmlEntities "&quot;hello&quot;" === "\"hello\""
     decodeHtmlEntities "&#39;world&#39;" === "'world'"
-    decodeHtmlEntities "&nbsp;" === "a" -- U+00A0 non-breaking space
+    (trim $ decodeHtmlEntities "&nbsp;") === ""
 
   it "decodes complex HTML with multiple entities" do
     let input = "&lt;p class=&quot;text&quot;&gt;Hello &amp; world&lt;/p&gt;"

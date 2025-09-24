@@ -1,54 +1,5 @@
 import { SourceMapConsumer } from 'source-map';
 import fs from 'fs';
-import path from 'path';
-
-// Cache des source maps
-const sourceMapCache = new Map();
-
-// Charger une source map
-function loadSourceMap(jsFilePath) {
-    if (sourceMapCache.has(jsFilePath)) {
-        return sourceMapCache.get(jsFilePath);
-    }
-    
-    try {
-        const mapPath = jsFilePath + '.map';
-        if (fs.existsSync(mapPath)) {
-            const rawMap = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
-            sourceMapCache.set(jsFilePath, rawMap);
-            return rawMap;
-        }
-    } catch (e) {
-        // Silencieux en cas d'échec
-    }
-    
-    return null;
-}
-
-// Convertir position JS → position PureScript
-function jsLocationToPursLocation(jsFile, jsLine, jsColumn) {
-    const sourceMap = loadSourceMap(jsFile);
-    if (!sourceMap) {
-        return null;
-    }
-    
-    try {
-        return SourceMapConsumer.with(sourceMap, null, consumer => {
-            const original = consumer.originalPositionFor({
-                line: parseInt(jsLine),
-                column: parseInt(jsColumn) || 0
-            });
-            
-            if (original.source && original.line) {
-                return original.line;
-            }
-            
-            return null;
-        });
-    } catch (e) {
-        return null;
-    }
-}
 
 // Fonction qui capture la vraie ligne d'assertion
 export const getCurrentAssertionLine = function() {
@@ -243,7 +194,12 @@ export const _captureStackTraceSync = function(unit) {
                 // (car il y a généralement 2 lignes de boilerplate au début du fichier JS)
                 const approximatePursLine = Math.max(1, jsLine - 2);
                 
-                return `line:${approximatePursLine}`;
+                // Convertir le nom du module en chemin de fichier
+                // Test.Utils.Html.Encoding.DecodeHtmlEntities → test/Utils/Html/Encoding/DecodeHtmlEntities.purs
+                const filePath = moduleName.replace(/^Test\./, 'test/')
+                                          .replace(/\./g, '/') + '.purs';
+                
+                return `${filePath}:${approximatePursLine}`;
             }
         }
         
