@@ -2,13 +2,13 @@ module Test.Utils.Html.Encoding.EncodeHtmlEntities where
 
 import Prelude
 
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here)
-import Test.Utils.Spec (Spec, it)
+import Test.Utils.Describe (describe)
 import Utils.Html.Encoding (encodeHtmlEntities)
 
-spec :: Spec Unit
-spec = here do
+spec :: Spec Unit 
+spec = describe do
 
   it "encodes HTML entities" do
     encodeHtmlEntities "<div>" === "&#x3C;div&#x3E;"

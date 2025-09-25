@@ -2,63 +2,86 @@ import { SourceMapConsumer } from 'source-map-js';
 import fs from 'fs';
 
 export const captureStackTrace = function() {
-    try {
-        const stack = new Error().stack;
+    const stack = new Error().stack;
 
-        if (!stack) return '';
-        
-        const lines = stack.split('\n');
-        
-        for (let i = lines.length - 1; i >= 0; i--) {
-            const line = lines[i];
-            
-            const match = line.match(/file:\/\/.*?\/output\/(Test\..*?)\/index\.js:(\d+):(\d+)/);
-            if (match) {
-                const moduleName = match[1];
+    if (!stack) return '';
+    
+    const lines = stack.split('\n');
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
 
-                const jsLine = parseInt(match[2]);
-                const jsColumn = parseInt(match[3]);
-                
-                try {
-                    const sourceMapPath = `./output/${moduleName}/index.js.map`;
-
-                    // console.log(sourceMapPath);
-                    
-                    if (fs.existsSync(sourceMapPath)) {
-                        const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
-                        const sourceMap = JSON.parse(sourceMapContent);
-
-                        // API synchrone de source-map-js
-                        const consumer = new SourceMapConsumer(sourceMap);
-                        const originalPosition = consumer.originalPositionFor({
-                            line: jsLine,
-                            column: jsColumn
-                        });
-                        if (
-                            moduleName.endsWith('DecodeHtmlEntities')
-                        ) console.log(jsLine, jsColumn, originalPosition, `./output/${moduleName}/index.js`, consumer.hasContentsOfAllSources());
-
-                        if (originalPosition && originalPosition.source && originalPosition.line) {
-                            // Convertir le chemin source en chemin relatif propre
-                            let sourcePath = originalPosition.source;
-                            if (sourcePath.startsWith('../../')) {
-                                sourcePath = sourcePath.substring(6); // Enlever '../../'
-                            }
-
-                            return `${sourcePath}:${originalPosition.line}`;
-                        }
-                    }
-                    
-                    return '';
-                } catch (e) {
-                    console.log(e);
-                    return '';
-                }
-            }
+        // Ignorer les lignes de la pile provenant de la bibliothèque d'assertions elle-même
+        if (line.includes("Test.Utils.Assert")) {
+            continue;
         }
         
-        return '';
-    } catch (error) {
-        return '';
+        const match = line.match(/file:\/\/.*?\/output\/(Test\..*?)\/index\.js:(\d+):(\d+)/);
+        
+        if (match) {
+            const moduleName = match[1];
+
+            const jsLine = parseInt(match[2]);
+            const jsColumn = parseInt(match[3]);
+            
+            const sourceMapPath = `./output/${moduleName}/index.js.map`;
+
+            // if (moduleName.endsWith('DecodeHtmlEntities')) {
+            //     console.log(sourceMapPath);
+            //     debugAllMappings(sourceMapPath);
+            // }
+            
+            if (fs.existsSync(sourceMapPath)) {
+                const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
+                const sourceMap = JSON.parse(sourceMapContent);
+
+                const consumer = new SourceMapConsumer(sourceMap);
+                const originalPosition = consumer.originalPositionFor({
+                    line: jsLine,
+                    column: jsColumn
+                });
+
+                if (originalPosition 
+                    && originalPosition.source 
+                    && originalPosition.line
+                ) {
+                    let sourcePath = originalPosition.source;
+
+                    sourcePath = sourcePath.replaceAll('../', '');
+
+                    return `${sourcePath}:${originalPosition.line}`;
+                }
+            }
+
+            return '';
+        }
     }
+    
+    return '';
 };
+
+// function debugAllMappings(sourceMapPath) {
+//     const sourceMapContent = fs.readFileSync(sourceMapPath, 'utf8');
+//     const consumer = new SourceMapConsumer(JSON.parse(sourceMapContent));
+
+//     const allMappings = [];
+
+//     consumer.eachMapping(mapping => {
+//         if (mapping.source) {
+//             allMappings.push({
+//                 original: {
+//                     source: mapping.source,
+//                     line: mapping.originalLine,
+//                     column: mapping.originalColumn
+//                 },
+//                 generated: {
+//                     line: mapping.generatedLine,
+//                     column: mapping.generatedColumn
+//                 }
+//             });
+//         }
+//     });
+
+//     console.log(JSON.stringify(allMappings, null, 2));
+//     console.log(`\nTotal de correspondances trouvées: ${allMappings.length}`);
+// }

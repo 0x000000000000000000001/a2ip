@@ -3,13 +3,13 @@ module Test.Utils.Google.Drive.ExtractPortraitIdFromViewUrl where
 import Prelude
 
 import Data.Maybe (Maybe(..))
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here)
-import Test.Utils.Spec (Spec, it)
+import Test.Utils.Describe (describe)
 import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
 
 spec :: Spec Unit
-spec = here do
+spec = describe do
 
   it "extracts file ID from complete Google Drive view URL" do
     let url = "https://drive.google.com/file/d/1cZ8vLGx4n2Y_2aB5cD3eF1gH2iJ3kL4m/view"

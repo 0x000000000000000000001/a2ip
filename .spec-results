@@ -1,5 +1,187 @@
 [
   [
+    " accepts malformed HTML",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " decodes common HTML entities",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " decodes numeric character references",
+    {
+      "timestamp": "1758797743157.0",
+      "success": false
+    }
+  ],
+  [
+    " encodes HTML entities",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts ID from URL with extra path segments",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts file ID from URL with additional parameters",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts file ID from complete Google Drive view URL",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts first table when multiple tables exist",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts rows from simple table HTML",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " extracts table from complete HTML",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles HTML without tr elements",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles URL with only file ID (no prefix or suffix)",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles URL without /view suffix",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles URL without prefix",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles complex table with attributes and nested elements",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles empty string",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles empty string and returns nothing",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles empty strings",
+    {
+      "timestamp": "1758797743157.0",
+      "success": false
+    }
+  ],
+  [
+    " handles malformed URL with prefix but no ID",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles table with nested elements in rows",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles table with no rows",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " handles table with thead and tbody sections",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " returns nothing when incomplete table (no closing tag)",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " returns nothing when no patterns match",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
+    " returns nothing when no table found",
+    {
+      "timestamp": "1758797743157.0",
+      "success": true
+    }
+  ],
+  [
     "Utils.Google.Drive extracts ID from URL with extra path segments",
     {
       "timestamp": "1758734381981.0",
@@ -191,63 +373,63 @@
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: extracts ID from URL with extra path segments",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: extracts file ID from URL with additional parameters",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: extracts file ID from complete Google Drive view URL",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: handles URL with only file ID (no prefix or suffix)",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: handles URL without /view suffix",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: handles URL without prefix",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: handles empty string and returns nothing",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: handles malformed URL with prefix but no ID",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Drive.ExtractPortraitIdFromViewUrl: returns nothing when no patterns match",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
@@ -422,42 +604,42 @@
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: extracts first table when multiple tables exist",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: extracts table from complete HTML",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: handles complex table with attributes and nested elements",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: handles empty string",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: returns nothing when incomplete table (no closing tag)",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableFromHtml: returns nothing when no table found",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
@@ -562,49 +744,49 @@
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: accepts malformed HTML",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: extracts rows from simple table HTML",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: handles HTML without tr elements",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: handles empty string",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: handles table with nested elements in rows",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: handles table with no rows",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Google.Sheet.Html.ExtractTableRows: handles table with thead and tbody sections",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
@@ -723,36 +905,43 @@
   [
     "Utils.Html.Encoding.DecodeHtmlEntities: decodes common HTML entities",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Html.Encoding.DecodeHtmlEntities: decodes complex HTML with multiple entities",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Html.Encoding.DecodeHtmlEntities: decodes numeric character references",
     {
-      "timestamp": "1758745391773.0",
-      "success": true
+      "timestamp": "1758798835445.0",
+      "success": false
     }
   ],
   [
     "Utils.Html.Encoding.DecodeHtmlEntities: handles empty strings",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": false
     }
   ],
   [
     "Utils.Html.Encoding.DecodeHtmlEntities: handles strings without entities",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758796288432.0",
       "success": true
+    }
+  ],
+  [
+    "Utils.Html.Encoding.DecodeHtmlEntities: handles strings without entities 2",
+    {
+      "timestamp": "1758796288432.0",
+      "success": false
     }
   ],
   [
@@ -786,15 +975,57 @@
   [
     "Utils.Html.Encoding.EncodeHtmlEntities: encodes HTML entities",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
     }
   ],
   [
     "Utils.Html.Encoding.EncodeHtmlEntities: handles empty strings",
     {
-      "timestamp": "1758745391773.0",
+      "timestamp": "1758798835445.0",
       "success": true
+    }
+  ],
+  [
+    "abc decodes common HTML entities",
+    {
+      "timestamp": "1758797513498.0",
+      "success": true
+    }
+  ],
+  [
+    "abc decodes complex HTML with multiple entities",
+    {
+      "timestamp": "1758797513498.0",
+      "success": true
+    }
+  ],
+  [
+    "abc decodes numeric character references",
+    {
+      "timestamp": "1758797513498.0",
+      "success": false
+    }
+  ],
+  [
+    "abc handles empty strings",
+    {
+      "timestamp": "1758797513498.0",
+      "success": true
+    }
+  ],
+  [
+    "abc handles strings without entities",
+    {
+      "timestamp": "1758797487486.0",
+      "success": false
+    }
+  ],
+  [
+    "abc handles strings without entities 2",
+    {
+      "timestamp": "1758797468265.0",
+      "success": false
     }
   ],
   [

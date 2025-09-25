@@ -8,6 +8,6 @@ cd "$dir"
 echo "🧪 Running tests..."
 echo
 
-spago test
+spago test --purs-args "-g js,sourcemaps"
 
 cd "$old_wd"

@@ -3,13 +3,13 @@ module Test.Utils.Google.Sheet.Html.ExtractTableFromHtml where
 import Prelude
 
 import Data.Maybe (Maybe(..))
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here)
-import Test.Utils.Spec (Spec, it)  
+import Test.Utils.Describe (describe)
 import Utils.Google.Sheet.Html (extractTableFromHtml)
  
 spec :: Spec Unit
-spec = here do  
+spec = describe do  
 
   it "extracts table from complete HTML" do
     let

@@ -3,14 +3,13 @@ module Test.Utils.Html.Encoding.DecodeHtmlEntities where
 import Prelude
 
 import Data.String (trim)
-import Test.Spec (itOnly)
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Bdd.Describe.Here (here)
-import Test.Utils.Spec (Spec, it)
+import Test.Utils.Describe (describe)
 import Utils.Html.Encoding (decodeHtmlEntities)
 
 spec :: Spec Unit
-spec = here do
+spec = describe do
 
   it "decodes common HTML entities" do
     decodeHtmlEntities "&lt;div&gt;" === "<div>"
@@ -28,10 +27,8 @@ spec = here do
     decodeHtmlEntities "&#60;div&#62;" === "<div>"
     decodeHtmlEntities "&#x3C;div&#x3E;" === "<div>"
     decodeHtmlEntities "&#233;" === "é"
-
-  it "handles strings without entities" do
     decodeHtmlEntities "Hello world" === "Hello world"
-    decodeHtmlEntities "<div>No entities here</div>" === "<div>No entities here</div>"
+    decodeHtmlEntities "<div>No e ntities here</div>" === "<div>No entities here</div>"
 
   it "handles empty strings" do
-    decodeHtmlEntities " " === ""
+    decodeHtmlEntities "23" === ""
