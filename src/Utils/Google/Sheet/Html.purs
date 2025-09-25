@@ -1,26 +1,25 @@
 module Utils.Google.Sheet.Html
-  ( extractTableFromHtml
+  ( dataStartRowIndex
+  , extractCellsFromRow
+  , extractTableFromHtml
   , extractTableRows
-  , extractRowCells
-  , extractMappingKeysFromTable
-  , extractDataRows
-  , getColumnAt
   , findColumnByKey
+  , getColumnAt
   , getValueByKey
   , headerRowIndex
-  , dataStartRowIndex
-  , maxDataRows
   , maxColumns
+  , maxDataRows
   )
   where
 
 import Prelude
 
-import Data.Array (drop, findIndex, index, length, mapMaybe, range, take) as Array
+import Data.Array (drop, findIndex, index, mapMaybe) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..), trim)
 import Data.String as String
-import Utils.Html.Clean (extractCellContent)
+import Utils.Html.Clean (extractTextFromHtml)
+import Utils.Html.Encoding (decodeHtmlEntities)
 
 headerRowIndex :: Int
 headerRowIndex = 2
@@ -56,8 +55,8 @@ extractTableFromHtml htmlContent =
 -- | Extracts the rows from a <table>...</table> block.
 -- |
 -- | ```purescript
--- | >>> extractTableRows "<table><tr><td>1</td></tr><tr><td>2</td></tr></table>"
--- | ["<td>1</td>", "<td>2</td>"]
+-- | >>> extractTableRows "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
+-- | ["<td>1</td><td>2</td>", "<td>3</td>"]
 -- | ```
 extractTableRows :: String -> Array String
 extractTableRows tableHtml = 
@@ -77,38 +76,64 @@ extractTableRows tableHtml =
               let content = String.take endIdx afterOpenTag
               in Just (String.trim content)
 
-getRowAt :: Int -> Array String -> Maybe String
-getRowAt rowIndex rows = Array.index rows rowIndex
-
-extractCellsFromRow :: String -> Array String
+-- | Extracts cell contents from a single row string.
+-- |
+-- | ```purescript
+-- | >>> extractCellsFromRow "<tr><td>1</td><td>2</td></tr>"
+-- | Just ["1", "2"]
+-- |
+-- | >>> extractCellsFromRow "<td>1</td><td><span>2</span></td>"
+-- | Just ["1", "<span>2</span>"]
+-- | ```
+extractCellsFromRow :: String -> Maybe (Array String)
 extractCellsFromRow row =
   let cells = String.split (String.Pattern "<td") row
       cellContents = map (fromMaybe "") $ map extractCellContent (Array.drop 1 cells)
-  in cellContents
+  in Just cellContents
+  where 
+  extractContentAfterOpenTag :: String -> String
+  extractContentAfterOpenTag cellContent =
+    case String.indexOf (String.Pattern ">") cellContent of
+      Just gtIdx -> String.drop (gtIdx + 1) cellContent
+      Nothing -> cellContent
+  processCellContent :: String -> String
+  processCellContent cell =
+    cell
+      # extractContentAfterOpenTag
+      # extractTextFromHtml
+      # decodeHtmlEntities
+      # String.trim
+  extractCellContent :: String -> Maybe String
+  extractCellContent cell = 
+    case String.indexOf (Pattern "</td>") cell of
+      Just endIdx -> 
+        let cellContent = String.take endIdx cell
+            processedContent = processCellContent cellContent
+        in Just processedContent
+      Nothing -> Nothing
 
-extractRowCells :: String -> Int -> Array String
-extractRowCells html rowIndex = 
-  let tableHtml = extractTableFromHtml html
-      rows = extractTableRows $ fromMaybe "" tableHtml
-  in []
-  --     maybeRow = getRowAt rowIndex rows
-  -- in case maybeRow of
-  --      Just row -> extractCellsFromRow row
-  --      Nothing -> []
+-- extractRowCells :: String -> Int -> Maybe (Array String)
+-- extractRowCells html rowIndex = 
+--   let tableHtml = extractTableFromHtml html
+--       rows = extractTableRows $ fromMaybe "" tableHtml
+--       maybeRow = Array.index rows rowIndex
+--   in case maybeRow of
+--        Just row -> Just $ extractCellsFromRow row
+--        Nothing -> Nothing
 
-generateDataRowIndexes :: Int -> Int -> Array Int
-generateDataRowIndexes startIndex maxRows = Array.range startIndex (startIndex + maxRows - 1)
+-- generateDataRowIndexes :: Int -> Int -> Array Int
+-- generateDataRowIndexes startIndex maxRows = Array.range startIndex (startIndex + maxRows - 1)
 
-extractRowCellsIfNotEmpty :: String -> Int -> Int -> Maybe (Array String)
-extractRowCellsIfNotEmpty htmlContent maxCols rowIndex =
-  let allRowCells = extractRowCells htmlContent rowIndex
-      rowCells = Array.take maxCols allRowCells
-  in if Array.length rowCells > 0 then Just rowCells else Nothing
+-- extractRowCellsIfNotEmpty :: String -> Int -> Int -> Maybe (Array String)
+-- extractRowCellsIfNotEmpty htmlContent maxCols rowIndex =
+--   let allRowCells = extractRowCells htmlContent rowIndex
+--       rowCells = Array.take maxCols allRowCells
+--   in if Array.length rowCells > 0 then Just rowCells else Nothing
 
-extractDataRows :: String -> Array (Array String)
-extractDataRows htmlContent =
-  let rowIndexes = generateDataRowIndexes dataStartRowIndex maxDataRows
-  in Array.mapMaybe (extractRowCellsIfNotEmpty htmlContent maxColumns) rowIndexes
+-- extractDataRows :: String -> Array (Array String)
+-- extractDataRows htmlContent =
+--   let rowIndexes = generateDataRowIndexes dataStartRowIndex maxDataRows
+--   in Array.mapMaybe (extractRowCellsIfNotEmpty htmlContent maxColumns) rowIndexes
 
 getColumnAt :: Int -> Array String -> String
 getColumnAt pos arr = case Array.index arr pos of
@@ -125,12 +150,12 @@ getValueByKey :: Array String -> Array String -> String -> String
 getValueByKey mappingKeys rowCells key = 
   trim $ findColumnByKey key mappingKeys rowCells
 
-getMeaningfulHeaders :: Int -> Array String -> Array String
-getMeaningfulHeaders maxCols headerCells = Array.take maxCols headerCells
+-- getMeaningfulHeaders :: Int -> Array String -> Array String
+-- getMeaningfulHeaders maxCols headerCells = Array.take maxCols headerCells
 
-extractMappingKeysFromTable :: (String -> String) -> String -> Array String
-extractMappingKeysFromTable headerMapper html = 
-  html
-    # flip extractRowCells headerRowIndex
-    # getMeaningfulHeaders maxColumns
-    # map headerMapper
+-- extractMappingKeysFromTable :: (String -> String) -> String -> Array String
+-- extractMappingKeysFromTable headerMapper html = 
+--   html
+--     # flip extractRowCells headerRowIndex
+--     # getMeaningfulHeaders maxColumns
+--     # map headerMapper

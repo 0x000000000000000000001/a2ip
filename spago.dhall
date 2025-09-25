@@ -5,8 +5,6 @@ You can edit this file as you like.
 { name = "halo"
 , dependencies =
   [ "aff"
-  , "affjax"
-  , "affjax-web"
   , "arraybuffer-types"
   , "arrays"
   , "console"

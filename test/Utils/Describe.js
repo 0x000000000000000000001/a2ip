@@ -1,4 +1,4 @@
-export const _describe = function() {
+export const captureModuleName = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
 
@@ -7,11 +7,15 @@ export const _describe = function() {
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
 
+        if (!line.includes('index.js') 
+            || line.includes(import.meta.dirname)
+        ) continue;
+
         if (line.startsWith('file:')) {
             ans = line.split('/output/')[1].split('/index.js')[0];
             break;
         }
     }
 
-    return ans + ':';
+    return ans;
 };

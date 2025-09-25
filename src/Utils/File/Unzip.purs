@@ -9,11 +9,11 @@ import Effect.Exception (Error)
 
 import Data.ArrayBuffer.Types (ArrayBuffer)
 
-foreign import unzipImpl :: String -> ArrayBuffer -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit
+foreign import _unzip :: String -> ArrayBuffer -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit
 
 unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Aff String
 unzipGoogleSheetAndExtractHtml htmlFilename zipContent = makeAff \cb -> do
-  unzipImpl htmlFilename zipContent 
+  _unzip htmlFilename zipContent 
     (\err -> cb $ Left err)
     (\content -> cb $ Right content)
   pure nonCanceler

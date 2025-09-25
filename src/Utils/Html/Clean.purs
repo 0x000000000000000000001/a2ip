@@ -4,9 +4,6 @@ module Utils.Html.Clean
   , cleanTag
   , cleanHtmlAttributes
   , extractTextFromHtml
-  , extractCellContent
-  , processCellContent
-  , extractContentAfterOpenTag
   , TagProcessState
   , processCharInHtml
   , cleanAttributesInTags
@@ -19,7 +16,6 @@ import Data.Array (foldl, snoc) as Array
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split)
 import Data.String as String
-import Utils.Html.Encoding (decodeHtmlEntities)
 
 -- HTML Attribute Cleaning
 removeAttribute :: String -> String -> String
@@ -91,27 +87,3 @@ extractTextFromHtml :: String -> String
 extractTextFromHtml str = 
   let cleanedHtml = cleanHtmlAttributes str
   in String.trim cleanedHtml
-
--- Cell Content Extraction
-extractContentAfterOpenTag :: String -> String
-extractContentAfterOpenTag cellContent =
-  case String.indexOf (String.Pattern ">") cellContent of
-    Just gtIdx -> String.drop (gtIdx + 1) cellContent
-    Nothing -> cellContent
-
-processCellContent :: String -> String
-processCellContent cell =
-  cell
-    # extractContentAfterOpenTag
-    # extractTextFromHtml
-    # decodeHtmlEntities
-    # String.trim
-
-extractCellContent :: String -> Maybe String
-extractCellContent cell = 
-  case String.indexOf (Pattern "</td>") cell of
-    Just endIdx -> 
-      let cellContent = String.take endIdx cell
-          processedContent = processCellContent cellContent
-      in Just processedContent
-    Nothing -> Nothing
