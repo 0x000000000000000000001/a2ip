@@ -28,7 +28,7 @@ spec = describe do
     decodeHtmlEntities "&#x3C;div&#x3E;" === "<div>"
     decodeHtmlEntities "&#233;" === "é"
     decodeHtmlEntities "Hello world" === "Hello world"
-    decodeHtmlEntities "<div>No e ntities here</div>" === "<div>No entities here</div>"
+    decodeHtmlEntities "<div>No entities here</div>" === "<div>No entities here</div>"
 
   it "handles empty strings" do
-    decodeHtmlEntities "23" === ""
+    decodeHtmlEntities "" === ""
