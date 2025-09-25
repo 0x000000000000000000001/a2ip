@@ -4,13 +4,14 @@ import Prelude
 
 import Effect.Aff (Aff)
 import Test.Spec.Assertions (fail)
-import Test.Utils.Assert.WithLocation (captureStackTrace)
+
+foreign import captureTrace :: Unit -> String
 
 shouldEqual :: forall t. Show t => Eq t => t -> t -> Aff Unit
 shouldEqual v1 v2 = do
   when (v1 /= v2) do
-    let lineInfo = captureStackTrace unit
-    let message = show v1 <> " ≠ " <> show v2 <> " (" <> lineInfo <> ")"
+    let trace = captureTrace unit
+    let message = show v1 <> " ≠ " <> show v2 <> "\n  @ " <> trace
     fail message
 
 infix 4 shouldEqual as ===

@@ -1,23 +1,24 @@
 import { SourceMapConsumer } from 'source-map-js';
 import fs from 'fs';
 
-export const captureStackTrace = function() {
+export const captureTrace = function() {
     const stack = new Error().stack;
 
-    if (!stack) return '';
+    const unknown = '?:?:?';
+
+    if (!stack) return unknown;
     
     const lines = stack.split('\n');
-    
+
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
 
-        // Ignorer les lignes de la pile provenant de la bibliothèque d'assertions elle-même
-        if (line.includes("Test.Utils.Assert")) {
-            continue;
-        }
+        if (!line.includes('index.js') 
+            || line.includes(import.meta.dirname)
+        ) continue;
         
-        const match = line.match(/file:\/\/.*?\/output\/(Test\..*?)\/index\.js:(\d+):(\d+)/);
-        
+        const match = line.match(/file:\/\/.*?\/output\/(.*?)\/index\.js:(\d+):(\d+)/);
+
         if (match) {
             const moduleName = match[1];
 
@@ -49,15 +50,15 @@ export const captureStackTrace = function() {
 
                     sourcePath = sourcePath.replaceAll('../', '');
 
-                    return `${sourcePath}:${originalPosition.line}`;
+                    return `${sourcePath}:${originalPosition.line}:${originalPosition.column}`;
                 }
             }
 
-            return '';
+            return unknown;
         }
     }
     
-    return '';
+    return unknown;
 };
 
 // function debugAllMappings(sourceMapPath) {

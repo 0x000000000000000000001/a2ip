@@ -1,5 +1,3 @@
-import { detectTestModuleNamePrefix } from "./Module.js";
-
 export const _describe = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
@@ -8,11 +6,10 @@ export const _describe = function() {
     
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        console.log(detectTestModuleNamePrefix());
-        const match = line.match(/Test\.(.+)\//);
 
-        if (match && match.length > 1) {
-            ans = match[1];
+        if (line.startsWith('file:')) {
+            ans = line.split('/output/')[1].split('/index.js')[0];
+            break;
         }
     }
 
