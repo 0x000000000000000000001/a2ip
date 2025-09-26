@@ -1,18 +1,19 @@
 module Utils.Google.Sheet.Html
   ( 
-  --   extractCellsFromRow
+  --   extractInnerCellsFromRow
   -- , 
   extractTableFromHtml
-  , extractRowsFromHtml
-  , extractNextCell
+  , extractInnerRowsFromHtml
+  , extractNextInnerCell
   , getNextCellPos
   )
   where
 
 import Prelude
 
+import Data.Array ((!!))
 import Data.Array (drop, mapMaybe) as Array
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
 import Data.String as String
 
@@ -50,11 +51,11 @@ extractTableFromHtml htmlContent =
 -- | Extracts the rows from a <table>...</table> block.
 -- |
 -- | ```purescript
--- | >>> extractRowsFromHtml "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
+-- | >>> extractInnerRowsFromHtml "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
 -- | ["<td>1</td><td>2</td>", "<td>3</td>"]
 -- | ```
-extractRowsFromHtml :: String -> Array String
-extractRowsFromHtml tableHtml = 
+extractInnerRowsFromHtml :: String -> Array String
+extractInnerRowsFromHtml tableHtml = 
   let rawRows = String.split (String.Pattern "<tr") tableHtml
       cleanedRows = Array.mapMaybe extractRowContent (Array.drop 1 rawRows)
   in cleanedRows
@@ -74,14 +75,14 @@ extractRowsFromHtml tableHtml =
 -- | Extracts cell contents from a single row string.
 -- |
 -- | ```purescript
--- | >>> extractCellsFromRow "<tr><td>1</td><td>2</td></tr>"
+-- | >>> extractInnerCellsFromRow "<tr><td>1</td><td>2</td></tr>"
 -- | Just ["1", "2"]
 -- |
--- | >>> extractCellsFromRow "<td>1</td><td><span>2</span></td>"
+-- | >>> extractInnerCellsFromRow "<td>1</td><td><span>2</span></td>"
 -- | Just ["1", "<span>2</span>"]
 -- | ```
--- extractCellsFromRow :: String -> Maybe (Array String)
--- extractCellsFromRow row =
+-- extractInnerCellsFromRow :: String -> Maybe (Array String)
+-- extractInnerCellsFromRow row =
 --   let trimmedRow = String.trim row
 --   in if trimmedRow == "" then Nothing
 --      else
@@ -142,8 +143,8 @@ getNextCellPos tag html offsetPos relative =
       if relative then Just foundPos
       else Just (offsetPos + foundPos)
   
-extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
-extractNextCell tag html offsetPos = 
+extractNextInnerCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
+extractNextInnerCell tag html offsetPos = 
   case getNextCellPos tag html offsetPos false of
     Nothing -> Nothing
     Just startTagPos -> 
@@ -152,8 +153,10 @@ extractNextCell tag html offsetPos =
       in case String.indexOf (Pattern closeTag) contentAfterStartTag of
         Nothing -> Nothing
         Just closeTagPosInContentAfterStartTag -> 
-          let content = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
-              nextPos = startTagPos + closeTagPosInContentAfterStartTag + 1 + String.length closeTag
+          let innerContentWithStartTag = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
+              innerContentWithStartTagBody = String.drop (String.length ("<" <> tag)) innerContentWithStartTag
+              content = String.drop (1 + (fromMaybe 0 $ String.indexOf (Pattern ">") innerContentWithStartTagBody)) innerContentWithStartTagBody
+              nextPos = startTagPos + closeTagPosInContentAfterStartTag + String.length closeTag
           in Just { content, nextPos }
 
 -- extractMappingKeysFromTable :: (String -> String) -> String -> Array String
