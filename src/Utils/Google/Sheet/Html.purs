@@ -1,37 +1,31 @@
 module Utils.Google.Sheet.Html
-  ( dataStartRowIndex
-  , extractCellsFromRow
+  ( extractCellsFromRow
   , extractTableFromHtml
   , extractTableRows
   , findColumnByKey
   , getColumnAt
   , getValueByKey
-  , headerRowIndex
-  , maxColumns
-  , maxDataRows
   )
   where
 
 import Prelude
 
 import Data.Array (drop, findIndex, index, mapMaybe) as Array
-import Data.Maybe (Maybe(..), fromMaybe)
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), trim)
 import Data.String as String
-import Utils.Html.Clean (extractTextFromHtml)
-import Utils.Html.Encoding (decodeHtmlEntities)
 
-headerRowIndex :: Int
-headerRowIndex = 2
+-- headerRowIndex :: Int
+-- headerRowIndex = 2
 
-dataStartRowIndex :: Int
-dataStartRowIndex = 4
+-- dataStartRowIndex :: Int
+-- dataStartRowIndex = 4
 
-maxDataRows :: Int
-maxDataRows = 6
+-- maxDataRows :: Int
+-- maxDataRows = 6
 
-maxColumns :: Int
-maxColumns = 7
+-- maxColumns :: Int
+-- maxColumns = 7
 
 -- | Extracts the first <table>...</table> block from the given HTML string.
 -- |
@@ -87,30 +81,60 @@ extractTableRows tableHtml =
 -- | ```
 extractCellsFromRow :: String -> Maybe (Array String)
 extractCellsFromRow row =
-  let cells = String.split (String.Pattern "<td") row
-      cellContents = map (fromMaybe "") $ map extractCellContent (Array.drop 1 cells)
-  in Just cellContents
+  let trimmedRow = String.trim row
+  in if trimmedRow == "" then Nothing
+     else
+       -- Check if it contains tr tags (valid row structure)
+       if String.contains (Pattern "<tr") trimmedRow then
+         -- Even if no cells, it's a valid empty row
+         Just $ extractAllCellsInOrder trimmedRow
+       -- Check if it contains valid cell tags without tr wrapper
+       else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
+         Just $ extractAllCellsInOrder trimmedRow
+       else Nothing
   where 
-  extractContentAfterOpenTag :: String -> String
-  extractContentAfterOpenTag cellContent =
-    case String.indexOf (String.Pattern ">") cellContent of
-      Just gtIdx -> String.drop (gtIdx + 1) cellContent
-      Nothing -> cellContent
-  processCellContent :: String -> String
-  processCellContent cell =
-    cell
-      # extractContentAfterOpenTag
-      # extractTextFromHtml
-      # decodeHtmlEntities
-      # String.trim
-  extractCellContent :: String -> Maybe String
-  extractCellContent cell = 
-    case String.indexOf (Pattern "</td>") cell of
-      Just endIdx -> 
-        let cellContent = String.take endIdx cell
-            processedContent = processCellContent cellContent
-        in Just processedContent
-      Nothing -> Nothing
+  extractAllCellsInOrder :: String -> Array String
+  extractAllCellsInOrder html = extractCellsRecursive html 0 []
+  
+  extractCellsRecursive :: String -> Int -> Array String -> Array String
+  extractCellsRecursive html pos acc =
+    let tdPos = String.indexOf (Pattern "<td") (String.drop pos html)
+        thPos = String.indexOf (Pattern "<th") (String.drop pos html)
+    in case { td: tdPos, th: thPos } of
+         { td: Nothing, th: Nothing } -> acc
+         { td: Just tdIdx, th: Nothing } -> 
+           case extractNextCell "td" html (pos + tdIdx) of
+             Nothing -> acc
+             Just { content, nextPos } -> extractCellsRecursive html nextPos (acc <> [content])
+         { td: Nothing, th: Just thIdx } ->
+           case extractNextCell "th" html (pos + thIdx) of
+             Nothing -> acc
+             Just { content, nextPos } -> extractCellsRecursive html nextPos (acc <> [content])
+         { td: Just tdIdx, th: Just thIdx } ->
+           if tdIdx < thIdx then
+             case extractNextCell "td" html (pos + tdIdx) of
+               Nothing -> acc
+               Just { content, nextPos } -> extractCellsRecursive html nextPos (acc <> [content])
+           else
+             case extractNextCell "th" html (pos + thIdx) of
+               Nothing -> acc
+               Just { content, nextPos } -> extractCellsRecursive html nextPos (acc <> [content])
+  
+  extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
+  extractNextCell tag html startPos =
+    let closeTag = "</" <> tag <> ">"
+        afterStart = String.drop startPos html
+    in case String.indexOf (Pattern ">") afterStart of
+         Nothing -> Nothing
+         Just gtIdx ->
+           let contentStart = startPos + gtIdx + 1
+               afterContent = String.drop contentStart html
+           in case String.indexOf (Pattern closeTag) afterContent of
+                Nothing -> Nothing
+                Just endIdx ->
+                  let content = String.take endIdx afterContent
+                      nextPos = contentStart + endIdx + String.length closeTag
+                  in Just { content, nextPos }
 
 -- extractRowCells :: String -> Int -> Maybe (Array String)
 -- extractRowCells html rowIndex = 
