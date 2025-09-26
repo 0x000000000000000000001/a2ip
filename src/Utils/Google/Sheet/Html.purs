@@ -84,11 +84,8 @@ extractCellsFromRow row =
   let trimmedRow = String.trim row
   in if trimmedRow == "" then Nothing
      else
-       -- Check if it contains tr tags (valid row structure)
        if String.contains (Pattern "<tr") trimmedRow then
-         -- Even if no cells, it's a valid empty row
          Just $ extractAllCellsInOrder trimmedRow
-       -- Check if it contains valid cell tags without tr wrapper
        else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
          Just $ extractAllCellsInOrder trimmedRow
        else Nothing

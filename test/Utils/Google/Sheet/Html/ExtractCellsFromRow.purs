@@ -3,13 +3,13 @@ module Test.Utils.Google.Sheet.Html.ExtractCellsFromRow where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Test.Spec (Spec, it, itOnly)
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe, describeOnly)
+import Test.Utils.Describe (describe)
 import Utils.Google.Sheet.Html (extractCellsFromRow)
   
 spec :: Spec Unit
-spec = describeOnly do
+spec = describe do
 
   it "extracts cells from a simple row" do
     let rowHtml1 = """<tr>
