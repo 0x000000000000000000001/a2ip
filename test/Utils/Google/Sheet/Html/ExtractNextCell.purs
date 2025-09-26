@@ -2,18 +2,18 @@ module Test.Utils.Google.Sheet.Html.ExtractNextCell where
 
 import Prelude
 
--- import Data.Maybe (Maybe(..))
--- import Test.Spec (Spec, it, itOnly)
--- import Test.Utils.Assert ((===))
--- import Test.Utils.Describe (describe, describeOnly)
--- import Utils.Google.Sheet.Html (extractNextCell)
+import Data.Maybe (Maybe(..))
+import Test.Spec (Spec, it, itOnly)
+import Test.Utils.Assert ((===))
+import Test.Utils.Describe (describe, describeOnly)
+import Utils.Google.Sheet.Html (extractNextCell)
 
--- spec :: Spec Unit
--- spec = describe do
+spec :: Spec Unit 
+spec = describe do
 
---   it "extracts a simple td cell" do
---     let html = """<tr><td>Content</td></tr>"""
---     extractNextCell "td" html 0 === Just { content: ">Content", nextPos: 18 }
+  it "extracts a simple td cell" do
+    let html = """<tr><td>Content</td></tr>"""
+    extractNextCell "td" html 0 === Just { content: ">Content", nextPos: 18 }
 
 --   it "extracts a simple th cell" do
 --     let html = """<tr><th>Header</th></tr>"""

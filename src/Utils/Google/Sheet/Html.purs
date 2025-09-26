@@ -4,7 +4,7 @@ module Utils.Google.Sheet.Html
   -- , 
   extractTableFromHtml
   , extractRowsFromHtml
-  -- , extractNextCell
+  , extractNextCell
   , getNextCellPos
   )
   where
@@ -142,19 +142,19 @@ getNextCellPos tag html offsetPos relative =
       if relative then Just foundPos
       else Just (offsetPos + foundPos)
   
--- extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
--- extractNextCell tag html offsetPos = 
---   case getNextCellPos tag html offsetPos of
---     Nothing -> Nothing
---     Just startTagPos -> 
---       let closeTag = "</" <> tag <> ">"
---           contentAfterStartTag = String.drop startTagPos html
---       in case String.indexOf (Pattern closeTag) contentAfterStartTag of
---         Nothing -> Nothing
---         Just closeTagPosInContentAfterStartTag -> 
---           let content = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
---               nextPos = startTagPos + closeTagPosInContentAfterStartTag + 1 + String.length closeTag
---           in Just { content, nextPos }
+extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
+extractNextCell tag html offsetPos = 
+  case getNextCellPos tag html offsetPos false of
+    Nothing -> Nothing
+    Just startTagPos -> 
+      let closeTag = "</" <> tag <> ">"
+          contentAfterStartTag = String.drop startTagPos html
+      in case String.indexOf (Pattern closeTag) contentAfterStartTag of
+        Nothing -> Nothing
+        Just closeTagPosInContentAfterStartTag -> 
+          let content = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
+              nextPos = startTagPos + closeTagPosInContentAfterStartTag + 1 + String.length closeTag
+          in Just { content, nextPos }
 
 -- extractMappingKeysFromTable :: (String -> String) -> String -> Array String
 -- extractMappingKeysFromTable headerMapper html = 
