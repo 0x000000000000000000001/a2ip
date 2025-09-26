@@ -1,7 +1,11 @@
 module Utils.Google.Sheet.Html
-  ( extractCellsFromRow
-  , extractTableFromHtml
+  ( 
+  --   extractCellsFromRow
+  -- , 
+  extractTableFromHtml
   , extractRowsFromHtml
+  -- , extractNextCell
+  , getNextCellPos
   )
   where
 
@@ -76,61 +80,81 @@ extractRowsFromHtml tableHtml =
 -- | >>> extractCellsFromRow "<td>1</td><td><span>2</span></td>"
 -- | Just ["1", "<span>2</span>"]
 -- | ```
-extractCellsFromRow :: String -> Maybe (Array String)
-extractCellsFromRow row =
-  let trimmedRow = String.trim row
-  in if trimmedRow == "" then Nothing
-     else
-       if String.contains (Pattern "<tr") trimmedRow then
-         Just $ go trimmedRow
-       else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
-         Just $ go trimmedRow
-       else Nothing
-  where 
-  go :: String -> Array String
-  go html = rec html 0 []
-    where
-    rec :: String -> Int -> Array String -> Array String
-    rec h pos acc =
-      case { 
-        td: getNextCellPos "td" h pos,
-        th: getNextCellPos "th" h pos
-      } of
-        { td: Nothing, th: Nothing } -> acc
-        { td: Just tdIdx, th: Nothing } -> 
-          case extractNextCell "td" h pos of
-            Nothing -> acc
-            Just { content, nextPos } -> rec h nextPos (acc <> [content])
-        { td: Nothing, th: Just thIdx } ->
-          case extractNextCell "th" h pos of
-            Nothing -> acc
-            Just { content, nextPos } -> rec h nextPos (acc <> [content])
-        { td: Just tdIdx, th: Just thIdx } ->
-          if tdIdx < thIdx then
-            case extractNextCell "td" h pos of
-              Nothing -> acc
-              Just { content, nextPos } -> rec h nextPos (acc <> [content])
-          else
-            case extractNextCell "th" h pos of
-              Nothing -> acc
-              Just { content, nextPos } -> rec h nextPos (acc <> [content])
+-- extractCellsFromRow :: String -> Maybe (Array String)
+-- extractCellsFromRow row =
+--   let trimmedRow = String.trim row
+--   in if trimmedRow == "" then Nothing
+--      else
+--        if String.contains (Pattern "<tr") trimmedRow then
+--          Just $ go trimmedRow
+--        else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
+--          Just $ go trimmedRow
+--        else Nothing
+--   where 
+--   go :: String -> Array String
+--   go html = rec html 0 []
+--     where
+--     rec :: String -> Int -> Array String -> Array String
+--     rec h pos acc =
+--       case { 
+--         td: getNextCellPos "td" h pos,
+--         th: getNextCellPos "th" h pos
+--       } of
+--         { td: Nothing, th: Nothing } -> acc
+--         { td: Just _, th: Nothing } -> 
+--           case extractNextCell "td" h pos of
+--             Nothing -> acc
+--             Just { content, nextPos } -> rec h nextPos (acc <> [content])
+--         { td: Nothing, th: Just _ } ->
+--           case extractNextCell "th" h pos of
+--             Nothing -> acc
+--             Just { content, nextPos } -> rec h nextPos (acc <> [content])
+--         { td: Just tdIdx, th: Just thIdx } ->
+--           if tdIdx < thIdx then
+--             case extractNextCell "td" h pos of
+--               Nothing -> acc
+--               Just { content, nextPos } -> rec h nextPos (acc <> [content])
+--           else
+--             case extractNextCell "th" h pos of
+--               Nothing -> acc
+--               Just { content, nextPos } -> rec h nextPos (acc <> [content])
 
-getNextCellPos :: String -> String -> Int -> Maybe Int
-getNextCellPos tag html offsetPos = String.indexOf (Pattern $ "<" <> tag) (String.drop offsetPos html)
-  
-extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
-extractNextCell tag html offsetPos = 
-  case getNextCellPos tag html offsetPos of
+-- | Finds the next occurrence of a specified HTML tag starting from a given offset.
+-- | If `relative` is true, the returned index is relative to the offset position;
+-- | otherwise, it's the absolute index in the original string.
+-- |
+-- ```purescript
+-- >>> let html = "<td>First</td><td>Second</td>"
+-- >>> getNextCellPos "td" html 5 true
+-- Just 9
+-- >>> getNextCellPos "td" html 5 false
+-- Just 14
+-- >>> getNextCellPos "th" html 0 false
+-- Nothing
+-- ```
+getNextCellPos :: String -> String -> Int -> Boolean -> Maybe Int
+getNextCellPos tag html offsetPos relative = 
+  let searchHtml = String.drop offsetPos html
+      pattern = Pattern ("<" <> tag)
+  in case String.indexOf pattern searchHtml of
     Nothing -> Nothing
-    Just startTagPos -> 
-      let closeTag = "</" <> tag <> ">"
-          contentAfterStartTag = String.drop startTagPos html
-      in case String.indexOf (Pattern closeTag) contentAfterStartTag of
-        Nothing -> Nothing
-        Just closeTagPosInContentAfterStartTag -> 
-          let content = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
-              nextPos = startTagPos + closeTagPosInContentAfterStartTag + 1 + String.length closeTag
-          in Just { content, nextPos }
+    Just foundPos -> 
+      if relative then Just foundPos
+      else Just (offsetPos + foundPos)
+  
+-- extractNextCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
+-- extractNextCell tag html offsetPos = 
+--   case getNextCellPos tag html offsetPos of
+--     Nothing -> Nothing
+--     Just startTagPos -> 
+--       let closeTag = "</" <> tag <> ">"
+--           contentAfterStartTag = String.drop startTagPos html
+--       in case String.indexOf (Pattern closeTag) contentAfterStartTag of
+--         Nothing -> Nothing
+--         Just closeTagPosInContentAfterStartTag -> 
+--           let content = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
+--               nextPos = startTagPos + closeTagPosInContentAfterStartTag + 1 + String.length closeTag
+--           in Just { content, nextPos }
 
 -- extractMappingKeysFromTable :: (String -> String) -> String -> Array String
 -- extractMappingKeysFromTable headerMapper html = 
