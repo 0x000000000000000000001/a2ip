@@ -11,7 +11,6 @@ module Utils.Google.Sheet.Html
 
 import Prelude
 
-import Data.Array ((!!))
 import Data.Array (drop, mapMaybe) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
