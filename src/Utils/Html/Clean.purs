@@ -17,7 +17,13 @@ import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split)
 import Data.String as String
 
--- HTML Attribute Cleaning
+-- | Remove a specific attribute from an HTML tag string.
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> removeAttribute "style" "<div style=\"color:red;\" class=\"my-class\">"
+-- | "<div class=\"my-class\">"
+-- | ```
 removeAttribute :: String -> String -> String
 removeAttribute attrName tag =
   let pattern = Pattern (" " <> attrName <> "=\"")
@@ -27,13 +33,12 @@ removeAttribute attrName tag =
       case String.indexOf (Pattern "\"") after of
         Just endQuote ->
           let afterAttr = String.drop (endQuote + 1) after
-              -- Remove any trailing space if it was between attributes
               cleanAfter = case String.take 1 afterAttr of
                 " " -> afterAttr
                 _ -> afterAttr
           in before <> cleanAfter
-        Nothing -> tag -- Malformed attribute, keep original
-    _ -> tag -- Attribute not found, keep original
+        Nothing -> tag
+    _ -> tag 
 
 removeDataAttributes :: String -> String
 removeDataAttributes tag = removeDataAttr tag

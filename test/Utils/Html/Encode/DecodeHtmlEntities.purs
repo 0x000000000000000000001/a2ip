@@ -1,4 +1,4 @@
-module Test.Utils.Html.Encoding.DecodeHtmlEntities where
+module Test.Utils.Html.Encode.DecodeHtmlEntities where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Data.String (trim)
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.Html.Encoding (decodeHtmlEntities)
+import Utils.Html.Encode (decodeHtmlEntities)
 
 spec :: Spec Unit
 spec = describe do
