@@ -98,6 +98,13 @@ cleanAttributesInTag tag attr dataOnesToo =
 
 type CleanAttrState = { inTag :: Boolean, result :: Array CodePoint, tagContent :: Array CodePoint } 
 
+-- | Cleans specified attributes from all HTML tags in a string.
+-- | If `dataOnesToo` is true, it also removes all `data-*` attributes.
+-- | Examples:
+-- | ```purescript
+-- | >>> cleanAttributesInTags "<div style=\"color:red;\" class=\"my-class\">Content</div><p class=\"paragraph\" id=\"para\">Text</p>" ["style", "class"] false
+-- | "<div>Content</div><p id=\"para\">Text</p>"
+-- | ```
 cleanAttributesInTags :: String -> Array String -> Boolean -> String 
 cleanAttributesInTags str attr dataOnesToo =
   let chars = toCodePointArray str
@@ -117,5 +124,19 @@ cleanAttributesInTags str attr dataOnesToo =
     | acc.inTag = acc { tagContent = snoc acc.tagContent codePoint }
     | otherwise = acc { result = snoc acc.result codePoint }
 
-extractTextFromHtml :: String -> String
-extractTextFromHtml str = cleanAttributesInTags (trim str) [] false
+cleanComments :: String -> String
+cleanComments str = 
+  let commentStart = "<!--"
+      commentEnd = "-->"
+      parts = split (Pattern commentStart) str
+  in case parts of
+    [] -> str
+    [before] -> str
+    beforeAndRest -> 
+      let processComment acc part =
+            case indexOf (Pattern commentEnd) part of
+              Just endIdx ->
+                let afterComment = drop (endIdx + length commentEnd) part
+                in acc <> afterComment
+              Nothing -> acc <> part
+      in foldl processComment (head beforeAndRest) (tail beforeAndRest)
