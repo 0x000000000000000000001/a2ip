@@ -30,7 +30,7 @@ removeAttribute attrName tag =
       parts = split pattern tag
   in case parts of
     [before, after] ->
-      case String.indexOf (Pattern "\"") after of
+      case findUnescapedQuote after 0 of
         Just endQuote ->
           let afterAttr = String.drop (endQuote + 1) after
               cleanAfter = case String.take 1 afterAttr of
@@ -38,7 +38,17 @@ removeAttribute attrName tag =
                 _ -> afterAttr
           in before <> cleanAfter
         Nothing -> tag
-    _ -> tag 
+    _ -> tag
+  where
+    findUnescapedQuote :: String -> Int -> Maybe Int
+    findUnescapedQuote str pos =
+      case String.indexOf (Pattern "\"") (String.drop pos str) of
+        Nothing -> Nothing
+        Just quotePos ->
+          let absolutePos = pos + quotePos
+          in if absolutePos > 0 && String.take 1 (String.drop (absolutePos - 1) str) == "\\"
+             then findUnescapedQuote str (absolutePos + 1)
+             else Just absolutePos
 
 removeDataAttributes :: String -> String
 removeDataAttributes tag = removeDataAttr tag
@@ -54,9 +64,9 @@ removeDataAttributes tag = removeDataAttr tag
                 Just endQuote ->
                   let afterDataAttr = String.drop (eqStart + 2 + endQuote + 1) afterDataStart
                   in removeDataAttr (beforeData <> afterDataAttr)
-                Nothing -> str -- Malformed, keep original
-            Nothing -> str -- Malformed, keep original
-        Nothing -> str -- No more data attributes
+                Nothing -> str 
+            Nothing -> str 
+        Nothing -> str 
 
 cleanTag :: String -> String
 cleanTag tag =
