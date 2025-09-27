@@ -7,6 +7,7 @@ module Utils.Html.Clean
   , TagProcessState
   , processCharInHtml
   , cleanAttributesInTags
+  , findUnescapedQuote
   )
   where
 

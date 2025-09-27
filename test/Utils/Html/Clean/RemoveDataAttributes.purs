@@ -4,15 +4,15 @@ import Prelude
 
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe, describeOnly)
+import Test.Utils.Describe (describe)
 import Utils.Html.Clean (removeDataAttributes)
 
 spec :: Spec Unit
-spec = describeOnly do
+spec = describe do
 
   it "removes a single data attribute" do
     let tag = """<div data-id="123" class="test">"""
-    removeDataAttributes tag === """<div class="test">"""
+    removeDataAttributes tag  === """<div class="test">"""
 
   it "removes multiple data attributes" do
     let tag = """<div data-id="123" data-value="test" class="my-class">"""
