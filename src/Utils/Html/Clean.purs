@@ -3,7 +3,6 @@ module Utils.Html.Clean
   , removeDataAttributes
   , cleanAttributesInTag
   , extractTextFromHtml
-  , processCharInHtml
   , cleanAttributesInTags
   , findUnescapedQuote
   )
@@ -12,10 +11,8 @@ module Utils.Html.Clean
 import Prelude
 
 import Data.Array (foldl, snoc)
-import Data.Array as Array
 import Data.Maybe (Maybe(..))
 import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray, trim)
-import Data.String as String
 
 -- | Remove a specific attribute from an HTML tag string.
 -- |
@@ -96,7 +93,7 @@ findUnescapedQuote str pos =
 -- | ```
 cleanAttributesInTag :: String -> Array String -> Boolean -> String
 cleanAttributesInTag tag attr dataOnesToo =
-  foldl tag (\t a -> removeAttribute a t) attr
+  foldl (\t a -> removeAttribute a t) tag attr
     # if dataOnesToo then removeDataAttributes else identity
 
 type CleanAttrState = { inTag :: Boolean, result :: Array CodePoint, tagContent :: Array CodePoint } 
@@ -114,11 +111,11 @@ cleanAttributesInTags str attr dataOnesToo =
   process acc codePoint
     | codePoint == codePointFromChar '<' = acc { inTag = true, tagContent = [codePoint] }
     | codePoint == codePointFromChar '>' && acc.inTag = 
-        let cleanedTag = cleanTag (fromCodePointArray acc.tagContent <> ">")
+        let cleanedTag = cleanAttributesInTag (fromCodePointArray acc.tagContent <> ">") attr dataOnesToo
             cleanedTagChars = toCodePointArray cleanedTag
         in acc { inTag = false, result = acc.result <> cleanedTagChars, tagContent = [] }
     | acc.inTag = acc { tagContent = snoc acc.tagContent codePoint }
     | otherwise = acc { result = snoc acc.result codePoint }
 
 extractTextFromHtml :: String -> String
-extractTextFromHtml str = cleanAttributesInTags $ trim str
+extractTextFromHtml str = cleanAttributesInTags (trim str) [] false
