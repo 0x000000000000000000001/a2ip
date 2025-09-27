@@ -4,11 +4,11 @@ import Prelude
 
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe, describeOnly)
+import Test.Utils.Describe (describe)
 import Utils.Html.Clean (removeAttribute)
 
 spec :: Spec Unit
-spec = describeOnly do
+spec = describe do
 
   it "removes a simple attribute with value" do
     let tag = """<div style="color:red;" class="my-class">"""

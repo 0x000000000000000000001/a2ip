@@ -39,17 +39,14 @@ removeAttribute attrName tag =
           in before <> cleanAfter
         Nothing -> tag
     _ -> tag
-  where
-    findUnescapedQuote :: String -> Int -> Maybe Int
-    findUnescapedQuote str pos =
-      case String.indexOf (Pattern "\"") (String.drop pos str) of
-        Nothing -> Nothing
-        Just quotePos ->
-          let absolutePos = pos + quotePos
-          in if absolutePos > 0 && String.take 1 (String.drop (absolutePos - 1) str) == "\\"
-             then findUnescapedQuote str (absolutePos + 1)
-             else Just absolutePos
 
+-- | Remove all attributes starting with "data-" from an HTML tag string.
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> removeDataAttributes "<div data-id=\"123\" data-value=\"test\" class=\"my-class\">"
+-- | "<div class=\"my-class\">"
+-- | ```
 removeDataAttributes :: String -> String
 removeDataAttributes tag = removeDataAttr tag
   where
@@ -60,13 +57,34 @@ removeDataAttributes tag = removeDataAttr tag
               afterDataStart = String.drop dataStart str
           in case String.indexOf (Pattern "=\"") afterDataStart of
             Just eqStart ->
-              case String.indexOf (Pattern "\"") (String.drop (eqStart + 2) afterDataStart) of
+              let valueStart = String.drop (eqStart + 2) afterDataStart
+              in case findUnescapedQuote valueStart 0 of
                 Just endQuote ->
-                  let afterDataAttr = String.drop (eqStart + 2 + endQuote + 1) afterDataStart
+                  let afterDataAttr = String.drop (endQuote + 1) valueStart
                   in removeDataAttr (beforeData <> afterDataAttr)
                 Nothing -> str 
             Nothing -> str 
-        Nothing -> str 
+        Nothing -> str
+
+-- | Helper function to find the position of the next unescaped quote in a string.
+-- | Returns `Nothing` if no unescaped quote is found.
+-- | 
+-- | Examples:
+-- | ```purescript
+-- | >>> findUnescapedQuote "value with \\\"escaped quote\\\" and \" end" 0
+-- | Just 36
+-- | >>> findUnescapedQuote "no quotes here" 0
+-- | Nothing  
+-- | ```
+findUnescapedQuote :: String -> Int -> Maybe Int
+findUnescapedQuote str pos =
+  case String.indexOf (Pattern "\"") (String.drop pos str) of
+    Nothing -> Nothing
+    Just quotePos ->
+      let absolutePos = pos + quotePos
+      in if absolutePos > 0 && String.take 1 (String.drop (absolutePos - 1) str) == "\\"
+          then findUnescapedQuote str (absolutePos + 1)
+          else Just absolutePos
 
 cleanTag :: String -> String
 cleanTag tag =
