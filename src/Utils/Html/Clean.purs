@@ -124,6 +124,12 @@ cleanAttributesInTags str attr dataOnesToo =
     | acc.inTag = acc { tagContent = snoc acc.tagContent codePoint }
     | otherwise = acc { result = snoc acc.result codePoint }
 
+-- | Extracts and returns the text content from an HTML string, removing all tags.
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> cleanComments "<div>Hello <strong>World</strong>!</div><!-- This is a comment -->"
+-- | "<div>Hello <strong>World</strong>!</div>"
 cleanComments :: String -> String
 cleanComments str = 
   let commentStart = "<!--"
