@@ -3,7 +3,7 @@ module Test.Utils.Html.Clean.FindUnescapedQuote where
 import Prelude
 
 import Data.Maybe (Maybe(..))
-import Test.Spec (Spec, it, itOnly)
+import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
 import Utils.Html.Clean (findUnescapedQuote)
@@ -58,9 +58,9 @@ spec = describe do
   it "handles empty string" do
     findUnescapedQuote "" 0 === Nothing
 
-  itOnly "handles single escaped quote" do
-    findUnescapedQuote "\"" 0 === Just 0
-    findUnescapedQuote "\\\"" 0 === Just 0
+  it "handles single quote, escaped or not" do
+    findUnescapedQuote "\"" 0 === Just 0 
+    findUnescapedQuote "\\\"" 0 === Nothing 
 
   it "finds quote when starting position is beyond string length" do
     let str = "short"

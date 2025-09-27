@@ -16,10 +16,10 @@
     "he": "^1.2.0",
     "jszip": "^3.10.1",
     "source-map": "^0.7.6",
-    "source-map-js": "^1.2.1"
+    "source-map-js": "^1.2.1",
+    "spago": "^0.21.0"
   },
   "devDependencies": {
-    "purescript": "^0.14.1",
-    "spago": "^0.20.0"
+    "purescript": "^0.14.1"
   }
 }
