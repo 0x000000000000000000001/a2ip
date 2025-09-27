@@ -2,9 +2,9 @@ module Utils.Html.Clean
   ( removeAttribute
   , removeDataAttributes
   , cleanAttributesInTag
-  , extractTextFromHtml
   , cleanAttributesInTags
   , findUnescapedQuote
+  , removeComments
   )
   where
 
@@ -12,7 +12,7 @@ import Prelude
 
 import Data.Array (foldl, snoc)
 import Data.Maybe (Maybe(..))
-import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray, trim)
+import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray)
 
 -- | Remove a specific attribute from an HTML tag string.
 -- |
@@ -124,25 +124,25 @@ cleanAttributesInTags str attr dataOnesToo =
     | acc.inTag = acc { tagContent = snoc acc.tagContent codePoint }
     | otherwise = acc { result = snoc acc.result codePoint }
 
--- | Extracts and returns the text content from an HTML string, removing all tags.
+-- | Removes HTML comments from a string.
 -- |
 -- | Examples:
 -- | ```purescript
--- | >>> cleanComments "<div>Hello <strong>World</strong>!</div><!-- This is a comment -->"
+-- | >>> removeComments "<div>Hello <strong>World</strong>!</div><!-- This is a comment -->"
 -- | "<div>Hello <strong>World</strong>!</div>"
-cleanComments :: String -> String
-cleanComments str = 
-  let commentStart = "<!--"
-      commentEnd = "-->"
-      parts = split (Pattern commentStart) str
-  in case parts of
-    [] -> str
-    [before] -> str
-    beforeAndRest -> 
-      let processComment acc part =
-            case indexOf (Pattern commentEnd) part of
-              Just endIdx ->
-                let afterComment = drop (endIdx + length commentEnd) part
-                in acc <> afterComment
-              Nothing -> acc <> part
-      in foldl processComment (head beforeAndRest) (tail beforeAndRest)
+-- | >>> removeComments "<!-- comment -->Text<!-- another -->"
+-- | "Text"
+-- | ```
+removeComments :: String -> String
+removeComments str = 
+  case indexOf (Pattern "<!--") str of
+    Nothing -> str
+    Just startIdx ->
+      let beforeComment = take startIdx str
+          afterStartTag = drop (startIdx + 4) str 
+      in case indexOf (Pattern "-->") afterStartTag of
+        Just endIdx ->
+          let afterComment = drop (endIdx + 3) afterStartTag 
+              result = beforeComment <> afterComment
+          in removeComments result 
+        Nothing -> str 
