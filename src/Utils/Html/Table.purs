@@ -10,7 +10,8 @@ module Utils.Html.Table
 
 import Prelude
 
-import Data.Array (drop, mapMaybe) as Array
+import Data.Array (drop, length, mapMaybe) as Array
+import Data.Array (mapMaybe)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
 import Data.String as String
@@ -38,13 +39,17 @@ extractTableFromHtml htmlContent =
 -- |
 -- | ```purescript
 -- | >>> extractInnerRowsFromHtml "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
--- | ["<td>1</td><td>2</td>", "<td>3</td>"]
+-- | Just ["<td>1</td><td>2</td>", "<td>3</td>"]
+-- | >>> extractInnerRowsFromHtml "no table content"
+-- | Nothing
 -- | ```
-extractInnerRowsFromHtml :: String -> Array String
+extractInnerRowsFromHtml :: String -> Maybe (Array String)
 extractInnerRowsFromHtml tableHtml = 
   let rawRows = String.split (String.Pattern "<tr") tableHtml
       cleanedRows = Array.mapMaybe extractRowContent (Array.drop 1 rawRows)
-  in cleanedRows
+  in if Array.length cleanedRows == 0 && not (String.contains (Pattern "<tr") tableHtml)
+     then Nothing
+     else Just cleanedRows
   where
     extractRowContent :: String -> Maybe String
     extractRowContent rowSegment =
@@ -113,12 +118,13 @@ extractInnerCellsFromRow row =
 -- | Just [["1", "2"], ["3"]]
 -- | ```
 extractInnerCellsFromHtml :: String -> Maybe (Array (Array String))
-extractInnerCellsFromHtml _ = Just []
-  -- case extractTableFromHtml html of
-  --   Nothing -> Nothing
-  --   Just tableHtml ->
-  --     let rows = extractInnerRowsFromHtml tableHtml
-  --     in rows <#> (\r -> fromMaybe [] $ extractInnerCellsFromRow r)
+extractInnerCellsFromHtml html = 
+  case extractTableFromHtml html of
+    Nothing -> Nothing
+    Just tableHtml ->
+      case extractInnerRowsFromHtml tableHtml of
+        Nothing -> Nothing
+        Just rows -> Just $ mapMaybe extractInnerCellsFromRow rows
 
 -- | Finds the next occurrence of a specified HTML tag starting from a given offset.
 -- | If `relative` is true, the returned index is relative to the offset position;
