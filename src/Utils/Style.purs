@@ -84,10 +84,9 @@ import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
 import CSS.Selector (deep, with)
-import CSS.Selector as CSSS
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
-import Data.Int as Int
+import Data.Int as Int 
 import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
@@ -257,16 +256,16 @@ padding2 :: Number -> Number -> CSS.CSS
 padding2 v h = padding4 v h v h
 
 paddingLeft :: Number -> CSS.CSS
-paddingLeft p = paddingLeft (rem p)
+paddingLeft p = CSS.paddingLeft (rem p)
 
 paddingRight :: Number -> CSS.CSS
-paddingRight p = paddingRight (rem p)
+paddingRight p = CSS.paddingRight (rem p)
 
 paddingBottom :: Number -> CSS.CSS
-paddingBottom p = paddingBottom (rem p)
+paddingBottom p = CSS.paddingBottom (rem p)
 
 paddingTop :: Number -> CSS.CSS
-paddingTop p = paddingTop (rem p)
+paddingTop p = CSS.paddingTop (rem p)
 
 margin4 :: Number -> Number -> Number -> Number -> CSS.CSS
 margin4 t r b l = margin (rem t) (rem r) (rem b) (rem l)
@@ -278,16 +277,16 @@ margin2 :: Number -> Number -> CSS.CSS
 margin2 v h = margin4 v h v h
 
 marginLeft :: Number -> CSS.CSS
-marginLeft m = marginLeft (rem m)
+marginLeft m = CSS.marginLeft (rem m)
 
 marginRight :: Number -> CSS.CSS
-marginRight m = marginRight (rem m)
+marginRight m = CSS.marginRight (rem m)
 
 marginTop :: Number -> CSS.CSS
-marginTop m = marginTop (rem m)
+marginTop m = CSS.marginTop (rem m)
 
 marginBottom :: Number -> CSS.CSS
-marginBottom m = marginBottom (rem m)
+marginBottom m = CSS.marginBottom (rem m)
 
 borderRadius4 :: Number -> Number -> Number -> Number -> CSS.CSS
 borderRadius4 tl tr br bl = borderRadius (rem tl) (rem tr) (rem br) (rem bl)
