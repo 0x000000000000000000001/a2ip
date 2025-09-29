@@ -19,7 +19,7 @@ module Utils.Style
   , classWithClass
   , class_
   , classes
-  , colorRed
+  , colorRed 
   , content
   , cursorPointer
   , deepClass
