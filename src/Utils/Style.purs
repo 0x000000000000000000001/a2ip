@@ -76,7 +76,7 @@ module Utils.Style
   )
   where
 
-import Prelude
+import Prelude hiding (top, bottom, div)
 
 import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
 import CSS as CSS
