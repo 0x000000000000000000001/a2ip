@@ -1,15 +1,16 @@
 module Utils.Html.Table
-  ( 
-  extractInnerCellsFromRow
-  , extractTableFromHtml
+  ( extractInnerCellsFromHtml
+  , extractInnerCellsFromRow
   , extractInnerRowsFromHtml
   , extractNextInnerCell
+  , extractTableFromHtml
   , getNextCellPos
   )
   where
 
 import Prelude
 
+import Data.Array (concatMap)
 import Data.Array (drop, mapMaybe) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
@@ -106,6 +107,20 @@ extractInnerCellsFromRow row =
               Nothing -> acc
               Just { content, nextPos } -> rec h nextPos (acc <> [content])
 
+-- | Extracts all cell contents from the first <table>...</table> block in the given HTML string.
+-- |
+-- | ```purescript
+-- | >>> extractInnerCellsFromHtml "<html><body><table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table></body></html>"
+-- | Just [["1", "2"], ["3"]]
+-- | ```
+extractInnerCellsFromHtml :: String -> Maybe (Array (Array String))
+extractInnerCellsFromHtml html =
+  case extractTableFromHtml html of
+    Nothing -> Nothing
+    Just tableHtml ->
+      let rows = extractInnerRowsFromHtml tableHtml
+      in rows <#> (\r -> fromMaybe [] $ extractInnerCellsFromRow r)
+
 -- | Finds the next occurrence of a specified HTML tag starting from a given offset.
 -- | If `relative` is true, the returned index is relative to the offset position;
 -- | otherwise, it's the absolute index in the original string.
@@ -128,7 +143,19 @@ getNextCellPos tag html offsetPos relative =
     Just foundPos -> 
       if relative then Just foundPos
       else Just (offsetPos + foundPos)
-  
+
+-- | Extracts the content of the next occurrence of a specified HTML tag starting from a given offset.
+-- | Returns `Nothing` if the tag is not found or not properly closed.
+-- |
+-- ```purescript
+-- >>> let html = "<td>First</td><td>Second</td>"
+-- >>> extractNextInnerCell "td" html 0
+-- Just { content: "First", nextPos: 11 }
+-- >>> extractNextInnerCell "td" html 11
+-- Just { content: "Second", nextPos: 22 }
+-- >>> extractNextInnerCell "th" html 0
+-- Nothing
+-- ```
 extractNextInnerCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
 extractNextInnerCell tag html offsetPos = 
   case getNextCellPos tag html offsetPos false of
