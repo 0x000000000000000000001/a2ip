@@ -1,14 +1,18 @@
 module Component.Page.About.HandleAction
   ( handleAction
+  , extractMappingKeysAndValuesFromTable
   )
   where
 
 import Prelude
 
-import Capability.Log (class Log, Level(..), log)
+import Capability.Log (class Log)
 import Component.Page.About.Type (Action(..), State)
+import Data.Array (drop, head, length)
+import Data.Maybe (Maybe(..), fromMaybe)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
+import Utils.Html.Table (extractInnerCellsFromHtml)
 
 -- membersTabId :: String
 -- membersTabId = "0"
@@ -36,13 +40,12 @@ import Halogen as H
 
 loadData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
 loadData = do
-  log Info "Loading data..."
   pure unit
   -- result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   -- case result of
   --   Left err -> log Error $ "Failed to fetch ZIP: " <> show err
   --   Right response -> do
-  --     let tabName = fromMaybe "" $ tabIdToName tabId
+  --     let tabName = fromMaybe "" $ tabIdToName membersTabId
   --     htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
   --     members_ <- parseHtml htmlContent
   --     H.modify_ _ { members = members_ }
@@ -51,5 +54,26 @@ handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Ac
 handleAction = case _ of
   LoadData -> loadData
 
--- extractMappingKeysAndValuesFromTable :: String -> { keys :: Array String , values :: Array (Array String) }
--- extractMappingKeysAndValuesFromTable tableHtml = { keys: [], values: [] }
+-- | Extract mapping keys and values from an HTML table.
+-- | The first row is treated as keys, subsequent rows as values.
+-- |
+-- | ```purescript
+-- | >>> extractMappingKeysAndValuesFromTable "<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></table>"
+-- | { keys: ["Name", "Age"], values: [["Alice", "30"], ["Bob", "25"]] }
+-- | >>> extractMappingKeysAndValuesFromTable "<table><tr><td>Only cell</td></tr></table>"
+-- | { keys: ["Only cell"], values: [] }
+-- | >>> extractMappingKeysAndValuesFromTable "No table"
+-- | { keys: [], values: [] }
+-- | ```
+extractMappingKeysAndValuesFromTable :: String -> { keys :: Array String , values :: Array (Array String) }
+extractMappingKeysAndValuesFromTable tableHtml = 
+  let empty = { keys: [], values: [] }
+  in case extractInnerCellsFromHtml tableHtml of
+    Nothing -> empty
+    Just cellArrays ->
+      if length cellArrays == 0 
+      then empty
+      else
+        let keys = head cellArrays
+            values = drop 1 cellArrays
+        in { keys: fromMaybe [] keys, values: values }

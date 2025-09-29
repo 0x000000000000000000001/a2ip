@@ -96,8 +96,6 @@ cleanAttributesInTag tag attr dataOnesToo =
   foldl (\t a -> removeAttribute a t) tag attr
     # if dataOnesToo then removeDataAttributes else identity
 
-type CleanAttrState = { inTag :: Boolean, result :: Array CodePoint, tagContent :: Array CodePoint } 
-
 -- | Cleans specified attributes from all HTML tags in a string.
 -- | If `dataOnesToo` is true, it also removes all `data-*` attributes.
 -- | Examples:
@@ -112,9 +110,9 @@ cleanAttributesInTags str attr dataOnesToo =
   in fromCodePointArray result.result
   where 
   process 
-    :: CleanAttrState
+    :: { inTag :: Boolean, result :: Array CodePoint, tagContent :: Array CodePoint } 
     -> CodePoint 
-    -> CleanAttrState
+    -> { inTag :: Boolean, result :: Array CodePoint, tagContent :: Array CodePoint } 
   process acc codePoint
     | codePoint == codePointFromChar '<' = acc { inTag = true, tagContent = [codePoint] }
     | codePoint == codePointFromChar '>' && acc.inTag = 
