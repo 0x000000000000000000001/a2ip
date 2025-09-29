@@ -6,12 +6,15 @@ module Component.Page.About.HandleAction
 
 import Prelude
 
+import Affjax.Web (get)
 import Capability.Log (class Log)
-import Component.Page.About.Type (Action(..), State)
-import Data.Array (drop, head, length)
+import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
+import Data.Array (drop, fold, foldl, head, length, mapWithIndex, (!!))
+import Data.Map (Map, empty, insert, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
+import Utils.Html.Encode (arrayToIndexMap)
 import Utils.Html.Table (extractInnerCellsFromHtml)
 
 -- membersTabId :: String
@@ -54,6 +57,33 @@ handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Ac
 handleAction = case _ of
   LoadData -> loadData
 
+type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
+
+convertExtractedDataToMembers :: ExtractedData -> Array Member
+convertExtractedDataToMembers extractedData =
+  let keys = extractedData.keys
+      keyIndices = extractedData.keyIndices
+      values = extractedData.values
+
+      value :: String -> Array String -> String
+      value key row =
+        let idx = lookup key keyIndices
+        in case idx of
+          Just i -> fromMaybe "" $ row !! i 
+          Nothing -> ""
+
+      toMember :: Array String -> Member
+      toMember row =
+        { firstname: value firstname row
+        , lastname: value lastname row
+        , role: value role row
+        , job: value job row
+        , phone: value phone row
+        , email: value email row
+        , portraitId: value portraitId row
+        }
+  in map toMember values
+
 -- | Extract mapping keys and values from an HTML table.
 -- | The first row is treated as keys, subsequent rows as values.
 -- |
@@ -65,15 +95,15 @@ handleAction = case _ of
 -- | >>> extractMappingKeysAndValuesFromTable "No table"
 -- | { keys: [], values: [] }
 -- | ```
-extractMappingKeysAndValuesFromTable :: String -> { keys :: Array String , values :: Array (Array String) }
+extractMappingKeysAndValuesFromTable :: String -> ExtractedData
 extractMappingKeysAndValuesFromTable tableHtml = 
-  let empty = { keys: [], values: [] }
+  let nothing = { keys: [], keyIndices: empty, values: [] }
   in case extractInnerCellsFromHtml tableHtml of
-    Nothing -> empty
+    Nothing -> nothing
     Just cellArrays ->
       if length cellArrays == 0 
-      then empty
+      then nothing
       else
         let keys = head cellArrays
             values = drop 1 cellArrays
-        in { keys: fromMaybe [] keys, values: values }
+        in { keys: fromMaybe [] keys, keyIndices: arrayToIndexMap (fromMaybe [] keys), values: values }
