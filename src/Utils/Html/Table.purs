@@ -10,7 +10,6 @@ module Utils.Html.Table
 
 import Prelude
 
-import Data.Array (concatMap)
 import Data.Array (drop, mapMaybe) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
@@ -114,12 +113,12 @@ extractInnerCellsFromRow row =
 -- | Just [["1", "2"], ["3"]]
 -- | ```
 extractInnerCellsFromHtml :: String -> Maybe (Array (Array String))
-extractInnerCellsFromHtml html =
-  case extractTableFromHtml html of
-    Nothing -> Nothing
-    Just tableHtml ->
-      let rows = extractInnerRowsFromHtml tableHtml
-      in rows <#> (\r -> fromMaybe [] $ extractInnerCellsFromRow r)
+extractInnerCellsFromHtml _ = Just []
+  -- case extractTableFromHtml html of
+  --   Nothing -> Nothing
+  --   Just tableHtml ->
+  --     let rows = extractInnerRowsFromHtml tableHtml
+  --     in rows <#> (\r -> fromMaybe [] $ extractInnerCellsFromRow r)
 
 -- | Finds the next occurrence of a specified HTML tag starting from a given offset.
 -- | If `relative` is true, the returned index is relative to the offset position;
