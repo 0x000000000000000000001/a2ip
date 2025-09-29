@@ -15,6 +15,7 @@
   "dependencies": {
     "he": "^1.2.0",
     "jszip": "^3.10.1",
+    "purty": "^7.0.0",
     "source-map": "^0.7.6",
     "source-map-js": "^1.2.1",
     "spago": "^0.21.0"

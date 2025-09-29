@@ -5,7 +5,7 @@ module Component.Page.About.HandleAction
 
 import Prelude
 
-import Capability.Log (class Log)
+import Capability.Log (class Log, Level(..), log)
 import Component.Page.About.Type (Action(..), State)
 import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
@@ -37,6 +37,7 @@ tabIdToName tabId
 
 loadData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
 loadData = do
+  log Info "Loading data..."
   pure unit
   -- result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   -- case result of
