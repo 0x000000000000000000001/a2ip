@@ -1,4 +1,4 @@
-module Test.Utils.Google.Sheet.Html.ExtractTableRows where
+module Test.Utils.Html.Table.ExtractInnerRowsFromTable where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Data.Array as Array
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.Google.Sheet.Html (extractInnerRowsFromHtml)
+import Utils.Html.Table (extractInnerRowsFromHtml)
 
 spec :: Spec Unit
 spec = describe do

@@ -15,6 +15,17 @@ portraitViewUrlPrefix = "https://drive.google.com/file/d/"
 portraitViewUrlSuffix :: String
 portraitViewUrlSuffix = "/view"
 
+-- | Extracts the Google Drive file ID from a portrait view URL.
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> extractPortraitIdFromViewUrl "https://drive.google.com/file/d/1A2B3C4D5E6F7G8H9I0J/view"
+-- | Just "1A2B3C4D5E6F7G8H9I0J"
+-- | >>> extractPortraitIdFromViewUrl "https://drive.google.com/file/d//view"
+-- | Nothing
+-- | >>> extractPortraitIdFromViewUrl "https://example.com/file/d/1A2B3C4D5E6F7G8H9I0J/view"
+-- | Nothing
+-- | ```
 extractPortraitIdFromViewUrl :: String -> Maybe String
 extractPortraitIdFromViewUrl url =
   let

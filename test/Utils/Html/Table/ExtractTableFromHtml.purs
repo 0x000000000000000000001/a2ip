@@ -1,4 +1,4 @@
-module Test.Utils.Google.Sheet.Html.ExtractTableFromHtml where
+module Test.Utils.Html.Table.ExtractTableFromHtml where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.Google.Sheet.Html (extractTableFromHtml)
+import Utils.Html.Table (extractTableFromHtml)
  
 spec :: Spec Unit
 spec = describe do  

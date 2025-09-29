@@ -1,4 +1,4 @@
-module Test.Utils.Google.Sheet.Html.GetNextCellPos where
+module Test.Utils.Html.Table.GetNextCellPos where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.Google.Sheet.Html (getNextCellPos)
+import Utils.Html.Table (getNextCellPos)
 
 spec :: Spec Unit
 spec = describe do

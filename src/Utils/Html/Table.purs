@@ -1,8 +1,7 @@
-module Utils.Google.Sheet.Html
+module Utils.Html.Table
   ( 
-  --   extractInnerCellsFromRow
-  -- , 
-  extractTableFromHtml
+  extractInnerCellsFromRow
+  , extractTableFromHtml
   , extractInnerRowsFromHtml
   , extractNextInnerCell
   , getNextCellPos
@@ -15,18 +14,6 @@ import Data.Array (drop, mapMaybe) as Array
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
 import Data.String as String
-
--- headerRowIndex :: Int
--- headerRowIndex = 2
-
--- dataStartRowIndex :: Int
--- dataStartRowIndex = 4
-
--- maxDataRows :: Int
--- maxDataRows = 6
-
--- maxColumns :: Int
--- maxColumns = 7
 
 -- | Extracts the first <table>...</table> block from the given HTML string.
 -- |
@@ -80,44 +67,44 @@ extractInnerRowsFromHtml tableHtml =
 -- | >>> extractInnerCellsFromRow "<td>1</td><td><span>2</span></td>"
 -- | Just ["1", "<span>2</span>"]
 -- | ```
--- extractInnerCellsFromRow :: String -> Maybe (Array String)
--- extractInnerCellsFromRow row =
---   let trimmedRow = String.trim row
---   in if trimmedRow == "" then Nothing
---      else
---        if String.contains (Pattern "<tr") trimmedRow then
---          Just $ go trimmedRow
---        else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
---          Just $ go trimmedRow
---        else Nothing
---   where 
---   go :: String -> Array String
---   go html = rec html 0 []
---     where
---     rec :: String -> Int -> Array String -> Array String
---     rec h pos acc =
---       case { 
---         td: getNextCellPos "td" h pos,
---         th: getNextCellPos "th" h pos
---       } of
---         { td: Nothing, th: Nothing } -> acc
---         { td: Just _, th: Nothing } -> 
---           case extractNextCell "td" h pos of
---             Nothing -> acc
---             Just { content, nextPos } -> rec h nextPos (acc <> [content])
---         { td: Nothing, th: Just _ } ->
---           case extractNextCell "th" h pos of
---             Nothing -> acc
---             Just { content, nextPos } -> rec h nextPos (acc <> [content])
---         { td: Just tdIdx, th: Just thIdx } ->
---           if tdIdx < thIdx then
---             case extractNextCell "td" h pos of
---               Nothing -> acc
---               Just { content, nextPos } -> rec h nextPos (acc <> [content])
---           else
---             case extractNextCell "th" h pos of
---               Nothing -> acc
---               Just { content, nextPos } -> rec h nextPos (acc <> [content])
+extractInnerCellsFromRow :: String -> Maybe (Array String)
+extractInnerCellsFromRow row =
+  let trimmedRow = String.trim row
+  in if trimmedRow == "" then Nothing
+     else
+       if String.contains (Pattern "<tr") trimmedRow then
+         Just $ go trimmedRow
+       else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
+         Just $ go trimmedRow
+       else Nothing
+  where 
+  go :: String -> Array String
+  go html = rec html 0 []
+    where
+    rec :: String -> Int -> Array String -> Array String
+    rec h pos acc =
+      case { 
+        td: getNextCellPos "td" h pos false,
+        th: getNextCellPos "th" h pos false
+      } of
+        { td: Nothing, th: Nothing } -> acc
+        { td: Just _, th: Nothing } -> 
+          case extractNextInnerCell "td" h pos of
+            Nothing -> acc
+            Just { content, nextPos } -> rec h nextPos (acc <> [content])
+        { td: Nothing, th: Just _ } ->
+          case extractNextInnerCell "th" h pos of
+            Nothing -> acc
+            Just { content, nextPos } -> rec h nextPos (acc <> [content])
+        { td: Just tdIdx, th: Just thIdx } ->
+          if tdIdx < thIdx then
+            case extractNextInnerCell "td" h pos of
+              Nothing -> acc
+              Just { content, nextPos } -> rec h nextPos (acc <> [content])
+          else
+            case extractNextInnerCell "th" h pos of
+              Nothing -> acc
+              Just { content, nextPos } -> rec h nextPos (acc <> [content])
 
 -- | Finds the next occurrence of a specified HTML tag starting from a given offset.
 -- | If `relative` is true, the returned index is relative to the offset position;
@@ -157,10 +144,3 @@ extractNextInnerCell tag html offsetPos =
               content = String.drop (1 + (fromMaybe 0 $ String.indexOf (Pattern ">") innerContentWithStartTagBody)) innerContentWithStartTagBody
               nextPos = startTagPos + closeTagPosInContentAfterStartTag + String.length closeTag
           in Just { content, nextPos }
-
--- extractMappingKeysFromTable :: (String -> String) -> String -> Array String
--- extractMappingKeysFromTable headerMapper html = 
---   html
---     # flip extractRowCells headerRowIndex
---     # Array.take maxColumns
---     # map headerMapper

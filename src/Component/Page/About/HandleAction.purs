@@ -7,117 +7,49 @@ import Prelude
 
 import Capability.Log (class Log)
 import Component.Page.About.Type (Action(..), State)
+import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 
--- membersTabId :: String
--- membersTabId = "0"
+membersTabId :: String
+membersTabId = "0"
 
--- membersTabName :: String
--- membersTabName = "Membres A2IP"
+membersTabName :: String
+membersTabName = "Membres A2IP"
 
--- commiteeTabId :: String
--- commiteeTabId = "2092489064"
+commiteeTabId :: String
+commiteeTabId = "2092489064"
 
--- commiteeTabName :: String
--- commiteeTabName = "Comité international"
+commiteeTabName :: String
+commiteeTabName = "Comité international"
 
--- googleSheetUrl :: String
--- googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
+googleSheetUrl :: String
+googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
 
--- googleSheetHtmlZipDownloadUrl :: String
--- googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
+googleSheetHtmlZipDownloadUrl :: String
+googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
--- dataStartRowIndex :: Int
--- dataStartRowIndex = 4
+tabIdToName :: String -> Maybe String
+tabIdToName tabId 
+  | tabId == membersTabId = Just membersTabName
+  | tabId == commiteeTabId = Just commiteeTabName
+  | otherwise = Nothing
 
--- maxDataRows :: Int
--- maxDataRows = 6
-
--- maxColumns :: Int
--- maxColumns = 7
-
--- tabIdToName :: String -> Maybe String
--- tabIdToName tabId 
---   | tabId == membersTabId = Just membersTabName
---   | tabId == commiteeTabId = Just commiteeTabName
---   | otherwise = Nothing
-
--- headerToMappingKey :: String -> String
--- headerToMappingKey = case _ of
---   "Prénom" -> "firstname"
---   "Nom" -> "lastname" 
---   "Fonction A2IP" -> "role"
---   "Profession" -> "job"
---   "Email" -> "email"
---   "Numéro de tél" -> "phone"
---   "Lien ou ID du portrait" -> "portraitId"
---   _ -> "unknown" 
-
--- logError :: forall m. Log m => String -> m Unit
--- logError message = log Error message
-
--- updateMembersState :: forall o m. Array (Maybe Member) -> H.HalogenM State Action () o m Unit
--- updateMembersState members_ = H.modify_ _ { members = members_ }
-
--- fetchZipData :: forall m. MonadAff m => m (Either AX.Error (AX.Response ArrayBuffer))
--- fetchZipData = H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
-
--- extractHtmlFromZip :: forall m. MonadAff m => String -> ArrayBuffer -> m String
--- extractHtmlFromZip tabName responseBody = H.liftAff $ unzipGoogleSheetAndExtractHtml tabName responseBody
-
--- processZipResponse :: forall m. MonadAff m => String -> AX.Response ArrayBuffer -> m (Array (Maybe Member))
--- processZipResponse tabId response = do
---   let tabName = fromMaybe "" $ tabIdToName tabId
---   htmlContent <- extractHtmlFromZip tabName response.body
---   pure $ parseHtml htmlContent
-
-handleLoadHtmlData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
-handleLoadHtmlData = do
+loadData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
+loadData = do
   pure unit
-  -- result <- fetchZipData
+  -- result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   -- case result of
-  --   Left err -> logError $ "Failed to fetch ZIP: " <> AX.printError err
+  --   Left err -> log Error $ "Failed to fetch ZIP: " <> show err
   --   Right response -> do
-  --     members_ <- processZipResponse membersTabId response
-  --     updateMembersState members_
+        -- let tabName = fromMaybe "" $ tabIdToName tabId
+--   htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+  --     members_ <- parseHtml htmlContent
+  --     H.modify_ _ { members = members_ }
 
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
-  LoadHtmlData -> handleLoadHtmlData
+  LoadData -> loadData 
 
--- createMemberFromRow :: Array String -> Array String -> Maybe Member
--- createMemberFromRow mappingKeys rowCells =
---   let getValue = getValueByKey mappingKeys rowCells
---   in Just
---     { lastname: getValue "lastname"
---     , firstname: getValue "firstname"
---     , role: getValue "role"
---     , job: getValue "job"
---     , email: getValue "email"
---     , phone: getValue "phone"
---     , portraitId: fromMaybe "" $ extractPortraitIdFromViewUrl $ getValue "portraitId"
---     }
-
--- parseHtmlRowWithMapping :: Array String -> Array String -> Maybe Member
--- parseHtmlRowWithMapping = createMemberFromRow
-
--- extractMappingKeysForAbout :: String -> Array String
--- extractMappingKeysForAbout = extractMappingKeysFromTable headerToMappingKey
-
--- extractDataRowsForAbout :: String -> Array (Array String)
--- extractDataRowsForAbout htmlContent =
---   let rowIndexes = Array.range dataStartRowIndex (dataStartRowIndex + maxDataRows - 1)
---       extractRowIfNotEmpty rowIndex =
---         let allRowCells = extractRowCells htmlContent rowIndex
---             rowCells = Array.take maxColumns allRowCells
---         in if Array.length rowCells > 0 then Just rowCells else Nothing
---   in Array.mapMaybe extractRowIfNotEmpty rowIndexes
-
--- parseHtml :: String -> Array (Maybe Member)
--- parseHtml htmlContent =
---   let mappingKeys = extractMappingKeysForAbout htmlContent
---       dataRows = extractDataRowsForAbout htmlContent
---   in map (parseHtmlRowWithMapping mappingKeys) dataRows
-
-
+extractMappingKeysAndValuesFromTable :: String -> { keys :: Array String , values :: Array (Array String) }
+extractMappingKeysAndValuesFromTable tableHtml = { keys: [], values: [] }
