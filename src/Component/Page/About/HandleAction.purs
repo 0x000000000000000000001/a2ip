@@ -2,70 +2,70 @@ module Component.Page.About.HandleAction
   ( handleAction
   , extractMappingKeysAndValuesFromTable
   , convertExtractedDataToMembers
-  , ExtractedData
+  , ExtractedDataFromLoadedRawOne
   )
   where
 
 import Prelude
 
-import Capability.Log (class Log)
+import Affjax.ResponseFormat (arrayBuffer)
+import Affjax.Web (get, printError)
+import Capability.Log (class Log, Level(..), log)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Data.Array (drop, head, length, mapWithIndex, (!!))
-import Data.Map (Map, empty, lookup, fromFoldable)
+import Data.Array (drop, head, length, (!!))
+import Data.Either (Either(..))
+import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
-import Data.Tuple (Tuple(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
+import Utils.Array.Map (arrayToIndexMap)
+import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.Html.Table (extractInnerCellsFromHtml)
 
--- membersTabId :: String
--- membersTabId = "0"
+membersTabId :: String
+membersTabId = "0"
 
--- membersTabName :: String
--- membersTabName = "Membres A2IP"
+membersTabName :: String
+membersTabName = "Membres A2IP"
 
--- commiteeTabId :: String
--- commiteeTabId = "2092489064"
+commiteeTabId :: String
+commiteeTabId = "2092489064"
 
--- commiteeTabName :: String
--- commiteeTabName = "Comité international"
+commiteeTabName :: String
+commiteeTabName = "Comité international"
 
--- googleSheetUrl :: String
--- googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
+googleSheetUrl :: String
+googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
 
--- googleSheetHtmlZipDownloadUrl :: String
--- googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
+googleSheetHtmlZipDownloadUrl :: String
+googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
--- tabIdToName :: String -> Maybe String
--- tabIdToName tabId 
---   | tabId == membersTabId = Just membersTabName
---   | tabId == commiteeTabId = Just commiteeTabName
---   | otherwise = Nothing
+tabIdToName :: String -> Maybe String
+tabIdToName tabId 
+  | tabId == membersTabId = Just membersTabName
+  | tabId == commiteeTabId = Just commiteeTabName
+  | otherwise = Nothing
 
 loadData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
 loadData = do
   pure unit
-  -- result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
-  -- case result of
-  --   Left err -> log Error $ "Failed to fetch ZIP: " <> show err
-  --   Right response -> do
-  --     let tabName = fromMaybe "" $ tabIdToName membersTabId
-  --     htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-  --     members_ <- parseHtml htmlContent
-  --     H.modify_ _ { members = members_ }
+  result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
+  case result of
+    Left err -> log Error $ "Failed to fetch ZIP: " <> printError err
+    Right response -> do
+      let tabName = fromMaybe "" $ tabIdToName membersTabId
+      htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+      let extractedData = extractMappingKeysAndValuesFromTable htmlContent
+      H.modify_ _ { members = map Just $ convertExtractedDataToMembers extractedData }
 
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
   LoadData -> loadData
 
-type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
+type ExtractedDataFromLoadedRawOne = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
--- Helper function to create index map
-arrayToIndexMap :: forall a. Ord a => Array a -> Map a Int
-arrayToIndexMap arr = fromFoldable $ mapWithIndex (\i x -> Tuple x i) arr
-
-convertExtractedDataToMembers :: ExtractedData -> Array Member
+convertExtractedDataToMembers :: ExtractedDataFromLoadedRawOne -> Array Member
 convertExtractedDataToMembers extractedData =
   let keyIndices = extractedData.keyIndices
       values = extractedData.values
@@ -87,6 +87,7 @@ convertExtractedDataToMembers extractedData =
         , email: value email row
         , portraitId: value portraitId row
         }
+
   in map toMember values
 
 -- | Extract mapping keys and values from an HTML table.
@@ -100,7 +101,7 @@ convertExtractedDataToMembers extractedData =
 -- | >>> extractMappingKeysAndValuesFromTable "No table"
 -- | { keys: [], values: [] }
 -- | ```
-extractMappingKeysAndValuesFromTable :: String -> ExtractedData
+extractMappingKeysAndValuesFromTable :: String -> ExtractedDataFromLoadedRawOne
 extractMappingKeysAndValuesFromTable tableHtml = 
   let nothing = { keys: [], keyIndices: empty, values: [] }
   in case extractInnerCellsFromHtml tableHtml of
