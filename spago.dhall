@@ -23,6 +23,7 @@ You can edit this file as you like.
   , "maybe"
   , "nonempty"
   , "now"
+  , "ordered-collections"
   , "prelude"
   , "routing"
   , "routing-duplex"

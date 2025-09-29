@@ -1,4 +1,4 @@
-module Utils.Html.Encode
+module Utils.Array.Map
   ( arrayToIndexMap
   ) where
 
