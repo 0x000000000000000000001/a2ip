@@ -78,15 +78,16 @@ module Utils.Style
 
 import Prelude
 
-import CSS (Refinement, Selector, StyleM, backgroundColor, borderColor, color, cursor, flexGrow)
+import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
+import CSS.Selector (deep, with)
 import CSS.Selector as CSSS
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
-import Data.Int (rem)
+import Data.Int as Int
 import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
@@ -118,7 +119,7 @@ stripDotPrefixFromClassName className =
   fromMaybe className (stripPrefix (Pattern ".") className)
 
 raw :: String -> String -> CSS.CSS
-raw key value = CSS.key (CSS.fromString key) value
+raw k v = key (fromString k) v
 
 nothing :: CSS.CSS
 nothing = pure unit
@@ -127,28 +128,28 @@ userSelectNone :: CSS.CSS
 userSelectNone = raw "user-select" "none"
 
 displayNone :: CSS.CSS
-displayNone = CSS.display CSS.displayNone
+displayNone = display CSS.displayNone
 
 positionAbsolute :: CSS.CSS
-positionAbsolute = CSS.position CSS.absolute
+positionAbsolute = position absolute
 
 positionRelative :: CSS.CSS
-positionRelative = CSS.position CSS.relative
+positionRelative = position relative
 
 positionFixed :: CSS.CSS
-positionFixed = CSS.position CSS.fixed
+positionFixed = position fixed
 
 topRem :: Number -> CSS.CSS
-topRem t = CSS.top (CSS.rem t)
+topRem t = top (rem t)
 
 leftRem :: Number -> CSS.CSS
-leftRem l = CSS.left (CSS.rem l)
+leftRem l = left (rem l)
 
 bottomRem :: Number -> CSS.CSS
-bottomRem b = CSS.bottom (CSS.rem b)
+bottomRem b = bottom (rem b)
 
 rightRem :: Number -> CSS.CSS
-rightRem r = CSS.right (CSS.rem r)
+rightRem r = right (rem r)
 
 top0 :: CSS.CSS
 top0 = topRem 0.0
@@ -166,16 +167,16 @@ overflowHidden :: CSS.CSS
 overflowHidden = overflow hidden
 
 flexWrap :: CSS.CSS
-flexWrap = CSS.flexWrap CSS.wrap
+flexWrap = CSS.flexWrap wrap
 
 flexGrow1 :: CSS.CSS
 flexGrow1 = flexGrow 1.0
 
 fontSizePct :: Number -> CSS.CSS
-fontSizePct p = CSS.fontSize (CSS.pct p)
+fontSizePct p = fontSize (pct p)
 
 bold :: CSS.CSS
-bold = CSS.fontWeight CSS.bold
+bold = fontWeight CSS.bold
 
 loading :: StyleM Unit
 loading = do 
@@ -187,67 +188,67 @@ content :: String -> CSS.CSS
 content s = raw "content" $ "\"" <> s <> "\""
 
 backgroundColorRed :: CSS.CSS
-backgroundColorRed = CSS.backgroundColor red
+backgroundColorRed = backgroundColor red
 
 colorRed :: CSS.CSS
-colorRed = CSS.color fontRed
+colorRed = color fontRed
 
 backgroundColorWhite :: CSS.CSS
-backgroundColorWhite = CSS.backgroundColor backgroundWhite
+backgroundColorWhite = backgroundColor backgroundWhite
 
 displayFlex :: CSS.CSS
-displayFlex = CSS.display CSS.flex
+displayFlex = display flex
 
 cursorPointer :: CSS.CSS
 cursorPointer = cursor pointer
 
 widthRem :: Number -> CSS.CSS
-widthRem w = CSS.width (CSS.rem w)
+widthRem w = width (rem w)
 
 widthPct :: Number -> CSS.CSS
-widthPct w = CSS.width (CSS.pct w)
+widthPct w = width (pct w)
 
 widthPct100 :: CSS.CSS
 widthPct100 = widthPct 100.0
 
 minWidthRem :: Number -> CSS.CSS
-minWidthRem w = CSS.minWidth (CSS.rem w)
+minWidthRem w = minWidth (rem w)
 
 minWidthPct :: Number -> CSS.CSS
-minWidthPct w = CSS.minWidth (CSS.pct w)
+minWidthPct w = minWidth (pct w)
 
 minWidthPct100 :: CSS.CSS
 minWidthPct100 = minWidthPct 100.0
 
 maxWidthRem :: Number -> CSS.CSS
-maxWidthRem w = CSS.maxWidth (CSS.rem w)
+maxWidthRem w = maxWidth (rem w)
 
 maxWidthPct :: Number -> CSS.CSS
-maxWidthPct w = CSS.maxWidth (CSS.pct w)
+maxWidthPct w = maxWidth (pct w)
 
 maxWidthPct100 :: CSS.CSS
 maxWidthPct100 = maxWidthPct 100.0
 
 heightRem :: Number -> CSS.CSS
-heightRem h = CSS.height (CSS.rem h)
+heightRem h = height (rem h)
 
 heightPct :: Number -> CSS.CSS
-heightPct h = CSS.height (CSS.pct h)
+heightPct h = height (pct h)
 
 minHeightRem :: Number -> CSS.CSS
-minHeightRem h = CSS.minHeight (CSS.rem h)
+minHeightRem h = minHeight (rem h)
 
 minHeightPct :: Number -> CSS.CSS
-minHeightPct h = CSS.minHeight (CSS.pct h)
+minHeightPct h = minHeight (pct h)
 
 maxHeightRem :: Number -> CSS.CSS
-maxHeightRem h = CSS.maxHeight (CSS.rem h)
+maxHeightRem h = maxHeight (rem h)
 
 maxHeightPct :: Number -> CSS.CSS
-maxHeightPct h = CSS.maxHeight (CSS.pct h)
+maxHeightPct h = maxHeight (pct h)
 
 padding4 :: Number -> Number -> Number -> Number -> CSS.CSS
-padding4 t r b l = CSS.padding (CSS.rem t) (CSS.rem r) (CSS.rem b) (CSS.rem l)
+padding4 t r b l = padding (rem t) (rem r) (rem b) (rem l)
   
 padding1 :: Number -> CSS.CSS
 padding1 p = padding4 p p p p
@@ -256,19 +257,19 @@ padding2 :: Number -> Number -> CSS.CSS
 padding2 v h = padding4 v h v h
 
 paddingLeft :: Number -> CSS.CSS
-paddingLeft p = CSS.paddingLeft (CSS.rem p)
+paddingLeft p = paddingLeft (rem p)
 
 paddingRight :: Number -> CSS.CSS
-paddingRight p = CSS.paddingRight (CSS.rem p)
+paddingRight p = paddingRight (rem p)
 
 paddingBottom :: Number -> CSS.CSS
-paddingBottom p = CSS.paddingBottom (CSS.rem p)
+paddingBottom p = paddingBottom (rem p)
 
 paddingTop :: Number -> CSS.CSS
-paddingTop p = CSS.paddingTop (CSS.rem p)
+paddingTop p = paddingTop (rem p)
 
 margin4 :: Number -> Number -> Number -> Number -> CSS.CSS
-margin4 t r b l = CSS.margin (CSS.rem t) (CSS.rem r) (CSS.rem b) (CSS.rem l)
+margin4 t r b l = margin (rem t) (rem r) (rem b) (rem l)
 
 margin1 :: Number -> CSS.CSS
 margin1 m = margin4 m m m m
@@ -277,19 +278,19 @@ margin2 :: Number -> Number -> CSS.CSS
 margin2 v h = margin4 v h v h
 
 marginLeft :: Number -> CSS.CSS
-marginLeft m = CSS.marginLeft (CSS.rem m)
+marginLeft m = marginLeft (rem m)
 
 marginRight :: Number -> CSS.CSS
-marginRight m = CSS.marginRight (CSS.rem m)
+marginRight m = marginRight (rem m)
 
 marginTop :: Number -> CSS.CSS
-marginTop m = CSS.marginTop (CSS.rem m)
+marginTop m = marginTop (rem m)
 
 marginBottom :: Number -> CSS.CSS
-marginBottom m = CSS.marginBottom (CSS.rem m)
+marginBottom m = marginBottom (rem m)
 
 borderRadius4 :: Number -> Number -> Number -> Number -> CSS.CSS
-borderRadius4 tl tr br bl = CSS.borderRadius (CSS.rem tl) (CSS.rem tr) (CSS.rem br) (CSS.rem bl)
+borderRadius4 tl tr br bl = borderRadius (rem tl) (rem tr) (rem br) (rem bl)
 
 borderRadius1 :: Number -> CSS.CSS
 borderRadius1 r = borderRadius4 r r r r
@@ -298,14 +299,14 @@ borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w
 
 classSelect :: String -> CSS.CSS -> CSS.CSS
-classSelect sel rs = CSS.select (CSS.fromString $ "." <> stripDotPrefixFromClassName sel) rs
+classSelect sel rs = select (fromString $ "." <> stripDotPrefixFromClassName sel) rs
 
 infixr 5 classSelect as .?
 
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
 deepClass :: Selector -> String -> Selector
-deepClass a b = CSSS.deep a (CSS.fromString $ "." <> stripDotPrefixFromClassName b)
+deepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 deepClass as |*.
 
@@ -313,27 +314,27 @@ infix 6 deepClass as |*.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
 -- | depending on the filter.
 classWith :: String -> Refinement -> Selector
-classWith s r = CSSS.with (CSS.fromString $ "." <> stripDotPrefixFromClassName s) r
+classWith s r = with (fromString $ "." <> stripDotPrefixFromClassName s) r
 
 infix 6 classWith as .&
 
 -- | See `with` 
 classWithClass :: String -> String -> Selector
-classWithClass s r = classWith s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+classWithClass s r = classWith s (fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 classWithClass as .&.
 
 -- | See `with` 
 withClass :: Selector -> String -> Selector
-withClass s r = CSSS.with s (CSS.fromString $ "." <> stripDotPrefixFromClassName r)
+withClass s r = with s (fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 withClass as &.
 
 after :: Refinement
-after = CSS.fromString "::after"
+after = fromString "::after"
 
 before :: Refinement
-before = CSS.fromString "::before"
+before = fromString "::before"
 
 -- | Fast polynomial hash function that generates a 9-character identifier
 -- | Perfect for CSS class names with very low collision probability
@@ -342,9 +343,9 @@ hash9 input =
   let
     str = show input
     -- Multiple hash values for better distribution
-    hash1 = foldl (\acc char -> ((acc * 31) + toCharCode char) `rem` 238328) 5381 (toCharArray str)  -- 62^3
-    hash2 = foldl (\acc char -> ((acc * 37) + toCharCode char) `rem` 238328) 7919 (toCharArray str)  -- 62^3
-    hash3 = foldl (\acc char -> ((acc * 41) + toCharCode char) `rem` 238328) 1009 (toCharArray str)  -- 62^3
+    hash1 = foldl (\acc char -> ((acc * 31) + toCharCode char) `Int.rem` 238328) 5381 (toCharArray str)  -- 62^3
+    hash2 = foldl (\acc char -> ((acc * 37) + toCharCode char) `Int.rem` 238328) 7919 (toCharArray str)  -- 62^3
+    hash3 = foldl (\acc char -> ((acc * 41) + toCharCode char) `Int.rem` 238328) 1009 (toCharArray str)  -- 62^3
     
     -- Base62 characters for CSS-safe identifiers (using 'o' instead of '0')
     chars = [ 'o','1','2','3','4','5','6','7','8','9'
@@ -358,13 +359,13 @@ hash9 input =
     -- Extract character from hash value
     getChar :: Int -> String
     getChar n = 
-      case chars !! (n `rem` 62) of
+      case chars !! (n `Int.rem` 62) of
         Just c -> fromCharArray [c]
         Nothing -> "o"
     -- Extract letter for first char
     getLetter :: Int -> String
     getLetter n = 
-      case letters !! (n `rem` 52) of
+      case letters !! (n `Int.rem` 52) of
         Just c -> fromCharArray [c]
         Nothing -> "A"
         
