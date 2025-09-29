@@ -22,6 +22,7 @@ import Halogen as H
 import Utils.Array.Map (arrayToIndexMap)
 import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.Html.Table (extractInnerCellsFromHtml)
+import Utils.Log (unsafeLog, unsafeLogDebug)
 
 membersTabId :: String
 membersTabId = "0"
@@ -110,6 +111,6 @@ extractMappingKeysAndValuesFromTable tableHtml =
       if length cellArrays == 0 
       then nothing
       else
-        let keys = head cellArrays
-            values = drop 1 cellArrays
+        let keys = cellArrays !! 1
+            values = drop 3 cellArrays
         in { keys: fromMaybe [] keys, keyIndices: arrayToIndexMap (fromMaybe [] keys), values: values }
