@@ -1,1 +1,1 @@
-export const rootDirPath = import.meta.url.split('/output/')[0] + '/';
+export const rootDirPath = import.meta.url.split('file://')[1].split('/output/')[0] + '/';
