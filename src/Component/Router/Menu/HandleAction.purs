@@ -12,4 +12,4 @@ handleAction = case _ of
   ToggleFolding bool -> H.modify_ _ { isUnfold = not bool }
   Navigate route -> do 
     H.modify_ _ { isUnfold = false }
-    navigate route 
+    navigate route  

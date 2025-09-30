@@ -18,7 +18,7 @@ import Utils.Style (class_)
 render :: State -> H.ComponentHTML Action Slots AppM
 render { route } =
   div
-    [ class_ classId ]
+    [ class_ classId ] 
     [ sheet
     , slot (Proxy :: Proxy "menu") unit MenuComponent.component unit absurd
     , div

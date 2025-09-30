@@ -7,9 +7,6 @@ module Component.Page.About.Render
 import Prelude hiding (div)
 
 import Capability.AppM (AppM)
-import Capability.Log (class Log)
-import Capability.Navigate (class Navigate)
-import Capability.ReadConfig (class ReadConfig, getImageUrl)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
@@ -17,9 +14,8 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
-import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
-import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)

@@ -20,7 +20,7 @@ import Halogen as H
 import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 import Routing.Duplex (parse)
-import Routing.Hash (matchesWith)
+import Routing.Hash (matchesWith) 
 
 main :: Effect Unit
 main = do

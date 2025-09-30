@@ -14,7 +14,7 @@ component :: forall i o. H.Component Query i o AppM
 component = H.mkComponent
   { initialState: const { route: Home }
   , render
-  , eval: H.mkEval H.defaultEval 
+  , eval: H.mkEval H.defaultEval  
       { handleQuery = handleQuery
       }
-  }
+  } 
