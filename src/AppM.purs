@@ -2,11 +2,13 @@ module AppM (AppM, runAppM) where
 
 import Prelude
 
+import Config (Config)
+import Control.Monad.Reader (ReaderT, runReaderT)
 import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect)
 
-newtype AppM a = AppM (Aff a)
+newtype AppM a = AppM (ReaderT Config Aff a)
 
 derive newtype instance functorAppM :: Functor AppM
 derive newtype instance applyAppM :: Apply AppM
@@ -16,5 +18,5 @@ derive newtype instance monadAppM :: Monad AppM
 derive newtype instance monadEffectAppM :: MonadEffect AppM
 derive newtype instance monadAffAppM :: MonadAff AppM
 
-runAppM :: AppM ~> Aff
-runAppM (AppM aff) = aff
+runAppM :: forall a. Config -> AppM a -> Aff a
+runAppM config app = runReaderT app config
