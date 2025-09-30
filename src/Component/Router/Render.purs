@@ -2,22 +2,20 @@ module Component.Router.Render where
 
 import Prelude hiding (div)
 
-import Capability.Log (class Log)
-import Capability.Navigate (class Navigate)
+import AppM (AppM)
 import Component.Page.About.Component as PageAboutComponent
 import Component.Router.Menu.Component as MenuComponent
 import Component.Router.Route (Route(..))
+import Component.Router.Style.Core as Core
+import Component.Router.Style.Router (classId)
+import Component.Router.Style.Sheet (sheet)
 import Component.Router.Type (Action, State, Slots)
-import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Halogen.HTML (div, slot, text)
 import Type.Proxy (Proxy(..))
 import Utils.Style (class_)
-import Component.Router.Style.Router (classId)
-import Component.Router.Style.Sheet (sheet)
-import Component.Router.Style.Core as Core
 
-render :: forall m. MonadAff m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
+render :: State -> H.ComponentHTML Action Slots AppM
 render { route } =
   div
     [ class_ classId ]

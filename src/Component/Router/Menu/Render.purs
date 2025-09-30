@@ -2,6 +2,7 @@ module Component.Router.Menu.Render (render) where
 
 import Prelude hiding (top, div)
 
+import AppM (AppM)
 import CSS (fromString)
 import Component.Router.Menu.Style.Item.Child as Child
 import Component.Router.Menu.Style.Item.Children as Children
@@ -51,7 +52,7 @@ items =
   , ParentItem { label: "Contact et mentions légales", route: Nothing, iconFileName: "contact", children: [] }
   ]
 
-render :: forall m. State -> H.ComponentHTML Action () m
+render :: State -> H.ComponentHTML Action () AppM
 render s =
   nav
     [ class_ classId

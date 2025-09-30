@@ -20,7 +20,7 @@ import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
-import Effect.Aff (Aff)
+import Effect.Aff (Aff, launchAff_)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Unsafe (unsafePerformEffect)
 import Halogen as H
@@ -53,7 +53,7 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-loadData :: forall o m. MonadAff m => Log m => H.HalogenM State Action () o m Unit
+loadData :: forall o. H.HalogenM State Action () o AppM Unit
 loadData = do
   pure unit
   result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
@@ -66,7 +66,7 @@ loadData = do
           members_ = convertExtractedDataToMembers extractedData
       H.modify_ _ { members = members_ }
 
-handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
+handleAction :: forall o. Action -> H.HalogenM State Action () o AppM Unit
 handleAction = case _ of
   LoadData -> loadData
 
@@ -85,9 +85,9 @@ convertExtractedDataToMembers extractedData =
           Nothing -> ""
 
       toMember :: Array String -> Member
-      toMember row = do
-        unsafePerformEffect $ downloadImage (generateGoogleDriveImageUrl portraitId) "test.jpg"
-        pure 
+      toMember row =
+        let _ = unsafePerformEffect $ launchAff_ $ downloadImage (generateGoogleDriveImageUrl portraitId) "test.jpg"
+        in 
           { firstname: value firstname row
           , lastname: value lastname row
           , role: value role row

@@ -31,9 +31,10 @@ main = do
     errorMessage = "Unable to parse loading date."
   log $ "Loaded @ " <> either (const errorMessage) identity formattedDateTime
   
-  runHalogenAff do
+  runHalogenAff do 
     body <- awaitBody
     io <- runUI (H.hoist (runAppM defaultConfig) RouterComponent.component) unit body
     liftEffect $ matchesWith (parse routeCodec)
       \old' new -> when (old' /= Just new) $   
         launchAff_ $ void $ io.query $ H.mkTell $ RouterType.Navigate new
+ 

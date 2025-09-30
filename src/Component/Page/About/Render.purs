@@ -6,6 +6,7 @@ module Component.Page.About.Render
 
 import Prelude hiding (div)
 
+import AppM (AppM)
 import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
 import Capability.ReadConfig (class ReadConfig, getImageUrl)
@@ -40,7 +41,7 @@ generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePla
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
-render :: forall m. MonadAff m => ReadConfig m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
+render :: State -> H.ComponentHTML Action Slots AppM
 render state =
   div
     [ class_ classId ]
@@ -49,7 +50,7 @@ render state =
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: forall m. ReadConfig m => Maybe Member -> H.ComponentHTML Action Slots m
+renderMemberCard :: Maybe Member -> H.ComponentHTML Action Slots AppM
 renderMemberCard member = 
   div
     [ classes $

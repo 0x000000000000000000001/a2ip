@@ -4,6 +4,7 @@ import Prelude
 
 import Config (Config)
 import Control.Monad.Reader (ReaderT, runReaderT)
+import Control.Monad.Reader.Class (class MonadAsk)
 import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect)

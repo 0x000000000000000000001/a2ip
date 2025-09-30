@@ -22,6 +22,8 @@ You can edit this file as you like.
   , "html-parser-halogen"
   , "integers"
   , "maybe"
+  , "node-buffer"
+  , "node-fs"
   , "nonempty"
   , "now"
   , "ordered-collections"

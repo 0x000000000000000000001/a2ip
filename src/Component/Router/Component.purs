@@ -2,16 +2,15 @@ module Component.Router.Component where
 
 import Prelude
 
-import Capability.Log (class Log)
-import Capability.Navigate (class Navigate)
+import AppM (AppM)
 import Component.Router.HandleQuery (handleQuery)
 import Component.Router.Render (render)
 import Component.Router.Route (Route(..))
 import Component.Router.Type (Query)
-import Effect.Aff.Class (class MonadAff)
+ 
 import Halogen as H
 
-component :: forall i o m. MonadAff m => Navigate m => Log m => H.Component Query i o m
+component :: forall i o. H.Component Query i o AppM
 component = H.mkComponent
   { initialState: const { route: Home }
   , render
