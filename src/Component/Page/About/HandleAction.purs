@@ -10,16 +10,22 @@ import Prelude
 
 import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get, printError)
+import AppM (AppM)
 import Capability.Log (class Log, Level(..), log)
+import Capability.ReadConfig (getImageUrl)
+import Component.Page.About.Render (generateGoogleDriveImageUrl)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
+import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff)
+import Effect.Unsafe (unsafePerformEffect)
 import Halogen as H
 import Utils.Array.Map (arrayToIndexMap)
+import Utils.File.Image (downloadImage)
 import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.Html.Table (extractInnerCellsFromHtml)
 
@@ -57,7 +63,8 @@ loadData = do
       let tabName = fromMaybe "" $ tabIdToName membersTabId
       htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       let extractedData = extractMappingKeysAndValuesFromTable htmlContent
-      H.modify_ _ { members = map Just $ convertExtractedDataToMembers extractedData }
+          members_ = convertExtractedDataToMembers extractedData
+      H.modify_ _ { members = members_ }
 
 handleAction :: forall o m. MonadAff m => Log m => Action -> H.HalogenM State Action () o m Unit
 handleAction = case _ of
@@ -65,8 +72,8 @@ handleAction = case _ of
 
 type ExtractedDataFromLoadedRawOne = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
-convertExtractedDataToMembers :: ExtractedDataFromLoadedRawOne -> Array Member
-convertExtractedDataToMembers extractedData =
+convertExtractedDataToMembers :: ExtractedDataFromLoadedRawOne -> Array (Maybe Member)
+convertExtractedDataToMembers extractedData = 
   let keyIndices = extractedData.keyIndices
       values = extractedData.values
 
@@ -78,17 +85,19 @@ convertExtractedDataToMembers extractedData =
           Nothing -> ""
 
       toMember :: Array String -> Member
-      toMember row =
-        { firstname: value firstname row
-        , lastname: value lastname row
-        , role: value role row
-        , job: value job row
-        , phone: value phone row
-        , email: value email row
-        , portraitId: value portraitId row
-        }
+      toMember row = do
+        unsafePerformEffect $ downloadImage (generateGoogleDriveImageUrl portraitId) "test.jpg"
+        pure 
+          { firstname: value firstname row
+          , lastname: value lastname row
+          , role: value role row
+          , job: value job row
+          , phone: value phone row
+          , email: value email row
+          , portraitUrl: "abc"
+          }
 
-  in map toMember values
+  in values <#> (Just <<< toMember)
 
 -- | Extract mapping keys and values from an HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

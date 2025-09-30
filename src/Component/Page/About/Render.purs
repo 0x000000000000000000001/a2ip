@@ -1,11 +1,14 @@
 module Component.Page.About.Render
-  ( render
-  ) where
+  ( generateGoogleDriveImageUrl
+  , render
+  )
+  where
 
 import Prelude hiding (div)
 
 import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
+import Capability.ReadConfig (class ReadConfig, getImageUrl)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
@@ -13,7 +16,7 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
-import Data.Maybe (Maybe, fromMaybe, maybe)
+import Data.Maybe (Maybe(..), fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Effect.Aff.Class (class MonadAff)
 import Halogen as H
@@ -37,7 +40,7 @@ generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePla
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
-render :: forall m. MonadAff m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
+render :: forall m. MonadAff m => ReadConfig m => Navigate m => Log m => State -> H.ComponentHTML Action Slots m
 render state =
   div
     [ class_ classId ]
@@ -46,8 +49,8 @@ render state =
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: forall m. Maybe Member -> H.ComponentHTML Action Slots m
-renderMemberCard member =
+renderMemberCard :: forall m. ReadConfig m => Maybe Member -> H.ComponentHTML Action Slots m
+renderMemberCard member = 
   div
     [ classes $
         [ Card.classId ]
@@ -58,7 +61,8 @@ renderMemberCard member =
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img
           ( [ class_ CardPortrait.classId ]
-              <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
+              <> if isLoading then [] else [ src member_.portraitUrl ]
+              -- <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
           )
       ] <> lines
     )
@@ -71,7 +75,7 @@ renderMemberCard member =
     , job: loadingPlaceholder
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
-    , portraitId: loadingPlaceholder
+    , portraitUrl: loadingPlaceholder
     }
     member
 
