@@ -3,7 +3,12 @@ module Utils.Style
   , (.&)
   , (.&.)
   , (.?)
+  , (.|*)
+  , (.|*.)
+  , (.|>)
+  , (.|>.)
   , (|*.)
+  , (|>.)
   , after
   , backgroundColorRed
   , backgroundColorWhite
@@ -14,16 +19,22 @@ module Utils.Style
   , borderRadius4
   , borderWidth
   , bottom0
+  , childClass
+  , classChild
+  , classChildClass
+  , classDeep
+  , classDeepClass
   , classSelect
   , classWith
   , classWithClass
   , class_
   , classes
-  , colorRed 
+  , colorRed
   , content
   , cursorPointer
   , deepClass
   , displayFlex
+  , displayInlineBlock
   , displayNone
   , flexGrow1
   , flexWrap
@@ -78,15 +89,15 @@ module Utils.Style
 
 import Prelude hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
+import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
-import CSS.Selector (deep, with)
+import CSS.Selector (child, deep, with)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
-import Data.Int as Int 
+import Data.Int as Int
 import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
@@ -195,6 +206,9 @@ colorRed = color fontRed
 backgroundColorWhite :: CSS.CSS
 backgroundColorWhite = backgroundColor backgroundWhite
 
+displayInlineBlock :: CSS.CSS
+displayInlineBlock = display inlineBlock
+
 displayFlex :: CSS.CSS
 displayFlex = display flex
 
@@ -302,12 +316,43 @@ classSelect sel rs = select (fromString $ "." <> stripDotPrefixFromClassName sel
 
 infixr 5 classSelect as .?
 
+-- | The child selector composer.
+-- | Maps to `sel1 > sel2` in CSS.
+classChild :: String -> Selector -> Selector
+classChild a b = child (fromString $ "." <> stripDotPrefixFromClassName a) b
+
+infix 6 classChild as .|>
+
+-- | See `childClass`
+childClass :: Selector -> String -> Selector
+childClass a b = child a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 childClass as |>.
+
+-- | See `childClass`
+classChildClass :: String -> String -> Selector
+classChildClass a b = classChild a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 classChildClass as .|>.
+
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
+classDeep :: String -> Selector -> Selector
+classDeep a b = deep (fromString $ "." <> stripDotPrefixFromClassName a) b
+
+infix 6 classDeep as .|*
+
+-- | See `deepClass`
 deepClass :: Selector -> String -> Selector
 deepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 deepClass as |*.
+
+-- | See `classDeep`
+classDeepClass :: String -> String -> Selector
+classDeepClass a b = classDeep a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 classDeepClass as .|*.
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
@@ -317,17 +362,17 @@ classWith s r = with (fromString $ "." <> stripDotPrefixFromClassName s) r
 
 infix 6 classWith as .&
 
--- | See `with` 
-classWithClass :: String -> String -> Selector
-classWithClass s r = classWith s (fromString $ "." <> stripDotPrefixFromClassName r)
-
-infix 6 classWithClass as .&.
-
--- | See `with` 
+-- | See `classWith` 
 withClass :: Selector -> String -> Selector
 withClass s r = with s (fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 withClass as &.
+
+-- | See `classWith` 
+classWithClass :: String -> String -> Selector
+classWithClass s r = classWith s (fromString $ "." <> stripDotPrefixFromClassName r)
+
+infix 6 classWithClass as .&.
 
 after :: Refinement
 after = fromString "::after"

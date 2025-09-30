@@ -19,6 +19,7 @@ You can edit this file as you like.
   , "formatters"
   , "halogen"
   , "halogen-css"
+  , "html-parser-halogen"
   , "integers"
   , "maybe"
   , "nonempty"

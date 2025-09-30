@@ -12,7 +12,7 @@ import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get, printError)
 import Capability.Log (class Log, Level(..), log)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
-import Data.Array (drop, head, length, (!!))
+import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
@@ -22,7 +22,6 @@ import Halogen as H
 import Utils.Array.Map (arrayToIndexMap)
 import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Utils.Html.Table (extractInnerCellsFromHtml)
-import Utils.Log (unsafeLog, unsafeLogDebug)
 
 membersTabId :: String
 membersTabId = "0"

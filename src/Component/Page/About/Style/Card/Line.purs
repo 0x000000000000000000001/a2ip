@@ -6,10 +6,10 @@ module Component.Page.About.Style.Card.Line
 
 import Prelude hiding (top)
 
-import CSS ((&), (?))
+import CSS (star, (&), (?))
 import CSS as CSS
 import Component.Page.About.Type (email, phone, role)
-import Utils.Style (before, bold, content, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?))
+import Utils.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -40,7 +40,11 @@ style = do
   b___before ? do 
     content "📞  "
 
+  __allChildren ? do
+    displayInlineBlock
+
   where 
+  __allChildren = classId .|> star
   __role = classId .&. classIdWhen role
   __email = classId .&. classIdWhen email
   __phone = classId .&. classIdWhen phone

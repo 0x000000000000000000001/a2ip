@@ -120,4 +120,22 @@ let upstream =
       https://github.com/purescript/package-sets/releases/download/psc-0.15.15-20250904/packages.dhall
         sha256:65df863430bac51dc71eb6c31d60f837bccf3837ddae929e1bc53830d299ab37
 
-in  upstream
+let additions =
+      { html-parser-halogen =
+          { dependencies =
+              [ "arrays"
+              , "control"
+              , "dom-indexed"
+              , "foldable-traversable"
+              , "effect"
+              , "halogen"
+              , "maybe"
+              , "prelude"
+              , "psci-support"
+              ]
+          , repo = "https://github.com/rnons/purescript-html-parser-halogen.git"
+          , version = "master"
+          }
+      }
+
+in  upstream // additions

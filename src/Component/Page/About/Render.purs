@@ -19,6 +19,7 @@ import Effect.Aff.Class (class MonadAff)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
+import Html.Renderer.Halogen (render_)
 import Utils.Style (class_, classes)
 
 mockImages :: Boolean
@@ -83,7 +84,7 @@ renderMemberCard member =
     else
       [ div
           [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-          [ text $ getter member_ ]
+          [ render_ $ getter member_ ]
       ]
 
   lines :: forall w i. Array (HTML w i)
