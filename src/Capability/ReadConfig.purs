@@ -2,7 +2,7 @@ module Capability.ReadConfig where
 
 import Prelude
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Config (Config)
 import Control.Monad.Reader.Class (class MonadAsk, ask)
 import Control.Monad.Trans.Class (lift)

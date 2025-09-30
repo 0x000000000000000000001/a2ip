@@ -6,7 +6,7 @@ module Component.Page.About.Render
 
 import Prelude hiding (div)
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Capability.Log (class Log)
 import Capability.Navigate (class Navigate)
 import Capability.ReadConfig (class ReadConfig, getImageUrl)

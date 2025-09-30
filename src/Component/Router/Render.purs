@@ -2,7 +2,7 @@ module Component.Router.Render where
 
 import Prelude hiding (div)
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Component.Page.About.Component as PageAboutComponent
 import Component.Router.Menu.Component as MenuComponent
 import Component.Router.Route (Route(..))

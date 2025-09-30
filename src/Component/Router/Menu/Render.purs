@@ -2,7 +2,7 @@ module Component.Router.Menu.Render (render) where
 
 import Prelude hiding (top, div)
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import CSS (fromString)
 import Component.Router.Menu.Style.Item.Child as Child
 import Component.Router.Menu.Style.Item.Children as Children

@@ -2,7 +2,7 @@ module Component.Router.Component where
 
 import Prelude
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Component.Router.HandleQuery (handleQuery)
 import Component.Router.Render (render)
 import Component.Router.Route (Route(..))

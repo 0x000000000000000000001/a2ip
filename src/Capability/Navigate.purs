@@ -2,7 +2,7 @@ module Capability.Navigate where
 
 import Prelude
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Component.Router.Route (Route, routeCodec)
 import Control.Monad.Trans.Class (lift)
 import Effect.Class (liftEffect)

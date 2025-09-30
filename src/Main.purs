@@ -2,7 +2,7 @@ module Main (main) where
 
 import Prelude hiding (div)
 
-import AppM (runAppM)
+import Capability.AppM (runAppM)
 import Component.Router.Component as RouterComponent
 import Component.Router.Route (routeCodec)
 import Component.Router.Type as RouterType

@@ -2,7 +2,7 @@ module Component.Router.Menu.HandleAction (handleAction) where
 
 import Prelude hiding (top, div)
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Capability.Navigate (navigate)
 import Component.Router.Menu.Type (Action(..), State, Output)
 import Halogen as H

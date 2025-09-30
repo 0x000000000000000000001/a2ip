@@ -10,7 +10,7 @@ import Prelude
 
 import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get, printError)
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Capability.Log (class Log, Level(..), log)
 import Capability.ReadConfig (getImageUrl)
 import Component.Page.About.Render (generateGoogleDriveImageUrl)

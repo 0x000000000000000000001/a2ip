@@ -2,7 +2,7 @@ module Capability.Log where
 
 import Prelude
 
-import AppM (AppM)
+import Capability.AppM (AppM)
 import Control.Monad.Trans.Class (lift)
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)
