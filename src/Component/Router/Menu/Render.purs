@@ -61,7 +61,7 @@ render s =
     ( [ sheet s
       , img
           [ class_ Logo.classId
-          , HP.src "assets/images/logo.png"
+          , HP.src "asset/image/logo.png"
           , HP.alt "Logo"
           ]
       ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
@@ -80,7 +80,7 @@ render s =
           [ class_ $ ItemIconContainer.classId ]
           [ img
               [ class_ ItemIcon.classId
-              , HP.src (fromString "assets/images/component/menu/" <> iconFileName <> ".png")
+              , HP.src (fromString "asset/image/component/menu/" <> iconFileName <> ".png")
               ]
           ]
       , div

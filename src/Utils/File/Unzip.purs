@@ -6,7 +6,6 @@ import Data.Either (Either(..))
 import Effect (Effect)
 import Effect.Aff (Aff, makeAff, nonCanceler)
 import Effect.Exception (Error)
-
 import Data.ArrayBuffer.Types (ArrayBuffer)
 
 foreign import _unzip :: String -> ArrayBuffer -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit

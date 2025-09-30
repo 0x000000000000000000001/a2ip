@@ -1,5 +1,6 @@
 module Config
   ( Env(..)
+  , Config
   , defaultConfig
   )
   where
@@ -20,12 +21,12 @@ type Config =
   }
 
 assetBaseUrl :: String
-assetBaseUrl = assetsBaseUrl <> "assets/"
+assetBaseUrl = assetsBaseUrl <> "asset/"
 
 defaultConfig :: Config
 defaultConfig = 
   { assetBaseUrl
-  , imageBaseUrl: assetBaseUrl <> "images/"
+  , imageBaseUrl: assetBaseUrl <> "image/"
   , dev
   , env
   }

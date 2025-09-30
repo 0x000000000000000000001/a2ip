@@ -1,26 +1,30 @@
-module Capability.Config where
+module Capability.ReadConfig where
 
 import Prelude
 
 import AppM (AppM)
 import Config (Config)
+import Control.Monad.Reader.Class (class MonadAsk, ask)
 import Control.Monad.Trans.Class (lift)
-import Data.Generic.Rep (class Generic)
-import Data.Show.Generic (genericShow)
-import Effect.Class.Console as Console
 import Halogen (HalogenM)
 
 class Monad m <= ReadConfig m where
   readConfig :: m Config
 
-instance readConfigAppM :: ReadConfig AppM where
+instance readConfigAppM :: MonadAsk Config AppM => ReadConfig AppM where
   readConfig = ask
 
-instance readConfigHalogenM :: ReadConfig m => ReadConfig (H.HalogenM s a slots o m) where
-  readConfig = H.lift readConfig
+instance readConfigHalogenM :: ReadConfig m => ReadConfig (HalogenM state action slots output m) where
+  readConfig = lift readConfig
 
-assetUrl :: forall m. ReadConfig m => String -> m String
-assetUrl filePath = do
+getAssetUrl :: forall m. ReadConfig m => String -> m String
+getAssetUrl filePath = do
   config <- readConfig
   let baseUrl = config.assetBaseUrl
+  pure $ baseUrl <> filePath
+
+getImageUrl :: forall m. ReadConfig m => String -> m String
+getImageUrl filePath = do
+  config <- readConfig
+  let baseUrl = config.imageBaseUrl
   pure $ baseUrl <> filePath
