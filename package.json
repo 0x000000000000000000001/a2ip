@@ -18,7 +18,8 @@
     "purty": "^7.0.0",
     "source-map": "^0.7.6",
     "source-map-js": "^1.2.1",
-    "spago": "^0.21.0"
+    "spago": "^0.21.0",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "purescript": "^0.14.1"
