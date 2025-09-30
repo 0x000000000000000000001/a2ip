@@ -1,17 +1,31 @@
-module Config where
+module Config
+  ( Env(..)
+  , defaultConfig
+  )
+  where
 
-import Data.Maybe (Maybe)
+import Prelude
 
-foreign import imageBaseUrl :: String
+foreign import assetsBaseUrl :: String
 foreign import dev :: Boolean
+foreign import env :: Env
+
+data Env = Dev | Test | Stage | Prod
 
 type Config = 
-  { imageBaseUrl :: String
+  { assetBaseUrl :: String
+  , imageBaseUrl :: String
   , dev :: Boolean
+  , env :: Env
   }
+
+assetBaseUrl :: String
+assetBaseUrl = assetsBaseUrl <> "assets/"
 
 defaultConfig :: Config
 defaultConfig = 
-  { imageBaseUrl
+  { assetBaseUrl
+  , imageBaseUrl: assetBaseUrl <> "images/"
   , dev
+  , env
   }
