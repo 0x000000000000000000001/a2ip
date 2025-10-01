@@ -2,8 +2,9 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
+import Control.Parallel (parTraverse)
 import Data.Array (filter, length)
-import Data.Either (Either(..), either)
+import Data.Either (Either(..), isLeft, isRight)
 import Data.Traversable (traverse)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_, try)
@@ -26,18 +27,18 @@ imagesToDownload =
 main :: Effect Unit
 main = do 
   launchAff_ $ do 
-    log "Starting downloads with error handling..."
-    results <- traverse downloadWithErrorHandling imagesToDownload
+    liftEffect $ log "Starting downloads with error handling..."
+    results <- parTraverse downloadWithErrorHandling imagesToDownload
     
-    let successes = filter isSuccess results
-    let failures = filter isFailure results
+    let successes = filter isRight results
+    let failures = filter isLeft results
     
-    log $ "✅ Successful downloads: " <> show (length successes)
-    log $ "❌ Failed downloads: " <> show (length failures)
+    liftEffect $ log $ "✅ Successful downloads: " <> show (length successes)
+    liftEffect $ log $ "❌ Failed downloads: " <> show (length failures)
   where
     downloadWithErrorHandling :: Image -> Aff (Either String String)
     downloadWithErrorHandling { url, filename } = do
-      log $ "Downloading: " <> filename
+      liftEffect $ log $ "Downloading: " <> filename
       result <- try $ downloadImage url (imageDirPath <> filename)
       case result of 
         Left error -> do
@@ -47,9 +48,3 @@ main = do
           liftEffect $ log $ "✅ Success " <> filename
           pure $ Right filename
     
-    isSuccess = case _ of
-      Right _ -> true
-      Left _ -> false
-    
-    isFailure = not <<< isSuccess
- 
