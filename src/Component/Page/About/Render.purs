@@ -20,7 +20,7 @@ import Halogen as H
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
-import Utils.Style (class_, classes)
+import Util.Style (class_, classes)
 
 mockImages :: Boolean
 mockImages = true

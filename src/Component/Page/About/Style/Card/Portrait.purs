@@ -7,7 +7,7 @@ import Prelude hiding (top)
 
 import CSS (border, rem, solid)
 import CSS as CSS
-import Utils.Style (borderRadius1, heightRem, marginTop, raw, red, widthRem, (.?))
+import Util.Style (borderRadius1, heightRem, marginTop, raw, red, widthRem, (.?))
 
 classId :: String
 classId = "yg13inAyQ"

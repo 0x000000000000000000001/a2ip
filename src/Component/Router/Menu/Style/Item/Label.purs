@@ -9,7 +9,7 @@ import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
 import Component.Router.Menu.Type (State)
-import Utils.Style (marginLeft, flexGrow1, overflowHidden, widthRem, (.?))
+import Util.Style (marginLeft, flexGrow1, overflowHidden, widthRem, (.?))
 
 classId :: String 
 classId = "uLX54Ih61"

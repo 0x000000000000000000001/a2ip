@@ -7,7 +7,7 @@ import Prelude hiding (top, div)
 
 import CSS (hover, (?))
 import CSS as CSS
-import Utils.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?))
+import Util.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?))
 
 classId :: String
 classId = "A9EgPEH39"

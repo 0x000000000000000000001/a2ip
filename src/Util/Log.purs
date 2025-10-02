@@ -1,4 +1,4 @@
-module Utils.Log
+module Util.Log
   ( unsafeLog
   , unsafeLogDebug
   ) where

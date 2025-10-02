@@ -1,4 +1,4 @@
-module Utils.File.Image where
+module Util.File.Image where
 
 import Prelude
 

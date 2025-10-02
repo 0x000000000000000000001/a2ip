@@ -1,4 +1,4 @@
-module Utils.Html.Encode
+module Util.Html.Encode
   ( decodeHtmlEntities
   , encodeHtmlEntities
   ) where

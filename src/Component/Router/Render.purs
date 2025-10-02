@@ -13,7 +13,7 @@ import Component.Router.Type (Action, State, Slots)
 import Halogen as H
 import Halogen.HTML (div, slot, text)
 import Type.Proxy (Proxy(..))
-import Utils.Style (class_)
+import Util.Style (class_)
 
 render :: State -> H.ComponentHTML Action Slots AppM
 render { route } =

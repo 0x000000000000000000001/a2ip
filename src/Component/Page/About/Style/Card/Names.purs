@@ -6,7 +6,7 @@ module Component.Page.About.Style.Card.Names
 import Prelude hiding (top)
 
 import CSS as CSS
-import Utils.Style (bold, colorRed, fontSizePct, raw, widthPct, (.?))
+import Util.Style (bold, colorRed, fontSizePct, raw, widthPct, (.?))
 
 classId :: String
 classId = "eq6HaLP07"

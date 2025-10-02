@@ -9,7 +9,7 @@ import CSS (alignSelf, fromString, key)
 import CSS as CSS
 import CSS.Common (center)
 import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
-import Utils.Style (cursorPointer, margin4, widthRem, (.?))
+import Util.Style (cursorPointer, margin4, widthRem, (.?))
 
 classId :: String
 classId = "X9vrSpzg4"

@@ -1,4 +1,4 @@
-module Utils.Array.Map
+module Util.Array.Map
   ( arrayToIndexMap
   ) where
 

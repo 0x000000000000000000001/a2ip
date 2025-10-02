@@ -11,7 +11,7 @@ import CSS.Common (center)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Utils.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?))
+import Util.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?))
 
 classId :: String 
 classId = "hJyLm9YwK"

@@ -1,4 +1,4 @@
-module Utils.File.Unzip where
+module Util.File.Unzip where
 
 import Prelude
 

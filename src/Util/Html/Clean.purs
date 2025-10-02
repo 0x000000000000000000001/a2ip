@@ -1,4 +1,4 @@
-module Utils.Html.Clean
+module Util.Html.Clean
   ( removeAttribute
   , removeDataAttributes
   , cleanAttributesInTag

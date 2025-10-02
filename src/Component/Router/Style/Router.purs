@@ -7,7 +7,7 @@ import Prelude hiding (top)
 
 import CSS (minHeight, vh)
 import CSS as CSS
-import Utils.Style (displayFlex, (.?))
+import Util.Style (displayFlex, (.?))
 
 classId :: String
 classId = "DDGK8gCXg"

@@ -9,7 +9,7 @@ import Prelude hiding (top)
 import CSS (star, (&), (?))
 import CSS as CSS
 import Component.Page.About.Type (email, phone, role)
-import Utils.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>))
+import Util.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>))
 
 classId :: String
 classId = "wNMB3qHPD"

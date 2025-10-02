@@ -20,7 +20,7 @@ import Halogen as H
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Utils.Style (class_)
+import Util.Style (class_)
 
 type Item r =
   ( label :: String

@@ -1,4 +1,4 @@
-module Utils.File.Path
+module Util.File.Path
   ( assetDirPath
   , imageDirPath
   , rootDirPath

@@ -1,4 +1,4 @@
-module Utils.Html.Table
+module Util.Html.Table
   ( extractInnerCellsFromHtml
   , extractInnerCellsFromRow
   , extractInnerRowsFromHtml

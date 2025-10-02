@@ -7,7 +7,7 @@ import Prelude hiding (top, div)
 
 import CSS (fromString, key)
 import CSS as CSS
-import Utils.Style (margin1, (.?))
+import Util.Style (margin1, (.?))
 
 classId :: String
 classId = "U9Q6qc5VD"

@@ -1,4 +1,4 @@
-module Utils.GoogleDrive
+module Util.GoogleDrive
   ( extractPortraitIdFromViewUrl
   , portraitViewUrlPrefix
   , portraitViewUrlSuffix

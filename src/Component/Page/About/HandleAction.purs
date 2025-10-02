@@ -22,10 +22,10 @@ import Data.String (trim)
 import Effect.Aff (launchAff_)
 import Effect.Unsafe (unsafePerformEffect) 
 import Halogen as H
-import Utils.Array.Map (arrayToIndexMap)
-import Utils.File.Image (downloadImage)
-import Utils.File.Unzip (unzipGoogleSheetAndExtractHtml)
-import Utils.Html.Table (extractInnerCellsFromHtml)
+import Util.Array.Map (arrayToIndexMap)
+import Util.File.Image (downloadImage)
+import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
+import Util.Html.Table (extractInnerCellsFromHtml)
 
 membersTabId :: String
 membersTabId = "0"

@@ -9,7 +9,7 @@ import CSS (backgroundColor, pct, rgba, transform)
 import CSS as CSS
 import CSS.Transform (translateX)
 import Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
-import Utils.Style (displayNone, flexWrap, positionAbsolute, top0, (.?))
+import Util.Style (displayNone, flexWrap, positionAbsolute, top0, (.?))
 
 classId :: String
 classId = "YLBJc5NfZ"

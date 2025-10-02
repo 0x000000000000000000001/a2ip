@@ -5,12 +5,11 @@ import Prelude
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
 import Effect (Effect)
-import Effect.Aff (Aff, runAff, runAff_, try)
-import Effect.Class (liftEffect)
-import Effect.Console (log)
+import Effect.Aff (Aff, try)
 import Utils.Async (parTraverseBounded)
-import Utils.File.Image (downloadImage)
-import Utils.File.Path (imageDirPath)
+import Bin.Util.Log (logError, logInfo, logSuccess, runBinAff)
+import Util.File.Image (downloadImage)
+import Util.File.Path (imageDirPath)
 
 type Image = 
   { url :: String
@@ -20,28 +19,37 @@ type Image =
 imagesToDownload :: Array Image
 imagesToDownload = 
   [ { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test1.png" }
-  , { url: "https://invalid-url.com/image.jpg", filename: "test2.jpg" }
+  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test2.png" }
+  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test3.png" }
+  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test4.png" }
+  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test5.png" }
+  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test6.png" }
+  , { url: "https://invalid-url.com/image.jpg", filename: "test7.jpg" }
   ]
+  
+
 main :: Effect Unit
-main =
-  runAff_ (const $ pure unit) do
-    liftEffect $ log "Starting downloads..."
-    results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
+main = runCLI do
+  logInfo "Starting downloads..."
+  results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
 
-    let successes = filter isRight results
-    let failures = filter isLeft results
+  let successes = filter isRight results
+  let failures = filter isLeft results
 
-    liftEffect $ log $ "✅ Successful downloads: " <> show (length successes)
-    liftEffect $ log $ "❌ Failed downloads: " <> show (length failures)
+  logSuccess $ "Successful downloads: " <> show (length successes)
+  if length failures > 0 
+    then logError $ "Failed downloads: " <> show (length failures)
+    else pure unit
+
   where
   downloadWithErrorHandling :: Image -> Aff (Either String String)
   downloadWithErrorHandling { url, filename } = do
-    liftEffect $ log $ "Downloading: " <> filename
+    logInfo $ "Downloading: " <> filename
     result <- try $ downloadImage url (imageDirPath <> filename)
     case result of
       Left error -> do
-        liftEffect $ log $ "❌ Failed " <> filename <> ": " <> show error
+        logError $ "Failed " <> filename <> ": " <> show error
         pure $ Left filename
       Right _ -> do
-        liftEffect $ log $ "✅ Success " <> filename
+        logSuccess $ "Success " <> filename
         pure $ Right filename

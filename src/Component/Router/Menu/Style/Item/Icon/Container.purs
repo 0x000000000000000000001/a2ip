@@ -14,7 +14,7 @@ import CSS.Common (center)
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Utils.Style (borderRadius1, displayFlex, heightRem, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadius1, displayFlex, heightRem, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2

@@ -11,7 +11,7 @@ import Prelude hiding (top)
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh, zIndex, (?))
 import CSS as CSS
 import Component.Router.Menu.Type (State)
-import Utils.Style (borderWidth, displayFlex, left0, positionFixed, top0, widthRem, (.&), (.?))
+import Util.Style (borderWidth, displayFlex, left0, positionFixed, top0, widthRem, (.&), (.?))
 
 foldWidth :: Number
 foldWidth = 6.2
