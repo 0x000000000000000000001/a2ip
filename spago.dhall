@@ -10,6 +10,7 @@ You can edit this file as you like.
   , "affjax-web"
   , "arraybuffer-types"
   , "arrays"
+  , "avar"
   , "console"
   , "const"
   , "css"

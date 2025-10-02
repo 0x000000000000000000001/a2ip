@@ -2,14 +2,13 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
-import Control.Parallel (parTraverse)
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
-import Data.Traversable (traverse)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_, try)
+import Effect.Aff (Aff, launchAff, launchAff_, try)
 import Effect.Class (liftEffect)
 import Effect.Console (log)
+import Utils.Async (parTraverseBounded)
 import Utils.File.Image (downloadImage)
 import Utils.File.Path (imageDirPath)
 
@@ -26,9 +25,9 @@ imagesToDownload =
 
 main :: Effect Unit
 main = do 
-  launchAff_ $ do 
-    liftEffect $ log "Starting downloads with error handling..."
-    results <- parTraverse downloadWithErrorHandling imagesToDownload
+  launchAff $ do 
+    liftEffect $ log "Starting downloads..."
+    results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
     
     let successes = filter isRight results
     let failures = filter isLeft results
