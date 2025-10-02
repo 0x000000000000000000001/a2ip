@@ -6,7 +6,7 @@ import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.GoogleDrive (extractPortraitIdFromViewUrl)
+import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 
 spec :: Spec Unit
 spec = describe do

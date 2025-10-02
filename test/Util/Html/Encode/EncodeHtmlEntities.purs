@@ -5,7 +5,7 @@ import Prelude
 import Test.Spec (Spec, it)
 import Test.Utils.Assert ((===))
 import Test.Utils.Describe (describe)
-import Utils.Html.Encode (encodeHtmlEntities)
+import Util.Html.Encode (encodeHtmlEntities)
 
 spec :: Spec Unit 
 spec = describe do

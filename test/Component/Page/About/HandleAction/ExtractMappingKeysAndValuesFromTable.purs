@@ -7,8 +7,8 @@ import Data.Array (mapWithIndex)
 import Data.Map (Map, empty, fromFoldable)
 import Data.Tuple (Tuple(..))
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
 
 -- Helper function to create index map
 arrayToIndexMap :: forall a. Ord a => Array a -> Map a Int

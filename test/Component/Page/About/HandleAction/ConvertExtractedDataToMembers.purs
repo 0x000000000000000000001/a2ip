@@ -7,9 +7,9 @@ import Prelude
 -- import Data.Map (fromFoldable)
 -- import Data.Tuple (Tuple(..))
 import Test.Spec (Spec)
--- import Test.Utils.Assert ((===))
--- import Utils.Array.Map (arrayToIndexMap)
-import Test.Utils.Describe (describe)
+-- import Test.Util.Assert ((===))
+-- import Util.Array.Map (arrayToIndexMap)
+import Test.Util.Describe (describe)
 
 spec :: Spec Unit
 spec = describe do
