@@ -2,7 +2,8 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
-import Bin.Util.Log (error, info, runBinAff, success, successAfterNewline)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, debug, debugShort, errorShort, infoShort, runBinAff, successShort, successShortAfterNewline, warn, warnShort)
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
 import Effect (Effect)
@@ -26,7 +27,6 @@ imagesToDownload =
   , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test6.png" }
   , { url: "https://invalid-url.com/image.jpg", filename: "test7.jpg" }
   ]
-  
 
 main :: Effect Unit
 main = runBinAff do
@@ -35,20 +35,20 @@ main = runBinAff do
   let successes = filter isRight results
   let failures = filter isLeft results
 
-  successAfterNewline $ "Passed downloads: " <> show (length successes)
+  successShortAfterNewline $ (colorize Green "Passed") " downloads: " <> show (length successes)
   if length failures > 0 
-    then error $ "Failed downloads: " <> show (length failures)
+    then errorShort $ "Failed downloads: " <> show (length failures)
     else pure unit
 
   where
   downloadWithErrorHandling :: Image -> Aff (Either String String)
   downloadWithErrorHandling { url, filename } = do
-    info $ "Downloading " <> filename <> "..."
+    infoShort $ "Downloading " <> filename <> "..."
     result <- downloadImage url (imageDirPath <> filename)
     case result of
       Left e -> do
-        error $ "Failed " <> filename <> ": " <> show e
+        errorShort $ "Failed " <> filename <> ": " <> show e
         pure $ Left filename
       Right _ -> do 
-        success $ "Downloaded " <> filename
+        successShort $ "Downloaded " <> filename
         pure $ Right filename
