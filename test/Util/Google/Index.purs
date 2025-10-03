@@ -1,9 +1,9 @@
-module Test.Utils.Google.Index where
+module Test.Util.Google.Index where
 
 import Prelude
 
 import Test.Spec (Spec)
-import Test.Utils.Google.Drive.Index as Drive
+import Test.Util.Google.Drive.Index as Drive
 
 spec :: Spec Unit
 spec = do

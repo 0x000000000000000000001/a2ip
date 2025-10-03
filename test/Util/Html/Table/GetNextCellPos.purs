@@ -1,12 +1,12 @@
-module Test.Utils.Html.Table.GetNextCellPos where
+module Test.Util.Html.Table.GetNextCellPos where
 
 import Prelude
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
-import Utils.Html.Table (getNextCellPos)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
+import Util.Html.Table (getNextCellPos)
 
 spec :: Spec Unit
 spec = describe do

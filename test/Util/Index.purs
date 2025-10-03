@@ -1,10 +1,10 @@
-module Test.Utils.Index where
+module Test.Util.Index where
 
 import Prelude
 
 import Test.Spec (Spec)
-import Test.Utils.Google.Index as Google
-import Test.Utils.Html.Index as Html
+import Test.Util.Google.Index as Google
+import Test.Util.Html.Index as Html
 
 spec :: Spec Unit
 spec = do

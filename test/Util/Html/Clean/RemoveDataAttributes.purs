@@ -1,11 +1,11 @@
-module Test.Utils.Html.Clean.RemoveDataAttributes where
+module Test.Util.Html.Clean.RemoveDataAttributes where
 
 import Prelude
 
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
-import Utils.Html.Clean (removeDataAttributes)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
+import Util.Html.Clean (removeDataAttributes)
 
 spec :: Spec Unit
 spec = describe do

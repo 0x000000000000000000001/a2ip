@@ -1,11 +1,11 @@
-module Test.Utils.Html.Encode.DecodeHtmlEntities where
+module Test.Util.Html.Encode.DecodeHtmlEntities where
 
 import Prelude
 
 import Data.String (trim)
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
 import Util.Html.Encode (decodeHtmlEntities)
 
 spec :: Spec Unit

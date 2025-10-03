@@ -1,12 +1,12 @@
-module Test.Utils.Html.Table.ExtractInnerRowsFromHtml where
+module Test.Util.Html.Table.ExtractInnerRowsFromHtml where
 
 import Prelude
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
-import Utils.Html.Table (extractInnerRowsFromHtml)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
+import Util.Html.Table (extractInnerRowsFromHtml)
 
 spec :: Spec Unit
 spec = describe do

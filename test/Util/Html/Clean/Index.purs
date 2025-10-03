@@ -1,14 +1,14 @@
-module Test.Utils.Html.Clean.Index where
+module Test.Util.Html.Clean.Index where
 
 import Prelude
 
 import Test.Spec (Spec)
-import Test.Utils.Html.Clean.CleanAttributesInTag as CleanAttributesInTag
-import Test.Utils.Html.Clean.CleanAttributesInTags as CleanAttributesInTags
-import Test.Utils.Html.Clean.FindUnescapedQuote as FindUnescapedQuote
-import Test.Utils.Html.Clean.RemoveAttribute as RemoveAttribute
-import Test.Utils.Html.Clean.RemoveComments as RemoveComments
-import Test.Utils.Html.Clean.RemoveDataAttributes as RemoveDataAttributes
+import Test.Util.Html.Clean.CleanAttributesInTag as CleanAttributesInTag
+import Test.Util.Html.Clean.CleanAttributesInTags as CleanAttributesInTags
+import Test.Util.Html.Clean.FindUnescapedQuote as FindUnescapedQuote
+import Test.Util.Html.Clean.RemoveAttribute as RemoveAttribute
+import Test.Util.Html.Clean.RemoveComments as RemoveComments
+import Test.Util.Html.Clean.RemoveDataAttributes as RemoveDataAttributes
 
 spec :: Spec Unit
 spec = do

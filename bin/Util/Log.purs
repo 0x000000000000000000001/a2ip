@@ -1,4 +1,4 @@
-module Utils.CLI
+module Bin.Util.Log
   ( runBinAff
   , logInfo
   , logSuccess

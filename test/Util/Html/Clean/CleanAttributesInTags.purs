@@ -1,11 +1,11 @@
-module Test.Utils.Html.Clean.CleanAttributesInTags where
+module Test.Util.Html.Clean.CleanAttributesInTags where
 
 import Prelude
 
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
-import Utils.Html.Clean (cleanAttributesInTags)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
+import Util.Html.Clean (cleanAttributesInTags)
 
 spec :: Spec Unit
 spec = describe do

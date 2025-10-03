@@ -1,4 +1,4 @@
-module Test.Utils.Assert ((===), shouldEqual) where
+module Test.Util.Assert ((===), shouldEqual) where
 
 import Prelude
 

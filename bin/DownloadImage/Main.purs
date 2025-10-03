@@ -2,12 +2,12 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
+import Bin.Util.Log (logError, logInfo, logSuccess, runBinAff)
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
 import Effect (Effect)
 import Effect.Aff (Aff, try)
-import Utils.Async (parTraverseBounded)
-import Bin.Util.Log (logError, logInfo, logSuccess, runBinAff)
+import Util.Async (parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 
@@ -29,7 +29,7 @@ imagesToDownload =
   
 
 main :: Effect Unit
-main = runCLI do
+main = runBinAff do
   logInfo "Starting downloads..."
   results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
 

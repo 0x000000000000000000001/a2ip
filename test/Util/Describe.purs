@@ -1,4 +1,4 @@
-module Test.Utils.Describe
+module Test.Util.Describe
   ( describe
   , describeOnly
   ) where

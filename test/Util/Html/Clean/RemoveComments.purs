@@ -1,10 +1,10 @@
-module Test.Utils.Html.Clean.RemoveComments where
+module Test.Util.Html.Clean.RemoveComments where
 
 import Prelude
 
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
 import Util.Html.Clean (removeComments)
 
 spec :: Spec Unit

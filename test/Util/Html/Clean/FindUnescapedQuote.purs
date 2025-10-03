@@ -1,12 +1,12 @@
-module Test.Utils.Html.Clean.FindUnescapedQuote where
+module Test.Util.Html.Clean.FindUnescapedQuote where
 
 import Prelude
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)
-import Test.Utils.Assert ((===))
-import Test.Utils.Describe (describe)
-import Utils.Html.Clean (findUnescapedQuote)
+import Test.Util.Assert ((===))
+import Test.Util.Describe (describe)
+import Util.Html.Clean (findUnescapedQuote)
 
 spec :: Spec Unit
 spec = describe do
