@@ -18,12 +18,9 @@ import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
-import Data.String (trim)
-import Effect.Aff (launchAff_)
-import Effect.Unsafe (unsafePerformEffect) 
+import Data.String (trim) 
 import Halogen as H
 import Util.Array.Map (arrayToIndexMap)
-import Util.File.Image (downloadImage)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.Html.Table (extractInnerCellsFromHtml)
 
@@ -84,16 +81,14 @@ convertExtractedDataToMembers extractedData =
 
       toMember :: Array String -> Member
       toMember row =
-        let _ = unsafePerformEffect $ launchAff_ $ downloadImage (generateGoogleDriveImageUrl portraitId) "test.jpg"
-        in 
-          { firstname: value firstname row
-          , lastname: value lastname row
-          , role: value role row
-          , job: value job row
-          , phone: value phone row
-          , email: value email row
-          , portraitUrl: "abc"
-          }
+        { firstname: value firstname row
+        , lastname: value lastname row
+        , role: value role row
+        , job: value job row
+        , phone: value phone row
+        , email: value email row
+        , portraitUrl: generateGoogleDriveImageUrl portraitId
+        }
 
   in values <#> (Just <<< toMember)
 

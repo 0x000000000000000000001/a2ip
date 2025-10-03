@@ -2,11 +2,11 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
-import Bin.Util.Log (logError, logInfo, logSuccess, runBinAff)
+import Bin.Util.Log (error, info, runBinAff, success)
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
 import Effect (Effect)
-import Effect.Aff (Aff, try)
+import Effect.Aff (Aff)
 import Util.Async (parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
@@ -30,26 +30,25 @@ imagesToDownload =
 
 main :: Effect Unit
 main = runBinAff do
-  logInfo "Starting downloads..."
   results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
 
   let successes = filter isRight results
   let failures = filter isLeft results
 
-  logSuccess $ "Successful downloads: " <> show (length successes)
+  success $ "Passed downloads: " <> show (length successes)
   if length failures > 0 
-    then logError $ "Failed downloads: " <> show (length failures)
+    then error $ "Failed downloads: " <> show (length failures)
     else pure unit
 
   where
   downloadWithErrorHandling :: Image -> Aff (Either String String)
   downloadWithErrorHandling { url, filename } = do
-    logInfo $ "Downloading: " <> filename
-    result <- try $ downloadImage url (imageDirPath <> filename)
+    info $ "Downloading " <> filename <> "..."
+    result <- downloadImage url (imageDirPath <> filename)
     case result of
-      Left error -> do
-        logError $ "Failed " <> filename <> ": " <> show error
+      Left e -> do
+        error $ "Failed " <> filename <> ": " <> show e
         pure $ Left filename
-      Right _ -> do
-        logSuccess $ "Success " <> filename
+      Right _ -> do 
+        success $ "Downloaded " <> filename
         pure $ Right filename

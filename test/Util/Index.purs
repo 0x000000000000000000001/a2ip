@@ -9,4 +9,4 @@ import Test.Util.Html.Index as Html
 spec :: Spec Unit
 spec = do
   Google.spec
-  Html.spec 
+  Html.spec  

@@ -1,7 +1,10 @@
 module Util.Log
   ( unsafeLog
   , unsafeLogDebug
-  ) where
+  , unsafeLogDebugShow
+  , unsafeLogShow
+  )
+  where
 
 import Prelude
 
@@ -18,5 +21,11 @@ unsafeLog level input = unsafePerformEffect $ do
     Warning -> Console.warn message_
     Error -> Console.error message_
 
+unsafeLogShow :: forall a. Show a => Level -> a -> Unit
+unsafeLogShow level input = unsafeLog level $ show input
+
 unsafeLogDebug :: forall a. Show a => a -> Unit
 unsafeLogDebug = unsafeLog Debug
+
+unsafeLogDebugShow :: forall a. Show a => a -> Unit
+unsafeLogDebugShow = unsafeLogDebug <<< show
