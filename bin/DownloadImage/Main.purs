@@ -2,7 +2,7 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
-import Bin.Util.Log (error, info, runBinAff, success)
+import Bin.Util.Log (error, info, runBinAff, success, successAfterNewline)
 import Data.Array (filter, length)
 import Data.Either (Either(..), isLeft, isRight)
 import Effect (Effect)
@@ -35,7 +35,7 @@ main = runBinAff do
   let successes = filter isRight results
   let failures = filter isLeft results
 
-  success $ "Passed downloads: " <> show (length successes)
+  successAfterNewline $ "Passed downloads: " <> show (length successes)
   if length failures > 0 
     then error $ "Failed downloads: " <> show (length failures)
     else pure unit
