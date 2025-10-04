@@ -15,11 +15,12 @@ module Bin.Util.Log.Warn
 
 import Prelude
 
-import Bin.Util.Log (CliColor(..), colorize, newline, prefixed)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
-warnColor :: CliColor
+warnColor :: Color
 warnColor = Yellow
 
 warnColorize :: String -> String
@@ -47,7 +48,7 @@ warnShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
 warnShowAfterNewline = warnAfterNewline <<< show
 
 warnEmoji :: String
-warnEmoji = "⚠️"
+warnEmoji = "⚠️ "
 
 warnPrefixed :: String -> Boolean -> Boolean -> String
 warnPrefixed msg short colorize = prefixed "warn" warnColor warnEmoji msg short colorize

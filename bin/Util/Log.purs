@@ -1,7 +1,5 @@
 module Bin.Util.Log
-  ( CliColor(..)
-  , ansiColorCode
-  , colorize
+  ( colorize
   , log
   , logAfterNewline
   , logShow
@@ -15,25 +13,17 @@ module Bin.Util.Log
 
 import Prelude
 
+import Ansi.Codes (Color, EscapeCode(..), GraphicsParam(..), escapeCodeToString)
 import Data.Either (Either(..))
+import Data.List.NonEmpty (singleton)
 import Effect (Effect)
 import Effect.Aff (Aff, runAff_)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 import Effect.Exception (Error)
 
-data CliColor = Red | Green | Yellow | Blue | Grey | Reset
-
-ansiColorCode :: CliColor -> String
-ansiColorCode Red = "\x1b[31m"
-ansiColorCode Green = "\x1b[32m"
-ansiColorCode Yellow = "\x1b[33m"
-ansiColorCode Blue = "\x1b[34m"
-ansiColorCode Reset = "\x1b[0m"
-ansiColorCode Grey = "\x1b[90m"
-
-colorize :: CliColor -> String -> String
-colorize c s = ansiColorCode c <> s <> ansiColorCode Reset
+colorize :: Color -> String -> String
+colorize c s = escapeCodeToString (Graphics (singleton $ PForeground c)) <> s <> escapeCodeToString (Graphics (singleton Reset))
 
 runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action
@@ -59,11 +49,11 @@ logShow = log <<< show
 logShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
 logShowAfterNewline = logAfterNewline <<< show
 
-prefixed :: String -> CliColor -> String -> String -> Boolean -> Boolean -> String
+prefixed :: String -> Color -> String -> String -> Boolean -> Boolean -> String
 prefixed prefix color emoji msg short colorize_ = 
   emoji 
   <> " " 
-  <> (if short then "" else colorize color "[" <> prefix <> "] ") 
+  <> (if short then "" else colorize color $ "[" <> prefix <> "] ") 
   <> (if colorize_ then colorize color msg else msg)
 
 newline :: forall m. MonadEffect m => m Unit

@@ -15,11 +15,12 @@ module Bin.Util.Log.Error
 
 import Prelude
 
-import Bin.Util.Log (CliColor(..), colorize, newline, prefixed)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
-errorColor :: CliColor
+errorColor :: Color
 errorColor = Red
 
 errorColorize :: String -> String

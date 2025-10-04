@@ -26,6 +26,7 @@ You can edit this file as you like.
   , "halogen-css"
   , "html-parser-halogen"
   , "integers"
+  , "lists"
   , "maybe"
   , "node-buffer"
   , "node-fs"

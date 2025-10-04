@@ -15,11 +15,12 @@ module Bin.Util.Log.Info
 
 import Prelude
 
-import Bin.Util.Log (CliColor(..), colorize, newline, prefixed)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
-infoColor :: CliColor
+infoColor :: Color
 infoColor = Blue
 
 infoColorize :: String -> String
@@ -47,7 +48,7 @@ infoShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
 infoShowAfterNewline = infoAfterNewline <<< show
 
 infoEmoji :: String
-infoEmoji = "ℹ️"
+infoEmoji = "ℹ️ "
 
 infoPrefixed :: String -> Boolean -> Boolean -> String
 infoPrefixed msg short colorize = prefixed "info" infoColor infoEmoji msg short colorize

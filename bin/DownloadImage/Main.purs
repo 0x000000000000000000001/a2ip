@@ -4,10 +4,13 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Util.Log (log, runBinAff, write)
-import Bin.Util.Log.Error (errorPrefixed)
-import Bin.Util.Log.Info (infoColorize, infoShort)
-import Bin.Util.Log.Pending (pendingPrefixed)
-import Bin.Util.Log.Success (successPrefixed)
+import Bin.Util.Log.Debug (debug)
+import Bin.Util.Log.Error (error, errorPrefixed)
+import Bin.Util.Log.Info (info, infoColorize)
+import Bin.Util.Log.Pending (pending, pendingPrefixed)
+import Bin.Util.Log.Success (success, successPrefixed)
+import Bin.Util.Log.Upload (upload)
+import Bin.Util.Log.Warn (warn)
 import Data.Array (length)
 import Data.Either (Either(..))
 import Data.Foldable (for_)
@@ -40,7 +43,13 @@ main :: Effect Unit
 main = runBinAff do
   writeLock <- new unit
 
-  infoShort "abc"
+  info "abc"
+  warn "abc"
+  debug "abc"
+  error "abc"
+  success "abc"
+  pending "abc"
+  upload "abc"
   
   for_ imagesToDownload \{ filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."

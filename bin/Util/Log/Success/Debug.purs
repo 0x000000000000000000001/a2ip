@@ -15,13 +15,14 @@ module Bin.Util.Log.Debug
 
 import Prelude
 
-import Bin.Util.Log (CliColor(..), colorize, newline, prefixed)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
-debugColor :: CliColor
-debugColor = Grey
-
+debugColor :: Color
+debugColor = Magenta
+ 
 debugColorize :: String -> String
 debugColorize = colorize debugColor
 
@@ -47,7 +48,7 @@ debugShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
 debugShowAfterNewline = debugAfterNewline <<< show
 
 debugEmoji :: String
-debugEmoji = "🪲"
+debugEmoji = "🪲 "
 
 debugPrefixed :: String -> Boolean -> Boolean -> String
 debugPrefixed msg short colorize = prefixed "debug" debugColor debugEmoji msg short colorize

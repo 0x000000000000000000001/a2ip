@@ -15,12 +15,13 @@ module Bin.Util.Log.Pending
 
 import Prelude
 
-import Bin.Util.Log (CliColor(..), colorize, newline, prefixed)
+import Ansi.Codes (Color(..))
+import Bin.Util.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
-pendingColor :: CliColor
-pendingColor = Grey
+pendingColor :: Color
+pendingColor = BrightBlack
 
 pendingColorize :: String -> String
 pendingColorize = colorize pendingColor
