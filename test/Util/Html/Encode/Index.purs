@@ -1,4 +1,4 @@
-module Test.Util.Html.Encoding.Index where
+module Test.Util.Html.Encode.Index where
 
 import Prelude
 
