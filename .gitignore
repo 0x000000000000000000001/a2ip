@@ -1,6 +1,7 @@
 /bower_components/
 /generated-docs/
 /.idea
+/.env
 .DS_Store
 /node_modules/
 /.pulp-cache/

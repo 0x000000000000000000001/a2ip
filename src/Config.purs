@@ -7,11 +7,21 @@ module Config
 
 import Prelude
 
-foreign import assetsBaseUrl :: String
-foreign import dev :: Boolean
-foreign import env :: Env
+foreign import lookupEnv :: String -> String
 
 data Env = Dev | Test | Stage | Prod
+
+derive instance eqEnv :: Eq Env
+
+env :: Env
+env = 
+  let rawEnv = lookupEnv "ENV" in
+  case rawEnv of
+    "dev" -> Dev
+    "test" -> Test
+    "stage" -> Stage
+    "prod" -> Prod
+    _ -> Dev
 
 type Config = 
   { assetBaseUrl :: String
@@ -21,12 +31,12 @@ type Config =
   }
 
 assetBaseUrl :: String
-assetBaseUrl = assetsBaseUrl <> "asset/"
+assetBaseUrl = lookupEnv "ROOT_DIR" <> "asset/"
 
 defaultConfig :: Config
 defaultConfig = 
   { assetBaseUrl
   , imageBaseUrl: assetBaseUrl <> "image/"
-  , dev
+  , dev: Dev == env
   , env
   }

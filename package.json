@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "he": "^1.2.0",
     "jszip": "^3.10.1",
     "purty": "^7.0.0",
