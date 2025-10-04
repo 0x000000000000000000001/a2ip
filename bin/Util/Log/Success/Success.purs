@@ -8,6 +8,7 @@ module Bin.Util.Log.Success
   , successShort
   , successShortAfterNewline
   , successShortShow
+  , successShortShowAfterNewline
   , successShow
   , successShowAfterNewline
   )
@@ -37,6 +38,9 @@ successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true fals
 
 successShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg
+
+successShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+successShortShowAfterNewline = successShortAfterNewline <<< show
 
 successShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 successShortShow = successShort <<< show

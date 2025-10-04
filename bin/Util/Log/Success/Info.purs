@@ -8,6 +8,7 @@ module Bin.Util.Log.Info
   , infoShort
   , infoShortAfterNewline
   , infoShortShow
+  , infoShortShowAfterNewline
   , infoShow
   , infoShowAfterNewline
   )
@@ -37,6 +38,9 @@ infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true false)
 
 infoShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg
+
+infoShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+infoShortShowAfterNewline = infoShortAfterNewline <<< show
 
 infoShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 infoShortShow = infoShort <<< show

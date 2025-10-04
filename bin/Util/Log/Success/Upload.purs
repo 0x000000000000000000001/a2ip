@@ -8,6 +8,7 @@ module Bin.Util.Log.Upload
   , uploadShort
   , uploadShortAfterNewline
   , uploadShortShow
+  , uploadShortShowAfterNewline
   , uploadShow
   , uploadShowAfterNewline
   )
@@ -37,6 +38,9 @@ uploadShort = liftEffect <<< Console.log <<< (\m -> uploadPrefixed m true false)
 
 uploadShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 uploadShortAfterNewline msg = newline *> uploadShort msg
+
+uploadShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+uploadShortShowAfterNewline = uploadShortAfterNewline <<< show
 
 uploadShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 uploadShortShow = uploadShort <<< show

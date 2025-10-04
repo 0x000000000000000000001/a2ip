@@ -8,6 +8,7 @@ module Bin.Util.Log.Warn
   , warnShort
   , warnShortAfterNewline
   , warnShortShow
+  , warnShortShowAfterNewline
   , warnShow
   , warnShowAfterNewline
   )
@@ -37,6 +38,9 @@ warnShort = liftEffect <<< Console.log <<< (\m -> warnPrefixed m true false)
 
 warnShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 warnShortAfterNewline msg = newline *> warnShort msg
+
+warnShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+warnShortShowAfterNewline = warnShortAfterNewline <<< show
 
 warnShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 warnShortShow = warnShort <<< show

@@ -8,6 +8,7 @@ module Bin.Util.Log.Download
   , downloadShort
   , downloadShortAfterNewline
   , downloadShortShow
+  , downloadShortShowAfterNewline
   , downloadShow
   , downloadShowAfterNewline
   )
@@ -37,6 +38,9 @@ downloadShort = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m true fa
 
 downloadShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 downloadShortAfterNewline msg = newline *> downloadShort msg
+
+downloadShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+downloadShortShowAfterNewline = downloadShortAfterNewline <<< show
 
 downloadShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 downloadShortShow = downloadShort <<< show

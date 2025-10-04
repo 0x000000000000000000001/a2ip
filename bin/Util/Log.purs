@@ -60,4 +60,4 @@ prefixed prefix color emoji msg short colorize_ =
   <> (if colorize_ then colorize color msg else msg)
 
 newline :: forall m. MonadEffect m => m Unit
-newline = log "\n"
+newline = log ""

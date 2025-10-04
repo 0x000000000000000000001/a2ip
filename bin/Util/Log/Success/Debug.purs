@@ -8,6 +8,7 @@ module Bin.Util.Log.Debug
   , debugShort
   , debugShortAfterNewline
   , debugShortShow
+  , debugShortShowAfterNewline
   , debugShow
   , debugShowAfterNewline
   )
@@ -37,6 +38,9 @@ debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true false)
 
 debugShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg
+
+debugShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+debugShortShowAfterNewline = debugShortAfterNewline <<< show
 
 debugShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 debugShortShow = debugShort <<< show

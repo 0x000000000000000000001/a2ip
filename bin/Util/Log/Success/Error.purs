@@ -8,6 +8,7 @@ module Bin.Util.Log.Error
   , errorShort
   , errorShortAfterNewline
   , errorShortShow
+  , errorShortShowAfterNewline
   , errorShow
   , errorShowAfterNewline
   )
@@ -17,6 +18,7 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log (colorize, newline, prefixed)
+import Data.Number (e)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
@@ -37,6 +39,9 @@ errorShort = liftEffect <<< Console.log <<< (\m -> errorPrefixed m true false)
 
 errorShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 errorShortAfterNewline msg = newline *> errorShort msg
+
+errorShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+errorShortShowAfterNewline = errorShortAfterNewline <<< show
 
 errorShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 errorShortShow = errorShort <<< show

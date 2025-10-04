@@ -8,6 +8,7 @@ module Bin.Util.Log.Pending
   , pendingShort
   , pendingShortAfterNewline
   , pendingShortShow
+  , pendingShortShowAfterNewline
   , pendingShow
   , pendingShowAfterNewline
   )
@@ -37,6 +38,9 @@ pendingShort = liftEffect <<< Console.log <<< (\m -> pendingPrefixed m true fals
 
 pendingShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 pendingShortAfterNewline msg = newline *> pendingShort msg
+
+pendingShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+pendingShortShowAfterNewline = pendingShortAfterNewline <<< show
 
 pendingShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
 pendingShortShow = pendingShort <<< show
