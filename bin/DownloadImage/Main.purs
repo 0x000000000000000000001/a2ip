@@ -3,7 +3,7 @@ module Bin.DownloadImage.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import Bin.Util.Log (log, runBinAff, write)
+import Bin.Util.Log (log, logAfterNewline, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
 import Bin.Util.Log.Info (infoColorize)
 import Bin.Util.Log.Pending (pendingPrefixed)
@@ -39,6 +39,8 @@ imagesToDownload =
 main :: Effect Unit
 main = runBinAff do
   writeLock <- new unit
+
+  logAfterNewline "abc"
 
   for_ imagesToDownload \{ filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
