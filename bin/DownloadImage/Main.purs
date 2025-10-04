@@ -5,6 +5,7 @@ import Prelude
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Util.Log (colorize, CliColor(..), log, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
+import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Data.Array (length)
 import Data.Either (Either(..))
@@ -38,7 +39,7 @@ main = runBinAff do
   writeLock <- AVar.new unit
   
   for_ imagesToDownload \{ filename } -> do
-    log $ colorize Grey "⏳ Pending" <> " " <> filename <> "..."
+    log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
 
   let totalLines = length imagesToDownload
   
