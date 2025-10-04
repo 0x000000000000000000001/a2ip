@@ -2,53 +2,72 @@ module Bin.DownloadImage.Main (main) where
 
 import Prelude
 
-import Ansi.Codes (Color(..))
-import Bin.Util.Log (colorize, debug, debugShort, errorShort, infoShort, runBinAff, successShort, successShortAfterNewline, warn, warnShort)
-import Data.Array (filter, length)
-import Data.Either (Either(..), isLeft, isRight)
+import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
+import Bin.Util.Log (log, logAfterNewline, runBinAff, write)
+import Data.Array (length)
+import Data.Either (Either(..))
+import Data.Foldable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
+import Effect.Aff.AVar as AVar
 import Util.Async (parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 
 type Image = 
-  { url :: String
+  { idx :: Int 
+  , url :: String
   , filename :: String
   }
 
 imagesToDownload :: Array Image
 imagesToDownload = 
-  [ { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test1.png" }
-  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test2.png" }
-  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test3.png" }
-  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test4.png" }
-  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test5.png" }
-  , { url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test6.png" }
-  , { url: "https://invalid-url.com/image.jpg", filename: "test7.jpg" }
+  [ { idx: 0, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test1.png" }
+  , { idx: 1, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test2.png" }
+  , { idx: 2, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test3.png" }
+  , { idx: 3, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test4.png" }
+  , { idx: 4, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test5.png" }
+  , { idx: 5, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test6.png" }
+  , { idx: 6, url: "https://invalid-url.com/image.jpg", filename: "test7.jpg" }
   ]
 
 main :: Effect Unit
 main = runBinAff do
-  results <- parTraverseBounded 3 downloadWithErrorHandling imagesToDownload
+  writeLock <- AVar.new unit
+  
+  for_ imagesToDownload \{ filename } -> do
+    log $ "Pending " <> filename <> "..."
 
-  let successes = filter isRight results
-  let failures = filter isLeft results
-
-  successShortAfterNewline $ (colorize Green "Passed") " downloads: " <> show (length successes)
-  if length failures > 0 
-    then errorShort $ "Failed downloads: " <> show (length failures)
-    else pure unit
+  let totalLines = length imagesToDownload
+  
+  void $ parTraverseBounded 3 (downloadWithErrorHandling writeLock totalLines) imagesToDownload
+  
+  log "" 
 
   where
-  downloadWithErrorHandling :: Image -> Aff (Either String String)
-  downloadWithErrorHandling { url, filename } = do
-    infoShort $ "Downloading " <> filename <> "..."
+  updateLine :: AVar.AVar Unit -> Int -> Int -> String -> Aff Unit
+  updateLine lock totalLines lineIdx message = do
+    token <- AVar.take lock
+    
+    let linesToGoUp = totalLines - lineIdx
+    
+    write $ escapeCodeToString (Up linesToGoUp)  
+       <> "\r"                                    
+       <> escapeCodeToString (EraseLine Entire)   
+       <> message                                 
+       <> escapeCodeToString (Down linesToGoUp)   
+    
+    AVar.put token lock
+
+  downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
+  downloadWithErrorHandling lock totalLines { idx, url, filename } = do
+    updateLine lock totalLines idx ("Downloading " <> filename <> "...")
+
     result <- downloadImage url (imageDirPath <> filename)
     case result of
       Left e -> do
-        errorShort $ "Failed " <> filename <> ": " <> show e
+        updateLine lock totalLines idx ("Failed " <> filename <> ": " <> e)
         pure $ Left filename
       Right _ -> do 
-        successShort $ "Downloaded " <> filename
+        updateLine lock totalLines idx ("Downloaded " <> filename)
         pure $ Right filename

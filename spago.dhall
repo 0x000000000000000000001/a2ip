@@ -8,6 +8,7 @@ You can edit this file as you like.
   , "affjax"
   , "affjax-node"
   , "affjax-web"
+  , "ansi"
   , "arraybuffer-types"
   , "arrays"
   , "avar"
