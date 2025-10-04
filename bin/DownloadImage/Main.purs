@@ -45,7 +45,7 @@ main = runBinAff do
 
   let totalLines = length imagesToDownload
   
-  void $ parTraverseBounded 3 (downloadWithErrorHandling writeLock totalLines) imagesToDownload
+  void $ parTraverseBounded 3 (download writeLock totalLines) imagesToDownload
   
   write $ escapeCodeToString (Down totalLines) <> "\r" 
 
@@ -65,11 +65,12 @@ main = runBinAff do
     
     put unit lock
 
-  downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
-  downloadWithErrorHandling lock totalLines { idx, url, filename } = do
+  download :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
+  download lock totalLines { idx, url, filename } = do
     updateLine lock totalLines idx (infoColorize "⬇️  Downloading" <> " " <> filename <> "...")
 
     result <- downloadImage url (imageDirPath <> filename)
+
     case result of
       Left e -> do 
         updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": " <> e)
