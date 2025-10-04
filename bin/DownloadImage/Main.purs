@@ -4,6 +4,8 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Util.Log (colorize, CliColor(..), log, runBinAff, write)
+import Bin.Util.Log.Error (errorPrefixed)
+import Bin.Util.Log.Success (successPrefixed)
 import Data.Array (length)
 import Data.Either (Either(..))
 import Data.Foldable (for_)
@@ -67,8 +69,8 @@ main = runBinAff do
     result <- downloadImage url (imageDirPath <> filename)
     case result of
       Left e -> do
-        updateLine lock totalLines idx (colorize Red "❌ Failed" <> " " <> filename <> ": " <> e)
+        updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": " <> e)
         pure $ Left filename
-      Right _ -> do 
-        updateLine lock totalLines idx (colorize Green "✅ Downloaded" <> " " <> filename)
+      Right _ -> do
+        updateLine lock totalLines idx (successPrefixed "Downloaded " true true <> filename)
         pure $ Right filename

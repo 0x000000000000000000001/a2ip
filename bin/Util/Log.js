@@ -1,3 +1,3 @@
-export const writeStdout = (str) => () => {
+export const _write = (str) => () => {
   process.stdout.write(str);
 };
