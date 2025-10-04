@@ -3,7 +3,7 @@ module Bin.DownloadImage.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import Bin.Util.Log (colorize, CliColor(..), log, runBinAff, write)
+import Bin.Util.Log (log, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
 import Bin.Util.Log.Info (infoColorize)
 import Bin.Util.Log.Pending (pendingPrefixed)
@@ -51,18 +51,18 @@ main = runBinAff do
   where
   updateLine :: AVar.AVar Unit -> Int -> Int -> String -> Aff Unit
   updateLine lock totalLines lineIdx message = do
-    token <- AVar.take lock
+    AVar.take lock
     
     let linesToGoUp = totalLines - lineIdx
     
     write $ escapeCodeToString (Up linesToGoUp)     
-       <> "\r"                                       
-       <> escapeCodeToString (EraseLine Entire)    
-       <> message                                    
-       <> escapeCodeToString (Down linesToGoUp)     
-       <> "\r"                                       
+      <> "\r"                                       
+      <> escapeCodeToString (EraseLine Entire)    
+      <> message                                    
+      <> escapeCodeToString (Down linesToGoUp)     
+      <> "\r"                                       
     
-    AVar.put token lock
+    AVar.put unit lock
 
   downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
   downloadWithErrorHandling lock totalLines { idx, url, filename } = do
