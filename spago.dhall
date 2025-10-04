@@ -32,7 +32,6 @@ You can edit this file as you like.
   , "node-fs"
   , "nonempty"
   , "now"
-  , "numbers"
   , "ordered-collections"
   , "parallel"
   , "prelude"

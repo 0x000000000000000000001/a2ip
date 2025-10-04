@@ -18,7 +18,6 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log (colorize, newline, prefixed)
-import Data.Number (e)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
