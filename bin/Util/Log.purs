@@ -23,7 +23,10 @@ import Effect.Console as Console
 import Effect.Exception (Error)
 
 colorize :: Color -> String -> String
-colorize c s = escapeCodeToString (Graphics (singleton $ PForeground c)) <> s <> escapeCodeToString (Graphics (singleton Reset))
+colorize c s = 
+  escapeCodeToString (Graphics (singleton $ PForeground c)) 
+  <> s 
+  <> escapeCodeToString (Graphics (singleton Reset))
 
 runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action
