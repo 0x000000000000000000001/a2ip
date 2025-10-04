@@ -72,8 +72,8 @@ main = runBinAff do
     result <- downloadImage url (imageDirPath <> filename)
 
     case result of
-      Left e -> do 
-        updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": " <> e)
+      Left e -> do
+        updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": \"" <> e <> "\"")
         pure $ Left filename
       Right _ -> do
         updateLine lock totalLines idx (successPrefixed "Downloaded " true true <> filename)
