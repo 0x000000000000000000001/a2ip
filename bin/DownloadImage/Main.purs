@@ -5,7 +5,7 @@ import Prelude
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Util.Log (log, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
-import Bin.Util.Log.Info (infoColorize)
+import Bin.Util.Log.Info (infoColorize, infoShort)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Data.Array (length)
@@ -13,11 +13,11 @@ import Data.Either (Either(..))
 import Data.Foldable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
+import Effect.Aff.AVar (new, take, put)
 import Effect.Aff.AVar as AVar
 import Util.Async (parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
-import Effect.Aff.AVar (new, take, put)
 
 type Image = 
   { idx :: Int 
@@ -39,6 +39,8 @@ imagesToDownload =
 main :: Effect Unit
 main = runBinAff do
   writeLock <- new unit
+
+  infoShort "abc"
   
   for_ imagesToDownload \{ filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
