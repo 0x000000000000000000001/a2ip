@@ -17,6 +17,7 @@ import Effect.Aff.AVar as AVar
 import Util.Async (parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
+import Effect.Aff.AVar (new, take, put)
 
 type Image = 
   { idx :: Int 
@@ -37,7 +38,7 @@ imagesToDownload =
 
 main :: Effect Unit
 main = runBinAff do
-  writeLock <- AVar.new unit
+  writeLock <- new unit
   
   for_ imagesToDownload \{ filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
@@ -51,7 +52,7 @@ main = runBinAff do
   where
   updateLine :: AVar.AVar Unit -> Int -> Int -> String -> Aff Unit
   updateLine lock totalLines lineIdx message = do
-    AVar.take lock
+    take lock
     
     let linesToGoUp = totalLines - lineIdx
     
@@ -62,7 +63,7 @@ main = runBinAff do
       <> escapeCodeToString (Down linesToGoUp)     
       <> "\r"                                       
     
-    AVar.put unit lock
+    put unit lock
 
   downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
   downloadWithErrorHandling lock totalLines { idx, url, filename } = do
