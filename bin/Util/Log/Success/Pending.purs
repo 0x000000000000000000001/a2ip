@@ -26,13 +26,13 @@ pendingColorize :: String -> String
 pendingColorize = colorize pendingColor
 
 pending :: forall m. MonadEffect m => String -> m Unit
-pending = liftEffect <<< Console.log <<< (\m -> pendingPrefixed m false)
+pending = liftEffect <<< Console.log <<< (\m -> pendingPrefixed m false false)
 
 pendingAfterNewline :: forall m. MonadEffect m => String -> m Unit
 pendingAfterNewline msg = newline *> pending msg
 
 pendingShort :: forall m. MonadEffect m => String -> m Unit
-pendingShort = liftEffect <<< Console.log <<< (\m -> pendingPrefixed m true)
+pendingShort = liftEffect <<< Console.log <<< (\m -> pendingPrefixed m true false)
 
 pendingShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 pendingShortAfterNewline msg = newline *> pendingShort msg

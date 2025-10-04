@@ -26,13 +26,13 @@ successColorize :: String -> String
 successColorize = colorize successColor
 
 success :: forall m. MonadEffect m => String -> m Unit
-success = liftEffect <<< Console.log <<< (\m -> successPrefixed m false)
+success = liftEffect <<< Console.log <<< (\m -> successPrefixed m false false)
 
 successAfterNewline :: forall m. MonadEffect m => String -> m Unit
 successAfterNewline msg = newline *> success msg
 
 successShort :: forall m. MonadEffect m => String -> m Unit
-successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true)
+successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true false)
 
 successShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg

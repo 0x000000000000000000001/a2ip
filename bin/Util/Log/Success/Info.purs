@@ -26,13 +26,13 @@ infoColorize :: String -> String
 infoColorize = colorize infoColor
 
 info :: forall m. MonadEffect m => String -> m Unit
-info = liftEffect <<< Console.log <<< (\m -> infoPrefixed m false)
+info = liftEffect <<< Console.log <<< (\m -> infoPrefixed m false false)
 
 infoAfterNewline :: forall m. MonadEffect m => String -> m Unit
 infoAfterNewline msg = newline *> info msg
 
 infoShort :: forall m. MonadEffect m => String -> m Unit
-infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true)
+infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true false)
 
 infoShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg

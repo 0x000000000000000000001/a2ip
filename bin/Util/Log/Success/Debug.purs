@@ -26,13 +26,13 @@ debugColorize :: String -> String
 debugColorize = colorize debugColor
 
 debug :: forall m. MonadEffect m => String -> m Unit
-debug = liftEffect <<< Console.log <<< (\m -> debugPrefixed m false)
+debug = liftEffect <<< Console.log <<< (\m -> debugPrefixed m false false)
 
 debugAfterNewline :: forall m. MonadEffect m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg
 
 debugShort :: forall m. MonadEffect m => String -> m Unit
-debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true)
+debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true false)
 
 debugShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg
