@@ -9,7 +9,7 @@ import Test.Util.Html.Clean.FindUnescapedQuote as FindUnescapedQuote
 import Test.Util.Html.Clean.RemoveAttribute as RemoveAttribute
 import Test.Util.Html.Clean.RemoveComments as RemoveComments
 import Test.Util.Html.Clean.RemoveDataAttributes as RemoveDataAttributes
-
+ 
 spec :: Spec Unit
 spec = do
   CleanAttributesInTag.spec
