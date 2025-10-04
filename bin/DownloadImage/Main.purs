@@ -42,7 +42,8 @@ main = runBinAff do
   
   void $ parTraverseBounded 3 (downloadWithErrorHandling writeLock totalLines) imagesToDownload
   
-  log "" 
+  -- Repositionner le curseur proprement à la fin (après la dernière ligne)
+  write $ escapeCodeToString (Down totalLines) <> "\r" 
 
   where
   updateLine :: AVar.AVar Unit -> Int -> Int -> String -> Aff Unit
@@ -51,11 +52,12 @@ main = runBinAff do
     
     let linesToGoUp = totalLines - lineIdx
     
-    write $ escapeCodeToString (Up linesToGoUp)  
-       <> "\r"                                    
-       <> escapeCodeToString (EraseLine Entire)   
-       <> message                                 
-       <> escapeCodeToString (Down linesToGoUp)   
+    write $ escapeCodeToString (Up linesToGoUp)     -- Remonter à la ligne à modifier
+       <> "\r"                                       -- Début de ligne
+       <> escapeCodeToString (EraseLine Entire)     -- Effacer la ligne
+       <> message                                    -- Nouveau message
+       <> escapeCodeToString (Down linesToGoUp)     -- Redescendre
+       <> "\r"                                       -- Retour en début de ligne finale
     
     AVar.put token lock
 
