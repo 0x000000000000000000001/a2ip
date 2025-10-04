@@ -2,7 +2,13 @@ module Util.Log
   ( unsafeLog
   , unsafeLogDebug
   , unsafeLogDebugShow
+  , unsafeLogError
+  , unsafeLogErrorShow
+  , unsafeLogInfo
+  , unsafeLogInfoShow
   , unsafeLogShow
+  , unsafeLogWarning
+  , unsafeLogWarningShow
   )
   where
 
@@ -29,3 +35,21 @@ unsafeLogDebug = unsafeLog Debug
 
 unsafeLogDebugShow :: forall a. Show a => a -> Unit
 unsafeLogDebugShow = unsafeLogDebug <<< show
+
+unsafeLogInfo :: forall a. Show a => a -> Unit
+unsafeLogInfo = unsafeLog Info
+
+unsafeLogInfoShow :: forall a. Show a => a -> Unit
+unsafeLogInfoShow = unsafeLogInfo <<< show
+
+unsafeLogWarning :: forall a. Show a => a -> Unit
+unsafeLogWarning = unsafeLog Warning
+
+unsafeLogWarningShow :: forall a. Show a => a -> Unit
+unsafeLogWarningShow = unsafeLogWarning <<< show
+
+unsafeLogError :: forall a. Show a => a -> Unit
+unsafeLogError = unsafeLog Error
+
+unsafeLogErrorShow :: forall a. Show a => a -> Unit
+unsafeLogErrorShow = unsafeLogError <<< show
