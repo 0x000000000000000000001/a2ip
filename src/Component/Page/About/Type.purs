@@ -28,7 +28,7 @@ type Member =
   , job :: String
   , phone :: String
   , email :: String
-  , portraitUrl :: String
+  , portraitId :: String
   }
 
 lastname :: String 

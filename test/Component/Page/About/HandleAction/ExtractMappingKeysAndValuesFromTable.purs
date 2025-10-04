@@ -3,16 +3,11 @@ module Test.Component.Page.About.HandleAction.ExtractMappingKeysAndValuesFromTab
 import Prelude
 
 import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTable)
-import Data.Array (mapWithIndex)
-import Data.Map (Map, empty, fromFoldable)
-import Data.Tuple (Tuple(..))
+import Data.Map (empty)
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
 import Test.Util.Describe (describe)
-
--- Helper function to create index map
-arrayToIndexMap :: forall a. Ord a => Array a -> Map a Int
-arrayToIndexMap arr = fromFoldable $ mapWithIndex (\i x -> Tuple x i) arr
+import Util.Array.Map (arrayToIndexMap)
 
 spec :: Spec Unit
 spec = describe do

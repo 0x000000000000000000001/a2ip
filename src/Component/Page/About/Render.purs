@@ -58,8 +58,7 @@ renderMemberCard member =
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img
           ( [ class_ CardPortrait.classId ]
-              <> if isLoading then [] else [ src member_.portraitUrl ]
-              -- <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
+              <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
           )
       ] <> lines
     )
@@ -72,7 +71,7 @@ renderMemberCard member =
     , job: loadingPlaceholder
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
-    , portraitUrl: loadingPlaceholder
+    , portraitId: loadingPlaceholder
     }
     member
 

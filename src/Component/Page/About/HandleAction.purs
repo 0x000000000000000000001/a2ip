@@ -12,7 +12,6 @@ import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get, printError)
 import Capability.AppM (AppM)
 import Capability.Log (Level(..), log)
-import Component.Page.About.Render (generateGoogleDriveImageUrl)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
@@ -24,7 +23,7 @@ import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.Html.Table (extractInnerCellsFromHtml)
 
-membersTabId :: String
+membersTabId :: String 
 membersTabId = "0"
 
 membersTabName :: String
@@ -87,7 +86,7 @@ convertExtractedDataToMembers extractedData =
         , job: value job row
         , phone: value phone row
         , email: value email row
-        , portraitUrl: generateGoogleDriveImageUrl portraitId
+        , portraitId: value portraitId row
         }
 
   in values <#> (Just <<< toMember)
