@@ -5,6 +5,7 @@ import Prelude
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Util.Log (colorize, CliColor(..), log, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
+import Bin.Util.Log.Info (infoColorize)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Data.Array (length)
@@ -65,7 +66,7 @@ main = runBinAff do
 
   downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
   downloadWithErrorHandling lock totalLines { idx, url, filename } = do
-    updateLine lock totalLines idx (colorize Blue "⬇️  Downloading" <> " " <> filename <> "...")
+    updateLine lock totalLines idx (infoColorize "⬇️  Downloading" <> " " <> filename <> "...")
 
     result <- downloadImage url (imageDirPath <> filename)
     case result of
