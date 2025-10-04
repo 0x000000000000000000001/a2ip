@@ -36,7 +36,7 @@ main = runBinAff do
   writeLock <- AVar.new unit
   
   for_ imagesToDownload \{ filename } -> do
-    log $ colorize Grey ("⏳ Pending " <> filename <> "...")
+    log $ colorize Grey "⏳ Pending" <> " " <> filename <> "..."
 
   let totalLines = length imagesToDownload
   
@@ -63,13 +63,13 @@ main = runBinAff do
 
   downloadWithErrorHandling :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
   downloadWithErrorHandling lock totalLines { idx, url, filename } = do
-    updateLine lock totalLines idx (colorize Blue ("⬇️  Downloading " <> filename <> "..."))
+    updateLine lock totalLines idx (colorize Blue "⬇️  Downloading" <> " " <> filename <> "...")
 
     result <- downloadImage url (imageDirPath <> filename)
     case result of
       Left e -> do
-        updateLine lock totalLines idx (colorize Red ("❌ Failed " <> filename <> ": " <> e))
+        updateLine lock totalLines idx (colorize Red "❌ Failed" <> " " <> filename <> ": " <> e)
         pure $ Left filename
       Right _ -> do 
-        updateLine lock totalLines idx (colorize Green ("✅ Downloaded " <> filename))
+        updateLine lock totalLines idx (colorize Green "✅ Downloaded" <> " " <> filename)
         pure $ Right filename
