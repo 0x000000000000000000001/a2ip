@@ -12,6 +12,7 @@ You can edit this file as you like.
   , "arraybuffer-types"
   , "arrays"
   , "avar"
+  , "concurrent-queues"
   , "console"
   , "const"
   , "css"
