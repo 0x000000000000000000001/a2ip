@@ -1,4 +1,4 @@
-module Capability.ReadConfig where
+module Bin.Capability.ReadConfig where
 
 import Prelude
 

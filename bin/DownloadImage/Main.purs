@@ -3,11 +3,13 @@ module Bin.DownloadImage.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
+import Bin.Capability.BinM (runBinM)
 import Bin.Util.Log (log, runBinAff, write)
 import Bin.Util.Log.Error (errorPrefixed)
 import Bin.Util.Log.Info (infoColorize)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
+import Config.Config (config)
 import Data.Array (length)
 import Data.Either (Either(..))
 import Data.Foldable (for_)
@@ -37,7 +39,7 @@ imagesToDownload =
   ]
 
 main :: Effect Unit
-main = runBinAff do
+main = runBinM config do
   writeLock <- new unit
 
   for_ imagesToDownload \{ filename } -> do

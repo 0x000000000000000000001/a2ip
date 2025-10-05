@@ -20,20 +20,12 @@ import Effect (Effect)
 import Effect.Aff (Aff, runAff_)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
-import Effect.Exception (Error)
 
 colorize :: Color -> String -> String
 colorize c s = 
   escapeCodeToString (Graphics (singleton $ PForeground c)) 
   <> s 
   <> escapeCodeToString (Graphics (singleton Reset))
-
-runBinAff :: Aff Unit -> Effect Unit
-runBinAff action = runAff_ handleResult action
-  where
-  handleResult :: Either Error Unit -> Effect Unit
-  handleResult (Left e) = Console.error $ "🧨 Fatal error: " <> show e
-  handleResult (Right _) = pure unit
 
 foreign import _write :: String -> Effect Unit
 

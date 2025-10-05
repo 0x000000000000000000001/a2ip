@@ -6,12 +6,12 @@ import Capability.AppM (runAppM)
 import Component.Router.Component as RouterComponent
 import Component.Router.Route (routeCodec)
 import Component.Router.Type as RouterType
-import Config (defaultConfig)
+import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
 import Data.Either (either)
 import Data.Formatter.DateTime (formatDateTime)
 import Data.Maybe (Maybe(..))
-import Effect (Effect)
+import Effect (Effect) 
 import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
 import Effect.Class.Console (log)
@@ -33,7 +33,7 @@ main = do
   
   runHalogenAff do 
     body <- awaitBody
-    io <- runUI (H.hoist (runAppM defaultConfig) RouterComponent.component) unit body
+    io <- runUI (H.hoist (runAppM config) RouterComponent.component) unit body
     liftEffect $ matchesWith (parse routeCodec)
       \old' new -> when (old' /= Just new) $   
         launchAff_ $ void $ io.query $ H.mkTell $ RouterType.Navigate new

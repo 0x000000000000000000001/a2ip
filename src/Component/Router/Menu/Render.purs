@@ -81,7 +81,7 @@ render s =
           [ class_ $ ItemIconContainer.classId ]
           [ img
               [ class_ ItemIcon.classId
-              , HP.src (fromString "asset/image/component/menu/" <> iconFileName <> ".png")
+              , HP.src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
               ]
           ]
       , div

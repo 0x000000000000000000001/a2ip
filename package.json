@@ -2,12 +2,7 @@
   "name": "ps",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "build": "spago build --purs-args \"-g js,sourcemaps\"",
-    "build:dev": "spago build --purs-args \"-g js,sourcemaps\"",
-    "test": "npm run build:dev && spago test",
-    "test:watch": "spago test --watch --purs-args \"-g js,sourcemaps\""
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

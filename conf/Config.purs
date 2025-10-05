@@ -1,4 +1,4 @@
-module Config
+module Config.Config
   ( Env(..)
   , Config
   , config
@@ -7,14 +7,20 @@ module Config
 
 import Prelude
 
+import Data.Generic.Rep (class Generic)
+import Data.Show.Generic (genericShow)
+
 foreign import _config :: 
-  { rootDir :: String
-  , env :: String
+  { env :: String
   }
 
 data Env = Dev | Test | Stage | Prod
 
 derive instance eqEnv :: Eq Env
+derive instance genericEnv :: Generic Env _
+
+instance showEnv :: Show Env where
+  show = genericShow
 
 env :: Env
 env = 
@@ -26,21 +32,12 @@ env =
     _ -> Dev
 
 type Config = 
-  { rootDir :: String 
-  , assetBaseUrl :: String
-  , imageBaseUrl :: String
-  , dev :: Boolean
+  { dev :: Boolean
   , env :: Env
   }
 
-assetBaseUrl :: String
-assetBaseUrl = _config.rootDir <> "asset/"
-
 config :: Config
 config = 
-  { rootDir: _config.rootDir
-  , assetBaseUrl
-  , imageBaseUrl: assetBaseUrl <> "image/"
-  , dev: Dev == env
+  { dev: Dev == env
   , env
   }
