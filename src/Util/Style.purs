@@ -101,6 +101,7 @@ import Data.Int as Int
 import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
+import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 
@@ -118,11 +119,11 @@ backgroundWhite = hsl 196.0 1.0 0.98
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
-class_ :: forall r i. String -> HH.IProp (class :: String | r) i
-class_ className = HP.class_ $ HH.ClassName $ stripDotPrefixFromClassName className
+class_ :: forall r i. String -> IProp (class :: String | r) i
+class_ className = HP.class_ $ ClassName $ stripDotPrefixFromClassName className
 
-classes :: forall r i. Array String -> HH.IProp (class :: String | r) i
-classes classNames = HP.classes $ HH.ClassName <$> (stripDotPrefixFromClassName <$> classNames)
+classes :: forall r i. Array String -> IProp (class :: String | r) i
+classes classNames = HP.classes $ ClassName <$> (stripDotPrefixFromClassName <$> classNames)
 
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className = 

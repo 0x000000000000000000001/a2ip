@@ -7,14 +7,14 @@ import Component.Router.HandleQuery (handleQuery)
 import Component.Router.Render (render)
 import Component.Router.Route (Route(..))
 import Component.Router.Type (Query)
- 
+import Halogen (Component, defaultEval, mkComponent, mkEval)
 import Halogen as H
 
-component :: forall i o. H.Component Query i o AppM
-component = H.mkComponent
+component :: forall i o. Component Query i o AppM
+component = mkComponent
   { initialState: const { route: Home }
   , render
-  , eval: H.mkEval H.defaultEval  
+  , eval: mkEval defaultEval  
       { handleQuery = handleQuery
       }
   } 

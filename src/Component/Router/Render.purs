@@ -10,12 +10,13 @@ import Component.Router.Style.Core as Core
 import Component.Router.Style.Router (classId)
 import Component.Router.Style.Sheet (sheet)
 import Component.Router.Type (Action, State, Slots)
+import Halogen (ComponentHTML)
 import Halogen as H
 import Halogen.HTML (div, slot, text)
 import Type.Proxy (Proxy(..))
 import Util.Style (class_)
 
-render :: State -> H.ComponentHTML Action Slots AppM
+render :: State -> ComponentHTML Action Slots AppM
 render { route } =
   div
     [ class_ classId ] 

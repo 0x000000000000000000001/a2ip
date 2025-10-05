@@ -11,16 +11,16 @@ import Data.DateTime.Instant (toDateTime)
 import Data.Either (either)
 import Data.Formatter.DateTime (formatDateTime)
 import Data.Maybe (Maybe(..))
-import Effect (Effect) 
+import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
 import Effect.Class.Console (log)
 import Effect.Now (now)
-import Halogen as H
+import Halogen (hoist, mkTell)
 import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 import Routing.Duplex (parse)
-import Routing.Hash (matchesWith) 
+import Routing.Hash (matchesWith)
 
 main :: Effect Unit
 main = do
@@ -33,8 +33,8 @@ main = do
   
   runHalogenAff do 
     body <- awaitBody
-    io <- runUI (H.hoist (runAppM config) RouterComponent.component) unit body
+    io <- runUI (hoist (runAppM config) RouterComponent.component) unit body
     liftEffect $ matchesWith (parse routeCodec)
       \old' new -> when (old' /= Just new) $   
-        launchAff_ $ void $ io.query $ H.mkTell $ RouterType.Navigate new
+        launchAff_ $ void $ io.query $ mkTell $ RouterType.Navigate new
  

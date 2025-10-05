@@ -1,8 +1,8 @@
 module Component.Page.About.HandleAction
-  ( handleAction
-  , extractMappingKeysAndValuesFromTable
+  ( ExtractedDataFromLoadedRawOne
   , convertExtractedDataToMembers
-  , ExtractedDataFromLoadedRawOne
+  , extractMappingKeysAndValuesFromTable
+  , handleAction
   )
   where
 
@@ -17,7 +17,8 @@ import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
-import Data.String (trim) 
+import Data.String (trim)
+import Halogen (HalogenM, liftAff, modify_)
 import Halogen as H
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
@@ -47,20 +48,20 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-loadData :: forall o. H.HalogenM State Action () o AppM Unit
+loadData :: forall o. HalogenM State Action () o AppM Unit
 loadData = do
   pure unit
-  result <- H.liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
+  result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of
     Left err -> log Error $ "Failed to fetch ZIP: " <> printError err
     Right response -> do
       let tabName = fromMaybe "" $ tabIdToName membersTabId
-      htmlContent <- H.liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+      htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       let extractedData = extractMappingKeysAndValuesFromTable htmlContent
           members_ = convertExtractedDataToMembers extractedData
-      H.modify_ _ { members = members_ }
+      modify_ _ { members = members_ }
 
-handleAction :: forall o. Action -> H.HalogenM State Action () o AppM Unit
+handleAction :: forall o. Action -> HalogenM State Action () o AppM Unit
 handleAction = case _ of
   LoadData -> loadData
 

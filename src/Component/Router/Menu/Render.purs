@@ -2,8 +2,8 @@ module Component.Router.Menu.Render (render) where
 
 import Prelude hiding (top, div)
 
-import Capability.AppM (AppM)
 import CSS (fromString)
+import Capability.AppM (AppM)
 import Component.Router.Menu.Style.Item.Child as Child
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
@@ -16,10 +16,10 @@ import Component.Router.Menu.Style.Sheet (sheet)
 import Component.Router.Menu.Type (Action(..), State)
 import Component.Router.Route (Route(..))
 import Data.Maybe (Maybe(..))
-import Halogen as H
+import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, img, nav, text)
-import Halogen.HTML.Events as HE
-import Halogen.HTML.Properties as HP
+import Halogen.HTML.Events (onClick, onMouseEnter, onMouseLeave)
+import Halogen.HTML.Properties (alt, src)
 import Util.Style (class_)
 
 type Item r =
@@ -52,18 +52,18 @@ items =
   , ParentItem { label: "Contact et mentions légales", route: Nothing, iconFileName: "contact", children: [] }
   ]
 
-render :: State -> H.ComponentHTML Action () AppM
+render :: State -> ComponentHTML Action () AppM
 render s =
   nav
     [ class_ classId
-    , if s.isUnfold then HE.onMouseLeave $ const $ ToggleFolding true
-      else HE.onMouseEnter $ const $ ToggleFolding false
+    , if s.isUnfold then onMouseLeave $ const $ ToggleFolding true
+      else onMouseEnter $ const $ ToggleFolding false
     ]
     ( [ sheet s
       , img
           [ class_ Logo.classId
-          , HP.src "asset/image/logo.png"
-          , HP.alt "Logo"
+          , src "asset/image/logo.png"
+          , alt "Logo"
           ]
       ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
     )
@@ -73,7 +73,7 @@ render s =
     div
       ( [ class_ Item.classId ] <>
           ( case route of
-              Just route_ -> [ HE.onClick $ const $ Navigate route_ ]
+              Just route_ -> [ onClick $ const $ Navigate route_ ]
               Nothing -> []
           )
       )
@@ -81,7 +81,7 @@ render s =
           [ class_ $ ItemIconContainer.classId ]
           [ img
               [ class_ ItemIcon.classId
-              , HP.src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
+              , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
               ]
           ]
       , div

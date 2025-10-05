@@ -16,6 +16,7 @@ import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
 import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
+import Halogen (ComponentHTML)
 import Halogen as H
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
@@ -37,7 +38,7 @@ generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePla
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
-render :: State -> H.ComponentHTML Action Slots AppM
+render :: State -> ComponentHTML Action Slots AppM
 render state =
   div
     [ class_ classId ]
@@ -46,7 +47,7 @@ render state =
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: Maybe Member -> H.ComponentHTML Action Slots AppM
+renderMemberCard :: Maybe Member -> ComponentHTML Action Slots AppM
 renderMemberCard member = 
   div
     [ classes $
