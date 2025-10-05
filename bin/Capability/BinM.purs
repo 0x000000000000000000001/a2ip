@@ -13,7 +13,7 @@ import Data.Either (Either(..))
 import Effect (Effect)
 import Effect.Aff (Aff, runAff_)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Class (class MonadEffect)
 import Effect.Console as Console
 import Effect.Exception (Error)
 
@@ -28,10 +28,9 @@ derive newtype instance monadEffectBinM :: MonadEffect BinM
 derive newtype instance monadAffBinM :: MonadAff BinM
 derive newtype instance monadAskBinM :: MonadAsk Config BinM
 
-runBinM :: forall a. Effect Config -> BinM a -> Effect Unit
-runBinM getConfig (BinM bin) = runBinAff do
-  cfg <- liftEffect getConfig
-  runReaderT bin cfg
+runBinM :: Config -> BinM Unit -> Effect Unit
+runBinM config (BinM r) = runBinAff do
+  void $ runReaderT r config
 
 runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action

@@ -3,21 +3,20 @@ module Bin.DownloadImage.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import Bin.Capability.BinM (runBinM)
-import Bin.Util.Log (log, runBinAff, write)
+import Bin.Capability.BinM (BinM, runBinM)
+import Bin.Util.Log (log, write)
+import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (errorPrefixed)
-import Bin.Util.Log.Info (infoColorize)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Config.Config (config)
 import Data.Array (length)
 import Data.Either (Either(..))
-import Data.Foldable (for_)
+import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
-import Effect.Aff.AVar (new, take, put)
-import Effect.Aff.AVar as AVar
-import Util.Async (parTraverseBounded)
+import Effect.Class (liftEffect)
+import Util.Async (Sem, parTraverseBounded, sem, semAcq, semRel)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 
@@ -39,10 +38,13 @@ imagesToDownload =
   ]
 
 main :: Effect Unit
-main = runBinM config do
-  writeLock <- new unit
+main = runBinM config mainBin
 
-  for_ imagesToDownload \{ filename } -> do
+mainBin :: BinM Unit
+mainBin = do
+  writeLock <- sem 1
+
+  for_ imagesToDownload \{ filename } ->
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
 
   let totalLines = length imagesToDownload
@@ -52,24 +54,24 @@ main = runBinM config do
   write $ escapeCodeToString (Down totalLines) <> "\r" 
 
   where
-  updateLine :: AVar.AVar Unit -> Int -> Int -> String -> Aff Unit
+  updateLine :: Sem -> Int -> Int -> String -> Aff Unit
   updateLine lock totalLines lineIdx message = do
-    take lock
+    semAcq lock
     
     let linesToGoUp = totalLines - lineIdx
     
-    write $ escapeCodeToString (Up linesToGoUp)     
+    liftEffect $ write $ escapeCodeToString (Up linesToGoUp)     
       <> "\r"                                       
       <> escapeCodeToString (EraseLine Entire)    
       <> message                                    
       <> escapeCodeToString (Down linesToGoUp)     
       <> "\r"                                       
     
-    put unit lock
+    semRel lock
 
-  download :: AVar.AVar Unit -> Int -> Image -> Aff (Either String String)
+  download :: Sem -> Int -> Image -> Aff (Either String String)
   download lock totalLines { idx, url, filename } = do
-    updateLine lock totalLines idx (infoColorize "⬇️  Downloading" <> " " <> filename <> "...")
+    updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
 
     result <- downloadImage url (imageDirPath <> filename)
 

@@ -11,7 +11,6 @@ You can edit this file as you like.
   , "ansi"
   , "arraybuffer-types"
   , "arrays"
-  , "avar"
   , "concurrent-queues"
   , "console"
   , "const"

@@ -6,7 +6,6 @@ module Bin.Util.Log
   , logShowAfterNewline
   , newline
   , prefixed
-  , runBinAff
   , write
   )
   where
@@ -14,10 +13,8 @@ module Bin.Util.Log
 import Prelude
 
 import Ansi.Codes (Color, EscapeCode(..), GraphicsParam(..), escapeCodeToString)
-import Data.Either (Either(..))
 import Data.List.NonEmpty (singleton)
 import Effect (Effect)
-import Effect.Aff (Aff, runAff_)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 
