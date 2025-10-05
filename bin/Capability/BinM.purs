@@ -29,8 +29,7 @@ derive newtype instance monadAffBinM :: MonadAff BinM
 derive newtype instance monadAskBinM :: MonadAsk Config BinM
 
 runBinM :: Config -> BinM Unit -> Effect Unit
-runBinM config (BinM r) = runBinAff do
-  void $ runReaderT r config
+runBinM config (BinM r) = runBinAff $ runReaderT r config
 
 runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action

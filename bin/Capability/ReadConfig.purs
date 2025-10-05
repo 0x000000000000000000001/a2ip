@@ -2,17 +2,12 @@ module Bin.Capability.ReadConfig where
 
 import Prelude
 
-import Capability.AppM (AppM)
+import Bin.Capability.BinM (BinM)
 import Config.Config (Config)
 import Control.Monad.Reader.Class (class MonadAsk, ask)
-import Control.Monad.Trans.Class (lift)
-import Halogen (HalogenM)
 
 class Monad m <= ReadConfig m where
   readConfig :: m Config
 
-instance readConfigAppM :: MonadAsk Config AppM => ReadConfig AppM where
+instance readConfigBinM :: MonadAsk Config BinM => ReadConfig BinM where
   readConfig = ask
-
-instance readConfigHalogenM :: ReadConfig m => ReadConfig (HalogenM state action slots output m) where
-  readConfig = lift readConfig

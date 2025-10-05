@@ -3,10 +3,10 @@ module Bin.DownloadImage.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import Bin.Capability.BinM (BinM, runBinM)
-import Bin.Util.Log.Log (log, write)
+import Bin.Capability.BinM (runBinM)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (errorPrefixed)
+import Bin.Util.Log.Log (log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Config.Config (config)
