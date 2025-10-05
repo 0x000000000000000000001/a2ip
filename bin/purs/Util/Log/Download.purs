@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 downloadColor :: Color
@@ -27,28 +28,28 @@ downloadColor = Cyan
 downloadColorize :: String -> String
 downloadColorize = colorize downloadColor
 
-download :: forall m. MonadEffect m => String -> m Unit
+download :: forall m. MonadAff m => String -> m Unit
 download = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m false false)
 
-downloadAfterNewline :: forall m. MonadEffect m => String -> m Unit
+downloadAfterNewline :: forall m. MonadAff m => String -> m Unit
 downloadAfterNewline msg = newline *> download msg
 
-downloadShort :: forall m. MonadEffect m => String -> m Unit
+downloadShort :: forall m. MonadAff m => String -> m Unit
 downloadShort = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m true false)
 
-downloadShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+downloadShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 downloadShortAfterNewline msg = newline *> downloadShort msg
 
-downloadShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+downloadShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 downloadShortShowAfterNewline = downloadShortAfterNewline <<< show
 
-downloadShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+downloadShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 downloadShortShow = downloadShort <<< show
 
-downloadShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+downloadShow :: forall m a. MonadAff m => Show a => a -> m Unit
 downloadShow = download <<< show
 
-downloadShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+downloadShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 downloadShowAfterNewline = downloadAfterNewline <<< show
 
 downloadEmoji :: String

@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 errorColor :: Color
@@ -27,28 +28,28 @@ errorColor = Red
 errorColorize :: String -> String
 errorColorize = colorize errorColor
 
-error :: forall m. MonadEffect m => String -> m Unit
+error :: forall m. MonadAff m => String -> m Unit
 error = liftEffect <<< Console.log <<< (\m -> errorPrefixed m false false)
 
-errorAfterNewline :: forall m. MonadEffect m => String -> m Unit
+errorAfterNewline :: forall m. MonadAff m => String -> m Unit
 errorAfterNewline msg = newline *> error msg
 
-errorShort :: forall m. MonadEffect m => String -> m Unit
+errorShort :: forall m. MonadAff m => String -> m Unit
 errorShort = liftEffect <<< Console.log <<< (\m -> errorPrefixed m true false)
 
-errorShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+errorShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 errorShortAfterNewline msg = newline *> errorShort msg
 
-errorShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+errorShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 errorShortShowAfterNewline = errorShortAfterNewline <<< show
 
-errorShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+errorShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 errorShortShow = errorShort <<< show
 
-errorShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+errorShow :: forall m a. MonadAff m => Show a => a -> m Unit
 errorShow = error <<< show
 
-errorShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+errorShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 errorShowAfterNewline = errorAfterNewline <<< show
 
 errorEmoji :: String

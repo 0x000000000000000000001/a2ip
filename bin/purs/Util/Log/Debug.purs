@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 debugColor :: Color
@@ -27,28 +28,28 @@ debugColor = Magenta
 debugColorize :: String -> String
 debugColorize = colorize debugColor
 
-debug :: forall m. MonadEffect m => String -> m Unit
+debug :: forall m. MonadAff m => String -> m Unit
 debug = liftEffect <<< Console.log <<< (\m -> debugPrefixed m false false)
 
-debugAfterNewline :: forall m. MonadEffect m => String -> m Unit
+debugAfterNewline :: forall m. MonadAff m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg
 
-debugShort :: forall m. MonadEffect m => String -> m Unit
+debugShort :: forall m. MonadAff m => String -> m Unit
 debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true false)
 
-debugShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+debugShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg
 
-debugShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+debugShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 debugShortShowAfterNewline = debugShortAfterNewline <<< show
 
-debugShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+debugShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 debugShortShow = debugShort <<< show
 
-debugShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+debugShow :: forall m a. MonadAff m => Show a => a -> m Unit
 debugShow = debug <<< show
 
-debugShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+debugShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 debugShowAfterNewline = debugAfterNewline <<< show
 
 debugEmoji :: String

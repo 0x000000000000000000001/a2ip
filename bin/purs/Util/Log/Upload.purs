@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 uploadColor :: Color
@@ -27,28 +28,28 @@ uploadColor = Cyan
 uploadColorize :: String -> String
 uploadColorize = colorize uploadColor
 
-upload :: forall m. MonadEffect m => String -> m Unit
+upload :: forall m. MonadAff m => String -> m Unit
 upload = liftEffect <<< Console.log <<< (\m -> uploadPrefixed m false false)
 
-uploadAfterNewline :: forall m. MonadEffect m => String -> m Unit
+uploadAfterNewline :: forall m. MonadAff m => String -> m Unit
 uploadAfterNewline msg = newline *> upload msg
 
-uploadShort :: forall m. MonadEffect m => String -> m Unit
+uploadShort :: forall m. MonadAff m => String -> m Unit
 uploadShort = liftEffect <<< Console.log <<< (\m -> uploadPrefixed m true false)
 
-uploadShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+uploadShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 uploadShortAfterNewline msg = newline *> uploadShort msg
 
-uploadShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+uploadShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 uploadShortShowAfterNewline = uploadShortAfterNewline <<< show
 
-uploadShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+uploadShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 uploadShortShow = uploadShort <<< show
 
-uploadShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+uploadShow :: forall m a. MonadAff m => Show a => a -> m Unit
 uploadShow = upload <<< show
 
-uploadShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+uploadShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 uploadShowAfterNewline = uploadAfterNewline <<< show
 
 uploadEmoji :: String

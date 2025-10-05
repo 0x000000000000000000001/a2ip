@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 successColor :: Color
@@ -27,28 +28,28 @@ successColor = Green
 successColorize :: String -> String
 successColorize = colorize successColor
 
-success :: forall m. MonadEffect m => String -> m Unit
+success :: forall m. MonadAff m => String -> m Unit
 success = liftEffect <<< Console.log <<< (\m -> successPrefixed m false false)
 
-successAfterNewline :: forall m. MonadEffect m => String -> m Unit
+successAfterNewline :: forall m. MonadAff m => String -> m Unit
 successAfterNewline msg = newline *> success msg
 
-successShort :: forall m. MonadEffect m => String -> m Unit
+successShort :: forall m. MonadAff m => String -> m Unit
 successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true false)
 
-successShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+successShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg
 
-successShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+successShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 successShortShowAfterNewline = successShortAfterNewline <<< show
 
-successShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+successShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 successShortShow = successShort <<< show
 
-successShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+successShow :: forall m a. MonadAff m => Show a => a -> m Unit
 successShow = success <<< show
 
-successShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+successShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 successShowAfterNewline = successAfterNewline <<< show
 
 successEmoji :: String

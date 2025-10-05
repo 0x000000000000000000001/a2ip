@@ -18,7 +18,8 @@ import Prelude
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Aff.Class (class MonadAff)
+import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 infoColor :: Color
@@ -27,28 +28,28 @@ infoColor = Blue
 infoColorize :: String -> String
 infoColorize = colorize infoColor
 
-info :: forall m. MonadEffect m => String -> m Unit
+info :: forall m. MonadAff m => String -> m Unit
 info = liftEffect <<< Console.log <<< (\m -> infoPrefixed m false false)
 
-infoAfterNewline :: forall m. MonadEffect m => String -> m Unit
+infoAfterNewline :: forall m. MonadAff m => String -> m Unit
 infoAfterNewline msg = newline *> info msg
 
-infoShort :: forall m. MonadEffect m => String -> m Unit
+infoShort :: forall m. MonadAff m => String -> m Unit
 infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true false)
 
-infoShortAfterNewline :: forall m. MonadEffect m => String -> m Unit
+infoShortAfterNewline :: forall m. MonadAff m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg
 
-infoShortShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+infoShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 infoShortShowAfterNewline = infoShortAfterNewline <<< show
 
-infoShortShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+infoShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
 infoShortShow = infoShort <<< show
 
-infoShow :: forall m a. MonadEffect m => Show a => a -> m Unit
+infoShow :: forall m a. MonadAff m => Show a => a -> m Unit
 infoShow = info <<< show
 
-infoShowAfterNewline :: forall m a. MonadEffect m => Show a => a -> m Unit
+infoShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
 infoShowAfterNewline = infoAfterNewline <<< show
 
 infoEmoji :: String

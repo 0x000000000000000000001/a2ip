@@ -12,7 +12,7 @@ import Bin.Util.Log.Success (successPrefixed)
 import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml, fetchMembersTableHtml)
 import Component.Page.About.Type (portraitId)
 import Config.Config (config)
-import Data.Array (last, length, (!!))
+import Data.Array (last, length, mapWithIndex, (!!))
 import Data.Either (Either(..))
 import Data.FoldableWithIndex (forWithIndex_)
 import Data.Generic.Rep (from)
@@ -28,12 +28,13 @@ import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 import Web.HTML.HTMLHyperlinkElementUtils (port)
 
-type Image = 
-  { url :: String
+type Image =
+  { idx :: Int
+  , url :: String
   , filename :: String
   }
 
-imagesToDownload :: Aff (Array Image)
+imagesToDownload :: Aff (Array Image) 
 imagesToDownload = do 
   tableHtml <- fetchMembersTableHtml 
   case tableHtml of
@@ -53,7 +54,10 @@ imagesToDownload = do
               $ extractedData.values # (_ !! idx)
             ) 
             portraitIndex
-      pure $ imageUrls <#> \url -> { url, filename: fromMaybe "" $ last $ split (Pattern "/") url }
+      pure $ 
+        mapWithIndex 
+        (\idx url -> { idx, url, filename: fromMaybe "" $ last $ split (Pattern "/") url }) 
+        imageUrls
 
 main :: Effect Unit
 main = runBinM config do
