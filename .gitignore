@@ -3,6 +3,7 @@
 /.env
 /generated-docs/
 /.idea
+/src/Config.json
 /node_modules/
 /output/
 /.psa*
