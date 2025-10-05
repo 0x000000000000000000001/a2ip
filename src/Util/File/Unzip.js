@@ -1,13 +1,10 @@
+import JSZip from 'jszip';
+
 export const _unzip = function(filename) {
   return function(zipContent) {
     return function(onError) {
       return function(onSuccess) {
         return function() {
-          if (JSZip === undefined) {
-            onError(new Error('JSZip library not found.'))();
-            return;
-          }
-          
           const zip = new JSZip();
 
           zip.loadAsync(zipContent, { base64: false })
