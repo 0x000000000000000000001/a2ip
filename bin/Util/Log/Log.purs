@@ -1,4 +1,4 @@
-module Bin.Util.Log
+module Bin.Util.Log.Log
   ( colorize
   , log
   , logAfterNewline
