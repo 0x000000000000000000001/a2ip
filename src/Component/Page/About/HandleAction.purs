@@ -10,8 +10,8 @@ module Component.Page.About.HandleAction
 
 import Prelude
 
+import Affjax (get, printError)
 import Affjax.ResponseFormat (arrayBuffer)
-import Affjax.Web (get, printError)
 import Capability.AppM (AppM)
 import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
