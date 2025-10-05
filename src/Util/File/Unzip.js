@@ -17,7 +17,7 @@ export const _unzip = function(filename) {
 
               if (filename && filename !== '') {
                 targetFile = files.find(name => name === filename_);
-
+                
                 if (!targetFile) {
                   throw new Error(`File '${filename_}' not found in ZIP`);
                 }
