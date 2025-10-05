@@ -48,22 +48,25 @@ main = runBinM config do
   
   void $ parTraverseBounded 3 (download writeLock totalLines) imagesToDownload
   
-  write $ escapeCodeToString (Down totalLines) <> "\r" 
+  write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
   where
+  carriageReturn :: String
+  carriageReturn = "\r"
+
   updateLine :: Sem -> Int -> Int -> String -> Aff Unit
   updateLine lock totalLines lineIdx message = do
     semAcq lock
     
     let linesToGoUp = totalLines - lineIdx
-    
-    liftEffect $ write $ escapeCodeToString (Up linesToGoUp)     
-      <> "\r"                                       
-      <> escapeCodeToString (EraseLine Entire)    
-      <> message                                    
-      <> escapeCodeToString (Down linesToGoUp)     
-      <> "\r"                                       
-    
+
+    liftEffect $ write $ escapeCodeToString (Up linesToGoUp)
+      <> carriageReturn
+      <> escapeCodeToString (EraseLine Entire)
+      <> message
+      <> escapeCodeToString (Down linesToGoUp)
+      <> carriageReturn
+
     semRel lock
 
   download :: Sem -> Int -> Image -> Aff (Either String String)
