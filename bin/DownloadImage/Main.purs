@@ -38,10 +38,7 @@ imagesToDownload =
   ]
 
 main :: Effect Unit
-main = runBinM config mainBin
-
-mainBin :: BinM Unit
-mainBin = do
+main = runBinM config do
   writeLock <- sem 1
 
   for_ imagesToDownload \{ filename } ->
