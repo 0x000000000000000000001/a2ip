@@ -1,6 +1,7 @@
 module Util.Html.Table
   ( extractInnerCellsFromHtml
   , extractInnerCellsFromRow
+  , extractInnerColumnCellsFromHtml
   , extractInnerRowsFromHtml
   , extractNextInnerCell
   , extractTableFromHtml
@@ -11,7 +12,8 @@ module Util.Html.Table
 import Prelude
 
 import Data.Array (drop, length, mapMaybe) as Array
-import Data.Array (mapMaybe)
+import Data.Array (length, mapMaybe, (!!), (..))
+import Data.Foldable (maximum)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (Pattern(..))
 import Data.String as String
@@ -34,6 +36,22 @@ extractTableFromHtml htmlContent =
           let tableLength = endIndexRelative + String.length "</table>"
               extractedTable = String.take tableLength afterTableStart
           in Just extractedTable
+
+-- | Extracts the contents of each column from a <table>...</table> block.
+-- |
+-- | ```purescript
+-- | >>> extractInnerColumnCellsFromHtml "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
+-- | Just [["1", "3"], ["2"]]
+-- | ```
+extractInnerColumnCellsFromHtml :: String -> Maybe (Array (Array String))
+extractInnerColumnCellsFromHtml tableHtml =
+  case extractInnerRowsFromHtml tableHtml of
+    Nothing -> Nothing
+    Just rows ->
+      let cellArrays = mapMaybe extractInnerCellsFromRow rows
+          maxCols = if length cellArrays == 0 then 0 else fromMaybe 0 $ maximum $ map length cellArrays
+          columns = map (\colIdx -> mapMaybe (\cells -> cells !! colIdx) cellArrays) (0 .. (maxCols - 1))
+      in Just columns
 
 -- | Extracts the rows from a <table>...</table> block.
 -- |
