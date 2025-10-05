@@ -1,8 +1,10 @@
 module Component.Page.About.HandleAction
-  ( ExtractedDataFromLoadedRawOne
+  ( ExtractedData
   , convertExtractedDataToMembers
-  , extractMappingKeysAndValuesFromTable
+  , extractMappingKeysAndValuesFromTableHtml
+  , fetchMembersTableHtml
   , handleAction
+  , loadMembers
   )
   where
 
@@ -11,7 +13,7 @@ import Prelude
 import Affjax.ResponseFormat (arrayBuffer)
 import Affjax.Web (get, printError)
 import Capability.AppM (AppM)
-import Capability.Log (Level(..), log)
+import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
@@ -19,7 +21,6 @@ import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
 import Halogen (HalogenM, liftAff, modify_)
-import Halogen as H
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.Html.Table (extractInnerCellsFromHtml)
@@ -48,26 +49,33 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-loadData :: forall o. HalogenM State Action () o AppM Unit
-loadData = do
-  pure unit
+fetchMembersTableHtml :: forall o. String -> HalogenM State Action () o AppM (Either String String)
+fetchMembersTableHtml tabId = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of
-    Left err -> log Error $ "Failed to fetch ZIP: " <> printError err
+    Left err -> pure $ Left $ "Failed to fetch ZIP: " <> printError err
     Right response -> do
-      let tabName = fromMaybe "" $ tabIdToName membersTabId
+      let tabName = fromMaybe "" $ tabIdToName tabId
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-      let extractedData = extractMappingKeysAndValuesFromTable htmlContent
+      pure $ Right htmlContent
+
+loadMembers :: forall o. HalogenM State Action () o AppM Unit
+loadMembers = do
+  htmlContent <- fetchMembersTableHtml membersTabId
+  case htmlContent of
+    Left err -> error err
+    Right h -> do
+      let extractedData = extractMappingKeysAndValuesFromTableHtml h
           members_ = convertExtractedDataToMembers extractedData
       modify_ _ { members = members_ }
 
 handleAction :: forall o. Action -> HalogenM State Action () o AppM Unit
 handleAction = case _ of
-  LoadData -> loadData
+  LoadData -> loadMembers
 
-type ExtractedDataFromLoadedRawOne = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
+type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
-convertExtractedDataToMembers :: ExtractedDataFromLoadedRawOne -> Array (Maybe Member)
+convertExtractedDataToMembers :: ExtractedData -> Array (Maybe Member)
 convertExtractedDataToMembers extractedData = 
   let keyIndices = extractedData.keyIndices
       values = extractedData.values
@@ -92,7 +100,7 @@ convertExtractedDataToMembers extractedData =
 
   in values <#> (Just <<< toMember)
 
--- | Extract mapping keys and values from an HTML table.
+-- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.
 -- |
 -- | ```purescript
@@ -103,8 +111,8 @@ convertExtractedDataToMembers extractedData =
 -- | >>> extractMappingKeysAndValuesFromTable "No table"
 -- | { keys: [], values: [] }
 -- | ```
-extractMappingKeysAndValuesFromTable :: String -> ExtractedDataFromLoadedRawOne
-extractMappingKeysAndValuesFromTable tableHtml = 
+extractMappingKeysAndValuesFromTableHtml :: String -> ExtractedData
+extractMappingKeysAndValuesFromTableHtml tableHtml = 
   let nothing = { keys: [], keyIndices: empty, values: [] }
   in case extractInnerCellsFromHtml tableHtml of
     Nothing -> nothing
