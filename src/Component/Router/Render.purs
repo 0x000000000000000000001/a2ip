@@ -11,7 +11,6 @@ import Component.Router.Style.Router (classId)
 import Component.Router.Style.Sheet (sheet)
 import Component.Router.Type (Action, State, Slots)
 import Halogen (ComponentHTML)
-import Halogen as H
 import Halogen.HTML (div, slot, text)
 import Type.Proxy (Proxy(..))
 import Util.Style (class_)

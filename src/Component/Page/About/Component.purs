@@ -9,7 +9,6 @@ import Component.Page.About.Type (Action(..), Input, Query)
 import Data.Array (replicate)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)
-import Halogen as H
 
 component :: forall o. Component Query Input o AppM
 component = mkComponent

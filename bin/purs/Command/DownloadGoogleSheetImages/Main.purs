@@ -20,7 +20,7 @@ import Data.String (Pattern(..), split)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
-import Util.Async (Sem, lock, lockAcq, lockRel, parTraverseBounded)
+import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 

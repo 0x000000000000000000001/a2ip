@@ -10,7 +10,7 @@ module Component.Page.About.HandleAction
 
 import Prelude
 
-import Affjax (get, printError)
+import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.AppM (AppM)
 import Capability.Log (error)
@@ -25,6 +25,7 @@ import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.Html.Table (extractInnerCellsFromHtml)
+import Util.Http (get)
 
 membersTabId :: String 
 membersTabId = "0"

@@ -1,4 +1,4 @@
-module Util.Async
+module Util.Semaphor
   ( Sem
   , lock
   , lockAcq
