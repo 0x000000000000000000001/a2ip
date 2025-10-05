@@ -17,7 +17,7 @@ module Bin.Util.Log.Pending
 import Prelude
 
 import Ansi.Codes (Color(..))
-import Bin.Util.Log (colorize, newline, prefixed)
+import Bin.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console as Console
 

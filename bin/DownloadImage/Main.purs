@@ -4,7 +4,7 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
-import Bin.Util.Log (log, write)
+import Bin.Util.Log.Log (log, write)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (errorPrefixed)
 import Bin.Util.Log.Pending (pendingPrefixed)
