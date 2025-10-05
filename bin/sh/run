@@ -6,6 +6,6 @@ dir=$(dirname "$0")/../..
 cd "$dir"
 
 export NODE_NO_WARNINGS=1 # E.g. (node:11035) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities. (Use `node --trace-deprecation ...` to show where the warning was created)
-spago run --main "Bin.$1.Main"
+spago run --main "Bin.Command.$1.Main"
 
 cd "$old_wd"

@@ -5,7 +5,7 @@ old_wd=$(pwd)
 dir=$(dirname "$0")/../..
 cd "$dir"
 
-$ROOT_DIR/bin/sh/conf
+$ROOT_DIR/bin/sh/conf >/dev/null
 
 spago build --purs-args "-g js,sourcemaps"
 

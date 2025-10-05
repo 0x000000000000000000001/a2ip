@@ -1,4 +1,4 @@
-module Bin.Command.DownloadImage.Main (main) where
+module Bin.Command.DownloadGoogleSheetImages.Main (main) where
 
 import Prelude
 
@@ -6,7 +6,7 @@ import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (runBinM)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (errorPrefixed)
-import Bin.Util.Log.Log (log, write)
+import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
 import Config.Config (config)
@@ -16,7 +16,7 @@ import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Effect.Class (liftEffect)
-import Util.Async (Sem, parTraverseBounded, sem, semAcq, semRel)
+import Util.Async (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 
@@ -39,7 +39,7 @@ imagesToDownload =
 
 main :: Effect Unit
 main = runBinM config do
-  writeLock <- sem 1
+  writeLock <- lock
 
   for_ imagesToDownload \{ filename } ->
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
@@ -50,35 +50,31 @@ main = runBinM config do
   
   write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
-  where
-  carriageReturn :: String
-  carriageReturn = "\r"
+updateLine :: Sem -> Int -> Int -> String -> Aff Unit
+updateLine lock totalLines lineIdx message = do
+  lockAcq lock
+  
+  let linesToGoUp = totalLines - lineIdx
 
-  updateLine :: Sem -> Int -> Int -> String -> Aff Unit
-  updateLine lock totalLines lineIdx message = do
-    semAcq lock
-    
-    let linesToGoUp = totalLines - lineIdx
+  liftEffect $ write $ escapeCodeToString (Up linesToGoUp)
+    <> carriageReturn
+    <> escapeCodeToString (EraseLine Entire)
+    <> message
+    <> escapeCodeToString (Down linesToGoUp)
+    <> carriageReturn
 
-    liftEffect $ write $ escapeCodeToString (Up linesToGoUp)
-      <> carriageReturn
-      <> escapeCodeToString (EraseLine Entire)
-      <> message
-      <> escapeCodeToString (Down linesToGoUp)
-      <> carriageReturn
+  lockRel lock
 
-    semRel lock
+download :: Sem -> Int -> Image -> Aff (Either String String)
+download lock totalLines { idx, url, filename } = do
+  updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
 
-  download :: Sem -> Int -> Image -> Aff (Either String String)
-  download lock totalLines { idx, url, filename } = do
-    updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
+  result <- downloadImage url (imageDirPath <> filename)
 
-    result <- downloadImage url (imageDirPath <> filename)
-
-    case result of
-      Left e -> do
-        updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": \"" <> e <> "\"")
-        pure $ Left filename
-      Right _ -> do
-        updateLine lock totalLines idx (successPrefixed "Downloaded " true true <> filename)
-        pure $ Right filename
+  case result of
+    Left e -> do
+      updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": \"" <> e <> "\"")
+      pure $ Left filename
+    Right _ -> do
+      updateLine lock totalLines idx (successPrefixed "Downloaded " true true <> filename)
+      pure $ Right filename

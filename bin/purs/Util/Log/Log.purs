@@ -1,5 +1,6 @@
 module Bin.Util.Log.Log
-  ( colorize
+  ( carriageReturn
+  , colorize
   , log
   , logAfterNewline
   , logShow
@@ -23,6 +24,9 @@ colorize c s =
   escapeCodeToString (Graphics (singleton $ PForeground c)) 
   <> s 
   <> escapeCodeToString (Graphics (singleton Reset))
+
+carriageReturn :: String
+carriageReturn = "\r"
 
 foreign import _write :: String -> Effect Unit
 

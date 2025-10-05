@@ -1,5 +1,8 @@
 module Util.Async
   ( Sem
+  , lock
+  , lockAcq
+  , lockRel
   , parTraverseBounded
   , sem
   , semAcq
@@ -21,15 +24,24 @@ type Sem = BoundedQueue Unit
 
 sem :: forall m. MonadAff m => Int -> m Sem
 sem n = do
-  q <- liftAff $ BQ.new n
-  traverse_ (const $ liftAff $ BQ.write q unit) (1 .. n)
-  pure q
+  s <- liftAff $ BQ.new n
+  traverse_ (const $ liftAff $ BQ.write s unit) (1 .. n)
+  pure s
 
 semAcq :: forall m. MonadAff m => Sem -> m Unit
-semAcq q = liftAff $ BQ.read q
+semAcq s = liftAff $ BQ.read s
 
 semRel :: forall m. MonadAff m => Sem -> m Unit
 semRel q = liftAff $ BQ.write q unit
+
+lock :: forall m. MonadAff m => m Sem
+lock = sem 1
+
+lockAcq :: forall m. MonadAff m => Sem -> m Unit
+lockAcq s = semAcq s
+
+lockRel :: forall m. MonadAff m => Sem -> m Unit
+lockRel s = semRel s
 
 parTraverseBounded
   :: forall m f a b. MonadAff m => Traversable f
