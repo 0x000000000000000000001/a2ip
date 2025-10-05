@@ -16,9 +16,8 @@ module Util.Http
 
 import Prelude
 
-import Affjax (AffjaxDriver, Error, Request, Response, URL, printError)
+import Affjax (Error, Request, Response, URL, printError)
 import Affjax (Request, Response, Error, URL) as Exports
-import Affjax as Affjax
 import Affjax.RequestBody (RequestBody)
 import Affjax.ResponseFormat (ResponseFormat)
 import Affjax.StatusCode (StatusCode(..))
