@@ -1,13 +1,16 @@
 module Config
   ( Env(..)
   , Config
-  , defaultConfig
+  , config
   )
   where
 
 import Prelude
 
-foreign import lookupEnv :: String -> String
+foreign import _config :: 
+  { rootDir :: String
+  , env :: String
+  }
 
 data Env = Dev | Test | Stage | Prod
 
@@ -15,8 +18,7 @@ derive instance eqEnv :: Eq Env
 
 env :: Env
 env = 
-  let rawEnv = lookupEnv "ENV" in
-  case rawEnv of
+  case _config.env of
     "dev" -> Dev
     "test" -> Test
     "stage" -> Stage
@@ -24,18 +26,20 @@ env =
     _ -> Dev
 
 type Config = 
-  { assetBaseUrl :: String
+  { rootDir :: String 
+  , assetBaseUrl :: String
   , imageBaseUrl :: String
   , dev :: Boolean
   , env :: Env
   }
 
 assetBaseUrl :: String
-assetBaseUrl = lookupEnv "ROOT_DIR" <> "asset/"
+assetBaseUrl = _config.rootDir <> "asset/"
 
-defaultConfig :: Config
-defaultConfig = 
-  { assetBaseUrl
+config :: Config
+config = 
+  { rootDir: _config.rootDir
+  , assetBaseUrl
   , imageBaseUrl: assetBaseUrl <> "image/"
   , dev: Dev == env
   , env
