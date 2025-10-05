@@ -11,4 +11,4 @@ import Test.Component.Page.About.HandleAction.ConvertExtractedDataToMembers as C
 spec :: Spec Unit
 spec = describe do
   ExtractMappingKeysAndValuesFromTable.spec
-  ConvertExtractedDataToMembers.spec
+  ConvertExtractedDataToMembers.spec 

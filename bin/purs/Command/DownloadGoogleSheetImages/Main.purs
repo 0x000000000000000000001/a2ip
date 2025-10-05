@@ -5,13 +5,19 @@ import Prelude
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (runBinM)
 import Bin.Util.Log.Download (downloadPrefixed)
-import Bin.Util.Log.Error (errorPrefixed)
+import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
+import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml, fetchMembersTableHtml)
+import Component.Page.About.Type (portraitId)
 import Config.Config (config)
-import Data.Array (length)
+import Data.Array (length, (!!))
 import Data.Either (Either(..))
+import Data.FoldableWithIndex (forWithIndex_)
+import Data.Generic.Rep (from)
+import Data.Map (lookup)
+import Data.Maybe (fromMaybe, maybe)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -19,34 +25,46 @@ import Effect.Class (liftEffect)
 import Util.Async (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
+import Web.HTML.HTMLHyperlinkElementUtils (port)
 
 type Image = 
-  { idx :: Int 
-  , url :: String
+  { url :: String
   , filename :: String
   }
 
-imagesToDownload :: Array Image
-imagesToDownload = 
-  [ { idx: 0, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test1.png" }
-  , { idx: 1, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test2.png" }
-  , { idx: 2, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test3.png" }
-  , { idx: 3, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test4.png" }
-  , { idx: 4, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test5.png" }
-  , { idx: 5, url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg", filename: "test6.png" }
-  , { idx: 6, url: "https://invalid-url.com/image.jpg", filename: "test7.jpg" }
-  ]
+imagesToDownload :: Aff (Array Image)
+imagesToDownload = do 
+  tableHtml <- fetchMembersTableHtml 
+  case tableHtml of
+    Left err -> do
+      error $ "Error fetching table HTML: " <> err
+      pure []
+    Right tableHtml -> do
+      let extractedData = extractMappingKeysAndValuesFromTableHtml tableHtml
+          portraitIndex = lookup portraitId extractedData.keyIndices
+          images = 
+            maybe 
+            [] 
+            (\idx -> 
+              fromMaybe 
+              [] 
+              $ extractedData.values # (_ !! idx)
+            ) 
+            portraitIndex
+      pure images
 
 main :: Effect Unit
 main = runBinM config do
   writeLock <- lock
 
-  for_ imagesToDownload \{ filename } ->
+  images <- imagesToDownload
+
+  forWithIndex_ images \i { filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
 
-  let totalLines = length imagesToDownload
+  let totalLines = length images
   
-  void $ parTraverseBounded 3 (download writeLock totalLines) imagesToDownload
+  void $ parTraverseBounded 3 (download writeLock totalLines) images
   
   write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
@@ -56,7 +74,7 @@ updateLine lock totalLines lineIdx message = do
   
   let linesToGoUp = totalLines - lineIdx
 
-  liftEffect $ write $ escapeCodeToString (Up linesToGoUp)
+  write $ escapeCodeToString (Up linesToGoUp)
     <> carriageReturn
     <> escapeCodeToString (EraseLine Entire)
     <> message

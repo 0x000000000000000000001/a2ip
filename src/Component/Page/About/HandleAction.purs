@@ -17,9 +17,10 @@ import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
-import Data.Map (Map, empty, lookup)
+import Data.Map (Map, empty, lookup, member)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
+import Effect.Aff (Aff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
@@ -49,19 +50,19 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-fetchMembersTableHtml :: forall o. String -> HalogenM State Action () o AppM (Either String String)
-fetchMembersTableHtml tabId = do
+fetchMembersTableHtml :: Aff (Either String String)
+fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of
     Left err -> pure $ Left $ "Failed to fetch ZIP: " <> printError err
     Right response -> do
-      let tabName = fromMaybe "" $ tabIdToName tabId
+      let tabName = fromMaybe "" $ tabIdToName membersTabId
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       pure $ Right htmlContent
 
 loadMembers :: forall o. HalogenM State Action () o AppM Unit
 loadMembers = do
-  htmlContent <- fetchMembersTableHtml membersTabId
+  htmlContent <- liftAff $ fetchMembersTableHtml
   case htmlContent of
     Left err -> error err
     Right h -> do
