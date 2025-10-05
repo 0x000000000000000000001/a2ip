@@ -43,5 +43,5 @@ You can edit this file as you like.
   , "tuples"
   ]
 , packages = ./packages.dhall
-, sources = [ "bin/**/*.purs", "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "bin/purs/**/*.purs", "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
 }

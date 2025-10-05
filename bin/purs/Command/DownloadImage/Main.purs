@@ -1,4 +1,4 @@
-module Bin.DownloadImage.Main (main) where
+module Bin.Command.DownloadImage.Main (main) where
 
 import Prelude
 

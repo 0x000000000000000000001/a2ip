@@ -2,7 +2,7 @@
 
 old_wd=$(pwd)
 
-dir=$(dirname "$0")/..
+dir=$(dirname "$0")/../..
 cd "$dir"
 
 inFile=conf/Config.dist.json
@@ -10,5 +10,7 @@ outFile=output/Config.Config/config.json
 
 cp $inFile $outFile
 envsubst < $inFile > $outFile
+
+echo "Done"    
 
 cd "$old_wd"
