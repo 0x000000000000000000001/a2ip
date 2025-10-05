@@ -14,15 +14,30 @@ import Component.Page.About.Type (portraitId)
 import Config.Config (config)
 import Data.Array (last, length, mapWithIndex, (!!))
 import Data.Either (Either(..))
-import Data.FoldableWithIndex (forWithIndex_)
 import Data.Map (lookup)
 import Data.Maybe (fromMaybe, maybe)
 import Data.String (Pattern(..), split)
+import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Util.Async (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
+
+main :: Effect Unit
+main = runBinM config do
+  writeLock <- lock
+
+  images <- imagesToDownload
+
+  for_ images \{ filename } -> do
+    log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
+
+  let totalLines = length images
+  
+  void $ parTraverseBounded 3 (download writeLock totalLines) images
+  
+  write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
 type Image =
   { idx :: Int
@@ -54,21 +69,6 @@ imagesToDownload = do
         mapWithIndex 
         (\idx url -> { idx, url, filename: fromMaybe "" $ last $ split (Pattern "/") url }) 
         imageUrls
-
-main :: Effect Unit
-main = runBinM config do
-  writeLock <- lock
-
-  images <- imagesToDownload
-
-  forWithIndex_ images \i { filename } -> do
-    log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
-
-  let totalLines = length images
-  
-  void $ parTraverseBounded 3 (download writeLock totalLines) images
-  
-  write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
 updateLine lock totalLines lineIdx message = do
