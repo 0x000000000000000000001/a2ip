@@ -12,12 +12,13 @@ import Bin.Util.Log.Success (successPrefixed)
 import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml, fetchMembersTableHtml)
 import Component.Page.About.Type (portraitId)
 import Config.Config (config)
-import Data.Array (length, (!!))
+import Data.Array (last, length, (!!))
 import Data.Either (Either(..))
 import Data.FoldableWithIndex (forWithIndex_)
 import Data.Generic.Rep (from)
 import Data.Map (lookup)
 import Data.Maybe (fromMaybe, maybe)
+import Data.String (Pattern(..), split)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -42,7 +43,8 @@ imagesToDownload = do
     Right tableHtml -> do
       let extractedData = extractMappingKeysAndValuesFromTableHtml tableHtml
           portraitIndex = lookup portraitId extractedData.keyIndices
-          images = 
+          imageUrls :: Array String
+          imageUrls = 
             maybe 
             [] 
             (\idx -> 
@@ -51,7 +53,7 @@ imagesToDownload = do
               $ extractedData.values # (_ !! idx)
             ) 
             portraitIndex
-      pure images
+      pure $ imageUrls <#> \url -> { url, filename: fromMaybe "" $ last $ split (Pattern "/") url }
 
 main :: Effect Unit
 main = runBinM config do
