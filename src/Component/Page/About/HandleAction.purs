@@ -17,10 +17,10 @@ import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
-import Data.Map (Map, empty, lookup, member)
+import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe)
 import Data.String (trim)
-import Effect.Aff (Aff)
+import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
@@ -50,7 +50,7 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-fetchMembersTableHtml :: Aff (Either String String)
+fetchMembersTableHtml :: forall m. MonadAff m => m (Either String String)
 fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of

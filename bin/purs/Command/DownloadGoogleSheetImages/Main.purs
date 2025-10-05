@@ -3,7 +3,7 @@ module Bin.Command.DownloadGoogleSheetImages.Main (main) where
 import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import Bin.Capability.BinM (runBinM)
+import Bin.Capability.BinM (BinM, runBinM)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
@@ -15,18 +15,14 @@ import Config.Config (config)
 import Data.Array (last, length, mapWithIndex, (!!))
 import Data.Either (Either(..))
 import Data.FoldableWithIndex (forWithIndex_)
-import Data.Generic.Rep (from)
 import Data.Map (lookup)
 import Data.Maybe (fromMaybe, maybe)
 import Data.String (Pattern(..), split)
-import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
-import Effect.Class (liftEffect)
 import Util.Async (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
-import Web.HTML.HTMLHyperlinkElementUtils (port)
 
 type Image =
   { idx :: Int
@@ -34,15 +30,15 @@ type Image =
   , filename :: String
   }
 
-imagesToDownload :: Aff (Array Image) 
+imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
   tableHtml <- fetchMembersTableHtml 
-  case tableHtml of
+  case tableHtml of 
     Left err -> do
       error $ "Error fetching table HTML: " <> err
       pure []
-    Right tableHtml -> do
-      let extractedData = extractMappingKeysAndValuesFromTableHtml tableHtml
+    Right h -> do
+      let extractedData = extractMappingKeysAndValuesFromTableHtml h
           portraitIndex = lookup portraitId extractedData.keyIndices
           imageUrls :: Array String
           imageUrls = 
