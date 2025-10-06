@@ -5,6 +5,7 @@ You can edit this file as you like.
 { name = "halo"
 , dependencies =
   [ "aff"
+  , "aff-promise"
   , "affjax"
   , "ansi"
   , "arraybuffer-types"
@@ -41,5 +42,6 @@ You can edit this file as you like.
   , "tuples"
   ]
 , packages = ./packages.dhall
-, sources = [ "bin/purs/**/*.purs", "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
+, sources =
+  [ "bin/purs/**/*.purs", "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
 }

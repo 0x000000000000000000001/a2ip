@@ -47,7 +47,7 @@ type Image =
 
 imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
-  tableHtml <- fetchMembersTableHtml 
+  members <- fetchMembersTableHtml 
   case tableHtml of 
     Left err -> do
       error $ "Error fetching table HTML: " <> err

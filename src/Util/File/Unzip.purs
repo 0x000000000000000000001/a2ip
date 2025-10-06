@@ -2,17 +2,12 @@ module Util.File.Unzip where
 
 import Prelude
 
-import Data.Either (Either(..))
-import Effect (Effect)
-import Effect.Aff (Aff, makeAff, nonCanceler)
-import Effect.Exception (Error)
+import Control.Promise (Promise, toAff)
 import Data.ArrayBuffer.Types (ArrayBuffer)
+import Effect.Aff (Aff)
 
-foreign import _unzip :: String -> ArrayBuffer -> (Error -> Effect Unit) -> (String -> Effect Unit) -> Effect Unit
+foreign import _unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Promise String
 
 unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Aff String
-unzipGoogleSheetAndExtractHtml htmlFilename zipContent = makeAff \cb -> do
-  _unzip htmlFilename zipContent 
-    (\err -> cb $ Left err)
-    (\content -> cb $ Right content)
-  pure nonCanceler
+unzipGoogleSheetAndExtractHtml htmlFilename zipContent = 
+  toAff $ _unzipGoogleSheetAndExtractHtml htmlFilename zipContent

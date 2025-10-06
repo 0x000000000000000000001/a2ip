@@ -4,7 +4,7 @@ module Component.Page.About.HandleAction
   , extractMappingKeysAndValuesFromTableHtml
   , fetchMembersTableHtml
   , handleAction
-  , loadMembers
+  , fetchMembers
   )
   where
 
@@ -12,8 +12,8 @@ import Prelude
 
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
+import Bin.Util.Log.Error (error)
 import Capability.AppM (AppM)
-import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
@@ -55,25 +55,28 @@ fetchMembersTableHtml :: forall m. MonadAff m => m (Either String String)
 fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of
-    Left err -> pure $ Left $ "Failed to fetch ZIP: " <> printError err
+    Left e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
     Right response -> do
       let tabName = fromMaybe "" $ tabIdToName membersTabId
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       pure $ Right htmlContent
 
-loadMembers :: forall o. HalogenM State Action () o AppM Unit
-loadMembers = do
-  htmlContent <- liftAff $ fetchMembersTableHtml
+fetchMembers :: forall m. MonadAff m => m (Either String (Array (Maybe Member)))
+fetchMembers = do
+  htmlContent <- fetchMembersTableHtml
   case htmlContent of
-    Left err -> error err
+    Left e -> pure $ Left e
     Right h -> do
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
-          members_ = convertExtractedDataToMembers extractedData
-      modify_ _ { members = members_ }
+      pure $ Right $ convertExtractedDataToMembers extractedData
 
 handleAction :: forall o. Action -> HalogenM State Action () o AppM Unit
 handleAction = case _ of
-  LoadData -> loadMembers
+  LoadData -> do
+    members_ <- fetchMembers
+    case members_ of
+      Left e -> error $ "Error fetching members: " <> e
+      Right m -> modify_ _ { members = m }
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
