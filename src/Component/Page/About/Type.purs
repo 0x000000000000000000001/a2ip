@@ -2,8 +2,9 @@ module Component.Page.About.Type where
 
 import Prelude
 
-import Data.Maybe (Maybe)
+import Affjax.RequestBody (RequestBody(..))
 import Data.Const (Const)
+import Data.Maybe (Maybe)
 
 type Input = Unit
 
@@ -30,6 +31,7 @@ type Member =
   , email :: String
   , portraitId :: String
   , originalPortraitUrl :: String
+  , finalPortraitUrl :: String
   }
 
 lastname :: String 
@@ -53,5 +55,8 @@ email = "email"
 portraitId :: String
 portraitId = "portraitId"
 
-portraitUrl :: String
-portraitUrl = "portraitUrl"
+originalPortraitUrl :: String
+originalPortraitUrl = "originalPortraitUrl"
+
+finalPortraitUrl :: String
+finalPortraitUrl = "finalPortraitUrl"

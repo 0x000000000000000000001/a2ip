@@ -10,6 +10,7 @@ module Component.Page.About.HandleAction
   , handleAction
   , mockImageUrl
   , mockImages
+  , suffixPortraitIdWithExt
   )
   where
 
@@ -18,6 +19,7 @@ import Prelude
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Bin.Util.Log.Error (error)
+import CSS (StyleM(..))
 import Capability.AppM (AppM)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
@@ -28,6 +30,7 @@ import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
+import Util.File.Path (imageDirPath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
@@ -44,10 +47,16 @@ googleDriveImageUrlTemplate :: String
 googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
 
 generateGoogleDriveImageUrl :: String -> String
-generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement id) googleDriveImageUrlTemplate
+generateGoogleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
+
+generateOurImageUrl :: String -> String 
+generateOurImageUrl portraitId = imageDirPath <> "component/page/about/member/" <> suffixPortraitIdWithExt portraitId 
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+
+suffixPortraitIdWithExt :: String -> String
+suffixPortraitIdWithExt id = id <> ".png"
 
 membersTabId :: String 
 membersTabId = "0"
@@ -126,6 +135,7 @@ convertExtractedDataToMembers extractedData =
           , email: value email row
           , portraitId: fromMaybe "" portraitId_
           , originalPortraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
+          , finalPortraitUrl: maybe "" (\id -> generateOurImageUrl id) portraitId_
           }
 
   in values <#> (Just <<< toMember)

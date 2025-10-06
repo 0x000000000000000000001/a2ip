@@ -57,6 +57,7 @@ renderMemberCard member =
     , email: loadingPlaceholder
     , portraitId: loadingPlaceholder
     , originalPortraitUrl: loadingPlaceholder
+    , finalPortraitUrl: loadingPlaceholder
     }
     member
 

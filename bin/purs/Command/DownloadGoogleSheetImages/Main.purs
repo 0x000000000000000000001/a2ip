@@ -9,11 +9,13 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Component.Page.About.HandleAction (fetchMembers)
+import Component.Page.About.HandleAction (fetchMembers, suffixPortraitIdWithExt)
+import Component.Page.About.Type (finalPortraitUrl)
 import Config.Config (config)
-import Data.Array (catMaybes, length, mapWithIndex)
+import Data.Array (catMaybes, last, length, mapWithIndex)
 import Data.Either (Either(..))
-import Data.Maybe (Maybe(..), maybe)
+import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.String (Pattern(..), split)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -61,10 +63,10 @@ imagesToDownload = do
         (\idx member -> 
           maybe 
           Nothing
-          (\{ portraitId, originalPortraitUrl } -> Just 
+          (\{ finalPortraitUrl } -> Just 
             { idx
-            , url: originalPortraitUrl
-            , filename: portraitId <> ".png"
+            , url: finalPortraitUrl
+            , filename: fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
             }
           ) 
           member
@@ -88,7 +90,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, url, filename } = do
-  updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
+  updateLine lock totalLines idx (downloadPrefixed "Downloading " true true <> filename <> "...")
 
   result <- downloadImage url (imageDirPath <> "component/page/about/member/" <> filename)
 
