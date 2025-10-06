@@ -2,7 +2,6 @@ module Component.Page.About.Type where
 
 import Prelude
 
-import Affjax.RequestBody (RequestBody(..))
 import Data.Const (Const)
 import Data.Maybe (Maybe)
 

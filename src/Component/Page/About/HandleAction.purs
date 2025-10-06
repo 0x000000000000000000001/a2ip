@@ -19,7 +19,6 @@ import Prelude
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Bin.Util.Log.Error (error)
-import CSS (StyleM(..))
 import Capability.AppM (AppM)
 import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
