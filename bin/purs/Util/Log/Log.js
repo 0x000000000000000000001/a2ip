@@ -1,4 +1,3 @@
-export const _write = (str) => () => {
-  console.log(123);
+export const _write = async (str) => {
   process.stdout.write(str);
 };

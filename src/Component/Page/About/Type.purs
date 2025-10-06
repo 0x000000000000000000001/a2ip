@@ -28,6 +28,7 @@ type Member =
   , job :: String
   , phone :: String
   , email :: String
+  , portraitId :: String
   , portraitUrl :: String
   }
 

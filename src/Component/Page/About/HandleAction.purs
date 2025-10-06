@@ -33,7 +33,6 @@ import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http (get)
-import Util.Log (unsafeDebugShow)
 
 mockImages :: Boolean
 mockImages = true
@@ -125,6 +124,7 @@ convertExtractedDataToMembers extractedData =
           , job: value job row
           , phone: value phone row
           , email: value email row
+          , portraitId: fromMaybe "" portraitId_
           , portraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
           }
 

@@ -14,7 +14,6 @@ import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
 import Data.Maybe (Maybe, fromMaybe, maybe)
-import Data.String (Pattern(..), Replacement(..), replace)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
@@ -55,6 +54,7 @@ renderMemberCard member =
     , job: loadingPlaceholder
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
+    , portraitId: loadingPlaceholder
     , portraitUrl: loadingPlaceholder
     }
     member

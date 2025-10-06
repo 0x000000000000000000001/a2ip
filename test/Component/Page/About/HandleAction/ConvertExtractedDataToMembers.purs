@@ -28,6 +28,7 @@ spec = describe do
         , job: "Software Engineer"
         , phone: "123-456-7890"
         , email: "john@example.com"
+        , portraitId: "portrait123"
         , portraitUrl: "portrait123"
         }
     ]
@@ -46,6 +47,7 @@ spec = describe do
         , job: ""
         , phone: ""
         , email: ""
+        , portraitId: ""
         , portraitUrl: ""
         }
     ]
@@ -64,6 +66,7 @@ spec = describe do
         , job: ""
         , phone: ""
         , email: "bob@example.com"
+        , portraitId: "portrait456"
         , portraitUrl: "portrait456"
         }
     ]
@@ -79,9 +82,9 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitUrl: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitUrl: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitUrl: "" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -106,6 +109,7 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -124,6 +128,7 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -142,6 +147,7 @@ spec = describe do
       , job: "Engineer"
       , phone: ""
       , email: ""
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -160,6 +166,7 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: "jean.pierre+test@example.com"
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -178,6 +185,7 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -193,9 +201,9 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitUrl: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitUrl: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitUrl: "" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -212,6 +220,7 @@ spec = describe do
       , job: "Engineer"
       , phone: ""
       , email: ""
+      , portraitId: "img123"
       , portraitUrl: "img123"
       }
     ]
@@ -230,6 +239,7 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , portraitId: ""
       , portraitUrl: ""
       }
     ]
@@ -246,10 +256,10 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitUrl: "portrait1" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitUrl: "portrait2" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitUrl: "portrait3" },
-      Just { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitUrl: "portrait4" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1", portraitUrl: "portrait1" },
+      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2", portraitUrl: "portrait2" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3", portraitUrl: "portrait3" },
+      Just { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4", portraitUrl: "portrait4" }
     ]
     convertExtractedDataToMembers extractedData === expected
 

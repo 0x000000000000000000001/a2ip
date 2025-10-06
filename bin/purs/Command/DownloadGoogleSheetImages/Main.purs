@@ -4,12 +4,11 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
-import Bin.Util.Log.Debug (debug)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
-import Bin.Util.Log.Success (successPrefixed)
+import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
 import Component.Page.About.HandleAction (fetchMembers)
 import Config.Config (config)
 import Data.Array (catMaybes, length, mapWithIndex)
@@ -20,7 +19,7 @@ import Effect (Effect)
 import Effect.Aff (Aff)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
-import Util.Semaphor (Sem, lock, parTraverseBounded)
+import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
 main = runBinM config do
@@ -36,6 +35,8 @@ main = runBinM config do
   void $ parTraverseBounded 3 (download writeLock totalLines) images
   
   write $ escapeCodeToString (Down totalLines) <> carriageReturn
+
+  successShortAfterNewline "Done!"
 
 type Image =
   { idx :: Int
@@ -56,11 +57,10 @@ imagesToDownload = do
         (\idx member -> 
           maybe 
           Nothing
-          (\{ portraitUrl } -> Just 
+          (\{ portraitId, portraitUrl } -> Just 
             { idx
             , url: portraitUrl 
-            -- , filename: fromMaybe "" $ last $ split (Pattern "/") portraitUrl 
-            , filename: "abc.jpeg"
+            , filename: portraitId <> ".png"
             }
           ) 
           member
@@ -68,8 +68,8 @@ imagesToDownload = do
         members_
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
-updateLine _ totalLines lineIdx message = do
-  -- lockAcq lock
+updateLine lock totalLines lineIdx message = do
+  lockAcq lock
   
   let linesToGoUp = totalLines - lineIdx
 
@@ -80,15 +80,13 @@ updateLine _ totalLines lineIdx message = do
     <> escapeCodeToString (Down linesToGoUp)
     <> carriageReturn
 
-  -- lockRel lock
+  lockRel lock
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, url, filename } = do
-  debug "AAA"
   updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
-  debug "BBB"
 
-  result <- downloadImage url (imageDirPath <> filename)
+  result <- downloadImage url (imageDirPath <> "component/page/about/member/" <> filename)
 
   case result of
     Left e -> do

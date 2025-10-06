@@ -14,8 +14,8 @@ module Bin.Util.Log.Log
 import Prelude
 
 import Ansi.Codes (Color, EscapeCode(..), GraphicsParam(..), escapeCodeToString)
+import Control.Promise (Promise, toAff)
 import Data.List.NonEmpty (singleton)
-import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (liftEffect)
 import Effect.Console as Console
@@ -29,10 +29,10 @@ colorize c s =
 carriageReturn :: String
 carriageReturn = "\r"
 
-foreign import _write :: String -> Aff Unit
+foreign import _write :: String -> Promise Unit
 
 write :: forall m. MonadAff m => String -> m Unit
-write = liftAff <<< _write
+write str = liftAff $ toAff $ _write str
 
 log :: forall m. MonadAff m => String -> m Unit
 log = liftEffect <<< Console.log
