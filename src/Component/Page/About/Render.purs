@@ -1,6 +1,5 @@
 module Component.Page.About.Render
-  ( generateGoogleDriveImageUrl
-  , render
+  ( render
   )
   where
 
@@ -21,21 +20,6 @@ import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
 import Util.Style (class_, classes)
-
-mockImages :: Boolean
-mockImages = true
-
-googleDriveImageUrlTemplatePlaceholder :: String
-googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
-
-googleDriveImageUrlTemplate :: String
-googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
-
-generateGoogleDriveImageUrl :: String -> String
-generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement id) googleDriveImageUrlTemplate
-
-mockImageUrl :: String
-mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
 render :: State -> ComponentHTML Action Slots AppM
 render state =
@@ -58,7 +42,7 @@ renderMemberCard member =
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img
           ( [ class_ CardPortrait.classId ]
-              <> if isLoading then [] else [ src $ if mockImages then mockImageUrl else generateGoogleDriveImageUrl $ maybe "" _.portraitId member ]
+              <> if isLoading then [] else [ src member_.portraitUrl ]
           )
       ] <> lines
     )
@@ -71,7 +55,7 @@ renderMemberCard member =
     , job: loadingPlaceholder
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
-    , portraitId: loadingPlaceholder
+    , portraitUrl: loadingPlaceholder
     }
     member
 

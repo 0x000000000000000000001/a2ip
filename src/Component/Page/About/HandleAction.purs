@@ -2,9 +2,14 @@ module Component.Page.About.HandleAction
   ( ExtractedData
   , convertExtractedDataToMembers
   , extractMappingKeysAndValuesFromTableHtml
-  , fetchMembersTableHtml
-  , handleAction
   , fetchMembers
+  , fetchMembersTableHtml
+  , generateGoogleDriveImageUrl
+  , googleDriveImageUrlTemplate
+  , googleDriveImageUrlTemplatePlaceholder
+  , handleAction
+  , mockImageUrl
+  , mockImages
   )
   where
 
@@ -18,14 +23,32 @@ import Component.Page.About.Type (Action(..), Member, State, email, firstname, j
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
-import Data.Maybe (Maybe(..), fromMaybe)
-import Data.String (trim)
+import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
+import Util.GoogleDrive (extractPortraitIdFromViewUrl)
+import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http (get)
+import Util.Log (unsafeDebugShow)
+
+mockImages :: Boolean
+mockImages = true
+
+googleDriveImageUrlTemplatePlaceholder :: String
+googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
+
+googleDriveImageUrlTemplate :: String
+googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
+
+generateGoogleDriveImageUrl :: String -> String
+generateGoogleDriveImageUrl id = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement id) googleDriveImageUrlTemplate
+
+mockImageUrl :: String
+mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
 membersTabId :: String 
 membersTabId = "0"
@@ -94,14 +117,16 @@ convertExtractedDataToMembers extractedData =
 
       toMember :: Array String -> Member
       toMember row =
-        { firstname: value firstname row
-        , lastname: value lastname row
-        , role: value role row
-        , job: value job row
-        , phone: value phone row
-        , email: value email row
-        , portraitId: value portraitId row
-        }
+        let portraitId_ = extractPortraitIdFromViewUrl $ untag $ value portraitId row :: Maybe String
+        in 
+          { firstname: value firstname row
+          , lastname: value lastname row
+          , role: value role row
+          , job: value job row
+          , phone: value phone row
+          , email: value email row
+          , portraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
+          }
 
   in values <#> (Just <<< toMember)
 

@@ -1,22 +1,31 @@
 module Util.Log
-  ( unsafeLog
-  , unsafeLogDebug
-  , unsafeLogDebugShow
-  , unsafeLogError
-  , unsafeLogErrorShow
-  , unsafeLogInfo
-  , unsafeLogInfoShow
+  ( Level(..)
+  , unsafeDebug
+  , unsafeDebugShow
+  , unsafeError
+  , unsafeErrorShow
+  , unsafeInfo
+  , unsafeInfoShow
+  , unsafeLog
   , unsafeLogShow
-  , unsafeLogWarning
-  , unsafeLogWarningShow
+  , unsafeWarn
+  , unsafeWarnShow
   )
   where
 
 import Prelude
 
-import Capability.Log (Level(..))
+import Data.Generic.Rep (class Generic)
+import Data.Show.Generic (genericShow)
 import Effect.Console as Console
 import Effect.Unsafe (unsafePerformEffect)
+
+data Level = Debug | Info | Warn | Error
+
+derive instance genericLogLevel :: Generic Level _
+
+instance showLogLevel :: Show Level where
+  show = genericShow
 
 unsafeLog :: forall a. Show a => Level -> a -> Unit
 unsafeLog level input = unsafePerformEffect $ do
@@ -24,32 +33,32 @@ unsafeLog level input = unsafePerformEffect $ do
   case level of
     Debug -> Console.debug message_
     Info -> Console.info message_
-    Warning -> Console.warn message_
+    Warn -> Console.warn message_
     Error -> Console.error message_
 
 unsafeLogShow :: forall a. Show a => Level -> a -> Unit
 unsafeLogShow level input = unsafeLog level $ show input
 
-unsafeLogDebug :: forall a. Show a => a -> Unit
-unsafeLogDebug = unsafeLog Debug
+unsafeDebug :: forall a. Show a => a -> Unit
+unsafeDebug = unsafeLog Debug
 
-unsafeLogDebugShow :: forall a. Show a => a -> Unit
-unsafeLogDebugShow = unsafeLogDebug <<< show
+unsafeDebugShow :: forall a. Show a => a -> Unit
+unsafeDebugShow = unsafeDebug <<< show
 
-unsafeLogInfo :: forall a. Show a => a -> Unit
-unsafeLogInfo = unsafeLog Info
+unsafeInfo :: forall a. Show a => a -> Unit
+unsafeInfo = unsafeLog Info
 
-unsafeLogInfoShow :: forall a. Show a => a -> Unit
-unsafeLogInfoShow = unsafeLogInfo <<< show
+unsafeInfoShow :: forall a. Show a => a -> Unit
+unsafeInfoShow = unsafeInfo <<< show
 
-unsafeLogWarning :: forall a. Show a => a -> Unit
-unsafeLogWarning = unsafeLog Warning
+unsafeWarn :: forall a. Show a => a -> Unit
+unsafeWarn = unsafeLog Warn
 
-unsafeLogWarningShow :: forall a. Show a => a -> Unit
-unsafeLogWarningShow = unsafeLogWarning <<< show
+unsafeWarnShow :: forall a. Show a => a -> Unit
+unsafeWarnShow = unsafeWarn <<< show
 
-unsafeLogError :: forall a. Show a => a -> Unit
-unsafeLogError = unsafeLog Error
+unsafeError :: forall a. Show a => a -> Unit
+unsafeError = unsafeLog Error
 
-unsafeLogErrorShow :: forall a. Show a => a -> Unit
-unsafeLogErrorShow = unsafeLogError <<< show
+unsafeErrorShow :: forall a. Show a => a -> Unit
+unsafeErrorShow = unsafeError <<< show

@@ -1,10 +1,11 @@
 module Util.Html.Clean
-  ( removeAttribute
-  , removeDataAttributes
-  , cleanAttributesInTag
+  ( cleanAttributesInTag
   , cleanAttributesInTags
   , findUnescapedQuote
+  , removeAttribute
   , removeComments
+  , removeDataAttributes
+  , untag
   )
   where
 
@@ -144,3 +145,28 @@ removeComments str =
               result = beforeComment <> afterComment
           in removeComments result 
         Nothing -> str 
+
+-- | Remove all HTML tags from a string, leaving only the text content.
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> untag "<div>Hello <strong>World</strong>!</div>"
+-- | "Hello World!"
+-- | >>> untag "<p>This is a <a href=\"#\">link</a>.</p>"
+-- | "This is a link."
+-- | ```
+untag :: String -> String
+untag str =
+  let chars = toCodePointArray str
+      result = foldl process { inTag: false, result: [] } chars
+  in fromCodePointArray result.result
+  where 
+  process 
+    :: { inTag :: Boolean, result :: Array CodePoint } 
+    -> CodePoint 
+    -> { inTag :: Boolean, result :: Array CodePoint } 
+  process acc codePoint
+    | codePoint == codePointFromChar '<' = acc { inTag = true }
+    | codePoint == codePointFromChar '>' && acc.inTag = acc { inTag = false }
+    | acc.inTag = acc
+    | otherwise = acc { result = snoc acc.result codePoint }

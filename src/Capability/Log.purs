@@ -4,12 +4,9 @@ import Prelude
 
 import Capability.AppM (AppM)
 import Control.Monad.Trans.Class (lift)
-import Data.Generic.Rep (class Generic)
-import Data.Show.Generic (genericShow)
 import Effect.Class.Console as Console
 import Halogen (HalogenM)
-
-data Level = Debug | Info | Warning | Error
+import Util.Log (Level(..))
 
 class Monad m <= Log m where
   log :: Level -> String -> m Unit
@@ -41,19 +38,14 @@ instance logAppM :: Log AppM where
     in case level of 
       Debug -> Console.debug msg
       Info -> Console.info msg
-      Warning -> Console.warn msg
+      Warn -> Console.warn msg
       Error -> Console.error msg
   logShow level a = log level (show a)
   info msg = log Info msg
   infoShow a = logShow Info a
   debug msg = log Debug msg
   debugShow a = logShow Debug a
-  warn msg = log Warning msg
-  warnShow a = logShow Warning a
+  warn msg = log Warn msg
+  warnShow a = logShow Warn a
   error msg = log Error msg
   errorShow a = logShow Error a
-
-derive instance genericLogLevel :: Generic Level _
-
-instance showLogLevel :: Show Level where
-  show = genericShow

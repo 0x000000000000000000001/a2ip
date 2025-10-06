@@ -4,25 +4,23 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
+import Bin.Util.Log.Debug (debug)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed)
-import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml, fetchMembersTableHtml)
-import Component.Page.About.Type (portraitId)
+import Component.Page.About.HandleAction (fetchMembers)
 import Config.Config (config)
-import Data.Array (last, length, mapWithIndex, (!!))
+import Data.Array (catMaybes, length, mapWithIndex)
 import Data.Either (Either(..))
-import Data.Map (lookup)
-import Data.Maybe (fromMaybe, maybe)
-import Data.String (Pattern(..), split)
+import Data.Maybe (Maybe(..), maybe)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
-import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
+import Util.Semaphor (Sem, lock, parTraverseBounded)
 
 main :: Effect Unit
 main = runBinM config do
@@ -47,32 +45,31 @@ type Image =
 
 imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
-  members <- fetchMembersTableHtml 
-  case tableHtml of 
+  members <- fetchMembers 
+  case members of 
     Left err -> do
       error $ "Error fetching table HTML: " <> err
       pure []
-    Right h -> do
-      let extractedData = extractMappingKeysAndValuesFromTableHtml h
-          portraitIndex = lookup portraitId extractedData.keyIndices
-          imageUrls :: Array String
-          imageUrls = 
-            maybe 
-            [] 
-            (\idx -> 
-              fromMaybe 
-              [] 
-              $ extractedData.values # (_ !! idx)
-            ) 
-            portraitIndex
-      pure $ 
+    Right members_ -> do
+      pure $ catMaybes $ 
         mapWithIndex 
-        (\idx url -> { idx, url, filename: fromMaybe "" $ last $ split (Pattern "/") url }) 
-        imageUrls
+        (\idx member -> 
+          maybe 
+          Nothing
+          (\{ portraitUrl } -> Just 
+            { idx
+            , url: portraitUrl 
+            -- , filename: fromMaybe "" $ last $ split (Pattern "/") portraitUrl 
+            , filename: "abc.jpeg"
+            }
+          ) 
+          member
+        ) 
+        members_
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
-updateLine lock totalLines lineIdx message = do
-  lockAcq lock
+updateLine _ totalLines lineIdx message = do
+  -- lockAcq lock
   
   let linesToGoUp = totalLines - lineIdx
 
@@ -83,11 +80,13 @@ updateLine lock totalLines lineIdx message = do
     <> escapeCodeToString (Down linesToGoUp)
     <> carriageReturn
 
-  lockRel lock
+  -- lockRel lock
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, url, filename } = do
+  debug "AAA"
   updateLine lock totalLines idx (downloadPrefixed "⬇️  Downloading " true true <> filename <> "...")
+  debug "BBB"
 
   result <- downloadImage url (imageDirPath <> filename)
 
