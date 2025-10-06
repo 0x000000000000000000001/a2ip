@@ -1,4 +1,4 @@
-import JSZip from 'jszip';
+// import JSZip from 'jszip';
 
 export const _unzipGoogleSheetAndExtractHtml = function(filename) {
   return async function(zipContent) {
