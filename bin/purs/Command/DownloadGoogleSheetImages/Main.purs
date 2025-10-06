@@ -23,6 +23,7 @@ import Effect.Class (liftEffect)
 import Node.Process (exit')
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
+import Util.Log (unsafeDebug)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -63,9 +64,9 @@ imagesToDownload = do
         (\idx member -> 
           maybe 
           Nothing
-          (\{ finalPortraitUrl } -> Just 
+          (\{ originalPortraitUrl, finalPortraitUrl } -> Just 
             { idx
-            , url: finalPortraitUrl
+            , url: originalPortraitUrl
             , filename: fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
             }
           ) 
