@@ -18,7 +18,6 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
-import Util.File.Path (imageDirPath)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -42,7 +41,7 @@ renderMemberCard member =
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , img
           ( [ class_ CardPortrait.classId ]
-              <> if isLoading then [] else [ src $ imageDirPath <> "component/page/about/member/" <> member_.portraitId <> ".png" ]
+              <> if isLoading then [] else [ src member_.finalPortraitUrl ]
           )
       ] <> lines
     )
