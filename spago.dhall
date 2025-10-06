@@ -6,8 +6,6 @@ You can edit this file as you like.
 , dependencies =
   [ "aff"
   , "affjax"
-  , "affjax-node"
-  , "affjax-web"
   , "ansi"
   , "arraybuffer-types"
   , "arrays"

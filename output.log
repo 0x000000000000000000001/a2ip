@@ -1,0 +1,15 @@
+[ 1 of 14] Compiling Component.Page.About.HandleAction
+[ 2 of 14] Compiling Bin.Command.DownloadGoogleSheetImages.Main
+[ 3 of 14] Compiling Test.Component.Page.About.HandleAction.ConvertExtractedDataToMembers
+[ 4 of 14] Compiling Component.Page.About.Component
+[ 5 of 14] Compiling Test.Component.Page.About.HandleAction.ExtractMappingKeysAndValuesFromTableHtml
+[ 6 of 14] Compiling Component.Router.Render
+[ 7 of 14] Compiling Component.Router.Component
+[ 8 of 14] Compiling Main
+[10 of 14] Compiling Test.Component.Page.About.HandleAction.Index
+[ 9 of 14] Compiling Test.Component.Page.About.HandleAction
+[11 of 14] Compiling Test.Component.Page.About.Index
+[12 of 14] Compiling Test.Component.Page.Index
+[13 of 14] Compiling Test.Component.Index
+[14 of 14] Compiling Test.Main
+[info] Build succeeded.

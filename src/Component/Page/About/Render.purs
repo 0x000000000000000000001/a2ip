@@ -17,7 +17,6 @@ import Component.Page.About.Type (Action, Member, Slots, State, email, job, phon
 import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Halogen (ComponentHTML)
-import Halogen as H
 import Halogen.HTML (HTML, div, img, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)

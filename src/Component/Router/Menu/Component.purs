@@ -7,7 +7,6 @@ import Component.Router.Menu.HandleAction (handleAction)
 import Component.Router.Menu.Render (render)
 import Component.Router.Menu.Type (Output)
 import Halogen (Component, defaultEval, mkComponent, mkEval)
-import Halogen as H
 
 component :: forall q. Component q Unit Output AppM
 component = mkComponent

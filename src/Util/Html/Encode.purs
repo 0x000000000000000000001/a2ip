@@ -3,10 +3,6 @@ module Util.Html.Encode
   , encodeHtmlEntities
   ) where
 
-foreign import _decodeHtmlEntities :: String -> String
-
-foreign import _encodeHtmlEntities :: String -> String
-
 -- | Decode HTML entities.
 -- | 
 -- | Examples:
@@ -17,8 +13,7 @@ foreign import _encodeHtmlEntities :: String -> String
 -- | >>> decodeHtmlEntities "&quot;Hello&quot; &amp; &#39;World&#39;"  
 -- | "\"Hello\" & 'World'"
 -- | ```
-decodeHtmlEntities :: String -> String
-decodeHtmlEntities = _decodeHtmlEntities
+foreign import decodeHtmlEntities :: String -> String
 
 -- | Encode HTML entities.
 -- | 
@@ -27,5 +22,4 @@ decodeHtmlEntities = _decodeHtmlEntities
 -- | >>> encodeHtmlEntities "<div>Hello & world</div>"
 -- | "&lt;div&gt;Hello &amp; world&lt;/div&gt;"
 -- | ```
-encodeHtmlEntities :: String -> String
-encodeHtmlEntities = _encodeHtmlEntities
+foreign import encodeHtmlEntities :: String -> String

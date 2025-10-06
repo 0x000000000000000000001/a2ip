@@ -16,47 +16,47 @@ module Util.Http
 
 import Prelude
 
-import Affjax (Error, Request, Response, URL, printError)
+import Affjax (AffjaxDriver, Error, Request, Response, URL, printError)
 import Affjax (Request, Response, Error, URL) as Exports
+import Affjax as Affjax
 import Affjax.RequestBody (RequestBody)
 import Affjax.ResponseFormat (ResponseFormat)
 import Affjax.StatusCode (StatusCode(..))
 import Data.Either (Either(..))
 import Data.Maybe (Maybe)
 import Effect.Aff (Aff)
-import Util.Env (isNode)
-import Affjax.Node as AffjaxNode
-import Affjax.Web as AffjaxWeb
+
+foreign import driver :: AffjaxDriver
 
 get :: forall a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
-get = if isNode then AffjaxNode.get else AffjaxWeb.get
+get = Affjax.get driver
 
 post :: forall a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
-post = if isNode then AffjaxNode.post else AffjaxWeb.post
+post = Affjax.post driver
 
 post_ :: URL -> Maybe RequestBody -> Aff (Either Error Unit)
-post_ = if isNode then AffjaxNode.post_ else AffjaxWeb.post_
+post_ = Affjax.post_ driver
 
 put :: forall a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
-put = if isNode then AffjaxNode.put else AffjaxWeb.put
+put = Affjax.put driver
 
 put_ :: URL -> Maybe RequestBody -> Aff (Either Error Unit)
-put_ = if isNode then AffjaxNode.put_ else AffjaxWeb.put_
+put_ = Affjax.put_ driver
 
 delete :: forall a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
-delete = if isNode then AffjaxNode.delete else AffjaxWeb.delete
+delete = Affjax.delete driver
 
 delete_ :: URL -> Aff (Either Error Unit)
-delete_ = if isNode then AffjaxNode.delete_ else AffjaxWeb.delete_
+delete_ = Affjax.delete_ driver
 
 patch :: forall a. ResponseFormat a -> URL -> RequestBody -> Aff (Either Error (Response a))
-patch = if isNode then AffjaxNode.patch else AffjaxWeb.patch
+patch = Affjax.patch driver
 
 patch_ :: URL -> RequestBody -> Aff (Either Error Unit)
-patch_ = if isNode then AffjaxNode.patch_ else AffjaxWeb.patch_
+patch_ = Affjax.patch_ driver
 
 request :: forall a. Request a -> Aff (Either Error (Response a))
-request = if isNode then AffjaxNode.request else AffjaxWeb.request
+request = Affjax.request driver
 
 -- | Does a GET request and checks for HTTP status codes.
 -- | Returns an error message if the status code indicates a failure.
