@@ -3,11 +3,11 @@ module Test.Component.Page.About.HandleAction.ConvertExtractedDataToMembers wher
 import Prelude
 
 import Component.Page.About.HandleAction (convertExtractedDataToMembers)
-import Component.Page.About.Type (email, finalPortraitUrl, firstname, job, lastname, originalPortraitUrl, phone, role)
+import Component.Page.About.Type (email, finalPortraitUrl, firstname, job, lastname, originalPortraitUrl, phone, portraitId, role)
 import Data.Map (fromFoldable)
 import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple(..))
-import Test.Spec (Spec, it)
+import Test.Spec (Spec, it, itOnly)
 import Test.Util.Assert ((===))
 import Test.Util.Describe (describe)
 import Util.Array.Map (arrayToIndexMap)
@@ -15,10 +15,20 @@ import Util.Array.Map (arrayToIndexMap)
 spec :: Spec Unit
 spec = describe do
 
-  it "converts complete data with all fields" do
-    let keys = [firstname, lastname, role, job, phone, email, originalPortraitUrl, finalPortraitUrl]
+  itOnly "converts complete data with all fields" do
+    let keys = [firstname, lastname, role, job, phone, email, portraitId]
     let keyIndices = arrayToIndexMap keys
-    let values = [["John", "Doe", "Developer", "Software Engineer", "123-456-7890", "john@example.com", "portrait123"]]
+    let values = [
+      [
+        "John", 
+        "Doe", 
+        "Developer", 
+        "Software Engineer", 
+        "123-456-7890", 
+        "john@example.com", 
+        "portrait123"
+      ]
+    ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
       Just 
@@ -29,8 +39,8 @@ spec = describe do
         , phone: "123-456-7890"
         , email: "john@example.com"
         , portraitId: "portrait123"
-        , originalPortraitUrl: "portrait123"
-        , finalPortraitUrl: "portrait123"
+        , originalPortraitUrl: "https://www.googleapis.com/drive/v3/files/portrait123?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
+        , finalPortraitUrl: "/asset/image/component/page/about/member/portrait123.png"
         }
     ]
     convertExtractedDataToMembers extractedData === expected

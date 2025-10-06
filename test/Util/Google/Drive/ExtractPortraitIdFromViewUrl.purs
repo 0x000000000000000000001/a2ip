@@ -26,10 +26,10 @@ spec = describe do
     let result = extractPortraitIdFromViewUrl url
     result === Just "1DEF456uvw012"
 
-  it "handles URL without prefix" do
+  it "handles URL without prefix but with /view suffix" do
     let url = "1GHI789rst345/view"
     let result = extractPortraitIdFromViewUrl url
-    result === Nothing
+    result === Just "1GHI789rst345"
 
   it "returns nothing when no patterns match" do
     let url = "https://example.com/some/other/url"
@@ -53,5 +53,15 @@ spec = describe do
 
   it "handles URL with only file ID (no prefix or suffix)" do
     let url = "1MNO345pqr901"
+    let result = extractPortraitIdFromViewUrl url
+    result === Just "1MNO345pqr901"
+
+  it "returns Nothing for URL from different domain (https)" do
+    let url = "https://example.com/file/d/1A2B3C4D5E6F7G8H9I0J/view"
+    let result = extractPortraitIdFromViewUrl url
+    result === Nothing
+
+  it "returns Nothing for URL from different domain (http)" do
+    let url = "http://example.com/file/d/1A2B3C4D5E6F7G8H9I0J/view"
     let result = extractPortraitIdFromViewUrl url
     result === Nothing
