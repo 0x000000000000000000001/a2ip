@@ -28,6 +28,7 @@ You can edit this file as you like.
   , "maybe"
   , "node-buffer"
   , "node-fs"
+  , "node-process"
   , "nonempty"
   , "now"
   , "ordered-collections"

@@ -17,6 +17,8 @@ import Data.Maybe (Maybe(..), maybe)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff)
+import Effect.Class (liftEffect)
+import Node.Process (exit')
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
@@ -37,6 +39,8 @@ main = runBinM config do
   write $ escapeCodeToString (Down totalLines) <> carriageReturn
 
   successShortAfterNewline "Done!"
+
+  liftEffect $ exit' 0
 
 type Image =
   { idx :: Int
