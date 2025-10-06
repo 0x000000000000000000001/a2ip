@@ -1,7 +1,12 @@
-// import JSZip from 'jszip';
+let JSZipModule;
 
 export const _unzipGoogleSheetAndExtractHtml = function(filename) {
   return async function(zipContent) {
+    if (!JSZipModule) // 'jszip' alone will not work for the browser.
+      JSZipModule = await import('../../node_modules/jszip/dist/jszip.js');  
+
+    const JSZip = JSZipModule.default || window.JSZip;
+
     const zip = new JSZip();
 
     const loadedZip = await zip.loadAsync(zipContent, { base64: false });

@@ -61,9 +61,9 @@ imagesToDownload = do
         (\idx member -> 
           maybe 
           Nothing
-          (\{ portraitId, portraitUrl } -> Just 
+          (\{ portraitId, originalPortraitUrl } -> Just 
             { idx
-            , url: portraitUrl 
+            , url: originalPortraitUrl
             , filename: portraitId <> ".png"
             }
           ) 

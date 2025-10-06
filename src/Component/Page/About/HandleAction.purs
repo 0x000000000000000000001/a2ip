@@ -125,7 +125,7 @@ convertExtractedDataToMembers extractedData =
           , phone: value phone row
           , email: value email row
           , portraitId: fromMaybe "" portraitId_
-          , portraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
+          , originalPortraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
           }
 
   in values <#> (Just <<< toMember)

@@ -29,7 +29,7 @@ type Member =
   , phone :: String
   , email :: String
   , portraitId :: String
-  , portraitUrl :: String
+  , originalPortraitUrl :: String
   }
 
 lastname :: String 
