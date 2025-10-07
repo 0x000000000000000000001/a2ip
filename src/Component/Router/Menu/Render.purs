@@ -13,7 +13,7 @@ import Component.Router.Menu.Style.Item.Label as Label
 import Component.Router.Menu.Style.Logo as Logo
 import Component.Router.Menu.Style.Menu (classId)
 import Component.Router.Menu.Style.Sheet (sheet)
-import Component.Router.Menu.Type (Action(..), State)
+import Component.Router.Menu.Type (Action(..), State, Slots)
 import Component.Router.Route (Route(..))
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
@@ -52,7 +52,7 @@ items =
   , ParentItem { label: "Contact et mentions légales", route: Nothing, iconFileName: "contact", children: [] }
   ]
 
-render :: State -> ComponentHTML Action () AppM
+render :: State -> ComponentHTML Action Slots AppM
 render s =
   nav
     [ class_ classId

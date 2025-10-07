@@ -6,10 +6,10 @@ import Capability.AppM (AppM)
 import Component.Router.HandleQuery (handleQuery)
 import Component.Router.Render (render)
 import Component.Router.Route (Route(..))
-import Component.Router.Type (Query)
+import Component.Router.Type (Input, Query, Output)
 import Halogen (Component, defaultEval, mkComponent, mkEval)
 
-component :: forall i o. Component Query i o AppM
+component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: const { route: Home }
   , render

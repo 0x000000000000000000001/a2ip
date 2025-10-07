@@ -20,7 +20,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Bin.Util.Log.Error (error)
 import Capability.AppM (AppM)
-import Component.Page.About.Type (Action(..), Member, State, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Member, Slots, State, Output, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -29,7 +29,7 @@ import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
-import Util.File.Path (imageDirRelativePath) 
+import Util.File.Path (imageDirRelativePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
@@ -100,7 +100,7 @@ fetchMembers = do
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
       pure $ Right $ convertExtractedDataToMembers extractedData
 
-handleAction :: forall o. Action -> HalogenM State Action () o AppM Unit
+handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   LoadData -> do
     members_ <- fetchMembers
