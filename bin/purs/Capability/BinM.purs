@@ -10,12 +10,14 @@ import Prelude
 import Config.Config (Config)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Data.Either (Either(..))
+import Data.Number (e)
 import Effect (Effect)
 import Effect.Aff (Aff, runAff_)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect)
 import Effect.Console as Console
 import Effect.Exception (Error)
+import Node.Process (exit')
 
 newtype BinM a = BinM (ReaderT Config Aff a)
 
@@ -35,5 +37,7 @@ runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action
   where
   handleResult :: Either Error Unit -> Effect Unit
-  handleResult (Left e) = Console.error $ "🧨 Fatal error: " <> show e
+  handleResult (Left e) = do 
+    Console.error $ "🧨 Fatal error: " <> show e
+    exit' 1
   handleResult (Right _) = pure unit

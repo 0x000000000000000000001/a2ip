@@ -97,7 +97,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, id, url, filename } = do
-  let filePath = ourImagePath id false
+  let filePath = ourImagePath id true
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath
