@@ -1,8 +1,10 @@
 module Util.File.Path
   ( assertDirRelativePath
-  , assetDirPath
-  , imageDirPath
+  , assetDirAbsolutePath
+  , imageDirAbsolutePath
   , imageDirRelativePath
+  , ourAssetUrl
+  , ourImageUrl
   , rootDirPath
   )
   where
@@ -12,14 +14,20 @@ import Prelude
 foreign import rootDirPath :: String
 
 assertDirRelativePath :: String
-assertDirRelativePath = "/asset"
+assertDirRelativePath = "/asset/"
 
-assetDirPath :: String
-assetDirPath = rootDirPath <> assertDirRelativePath
+assetDirAbsolutePath :: String
+assetDirAbsolutePath = rootDirPath <> assertDirRelativePath
 
 imageDirRelativePath :: String
-imageDirRelativePath = assertDirRelativePath <> "/image"
+imageDirRelativePath = assertDirRelativePath <> "image/"
 
-imageDirPath :: String
-imageDirPath = rootDirPath <> imageDirRelativePath
+imageDirAbsolutePath :: String
+imageDirAbsolutePath = rootDirPath <> imageDirRelativePath
+
+ourAssetUrl :: String -> String 
+ourAssetUrl assetRelativePath = assertDirRelativePath <> assetRelativePath
+
+ourImageUrl :: String -> String 
+ourImageUrl imageRelativePath = imageDirRelativePath <> imageRelativePath
 

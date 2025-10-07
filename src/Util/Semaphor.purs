@@ -44,11 +44,11 @@ lockRel :: forall m. MonadAff m => Sem -> m Unit
 lockRel s = semRel s
 
 parTraverseBounded
-  :: forall m f a b. MonadAff m => Traversable f
+  :: forall m t a b. MonadAff m => Traversable t
   => Int          -- maxInFlight
   -> (a -> Aff b) -- action
-  -> f a          -- inputs
-  -> m (f b)
+  -> t a          -- inputs
+  -> m (t b)
 parTraverseBounded maxInFlight k xs = do
   s <- sem maxInFlight
   liftAff $ parTraverse

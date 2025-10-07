@@ -4,12 +4,14 @@ module Component.Page.About.HandleAction
   , extractMappingKeysAndValuesFromTableHtml
   , fetchMembers
   , fetchMembersTableHtml
-  , generateGoogleDriveImageUrl
+  , googleDriveImageUrl
   , googleDriveImageUrlTemplate
   , googleDriveImageUrlTemplatePlaceholder
   , handleAction
   , mockImageUrl
   , mockImages
+  , ourImagePath
+  , ourImageUrl
   , suffixPortraitIdWithExt
   )
   where
@@ -29,7 +31,7 @@ import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
-import Util.File.Path (imageDirRelativePath)
+import Util.File.Path (imageDirAbsolutePath, imageDirRelativePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
@@ -45,11 +47,14 @@ googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
 googleDriveImageUrlTemplate :: String
 googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
 
-generateGoogleDriveImageUrl :: String -> String
-generateGoogleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
+googleDriveImageUrl :: String -> String
+googleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
 
-generateOurImageUrl :: String -> String 
-generateOurImageUrl portraitId = imageDirRelativePath <> "/component/page/about/member/" <> suffixPortraitIdWithExt portraitId 
+ourImagePath :: String -> Boolean -> String
+ourImagePath portraitId relative = (if relative then imageDirRelativePath else imageDirAbsolutePath) <> "component/page/about/member/" <> suffixPortraitIdWithExt portraitId
+
+ourImageUrl :: String -> String 
+ourImageUrl portraitId = ourImagePath portraitId true
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
@@ -133,8 +138,8 @@ convertExtractedDataToMembers extractedData =
           , phone: value phone row
           , email: value email row
           , portraitId: fromMaybe "" portraitId_
-          , originalPortraitUrl: maybe "" (\id -> generateGoogleDriveImageUrl id) portraitId_
-          , finalPortraitUrl: maybe "" (\id -> generateOurImageUrl id) portraitId_
+          , originalPortraitUrl: maybe "" (\id -> googleDriveImageUrl id) portraitId_
+          , finalPortraitUrl: maybe "" (\id -> ourImageUrl id) portraitId_
           }
 
   in values <#> (Just <<< toMember)

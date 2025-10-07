@@ -9,7 +9,7 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Component.Page.About.HandleAction (fetchMembers)
+import Component.Page.About.HandleAction (fetchMembers, ourImagePath)
 import Config.Config (config)
 import Data.Array (catMaybes, filter, last, length, mapWithIndex)
 import Data.Either (Either(..))
@@ -22,7 +22,6 @@ import Effect.Class (liftEffect)
 import Node.FS.Aff (stat)
 import Node.Process (exit')
 import Util.File.Image (downloadImage)
-import Util.File.Path (imageDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -46,6 +45,7 @@ main = runBinM config do
 
 type Image =
   { idx :: Int
+  , id :: String
   , url :: String
   , filename :: String
   }
@@ -63,8 +63,9 @@ imagesToDownload = do
         (\idx member -> 
           maybe 
           Nothing
-          (\{ originalPortraitUrl, finalPortraitUrl } -> Just 
+          (\{ portraitId, originalPortraitUrl, finalPortraitUrl } -> Just 
             { idx
+            , id: portraitId
             , url: originalPortraitUrl
             , filename: trim $ fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
             }
@@ -95,8 +96,8 @@ updateLine lock totalLines lineIdx message = do
   lockRel lock
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
-download lock totalLines { idx, url, filename } = do
-  let filePath = imageDirPath <> "/component/page/about/member/" <> filename
+download lock totalLines { idx, id, url, filename } = do
+  let filePath = ourImagePath id false
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath
