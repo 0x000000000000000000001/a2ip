@@ -16,17 +16,31 @@ module Util.Http
 
 import Prelude
 
+import Affjax (AffjaxDriver)
 import Affjax (AffjaxDriver, Error, Request, Response, URL, printError)
 import Affjax (Request, Response, Error, URL) as Exports
 import Affjax as Affjax
+import Affjax.Node as AffjaxNode
 import Affjax.RequestBody (RequestBody)
 import Affjax.ResponseFormat (ResponseFormat)
 import Affjax.StatusCode (StatusCode(..))
+import Affjax.Web as AffjaxWeb
 import Data.Either (Either(..))
 import Data.Maybe (Maybe)
 import Effect.Aff (Aff)
+import Util.Env (isNode)
 
-foreign import driver :: AffjaxDriver
+-- Re-export the drivers so the imports are not considered unused
+nodeDriver :: AffjaxDriver
+nodeDriver = AffjaxNode.driver
+
+webDriver :: AffjaxDriver  
+webDriver = AffjaxWeb.driver
+
+driver :: AffjaxDriver
+driver = if isNode then nodeDriver else webDriver
+
+-- foreign import driver :: AffjaxDriver
 
 get :: forall a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
 get = Affjax.get driver

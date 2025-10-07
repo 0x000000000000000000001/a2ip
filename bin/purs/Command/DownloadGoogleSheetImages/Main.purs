@@ -17,8 +17,9 @@ import Data.Maybe (Maybe(..), fromMaybe, maybe)
 import Data.String (Pattern(..), split)
 import Data.Traversable (for_)
 import Effect (Effect)
-import Effect.Aff (Aff)
+import Effect.Aff (Aff, attempt)
 import Effect.Class (liftEffect)
+import Node.FS.Aff (stat)
 import Node.Process (exit')
 import Util.File.Image (downloadImage)
 import Util.File.Path (imageDirPath)
@@ -89,14 +90,24 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, url, filename } = do
-  updateLine lock totalLines idx (downloadPrefixed "Downloading " true true <> filename <> "...")
-
-  result <- downloadImage url (imageDirPath <> "component/page/about/member/" <> filename)
-
-  case result of
-    Left e -> do
-      updateLine lock totalLines idx (errorPrefixed "Failed " true true <> filename <> ": \"" <> e <> "\"")
-      pure $ Left filename
+  let filePath = imageDirPath <> "/component/page/about/member/" <> filename
+      updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
+  
+  fileExistsResult <- attempt $ stat filePath
+  
+  case fileExistsResult of
     Right _ -> do
-      updateLine lock totalLines idx (successPrefixed "Downloaded " true true <> filename)
+      updateLine' successPrefixed "Already downloaded " ""
       pure $ Right filename
+    Left _ -> do
+      updateLine' downloadPrefixed "Downloading " "..."
+
+      result <- downloadImage url filePath
+
+      case result of
+        Left e -> do
+          updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\""
+          pure $ Left filename
+        Right _ -> do
+          updateLine' successPrefixed "Downloaded " ""
+          pure $ Right filename

@@ -6,7 +6,6 @@ import Capability.AppM (AppM)
 import Capability.Navigate (navigate)
 import Component.Router.Menu.Type (Action(..), State, Output)
 import Halogen (HalogenM, modify_)
-import Halogen as H
  
 handleAction :: Action -> HalogenM State Action () Output AppM Unit
 handleAction = case _ of

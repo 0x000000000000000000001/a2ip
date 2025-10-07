@@ -102,7 +102,6 @@ import Data.Maybe (fromMaybe, Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Halogen.HTML (ClassName(..), IProp)
-import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 
 red :: Color

@@ -7,7 +7,7 @@ import Component.Page.About.Type (email, finalPortraitUrl, firstname, job, lastn
 import Data.Map (fromFoldable)
 import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple(..))
-import Test.Spec (Spec, it, itOnly)
+import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
 import Test.Util.Describe (describe)
 import Util.Array.Map (arrayToIndexMap)
@@ -15,7 +15,7 @@ import Util.Array.Map (arrayToIndexMap)
 spec :: Spec Unit
 spec = describe do
 
-  itOnly "converts complete data with all fields" do
+  it "converts complete data with all fields" do
     let keys = [firstname, lastname, role, job, phone, email, portraitId]
     let keyIndices = arrayToIndexMap keys
     let values = [
