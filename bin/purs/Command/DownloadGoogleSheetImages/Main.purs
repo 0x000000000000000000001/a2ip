@@ -4,6 +4,7 @@ import Prelude
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
+import Bin.Util.Exit (exitSuccess)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
@@ -18,9 +19,7 @@ import Data.String (Pattern(..), split, trim)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, attempt)
-import Effect.Class (liftEffect)
 import Node.FS.Aff (stat)
-import Node.Process (exit')
 import Util.File.Image (downloadImage)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
@@ -28,7 +27,7 @@ main :: Effect Unit
 main = runBinM config do
   writeLock <- lock
 
-  images <- imagesToDownload
+  images <- imagesToDownload 
 
   for_ images \{ filename } -> do
     log $ pendingPrefixed "Pending " true true <> " " <> filename <> "..."
@@ -41,7 +40,7 @@ main = runBinM config do
 
   successShortAfterNewline "Done!"
 
-  liftEffect $ exit' 0
+  exitSuccess
 
 type Image =
   { idx :: Int
