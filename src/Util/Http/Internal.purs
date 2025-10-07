@@ -1,7 +1,8 @@
-module Util.Http.Backend where
+module Util.Http.Internal where
 
 -- This module exists solely to tell Spago that we use these packages.
 -- They are actually used in Util/Http.js (FFI) where they are dynamically imported.
+-- Imported nowhere, so that won't be in the output/, and won't disturb the browser (e.g. xhr2 not recognized)
 
 import Affjax (AffjaxDriver)
 import Affjax.Node as AffjaxNode

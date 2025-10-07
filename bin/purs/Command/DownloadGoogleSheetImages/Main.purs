@@ -11,10 +11,10 @@ import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
 import Component.Page.About.HandleAction (fetchMembers)
 import Config.Config (config)
-import Data.Array (catMaybes, last, length, mapWithIndex)
+import Data.Array (catMaybes, filter, last, length, mapWithIndex)
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), fromMaybe, maybe)
-import Data.String (Pattern(..), split)
+import Data.String (Pattern(..), split, trim)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, attempt)
@@ -66,12 +66,18 @@ imagesToDownload = do
           (\{ originalPortraitUrl, finalPortraitUrl } -> Just 
             { idx
             , url: originalPortraitUrl
-            , filename: fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
+            , filename: trim $ fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
             }
           ) 
           member
         ) 
-        members_
+        $ filter 
+          (\member -> 
+            case member of
+              Nothing -> false
+              Just { finalPortraitUrl } -> (trim $ finalPortraitUrl) /= ""
+          )
+          members_
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
 updateLine lock totalLines lineIdx message = do

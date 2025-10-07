@@ -34,7 +34,7 @@ import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
-import Util.Http (get)
+import Util.Http.Http (get)
 
 mockImages :: Boolean
 mockImages = true

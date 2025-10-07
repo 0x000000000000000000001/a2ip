@@ -8,7 +8,7 @@ import Effect.Aff (Aff)
 import Effect.Class (liftEffect)
 import Node.Buffer (fromArrayBuffer)
 import Node.FS.Aff (writeFile)
-import Util.Http (getCheckStatus)
+import Util.Http.Http (getCheckStatus)
 
 -- | Downloads an image from the given URL and saves it to the specified file path.
 -- | Returns an error message if the download fails.
