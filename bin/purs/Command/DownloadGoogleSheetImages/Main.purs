@@ -52,6 +52,7 @@ type Image =
 imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
   members <- fetchMembers 
+
   case members of 
     Left err -> do
       error $ "Error fetching table HTML: " <> err
@@ -94,7 +95,7 @@ updateLine lock totalLines lineIdx message = do
 
   lockRel lock
 
-download :: Sem -> Int -> Image -> Aff (Either String String)
+download :: Sem -> Int -> Image -> Aff Unit
 download lock totalLines { idx, id, url, filename } = do
   let filePath = ourImageAbsolutePath id
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
@@ -104,7 +105,6 @@ download lock totalLines { idx, id, url, filename } = do
   case fileExistsResult of
     Right _ -> do
       updateLine' successPrefixed "Already downloaded " ""
-      pure $ Right filename
     Left _ -> do
       updateLine' downloadPrefixed "Downloading " "..."
 
@@ -113,7 +113,7 @@ download lock totalLines { idx, id, url, filename } = do
       case result of
         Left e -> do
           updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\""
-          pure $ Left filename
         Right _ -> do
           updateLine' successPrefixed "Downloaded " ""
-          pure $ Right filename
+
+  pure unit
