@@ -29,6 +29,7 @@ import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..), fromMaybe, maybe)
 import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
+import Effect.Exception (message)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Path (imageDirAbsolutePath)
@@ -95,7 +96,7 @@ fetchMembersTableHtml = do
       let tabName = fromMaybe "" $ tabIdToName membersTabId
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       case htmlContent of
-        Left e_ -> pure $ Left $ "Failed to unzip: " <> show e_
+        Left e_ -> pure $ Left $ "Failed to unzip: " <> message e_
         Right h -> pure $ Right h
 
 fetchMembers :: forall m. MonadAff m => m (Either String (Array (Maybe Member)))
