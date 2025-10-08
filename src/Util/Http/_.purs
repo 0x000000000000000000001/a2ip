@@ -1,4 +1,4 @@
-module Util.Http.Internal where
+module Util.Http.X where
 
 -- This module exists solely to tell Spago that we use these packages.
 -- They are actually used in Util/Http.js (FFI) where they are dynamically imported.
