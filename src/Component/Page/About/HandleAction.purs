@@ -94,7 +94,9 @@ fetchMembersTableHtml = do
     Right response -> do
       let tabName = fromMaybe "" $ tabIdToName membersTabId
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-      pure $ Right htmlContent
+      case htmlContent of
+        Left e_ -> pure $ Left $ "Failed to unzip: " <> show e_
+        Right h -> pure $ Right h
 
 fetchMembers :: forall m. MonadAff m => m (Either String (Array (Maybe Member)))
 fetchMembers = do

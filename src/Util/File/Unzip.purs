@@ -4,10 +4,12 @@ import Prelude
 
 import Control.Promise (Promise, toAff)
 import Data.ArrayBuffer.Types (ArrayBuffer)
-import Effect.Aff (Aff)
+import Data.Either (Either)
+import Effect.Aff (Aff, attempt)
+import Effect.Exception (Error)
 
 foreign import _unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Promise String
 
-unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Aff String
+unzipGoogleSheetAndExtractHtml :: String -> ArrayBuffer -> Aff (Either Error String)
 unzipGoogleSheetAndExtractHtml htmlFilename zipContent = 
-  toAff $ _unzipGoogleSheetAndExtractHtml htmlFilename zipContent
+  attempt $ toAff $ _unzipGoogleSheetAndExtractHtml htmlFilename zipContent
