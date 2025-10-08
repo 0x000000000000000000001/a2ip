@@ -4,16 +4,16 @@ import Prelude
 
 import Data.Const (Const)
 
-type GenericSlots :: forall k. Row k
-type GenericSlots = ()
+type NoSlots :: forall k. Row k
+type NoSlots = ()
 
-type GenericInput = Unit
+type NoInput = Unit
 
-type GenericOutput = Void
+type NoOutput = Void
 
-type GenericState = {}
+type NoState = {}
 
-data GenericAction
+data NoAction
 
-type GenericQuery :: forall k. k -> Type
-type GenericQuery = Const Void
+type NoQuery :: forall k. k -> Type
+type NoQuery = Const Void

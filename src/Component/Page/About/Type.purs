@@ -1,14 +1,14 @@
 module Component.Page.About.Type where
 
-import Component.Util.Type (GenericInput, GenericOutput, GenericSlots, GenericQuery)
+import Component.Util.Type (NoInput, NoOutput, NoSlots, NoQuery)
 import Data.Maybe (Maybe)
 
-type Input = GenericInput
+type Input = NoInput
 
-type Output = GenericOutput
+type Output = NoOutput
 
 type Slots :: forall k. Row k
-type Slots = GenericSlots
+type Slots = NoSlots
 
 type State =
   { members :: Array (Maybe Member)
@@ -17,7 +17,7 @@ type State =
 data Action = LoadData
 
 type Query :: forall k. k -> Type
-type Query = GenericQuery
+type Query = NoQuery
 
 type Member =
   { lastname :: String

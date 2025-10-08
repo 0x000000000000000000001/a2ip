@@ -9,10 +9,10 @@ module Component.Router.Menu.Type
   where
 
 import Component.Router.Route (Route)
-import Component.Util.Type (GenericInput, GenericQuery, GenericSlots, GenericOutput)
+import Component.Util.Type (NoInput, NoQuery, NoSlots, NoOutput)
 
 type Slots :: forall k. Row k
-type Slots = GenericSlots
+type Slots = NoSlots
 
 type State = { isUnfold :: Boolean }
 
@@ -20,9 +20,9 @@ data Action
   = ToggleFolding Boolean
   | Navigate Route
 
-type Input = GenericInput
+type Input = NoInput
 
-type Output = GenericOutput
+type Output = NoOutput
 
 type Query :: forall k. k -> Type
-type Query = GenericQuery
+type Query = NoQuery
