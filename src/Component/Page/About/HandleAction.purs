@@ -10,7 +10,7 @@ module Component.Page.About.HandleAction
   , handleAction
   , mockImageUrl
   , mockImages
-  , ourImagePath
+  , ourImageAbsolutePath
   , ourImageUrl
   , suffixPortraitIdWithExt
   )
@@ -31,7 +31,7 @@ import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
-import Util.File.Path (imageDirAbsolutePath, imageDirRelativePath)
+import Util.File.Path (imageDirAbsolutePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
@@ -50,11 +50,11 @@ googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> go
 googleDriveImageUrl :: String -> String
 googleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
 
-ourImagePath :: String -> Boolean -> String
-ourImagePath portraitId relative = (if relative then imageDirRelativePath else imageDirAbsolutePath) <> "component/page/about/member/" <> suffixPortraitIdWithExt portraitId
+ourImageAbsolutePath :: String -> String
+ourImageAbsolutePath portraitId = imageDirAbsolutePath <> "component/page/about/member/" <> suffixPortraitIdWithExt portraitId
 
 ourImageUrl :: String -> String 
-ourImageUrl portraitId = ourImagePath portraitId true
+ourImageUrl portraitId = ourImageAbsolutePath portraitId
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"

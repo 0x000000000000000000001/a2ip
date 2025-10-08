@@ -10,7 +10,7 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Component.Page.About.HandleAction (fetchMembers, ourImagePath)
+import Component.Page.About.HandleAction (fetchMembers, ourImageAbsolutePath)
 import Config.Config (config)
 import Data.Array (catMaybes, filter, last, length, mapWithIndex)
 import Data.Either (Either(..))
@@ -96,7 +96,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff (Either String String)
 download lock totalLines { idx, id, url, filename } = do
-  let filePath = ourImagePath id true
+  let filePath = ourImageAbsolutePath id
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath

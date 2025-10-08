@@ -1,3 +1,5 @@
 import { isNode } from '../Util.Env/index.js'
 
-export const rootDirPath = isNode ? import.meta.url.split('file://')[1].split('/output/')[0] : '';
+const beforeOutput = import.meta.url.split('/output/')[0];
+
+export const rootDirPath = isNode ? beforeOutput.split('file://')[1] : beforeOutput;
