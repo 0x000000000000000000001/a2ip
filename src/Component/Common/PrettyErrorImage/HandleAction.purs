@@ -6,9 +6,8 @@ module Component.Common.PrettyErrorImage.HandleAction
 import Prelude
 
 import Capability.AppM (AppM)
-import Component.Common.About.Type (State, Slots)
-import Component.Common.PrettyErrorImage.Type (Action, Output)
-import Halogen (HalogenM)
+import Component.Common.PrettyErrorImage.Type (State, Slots, Action, Output)
+import Halogen (HalogenM) 
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction _ = pure unit

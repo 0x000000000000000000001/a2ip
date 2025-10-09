@@ -1,15 +1,14 @@
-module Component.Page.About.Component where
+module Component.Common.PrettyErrorImage.Component where
 
 import Prelude
 
 import Capability.AppM (AppM)
-import Component.Page.About.HandleAction (handleAction)
-import Component.Page.About.Render (render)
-import Component.Page.About.Type (Action(..), Input, Query, Output)
-import Data.Array (replicate)
-import Data.Maybe (Maybe(..))
+import Component.Common.PrettyErrorImage.HandleAction (handleAction)
+import Component.Common.PrettyErrorImage.Render (render)
+import Component.Common.PrettyErrorImage.Type (Input, Output, Query)
+ 
 import Halogen (Component, defaultEval, mkComponent, mkEval)
-
+ 
 component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: const
