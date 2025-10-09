@@ -9,8 +9,7 @@ import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Type (Action, Slots, State)
 import Halogen (ComponentHTML)
 import Halogen.HTML (img, text)
-import Safe.Coerce (coerce)
 import Unsafe.Coerce (unsafeCoerce)
-
-render :: forall i. State i -> ComponentHTML Action Slots AppM
-render s = if s.errored then text "error" else img (coerce s.iProps) 
+  
+render :: forall r i. State r i -> ComponentHTML Action Slots AppM
+render s = if s.errored then text "error" else img (unsafeCoerce s.iProps) 
