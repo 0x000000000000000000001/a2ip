@@ -9,20 +9,19 @@ module Component.Common.PrettyErrorImage.Type
   where
 
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
-import Halogen.HTML (IProp)
 
-type Input =
-  { innerProps :: forall (w :: Row Type). Array (IProp w Action)
-  }
+type Input p =
+  { iProps :: p
+  } 
 
 type Output = NoOutput
 
 type Slots :: forall k. Row k
 type Slots = NoSlots
 
-type State =
+type State p =
   { errored :: Boolean
-  , innerProps :: forall (w :: Row Type). Array (IProp w Action)
+  , iProps :: p
   }
 
 data Action = HandleError

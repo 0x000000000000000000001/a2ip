@@ -10,5 +10,5 @@ import Component.Common.PrettyErrorImage.Type (Action, Slots, State)
 import Halogen (ComponentHTML)
 import Halogen.HTML (img, text)
 
-render :: State -> ComponentHTML Action Slots AppM
-render s = if s.errored then text "error" else img s.innerProps
+render :: State _ -> ComponentHTML Action Slots AppM
+render s = if s.errored then text "error" else img s.iProps 

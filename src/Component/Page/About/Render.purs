@@ -21,7 +21,6 @@ import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Halogen.HTML.Properties (src)
-import Halogen.HTML.Properties as HP
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
 import Util.Style (class_, classes)
@@ -52,9 +51,9 @@ renderMemberCard idx member =
           [ class_ CardNames.classId ]
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , slot (Proxy :: Proxy "prettyErrorImage") idx PrettyErrorImage.component
-          { innerProps: 
-              [ class_ CardPortrait.classId, HP.src member_.finalPortraitUrl ]
-              -- <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
+          { iProps: 
+              [ class_ CardPortrait.classId ]
+              <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
           }
           noOutputAction 
       ] <> lines

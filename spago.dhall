@@ -43,7 +43,6 @@ You can edit this file as you like.
   , "strings"
   , "transformers"
   , "tuples"
-  , "unsafe-coerce"
   ]
 , packages = ./packages.dhall
 , sources =

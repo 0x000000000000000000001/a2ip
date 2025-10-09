@@ -8,15 +8,15 @@ import Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import Component.Common.PrettyErrorImage.Render (render)
 import Component.Common.PrettyErrorImage.Type (Input, Output, Query)
 import Halogen (Component, defaultEval, mkComponent, mkEval)
- 
-component :: Component Query Input Output AppM
+
+component :: Component Query (Input _) Output AppM
 component = mkComponent
   { initialState: \input ->
       { errored: false
-      , innerProps: input.innerProps
+      , iProps: input.iProps 
       }
-  , render
+  , render 
   , eval: mkEval defaultEval
       { handleAction = handleAction
       } 
-  }
+  } 

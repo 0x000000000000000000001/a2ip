@@ -9,6 +9,6 @@ import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Type (State, Slots, Action(..), Output)
 import Halogen (HalogenM, modify_) 
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
-handleAction = case _ of
+handleAction :: forall p. Action -> HalogenM (State p) Action Slots Output AppM Unit
+handleAction = case _ of 
   HandleError -> modify_ _ { errored = true } 
