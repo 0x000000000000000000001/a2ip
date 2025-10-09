@@ -17,3 +17,14 @@ data NoAction
 
 type NoQuery :: forall k. k -> Type
 type NoQuery = Const Void
+
+type NoSlotAddressIndex = Unit
+
+noOutputAction :: forall a. NoOutput -> a 
+noOutputAction = absurd
+
+noSlotAddressIndex :: NoSlotAddressIndex
+noSlotAddressIndex = unit
+
+noInput :: NoInput
+noInput = unit

@@ -1,16 +1,15 @@
 module Component.Router.Type where
 
-import Prelude
 
-import Component.Page.About.Type as PageAboutType
+import Component.Router.Menu.Type as Menu
+import Component.Page.About.Type as PageAbout
 import Component.Router.Route (Route)
-import Component.Util.Type (NoAction, NoInput, NoOutput)
-import Data.Const (Const)
+import Component.Util.Type (NoAction, NoInput, NoOutput, NoSlotAddressIndex)
 import Halogen (Slot)
 
 type Slots =
-  ( menu :: Slot (Const Void) Void Unit
-  , about :: Slot PageAboutType.Query Void Unit
+  ( menu :: Slot Menu.Query Menu.Output NoSlotAddressIndex
+  , about :: Slot PageAbout.Query PageAbout.Output NoSlotAddressIndex
   )
 
 type Input = NoInput

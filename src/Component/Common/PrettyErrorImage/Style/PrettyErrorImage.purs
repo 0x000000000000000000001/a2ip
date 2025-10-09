@@ -9,7 +9,7 @@ import CSS as CSS
 import Util.Style (displayFlex, (.?))
 
 classId :: String
-classId = "DPG2dLnZb"
+classId = "w2aEZlO9q"
 
 style :: CSS.CSS
 style = do

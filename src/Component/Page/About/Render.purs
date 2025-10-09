@@ -6,6 +6,7 @@ module Component.Page.About.Render
 import Prelude hiding (div)
 
 import Capability.AppM (AppM)
+import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
@@ -13,24 +14,35 @@ import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
+import Component.Util.Type (noOutputAction)
+import Data.Array as Array
 import Data.Maybe (Maybe, fromMaybe, maybe)
+import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, img, text)
+import Halogen.HTML (HTML, div, slot, text)
 import Halogen.HTML.Properties (src)
+import Halogen.HTML.Properties as HP
 import Html.Renderer.Halogen (render_)
+import Type.Proxy (Proxy(..))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render state =
   div
     [ class_ classId ]
-    ([ sheet ] <> (map renderMemberCard state.members))
+    ([ sheet ] <> (mapWithIndex renderMemberCard state.members))
+  where
+  mapWithIndex :: forall a b. (Int -> a -> b) -> Array a -> Array b
+  mapWithIndex f arr = map (\(Tuple idx item) -> f idx item) (mapWithIndex' arr)
+  
+  mapWithIndex' :: forall a. Array a -> Array (Tuple Int a)
+  mapWithIndex' = Array.mapWithIndex Tuple
 
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: Maybe Member -> ComponentHTML Action Slots AppM
-renderMemberCard member = 
+renderMemberCard :: Int -> Maybe Member -> ComponentHTML Action Slots AppM
+renderMemberCard idx member = 
   div
     [ classes $
         [ Card.classId ]
@@ -39,10 +51,12 @@ renderMemberCard member =
     ( [ div
           [ class_ CardNames.classId ]
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
-      , img
-          ( [ class_ CardPortrait.classId ]
-              <> if isLoading then [] else [ src member_.finalPortraitUrl ]
-          )
+      , slot (Proxy :: Proxy "prettyErrorImage") idx PrettyErrorImage.component
+          { innerProps: 
+              [ class_ CardPortrait.classId, HP.src member_.finalPortraitUrl ]
+              -- <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
+          }
+          noOutputAction 
       ] <> lines
     )
   where
