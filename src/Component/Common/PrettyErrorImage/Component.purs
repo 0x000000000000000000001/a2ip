@@ -3,11 +3,15 @@ module Component.Common.PrettyErrorImage.Component
   )
   where
 
+import Prelude
+
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import Component.Common.PrettyErrorImage.Render (render)
-import Component.Common.PrettyErrorImage.Type (Input, Output, Query)
+import Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query)
+import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Unsafe.Coerce (unsafeCoerce)
 
 component :: Component Query Input Output AppM
 component = mkComponent
@@ -15,8 +19,9 @@ component = mkComponent
         { errored: false  
         , iProps: input.iProps 
         }
-    , render  
+    , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction
+        , receive = \input -> Just $ ReceiveNewProps (unsafeCoerce input.iProps)
         } 
     }

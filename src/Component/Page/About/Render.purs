@@ -19,11 +19,10 @@ import Data.Array as Array
 import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, img, slot, text)
+import Halogen.HTML (HTML, div, slot, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
-import Util.Log (unsafeDebugShow)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -59,11 +58,7 @@ renderMemberCard idx member =
               [ class_ CardPortrait.classId ]
               <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
           }
-          noOutputAction 
-      , img (
-        [ class_ CardPortrait.classId ]
-        <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
-      )
+          noOutputAction
       ] <> lines
     )
   where

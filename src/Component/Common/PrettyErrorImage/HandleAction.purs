@@ -12,3 +12,4 @@ import Halogen (HalogenM, modify_)
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of  
   HandleError -> modify_ _ { errored = true }
+  ReceiveNewProps newProps -> modify_ _ { iProps = newProps }
