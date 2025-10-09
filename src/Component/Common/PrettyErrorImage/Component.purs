@@ -12,7 +12,7 @@ import Component.Common.PrettyErrorImage.Type (Input, Output, Query)
 import Halogen (Component, defaultEval, mkComponent, mkEval)
 import Safe.Coerce (coerce)
 
-component :: forall r i. Component Query (Input r i) Output AppM
+component :: forall i. Component Query (Input i) Output AppM
 component = coerce $ mkComponent
     { initialState: \input ->
         { errored: false 

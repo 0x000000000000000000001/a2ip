@@ -10,12 +10,13 @@ module Component.Common.PrettyErrorImage.Type
   where
 
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import DOM.HTML.Indexed (HTMLimg)
 import Halogen.HTML (IProp)
 
-type ImageProps r i = Array (IProp r i)
+type ImageProps i = Array (IProp HTMLimg i)
 
-type Input r i =
-  { iProps :: ImageProps r i
+type Input i =
+  { iProps :: ImageProps i
   } 
  
 type Output = NoOutput
@@ -23,8 +24,8 @@ type Output = NoOutput
 type Slots :: forall k. Row k
 type Slots = NoSlots
 
-type State r i =
-  { iProps :: ImageProps r i
+type State i =
+  { iProps :: ImageProps i
   , errored :: Boolean
   }
 
