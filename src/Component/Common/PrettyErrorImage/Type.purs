@@ -10,8 +10,8 @@ module Component.Common.PrettyErrorImage.Type
 
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 
-type Input p =
-  { iProps :: p
+type Input i =
+  { iProps :: i
   } 
 
 type Output = NoOutput
@@ -19,9 +19,9 @@ type Output = NoOutput
 type Slots :: forall k. Row k
 type Slots = NoSlots
 
-type State p =
-  { errored :: Boolean
-  , iProps :: p
+type State i =
+  { iProps :: i
+  , errored :: Boolean
   }
 
 data Action = HandleError

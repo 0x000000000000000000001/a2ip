@@ -2,7 +2,13 @@
   "name": "ps",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "./bin/sh/build",
+    "conf": "./bin/sh/conf",
+    "dev": "./bin/sh/dev",
+    "run": "./bin/sh/run",
+    "test": "./bin/sh/test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,10 +20,7 @@
     "purty": "^7.0.0",
     "source-map": "^0.7.6",
     "source-map-js": "^1.2.1",
-    "spago": "^0.21.0",
     "xhr2": "^0.2.1"
   },
-  "devDependencies": {
-    "purescript": "^0.14.1"
-  }
+  "devDependencies": {}
 }
