@@ -3,19 +3,16 @@ module Component.Common.PrettyErrorImage.Component
   )
   where
 
-import Prelude
-
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import Component.Common.PrettyErrorImage.Render (render)
 import Component.Common.PrettyErrorImage.Type (Input, Output, Query)
 import Halogen (Component, defaultEval, mkComponent, mkEval)
-import Safe.Coerce (coerce)
 
-component :: forall i. Component Query (Input i) Output AppM
-component = coerce $ mkComponent
+component :: Component Query Input Output AppM
+component = mkComponent
     { initialState: \input ->
-        { errored: false 
+        { errored: false  
         , iProps: input.iProps 
         }
     , render  

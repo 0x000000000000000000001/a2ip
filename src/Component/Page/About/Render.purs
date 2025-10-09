@@ -50,17 +50,13 @@ renderMemberCard idx member =
     ( [ div
           [ class_ CardNames.classId ]
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
-      -- , img [
-      --   123
-      -- ]
       , slot 
           (Proxy :: Proxy "prettyErrorImage") 
           idx 
           PrettyErrorImage.component
           { iProps: 
-              [ 123 ]
-              -- [ class_ CardPortrait.classId ]
-              -- <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
+              [ class_ CardPortrait.classId ]
+              <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
           }
           noOutputAction 
       ] <> lines

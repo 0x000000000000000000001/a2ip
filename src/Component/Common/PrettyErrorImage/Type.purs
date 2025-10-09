@@ -15,8 +15,8 @@ import Halogen.HTML (IProp)
 
 type ImageProps i = Array (IProp HTMLimg i)
 
-type Input i =
-  { iProps :: ImageProps i
+type Input =
+  { iProps :: forall i. ImageProps i
   } 
  
 type Output = NoOutput
@@ -24,8 +24,8 @@ type Output = NoOutput
 type Slots :: forall k. Row k
 type Slots = NoSlots
 
-type State i =
-  { iProps :: ImageProps i
+type State =
+  { iProps :: forall i. ImageProps i
   , errored :: Boolean
   }
 
