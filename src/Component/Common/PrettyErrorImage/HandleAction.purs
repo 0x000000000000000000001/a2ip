@@ -12,4 +12,4 @@ import Halogen (HalogenM, modify_)
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of  
   HandleError -> modify_ _ { errored = true }
-  Receive props -> modify_ _ { iProps = props }
+  Receive input -> modify_ _ { src = input.src, class_ = input.class_ }

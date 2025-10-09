@@ -17,7 +17,6 @@ You can edit this file as you like.
   , "const"
   , "css"
   , "datetime"
-  , "dom-indexed"
   , "effect"
   , "either"
   , "exceptions"
@@ -44,7 +43,6 @@ You can edit this file as you like.
   , "strings"
   , "transformers"
   , "tuples"
-  , "unsafe-coerce"
   ]
 , packages = ./packages.dhall
 , sources =

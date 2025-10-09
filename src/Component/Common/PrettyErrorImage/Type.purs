@@ -1,6 +1,5 @@
 module Component.Common.PrettyErrorImage.Type
   ( Action(..)
-  , ImageProps
   , Input
   , Output
   , Query
@@ -10,13 +9,11 @@ module Component.Common.PrettyErrorImage.Type
   where
 
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
-import DOM.HTML.Indexed (HTMLimg)
-import Halogen.HTML (IProp)
-
-type ImageProps = forall i. Array (IProp HTMLimg i)
+import Data.Maybe (Maybe)
 
 type Input =
-  { iProps :: ImageProps
+  { class_ :: Maybe String
+  , src :: Maybe String
   } 
  
 type Output = NoOutput
@@ -25,13 +22,14 @@ type Slots :: forall k. Row k
 type Slots = NoSlots
 
 type State =
-  { iProps :: ImageProps
+  { class_ :: Maybe String
+  , src :: Maybe String
   , errored :: Boolean
   }
 
 data Action 
   = HandleError
-  | Receive ImageProps
+  | Receive Input
 
 type Query :: forall k. k -> Type
 type Query = NoQuery

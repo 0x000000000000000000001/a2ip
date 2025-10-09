@@ -11,17 +11,17 @@ import Component.Common.PrettyErrorImage.Render (render)
 import Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)
-import Unsafe.Coerce (unsafeCoerce)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-    { initialState: \input ->
+    { initialState: const $ 
         { errored: false  
-        , iProps: input.iProps 
+        , src: Nothing
+        , class_: Nothing
         }
     , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction
-        , receive = \input -> Just $ Receive (unsafeCoerce input.iProps)
-        } 
+        , receive = \input -> Just $ Receive input
+        }
     }

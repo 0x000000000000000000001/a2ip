@@ -16,7 +16,7 @@ import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
 import Component.Util.Type (noOutputAction)
 import Data.Array as Array
-import Data.Maybe (Maybe, fromMaybe, maybe)
+import Data.Maybe (Maybe(..), fromMaybe, maybe)
 import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
@@ -54,9 +54,8 @@ renderMemberCard idx member =
           (Proxy :: Proxy "prettyErrorImage") 
           idx 
           PrettyErrorImage.component
-          { iProps: 
-              [ class_ CardPortrait.classId ]
-              <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
+          { class_: Just CardPortrait.classId
+          , src: if isLoading then Nothing else Just member_.finalPortraitUrl 
           }
           noOutputAction
       ] <> lines
