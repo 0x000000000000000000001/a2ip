@@ -19,7 +19,7 @@ import Data.Array as Array
 import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, img, slot, text)
+import Halogen.HTML (HTML, div, slot, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
