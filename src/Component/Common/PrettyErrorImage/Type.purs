@@ -31,7 +31,7 @@ type State =
 
 data Action 
   = HandleError
-  | ReceiveNewProps ImageProps
+  | Receive ImageProps
 
 type Query :: forall k. k -> Type
 type Query = NoQuery

@@ -22,6 +22,6 @@ component = mkComponent
     , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction
-        , receive = \input -> Just $ ReceiveNewProps (unsafeCoerce input.iProps)
+        , receive = \input -> Just $ Receive (unsafeCoerce input.iProps)
         } 
     }
