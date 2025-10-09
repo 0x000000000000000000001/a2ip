@@ -19,7 +19,7 @@ import Data.Array as Array
 import Data.Maybe (Maybe, fromMaybe, maybe)
 import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, slot, text)
+import Halogen.HTML (HTML, div, img, slot, text)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
@@ -50,10 +50,17 @@ renderMemberCard idx member =
     ( [ div
           [ class_ CardNames.classId ]
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
-      , slot (Proxy :: Proxy "prettyErrorImage") idx PrettyErrorImage.component
+      -- , img [
+      --   123
+      -- ]
+      , slot 
+          (Proxy :: Proxy "prettyErrorImage") 
+          idx 
+          PrettyErrorImage.component
           { iProps: 
-              [ class_ CardPortrait.classId ]
-              <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
+              [ 123 ]
+              -- [ class_ CardPortrait.classId ]
+              -- <> (if isLoading then [] else [ src member_.finalPortraitUrl ])
           }
           noOutputAction 
       ] <> lines

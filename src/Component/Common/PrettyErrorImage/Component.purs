@@ -22,4 +22,4 @@ component = coerce $ mkComponent
     , eval: mkEval defaultEval
         { handleAction = handleAction
         } 
-    } 
+    }

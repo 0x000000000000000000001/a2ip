@@ -38,11 +38,13 @@ You can edit this file as you like.
   , "prelude"
   , "routing"
   , "routing-duplex"
+  , "safe-coerce"
   , "spec"
   , "spec-node"
   , "strings"
   , "transformers"
   , "tuples"
+  , "unsafe-coerce"
   ]
 , packages = ./packages.dhall
 , sources =
