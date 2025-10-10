@@ -8,7 +8,7 @@ import Prelude hiding (top)
 import CSS (border, darken, rem, solid, toHexString, (?))
 import CSS as CSS
 import Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
-import Util.Style (borderRadius1, heightRem, marginTop, raw, red, widthRem, (.?), (.|>.))
+import Util.Style (borderRadius1, heightRem, marginTop, raw, red, widthRem, (.?), (.|*.))
 
 classId :: String
 classId = "yg13inAyQ"
@@ -31,4 +31,4 @@ style = do
 
   where 
 
-  __questionMark = classId .|>. QuestionMark.classId
+  __questionMark = classId .|*. QuestionMark.classId
