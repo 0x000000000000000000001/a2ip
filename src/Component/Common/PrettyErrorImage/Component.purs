@@ -14,10 +14,10 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-    { initialState: const $ 
+    { initialState: \input -> 
         { errored: false  
-        , src: Nothing
-        , class_: Nothing
+        , src: input.src
+        , class_: input.class_
         }
     , render   
     , eval: mkEval defaultEval

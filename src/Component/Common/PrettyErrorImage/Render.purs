@@ -16,10 +16,12 @@ import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (renderToArray)
+import Util.Log (unsafeDebugShow)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s = 
+  let _ = unsafeDebugShow s.class_ in
   if s.errored 
   then (
     div 

@@ -11,7 +11,7 @@ type Input = NoInput
 type Output = NoOutput
 
 type Slots =
-  ( prettyErrorImage :: Slot PrettyErrorImage.Query PrettyErrorImage.Output Int
+  ( prettyErrorImage :: Slot PrettyErrorImage.Query PrettyErrorImage.Output String
   )
 
 type State =

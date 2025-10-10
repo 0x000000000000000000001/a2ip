@@ -15,9 +15,8 @@ import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
 import Component.Util.Type (noOutputAction)
-import Data.Array as Array
+import Data.Array (mapWithIndex)
 import Data.Maybe (Maybe(..), fromMaybe, maybe)
-import Data.Tuple (Tuple(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
@@ -29,13 +28,7 @@ render state =
   div
     [ class_ classId ]
     ([ sheet ] <> (mapWithIndex renderMemberCard state.members))
-  where
-  mapWithIndex :: forall a b. (Int -> a -> b) -> Array a -> Array b
-  mapWithIndex f arr = map (\(Tuple idx item) -> f idx item) (mapWithIndex' arr)
   
-  mapWithIndex' :: forall a. Array a -> Array (Tuple Int a)
-  mapWithIndex' = Array.mapWithIndex Tuple
-
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
@@ -44,14 +37,14 @@ renderMemberCard idx member =
   div
     [ classes $
         [ Card.classId ]
-          <> if isLoading then [ Card.classIdWhenLoading ] else [ Card.classIdWhenLoaded ]
+        <> if isLoading then [ Card.classIdWhenLoading ] else [ Card.classIdWhenLoaded ]
     ]
     ( [ div
           [ class_ CardNames.classId ]
           [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
       , slot 
           (Proxy :: Proxy "prettyErrorImage") 
-          idx 
+          (maybe (show idx) (\m -> m.firstname <> " " <> m.lastname) member)
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
           , src: if isLoading then Nothing else Just member_.finalPortraitUrl 
