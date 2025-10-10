@@ -1,18 +1,21 @@
 module Component.Common.PrettyErrorImage.Style.PrettyErrorImage
-  ( classId
+  ( classIdWhenErrored
   , style
   ) where
 
 import Prelude hiding (top)
 
+import CSS (backgroundColor, justifyContent)
 import CSS as CSS
-import Util.Style (displayFlex, (.?))
+import CSS.Common (center)
+import Util.Style (displayFlex, loadingGrey, (.?))
 
-classId :: String
-classId = "w2aEZlO9q"
+classIdWhenErrored :: String
+classIdWhenErrored = "w2aEZlO9q"
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  classIdWhenErrored .? do
     displayFlex
-    
+    justifyContent center
+    backgroundColor loadingGrey
