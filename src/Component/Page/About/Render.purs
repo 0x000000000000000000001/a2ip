@@ -21,6 +21,7 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
+import Util.Log (unsafeDebugShow)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -36,20 +37,20 @@ renderMemberCard :: Int -> Maybe Member -> ComponentHTML Action Slots AppM
 renderMemberCard idx member = 
   div
     [ classes $
-        [ Card.classId ]
-        <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
+      [ Card.classId ]
+      <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
     ]
     ( [ div
-          [ class_ CardNames.classId ]
-          [ text $ member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ loadingPlaceholder ]
+        [ class_ CardNames.classId ]
+        [ text $ member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ loadingPlaceholder ]
       , slot 
-          (Proxy :: Proxy "prettyErrorImage") 
-          (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
-          PrettyErrorImage.component
-          { class_: Just CardPortrait.classId
-          , src: isLoading ? Nothing ↔ Just member_.portraitUrl
-          }
-          noOutputAction
+        (Proxy :: Proxy "prettyErrorImage") 
+        (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
+        PrettyErrorImage.component
+        { class_: Just CardPortrait.classId
+        , src: isLoading ? Nothing ↔ Just member_.portraitUrl
+        }
+        noOutputAction
       ] <> lines
     )
   where

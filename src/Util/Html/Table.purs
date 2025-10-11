@@ -58,6 +58,7 @@ extractInnerColumnCellsFromHtml tableHtml =
 -- | ```purescript
 -- | >>> extractInnerRowsFromHtml "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td></tr></table>"
 -- | Just ["<td>1</td><td>2</td>", "<td>3</td>"]
+-- |
 -- | >>> extractInnerRowsFromHtml "no table content"
 -- | Nothing
 -- | ```

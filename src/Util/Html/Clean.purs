@@ -71,6 +71,7 @@ removeDataAttributes tag = removeDataAttr tag
 -- | ```purescript
 -- | >>> findUnescapedQuote "value with \\\"escaped quote\\\" and \" end" 0
 -- | Just 36
+-- |
 -- | >>> findUnescapedQuote "no quotes here" 0
 -- | Nothing  
 -- | ```
@@ -129,6 +130,7 @@ cleanAttributesInTags str attr dataOnesToo =
 -- | ```purescript
 -- | >>> removeComments "<div>Hello <strong>World</strong>!</div><!-- This is a comment -->"
 -- | "<div>Hello <strong>World</strong>!</div>"
+-- |
 -- | >>> removeComments "<!-- comment -->Text<!-- another -->"
 -- | "Text"
 -- | ```
@@ -152,6 +154,7 @@ removeComments str =
 -- | ```purescript
 -- | >>> untag "<div>Hello <strong>World</strong>!</div>"
 -- | "Hello World!"
+-- |
 -- | >>> untag "<p>This is a <a href=\"#\">link</a>.</p>"
 -- | "This is a link."
 -- | ```

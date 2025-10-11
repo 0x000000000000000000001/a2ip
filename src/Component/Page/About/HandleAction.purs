@@ -146,12 +146,22 @@ convertExtractedDataToMembers extractedData =
 -- | The first row is treated as keys, subsequent rows as values.
 -- |
 -- | ```purescript
--- | >>> extractMappingKeysAndValuesFromTable "<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></table>"
--- | { keys: ["Name", "Age"], values: [["Alice", "30"], ["Bob", "25"]] }
+-- | >>> extractMappingKeysAndValuesFromTable """
+-- | <table>
+-- |    <tr><th>A1</th><th>B1</th></tr>
+-- |    <tr><td>name</td><td>age</td></tr>
+-- |    <tr><td>Name (lastname is optional)</td><td>Age (plain digits)</td></tr>
+---|    <tr><td>Alice</td><td>30</td></tr>
+-- |    <tr><td>Bob</td><td>25</td></tr>
+-- | </table>
+-- | """
+-- | { keys: ["name", "age"], ... values: [["Alice", "30"], ["Bob", "25"]] }
+-- |
 -- | >>> extractMappingKeysAndValuesFromTable "<table><tr><td>Only cell</td></tr></table>"
--- | { keys: ["Only cell"], values: [] }
+-- | { keys: [], ... values: [] }
+-- |
 -- | >>> extractMappingKeysAndValuesFromTable "No table"
--- | { keys: [], values: [] }
+-- | { keys: [], ... values: [] }
 -- | ```
 extractMappingKeysAndValuesFromTableHtml :: String -> ExtractedData
 extractMappingKeysAndValuesFromTableHtml tableHtml = 
@@ -161,6 +171,6 @@ extractMappingKeysAndValuesFromTableHtml tableHtml =
     Just cellArrays ->
       length cellArrays == 0 
         ? nothing
-        ↔ let keys = cellArrays !! 0 ??⇒ []
-              values = drop 1 cellArrays
+        ↔ let keys = cellArrays !! 1 ??⇒ []
+              values = drop 3 cellArrays
           in { keys, keyIndices: arrayToIndexMap keys, values: values }

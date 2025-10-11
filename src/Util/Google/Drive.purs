@@ -21,12 +21,16 @@ portraitViewUrlSuffix = "/view"
 -- | ```purescript
 -- | >>> extractPortraitIdFromViewUrl "https://drive.google.com/file/d/1A2B3C4D5E6F7G8H9I0J/view?usp=sharing"
 -- | Just "1A2B3C4D5E6F7G8H9I0J"
+-- |
 -- | >>> extractPortraitIdFromViewUrl "1A2B3C4D5E6F7G8H9I0J"
 -- | Just "1A2B3C4D5E6F7G8H9I0J"
+-- |
 -- | >>> extractPortraitIdFromViewUrl "1A2B3C4D5E6F7G8H9I0J/view?usp=sharing"
 -- | Just "1A2B3C4D5E6F7G8H9I0J"
+-- |
 -- | >>> extractPortraitIdFromViewUrl "https://drive.google.com/file/d//view"
 -- | Nothing
+-- |
 -- | >>> extractPortraitIdFromViewUrl "https://example.com/file/d/1A2B3C4D5E6F7G8H9I0J/view"
 -- | Nothing
 -- | ```
