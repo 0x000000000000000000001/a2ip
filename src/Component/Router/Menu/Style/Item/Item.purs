@@ -5,13 +5,13 @@ module Component.Router.Menu.Style.Item.Item
 
 import Proem hiding (top, div)
 
-import CSS (alignItems, color, graytone, hover, justifyContent, (?))
+import CSS (alignItems, color, graytone, hover, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Util.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?))
+import Util.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
 classId = "hJyLm9YwK"
@@ -31,16 +31,16 @@ style = do
     raw "transition" "background-color 0s"
     userSelectNone
  
-  __hover ? do
+  __hover :? do
     backgroundColorRed
 
-  ____children ? do 
+  ____children :? do 
     displayFlex
 
-  ____iconContainer ? do
+  ____iconContainer :? do
     IconContainer.boxShadow 0.22 0.10
 
-  ____label ? do
+  ____label :? do
     widthPct100
 
   where

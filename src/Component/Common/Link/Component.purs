@@ -15,7 +15,8 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 component :: Component Query Input Output AppM
 component = mkComponent
     { initialState: \input -> 
-        { href: input.href
+        { route: input.route
+        , class_: input.class_
         , children: input.children
         }
     , render   

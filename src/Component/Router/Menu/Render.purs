@@ -4,6 +4,7 @@ import Proem hiding (top, div)
 
 import CSS (fromString)
 import Capability.AppM (AppM)
+import Component.Common.Link.Component as Link
 import Component.Router.Menu.Style.Item.Child as Child
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
@@ -14,11 +15,14 @@ import Component.Router.Menu.Style.Logo as Logo
 import Component.Router.Menu.Style.Menu (classId)
 import Component.Router.Menu.Style.Sheet (sheet)
 import Component.Router.Menu.Type (Action(..), State, Slots)
+import Component.Router.Menu.Type as Type
 import Component.Router.Route (Route(..))
+import Component.Util.Type (noOutputAction)
 import Data.Maybe (Maybe(..))
+import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, img, nav, text)
-import Halogen.HTML.Events (onClick, onMouseEnter, onMouseLeave)
+import Halogen.HTML (div, img, nav, slot, text)
+import Halogen.HTML.Events (onMouseEnter, onMouseLeave)
 import Halogen.HTML.Properties (alt, src)
 import Util.Style (class_)
 
@@ -69,26 +73,25 @@ render s =
       ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
     )
   where
-  item :: ∀ w. String -> Maybe Route -> String -> Array ChildItem -> HTML w Action
+  item :: String -> Maybe Route -> String -> Array ChildItem -> ComponentHTML Action Slots AppM
   item label' route iconFileName children =
-    div
-      ( [ class_ Item.classId ] <>
-          ( case route of
-              Just route_ -> [ onClick $ const $ Navigate route_ ]
-              Nothing -> []
-          )
-      )
-      [ div
+    slot Type.items (label' /\ route) Link.component
+      { route
+      , class_: Item.classId
+      , children: 
+        [ div
           [ class_ $ ItemIconContainer.classId ]
           [ img
-              [ class_ ItemIcon.classId
-              , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
-              ]
+            [ class_ ItemIcon.classId
+            , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
+            ]
           ]
-      , div
+        , div
           [ class_ Label.classId ]
           [ text label' ]
-      , div
+        , div
           [ class_ Children.classId ]
           (children <#> \(ChildItem { label }) -> div [ class_ Child.classId ] [ text label ])
-      ]
+        ]
+      }
+      noOutputAction

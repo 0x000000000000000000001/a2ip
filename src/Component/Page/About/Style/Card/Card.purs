@@ -9,14 +9,14 @@ module Component.Page.About.Style.Card.Card
 import Proem hiding (top)
 
 import CSS (CSS) as CSS
-import CSS (alignItems, column, flexDirection, hover, justifyContent, (&), (?))
+import CSS (alignItems, column, flexDirection, hover, justifyContent, (&))
 import CSS.Common (center) as CSS
 import CSS.TextAlign (center, textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
 import Component.Page.About.Type (email, phone)
-import Util.Style (before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?))
+import Util.Style (before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -39,39 +39,39 @@ style = do
     flexWrap
     flexDirection column
 
-  __loaded ? do 
+  __loaded :? do 
     nothing
 
-  ____hover ? do
+  ____hover :? do
     nothing
 
-  ______portrait ? do
+  ______portrait :? do
     borderRadius1 0.3
 
-  __loading ? do
+  __loading :? do
     nothing
 
-  ____portrait ? do
+  ____portrait :? do
     loading
 
-  ____names ? do
+  ____names :? do
     loading
     borderRadius1 0.3
     widthPct 40.0
 
-  ____line ? do
+  ____line :? do
     loading
     borderRadius1 0.3
     widthPct 60.0
 
-  ______before ? do
+  ______before :? do
     content ""
 
-  ______phone ? do
+  ______phone :? do
     widthPct 30.0
     heightRem 1.6
 
-  ______email ? do
+  ______email :? do
     widthPct 45.0
 
   where

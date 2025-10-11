@@ -5,13 +5,13 @@ module Component.Router.Style.Core
 
 import Proem hiding (top)
 
-import CSS (angular, animation, background, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, sansSerif, saturate, sec, star, (?))
+import CSS (angular, animation, background, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, sansSerif, saturate, sec, star)
 import CSS as CSS
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?))
+import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?), (:?))
 
 classId :: String
 classId = "MvOJiB63k"
@@ -30,7 +30,7 @@ style = do
     overflowHidden 
     flexGrow1
 
-  star ? do
+  star :? do
     raw "transition" "all 0.3s ease"
     fontFamily [ "Open Sans" ] (sansSerif :| [])
 
@@ -41,7 +41,7 @@ style = do
        ]
   )
 
-  body ? do 
+  body :? do
     margin1 0.0
     padding1 0.0
     background $ linearGradient (angular $ deg $ -45.0) [

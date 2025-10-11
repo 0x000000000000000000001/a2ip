@@ -5,20 +5,25 @@ module Component.Router.Menu.Type
   , Query
   , Slots
   , State
+  , items
   )
   where
 
+import Component.Common.Link.Type as Link
 import Component.Router.Route (Route)
-import Component.Util.Type (NoInput, NoQuery, NoSlots, NoOutput)
+import Component.Util.Type (NoInput, NoOutput, NoQuery)
+import Data.Maybe (Maybe)
+import Data.Tuple (Tuple)
+import Halogen (Slot)
+import Type.Prelude (Proxy(..))
 
-type Slots :: ∀ k. Row k
-type Slots = NoSlots
+type Slots = 
+  ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
+  )
 
 type State = { isUnfold :: Boolean }
 
-data Action 
-  = ToggleFolding Boolean
-  | Navigate Route
+data Action = ToggleFolding Boolean
 
 type Input = NoInput
 
@@ -26,3 +31,6 @@ type Output = NoOutput
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+items :: Proxy "items"
+items = Proxy

@@ -8,10 +8,13 @@ module Component.Common.Link.Type
   )
   where
 
+import Component.Router.Route (Route)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots, Children)
+import Data.Maybe (Maybe)
 
 type Input =
-  { href :: String
+  { route :: Maybe Route
+  , class_ :: String
   , children :: Children Action Slots
   } 
  
@@ -21,11 +24,14 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State =
-  { href :: String
+  { route :: Maybe Route
+  , class_ :: String
   , children :: Children Action Slots
   }
 
-data Action = Receive Input
+data Action 
+  = Navigate Route 
+  | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

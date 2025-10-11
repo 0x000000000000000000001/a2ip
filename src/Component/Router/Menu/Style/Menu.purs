@@ -8,10 +8,10 @@ module Component.Router.Menu.Style.Menu
 
 import Proem hiding (top)
 
-import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh, zIndex, (?))
+import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh, zIndex)
 import CSS as CSS
 import Component.Router.Menu.Type (State)
-import Util.Style (borderWidth, displayFlex, left0, positionFixed, top0, widthRem, (.&), (.?))
+import Util.Style (borderWidth, displayFlex, left0, positionFixed, top0, widthRem, (.&), (.?), (:?))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -40,7 +40,7 @@ style s = do
     flexDirection column
     alignItems flexStart
 
-  o_hover ? do 
+  o_hover :? do 
     borderWidth 0.0
 
   where 

@@ -5,9 +5,9 @@ module Component.Router.Menu.Style.Item.Child
 
 import Proem hiding (top, div)
 
-import CSS (hover, (?))
+import CSS (hover)
 import CSS as CSS
-import Util.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?))
+import Util.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?), (:?))
 
 classId :: String
 classId = "A9EgPEH39"
@@ -19,7 +19,7 @@ style = do
     widthPct100
     raw "transition" "background-color 0s"
 
-  __hover ? do
+  __hover :? do
     backgroundColorRed
 
   where 

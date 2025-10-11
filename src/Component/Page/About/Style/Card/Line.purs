@@ -6,10 +6,10 @@ module Component.Page.About.Style.Card.Line
 
 import Proem hiding (top)
 
-import CSS (star, (&), (?))
+import CSS (star, (&))
 import CSS as CSS
 import Component.Page.About.Type (email, phone, role)
-import Util.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>))
+import Util.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -24,23 +24,23 @@ style = do
     widthPct 75.0
     raw "transition" "background-color 0s; color 0s"
 
-  __role ? do 
+  __role :? do 
     bold
     fontSizePct 125.0
 
-  __email ? do 
+  __email :? do
     nothing
 
-  a___before ? do 
+  a___before :? do
     content "✉️  "
 
-  __phone ? do 
+  __phone :? do
     nothing
 
-  b___before ? do 
+  b___before :? do
     content "📞  "
 
-  __allChildren ? do
+  __allChildren :? do
     displayInlineBlock
 
   where 

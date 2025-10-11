@@ -2,6 +2,7 @@ module Util.Style
   ( (&.)
   , (.&)
   , (.&.)
+  , (:?)
   , (.?)
   , (.|*)
   , (.|*.)
@@ -309,6 +310,8 @@ borderRadius1 r = borderRadius4 r r r r
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w
+
+infixr 5 select as :?
 
 classSelect :: String -> CSS.CSS -> CSS.CSS
 classSelect sel rs = select (fromString $ "." <> stripDotPrefixFromClassName sel) rs
