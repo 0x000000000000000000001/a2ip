@@ -12,14 +12,14 @@ import Util.Array.Map (arrayToIndexMap)
 spec :: Spec Unit
 spec = describe do
 
-  it "extracts keys and values from table with headers and data" do
-    let html = """<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></table>"""
+  it "extracts keys from index 1 and values from index 3 onwards" do
+    let html = """<table><tr><th>Header0</th></tr><tr><th>Name</th><th>Age</th></tr><tr><td>Separator</td></tr><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></table>"""
     let keys = ["Name", "Age"]
     let expected = { keys, keyIndices: arrayToIndexMap keys, values: [["Alice", "30"], ["Bob", "25"]] }
     extractMappingKeysAndValuesFromTableHtml html === expected
 
-  it "handles table with only header row (no data rows)" do
-    let html = """<table><tr><th>Name</th><th>Age</th></tr></table>"""
+  it "handles table with keys at index 1 but no data after index 3" do
+    let html = """<table><tr><th>Row0</th></tr><tr><th>Name</th><th>Age</th></tr><tr><td>Row2</td></tr></table>"""
     let keys = ["Name", "Age"]
     let expected = { keys, keyIndices: arrayToIndexMap keys, values: [] }
     extractMappingKeysAndValuesFromTableHtml html === expected
@@ -34,8 +34,7 @@ spec = describe do
     let expected = { keys: [], keyIndices: empty, values: [] }
     extractMappingKeysAndValuesFromTableHtml html === expected
 
-  it "handles single cell table" do
-    let html = """<table><tr><td>Only cell</td></tr></table>"""
-    let keys = ["Only cell"]
-    let expected = { keys, keyIndices: arrayToIndexMap keys, values: [] }
+  it "returns empty structure when table has less than 2 rows" do
+    let html = """<table><tr><td>Only one row</td></tr></table>"""
+    let expected = { keys: [], keyIndices: empty, values: [] }
     extractMappingKeysAndValuesFromTableHtml html === expected
