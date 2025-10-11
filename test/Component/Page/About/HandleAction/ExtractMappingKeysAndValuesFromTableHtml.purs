@@ -6,11 +6,11 @@ import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHt
 import Data.Map (empty)
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
-import Test.Util.Describe (describe, describeOnly)
+import Test.Util.Describe (describe)
 import Util.Array.Map (arrayToIndexMap)
 
 spec :: Spec Unit
-spec = describeOnly do
+spec = describe do
 
   it "extracts keys and values from table with headers and data" do
     let html = """<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>30</td></tr><tr><td>Bob</td><td>25</td></tr></table>"""

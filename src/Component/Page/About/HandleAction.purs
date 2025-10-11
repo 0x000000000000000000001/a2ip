@@ -166,6 +166,6 @@ extractMappingKeysAndValuesFromTableHtml tableHtml =
     Just cellArrays ->
       length cellArrays == 0 
         ? nothing
-        ↔ let keys = cellArrays !! 1 ??⇒ []
-              values = drop 3 cellArrays
+        ↔ let keys = cellArrays !! 0 ??⇒ []
+              values = drop 1 cellArrays
           in { keys, keyIndices: arrayToIndexMap keys, values: values }
