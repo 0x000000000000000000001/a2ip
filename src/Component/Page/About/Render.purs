@@ -16,11 +16,13 @@ import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
 import Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex)
-import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
+import Util.Condition ((?), (↔))
+import Util.Maybe ((??), (??⇒), (⇔))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -37,24 +39,27 @@ renderMemberCard idx member =
   div
     [ classes $
         [ Card.classId ]
-        <> if isLoading then [ Card.classIdWhenLoading ] else [ Card.classIdWhenLoaded ]
+        <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
     ]
     ( [ div
           [ class_ CardNames.classId ]
-          [ text $ maybe loadingPlaceholder (\m -> m.firstname <> " " <> m.lastname) member ]
+          [ text $ member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ loadingPlaceholder ]
       , slot 
           (Proxy :: Proxy "prettyErrorImage") 
-          (maybe (show idx) (\m -> m.firstname <> " " <> m.lastname) member)
+          (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
-          , src: if isLoading then Nothing else Just member_.finalPortraitUrl 
+          , src: isLoading ? Nothing ↔ Just member_.finalPortraitUrl
           }
           noOutputAction
       ] <> lines
     )
   where
+  isLoading :: Boolean
+  isLoading = isNothing member
+
   member_ :: Member
-  member_ = fromMaybe
+  member_ = member ??⇒
     { lastname: loadingPlaceholder
     , firstname: loadingPlaceholder
     , role: loadingPlaceholder
@@ -65,19 +70,15 @@ renderMemberCard idx member =
     , originalPortraitUrl: loadingPlaceholder
     , finalPortraitUrl: loadingPlaceholder
     }
-    member
-
-  isLoading :: Boolean
-  isLoading = maybe true (const false) member
 
   line :: forall w i. (Member -> String) -> String -> Array (HTML w i)
   line getter key =
-    if not isLoading && getter member_ == "" then []
-    else
-      [ div
-          [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-          [ render_ $ getter member_ ]
-      ]
+    not isLoading && getter member_ == "" 
+    ? []
+    ↔ [ div
+      [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
+      [ render_ $ getter member_ ]
+    ]
 
   lines :: forall w i. Array (HTML w i)
   lines =

@@ -14,9 +14,11 @@ import Prelude
 import Data.Array (drop, length, mapMaybe) as Array
 import Data.Array (length, mapMaybe, (!!), (..))
 import Data.Foldable (maximum)
-import Data.Maybe (Maybe(..), fromMaybe)
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..))
 import Data.String as String
+import Util.Condition ((?), (↔))
+import Util.Maybe ((??⇒))
 
 -- | Extracts the first <table>...</table> block from the given HTML string.
 -- |
@@ -49,7 +51,7 @@ extractInnerColumnCellsFromHtml tableHtml =
     Nothing -> Nothing
     Just rows ->
       let cellArrays = mapMaybe extractInnerCellsFromRow rows
-          maxCols = if length cellArrays == 0 then 0 else fromMaybe 0 $ maximum $ map length cellArrays
+          maxCols = length cellArrays == 0 ? 0 ↔ (maximum $ map length cellArrays) ??⇒ 0
           columns = map (\colIdx -> mapMaybe (\cells -> cells !! colIdx) cellArrays) (0 .. (maxCols - 1))
       in Just columns
 
@@ -65,9 +67,9 @@ extractInnerRowsFromHtml :: String -> Maybe (Array String)
 extractInnerRowsFromHtml tableHtml = 
   let rawRows = String.split (String.Pattern "<tr") tableHtml
       cleanedRows = Array.mapMaybe extractRowContent (Array.drop 1 rawRows)
-  in if Array.length cleanedRows == 0 && not (String.contains (Pattern "<tr") tableHtml)
-     then Nothing
-     else Just cleanedRows
+  in Array.length cleanedRows == 0 && not (String.contains (Pattern "<tr") tableHtml)
+     ? Nothing
+     ↔ Just cleanedRows
   where
     extractRowContent :: String -> Maybe String
     extractRowContent rowSegment =
@@ -93,9 +95,8 @@ extractInnerRowsFromHtml tableHtml =
 extractInnerCellsFromRow :: String -> Maybe (Array String)
 extractInnerCellsFromRow row =
   let trimmedRow = String.trim row
-  in if trimmedRow == "" then Nothing
-     else
-       if String.contains (Pattern "<tr") trimmedRow then
+  in trimmedRow == "" ? Nothing
+     ↔ if String.contains (Pattern "<tr") trimmedRow then
          Just $ go trimmedRow
        else if String.contains (Pattern "<td") trimmedRow || String.contains (Pattern "<th") trimmedRow then
          Just $ go trimmedRow
@@ -120,14 +121,13 @@ extractInnerCellsFromRow row =
             Nothing -> acc
             Just { content, nextPos } -> rec h nextPos (acc <> [content])
         { td: Just tdIdx, th: Just thIdx } ->
-          if tdIdx < thIdx then
-            case extractNextInnerCell "td" h pos of
-              Nothing -> acc
-              Just { content, nextPos } -> rec h nextPos (acc <> [content])
-          else
-            case extractNextInnerCell "th" h pos of
-              Nothing -> acc
-              Just { content, nextPos } -> rec h nextPos (acc <> [content])
+          tdIdx < thIdx 
+            ? case extractNextInnerCell "td" h pos of
+                Nothing -> acc
+                Just { content, nextPos } -> rec h nextPos (acc <> [content])
+            ↔ case extractNextInnerCell "th" h pos of
+                Nothing -> acc
+                Just { content, nextPos } -> rec h nextPos (acc <> [content])
 
 -- | Extracts all cell contents from the first <table>...</table> block in the given HTML string.
 -- |
@@ -191,6 +191,6 @@ extractNextInnerCell tag html offsetPos =
         Just closeTagPosInContentAfterStartTag -> 
           let innerContentWithStartTag = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
               innerContentWithStartTagBody = String.drop (String.length ("<" <> tag)) innerContentWithStartTag
-              content = String.drop (1 + (fromMaybe 0 $ String.indexOf (Pattern ">") innerContentWithStartTagBody)) innerContentWithStartTagBody
+              content = String.drop (1 + (String.indexOf (Pattern ">") innerContentWithStartTagBody ??⇒ 0)) innerContentWithStartTagBody
               nextPos = startTagPos + closeTagPosInContentAfterStartTag + String.length closeTag
           in Just { content, nextPos }

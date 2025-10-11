@@ -14,6 +14,7 @@ import Prelude
 import Data.Array (foldl, snoc)
 import Data.Maybe (Maybe(..))
 import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray)
+import Util.Condition ((?), (↔))
 
 -- | Remove a specific attribute from an HTML tag string.
 -- |
@@ -80,9 +81,9 @@ findUnescapedQuote str pos =
     Nothing -> Nothing
     Just quotePos ->
       let absolutePos = pos + quotePos
-      in if absolutePos > 0 && take 1 (drop (absolutePos - 1) str) == "\\"
-          then findUnescapedQuote str (absolutePos + 1)
-          else Just absolutePos
+      in absolutePos > 0 && take 1 (drop (absolutePos - 1) str) == "\\"
+         ? findUnescapedQuote str (absolutePos + 1)
+         ↔ Just absolutePos
 
 -- | Cleans specified attributes from a single HTML tag string.
 -- | If `dataOnesToo` is true, it also removes all `data-*` attributes.
@@ -95,7 +96,7 @@ findUnescapedQuote str pos =
 cleanAttributesInTag :: String -> Array String -> Boolean -> String
 cleanAttributesInTag tag attr dataOnesToo =
   foldl (\t a -> removeAttribute a t) tag attr
-    # if dataOnesToo then removeDataAttributes else identity
+    # (dataOnesToo ? removeDataAttributes ↔ identity)
 
 -- | Cleans specified attributes from all HTML tags in a string.
 -- | If `dataOnesToo` is true, it also removes all `data-*` attributes.

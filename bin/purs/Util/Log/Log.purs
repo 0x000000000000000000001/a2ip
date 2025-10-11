@@ -19,6 +19,7 @@ import Data.List.NonEmpty (singleton)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (liftEffect)
 import Effect.Console as Console
+import Util.Condition ((?), (↔))
 
 colorize :: Color -> String -> String
 colorize c s = 
@@ -50,8 +51,8 @@ prefixed :: String -> Color -> String -> String -> Boolean -> Boolean -> String
 prefixed prefix color emoji msg short colorize_ = 
   emoji 
   <> " " 
-  <> (if short then "" else colorize color $ "[" <> prefix <> "] ") 
-  <> (if colorize_ then colorize color msg else msg)
+  <> (short ? "" ↔ colorize color $ "[" <> prefix <> "] ") 
+  <> (colorize_ ? (colorize color msg) ↔ msg)
 
 newline :: forall m. MonadAff m => m Unit
 newline = log ""

@@ -20,6 +20,7 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events (onClick, onMouseEnter, onMouseLeave)
 import Halogen.HTML.Properties (alt, src)
+import Util.Condition ((?), (↔))
 import Util.Style (class_)
 
 type Item r =
@@ -56,8 +57,9 @@ render :: State -> ComponentHTML Action Slots AppM
 render s =
   nav
     [ class_ classId
-    , if s.isUnfold then onMouseLeave $ const $ ToggleFolding true
-      else onMouseEnter $ const $ ToggleFolding false
+    , s.isUnfold 
+      ? (onMouseLeave $ const $ ToggleFolding true)
+      ↔ (onMouseEnter $ const $ ToggleFolding false)
     ]
     ( [ sheet s
       , img

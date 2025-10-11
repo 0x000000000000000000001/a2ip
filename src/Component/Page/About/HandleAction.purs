@@ -26,18 +26,20 @@ import Component.Page.About.Type (Action(..), Member, Slots, State, Output, emai
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
-import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (message)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
+import Util.Condition ((?), (↔))
 import Util.File.Path (imageDirAbsolutePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
+import Util.Maybe ((??), (??⇒), (⇔))
 
 mockImages :: Boolean
 mockImages = true
@@ -87,19 +89,19 @@ tabIdToName tabId
   | tabId == commiteeTabId = Just commiteeTabName
   | otherwise = Nothing
 
-fetchMembersTableHtml :: forall m. MonadAff m => m (Either String String)
+fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
 fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   case result of
     Left e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
     Right response -> do
-      let tabName = fromMaybe "" $ tabIdToName membersTabId
+      let tabName = tabIdToName membersTabId ??⇒ ""
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       case htmlContent of
         Left e_ -> pure $ Left $ "Failed to unzip: " <> message e_
         Right h -> pure $ Right h
 
-fetchMembers :: forall m. MonadAff m => m (Either String (Array (Maybe Member)))
+fetchMembers :: ∀ m. MonadAff m => m (Either String (Array (Maybe Member)))
 fetchMembers = do
   htmlContent <- fetchMembersTableHtml
   case htmlContent of
@@ -127,7 +129,7 @@ convertExtractedDataToMembers extractedData =
       value key row =
         let idx = lookup key keyIndices
         in case idx of
-          Just i -> trim $ fromMaybe "" $ row !! i 
+          Just i -> trim $ row !! i ??⇒ ""
           Nothing -> ""
 
       toMember :: Array String -> Member
@@ -140,9 +142,9 @@ convertExtractedDataToMembers extractedData =
           , job: value job row
           , phone: value phone row
           , email: value email row
-          , portraitId: fromMaybe "" portraitId_
-          , originalPortraitUrl: maybe "" (\id -> googleDriveImageUrl id) portraitId_
-          , finalPortraitUrl: maybe "" (\id -> ourImageUrl id) portraitId_
+          , portraitId: portraitId_ ??⇒ ""
+          , originalPortraitUrl: portraitId_ ?? googleDriveImageUrl ⇔ ""
+          , finalPortraitUrl: portraitId_ ?? ourImageUrl ⇔ ""
           }
 
   in values <#> (Just <<< toMember)
@@ -164,9 +166,8 @@ extractMappingKeysAndValuesFromTableHtml tableHtml =
   in case extractInnerCellsFromHtml tableHtml of
     Nothing -> nothing
     Just cellArrays ->
-      if length cellArrays == 0 
-      then nothing
-      else
-        let keys = cellArrays !! 1
-            values = drop 3 cellArrays
-        in { keys: fromMaybe [] keys, keyIndices: arrayToIndexMap (fromMaybe [] keys), values: values }
+      length cellArrays == 0 
+        ? nothing
+        ↔ let keys = cellArrays !! 1
+              values = drop 3 cellArrays
+          in { keys: keys ??⇒ [], keyIndices: arrayToIndexMap $ keys ??⇒ [], values: values }

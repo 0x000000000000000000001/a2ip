@@ -14,13 +14,14 @@ import Component.Page.About.HandleAction (fetchMembers, ourImageAbsolutePath)
 import Config.Config (config)
 import Data.Array (catMaybes, filter, last, length, mapWithIndex)
 import Data.Either (Either(..))
-import Data.Maybe (Maybe(..), fromMaybe, maybe)
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split, trim)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image (downloadImage)
+import Util.Maybe ((??), (??⇒), (⇔))
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -60,18 +61,13 @@ imagesToDownload = do
     Right members_ -> do
       pure $ catMaybes $ 
         mapWithIndex 
-        (\idx member -> 
-          maybe 
-          Nothing
-          (\{ portraitId, originalPortraitUrl, finalPortraitUrl } -> Just 
-            { idx
-            , id: portraitId
-            , url: originalPortraitUrl
-            , filename: trim $ fromMaybe "" $ last $ split (Pattern "/") finalPortraitUrl
-            }
-          ) 
-          member
-        ) 
+        (\idx member -> member ?? (\{ portraitId, originalPortraitUrl, finalPortraitUrl } -> Just 
+          { idx
+          , id: portraitId
+          , url: originalPortraitUrl
+          , filename: trim $ (last $ split (Pattern "/") finalPortraitUrl) ??⇒ ""
+          }) ⇔ Nothing
+        )
         $ filter 
           (\member -> 
             case member of

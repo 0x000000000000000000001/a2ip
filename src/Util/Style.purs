@@ -98,11 +98,12 @@ import CSS.Selector (child, deep, with)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
-import Data.Maybe (fromMaybe, Maybe(..))
+import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
+import Util.Maybe ((??⇒))
 
 red :: Color
 red = hsl 353.91 0.8174 0.4725
@@ -125,8 +126,7 @@ classes :: forall r i. Array String -> IProp (class :: String | r) i
 classes classNames = HP.classes $ ClassName <$> (stripDotPrefixFromClassName <$> classNames)
 
 stripDotPrefixFromClassName :: String -> String
-stripDotPrefixFromClassName className = 
-  fromMaybe className (stripPrefix (Pattern ".") className)
+stripDotPrefixFromClassName className = (stripPrefix (Pattern ".") className) ??⇒ className
 
 raw :: String -> String -> CSS.CSS
 raw k v = key (fromString k) v

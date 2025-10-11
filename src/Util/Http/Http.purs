@@ -25,6 +25,7 @@ import Affjax.StatusCode (StatusCode(..))
 import Data.Either (Either(..))
 import Data.Maybe (Maybe)
 import Effect.Aff (Aff)
+import Util.Condition ((?), (↔))
 
 foreign import driver :: AffjaxDriver
 
@@ -71,6 +72,6 @@ getCheckStatus format url = do
     Left error -> pure $ Left $ printError error
     Right res -> do
       let (StatusCode code) = res.status
-      if code >= 200 && code < 400
-        then pure $ Right res
-        else pure $ Left $ "HTTP " <> show code <> ": " <> res.statusText
+      code >= 200 && code < 400
+        ? (pure $ Right res)
+        ↔ (pure $ Left $ "HTTP " <> show code <> ": " <> res.statusText)

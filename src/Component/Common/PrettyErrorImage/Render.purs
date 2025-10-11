@@ -10,31 +10,32 @@ import Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classIdWhenErro
 import Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import Component.Common.PrettyErrorImage.Type (Action(..), Slots, State)
-import Data.Maybe (maybe)
+import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (renderToArray)
+import Util.Condition ((?), (↔))
 import Util.Log (unsafeDebugShow)
+import Util.Maybe ((??), (⇔))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s = 
-  let _ = unsafeDebugShow s.class_ in
-  if s.errored 
-  then (
+  s.errored ? (
     div 
       [ classes $
         [ classIdWhenErrored ] 
-        <> (maybe [] (\c -> [c]) s.class_)
+        <> (s.class_ ?? (_ : []) ⇔ [])
       ]
       ([ sheet ] <> (renderToArray $ questionMarkSvg QuestionMark.classId))
-  )
-  else img $ 
-    (maybe [] (\c -> [ class_ c ]) s.class_)
-    <> (maybe [] (\u -> [ src u ]) s.src)
+  ) ↔ (
+    img $ 
+    (s.class_ ?? (\c -> [ class_ c ]) ⇔ [])
+    <> (s.src ?? (\u -> [ src u ]) ⇔ [])
     <> [ onError \_ -> HandleError ]
+  )
 
 questionMarkSvg :: String -> String
 questionMarkSvg class_ = """
