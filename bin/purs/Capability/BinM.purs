@@ -5,7 +5,7 @@ module Bin.Capability.BinM
   )
   where
 
-import Prelude
+import Proem
 
 import Bin.Util.Exit (exitError)
 import Config.Config (Config)

@@ -14,7 +14,7 @@ module Util.Http.Http
   )
   where
 
-import Prelude
+import Proem
 
 import Affjax (AffjaxDriver, Error, Request, Response, URL, printError)
 import Affjax (Request, Response, Error, URL) as Exports
@@ -25,7 +25,6 @@ import Affjax.StatusCode (StatusCode(..))
 import Data.Either (Either(..))
 import Data.Maybe (Maybe)
 import Effect.Aff (Aff)
-import Util.Condition ((?), (↔))
 
 foreign import driver :: AffjaxDriver
 

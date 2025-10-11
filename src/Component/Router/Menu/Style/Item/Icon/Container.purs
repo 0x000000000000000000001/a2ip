@@ -5,7 +5,7 @@ module Component.Router.Menu.Style.Item.Icon.Container
   , width
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (alignSelf, backgroundColor, justifyContent, rem, rgba, white)
 import CSS as CSS

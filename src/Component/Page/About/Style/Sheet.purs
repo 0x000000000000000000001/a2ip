@@ -2,7 +2,7 @@ module Component.Page.About.Style.Sheet
   ( sheet
   ) where
 
-import Prelude
+import Proem
 
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)

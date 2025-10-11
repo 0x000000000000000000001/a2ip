@@ -9,12 +9,11 @@ module Util.Html.Clean
   )
   where
 
-import Prelude
+import Proem
 
 import Data.Array (foldl, snoc)
 import Data.Maybe (Maybe(..))
 import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray)
-import Util.Condition ((?), (↔))
 
 -- | Remove a specific attribute from an HTML tag string.
 -- |

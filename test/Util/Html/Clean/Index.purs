@@ -1,6 +1,6 @@
 module Test.Util.Html.Clean.Index where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec)
 import Test.Util.Html.Clean.CleanAttributesInTag as CleanAttributesInTag

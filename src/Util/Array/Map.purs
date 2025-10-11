@@ -2,7 +2,7 @@ module Util.Array.Map
   ( arrayToIndexMap
   ) where
 
-import Prelude
+import Proem
 
 import Data.Array (mapWithIndex)
 import Data.Map (Map, fromFoldable)

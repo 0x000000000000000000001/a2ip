@@ -1,6 +1,6 @@
 module Component.Router.Render where
 
-import Prelude hiding (div)
+import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Page.About.Component as PageAboutComponent

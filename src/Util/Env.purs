@@ -3,7 +3,7 @@ module Util.Env
   , isBrowser
   ) where
 
-import Prelude
+import Proem
 
 foreign import isNode :: Boolean
 

@@ -6,7 +6,7 @@ module Component.Router.Menu.Style.Menu
   , backgroundBlackAlpha
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh, zIndex, (?))
 import CSS as CSS

@@ -3,7 +3,7 @@ module Component.Page.About.Style.About
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (alignContent, flexStart, justifyContent)
 import CSS as CSS

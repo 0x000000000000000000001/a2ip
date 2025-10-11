@@ -1,6 +1,6 @@
 module Test.Main where
 
-import Prelude
+import Proem
 
 import Effect (Effect)
 import Test.Spec.Reporter.Spec (specReporter)

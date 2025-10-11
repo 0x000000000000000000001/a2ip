@@ -1,6 +1,6 @@
 module Test.Component.Page.About.HandleAction.ExtractMappingKeysAndValuesFromTableHtml where
 
-import Prelude
+import Proem
 
 import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml)
 import Data.Map (empty)

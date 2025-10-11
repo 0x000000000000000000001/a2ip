@@ -3,7 +3,7 @@ module Component.Common.PrettyErrorImage.Style.QuestionMark
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (darken)
 import CSS as CSS

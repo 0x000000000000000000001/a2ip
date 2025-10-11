@@ -3,7 +3,7 @@ module Component.Common.PrettyErrorImage.Style.PrettyErrorImage
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (backgroundColor, justifyContent)
 import CSS as CSS

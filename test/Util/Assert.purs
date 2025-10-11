@@ -1,6 +1,6 @@
 module Test.Util.Assert ((===), shouldEqual) where
 
-import Prelude
+import Proem
 
 import Effect.Aff (Aff)
 import Test.Spec.Assertions (fail)

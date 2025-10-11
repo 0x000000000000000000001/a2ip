@@ -1,6 +1,6 @@
 module Bin.Command.DownloadGoogleSheetImages.Main (main) where
 
-import Prelude
+import Proem
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
@@ -21,7 +21,6 @@ import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image (downloadImage)
-import Util.Maybe ((??), (??⇒), (⇔))
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit

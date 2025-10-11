@@ -2,7 +2,7 @@ module Component.Common.PrettyErrorImage.Style.Sheet
   ( sheet
   ) where
 
-import Prelude (discard)
+import Proem (discard)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage

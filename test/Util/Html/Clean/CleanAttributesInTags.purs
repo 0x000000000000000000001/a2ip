@@ -1,6 +1,6 @@
 module Test.Util.Html.Clean.CleanAttributesInTags where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))

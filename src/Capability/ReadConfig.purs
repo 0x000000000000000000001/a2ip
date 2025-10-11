@@ -1,6 +1,6 @@
 module Capability.ReadConfig where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Config.Config (Config)

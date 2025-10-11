@@ -1,6 +1,6 @@
 module Util.File.Image where
 
-import Prelude
+import Proem
 
 import Affjax.ResponseFormat (arrayBuffer)
 import Data.Either (Either(..))

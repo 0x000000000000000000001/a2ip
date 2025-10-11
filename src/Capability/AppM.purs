@@ -1,6 +1,6 @@
 module Capability.AppM (AppM, runAppM) where
 
-import Prelude
+import Proem
 
 import Config.Config (Config)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)

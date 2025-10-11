@@ -5,7 +5,7 @@ module Config.Config
   )
   where
 
-import Prelude
+import Proem
 
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)

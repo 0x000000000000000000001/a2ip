@@ -10,7 +10,7 @@ module Util.Semaphor
   )
   where
 
-import Prelude
+import Proem
 
 import Concurrent.BoundedQueue (BoundedQueue)
 import Concurrent.BoundedQueue as BQ

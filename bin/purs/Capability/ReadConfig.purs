@@ -1,6 +1,6 @@
 module Bin.Capability.ReadConfig where
 
-import Prelude
+import Proem
 
 import Bin.Capability.BinM (BinM)
 import Config.Config (Config)

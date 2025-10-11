@@ -1,6 +1,6 @@
 module Test.Util.Html.Encode.DecodeHtmlEntities where
 
-import Prelude
+import Proem
 
 import Data.String (trim)
 import Test.Spec (Spec, it)

@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Prelude hiding (div)
+import Proem hiding (div)
 
 import Capability.AppM (runAppM)
 import Component.Router.Component as RouterComponent

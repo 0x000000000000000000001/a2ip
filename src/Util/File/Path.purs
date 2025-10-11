@@ -9,7 +9,7 @@ module Util.File.Path
   )
   where
 
-import Prelude
+import Proem
 
 foreign import rootDirPath :: String
 

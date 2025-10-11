@@ -3,7 +3,7 @@ module Component.Router.Menu.Style.Logo
   , style
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (alignSelf, fromString, key)
 import CSS as CSS

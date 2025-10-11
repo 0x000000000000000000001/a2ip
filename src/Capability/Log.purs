@@ -1,6 +1,6 @@
 module Capability.Log where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Control.Monad.Trans.Class (lift)

@@ -1,6 +1,6 @@
 module Component.Router.Menu.HandleAction (handleAction) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import Capability.AppM (AppM)
 import Capability.Navigate (navigate)

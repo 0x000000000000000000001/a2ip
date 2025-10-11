@@ -4,7 +4,7 @@ module Component.Page.About.Style.Card.Line
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (star, (&), (?))
 import CSS as CSS

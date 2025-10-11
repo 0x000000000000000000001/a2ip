@@ -2,7 +2,7 @@ module Component.Router.Menu.Style.Sheet
   ( sheet
   ) where
 
-import Prelude
+import Proem
 
 import Component.Router.Menu.Style.Item.Index as Item
 import Component.Router.Menu.Style.Logo as Logo

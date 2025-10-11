@@ -3,7 +3,7 @@ module Component.Page.About.Style.Card.Portrait
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (border, darken, rem, solid, toHexString, (?))
 import CSS as CSS

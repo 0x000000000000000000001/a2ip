@@ -1,6 +1,6 @@
 module Test.Util.Html.Table.Index where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec)
 import Test.Util.Html.Table.GetNextCellPos as GetNextCellPos

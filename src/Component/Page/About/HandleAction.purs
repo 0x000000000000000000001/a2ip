@@ -16,7 +16,7 @@ module Component.Page.About.HandleAction
   )
   where
 
-import Prelude
+import Proem
 
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
@@ -32,14 +32,12 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (message)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
-import Util.Condition ((?), (↔))
 import Util.File.Path (imageDirAbsolutePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
-import Util.Maybe ((??), (??⇒), (⇔))
 
 mockImages :: Boolean
 mockImages = true

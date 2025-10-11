@@ -5,7 +5,7 @@ module Bin.Util.Exit
   )
   where
 
-import Prelude
+import Proem
 
 import Effect.Class (class MonadEffect, liftEffect)
 import Node.Process (exit')

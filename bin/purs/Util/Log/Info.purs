@@ -14,7 +14,7 @@ module Bin.Util.Log.Info
   )
   where
 
-import Prelude
+import Proem
 
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)

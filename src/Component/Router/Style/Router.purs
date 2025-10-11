@@ -3,7 +3,7 @@ module Component.Router.Style.Router
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (minHeight, vh)
 import CSS as CSS

@@ -87,7 +87,7 @@ module Util.Style
   )
   where
 
-import Prelude hiding (top, bottom, div)
+import Proem hiding (top, bottom, div)
 
 import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
 import CSS as CSS
@@ -103,7 +103,6 @@ import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
-import Util.Maybe ((??⇒))
 
 red :: Color
 red = hsl 353.91 0.8174 0.4725

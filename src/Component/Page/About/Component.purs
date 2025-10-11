@@ -1,6 +1,6 @@
 module Component.Page.About.Component where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Component.Page.About.HandleAction (handleAction)

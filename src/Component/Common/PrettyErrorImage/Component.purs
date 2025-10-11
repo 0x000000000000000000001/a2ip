@@ -3,7 +3,7 @@ module Component.Common.PrettyErrorImage.Component
   )
   where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.HandleAction (handleAction)

@@ -3,7 +3,7 @@ module Component.Page.About.Render
   )
   where
 
-import Prelude hiding (div)
+import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
@@ -21,8 +21,6 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
-import Util.Condition ((?), (↔))
-import Util.Maybe ((??), (??⇒), (⇔))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM

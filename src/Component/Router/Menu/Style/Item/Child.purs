@@ -3,7 +3,7 @@ module Component.Router.Menu.Style.Item.Child
   , style
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (hover, (?))
 import CSS as CSS

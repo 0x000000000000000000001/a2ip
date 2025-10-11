@@ -1,6 +1,6 @@
 module Test.Util.Html.Clean.Untag where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))

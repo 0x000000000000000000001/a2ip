@@ -1,6 +1,6 @@
 module Component.Router.Menu.Render (render) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (fromString)
 import Capability.AppM (AppM)
@@ -20,7 +20,6 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, img, nav, text)
 import Halogen.HTML.Events (onClick, onMouseEnter, onMouseLeave)
 import Halogen.HTML.Properties (alt, src)
-import Util.Condition ((?), (↔))
 import Util.Style (class_)
 
 type Item r =

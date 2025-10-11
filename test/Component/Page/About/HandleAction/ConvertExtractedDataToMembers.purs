@@ -1,6 +1,6 @@
 module Test.Component.Page.About.HandleAction.ConvertExtractedDataToMembers where
 
-import Prelude
+import Proem
 
 import Component.Page.About.HandleAction (convertExtractedDataToMembers)
 import Component.Page.About.Type (email, finalPortraitUrl, firstname, job, lastname, originalPortraitUrl, phone, portraitId, role)

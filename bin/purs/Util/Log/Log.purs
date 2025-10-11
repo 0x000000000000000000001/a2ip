@@ -11,7 +11,7 @@ module Bin.Util.Log.Log
   )
   where
 
-import Prelude
+import Proem
 
 import Ansi.Codes (Color, EscapeCode(..), GraphicsParam(..), escapeCodeToString)
 import Control.Promise (Promise, toAff)
@@ -19,7 +19,6 @@ import Data.List.NonEmpty (singleton)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (liftEffect)
 import Effect.Console as Console
-import Util.Condition ((?), (↔))
 
 colorize :: Color -> String -> String
 colorize c s = 

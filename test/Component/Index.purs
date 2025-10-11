@@ -1,6 +1,6 @@
 module Test.Component.Index where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec)
 

@@ -9,7 +9,7 @@ module Util.Html.Table
   )
   where
 
-import Prelude
+import Proem
 
 import Data.Array (drop, length, mapMaybe) as Array
 import Data.Array (length, mapMaybe, (!!), (..))
@@ -17,8 +17,6 @@ import Data.Foldable (maximum)
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..))
 import Data.String as String
-import Util.Condition ((?), (↔))
-import Util.Maybe ((??⇒))
 
 -- | Extracts the first <table>...</table> block from the given HTML string.
 -- |

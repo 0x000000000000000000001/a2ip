@@ -5,7 +5,7 @@ module Util.GoogleDrive
   )
   where
 
-import Prelude
+import Proem
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), split)
 

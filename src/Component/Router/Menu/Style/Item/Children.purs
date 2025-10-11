@@ -3,7 +3,7 @@ module Component.Router.Menu.Style.Item.Children
   , style
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (backgroundColor, pct, rgba, transform)
 import CSS as CSS

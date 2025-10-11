@@ -1,6 +1,6 @@
 module Component.Util.Type where
 
-import Prelude
+import Proem
 
 import Data.Const (Const)
 

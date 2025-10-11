@@ -1,6 +1,6 @@
 module Test.Util.Google.Drive.ExtractPortraitIdFromViewUrl where
 
-import Prelude
+import Proem
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)

@@ -1,6 +1,6 @@
 module Component.Router.HandleQuery where
 
-import Prelude hiding (div)
+import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Router.Type (Action, Query(..), Slots, State, Output)

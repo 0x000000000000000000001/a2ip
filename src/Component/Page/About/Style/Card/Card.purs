@@ -6,7 +6,7 @@ module Component.Page.About.Style.Card.Card
   )
   where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (CSS) as CSS
 import CSS (alignItems, column, flexDirection, hover, justifyContent, (&), (?))

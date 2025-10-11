@@ -2,7 +2,7 @@ module Component.Router.Style.Sheet
   ( sheet
   ) where
 
-import Prelude
+import Proem
 
 import Component.Router.Style.Router (style)
 import Halogen.HTML (HTML)

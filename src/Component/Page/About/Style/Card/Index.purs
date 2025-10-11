@@ -2,7 +2,7 @@ module Component.Page.About.Style.Card.Index
   ( style
   ) where
 
-import Prelude
+import Proem
 
 import CSS as CSS
 import Component.Page.About.Style.Card.Card as Card

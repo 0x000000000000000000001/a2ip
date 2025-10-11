@@ -2,7 +2,7 @@ module Component.Router.Menu.Style.Item.Icon.Index
   ( style
   ) where
 
-import Prelude
+import Proem
 
 import CSS as CSS
 import Component.Router.Menu.Style.Item.Icon.Container as Container

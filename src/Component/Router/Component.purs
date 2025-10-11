@@ -1,6 +1,6 @@
 module Component.Router.Component where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Component.Router.HandleQuery (handleQuery)

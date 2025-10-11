@@ -1,6 +1,6 @@
 module Util.File.Unzip where
 
-import Prelude
+import Proem
 
 import Control.Promise (Promise, toAff)
 import Data.ArrayBuffer.Types (ArrayBuffer)

@@ -1,6 +1,6 @@
 module Test.Util.Html.Table.GetNextCellPos where
 
-import Prelude
+import Proem
 
 import Data.Maybe (Maybe(..))
 import Test.Spec (Spec, it)

@@ -1,6 +1,6 @@
 module Test.Util.Html.Table where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec)
 import Test.Util.Describe (describe)

@@ -1,6 +1,6 @@
 module Test.Util.Html.Encode.Index where
 
-import Prelude
+import Proem
 
 import Test.Spec (Spec)
 import Test.Util.Html.Encode.DecodeHtmlEntities as DecodeHtmlEntities

@@ -3,7 +3,7 @@ module Component.Router.Menu.Style.Item.Icon.Icon
   , style
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (fromString, key)
 import CSS as CSS

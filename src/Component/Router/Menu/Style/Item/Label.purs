@@ -3,13 +3,12 @@ module Component.Router.Menu.Style.Item.Label
   , style
   ) where
 
-import Prelude hiding (top, div)
+import Proem hiding (top, div)
 
 import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
 import Component.Router.Menu.Type (State)
-import Util.Condition ((?), (↔))
 import Util.Style (marginLeft, flexGrow1, overflowHidden, widthRem, (.?))
 
 classId :: String 

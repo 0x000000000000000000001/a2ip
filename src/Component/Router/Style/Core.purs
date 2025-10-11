@@ -3,7 +3,7 @@ module Component.Router.Style.Core
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS (angular, animation, background, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, sansSerif, saturate, sec, star, (?))
 import CSS as CSS

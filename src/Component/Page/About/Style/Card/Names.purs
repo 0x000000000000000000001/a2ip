@@ -3,7 +3,7 @@ module Component.Page.About.Style.Card.Names
   , style
   ) where
 
-import Prelude hiding (top)
+import Proem hiding (top)
 
 import CSS as CSS
 import Util.Style (bold, colorRed, fontSizePct, raw, widthPct, (.?))

@@ -3,7 +3,7 @@ module Test.Util.Describe
   , describeOnly
   ) where
 
-import Prelude
+import Proem
 
 import Test.Spec (class FocusWarning, SpecT)
 import Test.Spec as TestSpec

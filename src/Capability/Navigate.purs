@@ -1,6 +1,6 @@
 module Capability.Navigate where
 
-import Prelude
+import Proem
 
 import Capability.AppM (AppM)
 import Component.Router.Route (Route, routeCodec)
