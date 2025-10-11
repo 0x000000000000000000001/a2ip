@@ -20,7 +20,6 @@ style :: CSS.CSS
 style = do
   classId .? do
     color (graytone 0.9)
-    displayFlex
     justifyContent center
     alignItems center
     cursorPointer

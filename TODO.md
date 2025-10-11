@@ -1,2 +1,2 @@
-a -> link component
+avoir des liens sans #
 finir la page about et factoriser

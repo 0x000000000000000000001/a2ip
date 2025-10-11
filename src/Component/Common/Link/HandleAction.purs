@@ -12,5 +12,5 @@ import Halogen (HalogenM, modify_)
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
-  Receive input -> modify_ _ { route = input.route, class_ = input.class_, children = input.children }
+  Receive input -> modify_ _ { route = input.route, class_ = input.class_, display = input.display, children = input.children }
   Navigate route -> navigate route

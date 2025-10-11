@@ -14,7 +14,7 @@ import Data.Maybe as Maybe
 fromMaybe :: ∀ a. Maybe a -> a -> a
 fromMaybe = flip Maybe.fromMaybe
 
-infixl 4 fromMaybe as ??⇒
+infixl 6 fromMaybe as ??⇒
 
 maybe :: ∀ a b. Maybe a -> (a -> b) -> b -> b
 maybe m f def = Maybe.maybe def f m

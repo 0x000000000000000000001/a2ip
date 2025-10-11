@@ -2,7 +2,7 @@ module Component.Router.Menu.Render (render) where
 
 import Proem hiding (top, div)
 
-import CSS (fromString)
+import CSS (flex, fromString)
 import Capability.AppM (AppM)
 import Component.Common.Link.Component as Link
 import Component.Router.Menu.Style.Item.Child as Child
@@ -77,7 +77,8 @@ render s =
   item label' route iconFileName children =
     slot Type.items (label' /\ route) Link.component
       { route
-      , class_: Item.classId
+      , class_: Just Item.classId
+      , display: flex
       , children: 
         [ div
           [ class_ $ ItemIconContainer.classId ]

@@ -5,18 +5,29 @@ module Component.Common.Link.Type
   , Query
   , Slots
   , State
+  , defaultInput
   )
   where
 
-import Component.Router.Route (Route)
+import CSS (Display, inlineBlock)
+import Component.Router.Route (Route(..))
 import Component.Util.Type (NoOutput, NoQuery, NoSlots, Children)
-import Data.Maybe (Maybe)
+import Data.Maybe (Maybe(..))
 
 type Input =
   { route :: Maybe Route
-  , class_ :: String
+  , class_ :: Maybe String
+  , display :: Display
   , children :: Children Action Slots
   } 
+
+defaultInput :: Input
+defaultInput = 
+  { route: Just Home 
+  , class_: Nothing 
+  , display: inlineBlock
+  , children: []
+  }
  
 type Output = NoOutput
 
@@ -25,7 +36,8 @@ type Slots = NoSlots
 
 type State =
   { route :: Maybe Route
-  , class_ :: String
+  , class_ :: Maybe String
+  , display :: Display
   , children :: Children Action Slots
   }
 

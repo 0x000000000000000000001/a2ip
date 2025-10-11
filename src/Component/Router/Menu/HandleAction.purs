@@ -8,7 +8,6 @@ import Halogen (HalogenM, modify_)
  
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
-  ToggleFolding bool -> modify_ _ { isUnfold = true }
+  ToggleFolding bool -> modify_ _ { isUnfold = not bool }
   -- Navigate route -> do 
   --   modify_ _ { isUnfold = false }
-  --   navigate route

@@ -17,6 +17,7 @@ component = mkComponent
     { initialState: \input -> 
         { route: input.route
         , class_: input.class_
+        , display: input.display
         , children: input.children
         }
     , render   
