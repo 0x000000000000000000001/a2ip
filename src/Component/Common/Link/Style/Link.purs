@@ -5,6 +5,7 @@ module Component.Common.Link.Style.Link
 
 import Proem hiding (top)
 
+import CSS (textDecoration, noneTextDecoration)
 import CSS as CSS
 import Util.Style (displayInlineBlock, (.?))
 
@@ -15,3 +16,4 @@ style :: CSS.CSS
 style = do
   classId .? do
     displayInlineBlock
+    textDecoration noneTextDecoration
