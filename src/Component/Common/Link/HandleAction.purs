@@ -11,4 +11,4 @@ import Halogen (HalogenM, modify_)
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of  
-  Receive input -> modify_ _ { href = input.href }
+  Receive input -> modify_ _ { href = input.href, children = input.children }

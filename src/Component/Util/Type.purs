@@ -2,7 +2,11 @@ module Component.Util.Type where
 
 import Proem
 
+import Capability.AppM (AppM)
 import Data.Const (Const)
+import Halogen (ComponentHTML)
+
+type Children action slots = Array (ComponentHTML action slots AppM)
 
 type NoSlots :: forall k. Row k
 type NoSlots = ()

@@ -16,6 +16,7 @@ component :: Component Query Input Output AppM
 component = mkComponent
     { initialState: \input -> 
         { href: input.href
+        , children: input.children
         }
     , render   
     , eval: mkEval defaultEval

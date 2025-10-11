@@ -8,10 +8,11 @@ module Component.Common.Link.Type
   )
   where
 
-import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Component.Util.Type (NoOutput, NoQuery, NoSlots, Children)
 
 type Input =
   { href :: String
+  , children :: Children Action Slots
   } 
  
 type Output = NoOutput
@@ -21,6 +22,7 @@ type Slots = NoSlots
 
 type State =
   { href :: String
+  , children :: Children Action Slots
   }
 
 data Action = Receive Input
