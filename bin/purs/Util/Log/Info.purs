@@ -28,28 +28,28 @@ infoColor = Blue
 infoColorize :: String -> String
 infoColorize = colorize infoColor
 
-info :: forall m. MonadAff m => String -> m Unit
+info :: ∀ m. MonadAff m => String -> m Unit
 info = liftEffect <<< Console.log <<< (\m -> infoPrefixed m false false)
 
-infoAfterNewline :: forall m. MonadAff m => String -> m Unit
+infoAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoAfterNewline msg = newline *> info msg
 
-infoShort :: forall m. MonadAff m => String -> m Unit
+infoShort :: ∀ m. MonadAff m => String -> m Unit
 infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true false)
 
-infoShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+infoShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg
 
-infoShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+infoShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 infoShortShowAfterNewline = infoShortAfterNewline <<< show
 
-infoShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+infoShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 infoShortShow = infoShort <<< show
 
-infoShow :: forall m a. MonadAff m => Show a => a -> m Unit
+infoShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 infoShow = info <<< show
 
-infoShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+infoShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 infoShowAfterNewline = infoAfterNewline <<< show
 
 infoEmoji :: String

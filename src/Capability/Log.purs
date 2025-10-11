@@ -10,15 +10,15 @@ import Util.Log (Level(..))
 
 class Monad m <= Log m where
   log :: Level -> String -> m Unit
-  logShow :: forall a. Show a => Level -> a -> m Unit
+  logShow :: ∀ a. Show a => Level -> a -> m Unit
   info :: String -> m Unit
-  infoShow :: forall a. Show a => a -> m Unit
+  infoShow :: ∀ a. Show a => a -> m Unit
   debug :: String -> m Unit
-  debugShow :: forall a. Show a => a -> m Unit
+  debugShow :: ∀ a. Show a => a -> m Unit
   warn :: String -> m Unit
-  warnShow :: forall a. Show a => a -> m Unit
+  warnShow :: ∀ a. Show a => a -> m Unit
   error :: String -> m Unit
-  errorShow :: forall a. Show a => a -> m Unit
+  errorShow :: ∀ a. Show a => a -> m Unit
 
 instance logHalogenM :: Log m => Log (HalogenM state action slots output m) where
   log level message = lift $ log level message

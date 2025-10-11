@@ -31,19 +31,19 @@ carriageReturn = "\r"
 
 foreign import _write :: String -> Promise Unit
 
-write :: forall m. MonadAff m => String -> m Unit
+write :: ∀ m. MonadAff m => String -> m Unit
 write str = liftAff $ toAff $ _write str
 
-log :: forall m. MonadAff m => String -> m Unit
+log :: ∀ m. MonadAff m => String -> m Unit
 log = liftEffect <<< Console.log
 
-logAfterNewline :: forall m. MonadAff m => String -> m Unit
+logAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 logAfterNewline msg = newline *> log msg
 
-logShow :: forall m a. MonadAff m => Show a => a -> m Unit
+logShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 logShow = log <<< show
 
-logShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+logShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 logShowAfterNewline = logAfterNewline <<< show
 
 prefixed :: String -> Color -> String -> String -> Boolean -> Boolean -> String
@@ -53,5 +53,5 @@ prefixed prefix color emoji msg short colorize_ =
   <> (short ? "" ↔ colorize color $ "[" <> prefix <> "] ") 
   <> (colorize_ ? (colorize color msg) ↔ msg)
 
-newline :: forall m. MonadAff m => m Unit
+newline :: ∀ m. MonadAff m => m Unit
 newline = log ""

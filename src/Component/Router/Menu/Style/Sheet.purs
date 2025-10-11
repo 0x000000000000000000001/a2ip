@@ -11,7 +11,7 @@ import Component.Router.Menu.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
-sheet :: forall p i. State -> HTML p i
+sheet :: ∀ p i. State -> HTML p i
 sheet s = stylesheet do
   Menu.style s
   Item.style s

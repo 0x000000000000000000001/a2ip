@@ -7,7 +7,7 @@ module Util.Condition
 
 import Data.Function (apply)
 
-if_ :: forall a. Boolean -> a -> a -> a
+if_ :: ∀ a. Boolean -> a -> a -> a
 if_ b t e = if b then t else e
 
 infixl 1 if_ as ?

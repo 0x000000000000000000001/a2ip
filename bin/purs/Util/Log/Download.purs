@@ -28,28 +28,28 @@ downloadColor = Cyan
 downloadColorize :: String -> String
 downloadColorize = colorize downloadColor
 
-download :: forall m. MonadAff m => String -> m Unit
+download :: ∀ m. MonadAff m => String -> m Unit
 download = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m false false)
 
-downloadAfterNewline :: forall m. MonadAff m => String -> m Unit
+downloadAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadAfterNewline msg = newline *> download msg
 
-downloadShort :: forall m. MonadAff m => String -> m Unit
+downloadShort :: ∀ m. MonadAff m => String -> m Unit
 downloadShort = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m true false)
 
-downloadShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+downloadShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadShortAfterNewline msg = newline *> downloadShort msg
 
-downloadShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+downloadShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 downloadShortShowAfterNewline = downloadShortAfterNewline <<< show
 
-downloadShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+downloadShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 downloadShortShow = downloadShort <<< show
 
-downloadShow :: forall m a. MonadAff m => Show a => a -> m Unit
+downloadShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 downloadShow = download <<< show
 
-downloadShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+downloadShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 downloadShowAfterNewline = downloadAfterNewline <<< show
 
 downloadEmoji :: String

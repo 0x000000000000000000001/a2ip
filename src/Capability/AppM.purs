@@ -19,5 +19,5 @@ derive newtype instance monadEffectAppM :: MonadEffect AppM
 derive newtype instance monadAffAppM :: MonadAff AppM
 derive newtype instance monadAskAppM :: MonadAsk Config AppM
 
-runAppM :: forall a. Config -> AppM a -> Aff a
+runAppM :: ∀ a. Config -> AppM a -> Aff a
 runAppM config (AppM app) = runReaderT app config

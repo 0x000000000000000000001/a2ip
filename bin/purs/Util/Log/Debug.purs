@@ -28,28 +28,28 @@ debugColor = Magenta
 debugColorize :: String -> String
 debugColorize = colorize debugColor
 
-debug :: forall m. MonadAff m => String -> m Unit
+debug :: ∀ m. MonadAff m => String -> m Unit
 debug = liftEffect <<< Console.log <<< (\m -> debugPrefixed m false false)
 
-debugAfterNewline :: forall m. MonadAff m => String -> m Unit
+debugAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg
 
-debugShort :: forall m. MonadAff m => String -> m Unit
+debugShort :: ∀ m. MonadAff m => String -> m Unit
 debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true false)
 
-debugShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+debugShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg
 
-debugShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+debugShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 debugShortShowAfterNewline = debugShortAfterNewline <<< show
 
-debugShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+debugShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 debugShortShow = debugShort <<< show
 
-debugShow :: forall m a. MonadAff m => Show a => a -> m Unit
+debugShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 debugShow = debug <<< show
 
-debugShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+debugShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 debugShowAfterNewline = debugAfterNewline <<< show
 
 debugEmoji :: String

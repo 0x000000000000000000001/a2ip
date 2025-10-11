@@ -28,28 +28,28 @@ warnColor = Yellow
 warnColorize :: String -> String
 warnColorize = colorize warnColor
 
-warn :: forall m. MonadAff m => String -> m Unit
+warn :: ∀ m. MonadAff m => String -> m Unit
 warn = liftEffect <<< Console.log <<< (\m -> warnPrefixed m false false)
 
-warnAfterNewline :: forall m. MonadAff m => String -> m Unit
+warnAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnAfterNewline msg = newline *> warn msg
 
-warnShort :: forall m. MonadAff m => String -> m Unit
+warnShort :: ∀ m. MonadAff m => String -> m Unit
 warnShort = liftEffect <<< Console.log <<< (\m -> warnPrefixed m true false)
 
-warnShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+warnShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnShortAfterNewline msg = newline *> warnShort msg
 
-warnShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+warnShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 warnShortShowAfterNewline = warnShortAfterNewline <<< show
 
-warnShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+warnShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 warnShortShow = warnShort <<< show
 
-warnShow :: forall m a. MonadAff m => Show a => a -> m Unit
+warnShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 warnShow = warn <<< show
 
-warnShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+warnShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 warnShowAfterNewline = warnAfterNewline <<< show
 
 warnEmoji :: String

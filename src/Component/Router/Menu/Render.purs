@@ -69,7 +69,7 @@ render s =
       ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
     )
   where
-  item :: forall w. String -> Maybe Route -> String -> Array ChildItem -> HTML w Action
+  item :: ∀ w. String -> Maybe Route -> String -> Array ChildItem -> HTML w Action
   item label' route iconFileName children =
     div
       ( [ class_ Item.classId ] <>

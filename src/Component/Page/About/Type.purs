@@ -20,7 +20,7 @@ type State =
 
 data Action = LoadData
 
-type Query :: forall k. k -> Type
+type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
 type Member =

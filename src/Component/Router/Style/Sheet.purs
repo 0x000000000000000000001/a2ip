@@ -9,7 +9,7 @@ import Halogen.HTML (HTML)
 import Component.Router.Style.Core as Core
 import Halogen.HTML.CSS (stylesheet)
 
-sheet :: forall p i. HTML p i
+sheet :: ∀ p i. HTML p i
 sheet = stylesheet do
   style 
   Core.style

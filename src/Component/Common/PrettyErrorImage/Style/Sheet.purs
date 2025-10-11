@@ -8,7 +8,7 @@ import Halogen.HTML.CSS (stylesheet)
 import Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage
 import Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 
-sheet :: forall p i. HTML p i
+sheet :: ∀ p i. HTML p i
 sheet = stylesheet do
   QuestionMark.style 
   PrettyErrorImage.style 

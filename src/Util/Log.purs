@@ -27,7 +27,7 @@ derive instance genericLogLevel :: Generic Level _
 instance showLogLevel :: Show Level where
   show = genericShow
 
-unsafeLog :: forall a. Show a => Level -> a -> Unit
+unsafeLog :: ∀ a. Show a => Level -> a -> Unit
 unsafeLog level input = unsafePerformEffect $ do
   let message_ = show level <> ": " <> show input
   case level of
@@ -36,29 +36,29 @@ unsafeLog level input = unsafePerformEffect $ do
     Warn -> Console.warn message_
     Error -> Console.error message_
 
-unsafeLogShow :: forall a. Show a => Level -> a -> Unit
+unsafeLogShow :: ∀ a. Show a => Level -> a -> Unit
 unsafeLogShow level input = unsafeLog level $ show input
 
-unsafeDebug :: forall a. Show a => a -> Unit
+unsafeDebug :: ∀ a. Show a => a -> Unit
 unsafeDebug = unsafeLog Debug
 
-unsafeDebugShow :: forall a. Show a => a -> Unit
+unsafeDebugShow :: ∀ a. Show a => a -> Unit
 unsafeDebugShow = unsafeDebug <<< show
 
-unsafeInfo :: forall a. Show a => a -> Unit
+unsafeInfo :: ∀ a. Show a => a -> Unit
 unsafeInfo = unsafeLog Info
 
-unsafeInfoShow :: forall a. Show a => a -> Unit
+unsafeInfoShow :: ∀ a. Show a => a -> Unit
 unsafeInfoShow = unsafeInfo <<< show
 
-unsafeWarn :: forall a. Show a => a -> Unit
+unsafeWarn :: ∀ a. Show a => a -> Unit
 unsafeWarn = unsafeLog Warn
 
-unsafeWarnShow :: forall a. Show a => a -> Unit
+unsafeWarnShow :: ∀ a. Show a => a -> Unit
 unsafeWarnShow = unsafeWarn <<< show
 
-unsafeError :: forall a. Show a => a -> Unit
+unsafeError :: ∀ a. Show a => a -> Unit
 unsafeError = unsafeLog Error
 
-unsafeErrorShow :: forall a. Show a => a -> Unit
+unsafeErrorShow :: ∀ a. Show a => a -> Unit
 unsafeErrorShow = unsafeError <<< show

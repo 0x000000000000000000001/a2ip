@@ -28,28 +28,28 @@ successColor = Green
 successColorize :: String -> String
 successColorize = colorize successColor
 
-success :: forall m. MonadAff m => String -> m Unit
+success :: ∀ m. MonadAff m => String -> m Unit
 success = liftEffect <<< Console.log <<< (\m -> successPrefixed m false false)
 
-successAfterNewline :: forall m. MonadAff m => String -> m Unit
+successAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successAfterNewline msg = newline *> success msg
 
-successShort :: forall m. MonadAff m => String -> m Unit
+successShort :: ∀ m. MonadAff m => String -> m Unit
 successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true false)
 
-successShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+successShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg
 
-successShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+successShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 successShortShowAfterNewline = successShortAfterNewline <<< show
 
-successShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+successShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 successShortShow = successShort <<< show
 
-successShow :: forall m a. MonadAff m => Show a => a -> m Unit
+successShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 successShow = success <<< show
 
-successShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+successShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 successShowAfterNewline = successAfterNewline <<< show
 
 successEmoji :: String

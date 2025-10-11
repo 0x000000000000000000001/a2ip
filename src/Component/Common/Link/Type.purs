@@ -17,7 +17,7 @@ type Input =
  
 type Output = NoOutput
 
-type Slots :: forall k. Row k
+type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State =
@@ -27,5 +27,5 @@ type State =
 
 data Action = Receive Input
 
-type Query :: forall k. k -> Type
+type Query :: ∀ k. k -> Type
 type Query = NoQuery

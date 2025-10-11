@@ -68,7 +68,7 @@ renderMemberCard idx member =
     , portraitUrl: loadingPlaceholder
     }
 
-  line :: forall w i. (Member -> String) -> String -> Array (HTML w i)
+  line :: ∀ w i. (Member -> String) -> String -> Array (HTML w i)
   line getter key =
     not isLoading && getter member_ == "" 
     ? []
@@ -77,7 +77,7 @@ renderMemberCard idx member =
       [ render_ $ getter member_ ]
     ]
 
-  lines :: forall w i. Array (HTML w i)
+  lines :: ∀ w i. Array (HTML w i)
   lines =
     line _.role role
       <> line _.job job

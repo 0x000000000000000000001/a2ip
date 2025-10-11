@@ -7,7 +7,7 @@ import Test.Spec.Assertions (fail)
 
 foreign import captureTrace :: Unit -> String
 
-shouldEqual :: forall t. Show t => Eq t => t -> t -> Aff Unit
+shouldEqual :: ∀ t. Show t => Eq t => t -> t -> Aff Unit
 shouldEqual v1 v2 = do
   when (v1 /= v2) do
     let trace = captureTrace unit

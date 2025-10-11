@@ -8,7 +8,7 @@ import Halogen (ComponentHTML)
 
 type Children action slots = Array (ComponentHTML action slots AppM)
 
-type NoSlots :: forall k. Row k
+type NoSlots :: ∀ k. Row k
 type NoSlots = ()
 
 type NoInput = Unit
@@ -19,12 +19,12 @@ type NoState = {}
 
 data NoAction
 
-type NoQuery :: forall k. k -> Type
+type NoQuery :: ∀ k. k -> Type
 type NoQuery = Const Void
 
 type NoSlotAddressIndex = Unit
 
-noOutputAction :: forall a. NoOutput -> a 
+noOutputAction :: ∀ a. NoOutput -> a 
 noOutputAction = absurd
 
 noSlotAddressIndex :: NoSlotAddressIndex

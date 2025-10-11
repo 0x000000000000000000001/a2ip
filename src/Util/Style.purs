@@ -118,10 +118,10 @@ backgroundWhite = hsl 196.0 1.0 0.98
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
-class_ :: forall r i. String -> IProp (class :: String | r) i
+class_ :: ∀ r i. String -> IProp (class :: String | r) i
 class_ className = HP.class_ $ ClassName $ stripDotPrefixFromClassName className
 
-classes :: forall r i. Array String -> IProp (class :: String | r) i
+classes :: ∀ r i. Array String -> IProp (class :: String | r) i
 classes classNames = HP.classes $ ClassName <$> (stripDotPrefixFromClassName <$> classNames)
 
 stripDotPrefixFromClassName :: String -> String
@@ -381,7 +381,7 @@ before = fromString "::before"
 
 -- | Fast polynomial hash function that generates a 9-character identifier
 -- | Perfect for CSS class names with very low collision probability
-hash9 :: forall a. Show a => a -> String
+hash9 :: ∀ a. Show a => a -> String
 hash9 input = 
   let
     str = show input

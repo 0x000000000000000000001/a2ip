@@ -28,34 +28,34 @@ import Effect.Aff (Aff)
 
 foreign import driver :: AffjaxDriver
 
-get :: forall a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
+get :: ∀ a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
 get = Affjax.get driver
 
-post :: forall a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
+post :: ∀ a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
 post = Affjax.post driver
 
 post_ :: URL -> Maybe RequestBody -> Aff (Either Error Unit)
 post_ = Affjax.post_ driver
 
-put :: forall a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
+put :: ∀ a. ResponseFormat a -> URL -> Maybe RequestBody -> Aff (Either Error (Response a))
 put = Affjax.put driver
 
 put_ :: URL -> Maybe RequestBody -> Aff (Either Error Unit)
 put_ = Affjax.put_ driver
 
-delete :: forall a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
+delete :: ∀ a. ResponseFormat a -> URL -> Aff (Either Error (Response a))
 delete = Affjax.delete driver
 
 delete_ :: URL -> Aff (Either Error Unit)
 delete_ = Affjax.delete_ driver
 
-patch :: forall a. ResponseFormat a -> URL -> RequestBody -> Aff (Either Error (Response a))
+patch :: ∀ a. ResponseFormat a -> URL -> RequestBody -> Aff (Either Error (Response a))
 patch = Affjax.patch driver
 
 patch_ :: URL -> RequestBody -> Aff (Either Error Unit)
 patch_ = Affjax.patch_ driver
 
-request :: forall a. Request a -> Aff (Either Error (Response a))
+request :: ∀ a. Request a -> Aff (Either Error (Response a))
 request = Affjax.request driver
 
 -- | Does a GET request and checks for HTTP status codes.
@@ -64,7 +64,7 @@ request = Affjax.request driver
 -- |   - Network errors (timeout, DNS issues, etc.)
 -- |   - HTTP status codes >= 400 (client/server errors)
 -- | Returns Right only for 2xx and 3xx status codes
-getCheckStatus :: forall a. ResponseFormat a -> String -> Aff (Either String (Response a))
+getCheckStatus :: ∀ a. ResponseFormat a -> String -> Aff (Either String (Response a))
 getCheckStatus format url = do
   response <- get format url
   case response of

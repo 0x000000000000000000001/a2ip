@@ -28,28 +28,28 @@ uploadColor = Cyan
 uploadColorize :: String -> String
 uploadColorize = colorize uploadColor
 
-upload :: forall m. MonadAff m => String -> m Unit
+upload :: ∀ m. MonadAff m => String -> m Unit
 upload = liftEffect <<< Console.log <<< (\m -> uploadPrefixed m false false)
 
-uploadAfterNewline :: forall m. MonadAff m => String -> m Unit
+uploadAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 uploadAfterNewline msg = newline *> upload msg
 
-uploadShort :: forall m. MonadAff m => String -> m Unit
+uploadShort :: ∀ m. MonadAff m => String -> m Unit
 uploadShort = liftEffect <<< Console.log <<< (\m -> uploadPrefixed m true false)
 
-uploadShortAfterNewline :: forall m. MonadAff m => String -> m Unit
+uploadShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 uploadShortAfterNewline msg = newline *> uploadShort msg
 
-uploadShortShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+uploadShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 uploadShortShowAfterNewline = uploadShortAfterNewline <<< show
 
-uploadShortShow :: forall m a. MonadAff m => Show a => a -> m Unit
+uploadShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 uploadShortShow = uploadShort <<< show
 
-uploadShow :: forall m a. MonadAff m => Show a => a -> m Unit
+uploadShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
 uploadShow = upload <<< show
 
-uploadShowAfterNewline :: forall m a. MonadAff m => Show a => a -> m Unit
+uploadShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
 uploadShowAfterNewline = uploadAfterNewline <<< show
 
 uploadEmoji :: String

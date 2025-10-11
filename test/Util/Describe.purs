@@ -14,14 +14,14 @@ generateDescription :: Unit -> String
 generateDescription _ = captureModuleName unit <> ":"
 
 describe :: 
-  forall m g i a
+  ∀ m g i a
    . Monad m
   => SpecT g i m a
   -> SpecT g i m a
 describe specs = TestSpec.describe (generateDescription unit) specs
 
 describeOnly 
-  :: forall m g i a
+  :: ∀ m g i a
    . FocusWarning
   => Monad m
   => SpecT g i m a
