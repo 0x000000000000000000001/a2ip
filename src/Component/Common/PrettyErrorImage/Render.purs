@@ -17,7 +17,6 @@ import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (renderToArray)
 import Util.Condition ((?), (↔))
-import Util.Log (unsafeDebugShow)
 import Util.Maybe ((??), (⇔))
 import Util.Style (class_, classes)
 
