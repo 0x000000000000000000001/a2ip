@@ -21,7 +21,7 @@ import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image (downloadImage)
-import Util.File.Path (imageDirAbsolutePath)
+import Util.File.Path (imageDirAbsolutePath, rootDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -93,7 +93,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff Unit
 download lock totalLines { idx, id, url, filename } = do
-  let filePath = imageDirAbsolutePath <> ourImageRelativePath id
+  let filePath = rootDirPath <> ourImageRelativePath id
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath

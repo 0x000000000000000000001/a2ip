@@ -31,6 +31,7 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (message)
 import Halogen (HalogenM, liftAff, modify_)
 import Util.Array.Map (arrayToIndexMap)
+import Util.File.Path (imageDirRelativePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
@@ -50,7 +51,7 @@ googleDriveImageUrl :: String -> String
 googleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
 
 ourImageRelativePath :: String -> String
-ourImageRelativePath portraitId = "component/page/about/member/" <> suffixPortraitIdWithExt portraitId
+ourImageRelativePath portraitId = imageDirRelativePath <> "component/page/about/member/" <> suffixPortraitIdWithExt portraitId
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
