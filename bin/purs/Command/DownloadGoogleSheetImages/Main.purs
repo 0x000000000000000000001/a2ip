@@ -21,7 +21,7 @@ import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image (downloadImage)
-import Util.File.Path (imageDirAbsolutePath, rootDirPath)
+import Util.File.Path (rootDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
