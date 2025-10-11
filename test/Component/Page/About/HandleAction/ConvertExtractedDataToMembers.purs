@@ -3,7 +3,7 @@ module Test.Component.Page.About.HandleAction.ConvertExtractedDataToMembers wher
 import Proem
 
 import Component.Page.About.HandleAction (convertExtractedDataToMembers)
-import Component.Page.About.Type (email, finalPortraitUrl, firstname, job, lastname, originalPortraitUrl, phone, portraitId, role)
+import Component.Page.About.Type (email, portraitUrl, firstname, job, lastname, phone, portraitId, role)
 import Data.Map (fromFoldable)
 import Data.Maybe (Maybe(..))
 import Data.Tuple (Tuple(..))
@@ -39,8 +39,7 @@ spec = describe do
         , phone: "123-456-7890"
         , email: "john@example.com"
         , portraitId: "portrait123"
-        , originalPortraitUrl: "https://www.googleapis.com/drive/v3/files/portrait123?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
-        , finalPortraitUrl: "/asset/image/component/page/about/member/portrait123.png"
+        , portraitUrl: "/asset/image/component/page/about/member/portrait123.png"
         }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -59,14 +58,13 @@ spec = describe do
         , phone: ""
         , email: ""
         , portraitId: ""
-        , originalPortraitUrl: ""
-        , finalPortraitUrl: ""
+        , portraitUrl: ""
         }
     ]
     convertExtractedDataToMembers extractedData === expected
 
   it "handles keys in different order" do
-    let keys = [email, firstname, originalPortraitUrl, finalPortraitUrl, lastname] -- Different order
+    let keys = [email, firstname, portraitUrl, lastname] -- Different order
     let keyIndices = arrayToIndexMap keys
     let values = [["bob@example.com", "Bob", "portrait456", "Johnson"]]
     let extractedData = { keys, keyIndices, values }
@@ -79,8 +77,7 @@ spec = describe do
         , phone: ""
         , email: "bob@example.com"
         , portraitId: "portrait456"
-        , originalPortraitUrl: "portrait456"
-        , finalPortraitUrl: "portrait123"
+        , portraitUrl: "portrait123"
         }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -95,9 +92,9 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -123,8 +120,8 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -143,8 +140,8 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -163,8 +160,8 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -183,8 +180,8 @@ spec = describe do
       , phone: ""
       , email: "jean.pierre+test@example.com"
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -203,8 +200,8 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -219,14 +216,14 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", originalPortraitUrl: "", finalPortraitUrl: "" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "", portraitUrl: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
   it "handles keys with no corresponding values" do
-    let keys = [job, role, originalPortraitUrl, finalPortraitUrl] -- Keys that don't match any typical data
+    let keys = [job, role, portraitUrl] -- Keys that don't match any typical data
     let keyIndices = arrayToIndexMap keys
     let values = [["Engineer", "Developer", "img123"]]
     let extractedData = { keys, keyIndices, values }
@@ -239,8 +236,7 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: "img123"
-      , originalPortraitUrl: "img123"
-      , finalPortraitUrl: ""
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -259,14 +255,14 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      , originalPortraitUrl: ""
-      , finalPortraitUrl: ""
+      
+      , portraitUrl: ""
       }
     ]
     convertExtractedDataToMembers extractedData === expected
 
   it "handles large dataset with all fields" do
-    let keys = [firstname, lastname, role, job, phone, email, originalPortraitUrl, finalPortraitUrl]
+    let keys = [firstname, lastname, role, job, phone, email, portraitUrl]
     let keyIndices = arrayToIndexMap keys
     let values = [
       ["John", "Doe", "Developer", "Software Engineer", "123-456-7890", "john@example.com", "portrait1", "portrait1"],
@@ -276,10 +272,10 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1", originalPortraitUrl: "portrait1", finalPortraitUrl: "portrait1" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2", originalPortraitUrl: "portrait2", finalPortraitUrl: "portrait2" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3", originalPortraitUrl: "portrait3", finalPortraitUrl: "portrait3" },
-      Just { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4", originalPortraitUrl: "portrait4", finalPortraitUrl: "portrait4" }
+      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1", portraitUrl: "portrait1" },
+      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2", portraitUrl: "portrait2" },
+      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3", portraitUrl: "portrait3" },
+      Just { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4", portraitUrl: "portrait4" }
     ]
     convertExtractedDataToMembers extractedData === expected
 

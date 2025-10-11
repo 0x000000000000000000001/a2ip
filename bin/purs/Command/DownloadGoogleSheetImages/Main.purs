@@ -10,7 +10,7 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Component.Page.About.HandleAction (fetchMembers, ourImageAbsolutePath)
+import Component.Page.About.HandleAction (fetchMembers, ourImageRelativePath)
 import Config.Config (config)
 import Data.Array (catMaybes, filter, last, length, mapWithIndex)
 import Data.Either (Either(..))
@@ -21,6 +21,7 @@ import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image (downloadImage)
+import Util.File.Path (imageDirAbsolutePath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -60,18 +61,18 @@ imagesToDownload = do
     Right members_ -> do
       pure $ catMaybes $ 
         mapWithIndex 
-        (\idx member -> member ?? (\{ portraitId, originalPortraitUrl, finalPortraitUrl } -> Just 
+        (\idx member -> member ?? (\{ portraitId, portraitUrl } -> Just 
           { idx
           , id: portraitId
-          , url: originalPortraitUrl
-          , filename: trim $ (last $ split (Pattern "/") finalPortraitUrl) ??⇒ ""
+          , url: portraitUrl
+          , filename: trim $ (last $ split (Pattern "/") portraitUrl) ??⇒ ""
           }) ⇔ Nothing
         )
         $ filter 
           (\member -> 
             case member of
               Nothing -> false
-              Just { finalPortraitUrl } -> (trim $ finalPortraitUrl) /= ""
+              Just { portraitUrl } -> (trim $ portraitUrl) /= ""
           )
           members_
 
@@ -92,7 +93,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff Unit
 download lock totalLines { idx, id, url, filename } = do
-  let filePath = ourImageAbsolutePath id
+  let filePath = imageDirAbsolutePath <> ourImageRelativePath id
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath

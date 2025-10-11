@@ -47,7 +47,7 @@ renderMemberCard idx member =
           (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
-          , src: isLoading ? Nothing ↔ Just member_.finalPortraitUrl
+          , src: isLoading ? Nothing ↔ Just member_.portraitUrl
           }
           noOutputAction
       ] <> lines
@@ -65,8 +65,7 @@ renderMemberCard idx member =
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
     , portraitId: loadingPlaceholder
-    , originalPortraitUrl: loadingPlaceholder
-    , finalPortraitUrl: loadingPlaceholder
+    , portraitUrl: loadingPlaceholder
     }
 
   line :: forall w i. (Member -> String) -> String -> Array (HTML w i)

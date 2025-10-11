@@ -31,8 +31,7 @@ type Member =
   , phone :: String
   , email :: String
   , portraitId :: String
-  , originalPortraitUrl :: String
-  , finalPortraitUrl :: String
+  , portraitUrl :: String
   }
 
 lastname :: String 
@@ -56,8 +55,5 @@ email = "email"
 portraitId :: String
 portraitId = "portraitId"
 
-originalPortraitUrl :: String
-originalPortraitUrl = "originalPortraitUrl"
-
-finalPortraitUrl :: String
-finalPortraitUrl = "finalPortraitUrl"
+portraitUrl :: String
+portraitUrl = "portraitUrl"
