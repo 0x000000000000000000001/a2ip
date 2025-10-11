@@ -24,7 +24,7 @@ render s = a
       href $ print routeCodec $ s.route ??⇒ Home, 
       classes $ [ classId ] <> (s.class_ ?? (_ : []) ⇔ []) 
     ]
-    <> (s.route ?? (\r -> [ onClick $ const $ Navigate r ]) ⇔ [])
+    <> (s.route ?? (\r -> [ onClick $ HandleClick s.route ]) ⇔ [])
   )
   ( [ sheet s ]
     <> s.children

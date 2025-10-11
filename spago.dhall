@@ -45,6 +45,8 @@ You can edit this file as you like.
   , "transformers"
   , "tuples"
   , "typelevel-prelude"
+  , "web-events"
+  , "web-uievents"
   ]
 , packages = ./packages.dhall
 , sources =
