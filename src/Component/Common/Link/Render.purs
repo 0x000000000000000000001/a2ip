@@ -11,6 +11,7 @@ import Component.Common.Link.Style.Sheet (sheet)
 import Component.Common.Link.Type (Action(..), Slots, State)
 import Component.Router.Route (Route(..), routeCodec)
 import Data.Array ((:))
+import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (a)
 import Halogen.HTML.Events (onClick)
@@ -20,12 +21,10 @@ import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s = a 
-  ( [ 
-      href $ print routeCodec $ s.route ??⇒ Home, 
-      classes $ [ classId ] <> (s.class_ ?? (_ : []) ⇔ []) 
-    ]
-    <> (s.route ?? (\r -> [ onClick $ HandleClick s.route ]) ⇔ [])
-  )
+  [ href $ print routeCodec $ s.route ??⇒ Home
+  , classes $ [ classId ] <> (s.class_ ?? (_ : []) ⇔ [])
+  , onClick $ HandleClick (Just $ s.route ??⇒ Home)
+  ]
   ( [ sheet s ]
     <> s.children
   )
