@@ -99,7 +99,6 @@ import CSS.Selector (child, deep, with)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
-import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Halogen.HTML (ClassName(..), IProp)

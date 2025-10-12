@@ -85,18 +85,23 @@
     "description": "Or ⇔ (Maybe)"
   },
   "⇿": {
-    "prefix": "right",
-    "body": "⇿",
-    "description": "Right ⇿ (Either)"
-  },
-  "⇿ ": {
     "prefix": "or (either)",
     "body": "⇿",
     "description": "Or ⇿ (Either)"
   },
-  "⇿  ": {
+  "⇿ ": {
     "prefix": "eitherOr",
     "body": "⇿",
     "description": "Or ⇿ (Either)"
+  },
+  "?!⇽": {
+    "prefix": "left",
+    "body": "??⇽",
+    "description": "Left ??⇽ (Either)"
+  },
+  "?!⇒": {
+    "prefix": "right",
+    "body": "??⇒",
+    "description": "Right ??⇒ (Either)"
   }
 }
