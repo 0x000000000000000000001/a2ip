@@ -22,7 +22,6 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
 import Type.Proxy (Proxy(..))
-import Util.Log (unsafeDebugShow)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
