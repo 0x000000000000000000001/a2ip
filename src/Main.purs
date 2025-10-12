@@ -8,9 +8,8 @@ import Component.Router.Route (routeCodec)
 import Component.Router.Type as RouterType
 import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
-import Data.Either (either)
+import Data.Either (Either(..), either)
 import Data.Formatter.DateTime (formatDateTime)
-import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
@@ -20,7 +19,7 @@ import Halogen (hoist, mkTell)
 import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 import Routing.Duplex (parse)
-import Routing.Hash (matchesWith)
+import Routing.PushState (makeInterface)
 
 main :: Effect Unit
 main = do
@@ -31,10 +30,13 @@ main = do
     errorMessage = "Unable to parse loading date."
   log $ "Loaded @ " <> either (const errorMessage) identity formattedDateTime
   
+  nav <- makeInterface
+  
   runHalogenAff do 
     body <- awaitBody
     io <- runUI (hoist (runAppM config) RouterComponent.component) unit body
-    liftEffect $ matchesWith (parse routeCodec)
-      \old' new -> when (old' /= Just new) $   
-        launchAff_ $ void $ io.query $ mkTell $ RouterType.Navigate new
+    void $ liftEffect $ nav.listen \loc -> 
+      case parse routeCodec loc.pathname of
+        Right new -> launchAff_ $ void $ io.query $ mkTell $ RouterType.Navigate new
+        Left _ -> pure unit
  

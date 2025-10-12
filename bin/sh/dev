@@ -19,7 +19,7 @@ if ! command -v browser-sync &> /dev/null; then
   echo "browser-sync is not installed. Installing now..."
   npm install -g browser-sync
 fi
-browser-sync start --server --files "output/**/*.js,index.html" --port 80 --no-open &
+browser-sync start --server --files "output/**/*.js,index.html" --port 80 --no-open --single &
 SERVER_PID=$!
 
 echo "Development server started!"

@@ -22,6 +22,7 @@ You can edit this file as you like.
   , "either"
   , "exceptions"
   , "foldable-traversable"
+  , "foreign"
   , "formatters"
   , "halogen"
   , "halogen-css"
@@ -46,6 +47,7 @@ You can edit this file as you like.
   , "tuples"
   , "typelevel-prelude"
   , "web-events"
+  , "web-html"
   , "web-uievents"
   ]
 , packages = ./packages.dhall
