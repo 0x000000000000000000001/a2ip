@@ -25,17 +25,17 @@ import Data.String as String
 -- | Just "<table><tr><td>1</td></tr></table>"
 -- | ```
 extractTableFromHtml :: String -> Maybe String
-extractTableFromHtml htmlContent =
-  case String.indexOf (Pattern "<table") htmlContent of
-    Nothing -> Nothing
-    Just startIndex ->
-      let afterTableStart = String.drop startIndex htmlContent
-      in case String.indexOf (Pattern "</table>") afterTableStart of
-        Nothing -> Nothing
-        Just endIndexRelative ->
-          let tableLength = endIndexRelative + String.length "</table>"
-              extractedTable = String.take tableLength afterTableStart
-          in Just extractedTable
+extractTableFromHtml htmlContent = do
+  startIndex <- String.indexOf (Pattern "<table") htmlContent
+
+  let afterTableStart = String.drop startIndex htmlContent
+  
+  endIndexRelative <- String.indexOf (Pattern "</table>") afterTableStart 
+
+  let tableLength = endIndexRelative + String.length "</table>"
+      extractedTable = String.take tableLength afterTableStart
+  
+  Just extractedTable
 
 -- | Extracts the contents of each column from a <table>...</table> block.
 -- |
@@ -44,14 +44,14 @@ extractTableFromHtml htmlContent =
 -- | Just [["1", "3"], ["2"]]
 -- | ```
 extractInnerColumnCellsFromHtml :: String -> Maybe (Array (Array String))
-extractInnerColumnCellsFromHtml tableHtml =
-  case extractInnerRowsFromHtml tableHtml of
-    Nothing -> Nothing
-    Just rows ->
-      let cellArrays = mapMaybe extractInnerCellsFromRow rows
-          maxCols = length cellArrays == 0 ? 0 ↔ (maximum $ map length cellArrays) ??⇒ 0
-          columns = map (\colIdx -> mapMaybe (\cells -> cells !! colIdx) cellArrays) (0 .. (maxCols - 1))
-      in Just columns
+extractInnerColumnCellsFromHtml tableHtml = do
+  rows <- extractInnerRowsFromHtml tableHtml
+
+  let cellArrays = mapMaybe extractInnerCellsFromRow rows
+      maxCols = length cellArrays == 0 ? 0 ↔ (maximum $ map length cellArrays) ??⇒ 0
+      columns = map (\colIdx -> mapMaybe (\cells -> cells !! colIdx) cellArrays) (0 .. (maxCols - 1))
+
+  Just columns
 
 -- | Extracts the rows from a <table>...</table> block.
 -- |
@@ -71,16 +71,16 @@ extractInnerRowsFromHtml tableHtml =
      ↔ Just cleanedRows
   where
     extractRowContent :: String -> Maybe String
-    extractRowContent rowSegment =
-      case String.indexOf (String.Pattern ">") rowSegment of
-        Nothing -> Nothing
-        Just startIdx ->
-          let afterOpenTag = String.drop (startIdx + 1) rowSegment
-          in case String.indexOf (String.Pattern "</tr>") afterOpenTag of
-            Nothing -> Nothing
-            Just endIdx ->
-              let content = String.take endIdx afterOpenTag
-              in Just (String.trim content)
+    extractRowContent rowSegment = do
+      startIdx <- String.indexOf (String.Pattern ">") rowSegment
+      
+      let afterOpenTag = String.drop (startIdx + 1) rowSegment
+
+      endIdx <- String.indexOf (String.Pattern "</tr>") afterOpenTag
+
+      let content = String.take endIdx afterOpenTag
+      
+      Just (String.trim content)
 
 -- | Extracts cell contents from a single row string.
 -- |
