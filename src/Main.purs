@@ -4,7 +4,7 @@ import Proem hiding (div)
 
 import Capability.AppM (runAppM)
 import Component.Router.Component as RouterComponent
-import Component.Router.Route (routeCodec)
+import Component.Router.Route (routeCodec, routeTitle)
 import Component.Router.Type as RouterType
 import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
@@ -20,6 +20,9 @@ import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 import Routing.Duplex (parse)
 import Routing.PushState (makeInterface)
+import Web.HTML (window)
+import Web.HTML.HTMLDocument (setTitle)
+import Web.HTML.Window (document)
 
 main :: Effect Unit
 main = do
@@ -39,7 +42,14 @@ main = do
     -- Navigate to initial route
     initialLoc <- liftEffect nav.locationState
     parse routeCodec initialLoc.pathname
-      ?! (void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
+      ?! (\route -> do
+        -- Update title for initial route
+        liftEffect do
+          doc <- window >>= document
+          setTitle (routeTitle route) doc
+        -- Navigate to route
+        void $ io.query $ mkTell $ RouterType.Navigate route
+      )
       ⇿ const $ pure unit
     
     -- Listen for route changes
