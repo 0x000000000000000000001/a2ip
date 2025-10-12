@@ -28,8 +28,8 @@ classId = "AN5rFmTQb"
 style :: State -> CSS.CSS
 style s = do
   classId .? do
-    widthRem $ if s.isUnfold then unfoldWidth else foldWidth
-    backgroundColor (rgba 0 0 0 if s.isUnfold then backgroundBlackAlpha else 0.3)
+    widthRem $ s.isUnfold ? unfoldWidth ↔ foldWidth
+    backgroundColor (rgba 0 0 0 $ s.isUnfold ? backgroundBlackAlpha ↔ 0.3)
     positionFixed
     top0
     left0

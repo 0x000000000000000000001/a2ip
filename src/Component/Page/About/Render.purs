@@ -18,7 +18,7 @@ import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
-import Component.Util.Type (noOutputAction, noSlotAddressIndex)
+import Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)

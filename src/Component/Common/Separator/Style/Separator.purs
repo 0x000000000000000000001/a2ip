@@ -8,7 +8,7 @@ import Proem hiding (top)
 import CSS (alignItems)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, widthPct100, (.?))
+import Util.Style (displayFlex, padding4, widthPct100, (.?))
 
 classId :: String
 classId = "keWMC9TZj"
@@ -19,3 +19,4 @@ style = do
     displayFlex
     alignItems center
     widthPct100
+    padding4 1.6 0.8 0.6 0.8
