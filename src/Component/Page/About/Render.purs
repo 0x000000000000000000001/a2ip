@@ -7,6 +7,7 @@ import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
+import Component.Page.About.HandleAction (ourImageRelativePath)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
@@ -48,7 +49,7 @@ renderMemberCard idx member =
         (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
         PrettyErrorImage.component
         { class_: Just CardPortrait.classId
-        , src: isLoading ? Nothing ↔ Just member_.portraitUrl
+        , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member_.portraitId)
         }
         noOutputAction
       ] <> lines
@@ -66,7 +67,6 @@ renderMemberCard idx member =
     , phone: loadingPlaceholder
     , email: loadingPlaceholder
     , portraitId: loadingPlaceholder
-    , portraitUrl: loadingPlaceholder
     }
 
   line :: ∀ w i. (Member -> String) -> String -> Array (HTML w i)

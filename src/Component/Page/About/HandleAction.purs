@@ -137,7 +137,6 @@ convertExtractedDataToMembers extractedData =
           , phone: value phone row
           , email: value email row
           , portraitId: portraitId_ ??⇒ ""
-          , portraitUrl: portraitId_ ?? ourImageRelativePath ⇔ ""
           }
 
   in values <#> (Just <<< toMember)

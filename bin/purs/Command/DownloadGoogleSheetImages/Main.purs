@@ -10,12 +10,12 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Component.Page.About.HandleAction (fetchMembers, ourImageRelativePath)
+import Component.Page.About.HandleAction (fetchMembers, googleDriveImageUrl, ourImageRelativePath, suffixPortraitIdWithExt)
 import Config.Config (config)
-import Data.Array (catMaybes, filter, last, length, mapWithIndex)
+import Data.Array (catMaybes, filter, length, mapWithIndex)
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
-import Data.String (Pattern(..), split, trim)
+import Data.String (trim)
 import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, attempt)
@@ -61,18 +61,18 @@ imagesToDownload = do
     Right members_ -> do
       pure $ catMaybes $ 
         mapWithIndex 
-        (\idx member -> member ?? (\{ portraitId, portraitUrl } -> Just 
+        (\idx member -> member ?? (\{ portraitId } -> Just 
           { idx
           , id: portraitId
-          , url: portraitUrl
-          , filename: trim $ (last $ split (Pattern "/") portraitUrl) ??⇒ ""
+          , url: googleDriveImageUrl portraitId
+          , filename: suffixPortraitIdWithExt portraitId
           }) ⇔ Nothing
         )
         $ filter 
           (\member -> 
             case member of
               Nothing -> false
-              Just { portraitUrl } -> (trim $ portraitUrl) /= ""
+              Just { portraitId } -> (trim portraitId) /= ""
           )
           members_
 
