@@ -87,32 +87,32 @@ fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
 fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result 
-    ?! (\e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e)
-    ⇿ (\response -> do
+    ?! (\response -> do
       let tabName = tabIdToName membersTabId ??⇒ ""
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       htmlContent 
-        ?! (\e_ -> pure $ Left $ "Failed to unzip: " <> message e_)
-        ⇿ (\h -> pure $ Right h)
+        ?! (\h -> pure $ Right h)
+        ⇿ (\e_ -> pure $ Left $ "Failed to unzip: " <> message e_)
     )
+    ⇿ (\e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e)
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array (Maybe Member)))
 fetchMembers = do
   htmlContent <- fetchMembersTableHtml
   htmlContent 
-    ?! (\e -> pure $ Left e)
-    ⇿ (\h -> do 
+    ?! (\h -> do 
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
       pure $ Right $ convertExtractedDataToMembers extractedData
     )
+    ⇿ (\e -> pure $ Left e)
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   LoadData -> do
     members_ <- fetchMembers
     members_ 
-      ?! (\e -> error $ "Error fetching members: " <> e)
-      ⇿ (\m -> modify_ _ { members = m })
+      ?! (\m -> modify_ _ { members = m })
+      ⇿ (\e -> error $ "Error fetching members: " <> e)
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 

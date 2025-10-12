@@ -16,9 +16,10 @@ import Util.Http.Http (getCheckStatus)
 downloadImage :: String -> String -> Aff (Either String Unit)
 downloadImage url filePath = do
   response <- getCheckStatus arrayBuffer url
-  case response of
-    Left error -> pure $ Left error
-    Right res -> do
+  response
+    ?! (\res -> do
       buffer <- liftEffect $ fromArrayBuffer res.body
       writeFile filePath buffer
       pure $ Right unit
+    )
+    ⇿ (\error -> pure $ Left error)

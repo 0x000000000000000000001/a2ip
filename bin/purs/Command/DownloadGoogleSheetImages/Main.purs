@@ -13,7 +13,6 @@ import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
 import Component.Page.About.HandleAction (fetchMembers, googleDriveImageUrl, ourImageRelativePath, suffixPortraitIdWithExt)
 import Config.Config (config)
 import Data.Array (catMaybes, filter, length, mapWithIndex)
-import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.Traversable (for_)
@@ -54,27 +53,24 @@ imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
   members <- fetchMembers 
 
-  case members of 
-    Left err -> do
-      error $ "Error fetching table HTML: " <> err
-      pure []
-    Right members_ -> do
+  members 
+    ?! (\members_ -> do 
       pure $ catMaybes $ 
         mapWithIndex 
-        (\idx member -> member ?? (\{ portraitId } -> Just 
+        (\idx member -> member >>= (\{ portraitId } -> Just 
           { idx
           , id: portraitId
           , url: googleDriveImageUrl portraitId
           , filename: suffixPortraitIdWithExt portraitId
-          }) ⇔ Nothing
+          })
         )
         $ filter 
-          (\member -> 
-            case member of
-              Nothing -> false
-              Just { portraitId } -> (trim portraitId) /= ""
-          )
+          (\member -> member ?? (\{ portraitId } -> (trim portraitId) /= "") ⇔ false)
           members_
+    ) ⇿ (\err -> do
+      error $ "Error fetching table HTML: " <> err
+      pure []
+    )
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
 updateLine lock totalLines lineIdx message = do
@@ -98,18 +94,17 @@ download lock totalLines { idx, id, url, filename } = do
   
   fileExistsResult <- attempt $ stat filePath
   
-  case fileExistsResult of
-    Right _ -> do
+  fileExistsResult
+    ?! (const $ do
       updateLine' successPrefixed "Already downloaded " ""
-    Left _ -> do
+    ) ⇿ (const $ do
       updateLine' downloadPrefixed "Downloading " "..."
 
       result <- downloadImage url filePath
 
-      case result of
-        Left e -> do
-          updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\""
-        Right _ -> do
-          updateLine' successPrefixed "Downloaded " ""
+      result
+        ?! (const $ updateLine' successPrefixed "Downloaded " "")
+        ⇿ (\e -> updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\"")
+    )
 
   pure unit

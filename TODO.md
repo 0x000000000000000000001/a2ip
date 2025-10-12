@@ -1,3 +1,3 @@
-remplacer les case of Maybe par des ?? ou des ??=>
+?!=> pour either, et remplacer ce qui est remplaçable
 avoir des liens sans #
 finir la page about et factoriser

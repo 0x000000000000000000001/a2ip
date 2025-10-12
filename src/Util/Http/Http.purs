@@ -67,10 +67,11 @@ request = Affjax.request driver
 getCheckStatus :: ∀ a. ResponseFormat a -> String -> Aff (Either String (Response a))
 getCheckStatus format url = do
   response <- get format url
-  case response of
-    Left error -> pure $ Left $ printError error
-    Right res -> do
+  response
+    ?! (\res -> do
       let (StatusCode code) = res.status
       code >= 200 && code < 400
         ? (pure $ Right res)
         ↔ (pure $ Left $ "HTTP " <> show code <> ": " <> res.statusText)
+    )
+    ⇿ (pure <<< Left <<< printError)
