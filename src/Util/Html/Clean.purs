@@ -74,14 +74,14 @@ removeDataAttributes str =
 -- | Nothing  
 -- | ```
 findUnescapedQuote :: String -> Int -> Maybe Int
-findUnescapedQuote str pos =
-  case indexOf (Pattern "\"") (drop pos str) of
-    Nothing -> Nothing
-    Just quotePos ->
-      let absolutePos = pos + quotePos
-      in absolutePos > 0 && take 1 (drop (absolutePos - 1) str) == "\\"
-         ? findUnescapedQuote str (absolutePos + 1)
-         ↔ Just absolutePos
+findUnescapedQuote str pos = do
+  quotePos <- indexOf (Pattern "\"") (drop pos str)
+
+  let absolutePos = pos + quotePos
+
+  absolutePos > 0 && take 1 (drop (absolutePos - 1) str) == "\\"
+    ? findUnescapedQuote str (absolutePos + 1)
+    ↔ Just absolutePos
 
 -- | Cleans specified attributes from a single HTML tag string.
 -- | If `dataOnesToo` is true, it also removes all `data-*` attributes.
@@ -134,17 +134,17 @@ cleanAttributesInTags str attr dataOnesToo =
 -- | ```
 removeComments :: String -> String
 removeComments str = 
-  case indexOf (Pattern "<!--") str of
-    Nothing -> str
-    Just startIdx ->
+  indexOf (Pattern "<!--") str 
+    ?? (\startIdx ->
       let beforeComment = take startIdx str
           afterStartTag = drop (startIdx + 4) str 
-      in case indexOf (Pattern "-->") afterStartTag of
-        Just endIdx ->
+      in indexOf (Pattern "-->") afterStartTag
+        ?? (\endIdx ->
           let afterComment = drop (endIdx + 3) afterStartTag 
               result = beforeComment <> afterComment
           in removeComments result 
-        Nothing -> str 
+        ) ⇔ str
+    ) ⇔ str
 
 -- | Remove all HTML tags from a string, leaving only the text content.
 -- |
