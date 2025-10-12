@@ -112,21 +112,25 @@ extractInnerCellsFromRow row =
       } of
         { td: Nothing, th: Nothing } -> acc
         { td: Just _, th: Nothing } -> 
-          case extractNextInnerCell "td" h pos of
-            Nothing -> acc
-            Just { content, nextPos } -> rec h nextPos (acc <> [content])
+          extractNextInnerCell "td" h pos
+            ?? (\{ content, nextPos } -> rec h nextPos (acc <> [content]))
+            ⇔ acc
         { td: Nothing, th: Just _ } ->
-          case extractNextInnerCell "th" h pos of
-            Nothing -> acc
-            Just { content, nextPos } -> rec h nextPos (acc <> [content])
+          extractNextInnerCell "th" h pos
+            ?? (\{ content, nextPos } -> rec h nextPos (acc <> [content]))
+            ⇔ acc
         { td: Just tdIdx, th: Just thIdx } ->
           tdIdx < thIdx 
-            ? case extractNextInnerCell "td" h pos of
-                Nothing -> acc
-                Just { content, nextPos } -> rec h nextPos (acc <> [content])
-            ↔ case extractNextInnerCell "th" h pos of
-                Nothing -> acc
-                Just { content, nextPos } -> rec h nextPos (acc <> [content])
+            ? (
+              extractNextInnerCell "td" h pos
+                ?? (\{ content, nextPos } -> rec h nextPos (acc <> [content]))
+                ⇔ acc
+            )
+            ↔ (
+              extractNextInnerCell "th" h pos
+                ?? (\{ content, nextPos } -> rec h nextPos (acc <> [content]))
+                ⇔ acc
+            )
 
 -- | Extracts all cell contents from the first <table>...</table> block in the given HTML string.
 -- |
