@@ -5,6 +5,7 @@ import Proem hiding (top, div)
 import CSS (flex, fromString)
 import Capability.AppM (AppM)
 import Component.Common.Link.Component as Link
+import Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import Component.Router.Menu.Style.Item.Child as Child
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
@@ -17,7 +18,6 @@ import Component.Router.Menu.Style.Sheet (sheet)
 import Component.Router.Menu.Type (Action(..), State, Slots)
 import Component.Router.Menu.Type as Type
 import Component.Router.Route (Route(..))
-import Component.Util.Type (noOutputAction)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
@@ -95,4 +95,4 @@ render s =
           (children <#> \(ChildItem { label }) -> div [ class_ Child.classId ] [ text label ])
         ]
       }
-      noOutputAction
+      handleLinkOutput

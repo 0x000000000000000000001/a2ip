@@ -1,7 +1,7 @@
 module Component.Common.Link.Type
   ( Action(..)
   , Input
-  , Output
+  , Output(..)
   , Query
   , Slots
   , State
@@ -11,9 +11,8 @@ module Component.Common.Link.Type
 
 import CSS (Display, inlineBlock)
 import Component.Router.Route (Route(..))
-import Component.Util.Type (NoOutput, NoQuery, NoSlots, Children)
+import Component.Util.Type (Children, NoQuery, NoSlots)
 import Data.Maybe (Maybe(..))
-import Web.Event.Internal.Types (Event)
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input =
@@ -31,7 +30,7 @@ defaultInput =
   , children: []
   }
  
-type Output = NoOutput
+data Output = Clicked Route
 
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
@@ -46,7 +45,7 @@ type State =
 data Action 
   = Navigate Route 
   | Receive Input
-  | HandleClick (Maybe Route) MouseEvent
+  | HandleClick Route MouseEvent
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

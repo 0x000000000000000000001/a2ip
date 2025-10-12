@@ -25,7 +25,7 @@ render s = a
     [ classes $ [ classId ] <> (s.class_ ?? (_ : []) ⇔ [])]
     <> (s.route ?? (\r -> [ 
       href $ print routeCodec r 
-    , onClick $ HandleClick $ Just r
+    , onClick $ HandleClick r
     ]) ⇔ [])
   )
   ( [ sheet s ]
