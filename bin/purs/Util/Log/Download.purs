@@ -29,28 +29,28 @@ downloadColorize :: String -> String
 downloadColorize = colorize downloadColor
 
 download :: ∀ m. MonadAff m => String -> m Unit
-download = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m false false)
+download = liftEffect ◁ Console.log ◁ (\m -> downloadPrefixed m false false)
 
 downloadAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadAfterNewline msg = newline *> download msg
 
 downloadShort :: ∀ m. MonadAff m => String -> m Unit
-downloadShort = liftEffect <<< Console.log <<< (\m -> downloadPrefixed m true false)
+downloadShort = liftEffect ◁ Console.log ◁ (\m -> downloadPrefixed m true false)
 
 downloadShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadShortAfterNewline msg = newline *> downloadShort msg
 
 downloadShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-downloadShortShowAfterNewline = downloadShortAfterNewline <<< show
+downloadShortShowAfterNewline = downloadShortAfterNewline ◁ show
 
 downloadShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-downloadShortShow = downloadShort <<< show
+downloadShortShow = downloadShort ◁ show
 
 downloadShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-downloadShow = download <<< show
+downloadShow = download ◁ show
 
 downloadShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-downloadShowAfterNewline = downloadAfterNewline <<< show
+downloadShowAfterNewline = downloadAfterNewline ◁ show
 
 downloadEmoji :: String
 downloadEmoji = "⬇️ "

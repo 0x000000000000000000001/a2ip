@@ -91,7 +91,7 @@ fetchMembersTableHtml = do
       let tabName = tabIdToName membersTabId ??⇒ ""
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       htmlContent 
-        ?! pure <<< Right
+        ?! pure ◁ Right
         ⇿ \e_ -> pure $ Left $ "Failed to unzip: " <> message e_
     )
     ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
@@ -104,7 +104,7 @@ fetchMembers = do
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
       pure $ Right $ convertExtractedDataToMembers extractedData
     )
-    ⇿ pure <<< Left
+    ⇿ pure ◁ Left
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
@@ -112,7 +112,7 @@ handleAction = case _ of
     members_ <- fetchMembers
     members_ 
       ?! (\m -> modify_ _ { members = m })
-      ⇿ error <<< ("Error fetching members: " <> _)
+      ⇿ error ◁ ("Error fetching members: " <> _)
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
@@ -139,7 +139,7 @@ convertExtractedDataToMembers extractedData =
           , portraitId: portraitId_ ??⇒ ""
           }
 
-  in values <#> (Just <<< toMember)
+  in values <#> (Just ◁ toMember)
 
 -- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

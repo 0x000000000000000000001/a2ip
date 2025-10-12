@@ -29,28 +29,28 @@ errorColorize :: String -> String
 errorColorize = colorize errorColor
 
 error :: ∀ m. MonadAff m => String -> m Unit
-error = liftEffect <<< Console.log <<< (\m -> errorPrefixed m false false)
+error = liftEffect ◁ Console.log ◁ (\m -> errorPrefixed m false false)
 
 errorAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 errorAfterNewline msg = newline *> error msg
 
 errorShort :: ∀ m. MonadAff m => String -> m Unit
-errorShort = liftEffect <<< Console.log <<< (\m -> errorPrefixed m true false)
+errorShort = liftEffect ◁ Console.log ◁ (\m -> errorPrefixed m true false)
 
 errorShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 errorShortAfterNewline msg = newline *> errorShort msg
 
 errorShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-errorShortShowAfterNewline = errorShortAfterNewline <<< show
+errorShortShowAfterNewline = errorShortAfterNewline ◁ show
 
 errorShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-errorShortShow = errorShort <<< show
+errorShortShow = errorShort ◁ show
 
 errorShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-errorShow = error <<< show
+errorShow = error ◁ show
 
 errorShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-errorShowAfterNewline = errorAfterNewline <<< show
+errorShowAfterNewline = errorAfterNewline ◁ show
 
 errorEmoji :: String
 errorEmoji = "❌"

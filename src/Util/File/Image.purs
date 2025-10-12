@@ -22,4 +22,4 @@ downloadImage url filePath = do
       writeFile filePath buffer
       pure $ Right unit
     )
-    ⇿ pure <<< Left
+    ⇿ pure ◁ Left

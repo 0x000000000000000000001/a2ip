@@ -29,28 +29,28 @@ infoColorize :: String -> String
 infoColorize = colorize infoColor
 
 info :: ∀ m. MonadAff m => String -> m Unit
-info = liftEffect <<< Console.log <<< (\m -> infoPrefixed m false false)
+info = liftEffect ◁ Console.log ◁ (\m -> infoPrefixed m false false)
 
 infoAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoAfterNewline msg = newline *> info msg
 
 infoShort :: ∀ m. MonadAff m => String -> m Unit
-infoShort = liftEffect <<< Console.log <<< (\m -> infoPrefixed m true false)
+infoShort = liftEffect ◁ Console.log ◁ (\m -> infoPrefixed m true false)
 
 infoShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg
 
 infoShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-infoShortShowAfterNewline = infoShortAfterNewline <<< show
+infoShortShowAfterNewline = infoShortAfterNewline ◁ show
 
 infoShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-infoShortShow = infoShort <<< show
+infoShortShow = infoShort ◁ show
 
 infoShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-infoShow = info <<< show
+infoShow = info ◁ show
 
 infoShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-infoShowAfterNewline = infoAfterNewline <<< show
+infoShowAfterNewline = infoAfterNewline ◁ show
 
 infoEmoji :: String
 infoEmoji = "ℹ️ "

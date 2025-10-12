@@ -39,11 +39,11 @@ main = do
     -- Navigate to initial route
     initialLoc <- liftEffect nav.locationState
     parse routeCodec initialLoc.pathname
-      ?! (void <<< io.query <<< mkTell <<< RouterType.Navigate)
+      ?! (void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
       ⇿ const $ pure unit
     
     -- Listen for route changes
     void $ liftEffect $ nav.listen \loc -> 
       parse routeCodec loc.pathname
-        ?! (launchAff_ <<< void <<< io.query <<< mkTell <<< RouterType.Navigate)
+        ?! (launchAff_ ◁ void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
         ⇿ const $ pure unit

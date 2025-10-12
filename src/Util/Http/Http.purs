@@ -74,4 +74,4 @@ getCheckStatus format url = do
         ? (pure $ Right res)
         ↔ (pure $ Left $ "HTTP " <> show code <> ": " <> res.statusText)
     )
-    ⇿ pure <<< Left <<< printError
+    ⇿ pure ◁ Left ◁ printError

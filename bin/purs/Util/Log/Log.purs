@@ -35,16 +35,16 @@ write :: ∀ m. MonadAff m => String -> m Unit
 write str = liftAff $ toAff $ _write str
 
 log :: ∀ m. MonadAff m => String -> m Unit
-log = liftEffect <<< Console.log
+log = liftEffect ◁ Console.log
 
 logAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 logAfterNewline msg = newline *> log msg
 
 logShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-logShow = log <<< show
+logShow = log ◁ show
 
 logShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-logShowAfterNewline = logAfterNewline <<< show
+logShowAfterNewline = logAfterNewline ◁ show
 
 prefixed :: String -> Color -> String -> String -> Boolean -> Boolean -> String
 prefixed prefix color emoji msg short colorize_ = 

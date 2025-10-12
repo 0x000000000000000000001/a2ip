@@ -29,28 +29,28 @@ successColorize :: String -> String
 successColorize = colorize successColor
 
 success :: ∀ m. MonadAff m => String -> m Unit
-success = liftEffect <<< Console.log <<< (\m -> successPrefixed m false false)
+success = liftEffect ◁ Console.log ◁ (\m -> successPrefixed m false false)
 
 successAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successAfterNewline msg = newline *> success msg
 
 successShort :: ∀ m. MonadAff m => String -> m Unit
-successShort = liftEffect <<< Console.log <<< (\m -> successPrefixed m true false)
+successShort = liftEffect ◁ Console.log ◁ (\m -> successPrefixed m true false)
 
 successShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg
 
 successShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-successShortShowAfterNewline = successShortAfterNewline <<< show
+successShortShowAfterNewline = successShortAfterNewline ◁ show
 
 successShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-successShortShow = successShort <<< show
+successShortShow = successShort ◁ show
 
 successShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-successShow = success <<< show
+successShow = success ◁ show
 
 successShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-successShowAfterNewline = successAfterNewline <<< show
+successShowAfterNewline = successAfterNewline ◁ show
 
 successEmoji :: String
 successEmoji = "✅"

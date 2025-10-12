@@ -43,22 +43,22 @@ unsafeDebug :: ∀ a. Show a => a -> Unit
 unsafeDebug = unsafeLog Debug
 
 unsafeDebugShow :: ∀ a. Show a => a -> Unit
-unsafeDebugShow = unsafeDebug <<< show
+unsafeDebugShow = unsafeDebug ◁ show
 
 unsafeInfo :: ∀ a. Show a => a -> Unit
 unsafeInfo = unsafeLog Info
 
 unsafeInfoShow :: ∀ a. Show a => a -> Unit
-unsafeInfoShow = unsafeInfo <<< show
+unsafeInfoShow = unsafeInfo ◁ show
 
 unsafeWarn :: ∀ a. Show a => a -> Unit
 unsafeWarn = unsafeLog Warn
 
 unsafeWarnShow :: ∀ a. Show a => a -> Unit
-unsafeWarnShow = unsafeWarn <<< show
+unsafeWarnShow = unsafeWarn ◁ show
 
 unsafeError :: ∀ a. Show a => a -> Unit
 unsafeError = unsafeLog Error
 
 unsafeErrorShow :: ∀ a. Show a => a -> Unit
-unsafeErrorShow = unsafeError <<< show
+unsafeErrorShow = unsafeError ◁ show

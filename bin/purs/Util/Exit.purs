@@ -11,7 +11,7 @@ import Effect.Class (class MonadEffect, liftEffect)
 import Node.Process (exit')
 
 exit :: ∀ m a. MonadEffect m => Int -> m a 
-exit = liftEffect <<< exit'
+exit = liftEffect ◁ exit'
 
 exitSuccess :: ∀ m a. MonadEffect m => m a 
 exitSuccess = exit 0

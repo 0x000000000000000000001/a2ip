@@ -29,28 +29,28 @@ warnColorize :: String -> String
 warnColorize = colorize warnColor
 
 warn :: ∀ m. MonadAff m => String -> m Unit
-warn = liftEffect <<< Console.log <<< (\m -> warnPrefixed m false false)
+warn = liftEffect ◁ Console.log ◁ (\m -> warnPrefixed m false false)
 
 warnAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnAfterNewline msg = newline *> warn msg
 
 warnShort :: ∀ m. MonadAff m => String -> m Unit
-warnShort = liftEffect <<< Console.log <<< (\m -> warnPrefixed m true false)
+warnShort = liftEffect ◁ Console.log ◁ (\m -> warnPrefixed m true false)
 
 warnShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnShortAfterNewline msg = newline *> warnShort msg
 
 warnShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-warnShortShowAfterNewline = warnShortAfterNewline <<< show
+warnShortShowAfterNewline = warnShortAfterNewline ◁ show
 
 warnShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-warnShortShow = warnShort <<< show
+warnShortShow = warnShort ◁ show
 
 warnShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-warnShow = warn <<< show
+warnShow = warn ◁ show
 
 warnShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-warnShowAfterNewline = warnAfterNewline <<< show
+warnShowAfterNewline = warnAfterNewline ◁ show
 
 warnEmoji :: String
 warnEmoji = "⚠️ "

@@ -29,28 +29,28 @@ debugColorize :: String -> String
 debugColorize = colorize debugColor
 
 debug :: ∀ m. MonadAff m => String -> m Unit
-debug = liftEffect <<< Console.log <<< (\m -> debugPrefixed m false false)
+debug = liftEffect ◁ Console.log ◁ (\m -> debugPrefixed m false false)
 
 debugAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg
 
 debugShort :: ∀ m. MonadAff m => String -> m Unit
-debugShort = liftEffect <<< Console.log <<< (\m -> debugPrefixed m true false)
+debugShort = liftEffect ◁ Console.log ◁ (\m -> debugPrefixed m true false)
 
 debugShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg
 
 debugShortShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-debugShortShowAfterNewline = debugShortAfterNewline <<< show
+debugShortShowAfterNewline = debugShortAfterNewline ◁ show
 
 debugShortShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-debugShortShow = debugShort <<< show
+debugShortShow = debugShort ◁ show
 
 debugShow :: ∀ m a. MonadAff m => Show a => a -> m Unit
-debugShow = debug <<< show
+debugShow = debug ◁ show
 
 debugShowAfterNewline :: ∀ m a. MonadAff m => Show a => a -> m Unit
-debugShowAfterNewline = debugAfterNewline <<< show
+debugShowAfterNewline = debugAfterNewline ◁ show
 
 debugEmoji :: String
 debugEmoji = "🪲 "
