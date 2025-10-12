@@ -1,13 +1,15 @@
 module Component.Router.Route
   ( Route(..)
   , routeCodec
+  , routePath
+  , routeTitle
   ) where
 
 import Proem
 
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)
-import Routing.Duplex (RouteDuplex', path, root)
+import Routing.Duplex (RouteDuplex', print, path, root)
 import Routing.Duplex.Generic (sum, noArgs)
 
 data Route
@@ -26,3 +28,13 @@ routeCodec = root $ sum
   { "Home": noArgs
   , "About": path "about" noArgs
   }
+
+routePath :: Route -> String
+routePath = print routeCodec 
+
+routeTitle :: Route -> String
+routeTitle route = "A2IP" <> (subtitle /= "" ? " / " <> subtitle ↔ "")
+  where 
+  subtitle = case route of
+    About -> "Bureau et collaborateurs"
+    _ -> ""

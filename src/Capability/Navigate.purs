@@ -3,15 +3,15 @@ module Capability.Navigate where
 import Proem
 
 import Capability.AppM (AppM)
-import Component.Router.Route (Route, routeCodec)
+import Component.Router.Route (Route, routePath, routeTitle)
 import Control.Monad.Trans.Class (lift)
 import Effect.Class (liftEffect)
 import Foreign (unsafeToForeign)
 import Halogen (HalogenM)
-import Routing.Duplex (print)
 import Web.HTML (window)
+import Web.HTML.HTMLDocument (setTitle)
 import Web.HTML.History (DocumentTitle(..), URL(..), pushState)
-import Web.HTML.Window (history)
+import Web.HTML.Window (document, history)
 
 class Monad m <= Navigate m where
   navigate :: Route -> m Unit
@@ -21,6 +21,11 @@ instance navigateHalogenM :: Navigate m => Navigate (HalogenM state action slots
 
 instance navigateAppM :: Navigate AppM where
   navigate route = liftEffect do
-    let path = print routeCodec route
-    h <- window >>= history
-    pushState (unsafeToForeign {}) (DocumentTitle "") (URL path) h
+    let path = routePath route
+    let title = routeTitle route
+
+    hist <- window >>= history
+    pushState (unsafeToForeign {}) (DocumentTitle title) (URL path) hist
+
+    doc <- window >>= document
+    setTitle title doc
