@@ -8,7 +8,7 @@ import Component.Router.Route (routeCodec)
 import Component.Router.Type as RouterType
 import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
-import Data.Either (Either(..), either)
+import Data.Either (either)
 import Data.Formatter.DateTime (formatDateTime)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
@@ -35,8 +35,15 @@ main = do
   runHalogenAff do 
     body <- awaitBody
     io <- runUI (hoist (runAppM config) RouterComponent.component) unit body
+    
+    -- Navigate to initial route
+    initialLoc <- liftEffect nav.locationState
+    parse routeCodec initialLoc.pathname
+      ?! (void <<< io.query <<< mkTell <<< RouterType.Navigate)
+      ⇿ const $ pure unit
+    
+    -- Listen for route changes
     void $ liftEffect $ nav.listen \loc -> 
-      case parse routeCodec loc.pathname of
-        Right new -> launchAff_ $ void $ io.query $ mkTell $ RouterType.Navigate new
-        Left _ -> pure unit
- 
+      parse routeCodec loc.pathname
+        ?! (launchAff_ <<< void <<< io.query <<< mkTell <<< RouterType.Navigate)
+        ⇿ const $ pure unit

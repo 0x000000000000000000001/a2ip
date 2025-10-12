@@ -10,8 +10,8 @@ import Foreign (unsafeToForeign)
 import Halogen (HalogenM)
 import Routing.Duplex (print)
 import Web.HTML (window)
+import Web.HTML.History (DocumentTitle(..), URL(..), pushState)
 import Web.HTML.Window (history)
-import Web.HTML.History (DocumentTitle(..), URL(..), pushState) as History
 
 class Monad m <= Navigate m where
   navigate :: Route -> m Unit
@@ -23,4 +23,4 @@ instance navigateAppM :: Navigate AppM where
   navigate route = liftEffect do
     let path = print routeCodec route
     h <- window >>= history
-    History.pushState (unsafeToForeign {}) (History.DocumentTitle "") (History.URL path) h
+    pushState (unsafeToForeign {}) (DocumentTitle "") (URL path) h
