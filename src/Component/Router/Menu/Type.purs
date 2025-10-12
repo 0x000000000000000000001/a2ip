@@ -32,5 +32,4 @@ type Output = NoOutput
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-items :: Proxy "items"
-items = Proxy
+items = Proxy :: Proxy "items"

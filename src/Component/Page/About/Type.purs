@@ -1,17 +1,18 @@
 module Component.Page.About.Type   where
 
 
+import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Util.Type (NoInput, NoOutput, NoQuery)
 import Data.Maybe (Maybe)
 import Halogen (Slot)
-import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
+import Type.Prelude (Proxy(..))
 
 type Input = NoInput
 
 type Output = NoOutput
 
 type Slots =
-  ( prettyErrorImage :: Slot PrettyErrorImage.Query PrettyErrorImage.Output String
+  ( portraits :: Slot PrettyErrorImage.Query PrettyErrorImage.Output String
   )
 
 type State =
@@ -53,3 +54,5 @@ email = "email"
 
 portraitId :: String
 portraitId = "portraitId"
+
+portraits = Proxy :: Proxy "portraits"

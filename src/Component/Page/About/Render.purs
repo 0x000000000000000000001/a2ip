@@ -14,14 +14,13 @@ import Component.Page.About.Style.Card.Line as CardLine
 import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, role)
+import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, portraits, role)
 import Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
-import Type.Proxy (Proxy(..))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -44,7 +43,7 @@ renderMemberCard idx member =
         [ class_ CardNames.classId ]
         [ text $ member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ loadingPlaceholder ]
       , slot 
-        (Proxy :: Proxy "prettyErrorImage") 
+        portraits
         (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
         PrettyErrorImage.component
         { class_: Just CardPortrait.classId
