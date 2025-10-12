@@ -6,7 +6,7 @@ module Component.Page.About.Style.Card.Names
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (bold, colorRed, fontSizePct, raw, widthPct, (.?))
+import Util.Style (fontWeightBold, colorRed, fontSizePct, raw, widthPct, (.?))
 
 classId :: String
 classId = "eq6HaLP07"
@@ -14,7 +14,7 @@ classId = "eq6HaLP07"
 style :: CSS.CSS
 style = do
   classId .? do
-    bold
+    fontWeightBold
     fontSizePct 140.0
     colorRed
     widthPct 80.0

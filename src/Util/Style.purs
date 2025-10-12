@@ -15,7 +15,7 @@ module Util.Style
   , backgroundColorWhite
   , backgroundWhite
   , before
-  , bold
+  , fontWeightBold
   , borderRadius1
   , borderRadius4
   , borderWidth
@@ -90,7 +90,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
+import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
@@ -184,8 +184,8 @@ flexGrow1 = flexGrow 1.0
 fontSizePct :: Number -> CSS.CSS
 fontSizePct p = fontSize (pct p)
 
-bold :: CSS.CSS
-bold = fontWeight CSS.bold
+fontWeightBold :: CSS.CSS
+fontWeightBold = fontWeight bold
 
 loading :: StyleM Unit
 loading = do 
@@ -324,13 +324,13 @@ classChild a b = child (fromString $ "." <> stripDotPrefixFromClassName a) b
 
 infix 6 classChild as .|>
 
--- | See `childClass`
+-- | See `classChild`
 childClass :: Selector -> String -> Selector
 childClass a b = child a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 childClass as |>.
 
--- | See `childClass`
+-- | See `classChild`
 classChildClass :: String -> String -> Selector
 classChildClass a b = classChild a (fromString $ "." <> stripDotPrefixFromClassName b)
 
@@ -343,7 +343,7 @@ classDeep a b = deep (fromString $ "." <> stripDotPrefixFromClassName a) b
 
 infix 6 classDeep as .|*
 
--- | See `deepClass`
+-- | See `classDeep`
 deepClass :: Selector -> String -> Selector
 deepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
 

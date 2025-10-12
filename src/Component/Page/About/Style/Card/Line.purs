@@ -9,7 +9,7 @@ import Proem hiding (top)
 import CSS (star, (&))
 import CSS as CSS
 import Component.Page.About.Type (email, phone, role)
-import Util.Style (before, bold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style (before, fontWeightBold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -25,7 +25,7 @@ style = do
     raw "transition" "background-color 0s; color 0s"
 
   __role :? do 
-    bold
+    fontWeightBold
     fontSizePct 125.0
 
   __email :? do
