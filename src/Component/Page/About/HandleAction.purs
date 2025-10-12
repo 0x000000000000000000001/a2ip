@@ -86,31 +86,33 @@ tabIdToName tabId
 fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
 fetchMembersTableHtml = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
-  case result of
-    Left e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
-    Right response -> do
+  result 
+    ?! (\e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e)
+    ⇿ (\response -> do
       let tabName = tabIdToName membersTabId ??⇒ ""
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-      case htmlContent of
-        Left e_ -> pure $ Left $ "Failed to unzip: " <> message e_
-        Right h -> pure $ Right h
+      htmlContent 
+        ?! (\e_ -> pure $ Left $ "Failed to unzip: " <> message e_)
+        ⇿ (\h -> pure $ Right h)
+    )
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array (Maybe Member)))
 fetchMembers = do
   htmlContent <- fetchMembersTableHtml
-  case htmlContent of
-    Left e -> pure $ Left e
-    Right h -> do
+  htmlContent 
+    ?! (\e -> pure $ Left e)
+    ⇿ (\h -> do 
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
       pure $ Right $ convertExtractedDataToMembers extractedData
+    )
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   LoadData -> do
     members_ <- fetchMembers
-    case members_ of
-      Left e -> error $ "Error fetching members: " <> e
-      Right m -> modify_ _ { members = m }
+    members_ 
+      ?! (\e -> error $ "Error fetching members: " <> e)
+      ⇿ (\m -> modify_ _ { members = m })
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
@@ -122,9 +124,7 @@ convertExtractedDataToMembers extractedData =
       value :: String -> Array String -> String
       value key row =
         let idx = lookup key keyIndices
-        in case idx of
-          Just i -> trim $ row !! i ??⇒ ""
-          Nothing -> ""
+        in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
       toMember :: Array String -> Member
       toMember row =
@@ -165,11 +165,12 @@ convertExtractedDataToMembers extractedData =
 extractMappingKeysAndValuesFromTableHtml :: String -> ExtractedData
 extractMappingKeysAndValuesFromTableHtml tableHtml = 
   let nothing = { keys: [], keyIndices: empty, values: [] }
-  in case extractInnerCellsFromHtml tableHtml of
-    Nothing -> nothing
-    Just cellArrays ->
+  in extractInnerCellsFromHtml tableHtml
+    ?? (\cellArrays ->
       length cellArrays == 0 
         ? nothing
         ↔ let keys = cellArrays !! 1 ??⇒ []
               values = drop 3 cellArrays
           in { keys, keyIndices: arrayToIndexMap keys, values: values }
+    )
+    ⇔ nothing

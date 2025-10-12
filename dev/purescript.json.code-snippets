@@ -2,326 +2,101 @@
   "∀": {
     "prefix": "forall",
     "body": "∀",
-    "description": "Insert ∀ symbol"
+    "description": "Forall ∀"
+  },
+  "∀ ": {
+    "prefix": "universal",
+    "body": "∀",
+    "description": "Universal ∀"
   },
   "∃": {
     "prefix": "exists",
     "body": "∃",
-    "description": "Insert ∃ symbol"
+    "description": "Exists ∃"
+  },
+  "∃ ": {
+    "prefix": "existential",
+    "body": "∃",
+    "description": "Existential ∃"
   },
   "∧": {
-    "prefix": "and",
+    "prefix": "and (logical)",
     "body": "∧",
-    "description": "Insert ∧ symbol"
+    "description": "And ∧"
   },
   "∨": {
-    "prefix": "or",
+    "prefix": "or (logical)",
     "body": "∨",
-    "description": "Insert ∨ symbol"
+    "description": "Or ∨"
   },
   "∪": {
     "prefix": "union",
     "body": "∪",
-    "description": "Insert ∪ symbol"
+    "description": "Union ∪"
   },
   "∪ ": {
-    "prefix": "or",
+    "prefix": "or (union)",
     "body": "∪",
-    "description": "Insert ∪ symbol"
+    "description": "Or ∪"
   },
   "∩": {
     "prefix": "inter",
     "body": "∩",
-    "description": "Insert ∩ symbol"
+    "description": "Intersection ∩"
   },
   "∩ ": {
-    "prefix": "inter",
+    "prefix": "and (inter)",
     "body": "∩",
-    "description": "Insert ∩ symbol"
+    "description": "And ∩"
   },
   "¬": {
     "prefix": "not",
     "body": "¬",
-    "description": "Insert ¬ symbol (negation)"
-  },
-  "→": {
-    "prefix": "rarr",
-    "body": "→",
-    "description": "Insert → symbol (right arrow)"
-  },
-  "←": {
-    "prefix": "larr",
-    "body": "←",
-    "description": "Insert ← symbol (left arrow)"
-  },
-  "↑": {
-    "prefix": "uarr",
-    "body": "↑",
-    "description": "Insert ↑ symbol (up arrow)"
-  },
-  "↓": {
-    "prefix": "darr",
-    "body": "↓",
-    "description": "Insert ↓ symbol (down arrow)"
+    "description": "Not ¬"
   },
   "↔": {
-    "prefix": "lrarr",
-    "body": "↔",
-    "description": "Insert ↔ symbol (left-right arrow)"
-  },
-  "↔ ": {
     "prefix": "else",
     "body": "↔",
-    "description": "Insert ↔ symbol (left-right arrow)"
+    "description": "Else ↔ (If)"
   },
-  "⇒": {
-    "prefix": "rArr",
-    "body": "⇒",
-    "description": "Insert ⇒ symbol (implies)"
+  "↔ ": {
+    "prefix": "or (if)",
+    "body": "↔",
+    "description": "Or ↔ (If)"
   },
-  "⇐": {
-    "prefix": "lArr",
-    "body": "⇐",
-    "description": "Insert ⇐ symbol (implied by)"
+  "↔  ": {
+    "prefix": "ifOr",
+    "body": "↔",
+    "description": "Or ↔ (If)"
   },
   "⇔": {
-    "prefix": "lrArr",
-    "body": "⇔",
-    "description": "Insert ⇔ symbol (iff)"
-  },
-  "⇔ ": {
     "prefix": "default",
     "body": "⇔",
-    "description": "Insert ⇔ symbol (iff)"
+    "description": "Default ⇔ (Maybe)"
   },
-  "⇄": {
-    "prefix": "rlArr",
-    "body": "⇄",
-    "description": "Insert ⇄ symbol (right-left arrows)"
+  "⇔ ": {
+    "prefix": "or (maybe)",
+    "body": "⇔",
+    "description": "Or ⇔ (Maybe)"
   },
-  "⇆": {
-    "prefix": "lrArr2",
-    "body": "⇆",
-    "description": "Insert ⇆ symbol (left-right arrows)"
+  "⇔  ": {
+    "prefix": "maybeOr",
+    "body": "⇔",
+    "description": "Or ⇔ (Maybe)"
   },
-  "∈": {
-    "prefix": "in",
-    "body": "∈",
-    "description": "Insert ∈ symbol (element of)"
+  "⇿": {
+    "prefix": "right",
+    "body": "⇿",
+    "description": "Right ⇿ (Either)"
   },
-  "∉": {
-    "prefix": "notin",
-    "body": "∉",
-    "description": "Insert ∉ symbol (not element of)"
+  "⇿ ": {
+    "prefix": "or (either)",
+    "body": "⇿",
+    "description": "Or ⇿ (Either)"
   },
-  "∋": {
-    "prefix": "ni",
-    "body": "∋",
-    "description": "Insert ∋ symbol (contains)"
-  },
-  "∌": {
-    "prefix": "notni",
-    "body": "∌",
-    "description": "Insert ∌ symbol (not contains)"
-  },
-  "⊕": {
-    "prefix": "oplus",
-    "body": "⊕",
-    "description": "Insert ⊕ symbol (xor)"
-  },
-  "⊗": {
-    "prefix": "otimes",
-    "body": "⊗",
-    "description": "Insert ⊗ symbol (tensor product)"
-  },
-  "⊙": {
-    "prefix": "odot",
-    "body": "⊙",
-    "description": "Insert ⊙ symbol (dot product)"
-  },
-  "≤": {
-    "prefix": "leq",
-    "body": "≤",
-    "description": "Insert ≤ symbol (less or equal)"
-  },
-  "≥": {
-    "prefix": "geq",
-    "body": "≥",
-    "description": "Insert ≥ symbol (greater or equal)"
-  },
-  "≠": {
-    "prefix": "neq",
-    "body": "≠",
-    "description": "Insert ≠ symbol (not equal)"
-  },
-  "≈": {
-    "prefix": "approx",
-    "body": "≈",
-    "description": "Insert ≈ symbol (approximately)"
-  },
-  "≡": {
-    "prefix": "equiv",
-    "body": "≡",
-    "description": "Insert ≡ symbol (equivalent)"
-  },
-  "⊂": {
-    "prefix": "subset",
-    "body": "⊂",
-    "description": "Insert ⊂ symbol (proper subset)"
-  },
-  "⊃": {
-    "prefix": "supset",
-    "body": "⊃",
-    "description": "Insert ⊃ symbol (proper superset)"
-  },
-  "⊆": {
-    "prefix": "subseteq",
-    "body": "⊆",
-    "description": "Insert ⊆ symbol (subset or equal)"
-  },
-  "⊇": {
-    "prefix": "supseteq",
-    "body": "⊇",
-    "description": "Insert ⊇ symbol (superset or equal)"
-  },
-  "∅": {
-    "prefix": "emptyset",
-    "body": "∅",
-    "description": "Insert ∅ symbol (empty set)"
-  },
-  "∞": {
-    "prefix": "infty",
-    "body": "∞",
-    "description": "Insert ∞ symbol (infinity)"
-  },
-  "∫": {
-    "prefix": "int",
-    "body": "∫",
-    "description": "Insert ∫ symbol (integral)"
-  },
-  "∂": {
-    "prefix": "partial",
-    "body": "∂",
-    "description": "Insert ∂ symbol (partial derivative)"
-  },
-  "∇": {
-    "prefix": "nabla",
-    "body": "∇",
-    "description": "Insert ∇ symbol (gradient)"
-  },
-  "√": {
-    "prefix": "sqrt",
-    "body": "√",
-    "description": "Insert √ symbol (square root)"
-  },
-  "∑": {
-    "prefix": "sum",
-    "body": "∑",
-    "description": "Insert ∑ symbol (summation)"
-  },
-  "∏": {
-    "prefix": "prod",
-    "body": "∏",
-    "description": "Insert ∏ symbol (product)"
-  },
-  "°": {
-    "prefix": "deg",
-    "body": "°",
-    "description": "Insert ° symbol (degree)"
-  },
-  "·": {
-    "prefix": "cdot",
-    "body": "·",
-    "description": "Insert · symbol (middle dot)"
-  },
-  "×": {
-    "prefix": "times",
-    "body": "×",
-    "description": "Insert × symbol (times)"
-  },
-  "÷": {
-    "prefix": "div",
-    "body": "÷",
-    "description": "Insert ÷ symbol (division)"
-  },
-  "±": {
-    "prefix": "pm",
-    "body": "±",
-    "description": "Insert ± symbol (plus-minus)"
-  },
-  "∓": {
-    "prefix": "mp",
-    "body": "∓",
-    "description": "Insert ∓ symbol (minus-plus)"
-  },
-  "⊥": {
-    "prefix": "bot",
-    "body": "⊥",
-    "description": "Insert ⊥ symbol (bottom)"
-  },
-  "⊤": {
-    "prefix": "top",
-    "body": "⊤",
-    "description": "Insert ⊤ symbol (top)"
-  },
-  "⊢": {
-    "prefix": "vdash",
-    "body": "⊢",
-    "description": "Insert ⊢ symbol (proves)"
-  },
-  "⊣": {
-    "prefix": "dashv",
-    "body": "⊣",
-    "description": "Insert ⊣ symbol (adjoint)"
-  },
-  "⋅": {
-    "prefix": "dot",
-    "body": "⋅",
-    "description": "Insert ⋅ symbol (operator dot)"
-  },
-  "⋆": {
-    "prefix": "star",
-    "body": "⋆",
-    "description": "Insert ⋆ symbol (star operator)"
-  },
-  "⋘": {
-    "prefix": "lll",
-    "body": "⋘",
-    "description": "Insert ⋘ symbol (very much less than)"
-  },
-  "⋙": {
-    "prefix": "ggg",
-    "body": "⋙",
-    "description": "Insert ⋙ symbol (very much greater than)"
-  },
-  "◇": {
-    "prefix": "diamond",
-    "body": "◇",
-    "description": "Insert ◇ symbol (diamond)"
-  },
-  "○": {
-    "prefix": "circ",
-    "body": "○",
-    "description": "Insert ○ symbol (composition)"
-  },
-  "●": {
-    "prefix": "bullet",
-    "body": "●",
-    "description": "Insert ● symbol (bullet)"
-  },
-  "★": {
-    "prefix": "bigstar",
-    "body": "★",
-    "description": "Insert ★ symbol (star)"
-  },
-  "☆": {
-    "prefix": "whitestar",
-    "body": "☆",
-    "description": "Insert ☆ symbol (white star)"
-  },
-  "??⇒": {
-    "prefix": "fromMaybe",
-    "body": "??⇒",
-    "description": "Insert ??⇒ (fromMaybe)"
+  "⇿  ": {
+    "prefix": "eitherOr",
+    "body": "⇿",
+    "description": "Or ⇿ (Either)"
   }
 }

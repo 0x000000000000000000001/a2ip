@@ -388,6 +388,7 @@ hash9 :: ∀ a. Show a => a -> String
 hash9 input = 
   let
     str = show input
+    
     -- Multiple hash values for better distribution
     hash1 = foldl (\acc char -> ((acc * 31) + toCharCode char) `Int.rem` 238328) 5381 (toCharArray str)  -- 62^3
     hash2 = foldl (\acc char -> ((acc * 37) + toCharCode char) `Int.rem` 238328) 7919 (toCharArray str)  -- 62^3
@@ -397,23 +398,24 @@ hash9 input =
     chars = [ 'o','1','2','3','4','5','6','7','8','9'
       ,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
       ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','p','q','r','s','t','u','v','w','x','y','z'
-      ]
+    ]
     letters = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
-        ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
-        ]
+      ,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'
+    ]
     
     -- Extract character from hash value
     getChar :: Int -> String
     getChar n = 
-      case chars !! (n `Int.rem` 62) of
-        Just c -> fromCharArray [c]
-        Nothing -> "o"
+      chars !! (n `Int.rem` 62)
+        ?? (\c -> fromCharArray [c])
+        ⇔ "o"
+
     -- Extract letter for first char
     getLetter :: Int -> String
     getLetter n = 
-      case letters !! (n `Int.rem` 52) of
-        Just c -> fromCharArray [c]
-        Nothing -> "A"
+      letters !! (n `Int.rem` 52)
+        ?? (\c -> fromCharArray [c])
+        ⇔ "A"
         
   in
   -- Use different positions from each hash for better distribution

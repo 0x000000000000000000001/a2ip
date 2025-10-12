@@ -147,49 +147,52 @@ extractInnerCellsFromHtml html =
 -- | If `relative` is true, the returned index is relative to the offset position;
 -- | otherwise, it's the absolute index in the original string.
 -- |
--- ```purescript
--- >>> let html = "<td>First</td><td>Second</td>"
--- >>> getNextCellPos "td" html 5 true
--- Just 9
--- >>> getNextCellPos "td" html 5 false
--- Just 14
--- >>> getNextCellPos "th" html 0 false
--- Nothing
--- ```
+-- | ```purescript
+-- | >>> let html = "<td>First</td><td>Second</td>"
+-- | >>> getNextCellPos "td" html 5 true
+-- | Just 9
+-- |
+-- | >>> getNextCellPos "td" html 5 false
+-- | Just 14
+-- |
+-- | >>> getNextCellPos "th" html 0 false
+-- | Nothing
+-- | ```
 getNextCellPos :: String -> String -> Int -> Boolean -> Maybe Int
-getNextCellPos tag html offsetPos relative = 
+getNextCellPos tag html offsetPos relative = do
   let searchHtml = String.drop offsetPos html
       pattern = Pattern ("<" <> tag)
-  in case String.indexOf pattern searchHtml of
-    Nothing -> Nothing
-    Just foundPos -> 
-      if relative then Just foundPos
-      else Just (offsetPos + foundPos)
+
+  foundPos <- String.indexOf pattern searchHtml
+
+  Just (relative ? foundPos ↔ (offsetPos + foundPos))
 
 -- | Extracts the content of the next occurrence of a specified HTML tag starting from a given offset.
 -- | Returns `Nothing` if the tag is not found or not properly closed.
 -- |
--- ```purescript
--- >>> let html = "<td>First</td><td>Second</td>"
--- >>> extractNextInnerCell "td" html 0
--- Just { content: "First", nextPos: 11 }
--- >>> extractNextInnerCell "td" html 11
--- Just { content: "Second", nextPos: 22 }
--- >>> extractNextInnerCell "th" html 0
--- Nothing
--- ```
+-- | ```purescript
+-- | >>> let html = "<td>First</td><td>Second</td>"
+-- | >>> extractNextInnerCell "td" html 0
+-- | Just { content: "First", nextPos: 11 }
+-- | 
+-- | >>> extractNextInnerCell "td" html 11
+-- | Just { content: "Second", nextPos: 22 }
+-- | 
+-- | >>> extractNextInnerCell "th" html 0
+-- | Nothing
+-- | ```
 extractNextInnerCell :: String -> String -> Int -> Maybe { content :: String, nextPos :: Int }
-extractNextInnerCell tag html offsetPos = 
-  case getNextCellPos tag html offsetPos false of
-    Nothing -> Nothing
-    Just startTagPos -> 
-      let closeTag = "</" <> tag <> ">"
-          contentAfterStartTag = String.drop startTagPos html
-      in case String.indexOf (Pattern closeTag) contentAfterStartTag of
-        Nothing -> Nothing
-        Just closeTagPosInContentAfterStartTag -> 
-          let innerContentWithStartTag = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
-              innerContentWithStartTagBody = String.drop (String.length ("<" <> tag)) innerContentWithStartTag
-              content = String.drop (1 + (String.indexOf (Pattern ">") innerContentWithStartTagBody ??⇒ 0)) innerContentWithStartTagBody
-              nextPos = startTagPos + closeTagPosInContentAfterStartTag + String.length closeTag
-          in Just { content, nextPos }
+extractNextInnerCell tag html offsetPos = do
+  startTagPos <- getNextCellPos tag html offsetPos false 
+
+  let closeTag = "</" <> tag <> ">"
+      contentAfterStartTag = String.drop startTagPos html
+
+  closeTagPosInContentAfterStartTag <- String.indexOf (Pattern closeTag) contentAfterStartTag 
+
+  let innerContentWithStartTag = String.take closeTagPosInContentAfterStartTag contentAfterStartTag
+      innerContentWithStartTagBody = String.drop (String.length ("<" <> tag)) innerContentWithStartTag
+      content = String.drop (1 + (String.indexOf (Pattern ">") innerContentWithStartTagBody ??⇒ 0)) innerContentWithStartTagBody
+      nextPos = startTagPos + closeTagPosInContentAfterStartTag + String.length closeTag
+
+  Just { content, nextPos }

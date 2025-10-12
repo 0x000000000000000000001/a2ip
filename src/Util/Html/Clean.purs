@@ -28,14 +28,14 @@ removeAttribute attrName tag =
       parts = split pattern tag
   in case parts of
     [before, after] ->
-      case findUnescapedQuote after 0 of
-        Just endQuote ->
+      findUnescapedQuote after 0
+        ?? (\endQuote ->
           let afterAttr = drop (endQuote + 1) after
               cleanAfter = case take 1 afterAttr of
                 " " -> afterAttr
                 _ -> afterAttr
           in before <> cleanAfter
-        Nothing -> tag
+        ) ⇔ tag
     _ -> tag
 
 -- | Remove all attributes starting with "data-" from an HTML tag string.
@@ -46,23 +46,21 @@ removeAttribute attrName tag =
 -- | "<div class=\"my-class\">"
 -- | ```
 removeDataAttributes :: String -> String
-removeDataAttributes tag = removeDataAttr tag
-  where
-    removeDataAttr str =
-      case indexOf (Pattern " data-") str of
-        Just dataStart ->
-          let beforeData = take dataStart str
-              afterDataStart = drop dataStart str
-          in case indexOf (Pattern "=\"") afterDataStart of
-            Just eqStart ->
-              let valueStart = drop (eqStart + 2) afterDataStart
-              in case findUnescapedQuote valueStart 0 of
-                Just endQuote ->
-                  let afterDataAttr = drop (endQuote + 1) valueStart
-                  in removeDataAttr (beforeData <> afterDataAttr)
-                Nothing -> str 
-            Nothing -> str 
-        Nothing -> str
+removeDataAttributes str = 
+  indexOf (Pattern " data-") str
+    ?? (\dataStart ->
+      let beforeData = take dataStart str
+          afterDataStart = drop dataStart str
+      in indexOf (Pattern "=\"") afterDataStart
+        ?? (\eqStart ->
+          let valueStart = drop (eqStart + 2) afterDataStart
+          in findUnescapedQuote valueStart 0
+            ?? (\endQuote ->
+              let afterDataAttr = drop (endQuote + 1) valueStart
+              in removeDataAttributes (beforeData <> afterDataAttr)
+            ) ⇔ str 
+        ) ⇔ str 
+      ) ⇔ str
 
 -- | Helper function to find the position of the next unescaped quote in a string.
 -- | Returns `Nothing` if no unescaped quote is found.
