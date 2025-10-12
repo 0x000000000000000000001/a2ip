@@ -2,8 +2,10 @@ module Component.Router.Route
   ( Route(..)
   , routeCodec
   , routePath
+  , routeSubtitle
   , routeTitle
-  ) where
+  )
+  where
 
 import Proem
 
@@ -32,9 +34,12 @@ routeCodec = root $ sum
 routePath :: Route -> String
 routePath = print routeCodec 
 
+routeSubtitle :: Route -> String
+routeSubtitle route = case route of
+  About -> "Bureau et collaborateurs"
+  _ -> ""
+
 routeTitle :: Route -> String
 routeTitle route = "A2IP" <> (subtitle /= "" ? " / " <> subtitle ↔ "")
-  where 
-  subtitle = case route of
-    About -> "Bureau et collaborateurs"
-    _ -> ""
+  where
+  subtitle = routeSubtitle route
