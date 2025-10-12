@@ -1,22 +1,21 @@
-module Component.Page.About.Style.About
+module Component.Common.Separator.Style.Separator
   ( classId
   , style
   ) where
 
 import Proem hiding (top)
 
-import CSS (justifyContent)
+import CSS (alignItems)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, flexWrap, widthPct100, (.?))
+import Util.Style (displayFlex, widthPct100, (.?))
 
 classId :: String
-classId = "mH916ksxM"
+classId = "keWMC9TZj"
 
 style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
-    justifyContent center
-    flexWrap
+    alignItems center
     widthPct100

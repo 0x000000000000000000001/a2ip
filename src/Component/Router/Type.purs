@@ -12,6 +12,9 @@ type Slots =
   , about :: Slot PageAbout.Query PageAbout.Output NoSlotAddressIndex
   )
 
+menu = Proxy :: Proxy "menu"
+about = Proxy :: Proxy "about"
+
 type Input = NoInput
 
 type Output = NoOutput
@@ -22,5 +25,3 @@ type Action = NoAction
 
 data Query a = Navigate Route a
 
-menu = Proxy :: Proxy "menu"
-about = Proxy :: Proxy "about"

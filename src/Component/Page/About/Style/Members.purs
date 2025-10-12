@@ -1,22 +1,24 @@
-module Component.Page.About.Style.About
+module Component.Page.About.Style.Members
   ( classId
   , style
   ) where
 
 import Proem hiding (top)
 
-import CSS (justifyContent)
+import CSS (alignContent, flexStart, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, flexWrap, widthPct100, (.?))
+import Util.Style (displayFlex, flexWrap, padding1, widthPct100, (.?))
 
 classId :: String
-classId = "mH916ksxM"
+classId = "lXmf1Jny2"
 
 style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
     justifyContent center
+    alignContent flexStart
     flexWrap
+    padding1 1.3
     widthPct100

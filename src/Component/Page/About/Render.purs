@@ -7,15 +7,18 @@ import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
+import Component.Common.Separator.Component as Separator
 import Component.Page.About.HandleAction (ourImageRelativePath)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
 import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
+import Component.Page.About.Style.Collaborators as Collaborators
+import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Member, Slots, State, email, job, phone, portraits, role)
-import Component.Util.Type (noOutputAction)
+import Component.Page.About.Type (Action, Member, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
+import Component.Util.Type (noOutputAction, noSlotAddressIndex)
 import Data.Array (mapWithIndex)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
@@ -27,13 +30,23 @@ render :: State -> ComponentHTML Action Slots AppM
 render state =
   div
     [ class_ classId ]
-    ([ sheet ] <> (mapWithIndex renderMemberCard state.members))
+    [ sheet
+    , slot separators members Separator.component { text: "Membres de l'association" } noOutputAction
+    , div 
+      [ class_ Members.classId ]
+      (mapWithIndex renderCard state.members)
+    , slot separators collaborators Separator.component { text: "Comité scientifique international" } noOutputAction
+    , div 
+      [ class_ Collaborators.classId ]
+      [ text "collaborators" 
+      ]
+    ]
   
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderMemberCard :: Int -> Maybe Member -> ComponentHTML Action Slots AppM
-renderMemberCard idx member = 
+renderCard :: Int -> Maybe Member -> ComponentHTML Action Slots AppM
+renderCard idx member = 
   div
     [ classes $
       [ Card.classId ]

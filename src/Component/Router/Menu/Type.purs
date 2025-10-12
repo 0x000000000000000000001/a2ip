@@ -21,6 +21,8 @@ type Slots =
   ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
   )
 
+items = Proxy :: Proxy "items"
+
 type State = { isUnfold :: Boolean }
 
 data Action = ToggleFolding Boolean
@@ -31,5 +33,3 @@ type Output = NoOutput
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
-
-items = Proxy :: Proxy "items"

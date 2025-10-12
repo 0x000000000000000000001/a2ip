@@ -32,3 +32,6 @@ noSlotAddressIndex = unit
 
 noInput :: NoInput
 noInput = unit
+
+noState :: NoState 
+noState = {}
