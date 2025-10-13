@@ -1,9 +1,8 @@
 module Component.Page.About.HandleAction
   ( ExtractedData
-  , convertExtractedDataToCollaborators
-  , convertExtractedDataToMembers
   , extractMappingKeysAndValuesFromTableHtml
-  , fetchCollaboratorsTableHtml
+  , fetch
+  , fetchCollaborators
   , fetchMembers
   , fetchMembersTableHtml
   , googleDriveImageUrl
@@ -98,29 +97,34 @@ fetchTableHtml tabId = do
     )
     ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
 
-fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
-fetchMembersTableHtml = fetchTableHtml membersTabId
-
-fetchCollaboratorsTableHtml :: ∀ m. MonadAff m => m (Either String String)
-fetchCollaboratorsTableHtml = fetchTableHtml collaboratorsTabId
-
-fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
-fetchMembers = do
-  htmlContent <- fetchMembersTableHtml
+fetch :: ∀ m o. MonadAff m => String -> Converter o -> m (Either String (Array o))
+fetch tabId to = do
+  htmlContent <- fetchTableHtml tabId
   htmlContent 
     ?! (\h -> do 
       let extractedData = extractMappingKeysAndValuesFromTableHtml h
-      pure $ Right $ convertExtractedDataToMembers extractedData
+      pure $ Right $ convertExtractedData to extractedData
     )
     ⇿ pure ◁ Left
+
+fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
+fetchMembers = fetch membersTabId toMember
+
+fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array String))
+fetchCollaborators = fetch collaboratorsTabId toCollaborator
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   LoadData -> do
-    members_ <- fetchMembers
-    members_ 
+    members <- fetchMembers
+    members 
       ?! (\m -> modify_ _ { members = m <#> Just })
       ⇿ error ◁ ("Error fetching members: " <> _)
+
+    collaborators <- fetchCollaborators
+    collaborators 
+      ?! (\c -> modify_ _ { collaborators = c })
+      ⇿ error ◁ ("Error fetching collaborators: " <> _)
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
@@ -137,12 +141,6 @@ convertExtractedData to extractedData =
         in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
   in values <#> (to getHtmlCell)
-
-convertExtractedDataToMembers :: ExtractedData -> Array Member
-convertExtractedDataToMembers = convertExtractedData toMember
-
-convertExtractedDataToCollaborators :: ExtractedData -> Array String
-convertExtractedDataToCollaborators = convertExtractedData toCollaborator
 
 toMember :: Converter Member
 toMember getHtmlCell row =
