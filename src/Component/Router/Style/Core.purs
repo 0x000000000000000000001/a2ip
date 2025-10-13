@@ -32,7 +32,7 @@ style = do
 
   star :? do
     raw "transition" "all 0.3s ease"
-    fontFamily [ "Open Sans" ] (sansSerif :| [])
+    fontFamily [] (sansSerif :| [])
 
   keyframes bodyGradientAnimationId $ (
     0.0 /\ backgroundPosition (positioned (pct 0.0) (pct 50.0))

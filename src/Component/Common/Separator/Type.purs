@@ -11,8 +11,8 @@ module Component.Common.Separator.Type
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 
 type Input = 
-  {
-    text :: String
+  { text :: String
+  , loading :: Boolean
   }
 
 type Output = NoOutput
@@ -21,8 +21,8 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State = 
-  {
-    text :: String
+  { text :: String
+  , loading :: Boolean
   }
 
 data Action = Receive Input

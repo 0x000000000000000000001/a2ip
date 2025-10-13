@@ -5,8 +5,9 @@ module Component.Common.Separator.Style.Text
 
 import Proem hiding (top)
 
-import CSS (border, color, darken, rem, solid)
+import CSS (border, color, darken, fontFamily, rem, sansSerif, solid)
 import CSS as CSS
+import Data.NonEmpty ((:|))
 import Util.Style (borderRadius1, fontSizePct, fontWeightBold, loadingGrey, padding1, (.?))
 
 classId :: String
@@ -21,3 +22,4 @@ style = do
     color $ darken 0.1 $ darken 0.24 loadingGrey
     fontWeightBold
     fontSizePct 110.0 
+    fontFamily ["Oswald"] (sansSerif :| [])

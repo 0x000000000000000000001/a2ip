@@ -167,7 +167,10 @@ toMember getHtmlCell row =
 
 toCollaborator :: Converter Collaborator
 toCollaborator getHtmlCell row =
-  trim $ getHtmlCell firstname row <> " " <> getHtmlCell lastname row <> " (" <> getHtmlCell country row <> ")"
+  { firstname: getHtmlCell firstname row
+  , lastname: getHtmlCell lastname row
+  , country: getHtmlCell country row
+  }
 
 -- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

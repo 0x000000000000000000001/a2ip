@@ -15,8 +15,8 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 component :: Component Query Input Output AppM
 component = mkComponent
     { initialState: \input -> 
-      {
-        text: input.text
+      { text: input.text
+      , loading: input.loading
       }
     , render   
     , eval: mkEval defaultEval 

@@ -2,12 +2,12 @@ module Util.Style
   ( (&.)
   , (.&)
   , (.&.)
-  , (:?)
   , (.?)
   , (.|*)
   , (.|*.)
   , (.|>)
   , (.|>.)
+  , (:?)
   , (|*.)
   , (|>.)
   , after
@@ -15,7 +15,6 @@ module Util.Style
   , backgroundColorWhite
   , backgroundWhite
   , before
-  , fontWeightBold
   , borderRadius1
   , borderRadius4
   , borderWidth
@@ -41,6 +40,7 @@ module Util.Style
   , flexWrap
   , fontRed
   , fontSizePct
+  , fontWeightBold
   , hash9
   , heightPct
   , heightRem
@@ -79,6 +79,7 @@ module Util.Style
   , raw
   , red
   , right0
+  , textAlignCenter
   , top0
   , userSelectNone
   , widthPct
@@ -96,6 +97,7 @@ import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
 import CSS.Selector (child, deep, with)
+import CSS.TextAlign (textAlign, center)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
@@ -132,6 +134,9 @@ raw k v = key (fromString k) v
 
 nothing :: CSS.CSS
 nothing = pure unit
+
+textAlignCenter :: CSS.CSS 
+textAlignCenter = textAlign center
 
 userSelectNone :: CSS.CSS
 userSelectNone = raw "user-select" "none"

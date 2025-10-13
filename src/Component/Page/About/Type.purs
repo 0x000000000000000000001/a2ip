@@ -46,7 +46,11 @@ type Member =
   , portraitId :: String
   }
 
-type Collaborator = String
+type Collaborator = 
+  { lastname :: String
+  , firstname :: String
+  , country :: String
+  }
 
 lastname :: String 
 lastname = "lastname"
