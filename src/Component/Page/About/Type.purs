@@ -65,3 +65,6 @@ email = "email"
 
 portraitId :: String
 portraitId = "portraitId"
+
+country :: String
+country = "country"

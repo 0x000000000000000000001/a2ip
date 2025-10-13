@@ -1,7 +1,9 @@
 module Component.Page.About.HandleAction
   ( ExtractedData
+  , convertExtractedDataToCollaborators
   , convertExtractedDataToMembers
   , extractMappingKeysAndValuesFromTableHtml
+  , fetchCollaboratorsTableHtml
   , fetchMembers
   , fetchMembersTableHtml
   , googleDriveImageUrl
@@ -21,7 +23,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Bin.Util.Log.Error (error)
 import Capability.AppM (AppM)
-import Component.Page.About.Type (Action(..), Member, Slots, State, Output, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Member, Output, Slots, State, collaborators, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -65,11 +67,11 @@ membersTabId = "0"
 membersTabName :: String
 membersTabName = "Membres A2IP"
 
-commiteeTabId :: String
-commiteeTabId = "2092489064"
+collaboratorsTabId :: String
+collaboratorsTabId = "2092489064"
 
-commiteeTabName :: String
-commiteeTabName = "Comité international"
+collaboratorsTabName :: String
+collaboratorsTabName = "Comité international"
 
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
@@ -80,15 +82,15 @@ googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 tabIdToName :: String -> Maybe String
 tabIdToName tabId 
   | tabId == membersTabId = Just membersTabName
-  | tabId == commiteeTabId = Just commiteeTabName
+  | tabId == collaboratorsTabId = Just collaboratorsTabName
   | otherwise = Nothing
 
-fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
-fetchMembersTableHtml = do
+fetchTableHtml :: ∀ m. MonadAff m => String -> m (Either String String)
+fetchTableHtml tabId = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result 
     ?! (\response -> do
-      let tabName = tabIdToName membersTabId ??⇒ ""
+      let tabName = tabIdToName tabId ??⇒ ""
       htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
       htmlContent 
         ?! pure ◁ Right
@@ -96,7 +98,13 @@ fetchMembersTableHtml = do
     )
     ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
 
-fetchMembers :: ∀ m. MonadAff m => m (Either String (Array (Maybe Member)))
+fetchMembersTableHtml :: ∀ m. MonadAff m => m (Either String String)
+fetchMembersTableHtml = fetchTableHtml membersTabId
+
+fetchCollaboratorsTableHtml :: ∀ m. MonadAff m => m (Either String String)
+fetchCollaboratorsTableHtml = fetchTableHtml collaboratorsTabId
+
+fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
 fetchMembers = do
   htmlContent <- fetchMembersTableHtml
   htmlContent 
@@ -111,35 +119,47 @@ handleAction = case _ of
   LoadData -> do
     members_ <- fetchMembers
     members_ 
-      ?! (\m -> modify_ _ { members = m })
+      ?! (\m -> modify_ _ { members = m <#> Just })
       ⇿ error ◁ ("Error fetching members: " <> _)
 
 type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
 
-convertExtractedDataToMembers :: ExtractedData -> Array (Maybe Member)
-convertExtractedDataToMembers extractedData = 
+type Converter o = ((String -> Array String -> String) -> Array String -> o)
+
+convertExtractedData :: ∀ o. Converter o -> ExtractedData -> Array o
+convertExtractedData to extractedData = 
   let keyIndices = extractedData.keyIndices
       values = extractedData.values
 
-      value :: String -> Array String -> String
-      value key row =
+      getHtmlCell :: String -> Array String -> String
+      getHtmlCell key row =
         let idx = lookup key keyIndices
         in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
-      toMember :: Array String -> Member
-      toMember row =
-        let portraitId_ = extractPortraitIdFromViewUrl $ untag $ value portraitId row :: Maybe String
-        in 
-          { firstname: value firstname row
-          , lastname: value lastname row
-          , role: value role row
-          , job: value job row
-          , phone: value phone row
-          , email: value email row
-          , portraitId: portraitId_ ??⇒ ""
-          }
+  in values <#> (to getHtmlCell)
 
-  in values <#> (Just ◁ toMember)
+convertExtractedDataToMembers :: ExtractedData -> Array Member
+convertExtractedDataToMembers = convertExtractedData toMember
+
+convertExtractedDataToCollaborators :: ExtractedData -> Array String
+convertExtractedDataToCollaborators = convertExtractedData toCollaborator
+
+toMember :: Converter Member
+toMember getHtmlCell row =
+  let portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row :: Maybe String
+  in 
+    { firstname: getHtmlCell firstname row
+    , lastname: getHtmlCell lastname row
+    , role: getHtmlCell role row
+    , job: getHtmlCell job row
+    , phone: getHtmlCell phone row
+    , email: getHtmlCell email row
+    , portraitId: portraitId_ ??⇒ ""
+    }
+
+toCollaborator :: Converter String
+toCollaborator getHtmlCell row =
+  trim $ getHtmlCell firstname row <> " " <> getHtmlCell lastname row <> " (" <> getHtmlCell country row <> ")"
 
 -- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

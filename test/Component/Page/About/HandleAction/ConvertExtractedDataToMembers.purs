@@ -31,15 +31,14 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just 
-        { firstname: "John"
-        , lastname: "Doe"
-        , role: "Developer"
-        , job: "Software Engineer"
-        , phone: "123-456-7890"
-        , email: "john@example.com"
-        , portraitId: "portrait123"
-        }
+      { firstname: "John"
+      , lastname: "Doe"
+      , role: "Developer"
+      , job: "Software Engineer"
+      , phone: "123-456-7890"
+      , email: "john@example.com"
+      , portraitId: "portrait123"
+      }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -49,15 +48,14 @@ spec = describe do
     let values = [["Alice", "Smith"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just 
-        { firstname: "Alice"
-        , lastname: "Smith"
-        , role: ""
-        , job: ""
-        , phone: ""
-        , email: ""
-        , portraitId: ""
-        }
+      { firstname: "Alice"
+      , lastname: "Smith"
+      , role: ""
+      , job: ""
+      , phone: ""
+      , email: ""
+      , portraitId: ""
+      }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -67,15 +65,14 @@ spec = describe do
     let values = [["bob@example.com", "Bob", "portrait456", "Johnson"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
-        { firstname: "Bob"
-        , lastname: "Johnson"
-        , role: ""
-        , job: ""
-        , phone: ""
-        , email: "bob@example.com"
-        , portraitId: "portrait456"
-        }
+      { firstname: "Bob"
+      , lastname: "Johnson"
+      , role: ""
+      , job: ""
+      , phone: ""
+      , email: "bob@example.com"
+      , portraitId: "portrait456"
+      }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -89,9 +86,9 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "" },
+      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -109,7 +106,6 @@ spec = describe do
     let values = [["John", "Doe"]] -- Missing role and job
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: "John"
       , lastname: "Doe"
       , role: ""
@@ -127,7 +123,6 @@ spec = describe do
     let values = [["John", "Doe", "Extra", "Data", "Ignored"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: "John"
       , lastname: "Doe"
       , role: ""
@@ -145,7 +140,6 @@ spec = describe do
     let values = [["", "Smith", "", "Engineer"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: ""
       , lastname: "Smith"
       , role: ""
@@ -163,7 +157,6 @@ spec = describe do
     let values = [["Jean-Pierre", "O'Connor", "jean.pierre+test@example.com"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: "Jean-Pierre"
       , lastname: "O'Connor"
       , role: ""
@@ -181,7 +174,6 @@ spec = describe do
     let values = [["  John  ", "  Doe  ", "  Developer  "]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: "John"
       , lastname: "Doe"
       , role: "Developer"
@@ -203,9 +195,9 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "" },
-      Just { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "" },
+      { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
     ]
     convertExtractedDataToMembers extractedData === expected
 
@@ -215,7 +207,6 @@ spec = describe do
     let values = [["Engineer", "Developer", "img123"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just 
       { firstname: ""
       , lastname: ""
       , role: "Developer"
@@ -233,7 +224,6 @@ spec = describe do
     let values = [["John", "Johnny", "Doe"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just
       { firstname: "John" -- Uses first occurrence
       , lastname: "Doe"
       , role: ""
@@ -241,8 +231,6 @@ spec = describe do
       , phone: ""
       , email: ""
       , portraitId: ""
-      
-      
       }
     ]
     convertExtractedDataToMembers extractedData === expected
@@ -258,10 +246,10 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      Just { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1" },
-      Just { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2" },
-      Just { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3" },
-      Just { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1" },
+      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3" },
+      { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4" }
     ]
     convertExtractedDataToMembers extractedData === expected
 

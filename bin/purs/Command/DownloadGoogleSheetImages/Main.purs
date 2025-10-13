@@ -12,8 +12,7 @@ import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
 import Component.Page.About.HandleAction (fetchMembers, googleDriveImageUrl, ourImageRelativePath, suffixPortraitIdWithExt)
 import Config.Config (config)
-import Data.Array (catMaybes, filter, length, mapWithIndex)
-import Data.Maybe (Maybe(..))
+import Data.Array (filter, length, mapWithIndex)
 import Data.String (trim)
 import Data.Traversable (for_)
 import Effect (Effect)
@@ -55,17 +54,17 @@ imagesToDownload = do
 
   members 
     ?! (\members_ -> do 
-      pure $ catMaybes $ 
+      pure $ 
         mapWithIndex 
-        (\idx member -> member >>= (\{ portraitId } -> Just 
+        (\idx { portraitId } ->  
           { idx
           , id: portraitId
           , url: googleDriveImageUrl portraitId
           , filename: suffixPortraitIdWithExt portraitId
-          })
-        )
+          }
+        ) 
         $ filter 
-          (\member -> member ?? (\{ portraitId } -> (trim portraitId) /= "") ⇔ false)
+          (\{ portraitId } -> trim portraitId /= "")
           members_
     ) ⇿ (\err -> do
       error $ "Error fetching table HTML: " <> err
