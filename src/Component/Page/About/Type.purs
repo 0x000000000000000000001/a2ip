@@ -3,7 +3,7 @@ module Component.Page.About.Type   where
 
 import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Common.Separator.Type as Separator
-import Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import Component.Util.Type (NoInput, NoOutput, NoQuery)
 import Data.Maybe (Maybe)
 import Halogen (Slot)
 import Type.Prelude (Proxy(..))
@@ -27,7 +27,8 @@ collaborators :: String
 collaborators = "collaborators"
 
 type State =
-  { members :: Array (Maybe Member)
+  { members :: Maybe (Array Member)
+  , collaborators :: Maybe (Array Collaborator)
   }
 
 data Action = LoadData
@@ -44,6 +45,8 @@ type Member =
   , email :: String
   , portraitId :: String
   }
+
+type Collaborator = String
 
 lastname :: String 
 lastname = "lastname"

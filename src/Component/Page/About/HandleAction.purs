@@ -21,7 +21,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.AppM (AppM)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), Member, Output, Slots, State, collaborators, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Member, Output, Slots, State, Collaborator, collaborators, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -121,7 +121,7 @@ fetch tabId to = do
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
 fetchMembers = fetch membersTabId toMember
 
-fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array String))
+fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Collaborator))
 fetchCollaborators = fetch collaboratorsTabId toCollaborator
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
@@ -162,7 +162,7 @@ toMember getHtmlCell row =
     , portraitId: portraitId_ ??⇒ ""
     }
 
-toCollaborator :: Converter String
+toCollaborator :: Converter Collaborator
 toCollaborator getHtmlCell row =
   trim $ getHtmlCell firstname row <> " " <> getHtmlCell lastname row <> " (" <> getHtmlCell country row <> ")"
 
