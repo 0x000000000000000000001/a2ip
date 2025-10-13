@@ -31,7 +31,7 @@ type State =
   , collaborators :: Maybe (Array Collaborator)
   }
 
-data Action = LoadData
+data Action = Load
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

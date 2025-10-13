@@ -19,8 +19,9 @@ import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
 import Component.Page.About.Type (Action, Member, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
 import Component.Util.Type (noOutputAction)
-import Data.Array (mapWithIndex)
+import Data.Array (mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
+import Data.String (trim)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
@@ -34,19 +35,32 @@ render state =
     , slot separators members Separator.component { text: "Membres de l'association" } noOutputAction
     , div 
       [ class_ Members.classId ]
-      (mapWithIndex renderCard state.members)
+      $ mapWithIndex 
+        (renderCard $ isNothing state.members) 
+        (state.members ??⇒ replicate 6 loadingMember)
     , slot separators collaborators Separator.component { text: "Comité scientifique international" } noOutputAction
     , div 
       [ class_ Collaborators.classId ]
       [ text "collaborators" 
       ]
     ]
-  
+
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-renderCard :: Int -> Maybe Member -> ComponentHTML Action Slots AppM
-renderCard idx member = 
+loadingMember :: Member
+loadingMember = 
+  { lastname: loadingPlaceholder
+  , firstname: loadingPlaceholder
+  , role: loadingPlaceholder
+  , job: loadingPlaceholder
+  , phone: loadingPlaceholder
+  , email: loadingPlaceholder
+  , portraitId: loadingPlaceholder
+  }
+
+renderCard :: Boolean -> Int -> Member -> ComponentHTML Action Slots AppM
+renderCard isLoading idx member = 
   div
     [ classes $
       [ Card.classId ]
@@ -54,39 +68,25 @@ renderCard idx member =
     ]
     ( [ div
         [ class_ CardNames.classId ]
-        [ text $ member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ loadingPlaceholder ]
+        [ text $ trim $ member.firstname <> " " <> member.lastname ]
       , slot 
         portraits
-        (member ?? (\m -> m.firstname <> " " <> m.lastname) ⇔ show idx)
+        (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
         PrettyErrorImage.component
         { class_: Just CardPortrait.classId
-        , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member_.portraitId)
+        , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
         }
         noOutputAction
       ] <> lines
     )
   where
-  isLoading :: Boolean
-  isLoading = isNothing member
-
-  member_ :: Member
-  member_ = member ??⇒
-    { lastname: loadingPlaceholder
-    , firstname: loadingPlaceholder
-    , role: loadingPlaceholder
-    , job: loadingPlaceholder
-    , phone: loadingPlaceholder
-    , email: loadingPlaceholder
-    , portraitId: loadingPlaceholder
-    }
-
   line :: ∀ w i. (Member -> String) -> String -> Array (HTML w i)
   line getter key =
-    not isLoading && getter member_ == "" 
+    not isLoading && getter member == "" 
     ? []
     ↔ [ div
       [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-      [ render_ $ getter member_ ]
+      [ render_ $ getter member ]
     ]
 
   lines :: ∀ w i. Array (HTML w i)

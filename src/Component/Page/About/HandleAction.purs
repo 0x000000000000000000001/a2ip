@@ -1,5 +1,6 @@
 module Component.Page.About.HandleAction
   ( ExtractedData
+  , convertExtractedData
   , extractMappingKeysAndValuesFromTableHtml
   , fetch
   , fetchCollaborators
@@ -12,6 +13,8 @@ module Component.Page.About.HandleAction
   , mockImages
   , ourImageRelativePath
   , suffixPortraitIdWithExt
+  , toCollaborator
+  , toMember
   )
   where
 
@@ -21,7 +24,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.AppM (AppM)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), Member, Output, Slots, State, Collaborator, collaborators, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Collaborator, Member, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -44,11 +47,11 @@ type TabId = String
 
 type Key = String
 
-type Row = Array String
+type TableRow = Array String
 
-type CellExtractor = Key -> Row -> String
+type CellExtractor = Key -> TableRow -> String
 
-type Converter o = (CellExtractor -> Row -> o)
+type Converter o = (CellExtractor -> TableRow -> o)
 
 mockImages :: Boolean
 mockImages = true
@@ -126,15 +129,15 @@ fetchCollaborators = fetch collaboratorsTabId toCollaborator
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
-  LoadData -> do
+  Load -> do
     members <- fetchMembers
     members 
-      ?! (\m -> modify_ _ { members = m <#> Just })
+      ?! (\m -> modify_ _ { members = Just m })
       ⇿ error ◁ ("Error fetching members: " <> _)
 
     collaborators <- fetchCollaborators
     collaborators 
-      ?! (\c -> modify_ _ { collaborators = c })
+      ?! (\c -> modify_ _ { collaborators = Just c })
       ⇿ error ◁ ("Error fetching collaborators: " <> _)
 
 convertExtractedData :: ∀ o. Converter o -> ExtractedData -> Array o
