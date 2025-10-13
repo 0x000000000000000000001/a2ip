@@ -4,7 +4,6 @@ module Component.Page.About.HandleAction
   , fetch
   , fetchCollaborators
   , fetchMembers
-  , fetchMembersTableHtml
   , googleDriveImageUrl
   , googleDriveImageUrlTemplate
   , googleDriveImageUrlTemplatePlaceholder
@@ -20,8 +19,8 @@ import Proem
 
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
-import Bin.Util.Log.Error (error)
 import Capability.AppM (AppM)
+import Capability.Log (error)
 import Component.Page.About.Type (Action(..), Member, Output, Slots, State, collaborators, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
@@ -38,6 +37,18 @@ import Util.GoogleDrive (extractPortraitIdFromViewUrl)
 import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
+
+type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
+
+type TabId = String
+
+type Key = String
+
+type Row = Array String
+
+type CellExtractor = Key -> Row -> String
+
+type Converter o = (CellExtractor -> Row -> o)
 
 mockImages :: Boolean
 mockImages = true
@@ -60,13 +71,13 @@ mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_Th
 suffixPortraitIdWithExt :: String -> String
 suffixPortraitIdWithExt id = id <> ".png"
 
-membersTabId :: String 
+membersTabId :: TabId 
 membersTabId = "0"
 
 membersTabName :: String
 membersTabName = "Membres A2IP"
 
-collaboratorsTabId :: String
+collaboratorsTabId :: TabId
 collaboratorsTabId = "2092489064"
 
 collaboratorsTabName :: String
@@ -78,7 +89,7 @@ googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW
 googleSheetHtmlZipDownloadUrl :: String
 googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
-tabIdToName :: String -> Maybe String
+tabIdToName :: TabId -> Maybe String
 tabIdToName tabId 
   | tabId == membersTabId = Just membersTabName
   | tabId == collaboratorsTabId = Just collaboratorsTabName
@@ -97,7 +108,7 @@ fetchTableHtml tabId = do
     )
     ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
 
-fetch :: ∀ m o. MonadAff m => String -> Converter o -> m (Either String (Array o))
+fetch :: ∀ m o. MonadAff m => TabId -> Converter o -> m (Either String (Array o))
 fetch tabId to = do
   htmlContent <- fetchTableHtml tabId
   htmlContent 
@@ -126,16 +137,12 @@ handleAction = case _ of
       ?! (\c -> modify_ _ { collaborators = c })
       ⇿ error ◁ ("Error fetching collaborators: " <> _)
 
-type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
-
-type Converter o = ((String -> Array String -> String) -> Array String -> o)
-
 convertExtractedData :: ∀ o. Converter o -> ExtractedData -> Array o
 convertExtractedData to extractedData = 
   let keyIndices = extractedData.keyIndices
       values = extractedData.values
 
-      getHtmlCell :: String -> Array String -> String
+      getHtmlCell :: CellExtractor
       getHtmlCell key row =
         let idx = lookup key keyIndices
         in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
