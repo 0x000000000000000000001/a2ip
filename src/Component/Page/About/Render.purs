@@ -126,7 +126,7 @@ renderCard isLoading idx member =
       ? []
       ↔
         [ div
-            [ classes [ CardLine.classId, CardLine.classIdWhen $ λ↓ key ] ]
+            [ classes [ CardLine.classId, CardLine.classIdWhen $ λ ↓ key ] ]
             [ render_ $ get key member ]
         ]
 
