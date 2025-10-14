@@ -18,16 +18,16 @@ import Component.Page.About.Style.Collaborator as Collaborator
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Member, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
+import Component.Page.About.Type (Action, Member, Slots, State, MemberRow, collaborators, email, job, members, phone, portraits, role, separators)
 import Component.Util.Type (noOutputAction)
 import Data.Array (length, mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
-import Prim.Row (class Cons)
 import Halogen.HTML (HTML, div, slot, strong_, text)
 import Html.Renderer.Halogen (render_)
+import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
 import Util.Style (class_, classes)
@@ -39,7 +39,7 @@ render s =
     $ [ sheet
     , slot 
         separators 
-        members 
+        (λ↓ members)
         Separator.component 
         { text: "Bureau des membres de l'association" 
         , loading: isNothing s.members
@@ -54,7 +54,7 @@ render s =
       isNothing s.members ? [] ↔ [
         slot 
           separators 
-          collaborators 
+          (λ↓ collaborators) 
           Separator.component
           { text: "Collaborateurs du comité scientifique international" 
           , loading: isNothing s.collaborators
@@ -115,7 +115,7 @@ renderCard isLoading idx member =
       ] <> lines
     )
   where
-  line :: ∀ w i sym row. IsSymbol sym => Cons sym String row ( email :: String, firstname :: String, job :: String, lastname :: String, phone :: String, portraitId :: String, role :: String ) => Proxy sym -> Array (HTML w i)
+  line :: ∀ w i sym row. IsSymbol sym => Cons sym String row MemberRow => Proxy sym -> Array (HTML w i)
   line key =
     not isLoading && get key member == "" 
     ? []
@@ -129,4 +129,4 @@ renderCard isLoading idx member =
     line role
       <> line job
       <> line phone
-      <> line email
+      <> line (Proxy :: "abc")

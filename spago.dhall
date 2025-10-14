@@ -38,6 +38,7 @@ You can edit this file as you like.
   , "ordered-collections"
   , "parallel"
   , "prelude"
+  , "record"
   , "routing"
   , "routing-duplex"
   , "spec"

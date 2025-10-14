@@ -33,15 +33,17 @@ data Action = Load
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type Member =
-  { lastname :: String
+type MemberRow = 
+  ( lastname :: String
   , firstname :: String
   , role :: String
   , job :: String
   , phone :: String
   , email :: String
   , portraitId :: String
-  }
+  )
+
+type Member = { | MemberRow }
 
 type Collaborator = 
   { lastname :: String
