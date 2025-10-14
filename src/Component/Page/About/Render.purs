@@ -1,7 +1,6 @@
 module Component.Page.About.Render
   ( render
-  )
-  where
+  ) where
 
 import Proem hiding (div)
 
@@ -36,55 +35,61 @@ render :: State -> ComponentHTML Action Slots AppM
 render s =
   div
     [ class_ classId ]
-    $ [ sheet
-    , slot 
-        separators 
-        (λ↓ members)
-        Separator.component 
-        { text: "Bureau des membres de l'association" 
-        , loading: isNothing s.members
-        } 
-        noOutputAction
-    , div 
-      [ class_ Members.classId ]
-      $ mapWithIndex 
-        (renderCard $ isNothing s.members) 
-        (s.members ??⇒ replicate 6 loadingMember)
-    ] <> (
-      isNothing s.members ? [] ↔ [
-        slot 
-          separators 
-          (λ↓ collaborators) 
+    $
+      [ sheet
+      , slot
+          separators
+          (λ ↓ members)
           Separator.component
-          { text: "Collaborateurs du comité scientifique international" 
-          , loading: isNothing s.collaborators
-          } 
+          { text: "Bureau des membres de l'association"
+          , loading: isNothing s.members
+          }
           noOutputAction
-      ] <> (
-        (length $ s.collaborators ??⇒ []) == 0 ? [
-          text "Aucun collaborateur pour le moment."
-        ] ↔ [
-          div
-            [ class_ Collaborators.classId ]
-            $ (s.collaborators ??⇒ []) 
-              <#> 
-              (\c -> 
-                div
-                  [ class_ Collaborator.classId ]
-                  [ strong_
-                    [ text $ trim $ c.firstname <> " " <> c.lastname ]
-                  , text $ c.country /= "" ? " (" <> c.country <> ")" ↔ ""
+      , div
+          [ class_ Members.classId ]
+          $ mapWithIndex
+              (renderCard $ isNothing s.members)
+              (s.members ??⇒ replicate 6 loadingMember)
+      ]
+    <>
+      ( isNothing s.members ? []
+          ↔
+            [ slot
+                separators
+                (λ ↓ collaborators)
+                Separator.component
+                { text: "Collaborateurs du comité scientifique international"
+                , loading: isNothing s.collaborators
+                }
+                noOutputAction
+            ]
+          <>
+            ( (length $ s.collaborators ??⇒ []) == 0
+                ?
+                  [ text "Aucun collaborateur pour le moment."
                   ]
-              )
-        ]
+                ↔
+                  [ div
+                      [ class_ Collaborators.classId ]
+                      $ (s.collaborators ??⇒ [])
+                      <#>
+                        ( \c ->
+                            div
+                              [ class_ Collaborator.classId ]
+                              [ strong_
+                                  [ text $ trim $ c.firstname <> " " <> c.lastname ]
+                              , text $ c.country /= "" ? " (" <> c.country <> ")" ↔ ""
+                              ]
+                        )
+                  ]
+            )
       )
-    )
 
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
 loadingMember :: Member
-loadingMember = 
+loadingMember =
   { lastname: loadingPlaceholder
   , firstname: loadingPlaceholder
   , role: loadingPlaceholder
@@ -95,34 +100,35 @@ loadingMember =
   }
 
 renderCard :: Boolean -> Int -> Member -> ComponentHTML Action Slots AppM
-renderCard isLoading idx member = 
+renderCard isLoading idx member =
   div
-    [ classes $
-      [ Card.classId ]
-      <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
+    [ classes
+        $ [ Card.classId ]
+        <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
     ]
     ( [ div
-        [ class_ CardNames.classId ]
-        [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
-      , slot 
-        portraits
-        (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
-        PrettyErrorImage.component
-        { class_: Just CardPortrait.classId
-        , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
-        }
-        noOutputAction
+          [ class_ CardNames.classId ]
+          [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
+      , slot
+          portraits
+          (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
+          PrettyErrorImage.component
+          { class_: Just CardPortrait.classId
+          , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
+          }
+          noOutputAction
       ] <> lines
     )
   where
   line :: ∀ w i sym row. IsSymbol sym => Cons sym String row MemberRow => Proxy sym -> Array (HTML w i)
   line key =
-    not isLoading && get key member == "" 
-    ? []
-    ↔ [ div
-      [ classes [ CardLine.classId, CardLine.classIdWhen $ λ↓ key ] ]
-      [ render_ $ get key member ]
-    ]
+    not isLoading && get key member == ""
+      ? []
+      ↔
+        [ div
+            [ classes [ CardLine.classId, CardLine.classIdWhen $ λ ↓ key ] ]
+            [ render_ $ get key member ]
+        ]
 
   lines :: ∀ w i. Array (HTML w i)
   lines =
