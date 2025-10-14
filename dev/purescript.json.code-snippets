@@ -109,9 +109,9 @@
     "body": "λ",
     "description": "Lambda λ"
   },
-  "λ∇": {
+  "λ↓": {
     "prefix": "reflectSymbol",
-    "body": "λ∇",
+    "body": "λ↓",
     "description": "Reflect symbol λ∇"
   }
 }

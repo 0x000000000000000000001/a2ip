@@ -30,9 +30,11 @@ import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), Replacement(..), replace, trim)
+import Data.Symbol (class IsSymbol)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (message)
 import Halogen (HalogenM, liftAff, modify_)
+import Type.Prelude (Proxy)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Path (imageDirRelativePath)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
@@ -45,13 +47,11 @@ type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , val
 
 type TabId = String
 
-type Key = String
-
 type TableRow = Array String
 
-type CellExtractor = Key -> TableRow -> String
+type CellExtractor = ∀ sym. IsSymbol sym => Proxy sym -> TableRow -> String
 
-type Converter o = (CellExtractor -> TableRow -> o)
+type Converter output = (CellExtractor -> TableRow -> output)
 
 mockImages :: Boolean
 mockImages = true
@@ -147,14 +147,14 @@ convertExtractedData to extractedData =
 
       getHtmlCell :: CellExtractor
       getHtmlCell key row =
-        let idx = lookup key keyIndices
+        let idx = lookup (λ↓ key) keyIndices
         in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
   in values <#> (to getHtmlCell)
 
 toMember :: Converter Member
 toMember getHtmlCell row =
-  let portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row :: Maybe String
+  let portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
   in 
     { firstname: getHtmlCell firstname row
     , lastname: getHtmlCell lastname row

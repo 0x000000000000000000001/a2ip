@@ -85,5 +85,5 @@ style = do
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId
   ______before = ____line & before
-  ______phone = ____line &. Line.classIdWhen phone
-  ______email = ____line &. Line.classIdWhen email
+  ______phone = ____line &. Line.classIdWhen (λ↓ phone)
+  ______email = ____line &. Line.classIdWhen (λ↓ email)
