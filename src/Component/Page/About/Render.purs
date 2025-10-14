@@ -23,9 +23,12 @@ import Component.Util.Type (noOutputAction)
 import Data.Array (length, mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
 import Data.String (trim)
+import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, strong_, text)
 import Html.Renderer.Halogen (render_)
+import Record (get)
+import Type.Prelude (Proxy)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -111,18 +114,18 @@ renderCard isLoading idx member =
       ] <> lines
     )
   where
-  line :: ∀ w i. (Member -> String) -> String -> Array (HTML w i)
-  line getter key =
-    not isLoading && getter member == "" 
+  line :: ∀ w i sym. IsSymbol sym => Proxy sym -> Array (HTML w i)
+  line key =
+    not isLoading && get key member == "" 
     ? []
     ↔ [ div
-      [ classes [ CardLine.classId, CardLine.classIdWhen key ] ]
-      [ render_ $ getter member ]
+      [ classes [ CardLine.classId, CardLine.classIdWhen $ λ↓ key ] ]
+      [ render_ $ get key member ]
     ]
 
   lines :: ∀ w i. Array (HTML w i)
   lines =
-    line _.role role
-      <> line _.job job
-      <> line _.phone phone
-      <> line _.email email
+    line role
+      <> line job
+      <> line phone
+      <> line email
