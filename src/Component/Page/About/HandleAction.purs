@@ -15,8 +15,7 @@ module Component.Page.About.HandleAction
   , suffixPortraitIdWithExt
   , toCollaborator
   , toMember
-  )
-  where
+  ) where
 
 import Proem
 
@@ -43,7 +42,7 @@ import Util.Html.Clean (untag)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
 
-type ExtractedData = { keys :: Array String , keyIndices :: Map String Int , values :: Array (Array String) }
+type ExtractedData = { keys :: Array String, keyIndices :: Map String Int, values :: Array (Array String) }
 
 type TabId = String
 
@@ -74,7 +73,7 @@ mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_Th
 suffixPortraitIdWithExt :: String -> String
 suffixPortraitIdWithExt id = id <> ".png"
 
-membersTabId :: TabId 
+membersTabId :: TabId
 membersTabId = "0"
 
 membersTabName :: String
@@ -93,7 +92,7 @@ googleSheetHtmlZipDownloadUrl :: String
 googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
 tabIdToName :: TabId -> Maybe String
-tabIdToName tabId 
+tabIdToName tabId
   | tabId == membersTabId = Just membersTabName
   | tabId == collaboratorsTabId = Just collaboratorsTabName
   | otherwise = Nothing
@@ -101,25 +100,27 @@ tabIdToName tabId
 fetchTableHtml :: ∀ m. MonadAff m => String -> m (Either String String)
 fetchTableHtml tabId = do
   result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
-  result 
-    ?! (\response -> do
-      let tabName = tabIdToName tabId ??⇒ ""
-      htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
-      htmlContent 
-        ?! pure ◁ Right
-        ⇿ \e_ -> pure $ Left $ "Failed to unzip: " <> message e_
-    )
+  result
+    ?!
+      ( \response -> do
+          let tabName = tabIdToName tabId ??⇒ ""
+          htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+          htmlContent
+            ?! (pure ◁ Right)
+            ⇿ \e_ -> pure $ Left $ "Failed to unzip: " <> message e_
+      )
     ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
 
 fetch :: ∀ m o. MonadAff m => TabId -> Converter o -> m (Either String (Array o))
 fetch tabId to = do
   htmlContent <- fetchTableHtml tabId
-  htmlContent 
-    ?! (\h -> do 
-      let extractedData = extractMappingKeysAndValuesFromTableHtml h
-      pure $ Right $ convertExtractedData to extractedData
-    )
-    ⇿ pure ◁ Left
+  htmlContent
+    ?!
+      ( \h -> do
+          let extractedData = extractMappingKeysAndValuesFromTableHtml h
+          pure $ Right $ convertExtractedData to extractedData
+      )
+    ⇿ (pure ◁ Left)
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
 fetchMembers = fetch membersTabId toMember
@@ -131,31 +132,36 @@ handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   Load -> do
     members <- fetchMembers
-    members 
+    members
       ?! (\m -> modify_ _ { members = Just m })
-      ⇿ error ◁ ("Error fetching members: " <> _)
+      ⇿ (error ◁ ("Error fetching members: " <> _))
 
     collaborators <- fetchCollaborators
-    collaborators 
+    collaborators
       ?! (\c -> modify_ _ { collaborators = Just c })
-      ⇿ error ◁ ("Error fetching collaborators: " <> _)
+      ⇿ (error ◁ ("Error fetching collaborators: " <> _))
 
 convertExtractedData :: ∀ o. Converter o -> ExtractedData -> Array o
-convertExtractedData to extractedData = 
-  let keyIndices = extractedData.keyIndices
-      values = extractedData.values
+convertExtractedData to extractedData =
+  let
+    keyIndices = extractedData.keyIndices
+    values = extractedData.values
 
-      getHtmlCell :: CellExtractor
-      getHtmlCell key row =
-        let idx = lookup (λ↓ key) keyIndices
-        in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
+    getHtmlCell :: CellExtractor
+    getHtmlCell key row =
+      let
+        idx = lookup (λ ↓ key) keyIndices
+      in
+        idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
-  in values <#> (to getHtmlCell)
+  in
+    values <#> (to getHtmlCell)
 
 toMember :: Converter Member
 toMember getHtmlCell row =
-  let portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
-  in 
+  let
+    portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
+  in
     { firstname: getHtmlCell firstname row
     , lastname: getHtmlCell lastname row
     , role: getHtmlCell role row
@@ -194,14 +200,20 @@ toCollaborator getHtmlCell row =
 -- | { keys: [], ... values: [] }
 -- | ```
 extractMappingKeysAndValuesFromTableHtml :: String -> ExtractedData
-extractMappingKeysAndValuesFromTableHtml tableHtml = 
-  let nothing = { keys: [], keyIndices: empty, values: [] }
-  in extractInnerCellsFromHtml tableHtml
-    ?? (\cellArrays ->
-      length cellArrays == 0 
-        ? nothing
-        ↔ let keys = cellArrays !! 1 ??⇒ []
-              values = drop 3 cellArrays
-          in { keys, keyIndices: arrayToIndexMap keys, values: values }
-    )
-    ⇔ nothing
+extractMappingKeysAndValuesFromTableHtml tableHtml =
+  let
+    nothing = { keys: [], keyIndices: empty, values: [] }
+  in
+    extractInnerCellsFromHtml tableHtml
+      ??
+        ( \cellArrays ->
+            length cellArrays == 0
+              ? nothing
+              ↔
+                let
+                  keys = cellArrays !! 1 ??⇒ []
+                  values = drop 3 cellArrays
+                in
+                  { keys, keyIndices: arrayToIndexMap keys, values: values }
+        )
+      ⇔ nothing
