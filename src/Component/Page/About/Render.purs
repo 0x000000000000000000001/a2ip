@@ -25,6 +25,7 @@ import Data.Maybe (Maybe(..), isNothing)
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
+import Prim.Row (class Cons)
 import Halogen.HTML (HTML, div, slot, strong_, text)
 import Html.Renderer.Halogen (render_)
 import Record (get)
@@ -114,7 +115,7 @@ renderCard isLoading idx member =
       ] <> lines
     )
   where
-  line :: ∀ w i sym. IsSymbol sym => Proxy sym -> Array (HTML w i)
+  line :: ∀ w i sym row. IsSymbol sym => Cons sym String row ( email :: String, firstname :: String, job :: String, lastname :: String, phone :: String, portraitId :: String, role :: String ) => Proxy sym -> Array (HTML w i)
   line key =
     not isLoading && get key member == "" 
     ? []
