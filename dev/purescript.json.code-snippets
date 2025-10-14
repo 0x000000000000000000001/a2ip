@@ -103,5 +103,15 @@
     "prefix": "right",
     "body": "??⇒",
     "description": "Right ??⇒ (Either)"
+  },
+  "λ": {
+    "prefix": "lambda",
+    "body": "λ",
+    "description": "Lambda λ"
+  },
+  "λ∇": {
+    "prefix": "reflectSymbol",
+    "body": "λ∇",
+    "description": "Reflect symbol λ∇"
   }
 }

@@ -4,6 +4,7 @@ module Proem
   , module Util.Maybe
   , module Util.Either
   , module Util.Function
+  , module Util.Lab
   ) 
   where
 
@@ -13,3 +14,4 @@ import Util.Condition ((?), (↔))
 import Util.Maybe ((??), (??⇒), (⇔))
 import Util.Either ((?!), (⇿))
 import Util.Function ((▷), (◁))
+import Util.Lab (λ, (∇))

@@ -20,16 +20,13 @@ type Slots =
 portraits = Proxy :: Proxy "portraits"
 separators = Proxy :: Proxy "separators"
 
-members :: String
-members = "members"
-
-collaborators :: String
-collaborators = "collaborators"
-
 type State =
   { members :: Maybe (Array Member)
   , collaborators :: Maybe (Array Collaborator)
   }
+
+members = Proxy :: Proxy "members"
+collaborators = Proxy :: Proxy "collaborators"
 
 data Action = Load
 
@@ -52,26 +49,11 @@ type Collaborator =
   , country :: String
   }
 
-lastname :: String 
-lastname = "lastname"
-
-firstname :: String 
-firstname = "firstname"
-
-role :: String  
-role = "role"
-
-job :: String
-job = "job"
-
-phone :: String
-phone = "phone"
-
-email :: String
-email = "email"
-
-portraitId :: String
-portraitId = "portraitId"
-
-country :: String
-country = "country"
+lastname = Proxy :: Proxy "lastname" 
+firstname = Proxy :: Proxy "firstname"
+role = Proxy :: Proxy "role"
+job = Proxy :: Proxy "job"
+phone = Proxy :: Proxy "phone"
+email = Proxy :: Proxy "email"
+portraitId = Proxy :: Proxy "portraitId"
+country = Proxy :: Proxy "country"
