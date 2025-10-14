@@ -127,6 +127,6 @@
   "λ↓": {
     "prefix": "reflectSymbol",
     "body": "λ↓",
-    "description": "Reflect symbol λ∇"
+    "description": "Reflect symbol λ↓"
   }
 }
