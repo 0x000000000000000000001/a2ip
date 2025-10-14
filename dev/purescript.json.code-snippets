@@ -104,6 +104,21 @@
     "body": "??⇒",
     "description": "Right ??⇒ (Either)"
   },
+  "◁": {
+    "prefix": "compose",
+    "body": "◁",
+    "description": "Compose ◁"
+  },
+  "▷": {
+    "prefix": "composeFlip",
+    "body": "▷",
+    "description": "Compose flip ◁"
+  },
+  "▷ ": {
+    "prefix": "flipCompose",
+    "body": "▷",
+    "description": "Compose flip ◁"
+  },
   "λ": {
     "prefix": "lambda",
     "body": "λ",
