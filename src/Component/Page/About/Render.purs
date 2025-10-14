@@ -18,7 +18,7 @@ import Component.Page.About.Style.Collaborator as Collaborator
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Member, Slots, State, MemberRow, collaborators, email, job, members, phone, portraits, role, separators)
+import Component.Page.About.Type (Action, Member, MemberRow, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
 import Component.Util.Type (noOutputAction)
 import Data.Array (length, mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
@@ -129,4 +129,4 @@ renderCard isLoading idx member =
     line role
       <> line job
       <> line phone
-      <> line (Proxy :: "abc")
+      <> line email

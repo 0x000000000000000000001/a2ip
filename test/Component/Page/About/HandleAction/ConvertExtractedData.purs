@@ -5,7 +5,6 @@ import Proem
 import Component.Page.About.HandleAction (convertExtractedData, toMember)
 import Component.Page.About.Type (email, firstname, job, lastname, phone, portraitId, role)
 import Data.Map (fromFoldable)
-import Data.Symbol (reflectSymbol)
 import Data.Tuple (Tuple(..))
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
