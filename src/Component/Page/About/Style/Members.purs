@@ -1,4 +1,4 @@
-module Component.Page.About.Style.Members
+module Component.Page.About.Style.Persons
   ( classId
   , style
   ) where

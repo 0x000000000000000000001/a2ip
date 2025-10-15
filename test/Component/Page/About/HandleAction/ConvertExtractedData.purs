@@ -15,7 +15,7 @@ spec :: Spec Unit
 spec = describe do
 
   it "converts complete data with all fields" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role, λ↓ job, λ↓ phone, λ↓ email, λ↓ portraitId]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job, ᴠ phone, ᴠ email, ᴠ portraitId]
     let keyIndices = arrayToIndexMap keys
     let values = [
       [
@@ -42,7 +42,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles missing keys by using empty strings" do
-    let keys = [λ↓ firstname, λ↓ lastname] -- Missing role, job, phone, email, portraitId
+    let keys = [ᴠ firstname, ᴠ lastname] -- Missing role, job, phone, email, portraitId
     let keyIndices = arrayToIndexMap keys
     let values = [["Alice", "Smith"]]
     let extractedData = { keys, keyIndices, values }
@@ -59,7 +59,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles keys in different order" do
-    let keys = [λ↓ email, λ↓ firstname, λ↓ portraitId, λ↓ lastname] -- Different order
+    let keys = [ᴠ email, ᴠ firstname, ᴠ portraitId, ᴠ lastname] -- Different order
     let keyIndices = arrayToIndexMap keys
     let values = [["bob@example.com", "Bob", "portrait456", "Johnson"]]
     let extractedData = { keys, keyIndices, values }
@@ -76,7 +76,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "converts multiple members" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
     let keyIndices = arrayToIndexMap keys
     let values = [
       ["John", "Doe", "Developer"],
@@ -92,7 +92,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles empty values array" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
     let keyIndices = arrayToIndexMap keys
     let values = []
     let extractedData = { keys, keyIndices, values }
@@ -100,7 +100,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles rows with fewer cells than keys" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role, λ↓ job]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job]
     let keyIndices = arrayToIndexMap keys
     let values = [["John", "Doe"]] -- Missing role and job
     let extractedData = { keys, keyIndices, values }
@@ -117,7 +117,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles rows with more cells than keys" do
-    let keys = [λ↓ firstname, λ↓ lastname]
+    let keys = [ᴠ firstname, ᴠ lastname]
     let keyIndices = arrayToIndexMap keys
     let values = [["John", "Doe", "Extra", "Data", "Ignored"]]
     let extractedData = { keys, keyIndices, values }
@@ -134,7 +134,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles empty cells in data" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role, λ↓ job]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job]
     let keyIndices = arrayToIndexMap keys
     let values = [["", "Smith", "", "Engineer"]]
     let extractedData = { keys, keyIndices, values }
@@ -151,7 +151,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles special characters and spaces in data" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ email]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ email]
     let keyIndices = arrayToIndexMap keys
     let values = [["Jean-Pierre", "O'Connor", "jean.pierre+test@example.com"]]
     let extractedData = { keys, keyIndices, values }
@@ -168,7 +168,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles data with whitespace (trims)" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
     let keyIndices = arrayToIndexMap keys
     let values = [["  John  ", "  Doe  ", "  Developer  "]]
     let extractedData = { keys, keyIndices, values }
@@ -185,7 +185,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles mixed complete and incomplete rows" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role, λ↓ email]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ email]
     let keyIndices = arrayToIndexMap keys
     let values = [
       ["John", "Doe", "Developer", "john@example.com"],
@@ -201,7 +201,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles keys with no corresponding values" do
-    let keys = [λ↓ job, λ↓ role, λ↓ portraitId] -- Keys that don't match any typical data
+    let keys = [ᴠ job, ᴠ role, ᴠ portraitId] -- Keys that don't match any typical data
     let keyIndices = arrayToIndexMap keys
     let values = [["Engineer", "Developer", "img123"]]
     let extractedData = { keys, keyIndices, values }
@@ -218,8 +218,8 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles duplicate keys (uses first occurrence)" do
-    let keys = [λ↓ firstname, λ↓ firstname, λ↓ lastname] -- Duplicate firstname
-    let keyIndices = fromFoldable [Tuple (λ↓ firstname) 0, Tuple (λ↓ lastname) 2] -- Manual map to simulate first occurrence
+    let keys = [ᴠ firstname, ᴠ firstname, ᴠ lastname] -- Duplicate firstname
+    let keyIndices = fromFoldable [Tuple (ᴠ firstname) 0, Tuple (ᴠ lastname) 2] -- Manual map to simulate first occurrence
     let values = [["John", "Johnny", "Doe"]]
     let extractedData = { keys, keyIndices, values }
     let expected = [
@@ -235,7 +235,7 @@ spec = describe do
     convertExtractedData toMember extractedData === expected
 
   it "handles large dataset with all fields" do
-    let keys = [λ↓ firstname, λ↓ lastname, λ↓ role, λ↓ job, λ↓ phone, λ↓ email, λ↓ portraitId]
+    let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job, ᴠ phone, ᴠ email, ᴠ portraitId]
     let keyIndices = arrayToIndexMap keys
     let values = [
       ["John", "Doe", "Developer", "Software Engineer", "123-456-7890", "john@example.com", "portrait1"],

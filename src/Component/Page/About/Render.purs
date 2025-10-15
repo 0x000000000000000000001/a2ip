@@ -17,7 +17,7 @@ import Component.Page.About.Style.Collaborator as Collaborator
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Member, MemberRow, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
+import Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
 import Component.Util.Type (noOutputAction)
 import Data.Array (length, mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
@@ -39,7 +39,7 @@ render s =
       [ sheet
       , slot
           separators
-          (λ ↓ members)
+          (ᴠ members)
           Separator.component
           { text: "Bureau des membres de l'association"
           , loading: isNothing s.members
@@ -49,14 +49,14 @@ render s =
           [ class_ Members.classId ]
           $ mapWithIndex
               (renderCard $ isNothing s.members)
-              (s.members ??⇒ replicate 6 loadingMember)
+              (s.members ??⇒ replicate 6 loadingPerson)
       ]
     <>
       ( isNothing s.members ? []
           ↔
             [ slot
                 separators
-                (λ ↓ collaborators)
+                (ᴠ collaborators)
                 Separator.component
                 { text: "Collaborateurs du comité scientifique international"
                 , loading: isNothing s.collaborators
@@ -88,8 +88,8 @@ render s =
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
 
-loadingMember :: Member
-loadingMember =
+loadingPerson :: Person
+loadingPerson =
   { lastname: loadingPlaceholder
   , firstname: loadingPlaceholder
   , role: loadingPlaceholder
@@ -99,7 +99,7 @@ loadingMember =
   , portraitId: loadingPlaceholder
   }
 
-renderCard :: Boolean -> Int -> Member -> ComponentHTML Action Slots AppM
+renderCard :: Boolean -> Int -> Person -> ComponentHTML Action Slots AppM
 renderCard isLoading idx member =
   div
     [ classes
@@ -120,13 +120,13 @@ renderCard isLoading idx member =
       ] <> lines
     )
   where
-  line :: ∀ w i sym row. IsSymbol sym => Cons sym String row MemberRow => Proxy sym -> Array (HTML w i)
+  line :: ∀ w i sym row. IsSymbol sym => Cons sym String row PersonRow => Proxy sym -> Array (HTML w i)
   line key =
     not isLoading && get key member == ""
       ? []
       ↔
         [ div
-            [ classes [ CardLine.classId, CardLine.classIdWhen $ λ ↓ key ] ]
+            [ classes [ CardLine.classId, CardLine.classIdWhen $ ᴠ key ] ]
             [ render_ $ get key member ]
         ]
 

@@ -45,8 +45,8 @@ style = do
 
   where 
   __allChildren = classId .|> star
-  __role = classId .&. classIdWhen (λ↓ role)
-  __email = classId .&. classIdWhen (λ↓ email)
-  __phone = classId .&. classIdWhen (λ↓ phone)
+  __role = classId .&. classIdWhen (ᴠ role)
+  __email = classId .&. classIdWhen (ᴠ email)
+  __phone = classId .&. classIdWhen (ᴠ phone)
   a___before = __email & before
   b___before = __phone & before

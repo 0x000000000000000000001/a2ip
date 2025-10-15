@@ -21,8 +21,8 @@ portraits = Proxy :: Proxy "portraits"
 separators = Proxy :: Proxy "separators"
 
 type State =
-  { members :: Maybe (Array Member)
-  , collaborators :: Maybe (Array Collaborator)
+  { members :: Maybe (Array Person)
+  , collaborators :: Maybe (Array Person)
   }
 
 members = Proxy :: Proxy "members"
@@ -33,7 +33,7 @@ data Action = Load
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type MemberRow = 
+type PersonRow = 
   ( lastname :: String
   , firstname :: String
   , role :: String
@@ -41,15 +41,10 @@ type MemberRow =
   , phone :: String
   , email :: String
   , portraitId :: String
+  , country :: String
   )
 
-type Member = { | MemberRow }
-
-type Collaborator = 
-  { lastname :: String
-  , firstname :: String
-  , country :: String
-  }
+type Person = { | PersonRow }
 
 lastname = Proxy :: Proxy "lastname" 
 firstname = Proxy :: Proxy "firstname"

@@ -4,7 +4,7 @@ module Component.Page.About.HandleAction
   , extractMappingKeysAndValuesFromTableHtml
   , fetch
   , fetchCollaborators
-  , fetchMembers
+  , fetchPersons
   , googleDriveImageUrl
   , googleDriveImageUrlTemplate
   , googleDriveImageUrlTemplatePlaceholder
@@ -14,7 +14,7 @@ module Component.Page.About.HandleAction
   , ourImageRelativePath
   , suffixPortraitIdWithExt
   , toCollaborator
-  , toMember
+  , toPerson
   ) where
 
 import Proem
@@ -23,7 +23,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.AppM (AppM)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), Collaborator, Member, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Collaborator, Person, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -122,8 +122,8 @@ fetch tabId to = do
       )
     ⇿ (pure ◁ Left)
 
-fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Member))
-fetchMembers = fetch membersTabId toMember
+fetchPersons :: ∀ m. MonadAff m => m (Either String (Array Person))
+fetchPersons = fetch membersTabId toPerson
 
 fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Collaborator))
 fetchCollaborators = fetch collaboratorsTabId toCollaborator
@@ -131,7 +131,7 @@ fetchCollaborators = fetch collaboratorsTabId toCollaborator
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   Load -> do
-    members <- fetchMembers
+    members <- fetchPersons
     members
       ?! (\m -> modify_ _ { members = Just m })
       ⇿ (error ◁ ("Error fetching members: " <> _))
@@ -150,15 +150,15 @@ convertExtractedData to extractedData =
     getHtmlCell :: CellExtractor
     getHtmlCell key row =
       let
-        idx = lookup (λ ↓ key) keyIndices
+        idx = lookup (ᴠ key) keyIndices
       in
         idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
   in
     values <#> (to getHtmlCell)
 
-toMember :: Converter Member
-toMember getHtmlCell row =
+toPerson :: Converter Person
+toPerson getHtmlCell row =
   let
     portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
   in
