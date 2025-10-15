@@ -128,5 +128,20 @@
     "prefix": "reflectSymbol",
     "body": "λ↓",
     "description": "Reflect symbol λ↓"
+  },
+  "η": {
+    "prefix": "pure",
+    "body": "η",
+    "description": "Pure η"
+  },
+  "ι": {
+    "prefix": "unit",
+    "body": "ι",
+    "description": "Unit ι"
+  },
+  "ηι": {
+    "prefix": "pureUnit",
+    "body": "ηι",
+    "description": "Pure unit ηι"
   }
 }
