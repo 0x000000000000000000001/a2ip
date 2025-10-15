@@ -97,12 +97,15 @@ renderCard section isLoading idx member =
           )
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
-          , src: isLoading 
-              ? Nothing 
-              ↔ (Just $ ourImageRelativePath $ 
-                  if member.portraitId == "" 
-                    then slugify $ member.firstname <> "-" <> member.lastname
-                    else member.portraitId)
+          , src: isLoading
+              ? Nothing
+              ↔
+                ( Just $ ourImageRelativePath
+                    ( member.portraitId == ""
+                        ? (slugify $ member.firstname <> "-" <> member.lastname)
+                        ↔ member.portraitId
+                    )
+                )
           }
           noOutputAction
       ] <> lines
