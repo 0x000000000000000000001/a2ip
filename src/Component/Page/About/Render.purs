@@ -16,7 +16,7 @@ import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, email, job, members, phone, portraits, role, separators)
+import Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, country, email, job, members, phone, portraits, role, separators)
 import Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
@@ -130,3 +130,4 @@ renderCard section isLoading idx member =
       <> line job
       <> line phone
       <> line email
+      <> line country

@@ -23,7 +23,13 @@ render s =
   let
     errored =
       ( (s.errorCount == 2 && isJust s.fallbackSrc)
-          || (s.errorCount == 1 && isNothing s.fallbackSrc)
+          ||
+            ( s.errorCount == 1
+                &&
+                  ( isNothing s.fallbackSrc
+                      || (s.src == s.fallbackSrc)
+                  )
+            )
       )
     src_ = s.errorCount == 0 ? s.src ↔ s.fallbackSrc
   in
