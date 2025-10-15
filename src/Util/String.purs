@@ -4,12 +4,12 @@ module Util.String
   )
   where
 
-import Prelude
+import Proem
 
-import Data.Either (Either(..))
 import Data.String (Pattern(..), Replacement(..), replace, toLower, trim)
-import Data.String.Regex (regex, replace) as Regex
-import Data.String.Regex.Flags (global) as RegexFlags
+import Data.String.Regex (regex)
+import Data.String.Regex (replace) as Regex
+import Data.String.Regex.Flags (global)
 
 -- | Converts a string to a URL-friendly slug
 -- |
@@ -35,30 +35,26 @@ slugify str =
     # removeConsecutiveDashes
     # trimDashes
   where 
-  -- | Replace spaces with dashes
   replaceSpacesWithDashes :: String -> String
   replaceSpacesWithDashes = replace (Pattern " ") (Replacement "-")
 
-  -- | Remove invalid characters (keep only alphanumeric and dashes)
   removeInvalidChars :: String -> String
   removeInvalidChars s =
-    case Regex.regex "[^a-z0-9-]" RegexFlags.global of
-      Right re -> Regex.replace re "" s
-      Left _ -> s
+    regex "[^a-z0-9-]" global
+      ?! (\re -> Regex.replace re "" s)
+      ⇿ (const s)
 
-  -- | Remove consecutive dashes
   removeConsecutiveDashes :: String -> String
   removeConsecutiveDashes s =
-    case Regex.regex "-+" RegexFlags.global of
-      Right re -> Regex.replace re "-" s
-      Left _ -> s
+    regex "-+" global
+      ?! (\re -> Regex.replace re "-" s)
+      ⇿ (const s)
 
-  -- | Trim dashes from start and end
   trimDashes :: String -> String
   trimDashes s =
-    case Regex.regex "^-+|-+$" RegexFlags.global of
-      Right re -> Regex.replace re "" s
-      Left _ -> s
+    regex "^-+|-+$" global
+      ?! (\re -> Regex.replace re "" s)
+      ⇿ (const s)
 
 -- | Remove accents from characters
 -- | Simple version - only handles common French accents
