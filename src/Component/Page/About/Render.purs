@@ -28,7 +28,6 @@ import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
-import Util.Log (unsafeDebug)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -82,29 +81,26 @@ loadingPerson =
 
 renderCard :: ∀ sym. IsSymbol sym => Proxy sym -> Boolean -> Int -> Person -> ComponentHTML Action Slots AppM
 renderCard section isLoading idx member =
-  let
-    _ = unsafeDebug $ ourImageRelativePath member.portraitId
-  in
-    div
-      [ classes
-          $ [ Card.classId ]
-          <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
-      ]
-      ( [ div
-            [ class_ CardNames.classId ]
-            [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
-        , slot
-            portraits
-            ( (ᴠ section)
-                <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
-            )
-            PrettyErrorImage.component
-            { class_: Just CardPortrait.classId
-            , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
-            }
-            noOutputAction
-        ] <> lines
-      )
+  div
+    [ classes
+        $ [ Card.classId ]
+        <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
+    ]
+    ( [ div
+          [ class_ CardNames.classId ]
+          [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
+      , slot
+          portraits
+          ( (ᴠ section)
+              <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
+          )
+          PrettyErrorImage.component
+          { class_: Just CardPortrait.classId
+          , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
+          }
+          noOutputAction
+      ] <> lines
+    )
   where
   line :: ∀ w i s row. IsSymbol s => Cons s String row PersonRow => Proxy s -> Array (HTML w i)
   line key =
