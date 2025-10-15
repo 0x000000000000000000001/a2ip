@@ -20,12 +20,12 @@
     "description": "Existential ∃"
   },
   "∧": {
-    "prefix": "and (logical)",
+    "prefix": "and",
     "body": "∧",
     "description": "And ∧"
   },
   "∨": {
-    "prefix": "or (logical)",
+    "prefix": "or",
     "body": "∨",
     "description": "Or ∨"
   },
@@ -35,7 +35,7 @@
     "description": "Union ∪"
   },
   "∪ ": {
-    "prefix": "or (union)",
+    "prefix": "orUnion",
     "body": "∪",
     "description": "Or ∪"
   },
@@ -45,7 +45,7 @@
     "description": "Intersection ∩"
   },
   "∩ ": {
-    "prefix": "and (inter)",
+    "prefix": "andInter",
     "body": "∩",
     "description": "And ∩"
   },
@@ -60,7 +60,7 @@
     "description": "Else ↔ (If)"
   },
   "↔ ": {
-    "prefix": "or (if)",
+    "prefix": "orIf",
     "body": "↔",
     "description": "Or ↔ (If)"
   },
@@ -75,7 +75,7 @@
     "description": "Default ⇔ (Maybe)"
   },
   "⇔ ": {
-    "prefix": "or (maybe)",
+    "prefix": "orMaybe",
     "body": "⇔",
     "description": "Or ⇔ (Maybe)"
   },
@@ -85,7 +85,7 @@
     "description": "Or ⇔ (Maybe)"
   },
   "⇿": {
-    "prefix": "or (either)",
+    "prefix": "orEither",
     "body": "⇿",
     "description": "Or ⇿ (Either)"
   },

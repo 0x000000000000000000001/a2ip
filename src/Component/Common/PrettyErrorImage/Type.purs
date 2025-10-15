@@ -27,7 +27,7 @@ type State =
   , src :: Maybe String
   , fallbackSrc :: Maybe String
   , fallbacked :: Boolean
-  , errored :: Boolean
+  , errorCount :: Int
   }
 
 data Action 
