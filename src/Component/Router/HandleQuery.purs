@@ -11,4 +11,4 @@ handleQuery :: ∀ a. Query a -> HalogenM State Action Slots Output AppM (Maybe 
 handleQuery = case _ of
   Navigate route' a -> do
     modify_ _ { route = route' }
-    pure (Just a) 
+    η (Just a) 

@@ -37,7 +37,7 @@ main = do
   
   runHalogenAff do 
     body <- awaitBody
-    io <- runUI (hoist (runAppM config) RouterComponent.component) unit body
+    io <- runUI (hoist (runAppM config) RouterComponent.component) ι body
     
     -- Navigate to initial route
     initialLoc <- liftEffect nav.locationState
@@ -50,10 +50,10 @@ main = do
         -- Navigate to route
         void $ io.query $ mkTell $ RouterType.Navigate route
       )
-      ⇿ const $ pure unit
+      ⇿ const $ ηι
     
     -- Listen for route changes
     void $ liftEffect $ nav.listen \loc -> 
       parse routeCodec loc.pathname
         ?! (launchAff_ ◁ void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
-        ⇿ const $ pure unit
+        ⇿ const $ ηι

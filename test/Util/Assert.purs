@@ -10,7 +10,7 @@ foreign import captureTrace :: Unit -> String
 shouldEqual :: ∀ t. Show t => Eq t => t -> t -> Aff Unit
 shouldEqual v1 v2 = do
   when (v1 /= v2) do
-    let trace = captureTrace unit
+    let trace = captureTrace ι
     let message = show v1 <> " ≠ " <> show v2 <> "\n  @ " <> trace
     fail message
 

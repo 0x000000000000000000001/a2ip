@@ -105,10 +105,10 @@ fetchTableHtml tabId = do
           let tabName = tabIdToName tabId ??⇒ ""
           htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
           htmlContent
-            ?! (pure ◁ Right)
-            ⇿ \e_ -> pure $ Left $ "Failed to unzip: " <> message e_
+            ?! (η ◁ Right)
+            ⇿ \e_ -> η $ Left $ "Failed to unzip: " <> message e_
       )
-    ⇿ \e -> pure $ Left $ "Failed to fetch ZIP: " <> printError e
+    ⇿ \e -> η $ Left $ "Failed to fetch ZIP: " <> printError e
 
 fetch :: ∀ m o. MonadAff m => TabId -> Converter o -> m (Either String (Array o))
 fetch tabId to = do
@@ -117,9 +117,9 @@ fetch tabId to = do
     ?!
       ( \h -> do
           let extractedData = extractMappingKeysAndValuesFromTableHtml h
-          pure $ Right $ convertExtractedData to extractedData
+          η $ Right $ convertExtractedData to extractedData
       )
-    ⇿ (pure ◁ Left)
+    ⇿ (η ◁ Left)
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
 fetchMembers = fetch membersTabId toPerson

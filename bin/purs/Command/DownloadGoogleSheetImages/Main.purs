@@ -54,7 +54,7 @@ imagesToDownload = do
 
   members 
     ?! (\members_ -> do 
-      pure $ 
+      η $ 
         mapWithIndex 
         (\idx { portraitId } ->  
           { idx
@@ -68,7 +68,7 @@ imagesToDownload = do
           members_
     ) ⇿ (\err -> do
       error $ "Error fetching table HTML: " <> err
-      pure []
+      η []
     )
 
 updateLine :: Sem -> Int -> Int -> String -> Aff Unit
@@ -106,4 +106,4 @@ download lock totalLines { idx, id, url, filename } = do
         ⇿ (\e -> updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\"")
     )
 
-  pure unit
+  ηι

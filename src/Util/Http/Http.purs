@@ -71,7 +71,7 @@ getCheckStatus format url = do
     ?! (\res -> do
       let (StatusCode code) = res.status
       code >= 200 && code < 400
-        ? (pure $ Right res)
-        ↔ (pure $ Left $ "HTTP " <> show code <> ": " <> res.statusText)
+        ? (η $ Right res)
+        ↔ (η $ Left $ "HTTP " <> show code <> ": " <> res.statusText)
     )
-    ⇿ pure ◁ Left ◁ printError
+    ⇿ (η ◁ Left ◁ printError)

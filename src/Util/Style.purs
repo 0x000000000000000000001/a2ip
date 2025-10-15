@@ -133,7 +133,7 @@ raw :: String -> String -> CSS.CSS
 raw k v = key (fromString k) v
 
 nothing :: CSS.CSS
-nothing = pure unit
+nothing = ηι
 
 textAlignCenter :: CSS.CSS 
 textAlignCenter = textAlign center

@@ -36,7 +36,7 @@ runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action
   where
   handleResult :: Either Error Unit -> Effect Unit
-  handleResult (Right _) = pure unit
+  handleResult (Right _) = ηι
   handleResult (Left e) = do 
     Console.error $ "🧨 " <> show e
     exitError

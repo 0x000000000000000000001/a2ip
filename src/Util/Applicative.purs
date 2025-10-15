@@ -14,4 +14,4 @@ import Prelude
 η = pure
 
 ηι :: ∀ f. Applicative f => f Unit
-ηι = pure unit
+ηι = η ι

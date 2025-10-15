@@ -11,14 +11,14 @@ import Test.Spec as TestSpec
 foreign import captureModuleName :: Unit -> String
 
 generateDescription :: Unit -> String 
-generateDescription _ = captureModuleName unit <> ":"
+generateDescription _ = captureModuleName ι <> ":"
 
 describe :: 
   ∀ m g i a
    . Monad m
   => SpecT g i m a
   -> SpecT g i m a
-describe specs = TestSpec.describe (generateDescription unit) specs
+describe specs = TestSpec.describe (generateDescription ι) specs
 
 describeOnly 
   :: ∀ m g i a
@@ -26,4 +26,4 @@ describeOnly
   => Monad m
   => SpecT g i m a
   -> SpecT g i m a
-describeOnly specs = TestSpec.describeOnly (generateDescription unit) specs
+describeOnly specs = TestSpec.describeOnly (generateDescription ι) specs

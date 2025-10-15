@@ -28,10 +28,10 @@ noOutputAction :: ∀ a. NoOutput -> a
 noOutputAction = absurd
 
 noSlotAddressIndex :: NoSlotAddressIndex
-noSlotAddressIndex = unit
+noSlotAddressIndex = ι
 
 noInput :: NoInput
-noInput = unit
+noInput = ι
 
 noState :: NoState 
 noState = {}

@@ -25,14 +25,14 @@ type Sem = BoundedQueue Unit
 sem :: ∀ m. MonadAff m => Int -> m Sem
 sem n = do
   s <- liftAff $ BQ.new n
-  traverse_ (const $ liftAff $ BQ.write s unit) (1 .. n)
+  traverse_ (const $ liftAff $ BQ.write s ι) (1 .. n)
   pure s
 
 semAcq :: ∀ m. MonadAff m => Sem -> m Unit
 semAcq s = liftAff $ BQ.read s
 
 semRel :: ∀ m. MonadAff m => Sem -> m Unit
-semRel q = liftAff $ BQ.write q unit
+semRel q = liftAff $ BQ.write q ι
 
 lock :: ∀ m. MonadAff m => m Sem
 lock = sem 1
