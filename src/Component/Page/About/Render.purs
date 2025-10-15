@@ -28,6 +28,7 @@ import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
+import Util.String.Slugify (slugify)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -96,7 +97,12 @@ renderCard section isLoading idx member =
           )
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
-          , src: isLoading ? Nothing ↔ (Just $ ourImageRelativePath member.portraitId)
+          , src: isLoading 
+              ? Nothing 
+              ↔ (Just $ ourImageRelativePath $ 
+                  if member.portraitId == "" 
+                    then slugify $ member.firstname <> "-" <> member.lastname
+                    else member.portraitId)
           }
           noOutputAction
       ] <> lines
