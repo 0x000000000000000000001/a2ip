@@ -11,7 +11,6 @@ import Proem hiding (top)
 import CSS (CSS) as CSS
 import CSS (alignItems, column, flexDirection, hover, justifyContent, (&))
 import CSS.Common (center)
-import CSS.TextAlign (textAlign)
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait

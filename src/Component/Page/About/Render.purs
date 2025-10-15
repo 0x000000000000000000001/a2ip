@@ -28,7 +28,7 @@ import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
-import Util.String.Slugify (slugify)
+import Util.String (slugify)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM

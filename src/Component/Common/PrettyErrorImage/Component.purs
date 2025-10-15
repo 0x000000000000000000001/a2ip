@@ -5,6 +5,7 @@ module Component.Common.PrettyErrorImage.Component
 
 import Proem
 
+import CSS (face)
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import Component.Common.PrettyErrorImage.Render (render)
@@ -15,8 +16,9 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 component :: Component Query Input Output AppM
 component = mkComponent
     { initialState: \input -> 
-        { errored: false  
+        { errorCount: 0  
         , src: input.src
+        , fallbackSrc: input.fallbackSrc
         , class_: input.class_
         }
     , render   

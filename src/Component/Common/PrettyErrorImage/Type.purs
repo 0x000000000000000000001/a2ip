@@ -26,7 +26,6 @@ type State =
   { class_ :: Maybe String
   , src :: Maybe String
   , fallbackSrc :: Maybe String
-  , fallbacked :: Boolean
   , errorCount :: Int
   }
 
