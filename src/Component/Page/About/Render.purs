@@ -106,6 +106,9 @@ renderCard section isLoading idx member =
                         ↔ member.portraitId
                     )
                 )
+          , fallbackSrc: isLoading
+              ? Nothing
+              ↔ (Just $ ourImageRelativePath $ slugify $ member.firstname <> "-" <> member.lastname)
           }
           noOutputAction
       ] <> lines

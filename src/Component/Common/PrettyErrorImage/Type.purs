@@ -14,6 +14,7 @@ import Data.Maybe (Maybe)
 type Input =
   { class_ :: Maybe String
   , src :: Maybe String
+  , fallbackSrc :: Maybe String
   } 
  
 type Output = NoOutput
@@ -24,6 +25,8 @@ type Slots = NoSlots
 type State =
   { class_ :: Maybe String
   , src :: Maybe String
+  , fallbackSrc :: Maybe String
+  , fallbacked :: Boolean
   , errored :: Boolean
   }
 
