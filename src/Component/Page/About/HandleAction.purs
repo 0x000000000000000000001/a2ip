@@ -4,7 +4,7 @@ module Component.Page.About.HandleAction
   , extractMappingKeysAndValuesFromTableHtml
   , fetch
   , fetchCollaborators
-  , fetchPersons
+  , fetchMembers
   , googleDriveImageUrl
   , googleDriveImageUrlTemplate
   , googleDriveImageUrlTemplatePlaceholder
@@ -13,7 +13,6 @@ module Component.Page.About.HandleAction
   , mockImages
   , ourImageRelativePath
   , suffixPortraitIdWithExt
-  , toCollaborator
   , toPerson
   ) where
 
@@ -23,7 +22,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.AppM (AppM)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), Collaborator, Person, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), Person, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -122,16 +121,16 @@ fetch tabId to = do
       )
     ⇿ (pure ◁ Left)
 
-fetchPersons :: ∀ m. MonadAff m => m (Either String (Array Person))
-fetchPersons = fetch membersTabId toPerson
+fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
+fetchMembers = fetch membersTabId toPerson
 
-fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Collaborator))
-fetchCollaborators = fetch collaboratorsTabId toCollaborator
+fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
+fetchCollaborators = fetch collaboratorsTabId toPerson
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   Load -> do
-    members <- fetchPersons
+    members <- fetchMembers
     members
       ?! (\m -> modify_ _ { members = Just m })
       ⇿ (error ◁ ("Error fetching members: " <> _))
@@ -168,15 +167,9 @@ toPerson getHtmlCell row =
     , job: getHtmlCell job row
     , phone: getHtmlCell phone row
     , email: getHtmlCell email row
+    , country: getHtmlCell country row
     , portraitId: portraitId_ ??⇒ ""
     }
-
-toCollaborator :: Converter Collaborator
-toCollaborator getHtmlCell row =
-  { firstname: getHtmlCell firstname row
-  , lastname: getHtmlCell lastname row
-  , country: getHtmlCell country row
-  }
 
 -- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

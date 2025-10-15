@@ -13,7 +13,6 @@ import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
 import Component.Page.About.Style.Card.Names as CardNames
 import Component.Page.About.Style.Card.Portrait as CardPortrait
-import Component.Page.About.Style.Collaborator as Collaborator
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
@@ -24,7 +23,7 @@ import Data.Maybe (Maybe(..), isNothing)
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, slot, strong_, text)
+import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
@@ -71,16 +70,9 @@ render s =
                 ↔
                   [ div
                       [ class_ Collaborators.classId ]
-                      $ (s.collaborators ??⇒ [])
-                      <#>
-                        ( \c ->
-                            div
-                              [ class_ Collaborator.classId ]
-                              [ strong_
-                                  [ text $ trim $ c.firstname <> " " <> c.lastname ]
-                              , text $ c.country /= "" ? " (" <> c.country <> ")" ↔ ""
-                              ]
-                        )
+                      $ mapWithIndex
+                          (renderCard $ isNothing s.collaborators)
+                          (s.collaborators ??⇒ replicate 6 loadingPerson)
                   ]
             )
       )
@@ -96,6 +88,7 @@ loadingPerson =
   , job: loadingPlaceholder
   , phone: loadingPlaceholder
   , email: loadingPlaceholder
+  , country: loadingPlaceholder
   , portraitId: loadingPlaceholder
   }
 

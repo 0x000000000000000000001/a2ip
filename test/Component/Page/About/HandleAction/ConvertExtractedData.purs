@@ -2,7 +2,7 @@ module Test.Component.Page.About.HandleAction.ConvertExtractedData where
 
 import Proem
 
-import Component.Page.About.HandleAction (convertExtractedData, toMember)
+import Component.Page.About.HandleAction (convertExtractedData, toPerson)
 import Component.Page.About.Type (email, firstname, job, lastname, phone, portraitId, role)
 import Data.Map (fromFoldable)
 import Data.Tuple (Tuple(..))
@@ -36,10 +36,11 @@ spec = describe do
       , job: "Software Engineer"
       , phone: "123-456-7890"
       , email: "john@example.com"
+      , country: ""
       , portraitId: "portrait123"
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles missing keys by using empty strings" do
     let keys = [ᴠ firstname, ᴠ lastname] -- Missing role, job, phone, email, portraitId
@@ -53,10 +54,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles keys in different order" do
     let keys = [ᴠ email, ᴠ firstname, ᴠ portraitId, ᴠ lastname] -- Different order
@@ -70,10 +72,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: "bob@example.com"
+      , country: ""
       , portraitId: "portrait456"
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "converts multiple members" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
@@ -85,11 +88,11 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", portraitId: "" },
-      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", portraitId: "" },
-      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "", country: "", portraitId: "" },
+      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "", phone: "", email: "", country: "", portraitId: "" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", country: "", portraitId: "" }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles empty values array" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
@@ -97,7 +100,7 @@ spec = describe do
     let values = []
     let extractedData = { keys, keyIndices, values }
     let expected = []
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles rows with fewer cells than keys" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job]
@@ -111,10 +114,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles rows with more cells than keys" do
     let keys = [ᴠ firstname, ᴠ lastname]
@@ -128,10 +132,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles empty cells in data" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job]
@@ -145,10 +150,11 @@ spec = describe do
       , job: "Engineer"
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles special characters and spaces in data" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ email]
@@ -162,10 +168,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: "jean.pierre+test@example.com"
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles data with whitespace (trims)" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role]
@@ -179,10 +186,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles mixed complete and incomplete rows" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ email]
@@ -194,11 +202,11 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", portraitId: "" },
-      { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", portraitId: "" },
-      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", portraitId: "" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "", phone: "", email: "john@example.com", country: "", portraitId: "" },
+      { firstname: "Alice", lastname: "Smith", role: "", job: "", phone: "", email: "", country: "", portraitId: "" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "", phone: "", email: "", country: "", portraitId: "" }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles keys with no corresponding values" do
     let keys = [ᴠ job, ᴠ role, ᴠ portraitId] -- Keys that don't match any typical data
@@ -212,10 +220,11 @@ spec = describe do
       , job: "Engineer"
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: "img123"
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles duplicate keys (uses first occurrence)" do
     let keys = [ᴠ firstname, ᴠ firstname, ᴠ lastname] -- Duplicate firstname
@@ -229,10 +238,11 @@ spec = describe do
       , job: ""
       , phone: ""
       , email: ""
+      , country: ""
       , portraitId: ""
       }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles large dataset with all fields" do
     let keys = [ᴠ firstname, ᴠ lastname, ᴠ role, ᴠ job, ᴠ phone, ᴠ email, ᴠ portraitId]
@@ -245,12 +255,12 @@ spec = describe do
     ]
     let extractedData = { keys, keyIndices, values }
     let expected = [
-      { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", portraitId: "portrait1" },
-      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", portraitId: "portrait2" },
-      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", portraitId: "portrait3" },
-      { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", portraitId: "portrait4" }
+      { firstname: "John", lastname: "Doe", role: "Developer", job: "Software Engineer", phone: "123-456-7890", email: "john@example.com", country: "", portraitId: "portrait1" },
+      { firstname: "Alice", lastname: "Smith", role: "Designer", job: "UI/UX Designer", phone: "098-765-4321", email: "alice@example.com", country: "", portraitId: "portrait2" },
+      { firstname: "Bob", lastname: "Johnson", role: "Manager", job: "Project Manager", phone: "555-123-4567", email: "bob@example.com", country: "", portraitId: "portrait3" },
+      { firstname: "Carol", lastname: "Brown", role: "Analyst", job: "Data Analyst", phone: "777-888-9999", email: "carol@example.com", country: "", portraitId: "portrait4" }
     ]
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
 
   it "handles completely empty keys and values" do
     let keys = []
@@ -258,4 +268,4 @@ spec = describe do
     let values = []
     let extractedData = { keys, keyIndices, values }
     let expected = []
-    convertExtractedData toMember extractedData === expected
+    convertExtractedData toPerson extractedData === expected
