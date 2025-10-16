@@ -95,12 +95,22 @@
     "description": "Or ⇿ (Either)"
   },
   "?!⇽": {
-    "prefix": "left",
+    "prefix": "eitherLeft",
+    "body": "??⇽",
+    "description": "Left ??⇽ (Either)"
+  },
+  "?!⇽ ": {
+    "prefix": "leftEither",
     "body": "??⇽",
     "description": "Left ??⇽ (Either)"
   },
   "?!⇒": {
-    "prefix": "right",
+    "prefix": "eitherRight",
+    "body": "??⇒",
+    "description": "Right ??⇒ (Either)"
+  },
+  "?!⇒ ": {
+    "prefix": "rightEither",
     "body": "??⇒",
     "description": "Right ??⇒ (Either)"
   },
@@ -143,5 +153,10 @@
     "prefix": "pureUnit",
     "body": "ηι",
     "description": "Pure unit ηι"
+  },
+  "κ": {
+    "prefix": "const",
+    "body": "κ",
+    "description": "Const κ"
   }
 }

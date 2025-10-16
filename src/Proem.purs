@@ -13,7 +13,7 @@ import Prelude
 
 import Util.Applicative (η, ηι, ι)
 import Util.Condition ((?), (↔))
-import Util.Either ((?!), (⇿))
-import Util.Function ((▷), (◁))
+import Util.Either ((?!), (?!⇽), (?!⇾), (⇿))
+import Util.Function ((▷), (◁), κ)
 import Util.Lab (ᴠ, ʌ)
 import Util.Maybe ((??), (??⇒), (⇔))

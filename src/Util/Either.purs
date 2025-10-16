@@ -4,8 +4,8 @@ module Util.Either
   , (?!⇾)
   , (⇿)
   , either
-  , left
-  , right
+  , eitherLeft
+  , eitherRight
   )
   where
 
@@ -15,15 +15,15 @@ import Data.Either (Either)
 import Data.Either as Either
 import Data.Function (apply)
 
-left :: ∀ o l. Either l o -> (l -> o) -> o
-left e l = either e identity l
+eitherLeft :: ∀ o l. Either l o -> (l -> o) -> o
+eitherLeft e l = either e identity l
 
-infixl 6 left as ?!⇽
+infixl 6 eitherLeft as ?!⇽
 
-right :: ∀ o r. Either o r -> (r -> o) -> o
-right e r = either e r identity
+eitherRight :: ∀ o r. Either o r -> (r -> o) -> o
+eitherRight e r = either e r identity
 
-infixl 6 right as ?!⇾
+infixl 6 eitherRight as ?!⇾
 
 either :: ∀ l r o. Either l r -> (r -> o) -> (l -> o) -> o
 either e r l = Either.either l r e

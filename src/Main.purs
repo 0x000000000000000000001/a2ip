@@ -31,7 +31,7 @@ main = do
     dateTime = toDateTime currentTime
     formattedDateTime = formatDateTime "HH:mm:ss.SSS" dateTime
     errorMessage = "Unable to parse loading date."
-  log $ "Loaded @ " <> either (const errorMessage) identity formattedDateTime
+  log $ "Loaded @ " <> formattedDateTime ?!⇽ (κ errorMessage)
   
   nav <- makeInterface
   
