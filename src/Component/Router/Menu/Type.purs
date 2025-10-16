@@ -24,7 +24,9 @@ type Slots =
 
 items = Proxy :: Proxy "items"
 
-type State = { isUnfold :: Boolean }
+type State = 
+  { isUnfold :: Boolean 
+  }
 
 data Action = ToggleFolding Boolean | HandleItemClick MouseEvent
 

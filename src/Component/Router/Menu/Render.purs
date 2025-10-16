@@ -22,9 +22,9 @@ import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img, nav, slot, text)
-import Halogen.HTML.Events (onMouseEnter, onMouseLeave)
-import Halogen.HTML.Properties as HP
+import Halogen.HTML.Events (onMouseEnter, onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
+import Halogen.HTML.Properties as HP
 import Util.Style (class_)
 
 type Item r =
@@ -64,7 +64,7 @@ render s =
     , HP.id "menu"
     , s.isUnfold 
       ? (onMouseLeave $ const $ ToggleFolding true)
-      ↔ (onMouseEnter $ const $ ToggleFolding false)
+      ↔ (onMouseOver $ const $ ToggleFolding false)
     ]
     ( [ sheet s
       , img
