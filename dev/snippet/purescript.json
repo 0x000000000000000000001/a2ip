@@ -119,15 +119,15 @@
     "body": "▷",
     "description": "Compose flip ◁"
   },
-  "λ": {
-    "prefix": "lambda",
-    "body": "λ",
-    "description": "Lambda λ"
-  },
-  "λ↓": {
+  "ᴠ": {
     "prefix": "reflectSymbol",
-    "body": "λ↓",
-    "description": "Reflect symbol λ↓"
+    "body": "ᴠ",
+    "description": "Reflect symbol ᴠ"
+  },
+  "ʌ": {
+    "prefix": "reifySymbol",
+    "body": "ʌ",
+    "description": "Reify symbol ʌ"
   },
   "η": {
     "prefix": "pure",
