@@ -1,4 +1,7 @@
 let JSZipModule;
+let xxHashAPI;
+let loadCache = {};
+let targetFileCache = {};
 
 export const _unzipGoogleSheetAndExtractHtml = function(filename) {
   return async function(zipContent) {
@@ -7,9 +10,19 @@ export const _unzipGoogleSheetAndExtractHtml = function(filename) {
 
     const JSZip = JSZipModule.default || window.JSZip;
 
-    const zip = new JSZip();
+    if (!xxHashAPI) {
+      const xxhashModule = await import('../../node_modules/xxhash-wasm/esm/xxhash-wasm.js');
+      xxHashAPI = await xxhashModule.default();
+    }
 
-    const loadedZip = await zip.loadAsync(zipContent, { base64: false });
+    const zip = new JSZip();
+    const loadCacheKey = xxHashAPI.h32Raw(zipContent);
+
+    if (!loadCache[loadCacheKey]) {
+      loadCache[loadCacheKey] = await zip.loadAsync(zipContent, { base64: false });
+    }
+    
+    const loadedZip = loadCache[loadCacheKey];
     
     const filename_ = filename + '.html';
     const files = Object.keys(loadedZip.files);
@@ -26,6 +39,12 @@ export const _unzipGoogleSheetAndExtractHtml = function(filename) {
       if (!targetFile) throw new Error('No HTML file found in ZIP');
     }
 
-    return await loadedZip.files[targetFile].async('string');
+    const targetFileCacheKey = loadCacheKey + '_' + targetFile;
+
+    if (!targetFileCache[targetFileCacheKey]) {
+      targetFileCache[targetFileCacheKey] = await loadedZip.files[targetFile].async('string');
+    }
+
+    return targetFileCache[targetFileCacheKey];
   };
 };

@@ -1,2 +1,1 @@
-bug menu si on ne quitte pas un item après avoir clické
-mettre en cache le zip dézippé
+déclencher l'unfold du menu en cas de mouseover (mais le désactiver une fois que l'unfold est déclenché)

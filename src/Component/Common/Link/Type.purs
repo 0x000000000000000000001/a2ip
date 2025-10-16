@@ -30,7 +30,7 @@ defaultInput =
   , children: []
   }
  
-data Output = Clicked Route
+data Output = Clicked Route MouseEvent
 
 type Slots :: ∀ k. Row k
 type Slots = NoSlots

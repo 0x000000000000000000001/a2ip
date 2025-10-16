@@ -23,6 +23,7 @@ import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img, nav, slot, text)
 import Halogen.HTML.Events (onMouseEnter, onMouseLeave)
+import Halogen.HTML.Properties as HP
 import Halogen.HTML.Properties (alt, src)
 import Util.Style (class_)
 
@@ -60,6 +61,7 @@ render :: State -> ComponentHTML Action Slots AppM
 render s =
   nav
     [ class_ classId
+    , HP.id "menu"
     , s.isUnfold 
       ? (onMouseLeave $ const $ ToggleFolding true)
       ↔ (onMouseEnter $ const $ ToggleFolding false)

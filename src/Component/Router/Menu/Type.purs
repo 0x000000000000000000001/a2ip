@@ -16,6 +16,7 @@ import Data.Maybe (Maybe)
 import Data.Tuple (Tuple)
 import Halogen (Slot)
 import Type.Prelude (Proxy(..))
+import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Slots = 
   ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
@@ -25,7 +26,7 @@ items = Proxy :: Proxy "items"
 
 type State = { isUnfold :: Boolean }
 
-data Action = ToggleFolding Boolean
+data Action = ToggleFolding Boolean | HandleItemClick MouseEvent
 
 type Input = NoInput
 

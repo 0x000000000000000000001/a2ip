@@ -41,6 +41,7 @@ module Util.Style
   , fontRed
   , fontSizePct
   , fontWeightBold
+  , getRootFontSize
   , hash9
   , heightPct
   , heightRem
@@ -103,8 +104,11 @@ import Data.Char (toCharCode)
 import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
+import Effect (Effect)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
+
+foreign import getRootFontSize :: Effect Number
 
 red :: Color
 red = hsl 353.91 0.8174 0.4725

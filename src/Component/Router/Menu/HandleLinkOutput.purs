@@ -6,4 +6,4 @@ import Component.Common.Link.Type as Link
 import Component.Router.Menu.Type (Action(..))
 
 handleLinkOutput :: Link.Output -> Action
-handleLinkOutput (Link.Clicked _) = ToggleFolding true
+handleLinkOutput (Link.Clicked _ ev) = HandleItemClick ev

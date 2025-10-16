@@ -20,7 +20,7 @@ handleAction = case _ of
     when (isSimpleClick ev) do
       liftEffect $ preventDefault $ toEvent ev
       handleAction $ Navigate route
-      raise $ Clicked route
+      raise $ Clicked route ev
 
 isSimpleClick :: MouseEvent -> Boolean
 isSimpleClick ev =
