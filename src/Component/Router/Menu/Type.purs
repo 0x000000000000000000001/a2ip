@@ -26,9 +26,13 @@ items = Proxy :: Proxy "items"
 
 type State = 
   { isUnfold :: Boolean 
+  , isAnimating :: Boolean
   }
 
-data Action = ToggleFolding Boolean | HandleItemClick MouseEvent
+data Action 
+  = ToggleFolding Boolean 
+  | HandleItemClick MouseEvent
+  | FinishAnimation
 
 type Input = NoInput
 

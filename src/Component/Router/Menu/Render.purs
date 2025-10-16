@@ -22,7 +22,7 @@ import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img, nav, slot, text)
-import Halogen.HTML.Events (onMouseEnter, onMouseLeave, onMouseOver)
+import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Halogen.HTML.Properties as HP
 import Util.Style (class_)
@@ -60,12 +60,19 @@ items =
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   nav
-    [ class_ classId
-    , HP.id "menu"
-    , s.isUnfold 
-      ? (onMouseLeave $ const $ ToggleFolding true)
-      ↔ (onMouseOver $ const $ ToggleFolding false)
-    ]
+    ( [ class_ classId
+      , HP.id "menu"
+      ] 
+      <> (
+        s.isAnimating 
+          ? []
+          ↔ [ 
+            s.isUnfold 
+              ? (onMouseLeave $ const $ ToggleFolding true)
+              ↔ (onMouseOver $ const $ ToggleFolding false)
+          ]
+      )
+    )
     ( [ sheet s
       , img
           [ class_ Logo.classId
