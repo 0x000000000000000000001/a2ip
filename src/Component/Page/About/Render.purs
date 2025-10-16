@@ -108,7 +108,12 @@ renderCard section isLoading idx member =
                 )
           , fallbackSrc: isLoading
               ? Nothing
-              ↔ (Just $ ourImageRelativePath $ slugify $ member.firstname <> "-" <> member.lastname)
+              ↔ (Just $ ourImageRelativePath 
+                ( member.portraitId /= ""
+                    ? (slugify $ member.firstname <> "-" <> member.lastname)
+                    ↔ "anonymous"
+                )
+              )
           }
           noOutputAction
       ] <> lines

@@ -5,6 +5,7 @@ import Proem hiding (top, div)
 import Capability.AppM (AppM)
 import Component.Router.Menu.Style.Menu (foldWidth)
 import Component.Router.Menu.Type (Action(..), Output, Slots, State)
+import Component.Router.Style.Core (animationDurationMs)
 import Data.Int (toNumber)
 import Effect.Aff (Milliseconds(..), delay)
 import Effect.Aff.Class (liftAff)
@@ -17,18 +18,14 @@ handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of
   ToggleFolding shouldFold -> do
     state <- get
-    -- Ignore les événements si une animation est en cours
     unless state.isAnimating do
       modify_ _ { isUnfold = not shouldFold, isAnimating = true }
-      -- Durée de l'animation CSS (à ajuster selon votre transition)
-      liftAff $ delay (Milliseconds 300.0)
+      liftAff $ delay (Milliseconds animationDurationMs)
       modify_ _ { isAnimating = false }
   
   HandleItemClick ev -> do
     state <- get
-    -- Ignore si animation en cours
     unless state.isAnimating do
-      -- Only close if mouse is beyond folded width
       remInPixels <- liftEffect getRootFontSize
       let 
         foldedWidthPx = foldWidth * remInPixels

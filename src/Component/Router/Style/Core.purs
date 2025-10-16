@@ -1,7 +1,9 @@
 module Component.Router.Style.Core
-  ( classId
+  ( animationDurationMs
+  , classId
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 
@@ -19,6 +21,9 @@ classId = "MvOJiB63k"
 bodyGradientAnimationId :: String
 bodyGradientAnimationId = "yw65DgoVL"
 
+animationDurationMs :: Number
+animationDurationMs = 300.0
+
 style :: CSS.CSS
 style = do
   classId .? do
@@ -31,7 +36,7 @@ style = do
     flexGrow1
 
   star :? do
-    raw "transition" "all 0.3s ease"
+    raw "transition" $ "all " <> show animationDurationMs <> "ms ease"
     fontFamily [] (sansSerif :| [])
 
   keyframes bodyGradientAnimationId $ (
