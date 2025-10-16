@@ -42,19 +42,19 @@ slugify str =
   removeInvalidChars s =
     regex "[^a-z0-9-]" global
       ?! (\re -> Regex.replace re "" s)
-      ⇿ (const s)
+      ⇿ (κ s)
 
   removeConsecutiveDashes :: String -> String
   removeConsecutiveDashes s =
     regex "-+" global
       ?! (\re -> Regex.replace re "-" s)
-      ⇿ (const s)
+      ⇿ (κ s)
 
   trimDashes :: String -> String
   trimDashes s =
     regex "^-+|-+$" global
       ?! (\re -> Regex.replace re "" s)
-      ⇿ (const s)
+      ⇿ (κ s)
 
 -- | Remove accents from characters
 -- | Simple version - only handles common French accents

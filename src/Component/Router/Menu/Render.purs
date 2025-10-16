@@ -68,8 +68,8 @@ render s =
           ? []
           ↔ [ 
             s.isUnfold 
-              ? (onMouseLeave $ const $ ToggleFolding true)
-              ↔ (onMouseOver $ const $ ToggleFolding false)
+              ? (onMouseLeave $ κ $ ToggleFolding true)
+              ↔ (onMouseOver $ κ $ ToggleFolding false)
           ]
       )
     )

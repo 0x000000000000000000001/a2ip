@@ -11,7 +11,7 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: const { route: Home }
+  { initialState: κ { route: Home }
   , render
   , eval: mkEval defaultEval  
       { handleQuery = handleQuery

@@ -8,7 +8,6 @@ import Component.Router.Route (routeCodec, routeTitle)
 import Component.Router.Type as RouterType
 import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
-import Data.Either (either)
 import Data.Formatter.DateTime (formatDateTime)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
@@ -50,10 +49,10 @@ main = do
         -- Navigate to route
         void $ io.query $ mkTell $ RouterType.Navigate route
       )
-      ⇿ const $ ηι
+      ⇿ κηι
     
     -- Listen for route changes
     void $ liftEffect $ nav.listen \loc -> 
       parse routeCodec loc.pathname
         ?! (launchAff_ ◁ void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
-        ⇿ const $ ηι
+        ⇿ κηι

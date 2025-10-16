@@ -94,15 +94,15 @@ download lock totalLines { idx, id, url, filename } = do
   fileExistsResult <- attempt $ stat filePath
   
   fileExistsResult
-    ?! (const $ do
+    ?! (κ $ do
       updateLine' successPrefixed "Already downloaded " ""
-    ) ⇿ (const $ do
+    ) ⇿ (κ $ do
       updateLine' downloadPrefixed "Downloading " "..."
 
       result <- downloadImage url filePath
 
       result
-        ?! (const $ updateLine' successPrefixed "Downloaded " "")
+        ?! (κ $ updateLine' successPrefixed "Downloaded " "")
         ⇿ (\e -> updateLine' errorPrefixed "Failed " $ ": \"" <> e <> "\"")
     )
 

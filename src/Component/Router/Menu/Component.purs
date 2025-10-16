@@ -10,7 +10,7 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Unit Output AppM
 component = mkComponent
-  { initialState: const { isUnfold: false, isAnimating: false }
+  { initialState: κ { isUnfold: false, isAnimating: false }
   , render
   , eval: mkEval defaultEval { handleAction = handleAction }
   } 

@@ -158,5 +158,10 @@
     "prefix": "const",
     "body": "κ",
     "description": "Const κ"
+  },
+  "κηι": {
+    "prefix": "constPureUnit",
+    "body": "κηι",
+    "description": "Const pure unit κηι"
   }
 }

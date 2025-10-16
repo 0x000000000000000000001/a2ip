@@ -25,7 +25,7 @@ type Sem = BoundedQueue Unit
 sem :: ∀ m. MonadAff m => Int -> m Sem
 sem n = do
   s <- liftAff $ BQ.new n
-  traverse_ (const $ liftAff $ BQ.write s ι) (1 .. n)
+  traverse_ (κ $ liftAff $ BQ.write s ι) (1 .. n)
   pure s
 
 semAcq :: ∀ m. MonadAff m => Sem -> m Unit
@@ -55,7 +55,7 @@ parTraverseBounded maxInFlight k xs = do
     (\x ->
       bracket
         (semAcq s)
-        (const $ semRel s)
-        (const $ k x)
+        (κ $ semRel s)
+        (κ $ k x)
     )
     xs
