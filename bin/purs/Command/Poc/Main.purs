@@ -18,6 +18,6 @@ main = runBinM config $ keepAlive do
 
   liftAff $ liftEffect $ log "before"
 
-  _ <- liftAff $ AAVar.take avar
+  -- _ <- liftAff $ AAVar.take avar
 
   liftAff $ liftEffect $ log "after"
