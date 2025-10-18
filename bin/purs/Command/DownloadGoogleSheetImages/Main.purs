@@ -4,7 +4,6 @@ import Proem
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
 import Bin.Capability.BinM (BinM, runBinM)
-import Bin.Util.Exit (exitSuccess)
 import Bin.Util.Log.Download (downloadPrefixed)
 import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
