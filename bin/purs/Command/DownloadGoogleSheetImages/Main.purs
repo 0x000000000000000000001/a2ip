@@ -39,8 +39,6 @@ main = runBinM config do
 
   successShortAfterNewline "Done!"
 
-  exitSuccess
-
 type Image =
   { idx :: Int
   , id :: String

@@ -7,7 +7,7 @@ module Bin.Capability.BinM
 
 import Proem
 
-import Bin.Util.Exit (exitError)
+import Bin.Util.Exit (exitError, exitSuccess)
 import Config.Config (Config)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Data.Either (Either(..))
@@ -36,7 +36,7 @@ runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action
   where
   handleResult :: Either Error Unit -> Effect Unit
-  handleResult (Right _) = ηι
+  handleResult (Right _) = exitSuccess
   handleResult (Left e) = do 
     Console.error $ "🧨 " <> show e
     exitError

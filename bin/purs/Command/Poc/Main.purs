@@ -2,6 +2,8 @@ module Bin.Command.Poc.Main (main) where
 
 import Proem
 
+import Bin.Capability.BinM (runBinM)
+import Config.Config (config)
 import Effect (Effect)
 import Effect.AVar (empty)
 import Effect.Aff (launchAff_)
@@ -11,7 +13,7 @@ import Effect.Console (log)
 import Util.Aff (keepAlive)
 
 main :: Effect Unit
-main = launchAff_ $ keepAlive do
+main = runBinM config $ keepAlive do
   avar <- liftEffect empty
 
   liftEffect $ log "before"
