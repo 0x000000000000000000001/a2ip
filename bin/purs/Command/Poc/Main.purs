@@ -4,19 +4,18 @@ import Proem
 
 import Effect (Effect)
 import Effect.AVar (empty)
-import Effect.Aff (Milliseconds(..), delay, forkAff, runAff)
+import Effect.Aff (launchAff_)
 import Effect.Aff.AVar as AAVar
 import Effect.Class (liftEffect)
-import Effect.Console (log, logShow)
-import Util.Aff (keepProcessAlive)
+import Effect.Console (log)
+import Util.Aff (keepAlive)
 
 main :: Effect Unit
-main = do
-  void $ runAff logShow $ keepProcessAlive do
-    avar <- liftEffect empty
+main = launchAff_ $ keepAlive do
+  avar <- liftEffect empty
 
-    liftEffect $ log "before"
+  liftEffect $ log "before"
 
-    _ <- AAVar.take avar
+  _ <- AAVar.take avar
 
-    liftEffect $ log "after"
+  liftEffect $ log "after"
