@@ -3,14 +3,20 @@ module Bin.Command.Poc.Main (main) where
 import Proem
 
 import Effect (Effect)
-import Effect.AVar (empty, tryTake)
-import Effect.Aff (launchAff_)
+import Effect.AVar (empty)
+import Effect.Aff (Milliseconds(..), delay, forkAff, runAff)
+import Effect.Aff.AVar as AAVar
 import Effect.Class (liftEffect)
-import Effect.Console (log)
+import Effect.Console (log, logShow)
+import Util.Aff (keepProcessAlive)
 
 main :: Effect Unit
-main = launchAff_ do
-  avar <- liftEffect $ empty
-  liftEffect $ log "before"
-  _ <- liftEffect $ tryTake avar
-  liftEffect $ log "after"
+main = do
+  void $ runAff logShow $ keepProcessAlive do
+    avar <- liftEffect empty
+
+    liftEffect $ log "before"
+
+    _ <- AAVar.take avar
+
+    liftEffect $ log "after"
