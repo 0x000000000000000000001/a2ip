@@ -9,6 +9,7 @@ import Proem
 
 import Bin.Util.Exit (exitError, exitSuccess)
 import Config.Config (Config)
+import Control.Monad.Error.Class (class MonadError)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Data.Either (Either(..))
 import Effect (Effect)
