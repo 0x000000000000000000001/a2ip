@@ -9,7 +9,7 @@ import Proem
 
 import Bin.Util.Exit (exitError, exitSuccess)
 import Config.Config (Config)
-import Control.Monad.Error.Class (class MonadError)
+import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Data.Either (Either(..))
 import Effect (Effect)
@@ -29,6 +29,8 @@ derive newtype instance monadBinM :: Monad BinM
 derive newtype instance monadEffectBinM :: MonadEffect BinM
 derive newtype instance monadAffBinM :: MonadAff BinM
 derive newtype instance monadAskBinM :: MonadAsk Config BinM
+derive newtype instance monadErrorBinM :: MonadError Error BinM
+derive newtype instance monadThrowBinM :: MonadThrow Error BinM
 
 runBinM :: Config -> BinM Unit -> Effect Unit
 runBinM config (BinM r) = runBinAff $ runReaderT r config
