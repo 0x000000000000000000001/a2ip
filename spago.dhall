@@ -12,6 +12,7 @@ You can edit this file as you like.
   , "ansi"
   , "arraybuffer-types"
   , "arrays"
+  , "avar"
   , "colors"
   , "concurrent-queues"
   , "console"
