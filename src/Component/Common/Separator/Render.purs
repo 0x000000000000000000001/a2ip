@@ -3,13 +3,13 @@ module Component.Common.Separator.Render
   )
   where
 
-import Proem hiding (div)
+import Proem (not, ($), (&&), (<>), (?), (↔))
 
 import Capability.AppM (AppM)
 import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading)
 import Component.Common.Separator.Style.Sheet (sheet)
-import Component.Common.Separator.Style.Text.Text as Text
 import Component.Common.Separator.Style.Text.Sofa as Sofa
+import Component.Common.Separator.Style.Text.Text as Text
 import Component.Common.Separator.Style.Wing.End as End
 import Component.Common.Separator.Style.Wing.Wing as Wing
 import Component.Common.Separator.Type (Action, Slots, State)
@@ -25,7 +25,7 @@ render s =
   [ classes $ [ classId ] <> (s.loading ? [ classIdWhenLoading ] ↔ []) ]
   [ sheet
   , s.withWings ? (div [ classes [Wing.classId, Wing.classIdWhenNth 1] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
-  , div [ class_ Text.classId ] [ text s.text, s.withSofa ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
+  , div [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
   , s.withWings ? (div [ classes [Wing.classId, Wing.classIdWhenNth 2] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
   ]
 
