@@ -5,7 +5,7 @@ module Component.Page.About.Style.Card.Portrait
 
 import Proem hiding (top)
 
-import CSS (border, darken, rem, solid, toHexString)
+import CSS (border, darken, rem, solid)
 import CSS as CSS
 import Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import Util.Style (borderRadius1, fill, heightRem, marginTop, raw, red, widthRem, (.?), (.|*.), (:?))
