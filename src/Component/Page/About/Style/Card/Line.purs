@@ -15,7 +15,7 @@ classId :: String
 classId = "wNMB3qHPD"
 
 classIdWhen :: String -> String
-classIdWhen = hash9
+classIdWhen = hash9 ◁ (classId <> _)
  
 style :: CSS.CSS
 style = do

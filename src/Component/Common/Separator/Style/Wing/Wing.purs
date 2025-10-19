@@ -17,7 +17,7 @@ classId :: String
 classId = "nSWR5IYn6"
 
 classIdWhenNth :: Int -> String
-classIdWhenNth n = hash9 $ show n
+classIdWhenNth n = hash9 $ classId <> show n
 
 style :: CSS.CSS
 style = do
