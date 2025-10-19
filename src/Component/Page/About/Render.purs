@@ -43,6 +43,8 @@ render s =
           Separator.component
           { text: "Bureau des membres de l'association"
           , loading: isNothing s.members
+          , withWings: false
+          , withSofa: false
           }
           noOutputAction
       , div
@@ -56,6 +58,8 @@ render s =
           Separator.component
           { text: "Collaborateurs du comité scientifique international"
           , loading: isNothing s.collaborators
+          , withWings: true
+          , withSofa: true
           }
           noOutputAction
       , div

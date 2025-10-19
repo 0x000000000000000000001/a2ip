@@ -5,6 +5,7 @@ import Proem
 import Capability.AppM (AppM)
 import Data.Const (Const)
 import Halogen (ComponentHTML)
+import Halogen.HTML (HTML, text)
 
 type Children action slots = Array (ComponentHTML action slots AppM)
 
@@ -35,3 +36,6 @@ noInput = ι
 
 noState :: NoState 
 noState = {}
+
+noHtml :: ∀ w i. HTML w i
+noHtml = text ""

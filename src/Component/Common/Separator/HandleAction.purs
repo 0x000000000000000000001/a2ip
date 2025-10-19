@@ -11,4 +11,8 @@ import Halogen (HalogenM, modify_)
 
 handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
 handleAction = case _ of  
-  Receive input -> modify_ _ { text = input.text, loading = input.loading }
+  Receive input -> modify_ _ 
+    { text = input.text
+      , loading = input.loading
+      , withWings = input.withWings
+    }

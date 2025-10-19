@@ -36,6 +36,7 @@ module Util.Style
   , displayFlex
   , displayInlineBlock
   , displayNone
+  , fill
   , flexGrow1
   , flexWrap
   , fontRed
@@ -92,7 +93,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, top, width, wrap)
+import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, toHexString, top, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
@@ -222,6 +223,9 @@ displayFlex = display flex
 
 cursorPointer :: CSS.CSS
 cursorPointer = cursor pointer
+
+fill :: Color -> CSS.CSS
+fill c = raw "fill" $ toHexString c
 
 widthRem :: Number -> CSS.CSS
 widthRem w = width (rem w)

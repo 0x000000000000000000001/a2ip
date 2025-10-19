@@ -17,6 +17,8 @@ component = mkComponent
     { initialState: \input -> 
       { text: input.text
       , loading: input.loading
+      , withWings: input.withWings
+      , withSofa: input.withSofa
       }
     , render   
     , eval: mkEval defaultEval 
