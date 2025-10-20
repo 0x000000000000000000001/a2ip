@@ -23,7 +23,7 @@ type Input =
   , dates :: Array Date
   }
 
-type Output = NoOutput
+data Output = SelectedDate Date
 
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
@@ -31,9 +31,10 @@ type Slots = NoSlots
 type State = 
   { class_ :: Maybe String
   , dates :: Array Date
+  , selectedDate :: Maybe Date
   }
 
-data Action = Receive Input
+data Action = SelectDate Date | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

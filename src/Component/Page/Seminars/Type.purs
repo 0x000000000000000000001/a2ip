@@ -1,7 +1,8 @@
 module Component.Page.Seminars.Type where
 
 import Component.Common.Timeline.Type as Timeline
-import Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlotAddressIndex, NoState)
+import Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import Data.Maybe (Maybe)
 import Halogen (Slot)
 import Type.Prelude (Proxy(..))
 
@@ -15,9 +16,11 @@ type Slots =
 
 timeline = Proxy :: Proxy "timeline"
 
-type State = NoState
+type State =
+  { selectedDate :: Maybe Timeline.Date
+  }
 
-type Action = NoAction
+data Action = SelectDate Timeline.Date
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

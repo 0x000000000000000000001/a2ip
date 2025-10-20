@@ -86,6 +86,7 @@ module Util.Style
   , positionAbsolute
   , positionFixed
   , positionRelative
+  , positionSticky
   , raw
   , red
   , right0
@@ -165,6 +166,9 @@ positionRelative = position relative
 
 positionFixed :: CSS.CSS
 positionFixed = position fixed
+
+positionSticky :: CSS.CSS
+positionSticky = raw "position" "sticky"
 
 topRem :: Number -> CSS.CSS
 topRem t = top (rem t)

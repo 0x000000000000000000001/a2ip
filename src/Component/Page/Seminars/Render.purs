@@ -6,19 +6,20 @@ import Proem hiding (div)
 
 import Capability.AppM (AppM)
 import Component.Common.Timeline.Component (component) as TimelineComponent
+import Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import Component.Page.Seminars.Style.DateContent as DateContent
 import Component.Page.Seminars.Style.Seminars (classId)
 import Component.Page.Seminars.Style.Sheet (sheet)
 import Component.Page.Seminars.Style.Timeline as Timeline
 import Component.Page.Seminars.Type (Action, Slots, State, timeline)
-import Component.Util.Type (noOutputAction, noSlotAddressIndex)
+import Component.Util.Type (noSlotAddressIndex)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, slot, text)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
-render _ =
+render s =
   div
     [ class_ classId ]
     [ sheet
@@ -45,10 +46,10 @@ render _ =
                 , { day: 13, month: 12, year: 25 }
                 ]
             }
-            noOutputAction
+            handleTimelineOutput
         ]
     , div
         [ class_ DateContent.classId ]
-        [ text "datecontent"
+        [ text $ "selected: " <> show s.selectedDate
         ]
     ]
