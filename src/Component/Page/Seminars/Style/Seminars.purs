@@ -5,17 +5,18 @@ module Component.Page.Seminars.Style.Seminars
 
 import Proem hiding (top)
 
-import CSS (justifyContent)
+import CSS (alignItems, flexStart, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
 import Util.Style (displayFlex, widthPct100, (.?))
 
 classId :: String
-classId = "mH916ksxM"
+classId = "BgFNE5Wdc"
 
 style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
     justifyContent center
+    alignItems flexStart
     widthPct100

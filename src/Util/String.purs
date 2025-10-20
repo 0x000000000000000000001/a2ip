@@ -1,15 +1,61 @@
 module Util.String
-  ( removeAccents
+  ( padLeft
+  , padRight
+  , removeAccents
   , slugify
-  )
-  where
+  ) where
 
 import Proem
 
-import Data.String (Pattern(..), Replacement(..), replace, toLower, trim)
+import Data.Array (replicate)
+import Data.String (Pattern(..), Replacement(..), replaceAll, toLower, trim)
+import Data.String.CodeUnits (fromCharArray, length)
 import Data.String.Regex (regex)
 import Data.String.Regex (replace) as Regex
 import Data.String.Regex.Flags (global)
+
+-- | Pad a string on the left with a character to reach a minimum width
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> padLeft 2 "0" "5"
+-- | "05"
+-- |
+-- | >>> padLeft 4 " " "hi"
+-- | "  hi"
+-- |
+-- | >>> padLeft 2 "0" "123"
+-- | "123"
+-- | ```
+padLeft :: Int -> Char -> String -> String
+padLeft width padChar str =
+  let
+    padding = width - length str
+  in
+    ( padding <= 0
+        ? str
+        ↔ (fromCharArray (replicate padding padChar) <> str)
+    )
+
+-- | Pad a string on the right with a character to reach a minimum width
+-- |
+-- | Examples:
+-- | ```purescript
+-- | >>> padRight 4 " " "hi"
+-- | "hi  "
+-- |
+-- | >>> padRight 5 "0" "123"
+-- | "12300"
+-- | ```
+padRight :: Int -> Char -> String -> String
+padRight width padChar str =
+  let
+    padding = width - length str
+  in
+    ( padding <= 0
+        ? str
+        ↔ (str <> fromCharArray (replicate padding padChar))
+    )
 
 -- | Converts a string to a URL-friendly slug
 -- |
@@ -34,9 +80,9 @@ slugify str =
     # removeInvalidChars
     # removeConsecutiveDashes
     # trimDashes
-  where 
+  where
   replaceSpacesWithDashes :: String -> String
-  replaceSpacesWithDashes = replace (Pattern " ") (Replacement "-")
+  replaceSpacesWithDashes = replaceAll (Pattern " ") (Replacement "-")
 
   removeInvalidChars :: String -> String
   removeInvalidChars s =
@@ -61,33 +107,33 @@ slugify str =
 removeAccents :: String -> String
 removeAccents str =
   str
-    # replace (Pattern "é") (Replacement "e")
-    # replace (Pattern "è") (Replacement "e")
-    # replace (Pattern "ê") (Replacement "e")
-    # replace (Pattern "ë") (Replacement "e")
-    # replace (Pattern "à") (Replacement "a")
-    # replace (Pattern "â") (Replacement "a")
-    # replace (Pattern "ä") (Replacement "a")
-    # replace (Pattern "ô") (Replacement "o")
-    # replace (Pattern "ö") (Replacement "o")
-    # replace (Pattern "ù") (Replacement "u")
-    # replace (Pattern "û") (Replacement "u")
-    # replace (Pattern "ü") (Replacement "u")
-    # replace (Pattern "ï") (Replacement "i")
-    # replace (Pattern "î") (Replacement "i")
-    # replace (Pattern "ç") (Replacement "c")
-    # replace (Pattern "É") (Replacement "E")
-    # replace (Pattern "È") (Replacement "E")
-    # replace (Pattern "Ê") (Replacement "E")
-    # replace (Pattern "Ë") (Replacement "E")
-    # replace (Pattern "À") (Replacement "A")
-    # replace (Pattern "Â") (Replacement "A")
-    # replace (Pattern "Ä") (Replacement "A")
-    # replace (Pattern "Ô") (Replacement "O")
-    # replace (Pattern "Ö") (Replacement "O")
-    # replace (Pattern "Ù") (Replacement "U")
-    # replace (Pattern "Û") (Replacement "U")
-    # replace (Pattern "Ü") (Replacement "U")
-    # replace (Pattern "Ï") (Replacement "I")
-    # replace (Pattern "Î") (Replacement "I")
-    # replace (Pattern "Ç") (Replacement "C")
+    # replaceAll (Pattern "é") (Replacement "e")
+    # replaceAll (Pattern "è") (Replacement "e")
+    # replaceAll (Pattern "ê") (Replacement "e")
+    # replaceAll (Pattern "ë") (Replacement "e")
+    # replaceAll (Pattern "à") (Replacement "a")
+    # replaceAll (Pattern "â") (Replacement "a")
+    # replaceAll (Pattern "ä") (Replacement "a")
+    # replaceAll (Pattern "ô") (Replacement "o")
+    # replaceAll (Pattern "ö") (Replacement "o")
+    # replaceAll (Pattern "ù") (Replacement "u")
+    # replaceAll (Pattern "û") (Replacement "u")
+    # replaceAll (Pattern "ü") (Replacement "u")
+    # replaceAll (Pattern "ï") (Replacement "i")
+    # replaceAll (Pattern "î") (Replacement "i")
+    # replaceAll (Pattern "ç") (Replacement "c")
+    # replaceAll (Pattern "É") (Replacement "E")
+    # replaceAll (Pattern "È") (Replacement "E")
+    # replaceAll (Pattern "Ê") (Replacement "E")
+    # replaceAll (Pattern "Ë") (Replacement "E")
+    # replaceAll (Pattern "À") (Replacement "A")
+    # replaceAll (Pattern "Â") (Replacement "A")
+    # replaceAll (Pattern "Ä") (Replacement "A")
+    # replaceAll (Pattern "Ô") (Replacement "O")
+    # replaceAll (Pattern "Ö") (Replacement "O")
+    # replaceAll (Pattern "Ù") (Replacement "U")
+    # replaceAll (Pattern "Û") (Replacement "U")
+    # replaceAll (Pattern "Ü") (Replacement "U")
+    # replaceAll (Pattern "Ï") (Replacement "I")
+    # replaceAll (Pattern "Î") (Replacement "I")
+    # replaceAll (Pattern "Ç") (Replacement "C")

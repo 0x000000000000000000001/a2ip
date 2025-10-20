@@ -2,7 +2,7 @@ module Component.Common.Separator.Style.Sheet
   ( sheet
   ) where
 
-import Prelude (discard)
+import Proem (discard)
 import Component.Common.Separator.Style.Separator as Separator
 import Component.Common.Separator.Style.Text.Index as Text
 import Component.Common.Separator.Style.Wing.Index as Wing

@@ -5,9 +5,50 @@ module Component.Page.Seminars.Render
 import Proem hiding (div)
 
 import Capability.AppM (AppM)
-import Component.Page.Seminars.Type (Action, Slots, State)
+import Component.Common.Timeline.Component (component) as TimelineComponent
+import Component.Page.Seminars.Style.DateContent as DateContent
+import Component.Page.Seminars.Style.Seminars (classId)
+import Component.Page.Seminars.Style.Sheet (sheet)
+import Component.Page.Seminars.Style.Timeline as Timeline
+import Component.Page.Seminars.Type (Action, Slots, State, timeline)
+import Component.Util.Type (noOutputAction, noSlotAddressIndex)
+import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (text)
+import Halogen.HTML (div, slot, text)
+import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
-render _ = text "seminars"
+render _ =
+  div
+    [ class_ classId ]
+    [ sheet
+    , div
+        [ class_ Timeline.classId ]
+        [ slot
+            timeline
+            noSlotAddressIndex
+            TimelineComponent.component
+            { class_: Nothing
+            , dates:
+                [ { day: 1, month: 1, year: 2024 }
+                , { day: 15, month: 2, year: 25 }
+                , { day: 13, month: 3, year: 25 }
+                , { day: 13, month: 3, year: 25 }
+                , { day: 13, month: 4, year: 25 }
+                , { day: 13, month: 5, year: 25 }
+                , { day: 13, month: 6, year: 25 }
+                , { day: 13, month: 7, year: 25 }
+                , { day: 13, month: 8, year: 25 }
+                , { day: 13, month: 9, year: 25 }
+                , { day: 13, month: 10, year: 25 }
+                , { day: 13, month: 11, year: 25 }
+                , { day: 13, month: 12, year: 25 }
+                ]
+            }
+            noOutputAction
+        ]
+    , div
+        [ class_ DateContent.classId ]
+        [ text "datecontent"
+        ]
+    ]

@@ -13,6 +13,6 @@ component = mkComponent
   { initialState: κ {}
   , render
   , eval: mkEval defaultEval
-      { handleAction = handleAction
+      { handleAction = handleAction 
       } 
   }

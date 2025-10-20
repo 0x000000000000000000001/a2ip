@@ -1,0 +1,23 @@
+module Component.Common.Timeline.Style.Date
+  ( classId
+  , style
+  )
+  where
+
+import Proem hiding (top)
+
+import CSS (alignItems, justifyContent)
+import CSS as CSS
+import CSS.Common (center)
+import Util.Style (displayFlex, margin1, (.?))
+
+classId :: String
+classId = "JFD1v5Z7l"
+
+style :: CSS.CSS
+style = do
+  classId .? do
+    displayFlex
+    justifyContent center
+    alignItems center
+    margin1 2.0

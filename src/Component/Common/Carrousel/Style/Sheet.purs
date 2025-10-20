@@ -2,7 +2,7 @@ module Component.Common.Carrousel.Style.Sheet
   ( sheet
   ) where
 
-import Prelude (discard)
+import Proem (discard)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Component.Common.Carrousel.Style.Carrousel as Carrousel
