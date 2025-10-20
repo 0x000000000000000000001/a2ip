@@ -2,15 +2,22 @@ module Util.Style
   ( (&.)
   , (.&)
   , (.&.)
+  , (.&:)
   , (.?)
   , (.|*)
   , (.|*.)
+  , (.|*:)
   , (.|>)
   , (.|>.)
+  , (.|>:)
+  , (:&.)
   , (:?)
+  , (:|*.)
+  , (:|>.)
   , (|*.)
   , (|>.)
   , after
+  , backgroundColorNone
   , backgroundColorRed
   , backgroundColorWhite
   , backgroundWhite
@@ -45,6 +52,7 @@ module Util.Style
   , getRootFontSize
   , hash9
   , heightPct
+  , heightPct100
   , heightRem
   , left0
   , loading
@@ -93,7 +101,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, right, select, toHexString, top, width, wrap)
+import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
@@ -215,6 +223,9 @@ colorRed = color fontRed
 backgroundColorWhite :: CSS.CSS
 backgroundColorWhite = backgroundColor backgroundWhite
 
+backgroundColorNone :: CSS.CSS
+backgroundColorNone = backgroundColor $ rgba 0 0 0 0.0
+
 displayInlineBlock :: CSS.CSS
 displayInlineBlock = display inlineBlock
 
@@ -259,6 +270,9 @@ heightRem h = height (rem h)
 
 heightPct :: Number -> CSS.CSS
 heightPct h = height (pct h)
+
+heightPct100 :: CSS.CSS
+heightPct100 = heightPct 100.0
 
 minHeightRem :: Number -> CSS.CSS
 minHeightRem h = minHeight (rem h)
@@ -336,12 +350,14 @@ classChild :: String -> Selector -> Selector
 classChild a b = child (fromString $ "." <> stripDotPrefixFromClassName a) b
 
 infix 6 classChild as .|>
+infix 6 classChild as .|>:
 
 -- | See `classChild`
 childClass :: Selector -> String -> Selector
 childClass a b = child a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 childClass as |>.
+infix 6 childClass as :|>.
 
 -- | See `classChild`
 classChildClass :: String -> String -> Selector
@@ -355,12 +371,14 @@ classDeep :: String -> Selector -> Selector
 classDeep a b = deep (fromString $ "." <> stripDotPrefixFromClassName a) b
 
 infix 6 classDeep as .|*
+infix 6 classDeep as .|*:
 
 -- | See `classDeep`
 deepClass :: Selector -> String -> Selector
 deepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 deepClass as |*.
+infix 6 deepClass as :|*.
 
 -- | See `classDeep`
 classDeepClass :: String -> String -> Selector
@@ -375,12 +393,14 @@ classWith :: String -> Refinement -> Selector
 classWith s r = with (fromString $ "." <> stripDotPrefixFromClassName s) r
 
 infix 6 classWith as .&
+infix 6 classWith as .&:
 
 -- | See `classWith` 
 withClass :: Selector -> String -> Selector
 withClass s r = with s (fromString $ "." <> stripDotPrefixFromClassName r)
 
 infix 6 withClass as &.
+infix 6 withClass as :&.
 
 -- | See `classWith` 
 classWithClass :: String -> String -> Selector

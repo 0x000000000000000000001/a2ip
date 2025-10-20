@@ -5,7 +5,7 @@ module Component.Common.PrettyErrorImage.Render
 import Proem hiding (div)
 
 import Capability.AppM (AppM)
-import Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classIdWhenErrored)
+import Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classId, classIdWhenErrored)
 import Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import Component.Common.PrettyErrorImage.Type (Action(..), Slots, State)
@@ -16,7 +16,7 @@ import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (renderToArray)
-import Util.Style (class_, classes)
+import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -37,7 +37,7 @@ render s =
       ?
         ( div
             [ classes
-                $ [ classIdWhenErrored ]
+                $ [ classId, classIdWhenErrored ]
                 <> (s.class_ ?? (_ : []) ⇔ [])
             ]
             ( [ sheet ]
@@ -46,9 +46,12 @@ render s =
         )
       ↔
         ( img
-            $ (s.class_ ?? (\c -> [ class_ c ]) ⇔ [])
-            <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
-            <> [ onError \_ -> HandleError ]
+            $ [ classes
+                $ [ classId ]
+                <> (s.class_ ?? (_ : []) ⇔ [])
+              ]
+              <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
+              <> [ onError \_ -> HandleError ]
         )
 
 questionMarkSvg :: String -> String

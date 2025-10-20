@@ -104,12 +104,12 @@
     "body": "??⇽",
     "description": "Left ??⇽ (Either)"
   },
-  "?!⇒": {
+  "?!⇾": {
     "prefix": "eitherRight",
     "body": "??⇒",
     "description": "Right ??⇒ (Either)"
   },
-  "?!⇒ ": {
+  "?!⇾ ": {
     "prefix": "rightEither",
     "body": "??⇒",
     "description": "Right ??⇒ (Either)"

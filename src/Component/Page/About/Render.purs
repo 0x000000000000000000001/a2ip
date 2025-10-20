@@ -45,6 +45,7 @@ render s =
           { imageSources: 
               [  "/asset/image/component/page/about/person/1RCiW5ED73uSoJV5C07OuiKT_ECCNfgTo.png"
               , "/asset/image/component/page/about/person/christelle-evita.png"
+              , "/asset/image/component/page/about/person/christelle-evidta.png"
               , "/asset/image/component/page/about/person/kevin-francart.png"
               ]
           }

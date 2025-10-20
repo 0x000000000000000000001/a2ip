@@ -5,19 +5,26 @@ module Component.Common.Carrousel.Type
   , Query
   , Slots
   , State
+  , indexImage
   )
   where
 
-import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
+import Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex)
+import Halogen (Slot)
+import Type.Prelude (Proxy(..))
 
 type Input = 
   { imageSources :: Array String
   }
- 
+
 type Output = NoOutput
 
-type Slots :: ∀ k. Row k
-type Slots = NoSlots
+type Slots =
+  ( indexImage :: Slot PrettyErrorImage.Query PrettyErrorImage.Output NoSlotAddressIndex
+  )
+
+indexImage = Proxy :: Proxy "indexImage"
 
 type State = 
   { index :: Int
