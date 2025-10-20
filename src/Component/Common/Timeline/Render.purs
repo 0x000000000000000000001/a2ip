@@ -2,7 +2,7 @@ module Component.Common.Timeline.Render
   ( render
   ) where
 
-import Proem
+import Proem hiding (div)
 import Capability.AppM (AppM)
 import Component.Common.Timeline.Style.Date as Date
 import Component.Common.Timeline.Style.Dates as Dates
@@ -35,7 +35,7 @@ render s =
                     [ class_ Numbers.classId ]
                     [ div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d.day ]
                     , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d.month ]
-                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d.year ]
+                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show $ d.year `mod` 100 ]
                     ]
                 , div
                     [ class_ Pin.classId ]

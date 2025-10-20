@@ -15,4 +15,4 @@ classId = "tMm7IlU2V"
 style :: CSS.CSS
 style = do
   classId .? do
-    fontSizePct 130.0
+    fontSizePct 120.0

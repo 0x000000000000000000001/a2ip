@@ -7,7 +7,7 @@ module Component.Common.Timeline.Style.Pin
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (backgroundColorRed, heightRem, widthRem, (.?))
+import Util.Style (backgroundColorRed, borderRadius1, heightRem, widthRem, (.?))
 
 classId :: String
 classId = "a7j0ggkGu"
@@ -15,6 +15,7 @@ classId = "a7j0ggkGu"
 style :: CSS.CSS
 style = do
   classId .? do
-    widthRem 3.0
-    heightRem 3.0
+    widthRem 1.4
+    heightRem 1.4
+    borderRadius1 3.0
     backgroundColorRed

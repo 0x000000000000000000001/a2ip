@@ -21,7 +21,7 @@ style = do
     top0
     left (pct 50.0)
     transform $ translateX $ pct $ -50.0
-    widthRem 0.3
+    widthRem 0.24
     borderRadius1 1.0
     backgroundColorRed
     heightPct100
