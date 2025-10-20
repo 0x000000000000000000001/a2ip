@@ -9,7 +9,7 @@ module Component.Common.Timeline.Type
   )
   where
 
-import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Component.Util.Type (NoQuery, NoSlots)
 import Data.Maybe (Maybe)
 
 type Date = 

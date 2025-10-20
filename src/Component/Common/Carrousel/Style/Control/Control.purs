@@ -13,7 +13,7 @@ import CSS as CSS
 import CSS.Common (center)
 import Color (darken)
 import Component.Common.Carrousel.Style.Control.Icon as Icon
-import Util.Style (borderRadius1, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, left0, positionAbsolute, right0, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
+import Util.Style (borderRadius1, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, left0, leftRem, positionAbsolute, right0, rightRem, topPct50, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"
@@ -30,7 +30,7 @@ style = do
     positionAbsolute
     cursorPointer
     userSelectNone
-    top (pct 50.0)
+    topPct50
     backgroundColor $ rgba 0 0 0 0.75
     heightRem 5.0
     widthRem 5.0
@@ -47,14 +47,14 @@ style = do
     transform $ translate (pct $ -50.0) (pct $ -50.0)
 
   a___icon :? do
-    left (rem 1.0)
+    leftRem 1.0
 
   __next :? do
     right0
     transform $ translate (pct 50.0) (pct $ -50.0)
 
   b___icon :? do
-    right (rem 1.0)
+    rightRem 1.0
   
   where 
   __prev = classId .&. classIdWhenPrev

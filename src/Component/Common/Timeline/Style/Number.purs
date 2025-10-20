@@ -7,7 +7,7 @@ module Component.Common.Timeline.Style.Number
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (fontSizePct, (.?))
+import Util.Style (fontSizePct, userSelectNone, (.?))
 
 classId :: String
 classId = "tMm7IlU2V"
@@ -16,3 +16,4 @@ style :: CSS.CSS
 style = do
   classId .? do
     fontSizePct 120.0
+    userSelectNone

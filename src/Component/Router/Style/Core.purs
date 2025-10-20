@@ -13,7 +13,7 @@ import Component.Router.Menu.Style.Menu as MenuStyle
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, overflowHidden, padding1, raw, red, (.?), (:?))
+import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, padding1, raw, red, (.?), (:?))
 
 classId :: String
 classId = "MvOJiB63k"
@@ -32,7 +32,6 @@ style = do
     backgroundColorWhite
     padding1 1.0
     borderRadius1 0.6
-    overflowHidden 
     flexGrow1
 
   star :? do
