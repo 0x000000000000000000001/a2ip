@@ -5,7 +5,6 @@ module Component.Page.About.Render
 import Proem hiding (div)
 
 import Capability.AppM (AppM)
-import Component.Common.Carrousel.Component as Carrousel
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
 import Component.Common.Separator.Component as Separator
 import Component.Page.About.HandleAction (ourImageRelativePath)
@@ -17,8 +16,8 @@ import Component.Page.About.Style.Card.Portrait as CardPortrait
 import Component.Page.About.Style.Collaborators as Collaborators
 import Component.Page.About.Style.Members as Members
 import Component.Page.About.Style.Sheet (sheet)
-import Component.Page.About.Type (Action, Person, PersonRow, Slots, State, carrousel, collaborators, country, email, job, members, phone, portraits, role, separators)
-import Component.Util.Type (noOutputAction, noSlotAddressIndex)
+import Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, country, email, job, members, phone, portraits, role, separators)
+import Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex, replicate)
 import Data.Maybe (Maybe(..), isNothing)
 import Data.String (trim)
@@ -38,18 +37,6 @@ render s =
     [ class_ classId ]
     $
       [ sheet
-      , slot 
-          carrousel 
-          noSlotAddressIndex 
-          Carrousel.component  
-          { imageSources: 
-              [  "/asset/image/component/page/about/person/1RCiW5ED73uSoJV5C07OuiKT_ECCNfgTo.png"
-              , "/asset/image/component/page/about/person/christelle-evita.png"
-              , "/asset/image/component/page/about/person/christelle-evidta.png"
-              , "/asset/image/component/page/about/person/kevin-francart.png"
-              ]
-          }
-          noOutputAction
       , slot
           separators
           (ᴠ members)

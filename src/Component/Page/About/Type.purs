@@ -1,10 +1,9 @@
 module Component.Page.About.Type   where
 
 
-import Component.Common.Carrousel.Type as Carrousel
 import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Common.Separator.Type as Separator
-import Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import Component.Util.Type (NoInput, NoOutput, NoQuery)
 import Data.Maybe (Maybe)
 import Halogen (Slot)
 import Type.Prelude (Proxy(..))
@@ -16,12 +15,10 @@ type Output = NoOutput
 type Slots =
   ( portraits :: Slot PrettyErrorImage.Query PrettyErrorImage.Output String
   , separators :: Slot Separator.Query Separator.Output String
-  , carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
   )
 
 portraits = Proxy :: Proxy "portraits"
 separators = Proxy :: Proxy "separators"
-carrousel = Proxy :: Proxy "carrousel"
 
 type State =
   { members :: Maybe (Array Person)
