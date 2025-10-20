@@ -43,7 +43,7 @@ items =
   , ParentItem { label: "Adhésions", route: Nothing, iconFileName: "writing", children: [] }
   , ParentItem
       { label: "Séminaires"
-      , route: Nothing
+      , route: Just Seminars
       , iconFileName: "micro"
       , children:
           [ ChildItem { label: "Malaise dans la civilisation aujourd'hui", route: Nothing }

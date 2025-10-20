@@ -16,6 +16,7 @@ import Routing.Duplex.Generic (sum, noArgs)
 
 data Route
   = Home
+  | Seminars
   | About
 
 derive instance genericRoute :: Generic Route _
@@ -28,6 +29,7 @@ instance showRoute :: Show Route where
 routeCodec :: RouteDuplex' Route
 routeCodec = root $ sum
   { "Home": noArgs
+  , "Seminars": path "seminars" noArgs
   , "About": path "about" noArgs
   }
 
@@ -37,6 +39,7 @@ routePath = print routeCodec
 routeSubtitle :: Route -> String
 routeSubtitle route = case route of
   About -> "Bureau et collaborateurs"
+  Seminars -> "Séminaires"
   _ -> ""
 
 routeTitle :: Route -> String

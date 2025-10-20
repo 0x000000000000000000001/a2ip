@@ -22,8 +22,7 @@ import Util.Style (class_, classes)
 render :: State -> ComponentHTML Action Slots AppM
 render s = 
   div 
-  [ class_ classId
-  ]
+  [ class_ classId ]
   [ sheet
   , slot 
       indexImage 
