@@ -1,6 +1,6 @@
 module Component.Common.Timeline.Type
   ( Action(..)
-  , Date
+  , Date(..)
   , Input
   , Output(..)
   , Query
@@ -9,16 +9,21 @@ module Component.Common.Timeline.Type
   )
   where
 
+import Proem (class Eq)
 import Component.Util.Type (NoQuery, NoSlots)
 import Data.Maybe (Maybe)
+import Data.Newtype (class Newtype)
 
-type Date = 
-  { day :: Int 
+newtype Date = Date
+  { day :: Int
   , month :: Int
   , year :: Int
   }
 
-type Input = 
+derive instance newtypeDate :: Newtype Date _
+derive instance eqDate :: Eq Date
+
+type Input =
   { class_ :: Maybe String
   , dates :: Array Date
   }
