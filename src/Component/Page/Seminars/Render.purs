@@ -15,6 +15,7 @@ import Component.Page.Seminars.Style.Timeline as Timeline
 import Component.Page.Seminars.Type (Action, Slots, State, timeline)
 import Component.Util.Type (noSlotAddressIndex)
 import Data.Maybe (Maybe(..))
+import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, slot, text)
 import Util.Style (class_)

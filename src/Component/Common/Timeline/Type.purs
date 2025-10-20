@@ -9,10 +9,13 @@ module Component.Common.Timeline.Type
   )
   where
 
-import Proem (class Eq)
+import Proem
+
 import Component.Util.Type (NoQuery, NoSlots)
+import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe)
 import Data.Newtype (class Newtype)
+import Data.Show.Generic (genericShow)
 
 newtype Date = Date
   { day :: Int
@@ -22,6 +25,9 @@ newtype Date = Date
 
 derive instance newtypeDate :: Newtype Date _
 derive instance eqDate :: Eq Date
+derive instance genericDate :: Generic Date _
+instance showDate :: Show Date where
+  show = genericShow
 
 type Input =
   { class_ :: Maybe String

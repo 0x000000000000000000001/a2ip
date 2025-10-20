@@ -15,6 +15,7 @@ import Component.Common.Timeline.Style.Sheet (sheet)
 import Component.Common.Timeline.Style.Timeline (classId)
 import Component.Common.Timeline.Type (Action(..), Slots, State)
 import Data.Array (nubEq)
+import Data.DateTime (date)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
@@ -38,8 +39,8 @@ render s =
             in ( div
                 [ classes $ 
                     [Date.classId] 
-                    <> (Just d == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
-                , onClick $ κ $ SelectDate d
+                    <> (Just date == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
+                , onClick $ κ $ SelectDate date
                 ]
                 [ div
                     [ class_ Numbers.classId ]
