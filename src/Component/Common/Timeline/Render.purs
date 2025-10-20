@@ -14,11 +14,12 @@ import Component.Common.Timeline.Style.Pin as Pin
 import Component.Common.Timeline.Style.Sheet (sheet)
 import Component.Common.Timeline.Style.Timeline (classId)
 import Component.Common.Timeline.Type (Action(..), Slots, State)
+import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Util.String (padLeft)
-import Util.Style (class_)
+import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -32,7 +33,9 @@ render s =
         [ class_ Dates.classId ]
         ( s.dates <#> \d ->
             ( div
-                [ class_ Date.classId
+                [ classes $ 
+                    [Date.classId] 
+                    <> (Just d == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
                 , onClick $ κ $ SelectDate d
                 ]
                 [ div

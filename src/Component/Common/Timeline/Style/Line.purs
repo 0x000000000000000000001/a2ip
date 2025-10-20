@@ -6,10 +6,11 @@ module Component.Common.Timeline.Style.Line
 
 import Proem hiding (top)
 
-import CSS (left, pct, transform)
+import CSS (backgroundColor, pct, transform)
 import CSS as CSS
 import CSS.Transform (translateX)
-import Util.Style (backgroundColorRed, borderRadius1, heightPct100, leftPct50, positionAbsolute, top0, widthRem, (.?))
+import Component.Common.Timeline.Style.Util (grey)
+import Util.Style (borderRadius1, heightPct100, leftPct50, positionAbsolute, top0, widthRem, (.?))
 
 classId :: String
 classId = "wN3cW8fkU"
@@ -23,5 +24,5 @@ style = do
     transform $ translateX $ pct $ -50.0
     widthRem 0.24
     borderRadius1 1.0
-    backgroundColorRed
+    backgroundColor grey
     heightPct100
