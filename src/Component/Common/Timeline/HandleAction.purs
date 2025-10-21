@@ -5,9 +5,8 @@ module Component.Common.Timeline.HandleAction
 
 import Proem
 
-import Capability.AppM (AppM)
 import Capability.Log (debug)
-import Component.Common.Timeline.Type (Action(..), Date(..), Output(..), Slots, State)
+import Component.Common.Timeline.Type (Action(..), ComponentM, Date(..), Output(..))
 import Data.Array (nubEq, mapMaybe, (!!))
 import Data.Foldable (for_, minimumBy)
 import Data.Int (fromString, toNumber)
@@ -20,10 +19,10 @@ import Data.Traversable (traverse)
 import Effect.Aff (delay)
 import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
-import Halogen (HalogenM, fork, get, kill, modify_, raise, subscribe)
+import Halogen (fork, get, kill, modify_, raise, subscribe)
 import Halogen.Query.Event (eventListener)
 import Web.DOM.Document (toEventTarget)
-import Web.DOM.Element (fromNode, getAttribute, getBoundingClientRect)
+import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (QuerySelector(..), querySelectorAll)
 import Web.Event.Event (EventType(..))
@@ -31,7 +30,7 @@ import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
 import Web.HTML.Window (document, innerHeight)
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of 
   Initialize -> do
     doc <- liftEffect $ document =<< window
@@ -79,7 +78,7 @@ parseDate str = do
   pure $ Date { day, month, year }
 
 -- | Select the date element that is closest to the center of the screen
-selectDateClosestToScreenCenter :: HalogenM State Action Slots Output AppM Unit
+selectDateClosestToScreenCenter :: ComponentM Unit
 selectDateClosestToScreenCenter = do
   maybeElements <- getDateElements
   case maybeElements of
@@ -90,7 +89,7 @@ selectDateClosestToScreenCenter = do
       selectClosestDate distancesWithDates
 
 -- | Check if a date element is visible on screen
-isDateVisible :: Date -> HalogenM State Action Slots Output AppM Boolean
+isDateVisible :: Date -> ComponentM Boolean
 isDateVisible date = liftEffect do
   let d = unwrap date
       dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
@@ -110,7 +109,7 @@ isDateVisible date = liftEffect do
     _ -> pure false
 
 -- | Select the closest date only if the currently selected date is not visible
-selectDateClosestToScreenCenterIfNeeded :: HalogenM State Action Slots Output AppM Unit
+selectDateClosestToScreenCenterIfNeeded :: ComponentM Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
   case state.selectedDate of
@@ -120,7 +119,7 @@ selectDateClosestToScreenCenterIfNeeded = do
       unless isVisible selectDateClosestToScreenCenter
 
 -- | Get all date elements from the DOM
-getDateElements :: HalogenM State Action Slots Output AppM (Maybe (Array _))
+getDateElements :: ComponentM (Maybe (Array Element))
 getDateElements = liftEffect do
   win <- window
   doc <- document win
@@ -132,7 +131,7 @@ getDateElements = liftEffect do
     _ -> pure $ Just elements
 
 -- | Get the vertical center of the screen
-getScreenCenter :: HalogenM State Action Slots Output AppM Number
+getScreenCenter :: ComponentM Number
 getScreenCenter = liftEffect do
   win <- window
   screenHeight <- innerHeight win
@@ -140,9 +139,9 @@ getScreenCenter = liftEffect do
 
 -- | Calculate the distance from screen center for each element
 calculateDistancesFromCenter 
-  :: Array _
+  :: Array Element
   -> Number
-  -> HalogenM State Action Slots Output AppM (Array { distance :: Number, dataDate :: Maybe String })
+  -> ComponentM (Array { distance :: Number, dataDate :: Maybe String })
 calculateDistancesFromCenter elements screenCenter = 
   liftEffect $ traverse (\el -> do
     rect <- getBoundingClientRect el
@@ -155,7 +154,7 @@ calculateDistancesFromCenter elements screenCenter =
 -- | Select the date closest to the center
 selectClosestDate 
   :: Array { distance :: Number, dataDate :: Maybe String }
-  -> HalogenM State Action Slots Output AppM Unit
+  -> ComponentM Unit
 selectClosestDate distancesWithDates = 
   case minimumBy (\a b -> compare a.distance b.distance) distancesWithDates of
     Nothing -> pure ι

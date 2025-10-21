@@ -1,5 +1,6 @@
 module Component.Common.Timeline.Type
   ( Action(..)
+  , ComponentM
   , Date(..)
   , Input
   , Output(..)
@@ -11,11 +12,13 @@ module Component.Common.Timeline.Type
 
 import Proem
 
+import Capability.AppM (AppM)
 import Component.Util.Type (NoQuery, NoSlots)
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe)
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
+import Halogen (HalogenM)
 import Halogen.Query (ForkId)
 
 newtype Date = Date
@@ -57,3 +60,5 @@ data Action
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a
