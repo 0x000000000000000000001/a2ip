@@ -33,7 +33,7 @@ handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
   Initialize -> do
     doc <- liftEffect $ document =<< window
-    subscribe' $ const $ eventListener
+    subscribe' $ κ $ eventListener
       scroll
       (toEventTarget $ toDocument doc)
       (κ $ Just HandleScroll)
