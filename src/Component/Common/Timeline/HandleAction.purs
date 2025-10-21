@@ -63,38 +63,7 @@ handleAction = case _ of
   HandleScrollEnd -> do
     debug "Scroll ended"
     modify_ _ { scrollFork = Nothing }
-    
-    -- Find the date element closest to the center of the screen
-    win <- liftEffect window
-    doc <- liftEffect $ document win
-    screenHeight <- liftEffect $ innerHeight win
-    let screenCenter = toNumber screenHeight / 2.0
-    
-    nodeList <- liftEffect $ querySelectorAll (QuerySelector "[data-date]") (toParentNode doc)
-    nodes <- liftEffect $ toArray nodeList
-    let elements = nodes # mapMaybe fromNode
-    
-    -- Calculate distance from center for each element
-    distancesWithDates <- liftEffect $ traverse (\el -> do
-      rect <- getBoundingClientRect el
-      let elementCenter = rect.top + (rect.height / 2.0)
-          distance = abs (elementCenter - screenCenter)
-      maybeDataDate <- getAttribute "data-date" el
-      pure { distance, dataDate: maybeDataDate, element: el }
-    ) elements
-    
-    -- Find the element closest to center
-    case minimumBy (\a b -> compare a.distance b.distance) distancesWithDates of
-      Nothing -> pure ι
-      Just closest -> 
-        case closest.dataDate of
-          Nothing -> pure ι
-          Just dateStr -> do
-            -- Parse date string (format: "day-month-year")
-            case parseDate dateStr of
-              Nothing -> pure ι
-              Just date -> handleAction $ SelectDate date
-    
+    selectDateClosestToScreenCenter
     ηι
 
 parseDate :: String -> Maybe Date
@@ -107,3 +76,59 @@ parseDate str = do
   month <- fromString monthStr
   year <- fromString yearStr
   pure $ Date { day, month, year }
+
+-- | Select the date element that is closest to the center of the screen
+selectDateClosestToScreenCenter :: HalogenM State Action Slots Output AppM Unit
+selectDateClosestToScreenCenter = do
+  maybeElements <- getDateElements
+  case maybeElements of
+    Nothing -> pure ι
+    Just elements -> do
+      screenCenter <- getScreenCenter
+      distancesWithDates <- calculateDistancesFromCenter elements screenCenter
+      selectClosestDate distancesWithDates
+
+-- | Get all date elements from the DOM
+getDateElements :: HalogenM State Action Slots Output AppM (Maybe (Array _))
+getDateElements = liftEffect do
+  win <- window
+  doc <- document win
+  nodeList <- querySelectorAll (QuerySelector "[data-date]") (toParentNode doc)
+  nodes <- toArray nodeList
+  let elements = nodes # mapMaybe fromNode
+  case elements of
+    [] -> pure Nothing
+    _ -> pure $ Just elements
+
+-- | Get the vertical center of the screen
+getScreenCenter :: HalogenM State Action Slots Output AppM Number
+getScreenCenter = liftEffect do
+  win <- window
+  screenHeight <- innerHeight win
+  pure $ toNumber screenHeight / 2.0
+
+-- | Calculate the distance from screen center for each element
+calculateDistancesFromCenter 
+  :: Array _
+  -> Number
+  -> HalogenM State Action Slots Output AppM (Array { distance :: Number, dataDate :: Maybe String })
+calculateDistancesFromCenter elements screenCenter = 
+  liftEffect $ traverse (\el -> do
+    rect <- getBoundingClientRect el
+    let elementCenter = rect.top + (rect.height / 2.0)
+        distance = abs (elementCenter - screenCenter)
+    maybeDataDate <- getAttribute "data-date" el
+    pure { distance, dataDate: maybeDataDate }
+  ) elements
+
+-- | Select the date closest to the center
+selectClosestDate 
+  :: Array { distance :: Number, dataDate :: Maybe String }
+  -> HalogenM State Action Slots Output AppM Unit
+selectClosestDate distancesWithDates = 
+  case minimumBy (\a b -> compare a.distance b.distance) distancesWithDates of
+    Nothing -> pure ι
+    Just closest -> 
+      for_ closest.dataDate \dateStr -> 
+        for_ (parseDate dateStr) \date -> 
+          handleAction $ SelectDate date
