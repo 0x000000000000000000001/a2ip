@@ -1,7 +1,6 @@
 module Component.Common.Timeline.HandleAction
   ( handleAction
-  )
-  where
+  ) where
 
 import Proem
 
@@ -21,6 +20,7 @@ import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
 import Halogen (fork, get, kill, modify_, raise, subscribe)
 import Halogen.Query.Event (eventListener)
+import Util.Html.Dom (isVisible)
 import Web.DOM.Document (toEventTarget)
 import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
@@ -31,7 +31,7 @@ import Web.HTML.HTMLDocument (toDocument, toParentNode)
 import Web.HTML.Window (document, innerHeight)
 
 handleAction :: Action -> ComponentM Unit
-handleAction = case _ of 
+handleAction = case _ of
   Initialize -> do
     doc <- liftEffect $ document =<< window
     void $ subscribe $ eventListener
@@ -39,32 +39,30 @@ handleAction = case _ of
       (toEventTarget $ toDocument doc)
       (κ $ Just HandleScroll)
 
-  Finalize -> 
+  Finalize ->
     pure unit
 
-  SelectDate date -> do 
+  SelectDate date -> do
     modify_ _ { selectedDate = Just date }
     raise $ SelectedDate date
-    
-  Receive input -> 
+
+  Receive input ->
     modify_ _ { class_ = input.class_, dates = input.dates # nubEq }
-    
+
   HandleScroll -> do
-    debug "Scroll"
     state <- get
     for_ state.scrollFork kill
-    
+
     forkId <- fork do
       liftAff $ delay $ Milliseconds 150.0
       handleAction HandleScrollEnd
-      
+
     modify_ _ { scrollFork = Just forkId }
-    
+
   HandleScrollEnd -> do
-    debug "Scroll ended"
     modify_ _ { scrollFork = Nothing }
+
     selectDateClosestToScreenCenterIfNeeded
-    ηι
 
 parseDate :: String -> Maybe Date
 parseDate str = do
@@ -81,42 +79,33 @@ parseDate str = do
 selectDateClosestToScreenCenter :: ComponentM Unit
 selectDateClosestToScreenCenter = do
   maybeElements <- getDateElements
-  case maybeElements of
-    Nothing -> pure ι
-    Just elements -> do
-      screenCenter <- getScreenCenter
-      distancesWithDates <- calculateDistancesFromCenter elements screenCenter
-      selectClosestDate distancesWithDates
-
--- | Check if a date element is visible on screen
-isDateVisible :: Date -> ComponentM Boolean
-isDateVisible date = liftEffect do
-  let d = unwrap date
-      dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
-  win <- window
-  doc <- document win
-  screenHeight <- toNumber <$> innerHeight win
-  
-  nodeList <- querySelectorAll (QuerySelector $ "[data-date=\"" <> dateId <> "\"]") (toParentNode doc)
-  nodes <- toArray nodeList
-  let elements = nodes # mapMaybe fromNode
-  
-  case elements of
-    [] -> pure false
-    [element] -> do
-      rect <- getBoundingClientRect element
-      pure $ rect.top >= 0.0 && rect.bottom <= screenHeight
-    _ -> pure false
+  maybeElements
+    ??
+      ( \elements -> do
+          screenCenter <- getScreenCenter
+          distancesWithDates <- calculateDistancesFromCenter elements screenCenter
+          selectClosestDate distancesWithDates
+      )
+    ⇔ ηι
 
 -- | Select the closest date only if the currently selected date is not visible
 selectDateClosestToScreenCenterIfNeeded :: ComponentM Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
-  case state.selectedDate of
-    Nothing -> selectDateClosestToScreenCenter
-    Just selectedDate -> do
-      isVisible <- isDateVisible selectedDate
-      unless isVisible selectDateClosestToScreenCenter
+  state.selectedDate
+    ??
+      ( \selectedDate -> do
+          isVisible <- isDateVisible selectedDate
+          unless isVisible selectDateClosestToScreenCenter
+      )
+    ⇔ selectDateClosestToScreenCenter
+
+isDateVisible :: Date -> ComponentM Boolean
+isDateVisible date = do
+  let
+    d = unwrap date
+    dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
+  isVisible (QuerySelector $ "[data-date=\"" <> dateId <> "\"]")
 
 -- | Get all date elements from the DOM
 getDateElements :: ComponentM (Maybe (Array Element))
@@ -138,27 +127,30 @@ getScreenCenter = liftEffect do
   pure $ toNumber screenHeight / 2.0
 
 -- | Calculate the distance from screen center for each element
-calculateDistancesFromCenter 
+calculateDistancesFromCenter
   :: Array Element
   -> Number
   -> ComponentM (Array { distance :: Number, dataDate :: Maybe String })
-calculateDistancesFromCenter elements screenCenter = 
-  liftEffect $ traverse (\el -> do
-    rect <- getBoundingClientRect el
-    let elementCenter = rect.top + (rect.height / 2.0)
-        distance = abs (elementCenter - screenCenter)
-    maybeDataDate <- getAttribute "data-date" el
-    pure { distance, dataDate: maybeDataDate }
-  ) elements
+calculateDistancesFromCenter elements screenCenter =
+  liftEffect $ traverse
+    ( \el -> do
+        rect <- getBoundingClientRect el
+        let
+          elementCenter = rect.top + (rect.height / 2.0)
+          distance = abs (elementCenter - screenCenter)
+        maybeDataDate <- getAttribute "data-date" el
+        pure { distance, dataDate: maybeDataDate }
+    )
+    elements
 
 -- | Select the date closest to the center
-selectClosestDate 
+selectClosestDate
   :: Array { distance :: Number, dataDate :: Maybe String }
   -> ComponentM Unit
-selectClosestDate distancesWithDates = 
+selectClosestDate distancesWithDates =
   case minimumBy (\a b -> compare a.distance b.distance) distancesWithDates of
     Nothing -> pure ι
-    Just closest -> 
-      for_ closest.dataDate \dateStr -> 
-        for_ (parseDate dateStr) \date -> 
+    Just closest ->
+      for_ closest.dataDate \dateStr ->
+        for_ (parseDate dateStr) \date ->
           handleAction $ SelectDate date
