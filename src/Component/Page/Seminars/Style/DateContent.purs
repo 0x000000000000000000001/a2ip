@@ -7,7 +7,7 @@ import Proem hiding (top)
 
 import CSS (height, vh)
 import CSS as CSS
-import Util.Style (flexGrow1, padding1, positionSticky, topRem, widthRem, (.?))
+import Util.Style (flexGrow1, padding1, positionSticky, top0, widthRem, (.?))
 
 classId :: String
 classId = "pj4FI9hBM"
@@ -18,6 +18,6 @@ style = do
     widthRem 1.0
     flexGrow1
     positionSticky
-    topRem 1.0
+    top0
     height $ vh 100.0
     padding1 2.0

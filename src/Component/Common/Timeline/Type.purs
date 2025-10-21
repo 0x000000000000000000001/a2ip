@@ -16,6 +16,7 @@ import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe)
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
+import Halogen.Query (ForkId)
 
 newtype Date = Date
   { day :: Int
@@ -43,9 +44,16 @@ type State =
   { class_ :: Maybe String
   , dates :: Array Date
   , selectedDate :: Maybe Date
+  , scrollFork :: Maybe ForkId
   }
 
-data Action = SelectDate Date | Receive Input
+data Action 
+  = Initialize
+  | Finalize
+  | SelectDate Date 
+  | Receive Input
+  | HandleScroll
+  | HandleScrollEnd
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

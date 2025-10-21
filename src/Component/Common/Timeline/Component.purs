@@ -21,10 +21,13 @@ component = mkComponent
         { class_: input.class_
         , dates
         , selectedDate: dates !! 0
+        , scrollFork: Nothing
         }
   , render
   , eval: mkEval defaultEval
       { handleAction = handleAction
       , receive = Just ◁ Receive
+      , initialize = Just Initialize
+      , finalize = Just Finalize
       }
   }

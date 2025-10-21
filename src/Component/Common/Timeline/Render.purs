@@ -18,14 +18,20 @@ import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
+import Halogen.HTML.Core (AttrName(..), attr)
 import Halogen.HTML.Events (onClick)
+import Halogen.HTML.Properties as HP
 import Util.String (padLeft)
 import Util.Style (class_, classes)
+
+dataAttr :: ∀ r i. String -> String -> HP.IProp r i
+dataAttr name value = HP.IProp (attr Nothing (AttrName name) value)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   div
-    [ class_ classId ]
+    [ class_ classId
+    ]
     [ sheet
     , div
         [ class_ Line.classId ]
@@ -34,11 +40,13 @@ render s =
         [ class_ Dates.classId ]
         ( s.dates <#> \date ->
             let d = unwrap date
+                dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
             in ( div
                 [ classes $ 
                     [Date.classId] 
                     <> (Just date == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
                 , onClick $ κ $ SelectDate date
+                , dataAttr "data-date" dateId
                 ]
                 [ div
                     [ class_ Numbers.classId ]
