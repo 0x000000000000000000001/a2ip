@@ -35,8 +35,8 @@ handleAction = case _ of
     doc <- liftEffect $ document =<< window
     subscribe' $ κ $ eventListener
       scroll
-      (toEventTarget $ toDocument doc)
-      (κ $ Just HandleScroll)
+      (doc # toDocument # toEventTarget)
+      (HandleScroll # Just # κ)
 
   SelectDate date -> do
     modify_ _ { selectedDate = Just date }
@@ -50,7 +50,7 @@ handleAction = case _ of
     for_ state.scrollFork kill
 
     forkId <- fork do
-      liftAff $ delay $ Milliseconds 150.0
+      (delay $ Milliseconds 150.0) # liftAff
       handleAction HandleScrollEnd
 
     modify_ _ { scrollFork = Just forkId }

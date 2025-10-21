@@ -20,6 +20,6 @@ downloadImage url filePath = do
     ?! (\res -> do
       buffer <- liftEffect $ fromArrayBuffer res.body
       writeFile filePath buffer
-      η $ Right ι
+      Right ι # η
     )
     ⇿ (η ◁ Left)
