@@ -13,6 +13,6 @@ infixr 9 compose as ◁
 
 infixr 9 composeFlipped as ▷
 
-κ :: forall a b. a -> b -> a
+κ :: ∀ a b. a -> b -> a
 κ = const
 

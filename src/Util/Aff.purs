@@ -15,7 +15,7 @@ import Util.Effect.Timer (IntervalId, clearInterval, setInterval)
 -- | Wraps an Aff action, ensuring the Node.js process does not exit prematurely
 -- | by creating a timer handle that is active for the duration of the Aff.
 -- | Guarantees cleanup even if the action throws an exception.
-keepAlive :: forall m a. MonadAff m => MonadError Error m => m a -> m a
+keepAlive :: ∀ m a. MonadAff m => MonadError Error m => m a -> m a
 keepAlive action = do
   id <- liftAff acquire
   catchError 

@@ -1,12 +1,9 @@
 module Component.Common.Separator.Render
   ( render
-  )
-  where
-
-import Proem (not, ($), (&&), (<>), (?), (↔))
+  ) where
 
 import Capability.AppM (AppM)
-import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading)
+import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading, classIdWithSofa)
 import Component.Common.Separator.Style.Sheet (sheet)
 import Component.Common.Separator.Style.Text.Sofa as Sofa
 import Component.Common.Separator.Style.Text.Text as Text
@@ -17,23 +14,30 @@ import Component.Util.Type (noHtml)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Html.Renderer.Halogen (render_)
+import Proem (not, ($), (&&), (<>), (?), (↔))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s = 
-  div 
-  [ classes $ [ classId ] <> (s.loading ? [ classIdWhenLoading ] ↔ []) ]
-  [ sheet
-  , s.withWings ? (div [ classes [Wing.classId, Wing.classIdWhenNth 1] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
-  , div [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
-  , s.withWings ? (div [ classes [Wing.classId, Wing.classIdWhenNth 2] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
-  ]
+render s =
+  div
+    [ classes
+        $ [ classId ]
+        <> (s.loading ? [ classIdWhenLoading ] ↔ [])
+        <> (s.withSofa ? [ classIdWithSofa ] ↔ [])
+    ]
+    [ sheet
+    , s.withWings ? (div [ classes [ Wing.classId, Wing.classIdWhenNth 1 ] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
+    , div [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
+    , s.withWings ? (div [ classes [ Wing.classId, Wing.classIdWhenNth 2 ] ] [ div [ class_ End.classId ] [] ]) ↔ noHtml
+    ]
 
 sofaSvg :: String -> String
-sofaSvg classId = """ 
+sofaSvg classId =
+  """ 
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg class=""" <> classId <> """ version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+<svg class=""" <> classId <>
+    """ version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 456.333 456.333" xml:space="preserve">
 <path stroke="currentColor" stroke-width="6" d="M440.569,148.525c-1.542-0.129-3.073-0.131-4.587-0.034v-0.004l-37.159,0.029c-8.206,0-14.913,1.769-20.237,5.33
 	c-0.266-4.369-0.818-9.983-1.963-15.135c-1.609-7.234-8.188-12.485-15.643-12.485H228.167H95.353
