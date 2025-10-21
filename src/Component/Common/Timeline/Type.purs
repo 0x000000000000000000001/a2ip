@@ -56,8 +56,8 @@ data Action
   = Initialize
   | SelectDate Date 
   | Receive Input
-  | HandleScroll
-  | HandleScrollEnd
+  | HandleDocScroll
+  | HandleDocScrollEnd
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

@@ -36,7 +36,7 @@ handleAction = case _ of
     subscribe' $ κ $ eventListener
       scroll
       (doc # toDocument # toEventTarget)
-      (HandleScroll # Just # κ)
+      (HandleDocScroll # Just # κ)
 
   SelectDate date -> do
     modify_ _ { selectedDate = Just date }
@@ -45,17 +45,17 @@ handleAction = case _ of
   Receive input ->
     modify_ _ { class_ = input.class_, dates = input.dates # nubEq }
 
-  HandleScroll -> do
+  HandleDocScroll -> do
     state <- get
     for_ state.scrollFork kill
 
     forkId <- fork do
       (delay $ Milliseconds 150.0) # liftAff
-      handleAction HandleScrollEnd
+      handleAction HandleDocScrollEnd
 
     modify_ _ { scrollFork = Just forkId }
 
-  HandleScrollEnd -> do
+  HandleDocScrollEnd -> do
     modify_ _ { scrollFork = Nothing }
 
     selectDateClosestToScreenCenterIfNeeded
