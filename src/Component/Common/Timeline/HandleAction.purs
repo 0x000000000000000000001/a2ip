@@ -17,15 +17,14 @@ import Data.Traversable (traverse)
 import Effect.Aff (delay)
 import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
-import Halogen (fork, get, kill, modify_, raise, subscribe)
+import Halogen (fork, get, kill, modify_, raise, subscribe')
 import Halogen.Query.Event (eventListener)
-import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible)
+import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scroll)
 import Util.Window (getScreenVerticalCenter)
 import Web.DOM.Document (toEventTarget)
 import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (querySelectorAll)
-import Web.Event.Event (EventType(..))
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
 import Web.HTML.Window (document)
@@ -34,13 +33,10 @@ handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
   Initialize -> do
     doc <- liftEffect $ document =<< window
-    void $ subscribe $ eventListener
-      (EventType "scroll")
+    subscribe' $ const $ eventListener
+      scroll
       (toEventTarget $ toDocument doc)
       (κ $ Just HandleScroll)
-
-  Finalize ->
-    pure unit
 
   SelectDate date -> do
     modify_ _ { selectedDate = Just date }

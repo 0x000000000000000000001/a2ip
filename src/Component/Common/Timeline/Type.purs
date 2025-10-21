@@ -54,7 +54,6 @@ type State =
 
 data Action 
   = Initialize
-  | Finalize
   | SelectDate Date 
   | Receive Input
   | HandleScroll

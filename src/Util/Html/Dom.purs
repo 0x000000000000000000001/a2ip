@@ -1,9 +1,11 @@
 module Util.Html.Dom
-  ( dataAttr
+  ( scroll
+  , dataAttr
   , dataAttrPrefixed
   , dataAttrQuerySelector
   , isVisible
-  ) where
+  )
+  where
 
 import Proem
 
@@ -18,6 +20,7 @@ import Type.Prelude (class IsSymbol, Proxy)
 import Web.DOM.Element (fromNode, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (QuerySelector(..), querySelectorAll)
+import Web.Event.Event (EventType(..))
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toParentNode)
 import Web.HTML.Window (document, innerHeight)
@@ -56,3 +59,6 @@ isVisible sel = liftEffect do
       rect <- getBoundingClientRect element
       pure $ rect.top >= 0.0 && rect.bottom <= screenHeight
     _ -> pure false
+
+scroll :: EventType
+scroll = EventType "scroll"
