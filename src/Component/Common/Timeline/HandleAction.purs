@@ -54,7 +54,7 @@ handleAction = case _ of
     for_ state.scrollFork kill
 
     forkId <- fork do
-      liftAff $ delay $ Milliseconds 300.0
+      liftAff $ delay $ Milliseconds 150.0
       handleAction HandleScrollEnd
 
     modify_ _ { scrollFork = Just forkId }
