@@ -4,10 +4,10 @@ module Component.Page.Seminars.HandleAction
 
 import Proem
 
-import Component.Page.Seminars.Type (Action(..), ComponentM)
+import Component.Page.Seminars.Type (Action(..), SeminarsM)
 import Data.Maybe (Maybe(..))
 import Halogen (modify_)
 
-handleAction :: Action -> ComponentM Unit
+handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
   SelectDate date -> modify_ _ { selectedDate = Just date }

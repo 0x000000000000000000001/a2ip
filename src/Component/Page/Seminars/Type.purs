@@ -44,5 +44,5 @@ data Action = SelectDate Date
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type SeminarsM a = HalogenM State Action Slots Output AppM a
 

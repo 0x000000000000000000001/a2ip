@@ -4,7 +4,7 @@ module Component.Common.Timeline.HandleAction
 
 import Proem
 
-import Component.Common.Timeline.Type (Action(..), ComponentM, Date(..), Output(..), date)
+import Component.Common.Timeline.Type (Action(..), TimelineM, Date(..), Output(..), date)
 import Data.Array (nubEq, mapMaybe, (!!))
 import Data.Foldable (for_, minimumBy)
 import Data.Int (fromString)
@@ -29,7 +29,7 @@ import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
 import Web.HTML.Window (document)
 
-handleAction :: Action -> ComponentM Unit
+handleAction :: Action -> TimelineM Unit
 handleAction = case _ of
   Initialize -> do
     doc <- liftEffect $ document =<< window
@@ -72,7 +72,7 @@ parseDate str = do
   pure $ Date { day, month, year }
 
 -- | Select the date element that is closest to the center of the screen
-selectDateClosestToScreenCenter :: ComponentM Unit
+selectDateClosestToScreenCenter :: TimelineM Unit
 selectDateClosestToScreenCenter = do
   maybeElements <- getDateElements
   maybeElements
@@ -85,7 +85,7 @@ selectDateClosestToScreenCenter = do
     ⇔ ηι
 
 -- | Select the closest date only if the currently selected date is not visible
-selectDateClosestToScreenCenterIfNeeded :: ComponentM Unit
+selectDateClosestToScreenCenterIfNeeded :: TimelineM Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
   state.selectedDate
@@ -96,7 +96,7 @@ selectDateClosestToScreenCenterIfNeeded = do
       )
     ⇔ selectDateClosestToScreenCenter
 
-isDateVisible :: Date -> ComponentM Boolean
+isDateVisible :: Date -> TimelineM Boolean
 isDateVisible date_ = do
   let
     d = unwrap date_
@@ -104,7 +104,7 @@ isDateVisible date_ = do
   isVisible (dataAttrQuerySelector date (Just dateId))
 
 -- | Get all date elements from the DOM
-getDateElements :: ComponentM (Maybe (Array Element))
+getDateElements :: TimelineM (Maybe (Array Element))
 getDateElements = liftEffect do
   win <- window
   doc <- document win
@@ -119,7 +119,7 @@ getDateElements = liftEffect do
 calculateDistancesFromCenter
   :: Array Element
   -> Number
-  -> ComponentM (Array { distance :: Number, dataDate :: Maybe String })
+  -> TimelineM (Array { distance :: Number, dataDate :: Maybe String })
 calculateDistancesFromCenter elements screenCenter =
   liftEffect $ traverse
     ( \el -> do
@@ -135,7 +135,7 @@ calculateDistancesFromCenter elements screenCenter =
 -- | Select the date closest to the center
 selectClosestDate
   :: Array { distance :: Number, dataDate :: Maybe String }
-  -> ComponentM Unit
+  -> TimelineM Unit
 selectClosestDate distancesWithDates =
   minimumBy (\a b -> compare a.distance b.distance) distancesWithDates
     ??

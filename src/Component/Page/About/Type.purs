@@ -34,7 +34,7 @@ data Action = Load
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type AboutM a = HalogenM State Action Slots Output AppM a
 
 type PersonRow = 
   ( lastname :: String

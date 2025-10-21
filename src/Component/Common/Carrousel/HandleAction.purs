@@ -4,11 +4,11 @@ module Component.Common.Carrousel.HandleAction
 
 import Proem
 
-import Component.Common.Carrousel.Type (Action(..), ComponentM)
+import Component.Common.Carrousel.Type (Action(..), CarrouselM)
 import Data.Array (length)
 import Halogen (modify_)
 
-handleAction :: Action -> ComponentM Unit
+handleAction :: Action -> CarrouselM Unit
 handleAction = case _ of 
   GoToPrevious -> 
     modify_ \s -> 

@@ -21,7 +21,7 @@ import Proem
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), ComponentM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), AboutM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -126,7 +126,7 @@ fetchMembers = fetch membersTabId toPerson
 fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
 fetchCollaborators = fetch collaboratorsTabId toPerson
 
-handleAction :: Action -> ComponentM Unit
+handleAction :: Action -> AboutM Unit
 handleAction = case _ of
   Load -> do
     members <- fetchMembers

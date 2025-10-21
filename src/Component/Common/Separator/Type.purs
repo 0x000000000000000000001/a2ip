@@ -1,6 +1,6 @@
 module Component.Common.Separator.Type
   ( Action(..)
-  , ComponentM
+  , SeparatorM
   , Input
   , Output(..)
   , Query
@@ -35,4 +35,4 @@ data Action = Receive Input
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type SeparatorM a = HalogenM State Action Slots Output AppM a

@@ -1,6 +1,6 @@
 module Component.Common.Carrousel.Type
   ( Action(..)
-  , ComponentM
+  , CarrouselM
   , Input
   , Output
   , Query
@@ -38,4 +38,4 @@ data Action = GoToPrevious | GoToNext | Receive Input
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type CarrouselM a = HalogenM State Action Slots Output AppM a

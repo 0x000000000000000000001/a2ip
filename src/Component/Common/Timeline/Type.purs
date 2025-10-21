@@ -1,6 +1,6 @@
 module Component.Common.Timeline.Type
   ( Action(..)
-  , ComponentM
+  , TimelineM
   , Date(..)
   , Input
   , Output(..)
@@ -62,6 +62,6 @@ data Action
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type TimelineM a = HalogenM State Action Slots Output AppM a
 
 date = Proxy :: Proxy "date"

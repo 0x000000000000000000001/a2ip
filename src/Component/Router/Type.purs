@@ -29,5 +29,5 @@ type Action = NoAction
 
 data Query a = Navigate Route a
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type RouteM a = HalogenM State Action Slots Output AppM a
 

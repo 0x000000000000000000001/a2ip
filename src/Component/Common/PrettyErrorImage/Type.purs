@@ -1,6 +1,6 @@
 module Component.Common.PrettyErrorImage.Type
   ( Action(..)
-  , ComponentM
+  , PrettyErrorImageM
   , Input
   , Output
   , Query
@@ -39,4 +39,4 @@ data Action
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type PrettyErrorImageM a = HalogenM State Action Slots Output AppM a

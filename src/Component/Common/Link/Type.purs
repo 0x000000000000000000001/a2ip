@@ -1,6 +1,6 @@
 module Component.Common.Link.Type
   ( Action(..)
-  , ComponentM
+  , LinkM
   , Input
   , Output(..)
   , Query
@@ -53,4 +53,4 @@ data Action
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ComponentM a = HalogenM State Action Slots Output AppM a
+type LinkM a = HalogenM State Action Slots Output AppM a
