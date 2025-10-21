@@ -13,7 +13,6 @@ import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 type Input = 
   { text :: String
   , loading :: Boolean
-  , withWings :: Boolean
   , withSofa :: Boolean
   }
 
@@ -25,7 +24,6 @@ type Slots = NoSlots
 type State = 
   { text :: String
   , loading :: Boolean
-  , withWings :: Boolean
   , withSofa :: Boolean
   }
 

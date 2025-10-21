@@ -8,13 +8,12 @@ module Component.Common.Separator.Style.Separator
 
 import Proem hiding (top)
 
-import CSS (alignItems, justifyContent)
+import CSS (alignItems, borderBottom, borderColor, justifyContent, rem, solid)
 import CSS as CSS
 import CSS.Common (center)
 import Component.Common.Separator.Style.Text.Text as Text
-import Component.Common.Separator.Style.Wing.End as End
-import Component.Common.Separator.Style.Wing.Wing as Wing
-import Util.Style (backgroundColorWhite, displayFlex, loading, nothing, padding1, paddingTop, positionSticky, top0, widthPct100, (.?), (.|*.), (:?))
+import Component.Common.Separator.Style.Util (grey)
+import Util.Style (backgroundColorWhite, displayFlex, loading, loadingGrey, padding4, paddingTop, positionSticky, top0, widthPct100, (.?), (.|*.), (:?))
 
 classId :: String
 classId = "keWMC9TZj"
@@ -35,24 +34,17 @@ style = do
     backgroundColorWhite
     positionSticky
     top0
-    padding1 0.6
+    padding4 0.6 0.6 0.0 0.6
+    borderBottom solid (rem 0.15) grey
 
   classIdWithSofa .? do
     paddingTop 2.6
 
   classIdWhenLoading .? do
-    nothing
+    borderColor loadingGrey
     
   __text :? do 
     loading
 
-  __wing :? do 
-    loading
-
-  ____end :? do 
-    loading
-
   where 
   __text = classIdWhenLoading .|*. Text.classId
-  __wing = classIdWhenLoading .|*. Wing.classId
-  ____end = classIdWhenLoading .|*. End.classId

@@ -8,7 +8,7 @@ module Component.Common.Carrousel.Style.Control.Control
 
 import Proem hiding (top)
 
-import CSS (alignItems, backgroundColor, color, justifyContent, left, pct, rem, rgba, right, top, transform, translate, white)
+import CSS (alignItems, backgroundColor, color, justifyContent, pct, rgba, transform, translate, white)
 import CSS as CSS
 import CSS.Common (center)
 import Color (darken)

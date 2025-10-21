@@ -49,7 +49,6 @@ module Util.Style
   , fill
   , flexGrow1
   , flexWrap
-  , fontRed
   , fontSizePct
   , fontWeightBold
   , getRootFontSize
@@ -100,6 +99,7 @@ module Util.Style
   , rightPct50
   , rightRem
   , textAlignCenter
+  , textRed
   , top0
   , topPct100
   , topPct50
@@ -121,6 +121,7 @@ import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
 import CSS.Selector (child, deep, with)
 import CSS.TextAlign (textAlign, center)
+import Color (darken)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
@@ -135,8 +136,11 @@ foreign import getRootFontSize :: Effect Number
 red :: Color
 red = hsl 353.91 0.8174 0.4725
 
-fontRed :: Color
-fontRed = hsl 353.91 0.8174 0.35
+textRed :: Color
+textRed = darken 0.1 red
+
+colorRed :: CSS.CSS
+colorRed = color textRed
 
 loadingGrey :: Color
 loadingGrey = hsl 0.0 0.0 0.9
@@ -268,9 +272,6 @@ content s = raw "content" $ "\"" <> s <> "\""
 
 backgroundColorRed :: CSS.CSS
 backgroundColorRed = backgroundColor red
-
-colorRed :: CSS.CSS
-colorRed = color fontRed
 
 backgroundColorWhite :: CSS.CSS
 backgroundColorWhite = backgroundColor backgroundWhite

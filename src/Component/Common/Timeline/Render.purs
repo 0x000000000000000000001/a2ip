@@ -14,7 +14,6 @@ import Component.Common.Timeline.Style.Pin as Pin
 import Component.Common.Timeline.Style.Sheet (sheet)
 import Component.Common.Timeline.Style.Timeline (classId)
 import Component.Common.Timeline.Type (Action(..), Slots, State)
-import Data.Array (nubEq)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
