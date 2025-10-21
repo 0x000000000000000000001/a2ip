@@ -1,10 +1,11 @@
 module Component.Page.Seminars.Type where
 
+import Capability.AppM (AppM)
 import Component.Common.Timeline.Type (Date(..))
 import Component.Common.Timeline.Type as Timeline
 import Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import Data.Maybe (Maybe)
-import Halogen (Slot)
+import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
 type Input = NoInput
@@ -42,3 +43,6 @@ data Action = SelectDate Date
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a
+

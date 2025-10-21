@@ -5,11 +5,11 @@ module Component.Common.Separator.HandleAction
 
 import Proem
 
-import Capability.AppM (AppM)
-import Component.Common.Separator.Type (State, Slots, Action(..), Output)
-import Halogen (HalogenM, modify_)
+import Component.Common.Separator.Type (Action(..), ComponentM)
+import Halogen (modify_)
+import Component.Common.Separator.Type (ComponentM)
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of  
   Receive input -> modify_ _ 
     { text = input.text

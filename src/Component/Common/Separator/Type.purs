@@ -1,5 +1,6 @@
 module Component.Common.Separator.Type
   ( Action(..)
+  , ComponentM
   , Input
   , Output(..)
   , Query
@@ -8,7 +9,9 @@ module Component.Common.Separator.Type
   )
   where
 
+import Capability.AppM (AppM)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Halogen (HalogenM)
 
 type Input = 
   { text :: String
@@ -31,3 +34,5 @@ data Action = Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a

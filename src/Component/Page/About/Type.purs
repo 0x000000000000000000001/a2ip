@@ -1,11 +1,12 @@
 module Component.Page.About.Type   where
 
 
+import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Common.Separator.Type as Separator
 import Component.Util.Type (NoInput, NoOutput, NoQuery)
 import Data.Maybe (Maybe)
-import Halogen (Slot)
+import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
 type Input = NoInput
@@ -32,6 +33,8 @@ data Action = Load
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a
 
 type PersonRow = 
   ( lastname :: String

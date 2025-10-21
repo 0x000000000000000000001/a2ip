@@ -4,11 +4,10 @@ module Component.Page.Seminars.HandleAction
 
 import Proem
 
-import Capability.AppM (AppM)
-import Component.Page.Seminars.Type (Action(..), Slots, State, Output)
+import Component.Page.Seminars.Type (Action(..), ComponentM)
 import Data.Maybe (Maybe(..))
-import Halogen (HalogenM, modify_)
+import Halogen (modify_)
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of 
   SelectDate date -> modify_ _ { selectedDate = Just date }

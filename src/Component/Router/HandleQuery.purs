@@ -2,12 +2,11 @@ module Component.Router.HandleQuery where
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
-import Component.Router.Type (Action, Query(..), Slots, State, Output)
+import Component.Router.Type (ComponentM, Query(..))
 import Data.Maybe (Maybe(..))
-import Halogen (HalogenM, modify_)
+import Halogen (modify_)
 
-handleQuery :: ∀ a. Query a -> HalogenM State Action Slots Output AppM (Maybe a)
+handleQuery :: ∀ a. Query a -> ComponentM (Maybe a)
 handleQuery = case _ of
   Navigate route' a -> do
     modify_ _ { route = route' }

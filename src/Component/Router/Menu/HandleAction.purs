@@ -2,19 +2,19 @@ module Component.Router.Menu.HandleAction (handleAction) where
 
 import Proem hiding (top, div)
 
-import Capability.AppM (AppM)
 import Component.Router.Menu.Style.Menu (foldWidth)
-import Component.Router.Menu.Type (Action(..), Output, Slots, State)
+import Component.Router.Menu.Type (Action(..), ComponentM)
 import Component.Router.Style.Core (animationDurationMs)
 import Data.Int (toNumber)
 import Effect.Aff (Milliseconds(..), delay)
 import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
-import Halogen (HalogenM, get, modify_)
+import Halogen (get, modify_)
 import Util.Style (getRootFontSize)
 import Web.UIEvent.MouseEvent (clientX)
+import Component.Router.Menu.Type (ComponentM)
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
   ToggleFolding shouldFold -> do
     state <- get

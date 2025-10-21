@@ -20,9 +20,8 @@ import Proem
 
 import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
-import Capability.AppM (AppM)
 import Capability.Log (error)
-import Component.Page.About.Type (Action(..), Person, Output, Slots, State, country, email, firstname, job, lastname, phone, portraitId, role)
+import Component.Page.About.Type (Action(..), ComponentM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
@@ -31,7 +30,7 @@ import Data.String (Pattern(..), Replacement(..), replace, trim)
 import Data.Symbol (class IsSymbol)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Exception (message)
-import Halogen (HalogenM, liftAff, modify_)
+import Halogen (liftAff, modify_)
 import Type.Prelude (Proxy)
 import Util.Array.Map (arrayToIndexMap)
 import Util.File.Path (imageDirRelativePath)
@@ -127,7 +126,7 @@ fetchMembers = fetch membersTabId toPerson
 fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
 fetchCollaborators = fetch collaboratorsTabId toPerson
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
   Load -> do
     members <- fetchMembers

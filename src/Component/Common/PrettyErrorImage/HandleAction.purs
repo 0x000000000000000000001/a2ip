@@ -4,11 +4,10 @@ module Component.Common.PrettyErrorImage.HandleAction
 
 import Proem
 
-import Capability.AppM (AppM)
-import Component.Common.PrettyErrorImage.Type (State, Slots, Action(..), Output)
-import Halogen (HalogenM, modify_)
+import Component.Common.PrettyErrorImage.Type (Action(..), ComponentM)
+import Halogen (modify_)
 
-handleAction :: Action -> HalogenM State Action Slots Output AppM Unit
+handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
   HandleError -> modify_ $ \s -> s { errorCount = 1 + s.errorCount }
   Receive i -> modify_ $ \s -> s

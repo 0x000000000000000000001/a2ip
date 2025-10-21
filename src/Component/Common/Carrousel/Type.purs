@@ -1,5 +1,6 @@
 module Component.Common.Carrousel.Type
   ( Action(..)
+  , ComponentM
   , Input
   , Output
   , Query
@@ -9,9 +10,10 @@ module Component.Common.Carrousel.Type
   )
   where
 
+import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex)
-import Halogen (Slot)
+import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
 type Input = 
@@ -35,3 +37,5 @@ data Action = GoToPrevious | GoToNext | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a

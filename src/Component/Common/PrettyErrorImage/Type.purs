@@ -1,5 +1,6 @@
 module Component.Common.PrettyErrorImage.Type
   ( Action(..)
+  , ComponentM
   , Input
   , Output
   , Query
@@ -8,8 +9,10 @@ module Component.Common.PrettyErrorImage.Type
   )
   where
 
+import Capability.AppM (AppM)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import Data.Maybe (Maybe)
+import Halogen (HalogenM)
 
 type Input =
   { class_ :: Maybe String
@@ -35,3 +38,5 @@ data Action
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a

@@ -1,5 +1,6 @@
 module Component.Common.Link.Type
   ( Action(..)
+  , ComponentM
   , Input
   , Output(..)
   , Query
@@ -10,9 +11,11 @@ module Component.Common.Link.Type
   where
 
 import CSS (Display, inlineBlock)
+import Capability.AppM (AppM)
 import Component.Router.Route (Route(..))
 import Component.Util.Type (Children, NoQuery, NoSlots)
 import Data.Maybe (Maybe(..))
+import Halogen (HalogenM)
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input =
@@ -49,3 +52,5 @@ data Action
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
+
+type ComponentM a = HalogenM State Action Slots Output AppM a
