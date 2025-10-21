@@ -7,7 +7,6 @@ import Proem
 
 import Component.Common.Separator.Type (Action(..), SeparatorM)
 import Halogen (modify_)
-import Component.Common.Separator.Type (SeparatorM)
 
 handleAction :: Action -> SeparatorM Unit
 handleAction = case _ of  
