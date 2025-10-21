@@ -13,19 +13,15 @@ import Component.Common.Timeline.Style.Numbers as Numbers
 import Component.Common.Timeline.Style.Pin as Pin
 import Component.Common.Timeline.Style.Sheet (sheet)
 import Component.Common.Timeline.Style.Timeline (classId)
-import Component.Common.Timeline.Type (Action(..), Slots, State)
+import Component.Common.Timeline.Type (Action(..), Slots, State, date)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
-import Halogen.HTML.Core (AttrName(..), attr)
 import Halogen.HTML.Events (onClick)
-import Halogen.HTML.Properties as HP
+import Util.Html.Dom (dataAttr)
 import Util.String (padLeft)
 import Util.Style (class_, classes)
-
-dataAttr :: ∀ r i. String -> String -> HP.IProp r i
-dataAttr name value = HP.IProp (attr Nothing (AttrName name) value)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -38,15 +34,15 @@ render s =
         []
     , div
         [ class_ Dates.classId ]
-        ( s.dates <#> \date ->
-            let d = unwrap date
+        ( s.dates <#> \date_ ->
+            let d = unwrap date_
                 dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
             in ( div
                 [ classes $ 
                     [Date.classId] 
-                    <> (Just date == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
-                , onClick $ κ $ SelectDate date
-                , dataAttr "data-date" dateId
+                    <> (Just date_ == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
+                , onClick $ κ $ SelectDate date_
+                , dataAttr date dateId
                 ]
                 [ div
                     [ class_ Numbers.classId ]

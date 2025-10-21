@@ -7,6 +7,7 @@ module Component.Common.Timeline.Type
   , Query
   , Slots
   , State
+  , date
   )
   where
 
@@ -20,6 +21,7 @@ import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 import Halogen (HalogenM)
 import Halogen.Query (ForkId)
+import Type.Prelude (Proxy(..))
 
 newtype Date = Date
   { day :: Int
@@ -62,3 +64,5 @@ type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
 type ComponentM a = HalogenM State Action Slots Output AppM a
+
+date = Proxy :: Proxy "date"

@@ -4,11 +4,10 @@ module Component.Common.Timeline.HandleAction
 
 import Proem
 
-import Capability.Log (debug)
-import Component.Common.Timeline.Type (Action(..), ComponentM, Date(..), Output(..))
+import Component.Common.Timeline.Type (Action(..), ComponentM, Date(..), Output(..), date)
 import Data.Array (nubEq, mapMaybe, (!!))
 import Data.Foldable (for_, minimumBy)
-import Data.Int (fromString, toNumber)
+import Data.Int (fromString)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Data.Number (abs)
@@ -20,15 +19,16 @@ import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
 import Halogen (fork, get, kill, modify_, raise, subscribe)
 import Halogen.Query.Event (eventListener)
-import Util.Html.Dom (isVisible)
+import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible)
+import Util.Window (getScreenVerticalCenter)
 import Web.DOM.Document (toEventTarget)
 import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
-import Web.DOM.ParentNode (QuerySelector(..), querySelectorAll)
+import Web.DOM.ParentNode (querySelectorAll)
 import Web.Event.Event (EventType(..))
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
-import Web.HTML.Window (document, innerHeight)
+import Web.HTML.Window (document)
 
 handleAction :: Action -> ComponentM Unit
 handleAction = case _ of
@@ -54,7 +54,7 @@ handleAction = case _ of
     for_ state.scrollFork kill
 
     forkId <- fork do
-      liftAff $ delay $ Milliseconds 150.0
+      liftAff $ delay $ Milliseconds 300.0
       handleAction HandleScrollEnd
 
     modify_ _ { scrollFork = Just forkId }
@@ -82,8 +82,8 @@ selectDateClosestToScreenCenter = do
   maybeElements
     ??
       ( \elements -> do
-          screenCenter <- getScreenCenter
-          distancesWithDates <- calculateDistancesFromCenter elements screenCenter
+          screenVerticalCenter <- getScreenVerticalCenter
+          distancesWithDates <- calculateDistancesFromCenter elements screenVerticalCenter
           selectClosestDate distancesWithDates
       )
     ⇔ ηι
@@ -101,30 +101,23 @@ selectDateClosestToScreenCenterIfNeeded = do
     ⇔ selectDateClosestToScreenCenter
 
 isDateVisible :: Date -> ComponentM Boolean
-isDateVisible date = do
+isDateVisible date_ = do
   let
-    d = unwrap date
+    d = unwrap date_
     dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
-  isVisible (QuerySelector $ "[data-date=\"" <> dateId <> "\"]")
+  isVisible (dataAttrQuerySelector date (Just dateId))
 
 -- | Get all date elements from the DOM
 getDateElements :: ComponentM (Maybe (Array Element))
 getDateElements = liftEffect do
   win <- window
   doc <- document win
-  nodeList <- querySelectorAll (QuerySelector "[data-date]") (toParentNode doc)
+  nodeList <- querySelectorAll (dataAttrQuerySelector date Nothing) (toParentNode doc)
   nodes <- toArray nodeList
   let elements = nodes # mapMaybe fromNode
   case elements of
     [] -> pure Nothing
     _ -> pure $ Just elements
-
--- | Get the vertical center of the screen
-getScreenCenter :: ComponentM Number
-getScreenCenter = liftEffect do
-  win <- window
-  screenHeight <- innerHeight win
-  pure $ toNumber screenHeight / 2.0
 
 -- | Calculate the distance from screen center for each element
 calculateDistancesFromCenter
@@ -136,9 +129,9 @@ calculateDistancesFromCenter elements screenCenter =
     ( \el -> do
         rect <- getBoundingClientRect el
         let
-          elementCenter = rect.top + (rect.height / 2.0)
-          distance = abs (elementCenter - screenCenter)
-        maybeDataDate <- getAttribute "data-date" el
+          elementVerticalCenter = rect.top + (rect.height / 2.0)
+          distance = abs (elementVerticalCenter - screenCenter)
+        maybeDataDate <- getAttribute (dataAttrPrefixed date) el
         pure { distance, dataDate: maybeDataDate }
     )
     elements
@@ -148,9 +141,11 @@ selectClosestDate
   :: Array { distance :: Number, dataDate :: Maybe String }
   -> ComponentM Unit
 selectClosestDate distancesWithDates =
-  case minimumBy (\a b -> compare a.distance b.distance) distancesWithDates of
-    Nothing -> pure ι
-    Just closest ->
-      for_ closest.dataDate \dateStr ->
-        for_ (parseDate dateStr) \date ->
-          handleAction $ SelectDate date
+  minimumBy (\a b -> compare a.distance b.distance) distancesWithDates
+    ??
+      ( \closest ->
+          for_ closest.dataDate \dateStr ->
+            for_ (parseDate dateStr) \date ->
+              handleAction $ SelectDate date
+      )
+    ⇔ ηι
