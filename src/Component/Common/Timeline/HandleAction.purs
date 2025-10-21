@@ -12,6 +12,7 @@ import Data.Array (nubEq, mapMaybe, (!!))
 import Data.Foldable (for_, minimumBy)
 import Data.Int (fromString, toNumber)
 import Data.Maybe (Maybe(..))
+import Data.Newtype (unwrap)
 import Data.Number (abs)
 import Data.String (Pattern(..), split)
 import Data.Time.Duration (Milliseconds(..))
@@ -63,7 +64,7 @@ handleAction = case _ of
   HandleScrollEnd -> do
     debug "Scroll ended"
     modify_ _ { scrollFork = Nothing }
-    selectDateClosestToScreenCenter
+    selectDateClosestToScreenCenterIfNeeded
     ηι
 
 parseDate :: String -> Maybe Date
@@ -87,6 +88,36 @@ selectDateClosestToScreenCenter = do
       screenCenter <- getScreenCenter
       distancesWithDates <- calculateDistancesFromCenter elements screenCenter
       selectClosestDate distancesWithDates
+
+-- | Check if a date element is visible on screen
+isDateVisible :: Date -> HalogenM State Action Slots Output AppM Boolean
+isDateVisible date = liftEffect do
+  let d = unwrap date
+      dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
+  win <- window
+  doc <- document win
+  screenHeight <- toNumber <$> innerHeight win
+  
+  nodeList <- querySelectorAll (QuerySelector $ "[data-date=\"" <> dateId <> "\"]") (toParentNode doc)
+  nodes <- toArray nodeList
+  let elements = nodes # mapMaybe fromNode
+  
+  case elements of
+    [] -> pure false
+    [element] -> do
+      rect <- getBoundingClientRect element
+      pure $ rect.top >= 0.0 && rect.bottom <= screenHeight
+    _ -> pure false
+
+-- | Select the closest date only if the currently selected date is not visible
+selectDateClosestToScreenCenterIfNeeded :: HalogenM State Action Slots Output AppM Unit
+selectDateClosestToScreenCenterIfNeeded = do
+  state <- get
+  case state.selectedDate of
+    Nothing -> selectDateClosestToScreenCenter
+    Just selectedDate -> do
+      isVisible <- isDateVisible selectedDate
+      unless isVisible selectDateClosestToScreenCenter
 
 -- | Get all date elements from the DOM
 getDateElements :: HalogenM State Action Slots Output AppM (Maybe (Array _))
