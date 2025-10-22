@@ -13,7 +13,7 @@ import Component.Router.Style.Sheet (sheet)
 import Component.Router.Type (Action, Slots, State, about, menu, seminars)
 import Component.Util.Type (noInput, noOutputAction, noSlotAddressIndex)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, slot, text)
+import Halogen.HTML (div, main, slot, text)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -22,7 +22,7 @@ render { route } =
     [ class_ classId ]
     [ sheet
     , slot menu noSlotAddressIndex Menu.component noInput noOutputAction
-    , div
+    , main
         [ class_ Core.classId ]
         [ case route of
             Home -> div [] [ text "🏠 Page d'accueil" ]

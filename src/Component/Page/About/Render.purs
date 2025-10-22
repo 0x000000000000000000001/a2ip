@@ -7,6 +7,7 @@ import Proem hiding (div)
 import Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
 import Component.Common.Separator.Component as Separator
+import Component.Common.Separator.Type (TextElementTag(..))
 import Component.Page.About.HandleAction (ourImageRelativePath)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
@@ -42,6 +43,7 @@ render s =
           (ᴠ members)
           Separator.component
           { text: "Bureau des membres de l'association"
+          , textElementTag: H1
           , loading: isNothing s.members
           , withSofa: false
           }
@@ -56,6 +58,7 @@ render s =
           (ᴠ collaborators)
           Separator.component
           { text: "Collaborateurs du comité scientifique international"
+          , textElementTag: H2
           , loading: isNothing s.collaborators
           , withSofa: true
           }

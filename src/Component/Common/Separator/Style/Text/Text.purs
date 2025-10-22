@@ -9,7 +9,7 @@ import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, 
 import CSS as CSS
 import Component.Common.Separator.Style.Util (grey)
 import Data.NonEmpty ((:|))
-import Util.Style (borderRadius4, fontSizePct, fontWeightBold, padding1, positionRelative, (.?))
+import Util.Style (borderRadius4, displayInlineBlock, fontSizePct, fontWeightBold, padding1, positionRelative, (.?))
 
 classId :: String
 classId = "wRKg6JrGY"
@@ -17,6 +17,7 @@ classId = "wRKg6JrGY"
 style :: CSS.CSS
 style = do
   classId .? do
+    displayInlineBlock
     positionRelative
     borderLeft solid (rem 0.15) grey
     borderTop solid (rem 0.15) grey

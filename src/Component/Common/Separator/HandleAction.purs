@@ -12,5 +12,6 @@ handleAction :: Action -> SeparatorM Unit
 handleAction = case _ of  
   Receive input -> modify_ _ 
     { text = input.text
+    , textElementTag = input.textElementTag
     , loading = input.loading
     }

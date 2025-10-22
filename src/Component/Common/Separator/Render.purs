@@ -2,15 +2,17 @@ module Component.Common.Separator.Render
   ( render
   ) where
 
+import Proem
 import Capability.AppM (AppM)
 import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading, classIdWithSofa)
 import Component.Common.Separator.Style.Sheet (sheet)
 import Component.Common.Separator.Style.Text.Sofa as Sofa
 import Component.Common.Separator.Style.Text.Text as Text
-import Component.Common.Separator.Type (Action, Slots, State)
+import Component.Common.Separator.Type (Action, Slots, State, TextElementTag(..))
 import Component.Util.Type (noHtml)
+import DOM.HTML.Indexed (HTMLdiv)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, text)
+import Halogen.HTML (Node, div, h1, h2, h3, text)
 import Html.Renderer.Halogen (render_)
 import Proem (not, ($), (&&), (<>), (?), (↔))
 import Util.Style (class_, classes)
@@ -24,8 +26,15 @@ render s =
         <> (s.withSofa ? [ classIdWithSofa ] ↔ [])
     ]
     [ sheet
-    , div [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
+    , (s.textElementTag # toNode) [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
     ]
+
+toNode :: ∀ r w i. TextElementTag -> Node r w i
+toNode = case _ of
+  H1 -> h1
+  H2 -> h2
+  H3 -> h3
+  Div -> div
 
 sofaSvg :: String -> String
 sofaSvg classId =
