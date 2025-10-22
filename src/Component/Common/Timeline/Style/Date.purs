@@ -13,7 +13,7 @@ import CSS.Common (center)
 import Color (lighten)
 import Component.Common.Timeline.Style.Numbers as Numbers
 import Component.Common.Timeline.Style.Pin as Pin
-import Util.Style (backgroundColorRed, backgroundColorWhite, borderRadius1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, padding1, positionRelative, red, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadius1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 classId :: String
 classId = "JFD1v5Z7l"
@@ -26,8 +26,8 @@ style = do
   classId .? do
     positionRelative
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     padding1 2.0
     cursorPointer
 

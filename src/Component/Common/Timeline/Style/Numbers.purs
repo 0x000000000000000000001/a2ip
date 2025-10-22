@@ -14,7 +14,7 @@ import CSS as CSS
 import CSS.Common (center)
 import Color (darken)
 import Component.Common.Timeline.Style.Util (grey)
-import Util.Style (displayFlex, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
 import Util.Style as UtilStyle
 
 classId :: String
@@ -37,8 +37,8 @@ style = do
     leftPct50
     transform $ translate translateXDelta
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     flexDirection column
     UtilStyle.fontSizePct fontSizePct
     userSelectNone

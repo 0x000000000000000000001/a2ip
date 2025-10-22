@@ -8,12 +8,11 @@ module Component.Common.Separator.Style.Separator
 
 import Proem hiding (top)
 
-import CSS (alignItems, borderBottom, borderColor, justifyContent, rem, solid)
+import CSS (borderBottom, borderColor, rem, solid)
 import CSS as CSS
-import CSS.Common (center)
 import Component.Common.Separator.Style.Text.Text as Text
 import Component.Common.Separator.Style.Util (grey)
-import Util.Style (backgroundColorWhite, displayFlex, loading, loadingGrey, padding4, paddingTop, positionSticky, top0, widthPct100, (.?), (.|*.), (:?))
+import Util.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, paddingTop, positionSticky, top0, widthPct100, (.?), (.|*.), (:?))
 
 classId :: String
 classId = "keWMC9TZj"
@@ -28,8 +27,8 @@ style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     widthPct100
     backgroundColorWhite
     positionSticky

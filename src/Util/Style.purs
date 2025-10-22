@@ -17,6 +17,7 @@ module Util.Style
   , (|*.)
   , (|>.)
   , after
+  , alignItemsCenter
   , backgroundColorNone
   , backgroundColorRed
   , backgroundColorWhite
@@ -110,6 +111,7 @@ module Util.Style
   , heightPct
   , heightPct100
   , heightRem
+  , justifyContentCenter
   , left0
   , leftPct100
   , leftPct50
@@ -199,8 +201,9 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, Transformation, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, transform, translate, width, wrap)
+import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, justifyContent, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
+import CSS.Common as CSSC
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
@@ -376,6 +379,12 @@ displayInlineBlock = display inlineBlock
 
 displayFlex :: CSS.CSS
 displayFlex = display flex
+
+justifyContentCenter :: CSS.CSS
+justifyContentCenter = justifyContent CSSC.center
+
+alignItemsCenter :: CSS.CSS
+alignItemsCenter = alignItems CSSC.center
 
 cursorPointer :: CSS.CSS
 cursorPointer = cursor pointer

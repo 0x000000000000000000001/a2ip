@@ -8,7 +8,7 @@ import Proem hiding (top)
 import CSS (alignContent, flexStart, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, flexWrap, padding1, widthPct100, (.?))
+import Util.Style (displayFlex, flexWrap, justifyContentCenter, padding1, widthPct100, (.?))
 
 classId :: String
 classId = "lXmf1Jny2"
@@ -17,7 +17,7 @@ style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
-    justifyContent center
+    justifyContentCenter
     alignContent flexStart
     flexWrap
     padding1 1.3

@@ -8,7 +8,7 @@ import Proem hiding (top)
 import CSS (alignItems, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, widthRem, (.?))
+import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, widthRem, (.?))
 
 classId :: String
 classId = "u8NVJpmCE"
@@ -18,5 +18,5 @@ style = do
   classId .? do
     widthRem 10.0
     displayFlex
-    justifyContent center 
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter

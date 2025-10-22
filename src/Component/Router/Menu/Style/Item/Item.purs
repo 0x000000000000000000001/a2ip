@@ -5,13 +5,12 @@ module Component.Router.Menu.Style.Item.Item
 
 import Proem hiding (top, div)
 
-import CSS (alignItems, color, graytone, hover, justifyContent)
+import CSS (color, graytone, hover)
 import CSS as CSS
-import CSS.Common (center)
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
-import Util.Style (backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
+import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, justifyContentCenter, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
 classId = "hJyLm9YwK"
@@ -20,8 +19,8 @@ style :: CSS.CSS
 style = do
   classId .? do
     color (graytone 0.9)
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     cursorPointer
     padding2 0.7 0.0
     positionRelative 

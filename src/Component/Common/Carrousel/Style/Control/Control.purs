@@ -13,7 +13,7 @@ import CSS as CSS
 import CSS.Common (center)
 import Color (darken)
 import Component.Common.Carrousel.Style.Control.Icon as Icon
-import Util.Style (borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"
@@ -34,8 +34,8 @@ style = do
     widthRem 5.0
     borderRadius1 10.0
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     color $ darken 0.1 white
     fontWeightBold
     fontSizePct 130.0

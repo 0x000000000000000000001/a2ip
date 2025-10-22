@@ -10,7 +10,7 @@ import Proem hiding (top)
 import CSS (backgroundColor, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, loadingGrey, nothing, (.?))
+import Util.Style (displayFlex, justifyContentCenter, loadingGrey, nothing, (.?))
 
 classId :: String
 classId = "ZNnop1mxZ"
@@ -25,5 +25,5 @@ style = do
     
   classIdWhenErrored .? do
     displayFlex
-    justifyContent center
+    justifyContentCenter
     backgroundColor loadingGrey

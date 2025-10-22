@@ -9,13 +9,12 @@ module Component.Page.About.Style.Card.Card
 import Proem hiding (top)
 
 import CSS (CSS) as CSS
-import CSS (alignItems, column, flexDirection, hover, justifyContent, (&))
-import CSS.Common (center)
+import CSS (column, flexDirection, hover, (&))
 import Component.Page.About.Style.Card.Line as Line
 import Component.Page.About.Style.Card.Names as Names
 import Component.Page.About.Style.Card.Portrait as Portrait
 import Component.Page.About.Type (email, phone)
-import Util.Style (before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, loading, nothing, padding1, textAlignCenter, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style (alignItemsCenter, before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -33,8 +32,8 @@ style = do
     padding1 1.4
     textAlignCenter
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     flexWrap
     flexDirection column
 

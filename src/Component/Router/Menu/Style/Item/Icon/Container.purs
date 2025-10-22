@@ -14,7 +14,7 @@ import CSS.Common (center)
 import Component.Router.Menu.Style.Menu as MenuStyle
 import Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadius1, displayFlex, heightRem, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadius1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -35,6 +35,6 @@ style s = do
     heightRem width
     marginLeft $ (MenuStyle.foldWidth - width) / 2.0
     displayFlex
-    justifyContent center 
+    justifyContentCenter
     alignSelf center
     when s.isUnfold $ boxShadow 0.12 0.12

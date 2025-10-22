@@ -9,7 +9,7 @@ import Proem hiding (top)
 import CSS (alignItems, column, flexDirection, justifyContent)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (displayFlex, (.?))
+import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, (.?))
 
 classId :: String
 classId = "pqjXo2e0J"
@@ -18,6 +18,6 @@ style :: CSS.CSS
 style = do
   classId .? do
     displayFlex
-    justifyContent center
-    alignItems center
+    justifyContentCenter
+    alignItemsCenter
     flexDirection column
