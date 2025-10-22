@@ -1,7 +1,9 @@
 module Util.LocalStorage
-  ( setInLocalStorage
-  , getInLocalStorage
-  ) where
+  ( getInLocalStorage
+  , removeInLocalStorage
+  , setInLocalStorage
+  )
+  where
 
 import Proem
 
@@ -9,7 +11,7 @@ import Data.Maybe (Maybe)
 import Effect.Class (class MonadEffect, liftEffect)
 import Web.HTML (window)
 import Web.HTML.Window (localStorage)
-import Web.Storage.Storage (getItem, setItem)
+import Web.Storage.Storage (getItem, removeItem, setItem)
 
 setInLocalStorage :: ∀ m. MonadEffect m => String -> String -> m Unit
 setInLocalStorage k v = liftEffect do 
@@ -22,3 +24,9 @@ getInLocalStorage k = liftEffect do
   win <- window
   storage <- localStorage win
   getItem k storage
+
+removeInLocalStorage :: ∀ m. MonadEffect m => String -> m Unit
+removeInLocalStorage k = liftEffect do
+  win <- window
+  storage <- localStorage win
+  removeItem k storage
