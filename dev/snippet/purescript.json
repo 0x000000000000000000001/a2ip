@@ -94,25 +94,30 @@
     "body": "⇿",
     "description": "Or ⇿ (Either)"
   },
+  "??⇒": {
+    "prefix": "fromMaybe",
+    "body": "??⇒",
+    "description": "From maybe ??⇒"
+  },
   "?!⇽": {
     "prefix": "eitherLeft",
-    "body": "??⇽",
-    "description": "Left ??⇽ (Either)"
+    "body": "?!⇽",
+    "description": "Left ?!⇽ (Either)"
   },
   "?!⇽ ": {
     "prefix": "leftEither",
-    "body": "??⇽",
-    "description": "Left ??⇽ (Either)"
+    "body": "?!⇽",
+    "description": "Left ?!⇽ (Either)"
   },
   "?!⇾": {
     "prefix": "eitherRight",
-    "body": "??⇒",
-    "description": "Right ??⇒ (Either)"
+    "body": "?!⇒",
+    "description": "Right ?!⇒ (Either)"
   },
   "?!⇾ ": {
     "prefix": "rightEither",
-    "body": "??⇒",
-    "description": "Right ??⇒ (Either)"
+    "body": "?!⇒",
+    "description": "Right ?!⇒ (Either)"
   },
   "◁": {
     "prefix": "compose",

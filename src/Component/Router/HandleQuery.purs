@@ -2,21 +2,38 @@ module Component.Router.HandleQuery where
 
 import Proem hiding (div)
 
+import Component.Router.HandleAction (scrollKey)
+import Component.Router.Route (Route, routePath)
 import Component.Router.Type (RouteM, Query(..))
+import Data.Array ((!!))
+import Data.Int (fromNumber)
 import Data.Maybe (Maybe(..))
-import Effect.Class (liftEffect)
+import Data.Number (fromString)
+import Data.String (Pattern(..), split)
+import Effect.Class (class MonadEffect)
 import Halogen (modify_)
-import Web.HTML (window)
-import Web.HTML.Window (scroll)
+import Util.Html.Dom (scrollTo)
+import Util.LocalStorage (getInLocalStorage)
 
 handleQuery :: ∀ a. Query a -> RouteM (Maybe a)
 handleQuery = case _ of
   Navigate route' a -> do
-    -- Reset scroll to top
-    win <- liftEffect window
-    liftEffect $ scroll 0 0 win
+    -- lastY <- recoverScrollY route'
+    scrollTo 0 0
 
     modify_ _ { route = route' }
 
     η (Just a) 
+
+recoverScrollY :: ∀ m. MonadEffect m => Route -> m (Maybe Int)
+recoverScrollY route = do
+  maybeValue <- getInLocalStorage scrollKey
+
+  let parts = split (Pattern ":") (maybeValue ??⇒ "")
+      localStorageRoute = parts !! 0 ??⇒ ""
+      localStorageY = parts !! 1 ??⇒ ""
+
+  η $ (routePath route == localStorageRoute) 
+    ? (localStorageY # fromString >>= fromNumber)
+    ↔ Nothing
   

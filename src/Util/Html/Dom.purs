@@ -1,5 +1,7 @@
 module Util.Html.Dom
   ( scroll
+  , scrollTo
+  , getScrollY
   , dataAttr
   , dataAttrPrefixed
   , dataAttrQuerySelector
@@ -10,7 +12,7 @@ module Util.Html.Dom
 import Proem
 
 import Data.Array (mapMaybe)
-import Data.Int (toNumber)
+import Data.Int (round, toNumber)
 import Data.Maybe (Maybe)
 import Effect.Class (class MonadEffect, liftEffect)
 import Halogen (AttrName(..))
@@ -24,6 +26,7 @@ import Web.Event.Event (EventType(..))
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toParentNode)
 import Web.HTML.Window (document, innerHeight)
+import Web.HTML.Window as Window
 
 dataAttrPrefix :: String
 dataAttrPrefix = "data-"
@@ -62,3 +65,14 @@ isVisible sel = liftEffect do
 
 scroll :: EventType
 scroll = EventType "scroll"
+
+scrollTo :: ∀ m. MonadEffect m => Int -> Int -> m Unit
+scrollTo x y = liftEffect do
+  win <- window
+  Window.scroll x y win
+
+getScrollY :: ∀ m. MonadEffect m => m Int
+getScrollY = liftEffect do
+  win <- window
+  y <- Window.scrollY win
+  pure $ round y
