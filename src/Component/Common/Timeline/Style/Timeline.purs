@@ -6,9 +6,7 @@ module Component.Common.Timeline.Style.Timeline
 
 import Proem hiding (top)
 
-import CSS (alignItems, justifyContent)
 import CSS as CSS
-import CSS.Common (center)
 import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, positionRelative, (.?))
 
 classId :: String

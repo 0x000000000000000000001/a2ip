@@ -5,7 +5,7 @@ module Component.Page.About.Style.Collaborators
 
 import Proem hiding (top)
 
-import CSS (alignContent, justifyContent)
+import CSS (alignContent)
 import CSS as CSS
 import CSS.Common (center)
 import Util.Style (displayFlex, flexWrap, justifyContentCenter, padding4, widthPct100, (.?))

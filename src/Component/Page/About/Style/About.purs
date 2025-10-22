@@ -5,9 +5,7 @@ module Component.Page.About.Style.About
 
 import Proem hiding (top)
 
-import CSS (justifyContent)
 import CSS as CSS
-import CSS.Common (center)
 import Util.Style (displayFlex, flexWrap, justifyContentCenter, widthPct100, (.?))
 
 classId :: String

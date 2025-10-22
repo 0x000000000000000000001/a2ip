@@ -6,9 +6,8 @@ module Component.Common.Timeline.Style.Dates
 
 import Proem hiding (top)
 
-import CSS (alignItems, column, flexDirection, justifyContent)
+import CSS (column, flexDirection)
 import CSS as CSS
-import CSS.Common (center)
 import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, (.?))
 
 classId :: String

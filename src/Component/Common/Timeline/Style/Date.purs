@@ -7,9 +7,8 @@ module Component.Common.Timeline.Style.Date
 
 import Proem hiding (top)
 
-import CSS (alignItems, justifyContent, outline, rem, solid, transform)
+import CSS (outline, rem, solid, transform)
 import CSS as CSS
-import CSS.Common (center)
 import Color (lighten)
 import Component.Common.Timeline.Style.Numbers as Numbers
 import Component.Common.Timeline.Style.Pin as Pin

@@ -7,7 +7,7 @@ module Component.Router.Menu.Style.Item.Icon.Container
 
 import Proem hiding (top, div)
 
-import CSS (alignSelf, backgroundColor, justifyContent, rem, rgba, white)
+import CSS (alignSelf, backgroundColor, rem, rgba, white)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)

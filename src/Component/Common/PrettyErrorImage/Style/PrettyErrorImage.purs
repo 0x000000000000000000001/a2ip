@@ -7,9 +7,8 @@ module Component.Common.PrettyErrorImage.Style.PrettyErrorImage
 
 import Proem hiding (top)
 
-import CSS (backgroundColor, justifyContent)
+import CSS (backgroundColor)
 import CSS as CSS
-import CSS.Common (center)
 import Util.Style (displayFlex, justifyContentCenter, loadingGrey, nothing, (.?))
 
 classId :: String

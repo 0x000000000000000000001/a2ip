@@ -8,9 +8,8 @@ module Component.Common.Carrousel.Style.Control.Control
 
 import Proem hiding (top)
 
-import CSS (alignItems, backgroundColor, color, justifyContent, rgba, white)
+import CSS (backgroundColor, color, rgba, white)
 import CSS as CSS
-import CSS.Common (center)
 import Color (darken)
 import Component.Common.Carrousel.Style.Control.Icon as Icon
 import Util.Style (alignItemsCenter, borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))

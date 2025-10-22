@@ -9,9 +9,8 @@ module Component.Common.Timeline.Style.Numbers
 
 import Proem hiding (top)
 
-import CSS (Transformation, alignItems, color, column, flexDirection, justifyContent, pct, rem, transform)
+import CSS (Transformation, color, column, flexDirection, pct, rem, transform)
 import CSS as CSS
-import CSS.Common (center)
 import Color (darken)
 import Component.Common.Timeline.Style.Util (grey)
 import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
