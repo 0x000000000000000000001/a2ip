@@ -3,20 +3,21 @@ module Component.Router.Menu.Style.Item.Item
   , style
   ) where
 
-import Proem hiding (top, div)
+import Proem (discard, when)
 
 import CSS (color, graytone, hover)
 import CSS as CSS
 import Component.Router.Menu.Style.Item.Children as Children
 import Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import Component.Router.Menu.Style.Item.Label as Label
+import Component.Router.Menu.Type (State)
 import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, justifyContentCenter, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
 classId = "hJyLm9YwK"
 
-style :: CSS.CSS
-style = do
+style :: State -> CSS.CSS
+style s = do
   classId .? do
     color (graytone 0.9)
     justifyContentCenter
@@ -33,7 +34,7 @@ style = do
     backgroundColorRed
 
   ____children :? do 
-    displayFlex
+    when s.isUnfold displayFlex
 
   ____iconContainer :? do
     IconContainer.boxShadow 0.22 0.10

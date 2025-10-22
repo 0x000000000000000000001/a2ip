@@ -1,7 +1,8 @@
 module Component.Router.Menu.Style.Item.Children
   ( classId
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top, div)
 

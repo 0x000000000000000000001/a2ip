@@ -15,7 +15,7 @@ import Component.Router.Menu.Type (State)
 style :: State -> CSS.CSS
 style s = do
   Icon.style s
-  Item.style
+  Item.style s
   Label.style s
   Child.style
   Children.style
