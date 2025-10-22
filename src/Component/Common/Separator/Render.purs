@@ -2,19 +2,21 @@ module Component.Common.Separator.Render
   ( render
   ) where
 
-import Proem
+import Proem hiding (div)
+
 import Capability.AppM (AppM)
 import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading, classIdWithSofa)
 import Component.Common.Separator.Style.Sheet (sheet)
 import Component.Common.Separator.Style.Text.Sofa as Sofa
 import Component.Common.Separator.Style.Text.Text as Text
-import Component.Common.Separator.Type (Action, Slots, State, TextElementTag(..))
+import Component.Common.Separator.Type (Action, Slots, State, TextElementTag)
 import Component.Util.Type (noHtml)
-import DOM.HTML.Indexed (HTMLdiv)
+import Data.String (toLower)
 import Halogen (ComponentHTML)
-import Halogen.HTML (Node, div, h1, h2, h3, text)
+import Halogen.HTML (div, text)
+import Halogen.HTML.Core (ElemName(..))
+import Halogen.HTML.Elements (element)
 import Html.Renderer.Halogen (render_)
-import Proem (not, ($), (&&), (<>), (?), (↔))
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -26,15 +28,11 @@ render s =
         <> (s.withSofa ? [ classIdWithSofa ] ↔ [])
     ]
     [ sheet
-    , (s.textElementTag # toNode) [ class_ Text.classId ] [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
+    , element
+        (s.textElementTag # name)
+        [ class_ Text.classId ]
+        [ text s.text, s.withSofa && not s.loading ? (render_ $ sofaSvg Sofa.classId) ↔ noHtml ]
     ]
-
-toNode :: ∀ r w i. TextElementTag -> Node r w i
-toNode = case _ of
-  H1 -> h1
-  H2 -> h2
-  H3 -> h3
-  Div -> div
 
 sofaSvg :: String -> String
 sofaSvg classId =
@@ -69,3 +67,6 @@ sofaSvg classId =
 	c4.262-9.271,13.973-14.92,24.124-14.083c5.24,0.437,9.346,4.898,9.346,10.157V273.279z"/>
 </svg>
 """
+
+name :: TextElementTag -> ElemName
+name = ElemName ◁ toLower ◁ show 

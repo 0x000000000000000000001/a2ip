@@ -26,9 +26,63 @@ module Util.Style
   , borderRadius4
   , borderWidth
   , bottom0
+  , bottomCenterToBottomCenter
+  , bottomCenterToBottomLeft
+  , bottomCenterToBottomRight
+  , bottomCenterToCenter
+  , bottomCenterToCenterLeft
+  , bottomCenterToCenterRight
+  , bottomCenterToTopCenter
+  , bottomCenterToTopLeft
+  , bottomCenterToTopRight
+  , bottomLeftToBottomCenter
+  , bottomLeftToBottomLeft
+  , bottomLeftToBottomRight
+  , bottomLeftToCenter
+  , bottomLeftToCenterLeft
+  , bottomLeftToCenterRight
+  , bottomLeftToTopCenter
+  , bottomLeftToTopLeft
+  , bottomLeftToTopRight
   , bottomPct100
   , bottomPct50
   , bottomRem
+  , bottomRightToBottomCenter
+  , bottomRightToBottomLeft
+  , bottomRightToBottomRight
+  , bottomRightToCenter
+  , bottomRightToCenterLeft
+  , bottomRightToCenterRight
+  , bottomRightToTopCenter
+  , bottomRightToTopLeft
+  , bottomRightToTopRight
+  , centerLeftToBottomCenter
+  , centerLeftToBottomLeft
+  , centerLeftToBottomRight
+  , centerLeftToCenter
+  , centerLeftToCenterLeft
+  , centerLeftToCenterRight
+  , centerLeftToTopCenter
+  , centerLeftToTopLeft
+  , centerLeftToTopRight
+  , centerRightToBottomCenter
+  , centerRightToBottomLeft
+  , centerRightToBottomRight
+  , centerRightToCenter
+  , centerRightToCenterLeft
+  , centerRightToCenterRight
+  , centerRightToTopCenter
+  , centerRightToTopLeft
+  , centerRightToTopRight
+  , centerToBottomCenter
+  , centerToBottomLeft
+  , centerToBottomRight
+  , centerToCenter
+  , centerToCenterLeft
+  , centerToCenterRight
+  , centerToTopCenter
+  , centerToTopLeft
+  , centerToTopRight
   , childClass
   , classChild
   , classChildClass
@@ -62,6 +116,7 @@ module Util.Style
   , leftRem
   , loading
   , loadingGrey
+  , margin0
   , margin1
   , margin2
   , margin4
@@ -80,7 +135,9 @@ module Util.Style
   , minWidthPct100
   , minWidthRem
   , nothing
+  , onlyTranslatePct
   , overflowHidden
+  , padding0
   , padding1
   , padding2
   , padding4
@@ -101,9 +158,37 @@ module Util.Style
   , textAlignCenter
   , textRed
   , top0
+  , topCenterToBottomCenter
+  , topCenterToBottomLeft
+  , topCenterToBottomRight
+  , topCenterToCenter
+  , topCenterToCenterLeft
+  , topCenterToCenterRight
+  , topCenterToTopCenter
+  , topCenterToTopLeft
+  , topCenterToTopRight
+  , topLeftToBottomCenter
+  , topLeftToBottomLeft
+  , topLeftToBottomRight
+  , topLeftToCenter
+  , topLeftToCenterLeft
+  , topLeftToCenterRight
+  , topLeftToTopCenter
+  , topLeftToTopLeft
+  , topLeftToTopRight
   , topPct100
   , topPct50
   , topRem
+  , topRightToBottomCenter
+  , topRightToBottomLeft
+  , topRightToBottomRight
+  , topRightToCenter
+  , topRightToCenterLeft
+  , topRightToCenterRight
+  , topRightToTopCenter
+  , topRightToTopLeft
+  , topRightToTopRight
+  , translatePct
   , userSelectNone
   , widthPct
   , widthPct100
@@ -114,7 +199,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, width, wrap)
+import CSS (Refinement, Selector, StyleM, Transformation, absolute, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Cursor (pointer)
@@ -124,6 +209,7 @@ import CSS.TextAlign (textAlign, center)
 import Color (darken)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
+import Data.Int (toNumber)
 import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
@@ -164,6 +250,12 @@ raw k v = key (fromString k) v
 
 nothing :: CSS.CSS
 nothing = ηι
+
+translatePct :: Number -> Number -> Transformation
+translatePct x y = translate (pct x) (pct y)
+
+onlyTranslatePct :: Number -> Number -> CSS.CSS 
+onlyTranslatePct x y = transform $ translatePct x y
 
 textAlignCenter :: CSS.CSS 
 textAlignCenter = textAlign center
@@ -288,6 +380,497 @@ displayFlex = display flex
 cursorPointer :: CSS.CSS
 cursorPointer = cursor pointer
 
+positionAbsoluteTranslatePct :: Int -> Int -> CSS.CSS
+positionAbsoluteTranslatePct x y = do
+  positionAbsolute
+  onlyTranslatePct (toNumber x) (toNumber y)
+
+topLeftToTopLeft :: CSS.CSS 
+topLeftToTopLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  top0
+
+topCenterToTopLeft :: CSS.CSS 
+topCenterToTopLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  top0
+
+topRightToTopLeft :: CSS.CSS 
+topRightToTopLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  top0
+
+centerLeftToTopLeft :: CSS.CSS
+centerLeftToTopLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  left0
+  top0
+
+centerToTopLeft :: CSS.CSS
+centerToTopLeft = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  left0
+  top0
+
+centerRightToTopLeft :: CSS.CSS
+centerRightToTopLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct100
+  top0
+
+bottomLeftToTopLeft :: CSS.CSS
+bottomLeftToTopLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  bottomPct100
+
+bottomCenterToTopLeft :: CSS.CSS
+bottomCenterToTopLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  bottomPct100
+
+bottomRightToTopLeft :: CSS.CSS
+bottomRightToTopLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  bottomPct100
+
+topLeftToTopCenter :: CSS.CSS 
+topLeftToTopCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  top0
+
+topCenterToTopCenter :: CSS.CSS 
+topCenterToTopCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  top0
+
+topRightToTopCenter :: CSS.CSS 
+topRightToTopCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  top0
+
+centerLeftToTopCenter :: CSS.CSS
+centerLeftToTopCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct50
+  top0
+
+centerToTopCenter :: CSS.CSS
+centerToTopCenter = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct50
+  top0
+
+centerRightToTopCenter :: CSS.CSS
+centerRightToTopCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct50
+  top0
+
+bottomLeftToTopCenter :: CSS.CSS
+bottomLeftToTopCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  bottomPct100
+
+bottomCenterToTopCenter :: CSS.CSS
+bottomCenterToTopCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  bottomPct100
+
+bottomRightToTopCenter :: CSS.CSS
+bottomRightToTopCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  bottomPct100
+
+topLeftToTopRight :: CSS.CSS 
+topLeftToTopRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  top0
+
+topCenterToTopRight :: CSS.CSS 
+topCenterToTopRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  top0
+
+topRightToTopRight :: CSS.CSS 
+topRightToTopRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  top0
+
+centerLeftToTopRight :: CSS.CSS
+centerLeftToTopRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct100
+  top0
+
+centerToTopRight :: CSS.CSS
+centerToTopRight = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct100
+  top0
+
+centerRightToTopRight :: CSS.CSS
+centerRightToTopRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  right0
+  top0
+
+bottomLeftToTopRight :: CSS.CSS
+bottomLeftToTopRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  bottomPct100
+
+bottomCenterToTopRight :: CSS.CSS
+bottomCenterToTopRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  bottomPct100
+
+bottomRightToTopRight :: CSS.CSS
+bottomRightToTopRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  bottomPct100
+
+topLeftToCenterLeft :: CSS.CSS 
+topLeftToCenterLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  topPct50
+
+topCenterToCenterLeft :: CSS.CSS 
+topCenterToCenterLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  topPct50
+
+topRightToCenterLeft :: CSS.CSS 
+topRightToCenterLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  topPct50
+
+centerLeftToCenterLeft :: CSS.CSS
+centerLeftToCenterLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  left0
+  topPct50
+
+centerToCenterLeft :: CSS.CSS
+centerToCenterLeft = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  left0
+  topPct50
+
+centerRightToCenterLeft :: CSS.CSS
+centerRightToCenterLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct100
+  topPct50
+
+bottomLeftToCenterLeft :: CSS.CSS
+bottomLeftToCenterLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  bottomPct100
+
+bottomCenterToCenterLeft :: CSS.CSS
+bottomCenterToCenterLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  bottomPct100
+
+bottomRightToCenterLeft :: CSS.CSS
+bottomRightToCenterLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  bottomPct100
+
+topLeftToCenter :: CSS.CSS 
+topLeftToCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  topPct50
+
+topCenterToCenter :: CSS.CSS 
+topCenterToCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  topPct50
+
+topRightToCenter :: CSS.CSS 
+topRightToCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  topPct50
+
+centerLeftToCenter :: CSS.CSS
+centerLeftToCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct50
+  topPct50
+
+centerToCenter :: CSS.CSS
+centerToCenter = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct50
+  topPct50
+
+centerRightToCenter :: CSS.CSS
+centerRightToCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct50
+  topPct50
+
+bottomLeftToCenter :: CSS.CSS
+bottomLeftToCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  bottomPct100
+
+bottomCenterToCenter :: CSS.CSS
+bottomCenterToCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  bottomPct100
+
+bottomRightToCenter :: CSS.CSS
+bottomRightToCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  bottomPct100
+
+topLeftToCenterRight :: CSS.CSS 
+topLeftToCenterRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  topPct50
+
+topCenterToCenterRight :: CSS.CSS 
+topCenterToCenterRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  topPct50
+
+topRightToCenterRight :: CSS.CSS 
+topRightToCenterRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  topPct50
+
+centerLeftToCenterRight :: CSS.CSS
+centerLeftToCenterRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct100
+  topPct50
+
+centerToCenterRight :: CSS.CSS
+centerToCenterRight = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct100
+  topPct50
+
+centerRightToCenterRight :: CSS.CSS
+centerRightToCenterRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  right0
+  topPct50
+
+bottomLeftToCenterRight :: CSS.CSS
+bottomLeftToCenterRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  bottomPct100
+
+bottomCenterToCenterRight :: CSS.CSS
+bottomCenterToCenterRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  bottomPct100
+
+bottomRightToCenterRight :: CSS.CSS
+bottomRightToCenterRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  bottomPct100
+
+topLeftToBottomLeft :: CSS.CSS 
+topLeftToBottomLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  topPct100
+
+topCenterToBottomLeft :: CSS.CSS 
+topCenterToBottomLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  topPct100
+
+topRightToBottomLeft :: CSS.CSS 
+topRightToBottomLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  topPct100
+
+centerLeftToBottomLeft :: CSS.CSS
+centerLeftToBottomLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  left0
+  topPct100
+
+centerToBottomLeft :: CSS.CSS
+centerToBottomLeft = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  left0
+  topPct100
+
+centerRightToBottomLeft :: CSS.CSS
+centerRightToBottomLeft = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct100
+  topPct100
+
+bottomLeftToBottomLeft :: CSS.CSS
+bottomLeftToBottomLeft = do
+  positionAbsoluteTranslatePct 0 0
+  left0
+  bottomPct100
+
+bottomCenterToBottomLeft :: CSS.CSS
+bottomCenterToBottomLeft = do
+  positionAbsoluteTranslatePct (-50) 0
+  left0
+  bottomPct100
+
+bottomRightToBottomLeft :: CSS.CSS
+bottomRightToBottomLeft = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct100
+  bottomPct100
+
+topLeftToBottomCenter :: CSS.CSS 
+topLeftToBottomCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  topPct100
+
+topCenterToBottomCenter :: CSS.CSS 
+topCenterToBottomCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  topPct100
+
+topRightToBottomCenter :: CSS.CSS 
+topRightToBottomCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  topPct100
+
+centerLeftToBottomCenter :: CSS.CSS
+centerLeftToBottomCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct50
+  topPct100
+
+centerToBottomCenter :: CSS.CSS
+centerToBottomCenter = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct50
+  topPct100
+
+centerRightToBottomCenter :: CSS.CSS
+centerRightToBottomCenter = do
+  positionAbsoluteTranslatePct 0 (-50)
+  rightPct50
+  topPct100
+
+bottomLeftToBottomCenter :: CSS.CSS
+bottomLeftToBottomCenter = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct50
+  bottomPct100
+
+bottomCenterToBottomCenter :: CSS.CSS
+bottomCenterToBottomCenter = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct50
+  bottomPct100
+
+bottomRightToBottomCenter :: CSS.CSS
+bottomRightToBottomCenter = do
+  positionAbsoluteTranslatePct 0 0
+  rightPct50
+  bottomPct100
+
+topLeftToBottomRight :: CSS.CSS 
+topLeftToBottomRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  topPct100
+
+topCenterToBottomRight :: CSS.CSS
+topCenterToBottomRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  topPct100
+
+topRightToBottomRight :: CSS.CSS
+topRightToBottomRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  topPct100
+
+centerLeftToBottomRight :: CSS.CSS
+centerLeftToBottomRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  leftPct100
+  topPct100
+
+centerToBottomRight :: CSS.CSS
+centerToBottomRight = do
+  positionAbsoluteTranslatePct (-50) (-50)
+  leftPct100
+  topPct100
+
+centerRightToBottomRight :: CSS.CSS
+centerRightToBottomRight = do
+  positionAbsoluteTranslatePct 0 (-50)
+  right0
+  topPct100
+
+bottomLeftToBottomRight :: CSS.CSS
+bottomLeftToBottomRight = do
+  positionAbsoluteTranslatePct 0 0
+  leftPct100
+  bottomPct100
+
+bottomCenterToBottomRight :: CSS.CSS
+bottomCenterToBottomRight = do
+  positionAbsoluteTranslatePct (-50) 0
+  leftPct100
+  bottomPct100
+
+bottomRightToBottomRight :: CSS.CSS
+bottomRightToBottomRight = do
+  positionAbsoluteTranslatePct 0 0
+  right0
+  bottomPct100
+
 fill :: Color -> CSS.CSS
 fill c = raw "fill" $ toHexString c
 
@@ -339,6 +922,9 @@ maxHeightRem h = maxHeight (rem h)
 maxHeightPct :: Number -> CSS.CSS
 maxHeightPct h = maxHeight (pct h)
 
+padding0 :: CSS.CSS
+padding0 = padding1 0.0
+
 padding4 :: Number -> Number -> Number -> Number -> CSS.CSS
 padding4 t r b l = padding (rem t) (rem r) (rem b) (rem l)
   
@@ -359,6 +945,9 @@ paddingBottom p = CSS.paddingBottom (rem p)
 
 paddingTop :: Number -> CSS.CSS
 paddingTop p = CSS.paddingTop (rem p)
+
+margin0 :: CSS.CSS
+margin0 = margin1 0.0
 
 margin4 :: Number -> Number -> Number -> Number -> CSS.CSS
 margin4 t r b l = margin (rem t) (rem r) (rem b) (rem l)

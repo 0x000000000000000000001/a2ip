@@ -5,11 +5,10 @@ module Component.Router.Menu.Style.Item.Children
 
 import Proem hiding (top, div)
 
-import CSS (backgroundColor, pct, rgba, transform)
+import CSS (backgroundColor, rgba)
 import CSS as CSS
-import CSS.Transform (translateX)
 import Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
-import Util.Style (displayNone, flexWrap, positionAbsolute, top0, (.?))
+import Util.Style (displayNone, flexWrap, topLeftToTopRight, widthPct100, (.?))
 
 classId :: String
 classId = "YLBJc5NfZ"
@@ -17,9 +16,8 @@ classId = "YLBJc5NfZ"
 style :: CSS.CSS
 style = do
   classId .? do
-    transform $ translateX (pct 100.0)
     backgroundColor (rgba 0 0 0 backgroundBlackAlpha)
-    positionAbsolute
-    top0
+    topLeftToTopRight
     displayNone
     flexWrap
+    widthPct100

@@ -8,12 +8,12 @@ module Component.Common.Carrousel.Style.Control.Control
 
 import Proem hiding (top)
 
-import CSS (alignItems, backgroundColor, color, justifyContent, pct, rgba, transform, translate, white)
+import CSS (alignItems, backgroundColor, color, justifyContent, rgba, white)
 import CSS as CSS
 import CSS.Common (center)
 import Color (darken)
 import Component.Common.Carrousel.Style.Control.Icon as Icon
-import Util.Style (borderRadius1, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, left0, leftRem, positionAbsolute, right0, rightRem, topPct50, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
+import Util.Style (borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"
@@ -27,10 +27,8 @@ classIdWhenNext = "M6RWLsugg"
 style :: CSS.CSS
 style = do
   classId .? do
-    positionAbsolute
     cursorPointer
     userSelectNone
-    topPct50
     backgroundColor $ rgba 0 0 0 0.75
     heightRem 5.0
     widthRem 5.0
@@ -43,15 +41,13 @@ style = do
     fontSizePct 130.0
 
   __prev :? do 
-    left0
-    transform $ translate (pct $ -50.0) (pct $ -50.0)
+    centerLeftToCenterLeft
 
   a___icon :? do
     leftRem 1.0
 
   __next :? do
-    right0
-    transform $ translate (pct 50.0) (pct $ -50.0)
+    centerRightToCenterRight
 
   b___icon :? do
     rightRem 1.0

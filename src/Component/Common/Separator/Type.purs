@@ -10,11 +10,18 @@ module Component.Common.Separator.Type
   )
   where
 
+import Proem
 import Capability.AppM (AppM)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Data.Generic.Rep (class Generic)
+import Data.Show.Generic (genericShow)
 import Halogen (HalogenM)
 
 data TextElementTag = H1 | H2 | H3 | Div
+
+derive instance genericTextElementTag :: Generic TextElementTag _
+instance showTextElementTag :: Show TextElementTag where
+  show = genericShow
 
 type Input = 
   { text :: String
