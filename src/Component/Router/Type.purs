@@ -5,8 +5,10 @@ import Component.Page.About.Type as PageAbout
 import Component.Page.Seminars.Type as PageSeminars
 import Component.Router.Menu.Type as Menu
 import Component.Router.Route (Route)
-import Component.Util.Type (NoAction, NoInput, NoOutput, NoSlotAddressIndex)
+import Component.Util.Type (NoInput, NoOutput, NoSlotAddressIndex)
+import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
+import Halogen.Query (ForkId)
 import Type.Prelude (Proxy(..))
 
 type Slots =
@@ -23,9 +25,15 @@ type Input = NoInput
 
 type Output = NoOutput
 
-type State = { route :: Route }
+type State = 
+  { route :: Route 
+  , scrollFork :: Maybe ForkId
+  }
 
-type Action = NoAction
+data Action 
+  = Initialize
+  | HandleDocScroll
+  | HandleDocScrollEnd
 
 data Query a = Navigate Route a
 
