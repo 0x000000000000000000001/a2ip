@@ -1,7 +1,7 @@
 module App.Component.Page.Home.Type where
 
 import App.Component.Common.Carrousel.Type as Carrousel
-import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoState)
+import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoState, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
@@ -11,7 +11,7 @@ type Input = NoInput
 type Output = NoOutput
 
 type Slots =
-  ( carrousel :: Slot Carrousel.Query Carrousel.Output String
+  ( carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
   )
 
 carrousel = Proxy :: Proxy "carrousel"

@@ -37,5 +37,8 @@ noInput = ι
 noState :: NoState 
 noState = {}
 
+noState' :: ∀ a. a -> NoState
+noState' = κ noState
+
 noHtml :: ∀ w i. HTML w i
 noHtml = text ""
