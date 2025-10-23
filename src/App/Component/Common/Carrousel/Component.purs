@@ -13,7 +13,7 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: κ { index: 0, imageSources: [] }
+  { initialState: \input -> { index: 0, imageSources: input.imageSources }
   , render
   , eval: mkEval defaultEval
       { handleAction = handleAction

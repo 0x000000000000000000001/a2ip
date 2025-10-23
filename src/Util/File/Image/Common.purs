@@ -25,7 +25,7 @@ googleDriveImageUrl id = do
     (googleDriveImageUrlTemplate apiKey)
 
 ourImageRelativePath :: String -> String -> String
-ourImageRelativePath id path = imageDirRelativePath <> path <> "/" <> suffixWithExt id
+ourImageRelativePath path id = imageDirRelativePath <> path <> "/" <> suffixWithExt id
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"

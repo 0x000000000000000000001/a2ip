@@ -7,4 +7,4 @@ module App.Component.Page.Util.Image
 import Util.File.Image.Common (ourImageRelativePath) as Base
 
 ourImageRelativePath :: String -> String
-ourImageRelativePath id = Base.ourImageRelativePath id "component/page"
+ourImageRelativePath id = Base.ourImageRelativePath "component/page" id

@@ -8,11 +8,11 @@ module App.Component.Common.Carrousel.Style.Control.Control
 
 import Proem hiding (top)
 
+import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import CSS (backgroundColor, color, rgba, white)
 import CSS as CSS
 import Color (darken)
-import App.Component.Common.Carrousel.Style.Control.Icon as Icon
-import Util.Style (alignItemsCenter, borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"
@@ -40,13 +40,13 @@ style = do
     fontSizePct 130.0
 
   __prev :? do 
-    centerLeftToCenterLeft
+    centerToCenterLeft
 
   a___icon :? do
     leftRem 1.0
 
   __next :? do
-    centerRightToCenterRight
+    centerToCenterRight
 
   b___icon :? do
     rightRem 1.0
