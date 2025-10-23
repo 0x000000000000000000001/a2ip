@@ -2,7 +2,7 @@ module Util.File.Image.Common where
 
 import Proem
 
-import Component.Util.Capability.ReadConfig (class ReadConfig, readConfig)
+import Util.Capability.ReadConfig (class ReadConfig, readConfig)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Util.File.Path (imageDirRelativePath)
 

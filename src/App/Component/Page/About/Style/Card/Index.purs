@@ -1,0 +1,18 @@
+module App.Component.Page.About.Style.Card.Index
+  ( style
+  ) where
+
+import Proem
+
+import CSS as CSS
+import App.Component.Page.About.Style.Card.Card as Card
+import App.Component.Page.About.Style.Card.Line as Line
+import App.Component.Page.About.Style.Card.Names as Names
+import App.Component.Page.About.Style.Card.Portrait as Portrait
+
+style :: CSS.CSS
+style = do
+  Card.style
+  Portrait.style
+  Names.style
+  Line.style

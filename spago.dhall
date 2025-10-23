@@ -58,5 +58,5 @@ You can edit this file as you like.
   ]
 , packages = ./packages.dhall
 , sources =
-  [ "bin/purs/**/*.purs", "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
+  [ "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
 }
