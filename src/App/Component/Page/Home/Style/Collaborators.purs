@@ -1,0 +1,24 @@
+module App.Component.Page.Home.Style.Collaborators
+  ( classId
+  , style
+  ) where
+
+import Proem hiding (top)
+
+import CSS (alignContent)
+import CSS as CSS
+import CSS.Common (center)
+import Util.Style (displayFlex, flexWrap, justifyContentCenter, padding4, widthPct100, (.?))
+
+classId :: String
+classId = "Myat3GaT5"
+
+style :: CSS.CSS
+style = do
+  classId .? do
+    displayFlex
+    justifyContentCenter
+    alignContent center
+    flexWrap
+    padding4 1.0 1.3 3.0 1.3
+    widthPct100

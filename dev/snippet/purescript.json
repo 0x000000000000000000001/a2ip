@@ -9,6 +9,11 @@
     "body": "∀",
     "description": "Universal ∀"
   },
+  "∀  ": {
+    "prefix": "∀",
+    "body": "∀",
+    "description": "Universal ∀"
+  },
   "∃": {
     "prefix": "exists",
     "body": "∃",
@@ -19,13 +24,28 @@
     "body": "∃",
     "description": "Existential ∃"
   },
+  "∃  ": {
+    "prefix": "∃",
+    "body": "∃",
+    "description": "Existential ∃"
+  },
   "∧": {
+    "prefix": "∧",
+    "body": "∧",
+    "description": "And ∧"
+  },
+  "∧ ": {
     "prefix": "and",
     "body": "∧",
     "description": "And ∧"
   },
   "∨": {
     "prefix": "or",
+    "body": "∨",
+    "description": "Or ∨"
+  },
+  "∨ ": {
+    "prefix": "∨",
     "body": "∨",
     "description": "Or ∨"
   },
@@ -39,6 +59,11 @@
     "body": "∪",
     "description": "Or ∪"
   },
+  "∪  ": {
+    "prefix": "∪",
+    "body": "∪",
+    "description": "Or ∪"
+  },
   "∩": {
     "prefix": "inter",
     "body": "∩",
@@ -49,8 +74,18 @@
     "body": "∩",
     "description": "And ∩"
   },
+  "∩  ": {
+    "prefix": "∩",
+    "body": "∩",
+    "description": "And ∩"
+  },
   "¬": {
     "prefix": "not",
+    "body": "¬",
+    "description": "Not ¬"
+  },
+  "¬ ": {
+    "prefix": "¬",
     "body": "¬",
     "description": "Not ¬"
   },
@@ -69,6 +104,11 @@
     "body": "↔",
     "description": "Or ↔ (If)"
   },
+  "↔   ": {
+    "prefix": "↔",
+    "body": "↔",
+    "description": "Or ↔ (If)"
+  },
   "⇔": {
     "prefix": "default",
     "body": "⇔",
@@ -84,6 +124,11 @@
     "body": "⇔",
     "description": "Or ⇔ (Maybe)"
   },
+  "⇔   ": {
+    "prefix": "⇔",
+    "body": "⇔",
+    "description": "Or ⇔ (Maybe)"
+  },
   "⇿": {
     "prefix": "orEither",
     "body": "⇿",
@@ -94,8 +139,18 @@
     "body": "⇿",
     "description": "Or ⇿ (Either)"
   },
+  "⇿  ": {
+    "prefix": "⇿",
+    "body": "⇿",
+    "description": "Or ⇿ (Either)"
+  },
   "??⇒": {
     "prefix": "fromMaybe",
+    "body": "??⇒",
+    "description": "From maybe ??⇒"
+  },
+  "??⇒ ": {
+    "prefix": "??⇒",
     "body": "??⇒",
     "description": "From maybe ??⇒"
   },
@@ -109,6 +164,11 @@
     "body": "?!⇽",
     "description": "Left ?!⇽ (Either)"
   },
+  "?!⇽  ": {
+    "prefix": "?!⇽",
+    "body": "?!⇽",
+    "description": "Left ?!⇽ (Either)"
+  },
   "?!⇾": {
     "prefix": "eitherRight",
     "body": "?!⇒",
@@ -119,8 +179,18 @@
     "body": "?!⇒",
     "description": "Right ?!⇒ (Either)"
   },
+  "?!⇾  ": {
+    "prefix": "?!⇒",
+    "body": "?!⇒",
+    "description": "Right ?!⇒ (Either)"
+  },
   "◁": {
     "prefix": "compose",
+    "body": "◁",
+    "description": "Compose ◁"
+  },
+  "◁ ": {
+    "prefix": "◁",
     "body": "◁",
     "description": "Compose ◁"
   },
@@ -134,8 +204,18 @@
     "body": "▷",
     "description": "Compose flip ◁"
   },
+  "▷  ": {
+    "prefix": "▷",
+    "body": "▷",
+    "description": "Compose flip ◁"
+  },
   "ᴠ": {
     "prefix": "reflectSymbol",
+    "body": "ᴠ",
+    "description": "Reflect symbol ᴠ"
+  },
+  "ᴠ ": {
+    "prefix": "ᴠ",
     "body": "ᴠ",
     "description": "Reflect symbol ᴠ"
   },
@@ -144,8 +224,18 @@
     "body": "ʌ",
     "description": "Reify symbol ʌ"
   },
+  "ʌ ": {
+    "prefix": "ʌ",
+    "body": "ʌ",
+    "description": "Reify symbol ʌ"
+  },
   "η": {
     "prefix": "pure",
+    "body": "η",
+    "description": "Pure η"
+  },
+  "η ": {
+    "prefix": "η",
     "body": "η",
     "description": "Pure η"
   },
@@ -154,8 +244,18 @@
     "body": "ι",
     "description": "Unit ι"
   },
+  "ι ": {
+    "prefix": "ι",
+    "body": "ι",
+    "description": "Unit ι"
+  },
   "ηι": {
     "prefix": "pureUnit",
+    "body": "ηι",
+    "description": "Pure unit ηι"
+  },
+  "ηι ": {
+    "prefix": "ηι",
     "body": "ηι",
     "description": "Pure unit ηι"
   },
@@ -169,6 +269,11 @@
     "body": "κ",
     "description": "Constant κ"
   },
+  "κ  ": {
+    "prefix": "κ",
+    "body": "κ",
+    "description": "Constant κ"
+  },
   "κηι": {
     "prefix": "constPureUnit",
     "body": "κηι",
@@ -176,6 +281,11 @@
   },
   "κηι ": {
     "prefix": "constantPureUnit",
+    "body": "κηι",
+    "description": "Constant pure unit κηι"
+  },
+  "κηι  ": {
+    "prefix": "κηι",
     "body": "κηι",
     "description": "Constant pure unit κηι"
   }
