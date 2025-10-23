@@ -2,8 +2,6 @@ module App.Component.Router.Menu.Render (render) where
 
 import Proem hiding (top, div)
 
-import CSS (flex, fromString)
-import App.Util.Capability.AppM.AppM (AppM)
 import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child as Child
@@ -17,6 +15,9 @@ import App.Component.Router.Menu.Style.Menu (classId)
 import App.Component.Router.Menu.Style.Sheet (sheet)
 import App.Component.Router.Menu.Type (Action(..), State, Slots)
 import App.Component.Router.Menu.Type as Type
+import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.Navigate (Route(..))
+import CSS (flex, fromString)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)

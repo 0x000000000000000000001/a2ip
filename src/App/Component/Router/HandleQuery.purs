@@ -4,6 +4,7 @@ import Proem hiding (div)
 
 import App.Component.Router.HandleAction (scrollKey)
 import App.Component.Router.Type (RouteM, Query(..))
+import App.Util.Capability.Navigate (Route, routePath)
 import Data.Array ((!!))
 import Data.Int (fromNumber)
 import Data.Maybe (Maybe(..))

@@ -1,4 +1,4 @@
-module Util.Lab
+module Util.Symbol
   ( ᴠ
   , ʌ
   )

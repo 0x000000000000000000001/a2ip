@@ -2,9 +2,10 @@ module App.Main (main) where
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM.AppM (runAppM)
 import App.Component.Router.Component as RouterComponent
 import App.Component.Router.Type as RouterType
+import App.Util.Capability.AppM.AppM (runAppM)
+import App.Util.Capability.Navigate (routeCodec, routeTitle)
 import Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
 import Data.Formatter.DateTime (formatDateTime)

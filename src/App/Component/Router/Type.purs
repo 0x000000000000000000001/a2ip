@@ -1,10 +1,11 @@
 module App.Component.Router.Type where
 
-import App.Util.Capability.AppM.AppM (AppM)
 import App.Component.Page.About.Type as PageAbout
 import App.Component.Page.Seminars.Type as PageSeminars
 import App.Component.Router.Menu.Type as Menu
 import App.Component.Util.Type (NoInput, NoOutput, NoSlotAddressIndex)
+import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
 import Halogen.Query (ForkId)

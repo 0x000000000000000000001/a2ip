@@ -5,10 +5,11 @@ module App.Component.Common.Link.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM.AppM (AppM)
 import App.Component.Common.Link.Style.Link (classId)
 import App.Component.Common.Link.Style.Sheet (sheet)
 import App.Component.Common.Link.Type (Action(..), Slots, State)
+import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.Navigate (routeCodec)
 import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (a)

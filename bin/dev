@@ -2,7 +2,7 @@
 
 set -e
 
-dir=$(dirname "$0")/../..
+dir=$(dirname "$0")/..
 cd "$dir"
 
 echo "Starting development mode with hot reloading..."
@@ -10,7 +10,7 @@ echo "Project will rebuild automatically when files change"
 echo "Browser will refresh automatically"
 
 # Build initially
-$ROOT_DIR/bin/sh/build
+$ROOT_DIR/bin/build
 
 # Start browser-sync with hot reloading
 # Watch for changes in output directory and index.html

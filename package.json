@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "./bin/sh/build",
-    "conf": "./bin/sh/conf",
-    "dev": "./bin/sh/dev",
-    "run": "./bin/sh/run",
-    "test": "./bin/sh/test"
+    "build": "./bin/build",
+    "conf": "./bin/conf",
+    "dev": "./bin/dev",
+    "run": "./bin/run",
+    "test": "./bin/test"
   },
   "keywords": [],
   "author": "",

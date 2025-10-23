@@ -10,9 +10,10 @@ module App.Component.Common.Link.Type
   )
   where
 
-import CSS (Display, inlineBlock)
-import App.Util.Capability.AppM.AppM (AppM)
 import App.Component.Util.Type (Children, NoQuery, NoSlots)
+import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.Navigate (Route(..))
+import CSS (Display, inlineBlock)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
 import Web.UIEvent.MouseEvent (MouseEvent)

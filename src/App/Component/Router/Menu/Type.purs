@@ -10,9 +10,10 @@ module App.Component.Router.Menu.Type
   )
   where
 
-import App.Util.Capability.AppM.AppM (AppM)
 import App.Component.Common.Link.Type as Link
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery)
+import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Data.Tuple (Tuple)
 import Halogen (HalogenM, Slot)

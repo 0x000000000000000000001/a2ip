@@ -5,7 +5,7 @@ set -e
 
 old_wd=$(pwd)
 
-dir=$(dirname "$0")/../..
+dir=$(dirname "$0")/..
 cd "$dir"
 
 echo "Removing existing bundle (if present)..."

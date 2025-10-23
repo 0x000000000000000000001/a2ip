@@ -8,6 +8,7 @@ module App.Component.Page.About.HandleAction
 import Proem
 
 import App.Component.Page.About.Type (Action(..), AboutM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
+import App.Util.Capability.Log (error)
 import Data.Either (Either)
 import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
