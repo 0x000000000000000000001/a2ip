@@ -2,7 +2,7 @@ module App.Component.Util.Type where
 
 import Proem
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import Data.Const (Const)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, text)

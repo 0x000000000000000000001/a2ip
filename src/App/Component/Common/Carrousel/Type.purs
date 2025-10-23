@@ -10,7 +10,7 @@ module App.Component.Common.Carrousel.Type
   )
   where
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex)
 import Halogen (HalogenM, Slot)

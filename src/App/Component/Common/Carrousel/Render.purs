@@ -4,7 +4,7 @@ module App.Component.Common.Carrousel.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Carrousel.Style.Carrousel (classId)
 import App.Component.Common.Carrousel.Style.Control.Control as Control
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon

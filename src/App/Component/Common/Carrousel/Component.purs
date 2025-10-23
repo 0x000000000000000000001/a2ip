@@ -4,7 +4,7 @@ module App.Component.Common.Carrousel.Component
 
 import Proem
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Carrousel.HandleAction (handleAction)
 import App.Component.Common.Carrousel.Render (render)
 import App.Component.Common.Carrousel.Type (Action(..), Input, Output, Query)

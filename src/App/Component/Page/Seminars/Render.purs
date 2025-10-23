@@ -4,7 +4,7 @@ module App.Component.Page.Seminars.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.Style.DateContent as DateContent

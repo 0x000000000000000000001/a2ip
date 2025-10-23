@@ -1,6 +1,6 @@
 module App.Component.Page.Seminars.Type where
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Timeline.Type (Date(..))
 import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)

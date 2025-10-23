@@ -16,7 +16,7 @@ import App.Component.Page.About.Style.Collaborators as Collaborators
 import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Sheet (sheet)
 import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, country, email, job, members, phone, portraits, role, separators)
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Component.Util.Type (noOutputAction)
 import Data.Array (mapWithIndex, replicate)

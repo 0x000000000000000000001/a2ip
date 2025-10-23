@@ -2,7 +2,7 @@ module App.Component.Page.About.Component where
 
 import Proem
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Page.About.HandleAction (handleAction)
 import App.Component.Page.About.Render (render)
 import App.Component.Page.About.Type (Action(..), Input, Query, Output)

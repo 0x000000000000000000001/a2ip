@@ -11,7 +11,7 @@ module App.Component.Common.Link.Type
   where
 
 import App.Component.Util.Type (Children, NoQuery, NoSlots)
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route(..))
 import CSS (Display, inlineBlock)
 import Data.Maybe (Maybe(..))

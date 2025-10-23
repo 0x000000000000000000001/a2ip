@@ -5,7 +5,7 @@ module App.Component.Common.Link.Component
 
 import Proem
 
-import App.Util.Capability.AppM.AppM (AppM)
+import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Link.HandleAction (handleAction)
 import App.Component.Common.Link.Render (render)
 import App.Component.Common.Link.Type (Action(..), Input, Output, Query)
