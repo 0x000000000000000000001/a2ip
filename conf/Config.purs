@@ -34,10 +34,16 @@ env =
 type Config = 
   { dev :: Boolean
   , env :: Env
+  , test :: Boolean
+  , stage :: Boolean
+  , prod :: Boolean
   }
 
 config :: Config
 config = 
   { dev: Dev == env
+  , test: Test == env
+  , stage: Stage == env
+  , prod: Prod == env
   , env
   }

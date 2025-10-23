@@ -1,6 +1,6 @@
 module Component.Router.Type where
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Page.About.Type as PageAbout
 import Component.Page.Seminars.Type as PageSeminars
 import Component.Router.Menu.Type as Menu

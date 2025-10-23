@@ -1,15 +1,17 @@
-module Test.Component.Page.About.HandleAction.ConvertExtractedData where
+module Test.Util.Google.Sheet.ConvertExtractedData where
 
 import Proem
 
-import Component.Page.About.HandleAction (convertExtractedData, toPerson)
-import Component.Page.About.Type (email, firstname, job, lastname, phone, portraitId, role)
 import Data.Map (fromFoldable)
 import Data.Tuple (Tuple(..))
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
 import Test.Util.Describe (describe)
+import Type.Prelude (Proxy(..))
 import Util.Array.Map (arrayToIndexMap)
+import Util.Google.Drive (extractPortraitIdFromViewUrl)
+import Util.Google.Sheet (Converter, convertExtractedData)
+import Util.Html.Clean (untag)
 
 spec :: Spec Unit
 spec = describe do
@@ -269,3 +271,40 @@ spec = describe do
     let extractedData = { keys, keyIndices, values }
     let expected = []
     convertExtractedData toPerson extractedData === expected
+
+toPerson :: Converter Person
+toPerson getHtmlCell row =
+  let
+    portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
+  in
+    { firstname: getHtmlCell firstname row
+    , lastname: getHtmlCell lastname row
+    , role: getHtmlCell role row
+    , job: getHtmlCell job row
+    , phone: getHtmlCell phone row
+    , email: getHtmlCell email row
+    , country: getHtmlCell country row
+    , portraitId: portraitId_ ??⇒ ""
+    }
+
+lastname = Proxy :: Proxy "lastname" 
+firstname = Proxy :: Proxy "firstname"
+role = Proxy :: Proxy "role"
+job = Proxy :: Proxy "job"
+phone = Proxy :: Proxy "phone"
+email = Proxy :: Proxy "email"
+portraitId = Proxy :: Proxy "portraitId"
+country = Proxy :: Proxy "country"
+
+type PersonRow = 
+  ( lastname :: String
+  , firstname :: String
+  , role :: String
+  , job :: String
+  , phone :: String
+  , email :: String
+  , portraitId :: String
+  , country :: String
+  )
+
+type Person = { | PersonRow }

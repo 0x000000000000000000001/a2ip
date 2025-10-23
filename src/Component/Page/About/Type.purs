@@ -1,7 +1,7 @@
 module Component.Page.About.Type   where
 
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import Component.Common.Separator.Type as Separator
 import Component.Util.Type (NoInput, NoOutput, NoQuery)

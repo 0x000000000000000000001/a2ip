@@ -1,13 +1,13 @@
-module Test.Component.Page.About.HandleAction.ExtractMappingKeysAndValuesFromTableHtml where
+module Test.Util.Google.Sheet.ExtractMappingKeysAndValuesFromTableHtml where
 
 import Proem
 
-import Component.Page.About.HandleAction (extractMappingKeysAndValuesFromTableHtml)
 import Data.Map (empty)
 import Test.Spec (Spec, it)
 import Test.Util.Assert ((===))
 import Test.Util.Describe (describe)
 import Util.Array.Map (arrayToIndexMap)
+import Util.Google.Sheet (extractMappingKeysAndValuesFromTableHtml)
 
 spec :: Spec Unit
 spec = describe do

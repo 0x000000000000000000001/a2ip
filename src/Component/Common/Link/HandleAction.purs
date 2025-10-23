@@ -5,7 +5,7 @@ module Component.Common.Link.HandleAction
 
 import Proem
 
-import Capability.Navigate (navigate)
+import Component.Util.Capability.Navigate (navigate)
 import Component.Common.Link.Type (Action(..), LinkM, Output(..))
 import Halogen (liftEffect, modify_, raise)
 import Web.Event.Event (preventDefault)

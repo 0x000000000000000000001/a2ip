@@ -2,7 +2,7 @@ module Component.Router.Render where
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Page.About.Component as PageAbout
 import Component.Page.Seminars.Component as PageSeminars
 import Component.Router.Menu.Component as Menu

@@ -1,4 +1,4 @@
-module Capability.AppM (AppM, runAppM) where
+module Component.Util.Capability.AppM (AppM, runAppM) where
 
 import Proem
 

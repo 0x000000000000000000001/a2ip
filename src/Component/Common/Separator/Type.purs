@@ -11,7 +11,7 @@ module Component.Common.Separator.Type
   where
 
 import Proem
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)

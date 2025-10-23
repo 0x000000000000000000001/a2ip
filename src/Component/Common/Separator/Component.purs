@@ -5,7 +5,7 @@ module Component.Common.Separator.Component
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Separator.HandleAction (handleAction)
 import Component.Common.Separator.Render (render)
 import Component.Common.Separator.Type (Action(..), Input, Output, Query)

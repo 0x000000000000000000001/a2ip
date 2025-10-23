@@ -1,8 +1,8 @@
-module Capability.ReadConfig where
+module Component.Util.Capability.ReadConfig where
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Config.Config (Config)
 import Control.Monad.Reader.Class (class MonadAsk, ask)
 import Control.Monad.Trans.Class (lift)

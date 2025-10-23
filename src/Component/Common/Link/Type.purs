@@ -11,7 +11,7 @@ module Component.Common.Link.Type
   where
 
 import CSS (Display, inlineBlock)
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Router.Route (Route(..))
 import Component.Util.Type (Children, NoQuery, NoSlots)
 import Data.Maybe (Maybe(..))

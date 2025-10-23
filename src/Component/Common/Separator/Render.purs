@@ -4,7 +4,7 @@ module Component.Common.Separator.Render
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Separator.Style.Separator (classId, classIdWhenLoading, classIdWithSofa)
 import Component.Common.Separator.Style.Sheet (sheet)
 import Component.Common.Separator.Style.Text.Sofa as Sofa

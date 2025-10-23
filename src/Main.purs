@@ -2,7 +2,7 @@ module Main (main) where
 
 import Proem hiding (div)
 
-import Capability.AppM (runAppM)
+import Component.Util.Capability.AppM (runAppM)
 import Component.Router.Component as RouterComponent
 import Component.Router.Route (routeCodec, routeTitle)
 import Component.Router.Type as RouterType

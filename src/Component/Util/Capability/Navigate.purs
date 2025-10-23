@@ -1,8 +1,8 @@
-module Capability.Navigate where
+module Component.Util.Capability.Navigate where
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Router.Route (Route, routePath, routeTitle)
 import Control.Monad.Trans.Class (lift)
 import Effect (Effect)

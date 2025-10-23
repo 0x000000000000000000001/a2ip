@@ -3,7 +3,7 @@ module Component.Router.Menu.Render (render) where
 import Proem hiding (top, div)
 
 import CSS (flex, fromString)
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Link.Component as Link
 import Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import Component.Router.Menu.Style.Item.Child as Child

@@ -2,7 +2,7 @@ module Component.Router.Component where
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Router.HandleAction (handleAction)
 import Component.Router.HandleQuery (handleQuery)
 import Component.Router.Render (render)

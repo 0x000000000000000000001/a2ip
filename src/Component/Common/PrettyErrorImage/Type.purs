@@ -9,7 +9,7 @@ module Component.Common.PrettyErrorImage.Type
   )
   where
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM)

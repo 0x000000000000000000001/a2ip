@@ -10,7 +10,7 @@ module Component.Router.Menu.Type
   )
   where
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Link.Type as Link
 import Component.Router.Route (Route)
 import Component.Util.Type (NoInput, NoOutput, NoQuery)

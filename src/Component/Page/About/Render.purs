@@ -4,11 +4,10 @@ module Component.Page.About.Render
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.Component as PrettyErrorImage
 import Component.Common.Separator.Component as Separator
 import Component.Common.Separator.Type (TextElementTag(..))
-import Component.Page.About.HandleAction (ourImageRelativePath)
 import Component.Page.About.Style.About (classId)
 import Component.Page.About.Style.Card.Card as Card
 import Component.Page.About.Style.Card.Line as CardLine
@@ -29,6 +28,7 @@ import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
+import Util.File.Image (ourImageRelativePath)
 import Util.String (slugify)
 import Util.Style (class_, classes)
 

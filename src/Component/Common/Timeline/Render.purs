@@ -4,7 +4,7 @@ module Component.Common.Timeline.Render
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Timeline.Style.Date as Date
 import Component.Common.Timeline.Style.Dates as Dates
 import Component.Common.Timeline.Style.Line as Line

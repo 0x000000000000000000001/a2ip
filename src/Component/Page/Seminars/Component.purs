@@ -2,7 +2,7 @@ module Component.Page.Seminars.Component where
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Page.Seminars.HandleAction (handleAction)
 import Component.Page.Seminars.Render (render)
 import Component.Page.Seminars.Type (Input, Output, Query, dates)

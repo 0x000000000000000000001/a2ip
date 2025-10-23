@@ -1,8 +1,8 @@
-module Capability.Log where
+module Component.Util.Capability.Log where
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Control.Monad.Trans.Class (lift)
 import Effect.Class.Console as Console
 import Halogen (HalogenM)

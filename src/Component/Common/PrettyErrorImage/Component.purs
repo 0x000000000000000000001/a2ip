@@ -4,7 +4,7 @@ module Component.Common.PrettyErrorImage.Component
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import Component.Common.PrettyErrorImage.Render (render)
 import Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query)

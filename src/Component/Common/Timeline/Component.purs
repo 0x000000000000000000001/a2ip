@@ -4,7 +4,7 @@ module Component.Common.Timeline.Component
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Timeline.HandleAction (handleAction)
 import Component.Common.Timeline.Render (render)
 import Component.Common.Timeline.Type (Action(..), Input, Output, Query)

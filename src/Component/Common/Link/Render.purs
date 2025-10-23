@@ -5,7 +5,7 @@ module Component.Common.Link.Render
 
 import Proem hiding (div)
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Common.Link.Style.Link (classId)
 import Component.Common.Link.Style.Sheet (sheet)
 import Component.Common.Link.Type (Action(..), Slots, State)

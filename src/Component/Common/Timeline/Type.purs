@@ -13,7 +13,7 @@ module Component.Common.Timeline.Type
 
 import Proem
 
-import Capability.AppM (AppM)
+import Component.Util.Capability.AppM (AppM)
 import Component.Util.Type (NoQuery, NoSlots)
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe)
