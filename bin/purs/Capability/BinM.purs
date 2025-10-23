@@ -8,9 +8,11 @@ module Bin.Capability.BinM
 import Proem
 
 import Bin.Util.Exit (exitError, exitSuccess)
+import Component.Util.Capability.ReadConfig (class ReadConfig)
 import Config.Config (Config)
 import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
+import Control.Monad.Reader.Class (ask)
 import Data.Either (Either(..))
 import Effect (Effect)
 import Effect.Aff (Aff, runAff_)
@@ -31,6 +33,9 @@ derive newtype instance monadAffBinM :: MonadAff BinM
 derive newtype instance monadAskBinM :: MonadAsk Config BinM
 derive newtype instance monadErrorBinM :: MonadError Error BinM
 derive newtype instance monadThrowBinM :: MonadThrow Error BinM
+
+instance readConfigBinM :: MonadAsk Config BinM => ReadConfig BinM where
+  readConfig = ask
 
 runBinM :: Config -> BinM Unit -> Effect Unit
 runBinM config (BinM r) = runBinAff $ runReaderT r config

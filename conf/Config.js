@@ -3,4 +3,5 @@ const config = module.default;
 
 export const _config = {
   env: config.env || 'dev',
+  googleDriveApiKey: config.googleDriveApiKey || '',
 };

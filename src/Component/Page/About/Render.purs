@@ -105,7 +105,7 @@ renderCard section isLoading idx member =
           , src: isLoading
               ? Nothing
               ↔
-                ( Just $ ourImageRelativePath
+                ( Just $ ourImageRelativePath "component/page"
                     ( member.portraitId == ""
                         ? (slugify $ member.firstname <> "-" <> member.lastname)
                         ↔ member.portraitId
@@ -113,7 +113,7 @@ renderCard section isLoading idx member =
                 )
           , fallbackSrc: isLoading
               ? Nothing
-              ↔ (Just $ ourImageRelativePath 
+              ↔ (Just $ ourImageRelativePath "component/page"
                 ( member.portraitId /= ""
                     ? (slugify $ member.firstname <> "-" <> member.lastname)
                     ↔ "anonymous"

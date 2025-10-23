@@ -1,3 +1,4 @@
 {
-  "env": "$ENV"
+  "env": "$ENV",
+  "googleDriveApiKey": "$GOOGLE_DRIVE_API_KEY"
 }

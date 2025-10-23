@@ -2,6 +2,7 @@ module Util.File.Image.Common where
 
 import Proem
 
+import Component.Util.Capability.ReadConfig (class ReadConfig, readConfig)
 import Data.String (Pattern(..), Replacement(..), replace)
 import Util.File.Path (imageDirRelativePath)
 
@@ -11,17 +12,23 @@ mockImages = true
 googleDriveImageUrlTemplatePlaceholder :: String
 googleDriveImageUrlTemplatePlaceholder = "__FILE_ID__"
 
-googleDriveImageUrlTemplate :: String
-googleDriveImageUrlTemplate = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=AIzaSyCe9sioL_5aL3-XrdFfU7AuavfhDZMnQeo"
+googleDriveImageUrlTemplate :: String -> String
+googleDriveImageUrlTemplate apiKey = "https://www.googleapis.com/drive/v3/files/" <> googleDriveImageUrlTemplatePlaceholder <> "?alt=media&key=" <> apiKey
 
-googleDriveImageUrl :: String -> String
-googleDriveImageUrl portraitId = replace (Pattern googleDriveImageUrlTemplatePlaceholder) (Replacement portraitId) googleDriveImageUrlTemplate
+googleDriveImageUrl :: ∀ m. ReadConfig m => String -> m String
+googleDriveImageUrl id = do 
+  config <- readConfig
+  let apiKey = config.googleDriveApiKey
+  η $ replace 
+    (Pattern googleDriveImageUrlTemplatePlaceholder) 
+    (Replacement id) 
+    (googleDriveImageUrlTemplate apiKey)
 
-ourImageRelativePath :: String -> String
-ourImageRelativePath portraitId = imageDirRelativePath <> "component/page/about/person/" <> suffixPortraitIdWithExt portraitId
+ourImageRelativePath :: String -> String -> String
+ourImageRelativePath id path = imageDirRelativePath <> path <> "/" <> suffixWithExt id
 
 mockImageUrl :: String
 mockImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/960px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
 
-suffixPortraitIdWithExt :: String -> String
-suffixPortraitIdWithExt id = id <> ".png"
+suffixWithExt :: String -> String
+suffixWithExt id = id <> ".png"

@@ -17,7 +17,7 @@ import Data.Traversable (for_)
 import Effect (Effect)
 import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
-import Util.File.Image.Common (googleDriveImageUrl, ourImageRelativePath, suffixPortraitIdWithExt)
+import Util.File.Image.Common (googleDriveImageUrl, ourImageRelativePath, suffixWithExt)
 import Util.File.Image.Node (downloadImage)
 import Util.File.Path (rootDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
@@ -58,7 +58,7 @@ imagesToDownload = do
           { idx
           , id: portraitId
           , url: googleDriveImageUrl portraitId
-          , filename: suffixPortraitIdWithExt portraitId
+          , filename: suffixWithExt portraitId
           }
         ) 
         $ filter 
