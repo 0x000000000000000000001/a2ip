@@ -21,6 +21,7 @@ import Util.File.Image.Common (googleDriveImageUrl, ourImageRelativePath, suffix
 import Util.File.Image.Node (downloadImage)
 import Util.File.Path (rootDirPath)
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
+import Web.HTML.HTMLHyperlinkElementUtils (port)
 
 main :: Effect Unit
 main = runBinM config do
@@ -50,6 +51,8 @@ imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
   members <- fetchMembers 
 
+  let portraitedMembers members_ = filter (\{ portraitId } -> trim portraitId /= "") members_
+
   members 
     ?! (\members_ -> do 
       η $ 
@@ -61,9 +64,7 @@ imagesToDownload = do
           , filename: suffixWithExt portraitId
           }
         ) 
-        $ filter 
-          (\{ portraitId } -> trim portraitId /= "")
-          members_
+        $ portraitedMembers members_
     ) ⇿ (\err -> do
       error $ "Error fetching table HTML: " <> err
       η []
