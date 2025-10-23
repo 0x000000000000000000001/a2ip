@@ -9,10 +9,10 @@ module App.Component.Common.Carrousel.Style.Control.Control
 import Proem hiding (top)
 
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon
-import CSS (backgroundColor, color, rgba, white)
+import CSS (backgroundColor, color, hover, rgba, white)
 import CSS as CSS
 import Color (darken)
-import Util.Style (alignItemsCenter, borderRadius1, centerLeftToCenterLeft, centerRightToCenterRight, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, borderRadius1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"
@@ -39,6 +39,11 @@ style = do
     fontWeightBold
     fontSizePct 130.0
 
+  __hover :? do 
+    backgroundColor $ rgba 0 0 0 0.93
+    heightRem 6.3
+    widthRem 6.3
+
   __prev :? do 
     centerToCenterLeft
 
@@ -52,6 +57,7 @@ style = do
     rightRem 1.0
   
   where 
+  __hover = classId .&: hover
   __prev = classId .&. classIdWhenPrev
   a___icon = __prev :|*. Icon.classId
   __next = classId .&. classIdWhenNext

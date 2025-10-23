@@ -758,19 +758,19 @@ bottomLeftToBottomLeft :: CSS.CSS
 bottomLeftToBottomLeft = do
   positionAbsoluteTranslatePct 0 0
   left0
-  bottomPct100
+  bottom0
 
 bottomCenterToBottomLeft :: CSS.CSS
 bottomCenterToBottomLeft = do
   positionAbsoluteTranslatePct (-50) 0
   left0
-  bottomPct100
+  bottom0
 
 bottomRightToBottomLeft :: CSS.CSS
 bottomRightToBottomLeft = do
   positionAbsoluteTranslatePct 0 0
   rightPct100
-  bottomPct100
+  bottom0
 
 topLeftToBottomCenter :: CSS.CSS 
 topLeftToBottomCenter = do
@@ -812,19 +812,19 @@ bottomLeftToBottomCenter :: CSS.CSS
 bottomLeftToBottomCenter = do
   positionAbsoluteTranslatePct 0 0
   leftPct50
-  bottomPct100
+  bottom0
 
 bottomCenterToBottomCenter :: CSS.CSS
 bottomCenterToBottomCenter = do
   positionAbsoluteTranslatePct (-50) 0
   leftPct50
-  bottomPct100
+  bottom0
 
 bottomRightToBottomCenter :: CSS.CSS
 bottomRightToBottomCenter = do
   positionAbsoluteTranslatePct 0 0
   rightPct50
-  bottomPct100
+  bottom0
 
 topLeftToBottomRight :: CSS.CSS 
 topLeftToBottomRight = do
@@ -866,19 +866,19 @@ bottomLeftToBottomRight :: CSS.CSS
 bottomLeftToBottomRight = do
   positionAbsoluteTranslatePct 0 0
   leftPct100
-  bottomPct100
+  bottom0
 
 bottomCenterToBottomRight :: CSS.CSS
 bottomCenterToBottomRight = do
   positionAbsoluteTranslatePct (-50) 0
   leftPct100
-  bottomPct100
+  bottom0
 
 bottomRightToBottomRight :: CSS.CSS
 bottomRightToBottomRight = do
   positionAbsoluteTranslatePct 0 0
   right0
-  bottomPct100
+  bottom0
 
 fill :: Color -> CSS.CSS
 fill c = raw "fill" $ toHexString c

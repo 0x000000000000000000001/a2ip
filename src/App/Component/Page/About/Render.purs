@@ -60,7 +60,7 @@ render s =
           { text: "Collaborateurs du comité scientifique international"
           , textElementTag: H2
           , loading: isNothing s.collaborators
-          , withSofa: true
+          , withSofa: false
           }
           noOutputAction
       , div
