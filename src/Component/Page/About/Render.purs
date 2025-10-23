@@ -28,7 +28,7 @@ import Html.Renderer.Halogen (render_)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
-import Util.File.Image (ourImageRelativePath)
+import Util.File.Image.Common (ourImageRelativePath)
 import Util.String (slugify)
 import Util.Style (class_, classes)
 
