@@ -1,7 +1,8 @@
 module App.Component.Page.Home.Type where
 
+import App.Component.Common.Modal.Type as Modal
 import App.Component.Common.Carrousel.Type as Carrousel
-import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoState, NoSlotAddressIndex)
+import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
@@ -11,14 +12,18 @@ type Input = NoInput
 type Output = NoOutput
 
 type Slots =
-  ( carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
+  ( modal :: Slot Modal.Query Modal.Output NoSlotAddressIndex
+  , carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
   )
 
+modal = Proxy :: Proxy "modal"
 carrousel = Proxy :: Proxy "carrousel"
 
-type State = NoState
+type State = 
+  { showModal :: Boolean
+  }
 
-type Action = NoAction
+data Action = ShowModal
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
