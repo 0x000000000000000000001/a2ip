@@ -7,13 +7,13 @@ module App.Component.Router.Style.Core
 
 import Proem hiding (top)
 
-import CSS (angular, animation, background, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, sansSerif, saturate, sec, star)
-import CSS as CSS
 import App.Component.Router.Menu.Style.Menu as MenuStyle
+import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, normalAnimationDirection, pct, positioned, rgba, sansSerif, saturate, sec, star)
+import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, margin1, margin4, padding1, raw, red, (.?), (:?))
+import Util.Style (backgroundColorWhite, borderRadius1, displayFlex, flexGrow1, heightRem, margin1, margin4, padding1, raw, red, widthRem, (.?), (:&:), (:?))
 
 classId :: String
 classId = "MvOJiB63k"
@@ -34,9 +34,33 @@ style = do
     borderRadius1 0.6
     flexGrow1
 
+  html :? do 
+    raw "scroll-behavior" "smooth"
+    raw "-webkit-overflow-scrolling" "touch"
+
   star :? do
     raw "transition" $ "all " <> show animationDurationMs <> "ms ease"
     fontFamily [] (sansSerif :| [])
+
+    raw "scrollbar-width" "thin"
+    raw "scrollbar-color" "rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05)"
+
+  __webkitScrollbar :? do
+    widthRem 0.5
+    heightRem 0.5
+
+  __webkitScrollbarTrack :? do
+    backgroundColor $ rgba 0 0 0 0.05
+
+  __webkitScrollbarThumb :? do
+    backgroundColor $ rgba 0 0 0 0.3
+    borderRadius1 0.25
+
+  __webkitScrollbarThumbHover :? do
+    backgroundColor $ rgba 0 0 0 0.5
+
+  __webkitScrollbarCorner :? do
+    backgroundColor $ rgba 0 0 0 0.05
 
   keyframes bodyGradientAnimationId $ (
     0.0 /\ backgroundPosition (positioned (pct 0.0) (pct 50.0))
@@ -62,3 +86,10 @@ style = do
       infinite
       normalAnimationDirection
       forwards
+
+  where 
+  __webkitScrollbar = star :&: fromString "::-webkit-scrollbar"
+  __webkitScrollbarTrack = star :&: fromString "::-webkit-scrollbar-track"
+  __webkitScrollbarThumb = star :&: fromString "::-webkit-scrollbar-thumb"
+  __webkitScrollbarThumbHover = __webkitScrollbarThumb :&: hover
+  __webkitScrollbarCorner = star :&: fromString "::-webkit-scrollbar-corner"

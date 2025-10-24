@@ -11,9 +11,12 @@ module Util.Style
   , (.|>.)
   , (.|>:)
   , (:&.)
+  , (:&:)
   , (:?)
   , (:|*.)
+  , (:|*:)
   , (:|>.)
+  , (:|>:)
   , (|*.)
   , (|>.)
   , after
@@ -995,6 +998,8 @@ classSelect sel rs = select (fromString $ "." <> stripDotPrefixFromClassName sel
 
 infixr 5 classSelect as .?
 
+infix 6 child as :|>:
+
 -- | The child selector composer.
 -- | Maps to `sel1 > sel2` in CSS.
 classChild :: String -> Selector -> Selector
@@ -1016,6 +1021,8 @@ classChildClass a b = classChild a (fromString $ "." <> stripDotPrefixFromClassN
 
 infix 6 classChildClass as .|>.
 
+infix 6 deep as :|*:
+
 -- | The deep selector composer.
 -- | Maps to `sel1 sel2` in CSS.
 classDeep :: String -> Selector -> Selector
@@ -1036,6 +1043,8 @@ classDeepClass :: String -> String -> Selector
 classDeepClass a b = classDeep a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 classDeepClass as .|*.
+
+infix 6 with as :&:
 
 -- | The filter selector composer, adds a filter to a selector.
 -- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,

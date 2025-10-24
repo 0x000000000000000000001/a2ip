@@ -1,15 +1,22 @@
 module App.Component.Common.Modal.Style.Modal
   ( classId
   , style
-  ) where
+  , zIndex
+  )
+  where
 
 import Proem hiding (top)
 
+import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
-import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, left0, minHeightPct, positionFixed, top0, widthPct100, (.?))
+import CSS.Overflow (overflow, overflowAuto)
+import Util.Style (displayFlex, heightPct, justifyContentCenter, left0, padding2, positionFixed, top0, widthPct100, (.?))
 
 classId :: String
 classId = "BVUZF1mw8"
+
+zIndex :: Int
+zIndex = 1000
 
 style :: CSS.CSS
 style = do
@@ -19,6 +26,10 @@ style = do
     left0
     displayFlex
     justifyContentCenter
-    alignItemsCenter
+    alignItems flexStart
     widthPct100
-    minHeightPct 100.0
+    heightPct 100.0
+    backgroundColor $ rgba 0 0 0 0.75
+    CSS.zIndex zIndex
+    padding2 10.0 0.0
+    overflow overflowAuto

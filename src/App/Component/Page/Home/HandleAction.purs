@@ -6,7 +6,6 @@ module App.Component.Page.Home.HandleAction
 import Proem
 
 import App.Component.Page.Home.Type (Action(..), HomeM)
-import Data.Maybe (Maybe(..))
 import Halogen (modify_)
 
 handleAction :: Action -> HomeM Unit
