@@ -4,7 +4,7 @@ import Proem hiding (top, div)
 
 import App.Component.Router.Menu.Style.Menu (foldWidth)
 import App.Component.Router.Menu.Type (Action(..), MenuM)
-import App.Component.Router.Style.Core (animationDurationMs)
+import App.Component.Router.Style.Router (animationDurationMs)
 import Data.Int (toNumber)
 import Effect.Aff (Milliseconds(..), delay)
 import Effect.Aff.Class (liftAff)

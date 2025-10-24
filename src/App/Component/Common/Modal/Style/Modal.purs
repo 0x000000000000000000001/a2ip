@@ -10,7 +10,7 @@ import Proem hiding (top)
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style (displayFlex, heightPct, justifyContentCenter, left0, padding2, positionFixed, top0, widthPct100, (.?))
+import Util.Style (displayFlex, heightPct, justifyContentCenter, left0, positionFixed, top0, widthPct100, (.?))
 
 classId :: String
 classId = "BVUZF1mw8"
@@ -31,5 +31,4 @@ style = do
     heightPct 100.0
     backgroundColor $ rgba 0 0 0 0.75
     CSS.zIndex zIndex
-    padding2 10.0 0.0
     overflow overflowAuto
