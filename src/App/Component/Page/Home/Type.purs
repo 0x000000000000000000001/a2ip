@@ -2,7 +2,7 @@ module App.Component.Page.Home.Type where
 
 import App.Component.Common.Modal.Type as Modal
 import App.Component.Common.Carrousel.Type as Carrousel
-import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
