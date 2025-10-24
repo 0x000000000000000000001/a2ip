@@ -11,7 +11,7 @@ import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Type (State)
-import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, deepClass, displayFlex, heightRem, justifyContentCenter, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
+import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, typedDeepClass, displayFlex, heightRem, justifyContentCenter, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
 classId = "hJyLm9YwK"
@@ -44,7 +44,7 @@ style s = do
 
   where
   __hover = classId .& hover
-  deepClassHover = deepClass __hover
+  deepClassHover = typedDeepClass __hover
   ____children = deepClassHover Children.classId
   ____iconContainer = deepClassHover IconContainer.classId
   ____label = deepClassHover Label.classId

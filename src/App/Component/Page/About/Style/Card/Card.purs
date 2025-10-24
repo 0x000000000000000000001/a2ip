@@ -8,13 +8,13 @@ module App.Component.Page.About.Style.Card.Card
 
 import Proem hiding (top)
 
-import CSS (CSS) as CSS
-import CSS (column, flexDirection, hover, (&))
 import App.Component.Page.About.Style.Card.Line as Line
 import App.Component.Page.About.Style.Card.Names as Names
 import App.Component.Page.About.Style.Card.Portrait as Portrait
 import App.Component.Page.About.Type (email, phone)
-import Util.Style (alignItemsCenter, before, borderRadius1, content, deepClass, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import CSS (CSS) as CSS
+import CSS (column, flexDirection, hover, (&))
+import Util.Style (alignItemsCenter, before, borderRadius1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -75,10 +75,10 @@ style = do
   where
   __loaded = classId .&. classIdWhenLoaded
   ____hover = __loaded & hover
-  deepClassHover = deepClass ____hover
+  deepClassHover = typedDeepClass ____hover
   ______portrait = deepClassHover Portrait.classId
   __loading = classId .&. classIdWhenLoading
-  deepClassLoading = deepClass __loading
+  deepClassLoading = typedDeepClass __loading
   ____portrait = deepClassLoading Portrait.classId
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId

@@ -1,24 +1,50 @@
 module Util.Style
   ( (&.)
+  , (&:)
+  , (&¨)
   , (.&)
   , (.&.)
   , (.&:)
+  , (.&¨)
   , (.?)
   , (.|*)
   , (.|*.)
   , (.|*:)
+  , (.|*¨)
   , (.|>)
   , (.|>.)
   , (.|>:)
+  , (.|>¨)
+  , (:&)
   , (:&.)
   , (:&:)
+  , (:&¨)
   , (:?)
   , (:|*.)
   , (:|*:)
+  , (:|*¨)
+  , (:|>)
   , (:|>.)
   , (:|>:)
+  , (:|>¨)
   , (|*.)
+  , (|*:)
+  , (|*¨)
   , (|>.)
+  , (|>:)
+  , (|>¨)
+  , (¨&)
+  , (¨&.)
+  , (¨&:)
+  , (¨&¨)
+  , (¨?)
+  , (¨|*)
+  , (¨|*.)
+  , (¨|*:)
+  , (¨|>)
+  , (¨|>.)
+  , (¨|>:)
+  , (¨|>¨)
   , after
   , alignItemsCenter
   , backgroundColorNone
@@ -87,20 +113,21 @@ module Util.Style
   , centerToTopCenter
   , centerToTopLeft
   , centerToTopRight
-  , childClass
-  , classChild
   , classChildClass
-  , classDeep
+  , classChildRaw
+  , classChildTyped
   , classDeepClass
+  , classDeepRaw
+  , classDeepTyped
   , classSelect
-  , classWith
   , classWithClass
+  , classWithRaw
+  , classWithTyped
   , class_
   , classes
   , colorRed
   , content
   , cursorPointer
-  , deepClass
   , displayFlex
   , displayInlineBlock
   , displayNone
@@ -155,6 +182,15 @@ module Util.Style
   , positionRelative
   , positionSticky
   , raw
+  , rawChildClass
+  , rawChildRaw
+  , rawChildTyped
+  , rawDeepClass
+  , rawDeepTyped
+  , rawSelect
+  , rawWithClass
+  , rawWithRaw
+  , rawWithTyped
   , red
   , right0
   , rightPct100
@@ -194,11 +230,16 @@ module Util.Style
   , topRightToTopLeft
   , topRightToTopRight
   , translatePct
+  , typedChildClass
+  , typedChildRaw
+  , typedDeepClass
+  , typedDeepRaw
+  , typedWithClass
+  , typedWithRaw
   , userSelectNone
   , widthPct
   , widthPct100
   , widthRem
-  , withClass
   )
   where
 
@@ -206,8 +247,8 @@ import Proem hiding (top, bottom, div)
 
 import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, justifyContent, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
-import CSS.Common as CSSC
 import CSS.Color (Color, hsl)
+import CSS.Common as CSSC
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
 import CSS.Selector (child, deep, with)
@@ -220,7 +261,7 @@ import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Effect (Effect)
-import Halogen.HTML (ClassName(..), IProp)
+import Halogen.HTML (ClassName(..), IProp, b)
 import Halogen.HTML.Properties as HP
 
 foreign import getRootFontSize :: Effect Number
@@ -998,73 +1039,152 @@ classSelect sel rs = select (fromString $ "." <> stripDotPrefixFromClassName sel
 
 infixr 5 classSelect as .?
 
+rawSelect :: String -> CSS.CSS -> CSS.CSS
+rawSelect sel rs = select (fromString sel) rs
+
+infixr 5 rawSelect as ¨?
+
 infix 6 child as :|>:
+infix 6 child as :|>
+infix 6 child as |>:
 
--- | The child selector composer.
--- | Maps to `sel1 > sel2` in CSS.
-classChild :: String -> Selector -> Selector
-classChild a b = child (fromString $ "." <> stripDotPrefixFromClassName a) b
+classChildTyped :: String -> Selector -> Selector
+classChildTyped a b = child (fromString $ "." <> stripDotPrefixFromClassName a) b
 
-infix 6 classChild as .|>
-infix 6 classChild as .|>:
+infix 6 classChildTyped as .|>
+infix 6 classChildTyped as .|>:
 
--- | See `classChild`
-childClass :: Selector -> String -> Selector
-childClass a b = child a (fromString $ "." <> stripDotPrefixFromClassName b)
+rawChildTyped :: String -> Selector -> Selector
+rawChildTyped a b = child (fromString a) b
 
-infix 6 childClass as |>.
-infix 6 childClass as :|>.
+infix 6 rawChildTyped as ¨|>
+infix 6 rawChildTyped as ¨|>:
 
--- | See `classChild`
+typedChildClass :: Selector -> String -> Selector
+typedChildClass a b = child a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 typedChildClass as |>.
+infix 6 typedChildClass as :|>.
+
+typedChildRaw :: Selector -> String -> Selector
+typedChildRaw a b = child a (fromString b)
+
+infix 6 typedChildRaw as |>¨
+infix 6 typedChildRaw as :|>¨
+
+rawChildClass :: Selector -> String -> Selector
+rawChildClass a b = child a (fromString b)
+
+infix 6 rawChildClass as ¨|>.
+
+rawChildRaw :: String -> String -> Selector
+rawChildRaw a b = child (fromString a) (fromString b)
+
+infix 6 rawChildRaw as ¨|>¨
+
 classChildClass :: String -> String -> Selector
-classChildClass a b = classChild a (fromString $ "." <> stripDotPrefixFromClassName b)
+classChildClass a b = classChildTyped a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 classChildClass as .|>.
 
+classChildRaw :: String -> String -> Selector
+classChildRaw a b = classChildTyped a (fromString b)
+
+infix 6 classChildRaw as .|>¨
+
 infix 6 deep as :|*:
+infix 6 deep as :|*
+infix 6 deep as |*:
 
--- | The deep selector composer.
--- | Maps to `sel1 sel2` in CSS.
-classDeep :: String -> Selector -> Selector
-classDeep a b = deep (fromString $ "." <> stripDotPrefixFromClassName a) b
+classDeepTyped :: String -> Selector -> Selector
+classDeepTyped a b = deep (fromString $ "." <> stripDotPrefixFromClassName a) b
 
-infix 6 classDeep as .|*
-infix 6 classDeep as .|*:
+infix 6 classDeepTyped as .|*
+infix 6 classDeepTyped as .|*:
 
--- | See `classDeep`
-deepClass :: Selector -> String -> Selector
-deepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
+rawDeepTyped :: String -> Selector -> Selector
+rawDeepTyped a b = deep (fromString a) b
 
-infix 6 deepClass as |*.
-infix 6 deepClass as :|*.
+infix 6 rawDeepTyped as ¨|*
+infix 6 rawDeepTyped as ¨|*:
 
--- | See `classDeep`
+typedDeepRaw :: Selector -> String -> Selector
+typedDeepRaw a b = deep a (fromString b)
+
+infix 6 typedDeepRaw as |*¨
+infix 6 typedDeepRaw as :|*¨
+
+classDeepRaw :: String -> String -> Selector
+classDeepRaw a b = classDeepTyped a (fromString b)
+
+infix 6 classDeepRaw as .|*¨
+
+typedDeepClass :: Selector -> String -> Selector
+typedDeepClass a b = deep a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 typedDeepClass as |*.
+infix 6 typedDeepClass as :|*.
+
+rawDeepClass :: String -> String -> Selector
+rawDeepClass a b = typedDeepClass (fromString a) b
+
+infix 6 rawDeepClass as ¨|*.
+
 classDeepClass :: String -> String -> Selector
-classDeepClass a b = classDeep a (fromString $ "." <> stripDotPrefixFromClassName b)
+classDeepClass a b = classDeepTyped a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 classDeepClass as .|*.
 
+rawDeepRaw :: String -> String -> Selector
+rawDeepRaw a b = deep (fromString a) (fromString b)
+
+infix 6 rawDeepRaw as ¨|*¨
+
 infix 6 with as :&:
+infix 6 with as :&
+infix 6 with as &:
 
--- | The filter selector composer, adds a filter to a selector.
--- | Maps to something like `sel#filter`, `sel.filter` or `sel:filter` in CSS,
--- | depending on the filter.
-classWith :: String -> Refinement -> Selector
-classWith s r = with (fromString $ "." <> stripDotPrefixFromClassName s) r
+classWithTyped :: String -> Refinement -> Selector
+classWithTyped a b = with (fromString $ "." <> stripDotPrefixFromClassName a) b
 
-infix 6 classWith as .&
-infix 6 classWith as .&:
+infix 6 classWithTyped as .&
+infix 6 classWithTyped as .&:
 
--- | See `classWith` 
-withClass :: Selector -> String -> Selector
-withClass s r = with s (fromString $ "." <> stripDotPrefixFromClassName r)
+classWithRaw :: String -> String -> Selector
+classWithRaw a b = classWithTyped a (fromString b)
 
-infix 6 withClass as &.
-infix 6 withClass as :&.
+infix 6 classWithRaw as .&¨
 
--- | See `classWith` 
+typedWithClass :: Selector -> String -> Selector
+typedWithClass a b = with a (fromString $ "." <> stripDotPrefixFromClassName b)
+
+infix 6 typedWithClass as &.
+infix 6 typedWithClass as :&.
+
+rawWithClass :: String -> String -> Selector
+rawWithClass a b = typedWithClass (fromString a) b
+
+infix 6 rawWithClass as ¨&.
+
+rawWithTyped :: String -> Refinement -> Selector
+rawWithTyped a b = with (fromString a) b
+
+infix 6 rawWithTyped as ¨&
+infix 6 rawWithTyped as ¨&:
+
+typedWithRaw :: Selector -> String -> Selector
+typedWithRaw a b = with a (fromString b)
+
+infix 6 typedWithRaw as &¨
+infix 6 typedWithRaw as :&¨
+
+rawWithRaw :: String -> String -> Selector
+rawWithRaw a b = with (fromString a) (fromString b)
+
+infix 6 rawWithRaw as ¨&¨
+
 classWithClass :: String -> String -> Selector
-classWithClass s r = classWith s (fromString $ "." <> stripDotPrefixFromClassName r)
+classWithClass a b = classWithTyped a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 classWithClass as .&.
 

@@ -5,6 +5,7 @@ module App.Component.Common.Modal.HandleAction
 import Proem
 
 import App.Component.Common.Modal.Style.Modal as Modal
+import App.Component.Common.Modal.Style.Close as Close
 import App.Component.Common.Modal.Type (Action(..), ModalM, Output(..))
 import Data.String (Pattern(..), contains)
 import Halogen.Query.HalogenM (raise)
@@ -23,7 +24,10 @@ handleAction = case _ of
         
     classNameStr <- element ?? (ʌ ◁ className) ⇔ η ""
     
-    let shouldClose = contains (Pattern Modal.classId) classNameStr
+    let shouldClose = (
+      contains (Pattern Modal.classId) classNameStr
+      || contains (Pattern Close.classId) classNameStr
+    )
 
     when shouldClose do
       raise Closed
