@@ -18,7 +18,7 @@ render :: State -> ComponentHTML Action Slots AppM
 render _ = 
   div 
     [ class_ classId
-    , HE.onClick BackgroundClicked
+    , HE.onClick HandleClick
     ]
     [ sheet
     , div 

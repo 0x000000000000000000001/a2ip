@@ -23,7 +23,7 @@ type Slots = NoSlots
 
 type State = NoState
 
-data Action = BackgroundClicked MouseEvent
+data Action = HandleClick MouseEvent
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
