@@ -12,6 +12,7 @@ import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (liftEffect)
 import Effect.Exception (Error)
 import Util.Applicative (η, ηι)
+import Util.Effect (ʌ)
 import Util.Effect.Timer (IntervalId, clearInterval, setInterval)
 
 ʌ' :: ∀ m. MonadAff m => Aff ~> m
