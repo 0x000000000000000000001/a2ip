@@ -8,7 +8,7 @@ import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Modal.Component as Modal
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State, carrousel, modal)
-import App.Component.Util.Type (noHtml, noInput, noOutputAction, noSlotAddressIndex)
+import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, slot, text)
@@ -27,7 +27,7 @@ render s =
             modal
             noSlotAddressIndex
             Modal.component
-            noInput
+            { closable: true }
             handleModalOutput
         )
         ↔ noHtml
