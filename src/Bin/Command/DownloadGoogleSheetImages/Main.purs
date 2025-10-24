@@ -35,7 +35,7 @@ main = runBinM config do
 
   let totalLines = length images
   
-  void $ parTraverseBounded 3 (download writeLock totalLines) images
+  ø $ parTraverseBounded 3 (download writeLock totalLines) images
   
   write $ escapeCodeToString (Down totalLines) <> carriageReturn
 

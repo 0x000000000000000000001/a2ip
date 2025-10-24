@@ -31,7 +31,7 @@ handleAction = case _ of
       ?! (\m -> modify_ _ { members = Just m })
       ⇿ (error ◁ ("Error fetching members: " <> _))
 
-    void $ fork do
+    ø $ fork do
       collaborators <- fetchCollaborators
       collaborators
         ?! (\c -> modify_ _ { collaborators = Just c })

@@ -16,6 +16,6 @@ main = runBinM config $ keepAlive do
 
   ʌ' $ ʌ $ log "before"
 
-  void $ ʌ' $ AAVar.take avar
+  ø $ ʌ' $ AAVar.take avar
 
   ʌ' $ ʌ $ log "after"

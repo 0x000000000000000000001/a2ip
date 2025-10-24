@@ -46,12 +46,12 @@ main = do
           doc <- window >>= document
           setTitle (routeTitle route) doc
         -- Navigate to route
-        void $ io.query $ mkTell $ RouterType.Navigate route
+        ø $ io.query $ mkTell $ RouterType.Navigate route
       )
       ⇿ κηι
     
     -- Listen for route changes
-    void $ ʌ $ nav.listen \loc -> 
+    ø $ ʌ $ nav.listen \loc -> 
       parse routeCodec loc.pathname
-        ?! (launchAff_ ◁ void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
+        ?! (launchAff_ ◁ ø ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
         ⇿ κηι
