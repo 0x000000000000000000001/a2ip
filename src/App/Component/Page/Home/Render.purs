@@ -6,6 +6,7 @@ import Proem hiding (div)
 
 import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Modal.Component as Modal
+import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State, carrousel, modal)
 import App.Component.Util.Type (noHtml, noInput, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -27,7 +28,7 @@ render s =
             noSlotAddressIndex
             Modal.component
             noInput
-            noOutputAction
+            handleModalOutput
         )
         ↔ noHtml
     , slot

@@ -13,5 +13,7 @@ component = mkComponent
       { showModal: false
       }
   , render
-  , eval: mkEval defaultEval { handleAction = handleAction }
+  , eval: mkEval defaultEval 
+      { handleAction = handleAction 
+      }
   }

@@ -23,7 +23,7 @@ type State =
   { showModal :: Boolean
   }
 
-data Action = ShowModal
+data Action = ShowModal | HideModal
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

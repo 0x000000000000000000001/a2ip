@@ -2,21 +2,21 @@ module App.Component.Common.Modal.Type
   ( Action(..)
   , ModalM
   , Input
-  , Output
+  , Output(..)
   , Query
   , Slots
   , State
   )
   where
 
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlots, NoState)
+import App.Component.Util.Type (NoInput, NoQuery, NoSlots, NoState)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM)
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input = NoInput
 
-type Output = NoOutput
+data Output = Closed
 
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
