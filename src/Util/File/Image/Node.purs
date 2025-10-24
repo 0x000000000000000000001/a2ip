@@ -18,7 +18,7 @@ downloadImage url filePath = do
   response <- getCheckStatus arrayBuffer url
   response
     ?! (\res -> do
-      buffer <- liftEffect $ fromArrayBuffer res.body
+      buffer <- ʌ $ fromArrayBuffer res.body
       writeFile filePath buffer
       Right ι # η
     )

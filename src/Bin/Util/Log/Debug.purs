@@ -35,7 +35,7 @@ debugAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg
 
 debugShort :: ∀ m. MonadAff m => String -> m Unit
-debugShort = liftEffect ◁ Console.log ◁ (\m -> debugPrefixed m true false)
+debugShort = ʌ ◁ Console.log ◁ (\m -> debugPrefixed m true false)
 
 debugShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugShortAfterNewline msg = newline *> debugShort msg

@@ -19,7 +19,6 @@ import Proem
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 errorColor :: Color
@@ -29,13 +28,13 @@ errorColorize :: String -> String
 errorColorize = colorize errorColor
 
 error :: ∀ m. MonadAff m => String -> m Unit
-error = liftEffect ◁ Console.log ◁ (\m -> errorPrefixed m false false)
+error = ʌ ◁ Console.log ◁ (\m -> errorPrefixed m false false)
 
 errorAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 errorAfterNewline msg = newline *> error msg
 
 errorShort :: ∀ m. MonadAff m => String -> m Unit
-errorShort = liftEffect ◁ Console.log ◁ (\m -> errorPrefixed m true false)
+errorShort = ʌ ◁ Console.log ◁ (\m -> errorPrefixed m true false)
 
 errorShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 errorShortAfterNewline msg = newline *> errorShort msg

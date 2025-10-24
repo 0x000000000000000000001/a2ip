@@ -7,7 +7,6 @@ import Config.Config (config)
 import Effect (Effect)
 import Effect.AVar (empty)
 import Effect.Aff.AVar as AAVar
-import Effect.Aff.Class (liftAff)
 import Effect.Console (log)
 import Util.Aff (keepAlive)
 
@@ -17,6 +16,6 @@ main = runBinM config $ keepAlive do
 
   ʌ' $ ʌ $ log "before"
 
-  _ <- liftAff $ AAVar.take avar
+  void $ ʌ' $ AAVar.take avar
 
   ʌ' $ ʌ $ log "after"

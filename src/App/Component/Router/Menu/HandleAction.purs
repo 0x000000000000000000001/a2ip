@@ -7,8 +7,6 @@ import App.Component.Router.Menu.Type (Action(..), MenuM)
 import App.Component.Router.Style.Router (animationDurationMs)
 import Data.Int (toNumber)
 import Effect.Aff (Milliseconds(..), delay)
-import Effect.Aff.Class (liftAff)
-import Effect.Class (liftEffect)
 import Halogen (get, modify_)
 import Util.Style (getRootFontSize)
 import Web.UIEvent.MouseEvent (clientX)
@@ -19,7 +17,7 @@ handleAction = case _ of
     state <- get
     unless state.isAnimating do
       modify_ _ { isUnfold = not shouldFold, isAnimating = true }
-      liftAff $ delay (Milliseconds animationDurationMs)
+      ʌ' $ delay (Milliseconds animationDurationMs)
       modify_ _ { isAnimating = false }
   
   HandleItemClick ev -> do

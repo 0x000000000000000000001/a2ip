@@ -14,19 +14,19 @@ import Web.HTML.Window (localStorage)
 import Web.Storage.Storage (getItem, removeItem, setItem)
 
 setInLocalStorage :: ∀ m. MonadEffect m => String -> String -> m Unit
-setInLocalStorage k v = liftEffect do 
+setInLocalStorage k v = ʌ do 
   win <- window
   storage <- localStorage win
   setItem k v storage
 
 getInLocalStorage :: ∀ m. MonadEffect m => String -> m (Maybe String)
-getInLocalStorage k = liftEffect do 
+getInLocalStorage k = ʌ do 
   win <- window
   storage <- localStorage win
   getItem k storage
 
 removeInLocalStorage :: ∀ m. MonadEffect m => String -> m Unit
-removeInLocalStorage k = liftEffect do
+removeInLocalStorage k = ʌ do
   win <- window
   storage <- localStorage win
   removeItem k storage

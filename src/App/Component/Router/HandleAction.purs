@@ -22,7 +22,7 @@ handleAction = κηι
 --     for_ state.scrollFork kill
 
 --     forkId <- fork do
---       (delay $ Milliseconds 300.0) # liftAff
+--       ʌ' $ delay $ Milliseconds 300.0
 --       handleAction HandleDocScrollEnd
 
 --     modify_ _ { scrollFork = Just forkId }

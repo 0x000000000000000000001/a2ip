@@ -29,13 +29,13 @@ uploadColorize :: String -> String
 uploadColorize = colorize uploadColor
 
 upload :: ∀ m. MonadAff m => String -> m Unit
-upload = liftEffect ◁ Console.log ◁ (\m -> uploadPrefixed m false false)
+upload = ʌ ◁ Console.log ◁ (\m -> uploadPrefixed m false false)
 
 uploadAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 uploadAfterNewline msg = newline *> upload msg
 
 uploadShort :: ∀ m. MonadAff m => String -> m Unit
-uploadShort = liftEffect ◁ Console.log ◁ (\m -> uploadPrefixed m true false)
+uploadShort = ʌ ◁ Console.log ◁ (\m -> uploadPrefixed m true false)
 
 uploadShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 uploadShortAfterNewline msg = newline *> uploadShort msg

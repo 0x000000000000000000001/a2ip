@@ -73,12 +73,12 @@ googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
   
 fetchTableHtml :: ∀ m. MonadAff m => String -> m (Either String String)
 fetchTableHtml tabId = do
-  result <- liftAff $ get arrayBuffer googleSheetHtmlZipDownloadUrl
+  result <- ʌ' $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result
     ?!
       ( \response -> do
           let tabName = tabIdToName tabId ??⇒ ""
-          htmlContent <- liftAff $ unzipGoogleSheetAndExtractHtml tabName response.body
+          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tabName response.body
           htmlContent
             ?! (η ◁ Right)
             ⇿ \e_ -> η $ Left $ "Failed to unzip: " <> message e_

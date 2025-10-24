@@ -15,8 +15,6 @@ import Data.String (Pattern(..), split)
 import Data.Time.Duration (Milliseconds(..))
 import Data.Traversable (traverse)
 import Effect.Aff (delay)
-import Effect.Aff.Class (liftAff)
-import Effect.Class (liftEffect)
 import Halogen (fork, get, kill, modify_, raise, subscribe')
 import Halogen.Query.Event (eventListener)
 import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scroll)
@@ -50,7 +48,7 @@ handleAction = case _ of
     for_ state.scrollFork kill
 
     forkId <- fork do
-      (delay $ Milliseconds 150.0) # liftAff
+      ʌ' $ delay $ Milliseconds 150.0
       handleAction HandleDocScrollEnd
 
     modify_ _ { scrollFork = Just forkId }

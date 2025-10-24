@@ -29,13 +29,13 @@ successColorize :: String -> String
 successColorize = colorize successColor
 
 success :: ∀ m. MonadAff m => String -> m Unit
-success = liftEffect ◁ Console.log ◁ (\m -> successPrefixed m false false)
+success = ʌ ◁ Console.log ◁ (\m -> successPrefixed m false false)
 
 successAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successAfterNewline msg = newline *> success msg
 
 successShort :: ∀ m. MonadAff m => String -> m Unit
-successShort = liftEffect ◁ Console.log ◁ (\m -> successPrefixed m true false)
+successShort = ʌ ◁ Console.log ◁ (\m -> successPrefixed m true false)
 
 successShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 successShortAfterNewline msg = newline *> successShort msg

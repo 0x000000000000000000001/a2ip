@@ -16,8 +16,7 @@ import Proem
 import Ansi.Codes (Color, EscapeCode(..), GraphicsParam(..), escapeCodeToString)
 import Control.Promise (Promise, toAff)
 import Data.List.NonEmpty (singleton)
-import Effect.Aff.Class (class MonadAff, liftAff)
-import Effect.Class (liftEffect)
+import Effect.Aff.Class (class MonadAff)
 import Effect.Console as Console
 
 colorize :: Color -> String -> String
@@ -32,10 +31,10 @@ carriageReturn = "\r"
 foreign import _write :: String -> Promise Unit
 
 write :: ∀ m. MonadAff m => String -> m Unit
-write str = liftAff $ toAff $ _write str
+write str = ʌ' $ toAff $ _write str
 
 log :: ∀ m. MonadAff m => String -> m Unit
-log = liftEffect ◁ Console.log
+log = ʌ ◁ Console.log
 
 logAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 logAfterNewline msg = newline *> log msg

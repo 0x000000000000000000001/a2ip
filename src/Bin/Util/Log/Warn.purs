@@ -29,13 +29,13 @@ warnColorize :: String -> String
 warnColorize = colorize warnColor
 
 warn :: ∀ m. MonadAff m => String -> m Unit
-warn = liftEffect ◁ Console.log ◁ (\m -> warnPrefixed m false false)
+warn = ʌ ◁ Console.log ◁ (\m -> warnPrefixed m false false)
 
 warnAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnAfterNewline msg = newline *> warn msg
 
 warnShort :: ∀ m. MonadAff m => String -> m Unit
-warnShort = liftEffect ◁ Console.log ◁ (\m -> warnPrefixed m true false)
+warnShort = ʌ ◁ Console.log ◁ (\m -> warnPrefixed m true false)
 
 warnShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 warnShortAfterNewline msg = newline *> warnShort msg

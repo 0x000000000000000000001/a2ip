@@ -22,25 +22,25 @@ import Util.Effect.Timer (IntervalId, clearInterval, setInterval)
 -- | Guarantees cleanup even if the action throws an exception.
 keepAlive :: ∀ m a. MonadAff m => MonadError Error m => m a -> m a
 keepAlive action = do
-  id <- liftAff acquire
+  id <- ʌ' acquire
   catchError 
     (do
       result <- action
-      liftAff (release id)
+      ʌ' (release id)
       η result
     )
     (\err -> do
-      liftAff (release id)
+      ʌ' (release id)
       throwError err
     )
   where
   -- Action to acquire the resource (start the timer)
   acquire :: Aff IntervalId
   acquire = do
-    id <- liftEffect $ setInterval 10000 ηι -- A timer that does nothing every 10s
+    id <- ʌ $ setInterval 10000 ηι -- A timer that does nothing every 10s
     η id
 
   -- Action to release the resource (clear the timer)
   release :: IntervalId -> Aff Unit
   release id = do
-    liftEffect $ clearInterval id
+    ʌ $ clearInterval id

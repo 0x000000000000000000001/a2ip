@@ -29,13 +29,13 @@ downloadColorize :: String -> String
 downloadColorize = colorize downloadColor
 
 download :: ∀ m. MonadAff m => String -> m Unit
-download = liftEffect ◁ Console.log ◁ (\m -> downloadPrefixed m false false)
+download = ʌ ◁ Console.log ◁ (\m -> downloadPrefixed m false false)
 
 downloadAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadAfterNewline msg = newline *> download msg
 
 downloadShort :: ∀ m. MonadAff m => String -> m Unit
-downloadShort = liftEffect ◁ Console.log ◁ (\m -> downloadPrefixed m true false)
+downloadShort = ʌ ◁ Console.log ◁ (\m -> downloadPrefixed m true false)
 
 downloadShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 downloadShortAfterNewline msg = newline *> downloadShort msg

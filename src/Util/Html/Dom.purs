@@ -47,7 +47,7 @@ dataAttrQuerySelector name value =
 
 -- | Check if a date element is visible on screen
 isVisible :: ∀ m. MonadEffect m => QuerySelector -> m Boolean
-isVisible sel = liftEffect do
+isVisible sel = ʌ do
   win <- window
   doc <- document win
   screenHeight <- toNumber <$> innerHeight win
@@ -67,12 +67,12 @@ scroll :: EventType
 scroll = EventType "scroll"
 
 scrollTo :: ∀ m. MonadEffect m => Int -> Int -> m Unit
-scrollTo x y = liftEffect do
+scrollTo x y = ʌ do
   win <- window
   Window.scroll x y win
 
 getScrollY :: ∀ m. MonadEffect m => m Int
-getScrollY = liftEffect do
+getScrollY = ʌ do
   win <- window
   y <- scrollY win
   η $ round y

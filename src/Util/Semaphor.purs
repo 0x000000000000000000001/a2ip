@@ -18,21 +18,21 @@ import Control.Parallel (parTraverse)
 import Data.Array ((..))
 import Data.Traversable (class Traversable, traverse_)
 import Effect.Aff (Aff, bracket)
-import Effect.Aff.Class (class MonadAff, liftAff)
+import Effect.Aff.Class (class MonadAff)
 
 type Sem = BoundedQueue Unit
 
 sem :: ∀ m. MonadAff m => Int -> m Sem
 sem n = do
-  s <- liftAff $ BQ.new n
-  traverse_ (κ $ liftAff $ BQ.write s ι) (1 .. n)
+  s <- ʌ' $ BQ.new n
+  traverse_ (κ $ ʌ' $ BQ.write s ι) (1 .. n)
   η s
 
 semAcq :: ∀ m. MonadAff m => Sem -> m Unit
-semAcq s = liftAff $ BQ.read s
+semAcq s = ʌ' $ BQ.read s
 
 semRel :: ∀ m. MonadAff m => Sem -> m Unit
-semRel q = liftAff $ BQ.write q ι
+semRel q = ʌ' $ BQ.write q ι
 
 lock :: ∀ m. MonadAff m => m Sem
 lock = sem 1
@@ -51,7 +51,7 @@ parTraverseBounded
   -> m (t b)
 parTraverseBounded maxInFlight k xs = do
   s <- sem maxInFlight
-  liftAff $ parTraverse
+  ʌ' $ parTraverse
     (\x ->
       bracket
         (semAcq s)

@@ -19,7 +19,6 @@ import Proem
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 infoColor :: Color
@@ -29,13 +28,13 @@ infoColorize :: String -> String
 infoColorize = colorize infoColor
 
 info :: ∀ m. MonadAff m => String -> m Unit
-info = liftEffect ◁ Console.log ◁ (\m -> infoPrefixed m false false)
+info = ʌ ◁ Console.log ◁ (\m -> infoPrefixed m false false)
 
 infoAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoAfterNewline msg = newline *> info msg
 
 infoShort :: ∀ m. MonadAff m => String -> m Unit
-infoShort = liftEffect ◁ Console.log ◁ (\m -> infoPrefixed m true false)
+infoShort = ʌ ◁ Console.log ◁ (\m -> infoPrefixed m true false)
 
 infoShortAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 infoShortAfterNewline msg = newline *> infoShort msg
