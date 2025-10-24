@@ -29,7 +29,7 @@ debugColorize :: String -> String
 debugColorize = colorize debugColor
 
 debug :: ∀ m. MonadAff m => String -> m Unit
-debug = liftEffect ◁ Console.log ◁ (\m -> debugPrefixed m false false)
+debug = ʌ ◁ Console.log ◁ (\m -> debugPrefixed m false false)
 
 debugAfterNewline :: ∀ m. MonadAff m => String -> m Unit
 debugAfterNewline msg = newline *> debug msg

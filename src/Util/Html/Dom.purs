@@ -25,7 +25,7 @@ import Web.DOM.ParentNode (QuerySelector(..), querySelectorAll)
 import Web.Event.Event (EventType(..))
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toParentNode)
-import Web.HTML.Window (document, innerHeight)
+import Web.HTML.Window (document, innerHeight, scrollY)
 import Web.HTML.Window as Window
 
 dataAttrPrefix :: String
@@ -57,11 +57,11 @@ isVisible sel = liftEffect do
   let elements = nodes # mapMaybe fromNode
 
   case elements of
-    [] -> pure false
+    [] -> η false
     [ element ] -> do
       rect <- getBoundingClientRect element
-      pure $ rect.top >= 0.0 && rect.bottom <= screenHeight
-    _ -> pure false
+      η $ rect.top >= 0.0 && rect.bottom <= screenHeight
+    _ -> η false
 
 scroll :: EventType
 scroll = EventType "scroll"
@@ -74,5 +74,5 @@ scrollTo x y = liftEffect do
 getScrollY :: ∀ m. MonadEffect m => m Int
 getScrollY = liftEffect do
   win <- window
-  y <- Window.scrollY win
-  pure $ round y
+  y <- scrollY win
+  η $ round y

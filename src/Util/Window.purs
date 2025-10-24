@@ -14,4 +14,4 @@ getScreenVerticalCenter :: ∀ m. MonadEffect m => m Number
 getScreenVerticalCenter = liftEffect do
   win <- window
   screenHeight <- innerHeight win
-  pure $ toNumber screenHeight / 2.0
+  η $ toNumber screenHeight / 2.0

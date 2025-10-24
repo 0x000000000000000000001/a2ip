@@ -219,15 +219,15 @@
     "body": "ᴠ",
     "description": "Reflect symbol ᴠ"
   },
-  "ʌ": {
+  "τ": {
     "prefix": "reifySymbol",
-    "body": "ʌ",
-    "description": "Reify symbol ʌ"
+    "body": "τ",
+    "description": "Reify symbol τ"
   },
-  "ʌ ": {
-    "prefix": "ʌ",
-    "body": "ʌ",
-    "description": "Reify symbol ʌ"
+  "τ ": {
+    "prefix": "τ",
+    "body": "τ",
+    "description": "Reify symbol τ"
   },
   "η": {
     "prefix": "pure",
@@ -238,6 +238,16 @@
     "prefix": "η",
     "body": "η",
     "description": "Pure η"
+  },
+  "μ": {
+    "prefix": "join",
+    "body": "μ",
+    "description": "Join μ"
+  },
+  "μ ": {
+    "prefix": "μ",
+    "body": "μ",
+    "description": "Join μ"
   },
   "ι": {
     "prefix": "unit",
@@ -288,5 +298,25 @@
     "prefix": "κηι",
     "body": "κηι",
     "description": "Constant pure unit κηι"
-  }
+  },
+  "ʌ": {
+    "prefix": "liftEffect",
+    "body": "ʌ",
+    "description": "Lift effect ʌ"
+  },
+  "ʌ ": {
+    "prefix": "ʌ",
+    "body": "ʌ",
+    "description": "Lift effect ʌ"
+  },
+  "ʌ'": {
+    "prefix": "liftAff",
+    "body": "ʌ'",
+    "description": "Lift aff ʌ'"
+  },
+  "ʌ' ": {
+    "prefix": "ʌ'",
+    "body": "ʌ'",
+    "description": "Lift aff ʌ'"
+  },
 }

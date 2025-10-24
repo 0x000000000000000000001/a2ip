@@ -1,5 +1,7 @@
 module Proem 
-  ( module Prelude
+  ( module Util.Aff
+  , module Util.Effect
+  , module Prelude
   , module Util.Applicative 
   , module Util.Condition 
   , module Util.Either
@@ -11,9 +13,11 @@ module Proem
 
 import Prelude 
 
-import Util.Applicative (η, ηι, ι, κηι)
+import Util.Aff (ʌ')
+import Util.Effect (ʌ)
+import Util.Applicative (η, ηι, ι, κηι, μ)
 import Util.Condition ((?), (↔))
 import Util.Either ((?!), (?!⇽), (?!⇾), (⇿))
 import Util.Function ((▷), (◁), κ)
-import Util.Symbol (ᴠ, ʌ)
+import Util.Symbol (ᴠ, τ)
 import Util.Maybe ((??), (??⇒), (⇔))

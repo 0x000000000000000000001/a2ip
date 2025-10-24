@@ -25,7 +25,7 @@ handleAction = case _ of
   HandleItemClick ev -> do
     state <- get
     unless state.isAnimating do
-      remInPixels <- liftEffect getRootFontSize
+      remInPixels <- ʌ getRootFontSize
       let 
         foldedWidthPx = foldWidth * remInPixels
         mouseX = toNumber $ clientX ev

@@ -59,7 +59,7 @@ instance navigateHalogenM :: Navigate m => Navigate (HalogenM state action slots
   navigate = lift ◁ navigate
 
 instance navigateAppM :: Navigate AppM where
-  navigate route = liftEffect do
+  navigate route = ʌ do
     let path = routePath route
     let title = routeTitle route
 

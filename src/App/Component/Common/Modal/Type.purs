@@ -9,9 +9,10 @@ module App.Component.Common.Modal.Type
   )
   where
 
-import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlots, NoState)
+import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlots, NoState)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM)
+import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input = NoInput
 
@@ -22,7 +23,7 @@ type Slots = NoSlots
 
 type State = NoState
 
-type Action = NoAction
+data Action = BackgroundClicked MouseEvent
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

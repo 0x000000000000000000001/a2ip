@@ -32,7 +32,7 @@ import Web.HTML.Window (document)
 handleAction :: Action -> TimelineM Unit
 handleAction = case _ of
   Initialize -> do
-    doc <- liftEffect $ document =<< window
+    doc <- ʌ $ document =<< window
     subscribe' $ κ $ eventListener
       scroll
       (doc # toDocument # toEventTarget)
@@ -69,7 +69,7 @@ parseDate str = do
   day <- fromString dayStr
   month <- fromString monthStr
   year <- fromString yearStr
-  pure $ Date { day, month, year }
+  η $ Date { day, month, year }
 
 -- | Select the date element that is closest to the center of the screen
 selectDateClosestToScreenCenter :: TimelineM Unit
@@ -105,15 +105,15 @@ isDateVisible date_ = do
 
 -- | Get all date elements from the DOM
 getDateElements :: TimelineM (Maybe (Array Element))
-getDateElements = liftEffect do
+getDateElements = ʌ do
   win <- window
   doc <- document win
   nodeList <- querySelectorAll (dataAttrQuerySelector date Nothing) (toParentNode doc)
   nodes <- toArray nodeList
   let elements = nodes # mapMaybe fromNode
   case elements of
-    [] -> pure Nothing
-    _ -> pure $ Just elements
+    [] -> η Nothing
+    _ -> η $ Just elements
 
 -- | Calculate the distance from screen center for each element
 calculateDistancesFromCenter
@@ -121,14 +121,14 @@ calculateDistancesFromCenter
   -> Number
   -> TimelineM (Array { distance :: Number, dataDate :: Maybe String })
 calculateDistancesFromCenter elements screenCenter =
-  liftEffect $ traverse
+  ʌ $ traverse
     ( \el -> do
         rect <- getBoundingClientRect el
         let
           elementVerticalCenter = rect.top + (rect.height / 2.0)
           distance = abs (elementVerticalCenter - screenCenter)
         maybeDataDate <- getAttribute (dataAttrPrefixed date) el
-        pure { distance, dataDate: maybeDataDate }
+        η { distance, dataDate: maybeDataDate }
     )
     elements
 

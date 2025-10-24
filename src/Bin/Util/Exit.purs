@@ -7,11 +7,11 @@ module Bin.Util.Exit
 
 import Proem
 
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Class (class MonadEffect)
 import Node.Process (exit')
 
 exit :: ∀ m a. MonadEffect m => Int -> m a 
-exit = liftEffect ◁ exit'
+exit = ʌ ◁ exit'
 
 exitSuccess :: ∀ m a. MonadEffect m => m a 
 exitSuccess = exit 0

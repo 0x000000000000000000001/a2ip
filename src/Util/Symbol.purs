@@ -1,6 +1,6 @@
 module Util.Symbol
   ( ᴠ
-  , ʌ
+  , τ
   )
   where
 
@@ -12,5 +12,5 @@ import Type.Prelude (Proxy)
 ᴠ = reflectSymbol
 
 -- Value-level → Type-level
-ʌ :: ∀ r. String -> (∀ sym. IsSymbol sym => Proxy sym -> r) -> r
-ʌ = reifySymbol
+τ :: ∀ r. String -> (∀ sym. IsSymbol sym => Proxy sym -> r) -> r
+τ = reifySymbol

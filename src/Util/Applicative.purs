@@ -3,6 +3,7 @@ module Util.Applicative
   , ηι
   , ι
   , κηι
+  , μ
   )
   where
 
@@ -21,3 +22,6 @@ import Util.Function (κ)
 
 κηι :: ∀ f a. Applicative f => a -> f Unit
 κηι = κ ηι
+
+μ :: ∀ a m. Bind m => m (m a) -> m a
+μ = join

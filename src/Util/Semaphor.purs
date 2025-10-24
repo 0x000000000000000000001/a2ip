@@ -26,7 +26,7 @@ sem :: ∀ m. MonadAff m => Int -> m Sem
 sem n = do
   s <- liftAff $ BQ.new n
   traverse_ (κ $ liftAff $ BQ.write s ι) (1 .. n)
-  pure s
+  η s
 
 semAcq :: ∀ m. MonadAff m => Sem -> m Unit
 semAcq s = liftAff $ BQ.read s

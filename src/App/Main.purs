@@ -11,7 +11,6 @@ import Data.DateTime.Instant (toDateTime)
 import Data.Formatter.DateTime (formatDateTime)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
-import Effect.Class (liftEffect)
 import Effect.Class.Console (log)
 import Effect.Now (now)
 import Halogen (hoist, mkTell)
@@ -39,11 +38,11 @@ main = do
     io <- runUI (hoist (runAppM config) RouterComponent.component) ι body
     
     -- Navigate to initial route
-    initialLoc <- liftEffect nav.locationState
+    initialLoc <- ʌ nav.locationState
     parse routeCodec initialLoc.pathname
       ?! (\route -> do
         -- Update title for initial route
-        liftEffect do
+        ʌ do
           doc <- window >>= document
           setTitle (routeTitle route) doc
         -- Navigate to route
@@ -52,7 +51,7 @@ main = do
       ⇿ κηι
     
     -- Listen for route changes
-    void $ liftEffect $ nav.listen \loc -> 
+    void $ ʌ $ nav.listen \loc -> 
       parse routeCodec loc.pathname
         ?! (launchAff_ ◁ void ◁ io.query ◁ mkTell ◁ RouterType.Navigate)
         ⇿ κηι

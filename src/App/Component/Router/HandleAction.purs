@@ -11,7 +11,7 @@ handleAction :: Action -> RouteM Unit
 handleAction = κηι
 -- handleAction = case _ of
 --   Initialize -> do
---     doc <- liftEffect $ document =<< window
+--     doc <- ∧ $ document =<< window
 --     subscribe' $ κ $ eventListener
 --       scroll
 --       (doc # toDocument # toEventTarget)
@@ -31,8 +31,8 @@ handleAction = κηι
 --     modify_ _ { scrollFork = Nothing }
 
 --     state <- get
---     scrollY <- liftEffect getScrollY
---     liftEffect $ saveScrollY state.route scrollY
+--     scrollY <- ∧ getScrollY
+--     ∧ $ saveScrollY state.route scrollY
 
 scrollKey :: String
 scrollKey = "lastScrollEndPosY"

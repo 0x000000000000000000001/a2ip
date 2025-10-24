@@ -8,16 +8,15 @@ import Effect (Effect)
 import Effect.AVar (empty)
 import Effect.Aff.AVar as AAVar
 import Effect.Aff.Class (liftAff)
-import Effect.Class (liftEffect)
 import Effect.Console (log)
 import Util.Aff (keepAlive)
 
 main :: Effect Unit
 main = runBinM config $ keepAlive do
-  avar <- liftAff $ liftEffect empty
+  avar <- ʌ' $ ʌ empty
 
-  liftAff $ liftEffect $ log "before"
+  ʌ' $ ʌ $ log "before"
 
   _ <- liftAff $ AAVar.take avar
 
-  liftAff $ liftEffect $ log "after"
+  ʌ' $ ʌ $ log "after"

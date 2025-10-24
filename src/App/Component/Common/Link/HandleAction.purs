@@ -7,7 +7,7 @@ import Proem
 
 import App.Util.Capability.Navigate (navigate)
 import App.Component.Common.Link.Type (Action(..), LinkM, Output(..))
-import Halogen (liftEffect, modify_, raise)
+import Halogen (modify_, raise)
 import Web.Event.Event (preventDefault)
 import Web.UIEvent.MouseEvent (MouseEvent, altKey, button, ctrlKey, metaKey, shiftKey, toEvent)
 
@@ -17,7 +17,7 @@ handleAction = case _ of
   Navigate route -> navigate route
   HandleClick route ev -> 
     when (isSimpleClick ev) do
-      liftEffect $ preventDefault $ toEvent ev
+      ʌ $ preventDefault $ toEvent ev
       handleAction $ Navigate route
       raise $ Clicked route ev
 

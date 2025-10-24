@@ -1,16 +1,21 @@
 module Util.Aff
-  ( keepAlive
+  ( ʌ'
+  , keepAlive
   )
   where
 
-import Proem
+import Prelude
 
 import Control.Monad.Error.Class (class MonadError, catchError, throwError)
 import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (liftEffect)
 import Effect.Exception (Error)
+import Util.Applicative (η, ηι)
 import Util.Effect.Timer (IntervalId, clearInterval, setInterval)
+
+ʌ' :: ∀ m. MonadAff m => Aff ~> m
+ʌ' = liftAff
 
 -- | Wraps an Aff action, ensuring the Node.js process does not exit prematurely
 -- | by creating a timer handle that is active for the duration of the Aff.
@@ -22,7 +27,7 @@ keepAlive action = do
     (do
       result <- action
       liftAff (release id)
-      pure result
+      η result
     )
     (\err -> do
       liftAff (release id)
@@ -33,7 +38,7 @@ keepAlive action = do
   acquire :: Aff IntervalId
   acquire = do
     id <- liftEffect $ setInterval 10000 ηι -- A timer that does nothing every 10s
-    pure id
+    η id
 
   -- Action to release the resource (clear the timer)
   release :: IntervalId -> Aff Unit
