@@ -261,7 +261,7 @@ import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Effect (Effect)
-import Halogen.HTML (ClassName(..), IProp, b)
+import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
 
 foreign import getRootFontSize :: Effect Number

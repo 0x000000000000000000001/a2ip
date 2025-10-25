@@ -34,9 +34,9 @@ type State i =
   , innerInput :: i
   }
 
-data Action i = Receive (Input i) | HandleClick MouseEvent | HandleCloseClick
+data Action i o = Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ModalM q i o a = HalogenM (State i) (Action i) (Slots q o) (Output o) AppM a
+type ModalM q i o a = HalogenM (State i) (Action i o) (Slots q o) (Output o) AppM a
