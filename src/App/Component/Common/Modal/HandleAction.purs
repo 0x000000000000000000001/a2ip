@@ -14,9 +14,9 @@ import Web.Event.Event (target)
 import Web.HTML.HTMLElement (fromEventTarget, toElement)
 import Web.UIEvent.MouseEvent (toEvent)
 
-handleAction :: Action -> ModalM Unit
+handleAction :: ∀ q i o. Action i -> (ModalM q i o) Unit
 handleAction = case _ of
-  Receive input -> modify_ _ { closable = input.closable }
+  Receive input -> modify_ _ { closable = input.closable, innerInput = input.innerInput }
   
   HandleCloseClick -> raise Closed
 

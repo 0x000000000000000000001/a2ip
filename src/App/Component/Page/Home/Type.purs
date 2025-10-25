@@ -12,7 +12,7 @@ type Input = NoInput
 type Output = NoOutput
 
 type Slots =
-  ( modal :: Slot Modal.Query Modal.Output NoSlotAddressIndex
+  ( modal :: Slot Carrousel.Query (Modal.Output Carrousel.Output) NoSlotAddressIndex
   , carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
   )
 
@@ -23,7 +23,7 @@ type State =
   { showModal :: Boolean
   }
 
-data Action = ShowModal | HideModal
+data Action = ShowModal | HideModal | DoNothing
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

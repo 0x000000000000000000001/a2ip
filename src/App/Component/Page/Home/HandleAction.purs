@@ -12,3 +12,4 @@ handleAction :: Action -> HomeM Unit
 handleAction = case _ of 
   ShowModal -> modify_ _ { showModal = true }
   HideModal -> modify_ _ { showModal = false }
+  DoNothing -> ηι

@@ -1,35 +1,42 @@
 module App.Component.Common.Modal.Type
   ( Action(..)
-  , ModalM
   , Input
+  , ModalM
   , Output(..)
   , Query
   , Slots
   , State
+  , inner
   )
   where
 
-import App.Component.Util.Type (NoQuery, NoSlots)
+import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
 import App.Util.Capability.AppM (AppM)
-import Halogen (HalogenM)
+import Halogen (HalogenM, Slot)
+import Type.Prelude (Proxy(..))
 import Web.UIEvent.MouseEvent (MouseEvent)
 
-type Input = 
+type Input i = 
   { closable :: Boolean
+  , innerInput :: i
   }
 
-data Output = Closed
+data Output o = Closed | InnerOutput o
 
-type Slots :: ∀ k. Row k
-type Slots = NoSlots
+type Slots q o = 
+  ( inner :: Slot q o NoSlotAddressIndex
+  )
 
-type State = 
+inner = Proxy :: Proxy "inner"
+
+type State i = 
   { closable :: Boolean
+  , innerInput :: i
   }
 
-data Action = Receive Input | HandleClick MouseEvent | HandleCloseClick
+data Action i = Receive (Input i) | HandleClick MouseEvent | HandleCloseClick
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type ModalM a = HalogenM State Action Slots Output AppM a
+type ModalM q i o a = HalogenM (State i) (Action i) (Slots q o) (Output o) AppM a

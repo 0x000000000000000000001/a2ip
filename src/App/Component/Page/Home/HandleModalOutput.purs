@@ -8,6 +8,8 @@ import App.Component.Common.Modal.Type (Output(..))
 import App.Component.Common.Modal.Type as Modal
 import App.Component.Page.Home.Type (Action(..))
 
-handleModalOutput :: Modal.Output -> Action
+handleModalOutput :: ∀ o. Modal.Output o -> Action
 handleModalOutput = case _ of
   Closed -> HideModal
+  InnerOutput innerOutput -> case innerOutput of
+    _ -> DoNothing
