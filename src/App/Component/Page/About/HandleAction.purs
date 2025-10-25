@@ -17,12 +17,6 @@ import Util.Google.Drive (extractPortraitIdFromViewUrl)
 import Util.Google.Sheet (Converter, collaboratorsTabId, fetch, membersTabId)
 import Util.Html.Clean (untag)
 
-fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
-fetchMembers = fetch membersTabId toPerson
-
-fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
-fetchCollaborators = fetch collaboratorsTabId toPerson
-
 handleAction :: Action -> AboutM Unit
 handleAction = case _ of
   Load -> do
@@ -36,6 +30,12 @@ handleAction = case _ of
       collaborators
         ?! (\c -> modify_ _ { collaborators = Just c })
         ⇿ (error ◁ ("Error fetching collaborators: " <> _))
+
+fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
+fetchMembers = fetch membersTabId toPerson
+
+fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
+fetchCollaborators = fetch collaboratorsTabId toPerson
 
 toPerson :: Converter Person
 toPerson getHtmlCell row =

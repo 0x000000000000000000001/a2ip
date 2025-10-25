@@ -36,13 +36,37 @@ dates =
   ]
 
 type State =
-  { selectedDate :: Maybe Date
+  { selectedSeminar :: Maybe Date
+  , seminars :: Maybe (Array Seminar)
   }
 
-data Action = SelectDate Date
+data Action 
+  = Load 
+  | SelectDate Date
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
 type SeminarsM a = HalogenM State Action Slots Output AppM a
 
+type SeminarRow = 
+  ( title :: String
+  , theme :: String
+  , firstname :: String
+  , name :: String
+  , day :: Int
+  , month :: Int
+  , year :: Int
+  , videoLink :: String
+  )
+
+type Seminar = { | SeminarRow }
+
+title = Proxy :: Proxy "title"
+theme = Proxy :: Proxy "theme"
+firstname = Proxy :: Proxy "firstname"
+name = Proxy :: Proxy "name"
+day = Proxy :: Proxy "day"
+month = Proxy :: Proxy "month"
+year = Proxy :: Proxy "year"
+videoLink = Proxy :: Proxy "videoLink"

@@ -14,6 +14,8 @@ module Util.Google.Sheet
   , googleSheetUrl
   , membersTabId
   , membersTabName
+  , seminarsTabId
+  , seminarsTabName
   , tabIdToName
   )
   where
@@ -46,17 +48,14 @@ type CellExtractor = ∀ sym. IsSymbol sym => Proxy sym -> TableRow -> String
 
 type Converter output = (CellExtractor -> TableRow -> output)
 
-membersTabId :: TabId
-membersTabId = "0"
+membersTabId = "0" :: TabId 
+membersTabName = "Membres A2IP" :: String
 
-membersTabName :: String
-membersTabName = "Membres A2IP"
+collaboratorsTabId = "2092489064" :: TabId
+collaboratorsTabName = "Comité international" :: String
 
-collaboratorsTabId :: TabId
-collaboratorsTabId = "2092489064"
-
-collaboratorsTabName :: String
-collaboratorsTabName = "Comité international"
+seminarsTabId = "1531940447" :: TabId
+seminarsTabName = "Séminaires" :: String
 
 tabIdToName :: TabId -> Maybe String
 tabIdToName tabId
