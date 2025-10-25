@@ -21,7 +21,7 @@ type Input i =
   , innerInput :: i
   }
 
-data Output o = Closed | InnerOutput o
+data Output o = Closed | InnerOutputRaised o
 
 type Slots q o = 
   ( inner :: Slot q o NoSlotAddressIndex

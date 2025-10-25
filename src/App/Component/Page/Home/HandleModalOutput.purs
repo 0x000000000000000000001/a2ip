@@ -11,5 +11,5 @@ import App.Component.Page.Home.Type (Action(..))
 handleModalOutput :: ∀ o. Modal.Output o -> Action
 handleModalOutput = case _ of
   Closed -> HideModal
-  InnerOutput innerOutput -> case innerOutput of
+  InnerOutputRaised innerOutput -> case innerOutput of
     _ -> DoNothing

@@ -33,7 +33,6 @@ handleAction = case _ of
       
       let shouldClose = contains (Pattern Modal.classId) classNameStr
 
-      when shouldClose do
-        raise Closed
+      when shouldClose (raise Closed)
 
-  RaiseInnerOutput output -> raise (InnerOutput output)
+  RaiseInnerOutput output -> raise (InnerOutputRaised output)
