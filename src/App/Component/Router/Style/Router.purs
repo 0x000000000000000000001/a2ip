@@ -31,16 +31,18 @@ style = do
     minHeight (vh 100.0)
 
   html :? do 
-    raw "scroll-behavior" "smooth"
+    -- Momentum scrolling scrolling on iOS or Safari
     raw "-webkit-overflow-scrolling" "touch"
 
   star :? do
     raw "transition" $ "all " <> show animationDurationMs <> "ms ease"
     fontFamily [] (sansSerif :| [])
 
+    -- Firefox
     raw "scrollbar-width" "thin"
     raw "scrollbar-color" "rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05)"
 
+    -- Chrome/Safari/Edge/...
   __webkitScrollbar :? do
     widthRem 0.5
     heightRem 0.5
