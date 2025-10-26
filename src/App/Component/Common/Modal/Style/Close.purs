@@ -6,10 +6,10 @@ module App.Component.Common.Modal.Style.Close
 
 import Proem hiding (top)
 
-import CSS (color, deg, hover, rotate, transforms, white)
+import CSS (color, deg, hover, rotate, transforms, white, (|*))
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, userSelectNone, widthRem, (.&), (.?), (.|*¨), (:?), (|*¨))
+import Util.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
 classId :: String
 classId = "FeG0FXVPw"
@@ -35,6 +35,6 @@ style = do
     transforms [ rotate $ deg 90.0, scale 1.5 1.5 ]
 
   where
-  __svg = classId .|*¨ "svg"
+  __svg = classId .|* svg
   __hover = classId .& hover
-  ____svg = __hover |*¨ "svg"
+  ____svg = __hover |* svg

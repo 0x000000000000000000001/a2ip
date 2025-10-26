@@ -13,7 +13,7 @@ import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (borderRadius1, displayFlex, heightRem, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
+import Util.Style (all, borderRadius1, displayFlex, heightRem, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
 
 classId :: String
 classId = "DDGK8gCXg"
@@ -34,7 +34,7 @@ style = do
     -- Momentum scrolling scrolling on iOS or Safari
     raw "-webkit-overflow-scrolling" "touch"
 
-  star :? do
+  all :? do
     raw "transition" $ "all " <> show animationDurationMs <> "ms ease"
     fontFamily [] (sansSerif :| [])
 
@@ -86,8 +86,8 @@ style = do
       forwards
 
   where 
-  __webkitScrollbar = star :&: fromString "::-webkit-scrollbar"
-  __webkitScrollbarTrack = star :&: fromString "::-webkit-scrollbar-track"
-  __webkitScrollbarThumb = star :&: fromString "::-webkit-scrollbar-thumb"
+  __webkitScrollbar = all :&: fromString "::-webkit-scrollbar"
+  __webkitScrollbarTrack = all :&: fromString "::-webkit-scrollbar-track"
+  __webkitScrollbarThumb = all :&: fromString "::-webkit-scrollbar-thumb"
   __webkitScrollbarThumbHover = __webkitScrollbarThumb :&: hover
-  __webkitScrollbarCorner = star :&: fromString "::-webkit-scrollbar-corner"
+  __webkitScrollbarCorner = all :&: fromString "::-webkit-scrollbar-corner"

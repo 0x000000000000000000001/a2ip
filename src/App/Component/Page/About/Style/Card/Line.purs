@@ -6,10 +6,10 @@ module App.Component.Page.About.Style.Card.Line
 
 import Proem hiding (top)
 
+import App.Component.Page.About.Type (email, phone, role)
 import CSS (star, (&))
 import CSS as CSS
-import App.Component.Page.About.Type (email, phone, role)
-import Util.Style (before, fontWeightBold, content, displayInlineBlock, fontSizePct, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
 
 classId :: String
 classId = "wNMB3qHPD"
@@ -44,7 +44,7 @@ style = do
     displayInlineBlock
 
   where 
-  __allChildren = classId .|> star
+  __allChildren = classId .|> all
   __role = classId .&. classIdWhen (ᴠ role)
   __email = classId .&. classIdWhen (ᴠ email)
   __phone = classId .&. classIdWhen (ᴠ phone)

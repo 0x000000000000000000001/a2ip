@@ -47,6 +47,8 @@ module Util.Style
   , (¨|>¨)
   , after
   , alignItemsCenter
+  , all
+  , any
   , backgroundColorNone
   , backgroundColorRed
   , backgroundColorWhite
@@ -196,6 +198,7 @@ module Util.Style
   , rightPct100
   , rightPct50
   , rightRem
+  , svg
   , textAlignCenter
   , textRed
   , top0
@@ -245,7 +248,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, justifyContent, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, toHexString, top, transform, translate, width, wrap)
+import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, justifyContent, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, star, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -1031,6 +1034,15 @@ borderRadius1 r = borderRadius4 r r r r
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w
+
+any :: Selector
+any = star
+
+all :: Selector
+all = star
+
+svg :: Selector
+svg = fromString "svg"
 
 infixr 5 select as :?
 
