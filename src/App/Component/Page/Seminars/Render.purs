@@ -13,8 +13,7 @@ import App.Component.Page.Seminars.Style.Timeline as Timeline
 import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, timeline)
 import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import Data.Array (length)
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, p_, slot, text)
 import Util.Style (class_)
@@ -32,13 +31,20 @@ render s =
             TimelineComponent.component
             { class_: Nothing
             , dates: s.seminars ?? (\a -> a <#> _.date) ⇔ mockDates
+            , loading: isNothing s.seminars
             }
             handleTimelineOutput
         ]
     , div 
         [ class_ Poster.classId ]
-        [ p_ [ text $ "selected: " <> show s.selectedSeminar ]
-        , p_ [ text $ "seminars: " <> show (length $ s.seminars ??⇒ []) ]
-        , text "Poster area"  
-        ]
+        ( s.selectedSeminar 
+            ?? (\s_ -> [
+              p_ [ text $ "title: " <> show s_.title ],
+              p_ [ text $ "theme: " <> show s_.theme ],
+              p_ [ text $ "firstname: " <> show s_.firstname ],
+              p_ [ text $ "lastname: " <> show s_.lastname ],
+              p_ [ text $ "date: " <> show s_.date ]
+            ])
+            ↔ []
+        )
     ]

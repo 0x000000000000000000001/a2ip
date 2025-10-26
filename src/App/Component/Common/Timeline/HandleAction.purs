@@ -46,6 +46,7 @@ handleAction = case _ of
       { class_ = input.class_
       , dates = dates
       , selectedDate = s.dates /= dates ? dates !! 0 ↔ s.selectedDate 
+      , loading = input.loading
       }
     )
 

@@ -1,7 +1,6 @@
 module App.Component.Page.Seminars.Component where
 
 import Proem
-
 import App.Component.Page.Seminars.HandleAction (handleAction)
 import App.Component.Page.Seminars.Render (render)
 import App.Component.Page.Seminars.Type (Action(..), Input, Output, Query)

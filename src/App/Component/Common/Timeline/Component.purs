@@ -22,6 +22,7 @@ component = mkComponent
         , dates
         , selectedDate: dates !! 0
         , scrollFork: Nothing
+        , loading: input.loading
         }
   , render
   , eval: mkEval defaultEval

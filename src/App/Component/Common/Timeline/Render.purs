@@ -4,7 +4,6 @@ module App.Component.Common.Timeline.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Dates as Dates
 import App.Component.Common.Timeline.Style.Line as Line
@@ -12,8 +11,9 @@ import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
-import App.Component.Common.Timeline.Style.Timeline (classId)
+import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State, date)
+import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
@@ -26,7 +26,10 @@ import Util.Style (class_, classes)
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   div
-    [ class_ classId
+    [ classes 
+        [ classId 
+        , s.loading ? classIdWhenLoading ↔ ""
+        ]
     ]
     [ sheet
     , div
@@ -40,7 +43,7 @@ render s =
             in ( div
                 [ classes $ 
                     [Date.classId] 
-                    <> (Just date_ == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
+                    <> (not s.loading && Just date_ == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
                 , onClick $ κ $ SelectDate date_
                 , dataAttr date dateId
                 ]

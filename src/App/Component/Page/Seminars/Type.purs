@@ -1,9 +1,10 @@
 module App.Component.Page.Seminars.Type where
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Timeline.Type (Date(..))
 import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import App.Util.Capability.AppM (AppM)
+import Data.Array.NonEmpty (last)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
@@ -37,7 +38,7 @@ type SeminarRow =
   ( title :: String
   , theme :: String
   , firstname :: String
-  , name :: String
+  , lastname :: String
   , date :: Date
   , videoLink :: String
   )
@@ -47,7 +48,7 @@ type Seminar = { | SeminarRow }
 title = Proxy :: Proxy "title"
 theme = Proxy :: Proxy "theme"
 firstname = Proxy :: Proxy "firstname"
-name = Proxy :: Proxy "name"
+lastname = Proxy :: Proxy "lastname"
 day = Proxy :: Proxy "day"
 month = Proxy :: Proxy "month"
 year = Proxy :: Proxy "year"

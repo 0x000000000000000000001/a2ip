@@ -1,7 +1,8 @@
 module App.Component.Page.Seminars.Style.Seminars
   ( classId
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 

@@ -38,6 +38,7 @@ instance showDate :: Show Date where
 type Input =
   { class_ :: Maybe String
   , dates :: Array Date
+  , loading :: Boolean
   }
 
 data Output = SelectedDate Date
@@ -50,6 +51,7 @@ type State =
   , dates :: Array Date
   , selectedDate :: Maybe Date
   , scrollFork :: Maybe ForkId
+  , loading :: Boolean
   }
 
 data Action 

@@ -6,7 +6,7 @@ module App.Component.Page.Seminars.HandleAction
 import Proem
 
 import App.Component.Common.Timeline.Type (Date(..))
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, theme, title, firstname, name, day, month, year, videoLink)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, theme, title, firstname, lastname, day, month, year, videoLink)
 import App.Util.Capability.Log (error)
 import Data.Array (find, (!!))
 import Data.Either (Either)
@@ -36,7 +36,7 @@ handleAction = case _ of
         handleAction $ SelectSeminar $ m !! 0
       )
       ⇿ (error ◁ ("Error fetching seminars: " <> _))
-
+  
 fetchSeminars :: ∀ m. MonadAff m => m (Either String (Array Seminar))
 fetchSeminars = fetch seminarsTab toSeminar
 
@@ -45,7 +45,7 @@ toSeminar getHtmlCell row =
   { title: getHtmlCell title row
   , theme: getHtmlCell theme row
   , firstname: getHtmlCell firstname row
-  , name: getHtmlCell name row
+  , lastname: getHtmlCell lastname row
   , date: Date
       { day: (fromString $ getHtmlCell day row) ??⇒ 1
       , month: (fromString $ getHtmlCell month row) ??⇒ 1
