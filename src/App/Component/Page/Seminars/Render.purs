@@ -10,7 +10,7 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action, Slots, State, dates, timeline)
+import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, timeline)
 import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (length)
@@ -31,7 +31,7 @@ render s =
             noSlotAddressIndex
             TimelineComponent.component
             { class_: Nothing
-            , dates
+            , dates: s.seminars ?? (\a -> a <#> _.date) ⇔ mockDates
             }
             handleTimelineOutput
         ]

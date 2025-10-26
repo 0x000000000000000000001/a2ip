@@ -14,7 +14,7 @@ import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen (fork, modify_)
 import Util.Google.Drive (extractPortraitIdFromViewUrl)
-import Util.Google.Sheet (Converter, collaboratorsTabId, fetch, membersTabId)
+import Util.Google.Sheet (Converter, collaboratorsTab, fetch, membersTab)
 import Util.Html.Clean (untag)
 
 handleAction :: Action -> AboutM Unit
@@ -32,10 +32,10 @@ handleAction = case _ of
         ⇿ (error ◁ ("Error fetching collaborators: " <> _))
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
-fetchMembers = fetch membersTabId toPerson
+fetchMembers = fetch membersTab toPerson
 
 fetchCollaborators :: ∀ m. MonadAff m => m (Either String (Array Person))
-fetchCollaborators = fetch collaboratorsTabId toPerson
+fetchCollaborators = fetch collaboratorsTab toPerson
 
 toPerson :: Converter Person
 toPerson getHtmlCell row =

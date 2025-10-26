@@ -8,7 +8,7 @@ module Util.LocalStorage
 import Proem
 
 import Data.Maybe (Maybe)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Class (class MonadEffect)
 import Web.HTML (window)
 import Web.HTML.Window (localStorage)
 import Web.Storage.Storage (getItem, removeItem, setItem)

@@ -4,19 +4,15 @@ module Util.Google.Sheet
   , ExtractedData
   , TabId
   , TableRow
-  , collaboratorsTabId
-  , collaboratorsTabName
+  , collaboratorsTab
   , convertExtractedData
   , extractMappingKeysAndValuesFromTableHtml
   , fetch
   , fetchTableHtml
   , googleSheetHtmlZipDownloadUrl
   , googleSheetUrl
-  , membersTabId
-  , membersTabName
-  , seminarsTabId
-  , seminarsTabName
-  , tabIdToName
+  , membersTab
+  , seminarsTab
   )
   where
 
@@ -27,7 +23,6 @@ import Affjax.ResponseFormat (arrayBuffer)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
-import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Effect.Aff.Class (class MonadAff)
@@ -48,44 +43,34 @@ type CellExtractor = ∀ sym. IsSymbol sym => Proxy sym -> TableRow -> String
 
 type Converter output = (CellExtractor -> TableRow -> output)
 
-membersTabId = "0" :: TabId 
-membersTabName = "Membres A2IP" :: String
+type Tab = { id :: TabId, name :: String }
 
-collaboratorsTabId = "2092489064" :: TabId
-collaboratorsTabName = "Comité international" :: String
-
-seminarsTabId = "1531940447" :: TabId
-seminarsTabName = "Séminaires" :: String
-
-tabIdToName :: TabId -> Maybe String
-tabIdToName tabId
-  | tabId == membersTabId = Just membersTabName
-  | tabId == collaboratorsTabId = Just collaboratorsTabName
-  | otherwise = Nothing
+membersTab = { id: "0", name: "Membres A2IP" } :: Tab
+collaboratorsTab = { id: "2092489064", name: "Comité international" } :: Tab
+seminarsTab = { id: "1531940447", name: "Séminaires" } :: Tab
 
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
 
 googleSheetHtmlZipDownloadUrl :: String
 googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
-  
-fetchTableHtml :: ∀ m. MonadAff m => String -> m (Either String String)
-fetchTableHtml tabId = do
+
+fetchTableHtml :: ∀ m. MonadAff m => Tab -> m (Either String String)
+fetchTableHtml tab = do
   result <- ʌ' $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result
     ?!
       ( \response -> do
-          let tabName = tabIdToName tabId ??⇒ ""
-          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tabName response.body
+          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tab.name response.body
           htmlContent
             ?! (η ◁ Right)
             ⇿ \e_ -> η $ Left $ "Failed to unzip: " <> message e_
       )
     ⇿ \e -> η $ Left $ "Failed to fetch ZIP: " <> printError e
 
-fetch :: ∀ m o. MonadAff m => TabId -> Converter o -> m (Either String (Array o))
-fetch tabId to = do
-  htmlContent <- fetchTableHtml tabId
+fetch :: ∀ m o. MonadAff m => Tab -> Converter o -> m (Either String (Array o))
+fetch tab to = do
+  htmlContent <- fetchTableHtml tab
   htmlContent
     ?!
       ( \h -> do

@@ -18,8 +18,43 @@ type Slots =
 
 timeline = Proxy :: Proxy "timeline"
 
-dates :: Array Date
-dates =
+type State =
+  { selectedSeminar :: Maybe Seminar
+  , seminars :: Maybe (Array Seminar)
+  }
+
+data Action 
+  = Load 
+  | SelectSeminar (Maybe Seminar)
+  | SelectSeminarByDate (Maybe Date)
+
+type Query :: ∀ k. k -> Type
+type Query = NoQuery
+
+type SeminarsM a = HalogenM State Action Slots Output AppM a
+
+type SeminarRow = 
+  ( title :: String
+  , theme :: String
+  , firstname :: String
+  , name :: String
+  , date :: Date
+  , videoLink :: String
+  )
+
+type Seminar = { | SeminarRow }
+
+title = Proxy :: Proxy "title"
+theme = Proxy :: Proxy "theme"
+firstname = Proxy :: Proxy "firstname"
+name = Proxy :: Proxy "name"
+day = Proxy :: Proxy "day"
+month = Proxy :: Proxy "month"
+year = Proxy :: Proxy "year"
+videoLink = Proxy :: Proxy "videoLink"
+
+mockDates :: Array Date
+mockDates =
   [ Date { day: 1, month: 1, year: 2024 }
   , Date { day: 15, month: 2, year: 25 }
   , Date { day: 13, month: 3, year: 25 }
@@ -35,38 +70,3 @@ dates =
   , Date { day: 13, month: 12, year: 25 }
   ]
 
-type State =
-  { selectedSeminar :: Maybe Date
-  , seminars :: Maybe (Array Seminar)
-  }
-
-data Action 
-  = Load 
-  | SelectDate Date
-
-type Query :: ∀ k. k -> Type
-type Query = NoQuery
-
-type SeminarsM a = HalogenM State Action Slots Output AppM a
-
-type SeminarRow = 
-  ( title :: String
-  , theme :: String
-  , firstname :: String
-  , name :: String
-  , day :: Int
-  , month :: Int
-  , year :: Int
-  , videoLink :: String
-  )
-
-type Seminar = { | SeminarRow }
-
-title = Proxy :: Proxy "title"
-theme = Proxy :: Proxy "theme"
-firstname = Proxy :: Proxy "firstname"
-name = Proxy :: Proxy "name"
-day = Proxy :: Proxy "day"
-month = Proxy :: Proxy "month"
-year = Proxy :: Proxy "year"
-videoLink = Proxy :: Proxy "videoLink"

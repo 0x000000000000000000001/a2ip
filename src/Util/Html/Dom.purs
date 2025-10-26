@@ -14,7 +14,7 @@ import Proem
 import Data.Array (mapMaybe)
 import Data.Int (round, toNumber)
 import Data.Maybe (Maybe)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Class (class MonadEffect)
 import Halogen (AttrName(..))
 import Halogen.HTML (attr)
 import Halogen.HTML.Properties (IProp)

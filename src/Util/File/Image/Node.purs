@@ -5,7 +5,6 @@ import Proem
 import Affjax.ResponseFormat (arrayBuffer)
 import Data.Either (Either(..))
 import Effect.Aff (Aff)
-import Effect.Class (liftEffect)
 import Node.Buffer (fromArrayBuffer)
 import Node.FS.Aff (writeFile)
 import Util.Http.Http (getCheckStatus)

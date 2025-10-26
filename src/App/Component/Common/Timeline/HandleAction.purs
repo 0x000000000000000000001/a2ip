@@ -40,8 +40,14 @@ handleAction = case _ of
     modify_ _ { selectedDate = Just date }
     raise $ SelectedDate date
 
-  Receive input ->
-    modify_ _ { class_ = input.class_, dates = input.dates # nubEq }
+  Receive input -> do
+    let dates = input.dates # nubEq
+    modify_ (\s -> s 
+      { class_ = input.class_
+      , dates = dates
+      , selectedDate = s.dates /= dates ? dates !! 0 ↔ s.selectedDate 
+      }
+    )
 
   HandleDocScroll -> do
     state <- get
