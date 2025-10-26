@@ -10,4 +10,4 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (text)
 
 render :: State -> ComponentHTML Action Slots AppM
-render _ = text "youtube video"
+render s = text $ "youtube video: " <> s.url

@@ -5,13 +5,14 @@ module App.Component.Page.Seminars.Render
 import Proem hiding (div)
 
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
+import App.Component.Common.YouTubeVideo.Component (component) as YouTubeVideoComponent
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, timeline)
-import App.Component.Util.Type (noSlotAddressIndex)
+import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, timeline, youtubeVideo)
+import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
@@ -43,7 +44,18 @@ render s =
               p_ [ text $ "theme: " <> show s_.theme ],
               p_ [ text $ "firstname: " <> show s_.firstname ],
               p_ [ text $ "lastname: " <> show s_.lastname ],
-              p_ [ text $ "date: " <> show s_.date ]
+              p_ [ text $ "date: " <> show s_.date ],
+              s_.videoUrl /= ""
+                ? (
+                slot
+                  youtubeVideo
+                  noSlotAddressIndex
+                  YouTubeVideoComponent.component
+                  { url: s_.videoUrl
+                  }
+                  noOutputAction
+                ) 
+                ↔ noHtml
             ])
             ↔ []
         )

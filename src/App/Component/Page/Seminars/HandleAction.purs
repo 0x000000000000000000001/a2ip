@@ -6,7 +6,7 @@ module App.Component.Page.Seminars.HandleAction
 import Proem
 
 import App.Component.Common.Timeline.Type (Date(..))
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, theme, title, firstname, lastname, day, month, year, videoLink)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, theme, title, firstname, lastname, day, month, year, videoUrl)
 import App.Util.Capability.Log (error)
 import Data.Array (find, (!!))
 import Data.Either (Either)
@@ -51,5 +51,5 @@ toSeminar getHtmlCell row =
       , month: (fromString $ getHtmlCell month row) ??⇒ 1
       , year: (fromString $ getHtmlCell year row) ??⇒ 1970
       }
-  , videoLink: untag $ trim $ getHtmlCell videoLink row
+  , videoUrl: untag $ trim $ getHtmlCell videoUrl row
   }

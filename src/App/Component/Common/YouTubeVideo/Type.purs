@@ -13,16 +13,20 @@ import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlots, N
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM)
 
-type Input = NoInput
+type Input = 
+  { url :: String 
+  }
 
 type Output = NoOutput
 
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State = NoState
+type State = 
+  { url :: String 
+  }
 
-type Action = NoAction
+data Action = Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

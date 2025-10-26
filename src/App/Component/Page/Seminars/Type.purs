@@ -2,6 +2,7 @@ module App.Component.Page.Seminars.Type where
 
 import App.Component.Common.Timeline.Type (Date(..))
 import App.Component.Common.Timeline.Type as Timeline
+import App.Component.Common.YouTubeVideo.Type as YouTubeVideo
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Array.NonEmpty (last)
@@ -15,9 +16,11 @@ type Output = NoOutput
 
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
+  , youtubeVideo :: Slot YouTubeVideo.Query YouTubeVideo.Output NoSlotAddressIndex
   )
 
 timeline = Proxy :: Proxy "timeline"
+youtubeVideo = Proxy :: Proxy "youtubeVideo"
 
 type State =
   { selectedSeminar :: Maybe Seminar
@@ -40,7 +43,7 @@ type SeminarRow =
   , firstname :: String
   , lastname :: String
   , date :: Date
-  , videoLink :: String
+  , videoUrl :: String
   )
 
 type Seminar = { | SeminarRow }
@@ -52,7 +55,7 @@ lastname = Proxy :: Proxy "lastname"
 day = Proxy :: Proxy "day"
 month = Proxy :: Proxy "month"
 year = Proxy :: Proxy "year"
-videoLink = Proxy :: Proxy "videoLink"
+videoUrl = Proxy :: Proxy "videoUrl"
 
 mockDates :: Array Date
 mockDates =
