@@ -14,7 +14,7 @@ import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State,
 import App.Component.Common.Loader.Loader (loader)
 import App.Component.Common.PrettyErrorImage.Component as PrettyErrorImage
 import App.Component.Common.YoutubeVideo.Component as YoutubeVideo
-import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
+import App.Component.Util.Type (noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import CSS (darken)
 import Color (white)
@@ -40,28 +40,30 @@ render s =
                 _ -> ""
             ]
         ] 
-        [ loader $ darken 0.1 white
-        , case media of
-            Just (Image url) ->
-              slot
-                image
-                noSlotAddressIndex
-                PrettyErrorImage.component
-                { src: Just url
-                , fallbackSrc: Nothing
-                , class_: Nothing
-                }
-                noOutputAction
+        ( case media of
+            Just (Image url) -> 
+              [ slot
+                  image
+                  noSlotAddressIndex
+                  PrettyErrorImage.component
+                  { src: Just url
+                  , fallbackSrc: Nothing
+                  , class_: Nothing
+                  }
+                  noOutputAction
+              ]
             Just (YoutubeVideo url) -> 
-              slot
-                youtubeVideo
-                noSlotAddressIndex
-                YoutubeVideo.component
-                { url
-                }
-                noOutputAction
-            _ -> noHtml
-        ]
+              [ loader $ darken 0.1 white
+                , slot
+                    youtubeVideo
+                    noSlotAddressIndex
+                    YoutubeVideo.component
+                    { url
+                    }
+                    noOutputAction
+              ]
+            _ -> []
+        )
     , div
       [ classes [ Control.classId, Control.classIdWhenPrev ]
       , onClick $ κ GoToPrevious
