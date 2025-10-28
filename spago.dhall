@@ -21,6 +21,7 @@ You can edit this file as you like.
   , "datetime"
   , "effect"
   , "either"
+  , "enums"
   , "exceptions"
   , "foldable-traversable"
   , "foreign"
@@ -31,7 +32,6 @@ You can edit this file as you like.
   , "integers"
   , "lists"
   , "maybe"
-  , "newtype"
   , "node-buffer"
   , "node-fs"
   , "node-process"
@@ -40,6 +40,7 @@ You can edit this file as you like.
   , "numbers"
   , "ordered-collections"
   , "parallel"
+  , "partial"
   , "prelude"
   , "record"
   , "routing"
@@ -57,6 +58,5 @@ You can edit this file as you like.
   , "web-uievents"
   ]
 , packages = ./packages.dhall
-, sources =
-  [ "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
 }
