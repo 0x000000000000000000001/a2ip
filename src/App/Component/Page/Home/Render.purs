@@ -21,7 +21,7 @@ render s =
   div_
     [ div 
         [ onClick $ κ $ ShowModal ] 
-        [ text $ "modal: " <> (s.showModal ? "visible" ↔ " hidden") ]
+        [ text $ "modal: " <> (s.showModal ? "visible" ↔ "hidden") ]
     , s.showModal
         ? (
           slot

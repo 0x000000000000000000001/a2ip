@@ -5,16 +5,18 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Date(..))
 import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, theme, title, firstname, lastname, day, month, year, videoUrl)
 import App.Util.Capability.Log (error)
 import Data.Array (find, (!!))
+import Data.Date (canonicalDate)
 import Data.Either (Either)
+import Data.Enum (toEnum)
 import Data.Int (fromString)
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), fromJust)
 import Data.String (trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (get, modify_)
+import Partial.Unsafe (unsafePartial)
 import Util.Google.Sheet (Converter, fetch, seminarsTab)
 import Util.Html.Clean (untag)
 
@@ -46,10 +48,11 @@ toSeminar getHtmlCell row =
   , theme: getHtmlCell theme row
   , firstname: getHtmlCell firstname row
   , lastname: getHtmlCell lastname row
-  , date: Date
-      { day: (fromString $ getHtmlCell day row) ??⇒ 1
-      , month: (fromString $ getHtmlCell month row) ??⇒ 1
-      , year: (fromString $ getHtmlCell year row) ??⇒ 1970
-      }
+  , date: 
+      unsafePartial $
+        canonicalDate
+          ((fromString $ getHtmlCell year row) ??⇒ 1970 # toEnum # fromJust)
+          ((fromString $ getHtmlCell month row) ??⇒ 1 # toEnum # fromJust)
+          ((fromString $ getHtmlCell day row) ??⇒ 1 # toEnum # fromJust)
   , videoUrl: untag $ trim $ getHtmlCell videoUrl row
   }

@@ -14,8 +14,9 @@ import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State, date)
 import App.Util.Capability.AppM (AppM)
+import Data.Date (day, month, year)
+import Data.Enum (fromEnum)
 import Data.Maybe (Maybe(..))
-import Data.Newtype (unwrap)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
@@ -38,8 +39,10 @@ render s =
     , div
         [ class_ Dates.classId ]
         ( s.dates <#> \date_ ->
-            let d = unwrap date_
-                dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
+            let y = fromEnum $ year date_
+                m = fromEnum $ month date_
+                d = fromEnum $ day date_
+                dateId = show d <> "-" <> show m <> "-" <> show y
             in ( div
                 [ classes $ 
                     [Date.classId] 
@@ -49,9 +52,9 @@ render s =
                 ]
                 [ div
                     [ class_ Numbers.classId ]
-                    [ div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d.day ]
-                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d.month ]
-                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show $ d.year `mod` 100 ]
+                    [ div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d ]
+                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show m ]
+                    , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show $ y `mod` 100 ]
                     ]
                 , div
                     [ class_ Pin.classId ]

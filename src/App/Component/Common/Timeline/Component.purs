@@ -8,7 +8,7 @@ import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Timeline.HandleAction (handleAction)
 import App.Component.Common.Timeline.Render (render)
 import App.Component.Common.Timeline.Type (Action(..), Input, Output, Query)
-import Data.Array (nubEq, (!!))
+import Data.Array (nubEq)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)
 
@@ -20,7 +20,7 @@ component = mkComponent
       in
         { class_: input.class_
         , dates
-        , selectedDate: dates !! 0
+        , selectedDate: Nothing
         , scrollFork: Nothing
         , loading: input.loading
         }

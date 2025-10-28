@@ -4,19 +4,23 @@ module App.Component.Common.Timeline.HandleAction
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Action(..), TimelineM, Date(..), Output(..), date)
-import Data.Array (nubEq, mapMaybe, (!!))
+import App.Component.Common.Timeline.Type (Action(..), DefaultDate(..), Output(..), TimelineM, date)
+import App.Util.Capability.Log (debug)
+import Data.Array (filter, last, length, mapMaybe, nubEq, (!!))
+import Data.Date (Date, canonicalDate, day, month, year)
+import Data.Enum (fromEnum, toEnum)
 import Data.Foldable (for_, minimumBy)
 import Data.Int (fromString)
-import Data.Maybe (Maybe(..))
-import Data.Newtype (unwrap)
+import Data.Maybe (Maybe(..), fromJust)
 import Data.Number (abs)
 import Data.String (Pattern(..), split)
 import Data.Time.Duration (Milliseconds(..))
 import Data.Traversable (traverse)
 import Effect.Aff (delay)
-import Halogen (fork, get, kill, modify_, raise, subscribe')
+import Effect.Now (nowDate)
+import Halogen (fork, get, kill, modify, modify_, raise, subscribe')
 import Halogen.Query.Event (eventListener)
+import Partial.Unsafe (unsafePartial)
 import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scroll)
 import Util.Window (getScreenVerticalCenter)
 import Web.DOM.Document (toEventTarget)
@@ -38,17 +42,36 @@ handleAction = case _ of
 
   SelectDate date -> do
     modify_ _ { selectedDate = Just date }
-    raise $ SelectedDate date
+    raise $ SelectedDate $ Just date
 
   Receive input -> do
+    now <- ʌ nowDate
+
     let dates = input.dates # nubEq
-    modify_ (\s -> s 
+        defaultDate = case input.defaultDate of
+          First -> dates !! 0
+          Last -> dates !! (length dates - 1)
+          LastBeforeNow -> dates # filter (_ < now) # last
+          FirstAfterNow -> (dates # filter (_ > now)) !! 0
+          _ -> Nothing
+
+    debug $ "defaultDate: " <> show defaultDate
+
+    oldState <- get
+    let oldSelectedDate = oldState.selectedDate
+
+    newState <- modify (\s -> s 
       { class_ = input.class_
       , dates = dates
-      , selectedDate = s.dates /= dates ? dates !! 0 ↔ s.selectedDate 
+      , selectedDate = s.dates /= dates ? defaultDate ↔ s.selectedDate 
       , loading = input.loading
       }
     )
+
+    let newSelectedDate = newState.selectedDate
+    when 
+      (oldSelectedDate /= newSelectedDate) 
+      (raise $ SelectedDate newSelectedDate)
 
   HandleDocScroll -> do
     state <- get
@@ -74,7 +97,12 @@ parseDate str = do
   day <- fromString dayStr
   month <- fromString monthStr
   year <- fromString yearStr
-  η $ Date { day, month, year }
+  η $ 
+    unsafePartial $
+      canonicalDate
+        (year # toEnum # fromJust)
+        (month # toEnum # fromJust)
+        (day # toEnum # fromJust)
 
 -- | Select the date element that is closest to the center of the screen
 selectDateClosestToScreenCenter :: TimelineM Unit
@@ -104,8 +132,10 @@ selectDateClosestToScreenCenterIfNeeded = do
 isDateVisible :: Date -> TimelineM Boolean
 isDateVisible date_ = do
   let
-    d = unwrap date_
-    dateId = show d.day <> "-" <> show d.month <> "-" <> show d.year
+    d = fromEnum $ day date_
+    m = fromEnum $ month date_
+    y = fromEnum $ year date_
+    dateId = show d <> "-" <> show m <> "-" <> show y
   isVisible (dataAttrQuerySelector date (Just dateId))
 
 -- | Get all date elements from the DOM
