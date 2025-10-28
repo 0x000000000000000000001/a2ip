@@ -7,7 +7,7 @@ module App.Component.Page.About.Style.Card.Line
 import Proem hiding (top)
 
 import App.Component.Page.About.Type (email, phone, role)
-import CSS (star, (&))
+import CSS ((&))
 import CSS as CSS
 import Util.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
 

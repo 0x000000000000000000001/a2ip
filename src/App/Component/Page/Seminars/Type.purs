@@ -5,7 +5,6 @@ import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Common.YouTubeVideo.Type as YouTubeVideo
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import Data.Array.NonEmpty (last)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))

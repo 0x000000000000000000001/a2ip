@@ -9,7 +9,7 @@ module App.Component.Common.YouTubeVideo.Type
   )
   where
 
-import App.Component.Util.Type (NoAction, NoInput, NoOutput, NoQuery, NoSlots, NoState)
+import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM)
 

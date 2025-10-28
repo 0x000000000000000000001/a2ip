@@ -8,7 +8,7 @@ module App.Component.Router.Style.Router
 
 import Proem hiding (top)
 
-import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, minHeight, normalAnimationDirection, pct, positioned, rgba, sansSerif, saturate, sec, star, vh)
+import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, minHeight, normalAnimationDirection, pct, positioned, rgba, sansSerif, saturate, sec, vh)
 import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))

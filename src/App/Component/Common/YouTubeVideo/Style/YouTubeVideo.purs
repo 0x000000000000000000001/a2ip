@@ -5,9 +5,9 @@ module App.Component.Common.YouTubeVideo.Style.YouTubeVideo
 
 import Proem hiding (top)
 
-import CSS (iframe, star)
+import CSS (iframe)
 import CSS as CSS
-import Util.Style (any, displayFlex, heightPct100, heightRem, justifyContentCenter, widthPct100, widthRem, (.&¨), (.?), (.|*), (.|*¨), (.|>), (.|>¨), (:?))
+import Util.Style (any, displayFlex, heightPct100, heightRem, justifyContentCenter, widthPct100, widthRem, (.?), (.|*), (.|>), (:?))
 
 classId :: String
 classId = "U7IRxxSNd"
