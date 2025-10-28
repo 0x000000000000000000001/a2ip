@@ -13,7 +13,7 @@ import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (all, borderRadius1, displayFlex, heightRem, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
+import Util.Style (all, borderRadiusRem1, displayFlex, heightRem, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
 
 classId :: String
 classId = "DDGK8gCXg"
@@ -52,7 +52,7 @@ style = do
 
   __webkitScrollbarThumb :? do
     backgroundColor $ rgba 0 0 0 0.3
-    borderRadius1 0.25
+    borderRadiusRem1 0.25
 
   __webkitScrollbarThumbHover :? do
     backgroundColor $ rgba 0 0 0 0.5

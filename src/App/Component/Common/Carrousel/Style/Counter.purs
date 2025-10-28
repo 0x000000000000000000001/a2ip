@@ -8,7 +8,7 @@ import Proem hiding (top)
 import CSS (color, rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style (borderRadius4, bottomCenterToBottomCenter, displayFlex, justifyContentCenter, padding2, (.?))
+import Util.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, justifyContentCenter, padding2, (.?))
 
 classId :: String
 classId = "ao2EMCBH7"
@@ -20,6 +20,6 @@ style = do
     displayFlex
     justifyContentCenter
     backgroundColor $ rgba 0 0 0 0.8
-    borderRadius4 0.6 0.6 0.0 0.0
+    borderRadiusRem4 0.6 0.6 0.0 0.0
     color white
     padding2 0.3 0.5

@@ -49,13 +49,15 @@ module Util.Style
   , alignItemsCenter
   , all
   , any
-  , backgroundColorNone
   , backgroundColorRed
+  , backgroundColorTransparent
   , backgroundColorWhite
   , backgroundWhite
   , before
-  , borderRadius1
-  , borderRadius4
+  , borderRadiusPct1
+  , borderRadiusPct4
+  , borderRadiusRem1
+  , borderRadiusRem4
   , borderWidth
   , bottom0
   , bottomCenterToBottomCenter
@@ -233,6 +235,7 @@ module Util.Style
   , topRightToTopLeft
   , topRightToTopRight
   , translatePct
+  , transparent
   , typedChildClass
   , typedChildRaw
   , typedDeepClass
@@ -418,8 +421,11 @@ backgroundColorRed = backgroundColor red
 backgroundColorWhite :: CSS.CSS
 backgroundColorWhite = backgroundColor backgroundWhite
 
-backgroundColorNone :: CSS.CSS
-backgroundColorNone = backgroundColor $ rgba 0 0 0 0.0
+backgroundColorTransparent :: CSS.CSS
+backgroundColorTransparent = backgroundColor transparent
+
+transparent :: Color
+transparent = rgba 0 0 0 0.0
 
 displayInlineBlock :: CSS.CSS
 displayInlineBlock = display inlineBlock
@@ -1026,11 +1032,17 @@ marginTop m = CSS.marginTop (rem m)
 marginBottom :: Number -> CSS.CSS
 marginBottom m = CSS.marginBottom (rem m)
 
-borderRadius4 :: Number -> Number -> Number -> Number -> CSS.CSS
-borderRadius4 tl tr br bl = borderRadius (rem tl) (rem tr) (rem br) (rem bl)
+borderRadiusRem4 :: Number -> Number -> Number -> Number -> CSS.CSS
+borderRadiusRem4 tl tr br bl = borderRadius (rem tl) (rem tr) (rem br) (rem bl)
 
-borderRadius1 :: Number -> CSS.CSS
-borderRadius1 r = borderRadius4 r r r r
+borderRadiusRem1 :: Number -> CSS.CSS
+borderRadiusRem1 r = borderRadiusRem4 r r r r
+
+borderRadiusPct4 :: Number -> Number -> Number -> Number -> CSS.CSS
+borderRadiusPct4 tl tr br bl = borderRadius (pct tl) (pct tr) (pct br) (pct bl)
+
+borderRadiusPct1 :: Number -> CSS.CSS
+borderRadiusPct1 r = borderRadiusPct4 r r r r
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w

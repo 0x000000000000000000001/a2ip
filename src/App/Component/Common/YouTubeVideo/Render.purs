@@ -1,12 +1,12 @@
-module App.Component.Common.YouTubeVideo.Render
+module App.Component.Common.YoutubeVideo.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.YouTubeVideo.Style.Sheet (sheet)
-import App.Component.Common.YouTubeVideo.Style.YouTubeVideo (classId)
-import App.Component.Common.YouTubeVideo.Type (Action, Slots, State)
+import App.Component.Common.YoutubeVideo.Style.Sheet (sheet)
+import App.Component.Common.YoutubeVideo.Style.YoutubeVideo (classId)
+import App.Component.Common.YoutubeVideo.Type (Action, Slots, State)
 import App.Util.Capability.AppM (AppM)
 import Data.String (Pattern(..), Replacement(..), contains, replaceAll)
 import Halogen (ComponentHTML)

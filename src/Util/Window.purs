@@ -5,7 +5,7 @@ module Util.Window
 import Proem
 
 import Data.Int (toNumber)
-import Effect.Class (class MonadEffect, liftEffect)
+import Effect.Class (class MonadEffect)
 import Web.HTML (window)
 import Web.HTML.Window (innerHeight)
 

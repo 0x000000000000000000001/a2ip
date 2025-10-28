@@ -1,6 +1,6 @@
-module App.Component.Common.YouTubeVideo.Type
+module App.Component.Common.YoutubeVideo.Type
   ( Action(..)
-  , YouTubeVideoM
+  , YoutubeVideoM
   , Input
   , Output
   , Query
@@ -31,4 +31,4 @@ data Action = Receive Input
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type YouTubeVideoM a = HalogenM State Action Slots Output AppM a
+type YoutubeVideoM a = HalogenM State Action Slots Output AppM a

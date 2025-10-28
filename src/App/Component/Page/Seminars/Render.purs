@@ -5,7 +5,7 @@ module App.Component.Page.Seminars.Render
 import Proem hiding (div)
 
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
-import App.Component.Common.YouTubeVideo.Component (component) as YouTubeVideoComponent
+import App.Component.Common.YoutubeVideo.Component (component) as YoutubeVideoComponent
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
@@ -50,7 +50,7 @@ render s =
                 slot
                   youtubeVideo
                   noSlotAddressIndex
-                  YouTubeVideoComponent.component
+                  YoutubeVideoComponent.component
                   { url: s_.videoUrl
                   }
                   noOutputAction

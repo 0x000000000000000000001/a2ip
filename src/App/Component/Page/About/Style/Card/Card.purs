@@ -14,7 +14,7 @@ import App.Component.Page.About.Style.Card.Portrait as Portrait
 import App.Component.Page.About.Type (email, phone)
 import CSS (CSS) as CSS
 import CSS (column, flexDirection, hover, (&))
-import Util.Style (alignItemsCenter, before, borderRadius1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
 classId = "xt156nvNM"
@@ -44,7 +44,7 @@ style = do
     nothing
 
   ______portrait :? do
-    borderRadius1 0.3
+    borderRadiusRem1 0.3
 
   __loading :? do
     nothing
@@ -54,12 +54,12 @@ style = do
 
   ____names :? do
     loading
-    borderRadius1 0.3
+    borderRadiusRem1 0.3
     widthPct 40.0
 
   ____line :? do
     loading
-    borderRadius1 0.3
+    borderRadiusRem1 0.3
     widthPct 60.0
 
   ______before :? do

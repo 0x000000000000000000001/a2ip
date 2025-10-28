@@ -14,7 +14,7 @@ import CSS.Common (center)
 import App.Component.Router.Menu.Style.Menu as MenuStyle
 import App.Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadius1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadiusRem1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -29,7 +29,7 @@ style :: State -> CSS.CSS
 style s = do
   classId .? do
     backgroundColor (rgba 0 0 0 0.2)
-    borderRadius1 5.0
+    borderRadiusRem1 5.0
     minWidthRem width
     widthRem width
     heightRem width

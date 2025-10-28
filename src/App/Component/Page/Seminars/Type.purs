@@ -2,7 +2,7 @@ module App.Component.Page.Seminars.Type where
 
 import App.Component.Common.Timeline.Type (Date(..))
 import App.Component.Common.Timeline.Type as Timeline
-import App.Component.Common.YouTubeVideo.Type as YouTubeVideo
+import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe)
@@ -15,7 +15,7 @@ type Output = NoOutput
 
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
-  , youtubeVideo :: Slot YouTubeVideo.Query YouTubeVideo.Output NoSlotAddressIndex
+  , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
   )
 
 timeline = Proxy :: Proxy "timeline"

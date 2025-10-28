@@ -9,7 +9,6 @@ import Prelude
 import Control.Monad.Error.Class (class MonadError, catchError, throwError)
 import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff, liftAff)
-import Effect.Class (liftEffect)
 import Effect.Exception (Error)
 import Util.Applicative (η, ηι)
 import Util.Effect (ʌ)

@@ -1,12 +1,12 @@
-module App.Component.Common.YouTubeVideo.Component
+module App.Component.Common.YoutubeVideo.Component
   ( component
   ) where
 
 import Proem
 
-import App.Component.Common.YouTubeVideo.HandleAction (handleAction)
-import App.Component.Common.YouTubeVideo.Render (render)
-import App.Component.Common.YouTubeVideo.Type (Input, Output, Query, Action(..))
+import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
+import App.Component.Common.YoutubeVideo.Render (render)
+import App.Component.Common.YoutubeVideo.Type (Input, Output, Query, Action(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)

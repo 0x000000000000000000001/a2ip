@@ -19,7 +19,6 @@ import Proem
 import Ansi.Codes (Color(..))
 import Bin.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Class (liftEffect)
 import Effect.Console as Console
 
 pendingColor :: Color

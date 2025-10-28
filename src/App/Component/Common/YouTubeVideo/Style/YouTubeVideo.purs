@@ -1,4 +1,4 @@
-module App.Component.Common.YouTubeVideo.Style.YouTubeVideo
+module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
   ( classId
   , style
   ) where

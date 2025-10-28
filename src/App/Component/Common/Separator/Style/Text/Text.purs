@@ -9,7 +9,7 @@ import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, 
 import CSS as CSS
 import App.Component.Common.Separator.Style.Util (grey)
 import Data.NonEmpty ((:|))
-import Util.Style (borderRadius4, displayInlineBlock, fontSizePct, fontWeightBold, margin0, padding1, positionRelative, (.?))
+import Util.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, margin0, padding1, positionRelative, (.?))
 
 classId :: String
 classId = "wRKg6JrGY"
@@ -23,7 +23,7 @@ style = do
     borderLeft solid (rem 0.15) grey
     borderTop solid (rem 0.15) grey
     borderRight solid (rem 0.15) grey
-    borderRadius4 0.5 0.5 0.0 0.0
+    borderRadiusRem4 0.5 0.5 0.0 0.0
     padding1 0.6
     color $ darken 0.15 grey
     fontWeightBold
