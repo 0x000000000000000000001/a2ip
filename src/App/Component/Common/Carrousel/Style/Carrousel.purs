@@ -7,14 +7,15 @@ module App.Component.Common.Carrousel.Style.Carrousel
 
 import Proem hiding (top)
 
+import App.Component.Common.Loader.Style.Loader as Loader
 import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
-import CSS (black, rgba, white)
+import CSS (black, rgba, white, zIndex)
 import CSS as CSS
 import CSS.Background (backgroundColor)
 import Color (darken)
-import Util.Style (backgroundColorTransparent, borderRadiusRem1, displayFlex, fill, flexGrow1, heightPct100, heightRem, justifyContentCenter, overflowHidden, positionRelative, raw, widthPct100, widthRem, (.?), (.|*.), (:&.), (:?), (:|*.))
+import Util.Style (backgroundColorTransparent, borderRadiusRem1, centerToCenter, displayFlex, fill, flexGrow1, heightPct100, heightRem, justifyContentCenter, overflowHidden, positionRelative, raw, widthPct100, widthRem, (.?), (.|*.), (:&.), (:?), (:|*.))
 
 classId :: String
 classId = "bg2Md6TUT"
@@ -35,9 +36,6 @@ style = do
     overflowHidden
     raw "transition" "background-color 0s"
 
-  classIdWhenYoutubeVideo .? do 
-    backgroundColor black
-
   __image :? do 
     widthPct100
     heightPct100
@@ -53,9 +51,13 @@ style = do
   __youtubeVideo :? do 
     widthPct100
     heightPct100
+
+  __loader :? do
+    centerToCenter
   
   where 
   __image = classId .|*. PrettyErrorImage.classId 
   ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
   ______questionMark = ____errored :|*. QuestionMark.classId
   __youtubeVideo = classId .|*. YoutubeVideo.classId 
+  __loader = classId .|*. Loader.classId
