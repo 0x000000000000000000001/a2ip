@@ -420,19 +420,16 @@ loading = do
   backgroundColor loadingGrey
   borderColor transparent
   color transparent
-  positionRelative
-  overflowHidden
   backgroundImage $ linearGradient (angular $ deg 90.0) [
     transparent /\ pct 0.0,
-    rgba 0 0 0 1.0 /\ pct 50.0,
-    -- rgba 255 255 255 0.5 /\ pct 50.0,
+    rgba 255 255 255 0.5 /\ pct 50.0,
     transparent /\ pct 100.0
   ]
   backgroundSize $ by (rem loadingShimmerWidth) (pct 100.0)
   backgroundRepeat noRepeat
   animation 
     (fromString loadingShimmerAnimationId) 
-    (sec 7.7)
+    (sec 0.7)
     linear
     (sec 0.0)
     infinite

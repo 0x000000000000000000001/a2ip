@@ -69,7 +69,7 @@ style = do
 
   keyframes loadingShimmerAnimationId (
     0.0 /\ backgroundPosition (positioned (rem $ -1.0 * loadingShimmerWidth) (rem 0.0))
-    :| [ 100.0 /\ backgroundPosition (positioned (pct 150.0) (pct 0.0)) ]
+    :| [ 100.0 /\ (raw "background-position" $ "calc(100% + " <> show loadingShimmerWidth <> "rem) 0") ]
   )
 
   body :? do
