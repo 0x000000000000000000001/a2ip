@@ -30,13 +30,7 @@ render s =
   let media = s.medias !! s.mediaIndex 
   in
   div 
-    [ classes 
-        [ classId
-        , case media of
-            Just (YoutubeVideo _) -> classIdWhenYoutubeVideo
-            _ -> ""
-        ] 
-    ]
+    [ class_ classId ]
     [ sheet
     , div 
         [ classes

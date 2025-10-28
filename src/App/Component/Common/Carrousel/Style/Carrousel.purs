@@ -1,6 +1,5 @@
 module App.Component.Common.Carrousel.Style.Carrousel
   ( classId
-  , classIdWhenYoutubeVideo
   , style
   )
   where
@@ -11,7 +10,7 @@ import App.Component.Common.Loader.Style.Loader as Loader
 import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
-import CSS (black, rgba, white, zIndex)
+import CSS (rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
 import Color (darken)
@@ -19,9 +18,6 @@ import Util.Style (backgroundColorTransparent, borderRadiusRem1, centerToCenter,
 
 classId :: String
 classId = "bg2Md6TUT"
-
-classIdWhenYoutubeVideo :: String
-classIdWhenYoutubeVideo = "p1vA7JfNx"
 
 style :: CSS.CSS
 style = do
