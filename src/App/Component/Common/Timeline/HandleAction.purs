@@ -6,11 +6,11 @@ import Proem
 
 import App.Component.Common.Timeline.Type (Action(..), DefaultDate(..), Output(..), TimelineM, date)
 import App.Util.Capability.Log (debug)
-import Data.Array (filter, last, length, mapMaybe, nubEq, (!!))
+import Data.Array (filter, head, last, length, mapMaybe, nubEq, (!!), (:))
 import Data.Date (Date, canonicalDate, day, month, year)
 import Data.Enum (fromEnum, toEnum)
 import Data.Foldable (for_, minimumBy)
-import Data.Int (fromString)
+import Data.Int (fromString, round, toNumber)
 import Data.Maybe (Maybe(..), fromJust)
 import Data.Number (abs)
 import Data.String (Pattern(..), split)
@@ -21,7 +21,8 @@ import Effect.Now (nowDate)
 import Halogen (fork, get, kill, modify, modify_, raise, subscribe')
 import Halogen.Query.Event (eventListener)
 import Partial.Unsafe (unsafePartial)
-import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scroll)
+import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scrollTo)
+import Util.Html.Dom as UtilDom
 import Util.Window (getScreenVerticalCenter)
 import Web.DOM.Document (toEventTarget)
 import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
@@ -29,14 +30,14 @@ import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (querySelectorAll)
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
-import Web.HTML.Window (document)
+import Web.HTML.Window (document, innerHeight, scroll)
 
 handleAction :: Action -> TimelineM Unit
 handleAction = case _ of
   Initialize -> do
     doc <- ʌ $ document =<< window
     subscribe' $ κ $ eventListener
-      scroll
+      UtilDom.scroll
       (doc # toDocument # toEventTarget)
       (HandleDocScroll # Just # κ)
 
@@ -51,8 +52,8 @@ handleAction = case _ of
         defaultDate = case input.defaultDate of
           First -> dates !! 0
           Last -> dates !! (length dates - 1)
-          LastBeforeNow -> dates # filter (_ < now) # last
           FirstAfterNow -> (dates # filter (_ > now)) !! 0
+          LastBeforeNow -> dates # filter (_ < now) # last
           _ -> Nothing
 
     debug $ "defaultDate: " <> show defaultDate
@@ -69,9 +70,10 @@ handleAction = case _ of
     )
 
     let newSelectedDate = newState.selectedDate
-    when 
-      (oldSelectedDate /= newSelectedDate) 
-      (raise $ SelectedDate newSelectedDate)
+    when (oldSelectedDate /= newSelectedDate) do
+      raise $ SelectedDate newSelectedDate
+
+
 
   HandleDocScroll -> do
     state <- get
@@ -103,6 +105,37 @@ parseDate str = do
         (year # toEnum # fromJust)
         (month # toEnum # fromJust)
         (day # toEnum # fromJust)
+
+scrollToDate :: Date -> TimelineM Unit
+scrollToDate date_ = do
+  let
+    d = fromEnum $ day date_
+    m = fromEnum $ month date_
+    y = fromEnum $ year date_
+    dateId = show d <> "-" <> show m <> "-" <> show y
+
+  win <- ʌ window
+  doc <- ʌ $ document win
+  docParentNode <- ʌ $ pure $ toParentNode doc
+    
+  maybeElement <- ʌ $ querySelectorAll (dataAttrQuerySelector date (Just dateId)) docParentNode
+    
+  nodes <- toArray maybeElement
+  
+  let elements = nodes # mapMaybe fromNode
+  
+  head elements 
+    ?? (\(el :: Element) -> ʌ do
+      rect <- getBoundingClientRect el
+      win <- window
+
+      innerHeight_ <- innerHeight win <#> toNumber
+      
+      let targetY = round $ rect.top - (innerHeight_ / 2.0)
+
+      scroll 0 targetY win
+    )
+    ⇔ ηι
 
 -- | Select the date element that is closest to the center of the screen
 selectDateClosestToScreenCenter :: TimelineM Unit
