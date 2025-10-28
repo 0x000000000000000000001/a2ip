@@ -20,10 +20,10 @@ import Util.Html.Clean (untag)
 handleAction :: Action -> AboutM Unit
 handleAction = case _ of
   Load -> do
-    members <- fetchMembers
-    members
-      ?! (\m -> modify_ _ { members = Just m })
-      ⇿ (error ◁ ("Error fetching members: " <> _))
+    -- members <- fetchMembers
+    -- members
+    --   ?! (\m -> modify_ _ { members = Just m })
+    --   ⇿ (error ◁ ("Error fetching members: " <> _))
 
     ø $ fork do
       collaborators <- fetchCollaborators

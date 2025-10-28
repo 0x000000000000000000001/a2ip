@@ -8,12 +8,12 @@ module App.Component.Router.Style.Router
 
 import Proem hiding (top)
 
-import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, minHeight, normalAnimationDirection, pct, positioned, rgba, sansSerif, saturate, sec, vh)
+import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, minHeight, normalAnimationDirection, pct, positioned, rem, rgba, sansSerif, saturate, sec, vh)
 import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style (all, borderRadiusRem1, displayFlex, heightRem, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
+import Util.Style (all, borderRadiusRem1, displayFlex, heightRem, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, widthRem, (.?), (:&:), (:?))
 
 classId :: String
 classId = "DDGK8gCXg"
@@ -60,11 +60,16 @@ style = do
   __webkitScrollbarCorner :? do
     backgroundColor $ rgba 0 0 0 0.05
 
-  keyframes bodyGradientAnimationId $ (
+  keyframes bodyGradientAnimationId (
     0.0 /\ backgroundPosition (positioned (pct 0.0) (pct 50.0))
     :| [ 50.0 /\ backgroundPosition (positioned (pct 100.0) (pct 50.0))
        , 100.0 /\ backgroundPosition (positioned (pct 0.0) (pct 50.0))
        ]
+  )
+
+  keyframes loadingShimmerAnimationId (
+    0.0 /\ backgroundPosition (positioned (rem $ -1.0 * loadingShimmerWidth) (rem 0.0))
+    :| [ 100.0 /\ backgroundPosition (positioned (pct 150.0) (pct 0.0)) ]
   )
 
   body :? do

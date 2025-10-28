@@ -41,7 +41,7 @@ style color = do
       normalAnimationDirection
       forwards
 
-  keyframes animationId $ (
+  keyframes animationId (
     (0.0 /\ (transform $ rotate $ deg 0.0))
     :| [100.0 /\ (transform $ rotate $ deg 360.0)]
   )

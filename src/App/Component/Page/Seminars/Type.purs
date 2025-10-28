@@ -6,7 +6,7 @@ import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import Data.Date (Date(..), Month, Year, canonicalDate)
+import Data.Date (Date, canonicalDate)
 import Data.Enum (toEnum)
 import Data.Maybe (Maybe, fromJust)
 import Halogen (HalogenM, Slot)

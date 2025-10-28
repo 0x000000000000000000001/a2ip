@@ -152,6 +152,8 @@ module Util.Style
   , leftRem
   , loading
   , loadingGrey
+  , loadingShimmerAnimationId
+  , loadingShimmerWidth
   , margin0
   , margin1
   , margin2
@@ -251,7 +253,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, backgroundColor, bold, borderColor, borderRadius, bottom, color, cursor, display, fixed, flex, flexGrow, fontSize, fontWeight, fromString, height, inlineBlock, justifyContent, key, left, margin, maxHeight, maxWidth, minHeight, minWidth, padding, pct, position, relative, rem, rgba, right, select, star, toHexString, top, transform, translate, width, wrap)
+import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, star, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -266,6 +268,7 @@ import Data.Int (toNumber)
 import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
+import Data.Tuple.Nested ((/\))
 import Effect (Effect)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
@@ -406,11 +409,35 @@ fontSizePct p = fontSize (pct p)
 fontWeightBold :: CSS.CSS
 fontWeightBold = fontWeight bold
 
+loadingShimmerAnimationId :: String
+loadingShimmerAnimationId = "BoE6IFJ8r"
+
+loadingShimmerWidth :: Number
+loadingShimmerWidth = 12.5
+
 loading :: StyleM Unit
 loading = do 
   backgroundColor loadingGrey
-  borderColor loadingGrey
-  color loadingGrey
+  borderColor transparent
+  color transparent
+  positionRelative
+  overflowHidden
+  backgroundImage $ linearGradient (angular $ deg 90.0) [
+    transparent /\ pct 0.0,
+    rgba 0 0 0 1.0 /\ pct 50.0,
+    -- rgba 255 255 255 0.5 /\ pct 50.0,
+    transparent /\ pct 100.0
+  ]
+  backgroundSize $ by (rem loadingShimmerWidth) (pct 100.0)
+  backgroundRepeat noRepeat
+  animation 
+    (fromString loadingShimmerAnimationId) 
+    (sec 7.7)
+    linear
+    (sec 0.0)
+    infinite
+    normalAnimationDirection
+    forwards
 
 content :: String -> CSS.CSS
 content s = raw "content" $ "\"" <> s <> "\""
