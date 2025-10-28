@@ -7,14 +7,14 @@ module App.Component.Router.Menu.Style.Item.Icon.Container
 
 import Proem hiding (top, div)
 
+import App.Component.Router.Menu.Style.Menu as MenuStyle
+import App.Component.Router.Menu.Type (State)
 import CSS (alignSelf, backgroundColor, rem, rgba, white)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
-import App.Component.Router.Menu.Style.Menu as MenuStyle
-import App.Component.Router.Menu.Type (State)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadiusRem1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadiusPct1, borderRadiusRem1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -29,7 +29,7 @@ style :: State -> CSS.CSS
 style s = do
   classId .? do
     backgroundColor (rgba 0 0 0 0.2)
-    borderRadiusRem1 5.0
+    borderRadiusPct1 50.0
     minWidthRem width
     widthRem width
     heightRem width

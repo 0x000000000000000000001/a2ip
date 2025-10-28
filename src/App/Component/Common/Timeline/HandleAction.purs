@@ -6,7 +6,7 @@ import Proem
 
 import App.Component.Common.Timeline.Type (Action(..), DefaultDate(..), Output(..), TimelineM, date)
 import App.Util.Capability.Log (debug)
-import Data.Array (filter, head, last, length, mapMaybe, nubEq, (!!), (:))
+import Data.Array (filter, head, last, length, mapMaybe, nubEq, (!!))
 import Data.Date (Date, canonicalDate, day, month, year)
 import Data.Enum (fromEnum, toEnum)
 import Data.Foldable (for_, minimumBy)
@@ -16,6 +16,7 @@ import Data.Number (abs)
 import Data.String (Pattern(..), split)
 import Data.Time.Duration (Milliseconds(..))
 import Data.Traversable (traverse)
+import Effect (Effect)
 import Effect.Aff (delay)
 import Effect.Now (nowDate)
 import Halogen (fork, get, kill, modify, modify_, raise, subscribe')
@@ -25,12 +26,12 @@ import Util.Html.Dom (dataAttrPrefixed, dataAttrQuerySelector, isVisible, scroll
 import Util.Html.Dom as UtilDom
 import Util.Window (getScreenVerticalCenter)
 import Web.DOM.Document (toEventTarget)
-import Web.DOM.Element (Element, fromNode, getAttribute, getBoundingClientRect)
+import Web.DOM.Element (Element, DOMRect, fromNode, getAttribute, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (querySelectorAll)
 import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument, toParentNode)
-import Web.HTML.Window (document, innerHeight, scroll)
+import Web.HTML.Window (document, innerHeight)
 
 handleAction :: Action -> TimelineM Unit
 handleAction = case _ of
@@ -73,7 +74,7 @@ handleAction = case _ of
     when (oldSelectedDate /= newSelectedDate) do
       raise $ SelectedDate newSelectedDate
 
-
+      for_ newSelectedDate scrollToDate
 
   HandleDocScroll -> do
     state <- get
@@ -120,20 +121,19 @@ scrollToDate date_ = do
     
   maybeElement <- ʌ $ querySelectorAll (dataAttrQuerySelector date (Just dateId)) docParentNode
     
-  nodes <- toArray maybeElement
+  nodes <- ʌ $ toArray maybeElement
   
   let elements = nodes # mapMaybe fromNode
   
   head elements 
     ?? (\(el :: Element) -> ʌ do
-      rect <- getBoundingClientRect el
-      win <- window
+      rect <- getBoundingClientRect el :: Effect DOMRect
 
       innerHeight_ <- innerHeight win <#> toNumber
-      
-      let targetY = round $ rect.top - (innerHeight_ / 2.0)
 
-      scroll 0 targetY win
+      let targetY = round $ rect.top + (rect.height / 2.0) - (innerHeight_ / 2.0)
+
+      scrollTo 0 targetY
     )
     ⇔ ηι
 

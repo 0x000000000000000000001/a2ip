@@ -7,12 +7,12 @@ module App.Component.Common.Timeline.Style.Date
 
 import Proem hiding (top)
 
+import App.Component.Common.Timeline.Style.Numbers as Numbers
+import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS (outline, rem, solid, transform)
 import CSS as CSS
 import Color (lighten)
-import App.Component.Common.Timeline.Style.Numbers as Numbers
-import App.Component.Common.Timeline.Style.Pin as Pin
-import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusRem1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 classId :: String
 classId = "JFD1v5Z7l"
@@ -35,7 +35,7 @@ style = do
 
   __selected :? do 
     outline solid (rem 0.2) $ lighten 0.1 red
-    borderRadiusRem1 40.0
+    borderRadiusPct1 50.0
   
   ____numbers :? do
     colorRed

@@ -5,10 +5,10 @@ module App.Component.Page.About.Style.Card.Portrait
 
 import Proem hiding (top)
 
+import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import CSS (border, rem, solid)
 import CSS as CSS
-import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
-import Util.Style (borderRadiusRem1, fill, heightRem, marginTop, raw, red, textRed, widthRem, (.?), (.|*.), (:?))
+import Util.Style (borderRadiusPct1, borderRadiusRem1, fill, heightRem, marginTop, raw, red, textRed, widthRem, (.?), (.|*.), (:?))
 
 classId :: String
 classId = "yg13inAyQ"
@@ -23,7 +23,7 @@ style = do
     heightRem width
     raw "object-fit" "cover"
     border solid (rem 0.3) red
-    borderRadiusRem1 40.0
+    borderRadiusPct1 50.0
     marginTop 0.4
 
   __questionMark :? do
