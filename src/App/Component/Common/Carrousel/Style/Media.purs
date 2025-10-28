@@ -7,10 +7,15 @@ module App.Component.Common.Carrousel.Style.Media
 
 import Proem hiding (top)
 
-import CSS (black, zIndex)
+import App.Component.Common.Loader.Style.Loader as Loader
+import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage
+import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
+import App.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
+import CSS (StyleM, black, white, zIndex)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style (heightPct100, positionRelative, raw, topLeftToTopLeft, widthPct100, (.?))
+import Color (darken)
+import Util.Style (backgroundColorTransparent, centerToCenter, fill, flexGrow1, heightPct100, positionRelative, raw, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
 
 classId :: String
 classId = "g3hSj8Cu1"
@@ -29,3 +34,35 @@ style = do
 
   classIdWhenYoutubeVideo .? do 
     backgroundColor black
+
+  __loader :? do
+    centerToCenter
+    zIndex 1
+
+  __image :? do 
+    asset
+    raw "object-fit" "contain"
+
+  ____errored :? do
+    backgroundColorTransparent
+    flexGrow1
+
+  ______questionMark :? do
+    fill $ darken 0.16 white
+
+  __youtubeVideo :? do 
+    asset
+
+  where 
+  __image = classId .|*. PrettyErrorImage.classId 
+  ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
+  ______questionMark = ____errored :|*. QuestionMark.classId
+  __youtubeVideo = classId .|*. YoutubeVideo.classId 
+  __loader = classId .|*. Loader.classId
+
+asset ∷ StyleM Unit
+asset = do 
+  positionRelative
+  widthPct100
+  heightPct100
+  zIndex 2

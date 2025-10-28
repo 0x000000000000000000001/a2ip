@@ -4,7 +4,7 @@ module App.Component.Common.Carrousel.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Carrousel.Style.Carrousel (classId, classIdWhenYoutubeVideo)
+import App.Component.Common.Carrousel.Style.Carrousel (classId)
 import App.Component.Common.Carrousel.Style.Control.Control as Control
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import App.Component.Common.Carrousel.Style.Counter as Counter

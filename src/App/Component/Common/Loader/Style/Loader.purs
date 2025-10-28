@@ -7,7 +7,7 @@ module App.Component.Common.Loader.Style.Loader
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (nothing, (.?))
+import Util.Style (nothing, positionRelative, (.?))
 
 classId :: String
 classId = "SYaITRzw4"
@@ -17,4 +17,5 @@ classId = "SYaITRzw4"
 style :: CSS.CSS
 style = do
   classId .? do
+    positionRelative -- For zIndex customization
     nothing
