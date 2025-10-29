@@ -12,7 +12,7 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, timeline, youtubeVideo)
+import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, theme, timeline, youtubeVideo)
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..), isNothing)
@@ -44,6 +44,13 @@ render s =
             ?? (\s_ -> [
               p_ [ text $ "title: " <> show s_.title ],
               p_ [ text $ "theme: " <> show s_.theme ],
+              slot
+                themeDescription
+                noSlotAddressIndex
+                (Modal.component Renderer.component)
+                { innerHtml: Nothing
+                }
+                handleModalOutput,
               p_ [ text $ "firstname: " <> show s_.firstname ],
               p_ [ text $ "lastname: " <> show s_.lastname ],
               p_ [ text $ "date: " <> show s_.date ],
