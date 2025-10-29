@@ -3,6 +3,7 @@ module App.Component.Page.Seminars.Type where
 import Proem
 
 import App.Component.Common.Timeline.Type as Timeline
+import App.Component.Common.Renderer.Type as Renderer
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Email (emailOfJoel, emailOfSophie)
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
@@ -30,12 +31,16 @@ themeDescription = Proxy :: Proxy "themeDescription"
 type State =
   { selectedSeminar :: Maybe Seminar
   , seminars :: Maybe (Array Seminar)
+  , openThemeDescriptionModal :: Boolean
   }
 
 data Action 
   = Load 
   | SelectSeminar (Maybe Seminar)
   | SelectSeminarByDate (Maybe Date)
+  | OpenThemeDescriptionModal
+  | CloseThemeDescriptionModal
+  | DoNothing
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

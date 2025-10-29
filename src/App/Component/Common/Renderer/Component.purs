@@ -4,20 +4,18 @@ module App.Component.Common.Renderer.Component
 
 import Proem
 
-import App.Component.Common.Modal.HandleAction (handleAction)
-import App.Component.Common.Modal.Render (render)
-import App.Component.Common.Modal.Type (Action(..), Input, Output)
+import App.Component.Common.Renderer.HandleAction (handleAction)
+import App.Component.Common.Renderer.Render (render)
+import App.Component.Common.Renderer.Type (Input, Output, Query)
 import App.Util.Capability.AppM (AppM)
-import Data.Maybe (Maybe(..))
 import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Unsafe.Coerce (unsafeCoerce)
 
-component :: Component Query Input Output AppM
-component innerComponent = mkComponent
-  { initialState: \input -> 
-      { innerHtml: input.innerHtml
-      }
-  , render: render innerComponent
-  , eval: 
+component :: ∀ w i. Component Query (Input w i) Output AppM
+component = mkComponent
+  { initialState: κ
+  , render: unsafeCoerce render
+  , eval:
       mkEval 
       defaultEval 
       { handleAction = handleAction

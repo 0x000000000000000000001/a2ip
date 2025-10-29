@@ -14,9 +14,9 @@ import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (get, modify_)
-import Util.Time (unsafeDate)
 import Util.Google.Sheet (Converter, fetch, seminarsTab)
 import Util.Html.Clean (untag)
+import Util.Time (unsafeDate)
 
 handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
@@ -36,7 +36,13 @@ handleAction = case _ of
         handleAction $ SelectSeminar $ m !! 0
       )
       ⇿ (error ◁ ("Error fetching seminars: " <> _))
-  
+
+  OpenThemeDescriptionModal -> modify_ _ { openThemeDescriptionModal = true }
+
+  CloseThemeDescriptionModal -> modify_ _ { openThemeDescriptionModal = false }
+
+  DoNothing -> ηι
+
 fetchSeminars :: ∀ m. MonadAff m => m (Either String (Array Seminar))
 fetchSeminars = fetch seminarsTab toSeminar
 

@@ -9,26 +9,23 @@ module App.Component.Common.Renderer.Type
   )
   where
 
+import App.Component.Util.Type (NoOutput, NoSlots, NoQuery)
 import App.Util.Capability.AppM (AppM)
-import Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import Halogen (ComponentHTML, HalogenM)
+import Halogen.HTML (HTML)
 
-type Input = 
-  { innerHtml :: ComponentHTML Action Slots AppM
-  }
+type Input w i = HTML w i
 
 type Output = NoOutput
 
-type Slots :: forall k. Row k
+type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State = 
-  { innerHtml :: ComponentHTML Action Slots AppM
-  }
+type State w i = ComponentHTML (Action w i) Slots AppM
 
-data Action = Receive Input
+data Action w i = Receive (Input w i)
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type RendererM a = HalogenM State Action Slots Output AppM a
+type RendererM w i a = HalogenM (State w i) (Action w i) Slots Output AppM a

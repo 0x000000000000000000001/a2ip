@@ -4,20 +4,24 @@ module App.Component.Page.Seminars.Render
 
 import Proem hiding (div)
 
+import App.Component.Common.Modal.Component as Modal
+import App.Component.Common.Renderer.Component as Renderer
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.YoutubeVideo.Component (component) as YoutubeVideoComponent
+import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThemeDescriptionModalOutput)
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action, Slots, State, mockDates, theme, timeline, youtubeVideo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, theme, themeDescription, timeline, youtubeVideo)
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, p_, slot, text)
+import Halogen.HTML (div, p, p_, slot, text)
+import Halogen.HTML.Events (onClick)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -43,14 +47,17 @@ render s =
         ( s.selectedSeminar 
             ?? (\s_ -> [
               p_ [ text $ "title: " <> show s_.title ],
-              p_ [ text $ "theme: " <> show s_.theme ],
-              slot
-                themeDescription
-                noSlotAddressIndex
-                (Modal.component Renderer.component)
-                { innerHtml: Nothing
-                }
-                handleModalOutput,
+              p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show s_.theme ],
+              s.openThemeDescriptionModal 
+                ? (
+                  slot
+                    themeDescription
+                    noSlotAddressIndex
+                    (Modal.component Renderer.component)
+                    { innerInput: text "blablah"
+                    }
+                    handleThemeDescriptionModalOutput
+                 ) ↔ noHtml,
               p_ [ text $ "firstname: " <> show s_.firstname ],
               p_ [ text $ "lastname: " <> show s_.lastname ],
               p_ [ text $ "date: " <> show s_.date ],

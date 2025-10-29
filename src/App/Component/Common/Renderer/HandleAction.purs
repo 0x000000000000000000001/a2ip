@@ -5,8 +5,9 @@ module App.Component.Common.Renderer.HandleAction
 import Proem
 
 import App.Component.Common.Renderer.Type (Action(..), RendererM)
-import Halogen (modify_)
+import Halogen (put)
+import Unsafe.Coerce (unsafeCoerce)
 
-handleAction :: Action -> RendererM Unit
+handleAction :: ∀ w i. Action w i -> RendererM w i Unit
 handleAction = case _ of
-  Receive i -> modify_ _ { innerHtml = i.innerHtml }
+  Receive i -> put $ unsafeCoerce i
