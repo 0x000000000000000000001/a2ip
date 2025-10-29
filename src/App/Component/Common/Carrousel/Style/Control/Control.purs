@@ -12,7 +12,7 @@ import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import CSS (backgroundColor, color, hover, rgba, white)
 import CSS as CSS
 import Color (darken)
-import Util.Style (alignItemsCenter, borderRadiusPct1, borderRadiusRem1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, borderRadiusPct1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
 classId = "MrL2fqlli"

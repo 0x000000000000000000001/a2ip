@@ -14,7 +14,7 @@ import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadiusPct1, borderRadiusRem1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadiusPct1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
