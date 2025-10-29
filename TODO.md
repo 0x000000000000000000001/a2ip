@@ -1,4 +1,3 @@
-pouvoir mettre des titres à chaque item du carrousel
 modal séminaire
 horaire séminaire
 flèche timeline

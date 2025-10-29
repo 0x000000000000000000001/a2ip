@@ -5,6 +5,7 @@ module App.Component.Common.Carrousel.Type
   , Media(..)
   , Output
   , Query
+  , Slide
   , Slots
   , Source
   , State
@@ -18,6 +19,7 @@ import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Eq (class Eq)
+import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
@@ -27,8 +29,13 @@ data Media = Image Source | YoutubeVideo Source
 
 derive instance eqMedia :: Eq Media
 
+type Slide = 
+  { media :: Media
+  , caption :: Maybe String
+  }
+
 type Input = 
-  { medias :: Array Media
+  { slides :: Array Slide
   }
 
 type Output = NoOutput
@@ -42,8 +49,8 @@ image = Proxy :: Proxy "image"
 youtubeVideo = Proxy :: Proxy "youtubeVideo"
 
 type State = 
-  { mediaIndex :: Int
-  , medias :: Array Media
+  { slideIndex :: Int
+  , slides :: Array Slide
   }
 
 data Action = GoToPrevious | GoToNext | Receive Input

@@ -75,3 +75,21 @@ mockDates =
   , { d: 31, m: 12, y: 2024 }
   ] <#> \{ d, m, y } -> unsafeDate y m d
 
+-- type ThemeInfo = 
+--   { title :: String
+--   , description :: String
+--   }
+
+-- data Theme 
+--   = Politics 
+--       { title: "Politique et Religion"
+--       , description: "Ce séminaire international, interdisciplinaire et inter-sociétés reprend le fil d’un travail collectif inauguré en 1985 par l’Association Internationale d’Histoire de la Psychanalyse (AIHP). Construire son histoire est une nécessité pour tout sujet et tout groupe afin de se penser et de s'auto-investir dans une réalité qui les dépasse et va les effacer dans l’oubli. Mais l’écriture de l’Histoire, même partielle, ne se limite pas à raconter des histoires. Pourtant, l’histoire de la psychanalyse bien souvent ressemble à des histoires de famille, ce qui incitera à se demander la place qu’y tiennent le secret, l’anecdote, la révélation fracassante. Les relations personnelles des psychanalystes avec leurs passions se sont souvent entrecroisées avec l’histoire des concepts ce qui ne manque pas de reposer la question du statut de cette histoire. Comme toute histoire partielle, l’histoire de la psychanalyse doit aussi être située à l’intérieur de l’Histoire dans sa dimension sociétale et géopolitique et cette dimension devrait nous conduire à une réflexion sur l’avenir. Prévu pour trois années, ce séminaire abordera les thèmes suivants :  Les histoires de la psychanalyse, Les outils pour écrire l’histoire de la psychanalyse, les apparitions et disparitions dans l’histoire de la psychanalyse, les médiations et transmissions dans l’histoire de la psychanalyse, la place de l’histoire de la psychanalyse dans l’Histoire."
+--       }
+--   | Discontents 
+--   | History
+
+-- type SeminarsInfo = 
+--   { politics :: SeminarInfo
+--   , discontents :: SeminarInfo
+--   , history :: SeminarInfo
+--   }
