@@ -4,11 +4,11 @@ module App.Component.Common.PrettyErrorImage.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classId, classIdWhenErrored)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State)
+import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Data.Maybe (isJust, isNothing)
 import Halogen (ComponentHTML)

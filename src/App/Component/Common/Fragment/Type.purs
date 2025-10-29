@@ -1,9 +1,9 @@
-module App.Component.Common.Renderer.Type
+module App.Component.Common.Fragment.Type
   ( Action(..)
   , Input
   , Output(..)
   , Query
-  , RendererM
+  , FragmentM
   , Slots
   , State
   )
@@ -21,11 +21,11 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State w i = ComponentHTML (Action w i) Slots AppM
+type State w i = HTML w i
 
 data Action w i = Receive (Input w i)
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type RendererM w i a = HalogenM (State w i) (Action w i) Slots Output AppM a
+type FragmentM w i a = HalogenM (State w i) (Action w i) Slots Output AppM a

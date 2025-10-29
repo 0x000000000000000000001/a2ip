@@ -3,7 +3,7 @@ module App.Component.Page.Seminars.Type where
 import Proem
 
 import App.Component.Common.Timeline.Type as Timeline
-import App.Component.Common.Renderer.Type as Renderer
+import App.Component.Common.Fragment.Type as Fragment
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Email (emailOfJoel, emailOfSophie)
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
@@ -21,7 +21,7 @@ type Output = NoOutput
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
   , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
-  , themeDescription :: Slot Renderer.Query Renderer.Output NoSlotAddressIndex
+  , themeDescription :: Slot Fragment.Query Fragment.Output NoSlotAddressIndex
   )
 
 timeline = Proxy :: Proxy "timeline"

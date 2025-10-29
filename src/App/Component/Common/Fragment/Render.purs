@@ -1,10 +1,10 @@
-module App.Component.Common.Renderer.Render
+module App.Component.Common.Fragment.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Renderer.Type (Action, Slots, State)
+import App.Component.Common.Fragment.Type (Action, Slots, State)
 import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
 import Unsafe.Coerce (unsafeCoerce)

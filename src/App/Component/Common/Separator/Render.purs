@@ -4,13 +4,13 @@ module App.Component.Common.Separator.Render
 
 import Proem hiding (div)
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Separator.Style.Separator (classId, classIdWhenLoading, classIdWithSofa)
 import App.Component.Common.Separator.Style.Sheet (sheet)
 import App.Component.Common.Separator.Style.Text.Sofa as Sofa
 import App.Component.Common.Separator.Style.Text.Text as Text
 import App.Component.Common.Separator.Type (Action, Slots, State, TextElementTag)
 import App.Component.Util.Type (noHtml)
+import App.Util.Capability.AppM (AppM)
 import Data.String (toLower)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)

@@ -5,7 +5,7 @@ module App.Component.Page.Seminars.Render
 import Proem hiding (div)
 
 import App.Component.Common.Modal.Component as Modal
-import App.Component.Common.Renderer.Component as Renderer
+import App.Component.Common.Fragment.Component as Fragment
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.YoutubeVideo.Component (component) as YoutubeVideoComponent
@@ -53,7 +53,7 @@ render s =
                   slot
                     themeDescription
                     noSlotAddressIndex
-                    (Modal.component Renderer.component)
+                    (Modal.component Fragment.component)
                     { innerInput: text "blablah"
                     }
                     handleThemeDescriptionModalOutput
