@@ -5,8 +5,8 @@ module App.Component.Common.Fragment.HandleAction
 import Proem
 
 import App.Component.Common.Fragment.Type (Action(..), FragmentM)
-import Halogen (put)
+import Halogen (modify_)
 
 handleAction :: ∀ w i. Action w i -> FragmentM w i Unit
 handleAction = case _ of
-  Receive i -> put i
+  Receive html -> modify_ $ _ { html = html }

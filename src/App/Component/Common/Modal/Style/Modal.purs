@@ -7,6 +7,7 @@ module App.Component.Common.Modal.Style.Modal
 
 import Proem hiding (top)
 
+import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
@@ -16,7 +17,7 @@ classId :: String
 classId = "BVUZF1mw8"
 
 zIndex :: Int
-zIndex = 1000
+zIndex = 1000 + Menu.zIndex
 
 style :: CSS.CSS
 style = do

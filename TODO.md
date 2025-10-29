@@ -1,4 +1,4 @@
-modal séminaire
+modal séminaire : bug zindex, comprendre le unsafeCoerce
 horaire séminaire
 flèche timeline
 petite barre date
