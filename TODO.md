@@ -10,3 +10,4 @@ filtres en tête de timeline (sticky) ?
 page conférences
 factoriser
 page colloques
+leveinstein, avec bin de macro généraliste (écrit dans des .json), pour les portraits
