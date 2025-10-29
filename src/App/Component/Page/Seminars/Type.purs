@@ -6,12 +6,11 @@ import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import Data.Date (Date, canonicalDate)
-import Data.Enum (toEnum)
-import Data.Maybe (Maybe, fromJust)
+import Data.Date (Date)
+import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
-import Partial.Unsafe (unsafePartial)
 import Type.Prelude (Proxy(..))
+import Util.Time (unsafeDate)
 
 type Input = NoInput
 
@@ -74,11 +73,5 @@ mockDates =
   , { d: 5, m: 10, y: 2024 }
   , { d: 20, m: 11, y: 2024 }
   , { d: 31, m: 12, y: 2024 }
-  ] 
-  <#> 
-  \{ d, m, y } -> unsafePartial $
-    canonicalDate 
-      (y # toEnum # fromJust) 
-      (m # toEnum # fromJust) 
-      (d # toEnum # fromJust) 
+  ] <#> \{ d, m, y } -> unsafeDate y m d
 

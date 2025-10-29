@@ -1,11 +1,12 @@
 module Util.Html.Dom
-  ( scroll
-  , scrollTo
-  , getScrollY
-  , dataAttr
+  ( dataAttr
   , dataAttrPrefixed
   , dataAttrQuerySelector
+  , getScrollY
   , isVisible
+  , placeElementInScreenYCenter
+  , scroll
+  , scrollTo
   )
   where
 
@@ -19,6 +20,7 @@ import Halogen (AttrName(..))
 import Halogen.HTML (attr)
 import Halogen.HTML.Properties (IProp)
 import Type.Prelude (class IsSymbol, Proxy)
+import Web.DOM (Element)
 import Web.DOM.Element (fromNode, getBoundingClientRect)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (QuerySelector(..), querySelectorAll)
@@ -76,3 +78,14 @@ getScrollY = ʌ do
   win <- window
   y <- scrollY win
   η $ round y
+
+placeElementInScreenYCenter :: ∀ m. MonadEffect m => Element -> m Unit
+placeElementInScreenYCenter element = ʌ do
+  win <- window
+  rect <- getBoundingClientRect element
+
+  screenHeight <- toNumber <$> innerHeight win
+
+  let targetY = round $ rect.top + (rect.height / 2.0) - (screenHeight / 2.0)
+
+  scrollTo 0 targetY
