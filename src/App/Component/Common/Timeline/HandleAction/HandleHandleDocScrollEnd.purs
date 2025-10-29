@@ -13,8 +13,7 @@ import Data.Maybe (Maybe(..))
 import Data.Number (abs)
 import Data.Traversable (traverse)
 import Halogen (get, modify_)
-import Util.Html.Dom (dataAttrPrefixed)
-import Util.Window (getScreenVerticalCenter)
+import Util.Html.Dom (dataAttrPrefixed, getHalfScreenHeight)
 import Web.DOM.Element (Element, getAttribute, getBoundingClientRect)
 
 handleHandleDocScrollEnd :: TimelineM Unit
@@ -23,23 +22,23 @@ handleHandleDocScrollEnd = do
 
   selectDateClosestToScreenCenterIfNeeded
 
--- | Select the date element that is closest to the center of the screen
 selectDateClosestToScreenCenter :: TimelineM Unit
 selectDateClosestToScreenCenter = do
-  maybeElements <- getAllDateElements
-  maybeElements
+  elements <- getAllDateElements
+
+  elements
     ??
-      ( \elements -> do
-          screenVerticalCenter <- getScreenVerticalCenter
-          distancesWithDates <- calculateDistancesFromCenter elements screenVerticalCenter
+      ( \el -> do
+          halfScreenHeight <- getHalfScreenHeight
+          distancesWithDates <- calculateDistancesFromCenter el halfScreenHeight
           selectClosestDate distancesWithDates
       )
     ⇔ ηι
 
--- | Select the closest date only if the currently selected date is not visible
 selectDateClosestToScreenCenterIfNeeded :: TimelineM Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
+
   state.selectedDate
     ??
       ( \selectedDate -> do
@@ -48,7 +47,6 @@ selectDateClosestToScreenCenterIfNeeded = do
       )
     ⇔ selectDateClosestToScreenCenter
 
--- | Calculate the distance from screen center for each element
 calculateDistancesFromCenter
   :: Array Element
   -> Number
@@ -65,7 +63,6 @@ calculateDistancesFromCenter elements screenCenter =
     )
     elements
 
--- | Select the date closest to the center
 selectClosestDate
   :: Array { distance :: Number, dataDate :: Maybe String }
   -> TimelineM Unit

@@ -28,13 +28,9 @@ parseDateDataAttr str = do
   
   η $ unsafeDate year month day
 
-dateToDataAttr :: Maybe Date -> String
+dateToDataAttr :: Date -> String
 dateToDataAttr date = 
-  date 
-    ?? (\date_ -> 
-      let d = fromEnum $ day date_
-          m = fromEnum $ month date_
-          y = fromEnum $ year date_
-      in show d <> "-" <> show m <> "-" <> show y
-    )
-    ⇔ ""
+  let d = fromEnum $ day date
+      m = fromEnum $ month date
+      y = fromEnum $ year date
+  in show d <> "-" <> show m <> "-" <> show y

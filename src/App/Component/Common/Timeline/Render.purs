@@ -43,13 +43,13 @@ render s =
             let y = fromEnum $ year date_
                 m = fromEnum $ month date_
                 d = fromEnum $ day date_
-                dateId = dateToDataAttr $ Just date_
+                dateDataAttr = dateToDataAttr date_
             in ( div
                 [ classes $ 
                     [Date.classId] 
                     <> (not s.loading && Just date_ == s.selectedDate ? [Date.classIdWhenSelected] ↔ [])
                 , onClick $ κ $ SelectDate date_
-                , dataAttr date dateId
+                , dataAttr date dateDataAttr
                 ]
                 [ div
                     [ class_ Numbers.classId ]

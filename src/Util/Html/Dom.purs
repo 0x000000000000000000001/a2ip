@@ -2,6 +2,9 @@ module Util.Html.Dom
   ( dataAttr
   , dataAttrPrefixed
   , dataAttrQuerySelector
+  , getHalfScreenHeight
+  , getScreenCenterY
+  , getScreenHeight
   , getScrollY
   , isVisible
   , placeElementInScreenYCenter
@@ -47,7 +50,6 @@ dataAttrQuerySelector name value =
     <> (value ?? (\v -> "=\"" <> v <> "\"") ⇔ "")
     <> "]"
 
--- | Check if a date element is visible on screen
 isVisible :: ∀ m. MonadEffect m => QuerySelector -> m Boolean
 isVisible sel = ʌ do
   win <- window
@@ -89,3 +91,18 @@ placeElementInScreenYCenter element = ʌ do
   let targetY = round $ rect.top + (rect.height / 2.0) - (screenHeight / 2.0)
 
   scrollTo 0 targetY
+
+getScreenHeight :: ∀ m. MonadEffect m => m Number
+getScreenHeight = ʌ do
+  win <- window
+  screenHeight <- innerHeight win
+  η $ toNumber screenHeight
+
+getHalfScreenHeight :: ∀ m. MonadEffect m => m Number
+getHalfScreenHeight = getScreenHeight >>= η ◁ (_ / 2.0)
+
+getScreenCenterY :: ∀ m. MonadEffect m => m Number
+getScreenCenterY = do 
+  scrollY <- toNumber <$> getScrollY
+  halfScreenHeight <- getHalfScreenHeight
+  η $ scrollY + halfScreenHeight
