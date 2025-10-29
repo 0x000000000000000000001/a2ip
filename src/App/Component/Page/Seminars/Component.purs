@@ -13,6 +13,7 @@ component = mkComponent
   { initialState: κ
       { selectedSeminar: Nothing
       , seminars: Nothing
+      , openThemeDescriptionModal: false
       }
   , render
   , eval: mkEval defaultEval

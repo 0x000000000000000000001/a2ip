@@ -4,8 +4,8 @@ module App.Component.Page.Seminars.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Modal.Component as Modal
 import App.Component.Common.Fragment.Component as Fragment
+import App.Component.Common.Modal.Component as Modal
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.YoutubeVideo.Component (component) as YoutubeVideoComponent
@@ -15,12 +15,12 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, theme, themeDescription, timeline, youtubeVideo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, themeDescription, timeline, youtubeVideo)
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, p, p_, slot, text)
+import Halogen.HTML (div, div_, p, p_, slot, text)
 import Halogen.HTML.Events (onClick)
 import Util.Style (class_)
 
@@ -54,10 +54,12 @@ render s =
                     themeDescription
                     noSlotAddressIndex
                     (Modal.component Fragment.component)
-                    { innerInput: text "blablah"
+                    { closable: true
+                    , innerInput: div_ [ text "blablah" ]
                     }
                     handleThemeDescriptionModalOutput
-                 ) ↔ noHtml,
+                 ) 
+                ↔ noHtml,
               p_ [ text $ "firstname: " <> show s_.firstname ],
               p_ [ text $ "lastname: " <> show s_.lastname ],
               p_ [ text $ "date: " <> show s_.date ],

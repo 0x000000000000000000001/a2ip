@@ -11,7 +11,7 @@ module App.Component.Common.Fragment.Type
 
 import App.Component.Util.Type (NoOutput, NoSlots, NoQuery)
 import App.Util.Capability.AppM (AppM)
-import Halogen (ComponentHTML, HalogenM)
+import Halogen (HalogenM)
 import Halogen.HTML (HTML)
 
 type Input w i = HTML w i
@@ -21,7 +21,7 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State w i = HTML w i
+type State w i = Input w i
 
 data Action w i = Receive (Input w i)
 

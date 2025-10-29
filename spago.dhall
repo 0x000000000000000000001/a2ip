@@ -51,6 +51,8 @@ You can edit this file as you like.
   , "transformers"
   , "tuples"
   , "typelevel-prelude"
+  , "unicode"
+  , "unsafe-coerce"
   , "web-dom"
   , "web-events"
   , "web-html"
