@@ -13,6 +13,7 @@ import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State, date)
+import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Util.Capability.AppM (AppM)
 import Data.Date (day, month, year)
 import Data.Enum (fromEnum)
@@ -42,7 +43,7 @@ render s =
             let y = fromEnum $ year date_
                 m = fromEnum $ month date_
                 d = fromEnum $ day date_
-                dateId = show d <> "-" <> show m <> "-" <> show y
+                dateId = dateToDataAttr $ Just date_
             in ( div
                 [ classes $ 
                     [Date.classId] 
