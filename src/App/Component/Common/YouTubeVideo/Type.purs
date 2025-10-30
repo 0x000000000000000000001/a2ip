@@ -23,7 +23,7 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State = 
-  { url :: String 
+  { input :: Input
   }
 
 data Action = Receive Input
