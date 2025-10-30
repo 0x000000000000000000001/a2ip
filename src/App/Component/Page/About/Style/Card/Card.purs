@@ -49,6 +49,9 @@ style = do
   __loading :? do
     nothing
 
+  ____portrait :? do
+    loading
+
   ____names :? do
     loading
     borderRadiusRem1 0.3

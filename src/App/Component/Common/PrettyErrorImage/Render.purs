@@ -28,7 +28,7 @@ render s@{ input, try } =
               <> (input.class_ ?? (_ : []) ⇔ [])
           ]
           ( [ sheet ]
-              <> (renderToArray $ questionMarkSvg QuestionMark.classId)
+              <> (not input.loading ? (renderToArray $ questionMarkSvg QuestionMark.classId) ↔ [])
           )
       )
     ↔
