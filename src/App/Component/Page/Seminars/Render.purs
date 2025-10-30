@@ -15,7 +15,7 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, themeDescription, timeline, youtubeVideo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State(..), mockDates, themeDescription, timeline, youtubeVideo)
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..), isNothing)
@@ -36,48 +36,48 @@ render s =
             noSlotAddressIndex
             TimelineComponent.component
             { class_: Nothing
-            , dates: s.seminars ?? (\a -> a <#> _.date) ⇔ mockDates
-            , loading: isNothing s.seminars
+            , dates: case s of 
+                Loading -> mockDates
+                Loaded { seminars } -> seminars <#> _.date
+            , loading: s == Loading
             , defaultDate: LastBeforeNow
             }
             handleTimelineOutput
         ]
     , div 
         [ class_ Poster.classId ]
-        ( ( s.selectedSeminar 
-              ?? (\s_ -> [
-                p_ [ text $ "title: " <> s_.title ],
-                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> s_.theme ],
-                p_ [ text $ "firstname: " <> s_.firstname ],
-                p_ [ text $ "lastname: " <> s_.lastname ],
-                p_ [ text $ "date: " <> show s_.date <> " de 18 à 20h" ]
-              ])
-              ↔ []
+        ( ( case s of 
+            Loaded { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
+              [ p_ [ text $ "title: " <> seminar.title ],
+                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> seminar.theme ],
+                openThemeDescriptionModal
+                  ? (
+                    slot
+                      themeDescription
+                      noSlotAddressIndex
+                      (Modal.component Fragment.component)
+                      { closable: true
+                      , innerInput: div_ [ text "blablah" ]
+                      }
+                      handleThemeDescriptionModalOutput
+                  ) ↔ noHtml,
+                p_ [ text $ "firstname: " <> seminar.firstname ],
+                p_ [ text $ "lastname: " <> seminar.lastname ],
+                p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ]
+              ]
+            _ -> []
           ) <> 
           -- Aside, because the array above depends on s.openThemeDescriptionModal
           -- We don't want to rerender the video because of modal opening/closing...
-          [ s.selectedSeminar 
-              ?? (\s_ -> 
-                s_.videoUrl /= ""
-                  ? slot
-                      youtubeVideo
-                      noSlotAddressIndex
-                      YoutubeVideoComponent.component
-                      { url: s_.videoUrl }
-                      noOutputAction
-                  ↔ noHtml
-              )
-              ↔ noHtml
+          [ case s of
+              Loaded { selectedSeminar: Just { seminar } } | seminar.videoUrl /= "" ->
+                slot
+                  youtubeVideo
+                  noSlotAddressIndex
+                  YoutubeVideoComponent.component
+                  { url: seminar.videoUrl }
+                  noOutputAction
+              _ -> noHtml
           ]
         )
-    , s.openThemeDescriptionModal 
-        ? slot
-            themeDescription
-            noSlotAddressIndex
-            (Modal.component Fragment.component)
-            { closable: true
-            , innerInput: div_ [ text "blablah" ]
-            }
-            handleThemeDescriptionModalOutput
-        ↔ noHtml
     ]

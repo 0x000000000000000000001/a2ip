@@ -29,11 +29,18 @@ timeline = Proxy :: Proxy "timeline"
 youtubeVideo = Proxy :: Proxy "youtubeVideo"
 themeDescription = Proxy :: Proxy "themeDescription"
 
-type State =
-  { selectedSeminar :: Maybe Seminar
-  , seminars :: Maybe (Array Seminar)
-  , openThemeDescriptionModal :: Boolean
-  }
+data State 
+  = Loading 
+  | Loaded 
+      { seminars :: Array Seminar
+      , selectedSeminar :: 
+          Maybe 
+            { seminar :: Seminar
+            , openThemeDescriptionModal :: Boolean
+            }
+      }
+
+derive instance eqState :: Eq State
 
 data Action 
   = Load 
