@@ -27,8 +27,8 @@ type Slots =
 items = Proxy :: Proxy "items"
 
 type State = 
-  { isUnfold :: Boolean 
-  , isAnimating :: Boolean
+  { unfold :: Boolean 
+  , animating :: Boolean
   }
 
 data Action 

@@ -9,4 +9,4 @@ import Halogen (modify_)
 
 handleAction :: Action -> YoutubeVideoM Unit
 handleAction = case _ of
-  Receive input -> modify_ _ { url = input.url }
+  Receive input -> modify_ _ { input = input }

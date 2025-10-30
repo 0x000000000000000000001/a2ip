@@ -17,8 +17,8 @@ classId = "uLX54Ih61"
 style :: State -> CSS.CSS
 style s = do
   classId .? do
-    visibility (s.isUnfold ? visible ↔ hidden)
-    opacity (s.isUnfold ? 1.0 ↔ 0.0)
+    visibility (s.unfold ? visible ↔ hidden)
+    opacity (s.unfold ? 1.0 ↔ 0.0)
     flexGrow1
     marginLeft 1.4
     widthRem 10.0

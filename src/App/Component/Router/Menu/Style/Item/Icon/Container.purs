@@ -37,4 +37,4 @@ style s = do
     displayFlex
     justifyContentCenter
     alignSelf center
-    when s.isUnfold $ boxShadow 0.12 0.12
+    when s.unfold $ boxShadow 0.12 0.12

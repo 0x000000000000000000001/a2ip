@@ -15,11 +15,11 @@ import Html.Renderer.Halogen (render_)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s = 
+render { input: { url } } = 
   div 
     [ class_ classId ]
     [ sheet
-    , render_ $ iframe $ convertToEmbedUrl s.url 
+    , render_ $ iframe $ convertToEmbedUrl url 
     ]
 
 iframe :: String -> String 

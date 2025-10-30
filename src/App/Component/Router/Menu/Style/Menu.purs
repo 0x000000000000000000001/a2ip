@@ -33,8 +33,8 @@ zIndex = 1000
 style :: State -> CSS.CSS
 style s = do
   classId .? do
-    widthRem $ s.isUnfold ? unfoldWidth ↔ foldWidth
-    backgroundColor (rgba 0 0 0 $ s.isUnfold ? backgroundBlackAlpha ↔ 0.3)
+    widthRem $ s.unfold ? unfoldWidth ↔ foldWidth
+    backgroundColor (rgba 0 0 0 $ s.unfold ? backgroundBlackAlpha ↔ 0.3)
     positionFixed
     top0
     left0

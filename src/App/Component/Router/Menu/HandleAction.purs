@@ -27,15 +27,15 @@ handleAction = case _ of
 
   ToggleFolding shouldFold -> do
     state <- get
-    unless state.isAnimating do
-      modify_ _ { isUnfold = not shouldFold, isAnimating = true }
+    unless state.animating do
+      modify_ _ { unfold = not shouldFold, animating = true }
       ʌ' $ delay (Milliseconds animationDurationMs)
-      modify_ _ { isAnimating = false }
+      modify_ _ { animating = false }
   
   HandleDocClick ev -> do
     state <- get
-    when state.isUnfold do
-      unless state.isAnimating do
+    when state.unfold do
+      unless state.animating do
         remInPx <- ʌ getRootFontSize
         let 
           foldWidthPx = foldWidth * remInPx
@@ -44,6 +44,6 @@ handleAction = case _ of
           (mouseX > foldWidthPx)
           (handleAction $ ToggleFolding true)
   
-  FinishAnimation -> modify_ _ { isAnimating = false }
+  FinishAnimation -> modify_ _ { animating = false }
 
   DoNothing -> ηι

@@ -65,10 +65,10 @@ render s =
       , HP.id "menu"
       ] 
       <> (
-        s.isAnimating 
+        s.animating 
           ? []
           ↔ [ 
-            s.isUnfold 
+            s.unfold
               ? (onMouseLeave $ κ $ ToggleFolding true)
               ↔ (onMouseOver $ κ $ ToggleFolding false)
           ]

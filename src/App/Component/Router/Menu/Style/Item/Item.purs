@@ -34,7 +34,7 @@ style s = do
     backgroundColorRed
 
   ____children :? do 
-    when s.isUnfold displayFlex
+    when s.unfold displayFlex
 
   ____iconContainer :? do
     IconContainer.boxShadow 0.22 0.10
