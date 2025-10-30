@@ -31,11 +31,11 @@ import Util.String (padLeft)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s =
+render { input: { dates, loading }, selectedDate } =
   div
     [ classes 
         [ classId 
-        , s.loading ? classIdWhenLoading ↔ ""
+        , loading ? classIdWhenLoading ↔ ""
         ]
     ]
     [ sheet
@@ -51,13 +51,13 @@ render s =
                     m = fromEnum $ month date_
                     d = fromEnum $ day date_
                     dateDataAttr = dateToDataAttr date_
-                    isSelected = Just date_ == s.selectedDate
-                    next = s.dates !! (idx + 1)
-                    isNextSelected = next == s.selectedDate
+                    isSelected = Just date_ == selectedDate
+                    next = dates !! (idx + 1)
+                    isNextSelected = next == selectedDate
                 in ( div
                     [ classes $ 
                         [Date.classId] 
-                        <> (not s.loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
+                        <> (not loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
                     , onClick $ κ $ SelectDate date_
                     , dataAttr date dateDataAttr
                     ]
@@ -71,7 +71,7 @@ render s =
                         [ class_ Pin.classId ]
                         [ 
                             0 == idx `mod` 3 
-                            && idx /= length s.dates - 1
+                            && idx /= length dates - 1
                             && not isSelected
                             && not isNextSelected
                                 ? Renderer.render [ class_ DownArrow.classId ] downArrowSvg
@@ -80,7 +80,7 @@ render s =
                     ]
                 )
             ) 
-            s.dates
+            dates
         )
     ]
 

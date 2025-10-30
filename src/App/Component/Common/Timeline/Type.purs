@@ -35,11 +35,9 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State = 
-  { class_ :: Maybe String
-  , dates :: Array Date
+  { input :: Input
   , selectedDate :: Maybe Date
   , scrollFork :: Maybe ForkId
-  , loading :: Boolean
   }
 
 data Action 

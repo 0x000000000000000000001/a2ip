@@ -28,10 +28,8 @@ handleReceive input = do
   let oldSelectedDate = oldState.selectedDate
 
   newState <- modify (\s -> s 
-    { class_ = input.class_
-    , dates = dates
-    , selectedDate = s.dates /= dates ? defaultDate ↔ s.selectedDate 
-    , loading = input.loading
+    { input = input
+    , selectedDate = s.input.dates /= dates ? defaultDate ↔ s.selectedDate 
     }
   )
 

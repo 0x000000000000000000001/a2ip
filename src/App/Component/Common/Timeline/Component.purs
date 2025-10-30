@@ -18,11 +18,9 @@ component = mkComponent
       let
         dates = input.dates # nubEq
       in
-        { class_: input.class_
-        , dates
+        { input: input { dates = dates }
         , selectedDate: Nothing
         , scrollFork: Nothing
-        , loading: input.loading
         }
   , render
   , eval: mkEval defaultEval
