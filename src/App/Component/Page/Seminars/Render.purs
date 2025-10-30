@@ -44,37 +44,40 @@ render s =
         ]
     , div 
         [ class_ Poster.classId ]
-        ( s.selectedSeminar 
-            ?? (\s_ -> [
-              p_ [ text $ "title: " <> show s_.title ],
-              p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show s_.theme ],
-              s.openThemeDescriptionModal 
-                ? (
-                  slot
-                    themeDescription
-                    noSlotAddressIndex
-                    (Modal.component Fragment.component)
-                    { closable: true
-                    , innerInput: div_ [ text "blablah" ]
-                    }
-                    handleThemeDescriptionModalOutput
-                 ) 
-                ↔ noHtml,
-              p_ [ text $ "firstname: " <> show s_.firstname ],
-              p_ [ text $ "lastname: " <> show s_.lastname ],
-              p_ [ text $ "date: " <> show s_.date ],
-              s_.videoUrl /= ""
-                ? (
-                slot
-                  youtubeVideo
-                  noSlotAddressIndex
-                  YoutubeVideoComponent.component
-                  { url: s_.videoUrl
-                  }
-                  noOutputAction
-                ) 
-                ↔ noHtml
-            ])
-            ↔ []
+        ( ( s.selectedSeminar 
+              ?? (\s_ -> [
+                p_ [ text $ "title: " <> show s_.title ],
+                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show s_.theme ],
+                p_ [ text $ "firstname: " <> show s_.firstname ],
+                p_ [ text $ "lastname: " <> show s_.lastname ],
+                p_ [ text $ "date: " <> show s_.date ]
+              ])
+              ↔ []
+          ) <> 
+          -- Aside, because the array above depends on s.openThemeDescriptionModal
+          -- We don't want to rerender the video because of modal opening/closing...
+          [ s.selectedSeminar 
+              ?? (\s_ -> 
+                s_.videoUrl /= ""
+                  ? slot
+                      youtubeVideo
+                      noSlotAddressIndex
+                      YoutubeVideoComponent.component
+                      { url: s_.videoUrl }
+                      noOutputAction
+                  ↔ noHtml
+              )
+              ↔ noHtml
+          ]
         )
+    , s.openThemeDescriptionModal 
+        ? slot
+            themeDescription
+            noSlotAddressIndex
+            (Modal.component Fragment.component)
+            { closable: true
+            , innerInput: div_ [ text "blablah" ]
+            }
+            handleThemeDescriptionModalOutput
+        ↔ noHtml
     ]
