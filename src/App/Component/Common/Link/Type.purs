@@ -39,10 +39,7 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State =
-  { route :: Maybe Route
-  , class_ :: Maybe String
-  , display :: Display
-  , children :: Children Action Slots
+  { input :: Input
   }
 
 data Action 
