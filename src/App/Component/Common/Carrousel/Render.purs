@@ -51,9 +51,12 @@ render s =
                     image
                     noSlotAddressIndex
                     PrettyErrorImage.component
-                    { src: Just url
-                    , fallbackSrc: Nothing
-                    , class_: Nothing
+                    { class_: Nothing
+                    , loading: false
+                    , sources: 
+                        { first: url
+                        , fallback: Nothing
+                        }
                     }
                     noOutputAction
                 ]

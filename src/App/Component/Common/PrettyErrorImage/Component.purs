@@ -14,13 +14,12 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: \input ->
-      { class_: input.class_
-      , try: \input -> input.sources ?? (Just ◁ FirstTry ◁ _.first) ⇔ Just StopTrying
-      , input: Nothing
+      { input 
+      , try: FirstTry input.sources.first
       }
   , render
   , eval: mkEval defaultEval
       { handleAction = handleAction
-      , receive = \input -> Just $ Receive input
+      , receive = Just ◁ Receive
       }
   }

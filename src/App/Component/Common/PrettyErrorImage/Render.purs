@@ -4,13 +4,13 @@ module App.Component.Common.PrettyErrorImage.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classId, classIdWhenErrored)
+import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classId, classIdWhenErrored, classIdWhenLoading)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
-import Data.Maybe (Maybe(..), isJust, isNothing)
+import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
@@ -19,13 +19,13 @@ import Html.Renderer.Halogen (renderToArray)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ try } =
-  try == Just StopTrying
+render s@{ input, try } =
+  try == StopTrying
     ?
       ( div
           [ classes
-              $ [ classId, classIdWhenErrored ]
-              <> (s.class_ ?? (_ : []) ⇔ [])
+              $ [ classId, classIdWhenErrored, input.loading ? classIdWhenLoading ↔ "" ]
+              <> (input.class_ ?? (_ : []) ⇔ [])
           ]
           ( [ sheet ]
               <> (renderToArray $ questionMarkSvg QuestionMark.classId)
@@ -33,13 +33,13 @@ render s@{ try } =
       )
     ↔
       ( let src_ = case try of
-              Just (FirstTry url) -> Just url
-              Just (FallbackTry url) -> Just url
+              FirstTry url -> Just url
+              FallbackTry url -> Just url
               _ -> Nothing
         in img
           $ [ classes
               $ [ classId ]
-              <> (s.class_ ?? (_ : []) ⇔ [])
+              <> (s.input.class_ ?? (_ : []) ⇔ [])
             ]
             <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
             <> [ onError \_ -> HandleError ]

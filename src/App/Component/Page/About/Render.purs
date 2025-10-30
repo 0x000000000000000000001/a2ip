@@ -100,23 +100,21 @@ renderCard section isLoading idx member =
           )
           PrettyErrorImage.component
           { class_: Just CardPortrait.classId
-          , src: isLoading
-              ? Nothing
-              ↔
-                ( Just $ ourImageRelativePath
+          , loading: isLoading
+          , sources: 
+              { first: 
+                  ourImageRelativePath
                     ( member.portraitId == ""
                         ? (slugify $ member.firstname <> "-" <> member.lastname)
                         ↔ member.portraitId
                     )
-                )
-          , fallbackSrc: isLoading
-              ? Nothing
-              ↔ (Just $ ourImageRelativePath
-                ( member.portraitId /= ""
-                    ? (slugify $ member.firstname <> "-" <> member.lastname)
-                    ↔ "anonymous"
-                )
-              )
+              , fallback: 
+                  Just $ ourImageRelativePath
+                    ( member.portraitId /= ""
+                        ? (slugify $ member.firstname <> "-" <> member.lastname)
+                        ↔ "anonymous"
+                    )
+              }
           }
           noOutputAction
       ] <> lines

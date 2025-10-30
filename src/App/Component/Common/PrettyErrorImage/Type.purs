@@ -27,7 +27,8 @@ type Sources =
 
 type Input =
   { class_ :: Maybe String
-  , sources :: Maybe Sources
+  , loading :: Boolean
+  , sources :: Sources
   } 
  
 type Output = NoOutput
@@ -40,9 +41,8 @@ data Try = FirstTry Url | FallbackTry Url | StopTrying
 derive instance eqTry :: Eq Try
 
 type State =
-  { class_ :: Maybe String
-  , try :: Maybe Try
-  , input :: Maybe Input
+  { input :: Input
+  , try :: Try
   }
 
 data Action 
