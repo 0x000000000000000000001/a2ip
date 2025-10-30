@@ -46,10 +46,10 @@ render s =
         [ class_ Poster.classId ]
         ( ( s.selectedSeminar 
               ?? (\s_ -> [
-                p_ [ text $ "title: " <> show s_.title ],
-                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show s_.theme ],
-                p_ [ text $ "firstname: " <> show s_.firstname ],
-                p_ [ text $ "lastname: " <> show s_.lastname ],
+                p_ [ text $ "title: " <> s_.title ],
+                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> s_.theme ],
+                p_ [ text $ "firstname: " <> s_.firstname ],
+                p_ [ text $ "lastname: " <> s_.lastname ],
                 p_ [ text $ "date: " <> show s_.date <> " de 18 à 20h" ]
               ])
               ↔ []

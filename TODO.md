@@ -1,5 +1,4 @@
-flèche timeline
-petite barre date
+test hooks
 mot de passe pour l'accès à chaque thème, avec ouverture de modal si la personne ne le connait pas
 tooltip sur les pins de la timeline, avec les titres
 modal filtres
