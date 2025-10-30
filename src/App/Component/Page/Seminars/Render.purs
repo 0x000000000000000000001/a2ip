@@ -50,7 +50,7 @@ render s =
                 p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (s.openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show s_.theme ],
                 p_ [ text $ "firstname: " <> show s_.firstname ],
                 p_ [ text $ "lastname: " <> show s_.lastname ],
-                p_ [ text $ "date: " <> show s_.date ]
+                p_ [ text $ "date: " <> show s_.date <> " de 18 à 20h" ]
               ])
               ↔ []
           ) <> 

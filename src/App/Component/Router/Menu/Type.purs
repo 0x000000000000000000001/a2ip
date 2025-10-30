@@ -32,9 +32,11 @@ type State =
   }
 
 data Action 
-  = ToggleFolding Boolean 
-  | HandleItemClick MouseEvent
+  = Initialize
+  | ToggleFolding Boolean 
+  | HandleDocClick MouseEvent
   | FinishAnimation
+  | DoNothing
 
 type Input = NoInput
 

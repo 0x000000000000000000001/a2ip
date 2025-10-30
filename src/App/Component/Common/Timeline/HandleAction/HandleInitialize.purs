@@ -17,7 +17,6 @@ import Web.HTML.Window (document)
 handleInitialize :: TimelineM Unit
 handleInitialize = do
   doc <- ʌ $ document =<< window
-
   subscribe' $ κ $ eventListener
     scroll
     (doc # toDocument # toEventTarget)

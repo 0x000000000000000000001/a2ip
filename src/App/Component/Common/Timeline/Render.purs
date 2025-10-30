@@ -1,11 +1,13 @@
 module App.Component.Common.Timeline.Render
   ( render
-  ) where
+  )
+  where
 
 import Proem hiding (div)
 
 import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Dates as Dates
+import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Numbers as Numbers
@@ -21,6 +23,7 @@ import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
+import Html.Renderer.Halogen (render_)
 import Util.Html.Dom (dataAttr)
 import Util.String (padLeft)
 import Util.Style (class_, classes)
@@ -37,6 +40,7 @@ render s =
     , div
         [ class_ Line.classId ]
         []
+    , render_ $ downArrowSvg DownArrow.classId
     , div
         [ class_ Dates.classId ]
         ( s.dates <#> \date_ ->
@@ -64,3 +68,11 @@ render s =
             )
         )
     ]
+
+downArrowSvg :: String -> String
+downArrowSvg classId = """
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg class=\" """ <> classId <> """ \" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z" fill="#0F0F0F"/>
+</svg>
+"""

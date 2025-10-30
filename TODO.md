@@ -1,4 +1,3 @@
-horaire séminaire
 flèche timeline
 petite barre date
 mot de passe pour l'accès à chaque thème, avec ouverture de modal si la personne ne le connait pas

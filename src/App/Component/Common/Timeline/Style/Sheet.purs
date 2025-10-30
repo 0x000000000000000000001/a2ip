@@ -10,6 +10,7 @@ import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Pin as Pin
+import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
@@ -22,3 +23,4 @@ sheet = stylesheet do
   Numbers.style
   Number.style
   Pin.style
+  DownArrow.style
