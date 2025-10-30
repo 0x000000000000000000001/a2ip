@@ -21,7 +21,7 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State w i = { html :: HTML w i }
+type State w i = HTML w i
 
 data Action w i = Receive (Input w i)
 

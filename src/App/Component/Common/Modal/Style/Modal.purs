@@ -33,3 +33,6 @@ style = do
     backgroundColor $ rgba 0 0 0 0.75
     CSS.zIndex zIndex
     overflow overflowAuto
+
+  Menu.classId .? do
+    CSS.zIndex $ -1

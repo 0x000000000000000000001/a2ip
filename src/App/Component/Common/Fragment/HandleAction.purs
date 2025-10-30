@@ -9,4 +9,4 @@ import Halogen (modify_)
 
 handleAction :: ∀ w i. Action w i -> FragmentM w i Unit
 handleAction = case _ of
-  Receive html -> modify_ $ _ { html = html }
+  Receive html -> modify_ $ const $ html
