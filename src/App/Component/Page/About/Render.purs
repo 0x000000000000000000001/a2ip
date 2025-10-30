@@ -26,7 +26,7 @@ import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
-import Network.RemoteData (isLoading, isSuccess, toMaybe)
+import Network.RemoteData (isSuccess, toMaybe)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
@@ -51,7 +51,7 @@ render s =
       , div
           [ class_ Members.classId ]
           $ mapWithIndex
-              (renderCard members $ isLoading s.members)
+              (renderCard members $ not $ isSuccess s.members)
               (toMaybe s.members ??⇒ replicate 6 loadingPerson)
       , slot
           separators
@@ -59,13 +59,13 @@ render s =
           Separator.component
           { text: "Collaborateurs du comité scientifique international"
           , textElementTag: H2
-          , loading: isLoading s.collaborators
+          , loading: not $ isSuccess s.collaborators
           }
           noOutputAction
       , div
           [ class_ Collaborators.classId ]
           $ mapWithIndex
-              (renderCard collaborators $ isLoading s.collaborators)
+              (renderCard collaborators $ not $ isSuccess s.collaborators)
               (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
       ]
 
