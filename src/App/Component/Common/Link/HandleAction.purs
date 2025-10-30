@@ -13,8 +13,10 @@ import Web.UIEvent.MouseEvent (MouseEvent, altKey, button, ctrlKey, metaKey, shi
 
 handleAction :: Action -> LinkM Unit
 handleAction = case _ of
-  Receive input -> modify_ _ { route = input.route, class_ = input.class_, display = input.display, children = input.children }
+  Receive input -> modify_ _ { input = input }
+  
   Navigate route -> navigate route
+  
   HandleClick route ev -> 
     when (isSimpleClick ev) do
       ʌ $ preventDefault $ toEvent ev

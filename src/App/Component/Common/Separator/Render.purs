@@ -17,17 +17,17 @@ import Halogen.HTML.Elements (element)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s =
+render { input: input@{ loading, textElementTag } } =
   div
     [ classes
         $ [ classId ]
-        <> (s.loading ? [ classIdWhenLoading ] ↔ [])
+        <> (loading ? [ classIdWhenLoading ] ↔ [])
     ]
     [ sheet
     , element
-        (s.textElementTag # name)
+        ( textElementTag # name )
         [ class_ Text.classId ]
-        [ text s.text ]
+        [ text input.text ]
     ]
 
 name :: TextElementTag -> ElemName

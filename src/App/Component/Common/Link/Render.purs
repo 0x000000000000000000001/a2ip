@@ -19,14 +19,14 @@ import Routing.Duplex (print)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s = a 
+render s@{ input: input@{ route, children } } = a
   (
-    [ classes $ [ classId ] <> (s.class_ ?? (_ : []) ⇔ [])]
-    <> (s.route ?? (\r -> [ 
+    [ classes $ [ classId ] <> (input.class_ ?? (_ : []) ⇔ [])]
+    <> (route ?? (\r -> [ 
       href $ print routeCodec r 
     , onClick $ HandleClick r
     ]) ⇔ [])
   )
   ( [ sheet s ]
-    <> s.children
+    <> children
   )

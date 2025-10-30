@@ -35,9 +35,7 @@ type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
 type State = 
-  { text :: String
-  , textElementTag :: TextElementTag
-  , loading :: Boolean
+  { input :: Input
   }
 
 data Action = Receive Input

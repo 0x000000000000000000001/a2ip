@@ -10,8 +10,4 @@ import Halogen (modify_)
 
 handleAction :: Action -> SeparatorM Unit
 handleAction = case _ of  
-  Receive input -> modify_ _ 
-    { text = input.text
-    , textElementTag = input.textElementTag
-    , loading = input.loading
-    }
+  Receive input -> modify_ _ { input = input }

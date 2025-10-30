@@ -14,15 +14,10 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-    { initialState: \input -> 
-        { route: input.route
-        , class_: input.class_
-        , display: input.display
-        , children: input.children
-        }
+    { initialState: \input -> { input }
     , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction
-        , receive = \input -> Just $ Receive input
+        , receive = Just ◁ Receive
         }
     }

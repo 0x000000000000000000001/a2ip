@@ -14,11 +14,7 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-    { initialState: \input -> 
-      { text: input.text
-      , textElementTag: input.textElementTag
-      , loading: input.loading
-      }
+    { initialState: \input -> { input }
     , render   
     , eval: mkEval defaultEval 
       { handleAction = handleAction
