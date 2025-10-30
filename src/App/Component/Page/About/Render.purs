@@ -45,7 +45,6 @@ render s =
           { text: "Bureau des membres de l'association"
           , textElementTag: H1
           , loading: isNothing s.members
-          , withSofa: false
           }
           noOutputAction
       , div
@@ -60,7 +59,6 @@ render s =
           { text: "Collaborateurs du comité scientifique international"
           , textElementTag: H2
           , loading: isNothing s.collaborators
-          , withSofa: false
           }
           noOutputAction
       , div

@@ -27,7 +27,6 @@ type Input =
   { text :: String
   , textElementTag :: TextElementTag
   , loading :: Boolean
-  , withSofa :: Boolean
   }
 
 type Output = NoOutput
@@ -39,7 +38,6 @@ type State =
   { text :: String
   , textElementTag :: TextElementTag
   , loading :: Boolean
-  , withSofa :: Boolean
   }
 
 data Action = Receive Input

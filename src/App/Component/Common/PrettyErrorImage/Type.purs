@@ -1,23 +1,33 @@
 module App.Component.Common.PrettyErrorImage.Type
   ( Action(..)
-  , PrettyErrorImageM
   , Input
   , Output
+  , PrettyErrorImageM
   , Query
   , Slots
+  , Sources
   , State
+  , Try(..)
+  , Url
   )
   where
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import App.Util.Capability.AppM (AppM)
+import Data.Eq (class Eq)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM)
 
+type Url = String
+
+type Sources = 
+  { first :: Url
+  , fallback :: Maybe Url
+  }
+
 type Input =
   { class_ :: Maybe String
-  , src :: Maybe String
-  , fallbackSrc :: Maybe String
+  , sources :: Maybe Sources
   } 
  
 type Output = NoOutput
@@ -25,11 +35,14 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
+data Try = FirstTry Url | FallbackTry Url | StopTrying
+
+derive instance eqTry :: Eq Try
+
 type State =
   { class_ :: Maybe String
-  , src :: Maybe String
-  , fallbackSrc :: Maybe String
-  , errorCount :: Int
+  , try :: Maybe Try
+  , input :: Maybe Input
   }
 
 data Action 

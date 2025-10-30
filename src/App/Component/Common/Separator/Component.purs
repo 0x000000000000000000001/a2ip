@@ -18,7 +18,6 @@ component = mkComponent
       { text: input.text
       , textElementTag: input.textElementTag
       , loading: input.loading
-      , withSofa: input.withSofa
       }
     , render   
     , eval: mkEval defaultEval 

@@ -1,6 +1,5 @@
 module App.Component.Common.Separator.Style.Separator
   ( classId
-  , classIdWithSofa
   , classIdWhenLoading
   , style
   )
@@ -17,9 +16,6 @@ import Util.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyC
 classId :: String
 classId = "keWMC9TZj"
 
-classIdWithSofa :: String
-classIdWithSofa = "GokzkFUP1"
-
 classIdWhenLoading :: String
 classIdWhenLoading = "K5u7bPEBt"
 
@@ -35,9 +31,6 @@ style = do
     top0
     padding4 0.6 0.6 0.0 0.6
     borderBottom solid (rem 0.15) grey
-
-  classIdWithSofa .? do
-    paddingTop 2.6
 
   classIdWhenLoading .? do
     borderColor loadingGrey
