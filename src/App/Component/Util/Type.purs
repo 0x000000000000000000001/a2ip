@@ -6,6 +6,7 @@ import App.Util.Capability.AppM (AppM)
 import Data.Const (Const)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, text)
+import Network.RemoteData (RemoteData)
 
 type Children action slots = Array (ComponentHTML action slots AppM)
 
@@ -24,6 +25,8 @@ type NoQuery :: ∀ k. k -> Type
 type NoQuery = Const Void
 
 type NoSlotAddressIndex = Unit
+
+type Remote a = RemoteData String a
 
 noOutputAction :: ∀ a. NoOutput -> a 
 noOutputAction = absurd

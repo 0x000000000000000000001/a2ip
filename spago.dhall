@@ -43,6 +43,7 @@ You can edit this file as you like.
   , "partial"
   , "prelude"
   , "record"
+  , "remotedata"
   , "routing"
   , "routing-duplex"
   , "spec"

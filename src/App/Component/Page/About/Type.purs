@@ -1,11 +1,10 @@
 module App.Component.Page.About.Type   where
 
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import App.Component.Common.Separator.Type as Separator
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery)
-import Data.Maybe (Maybe)
+import App.Component.Util.Type (Remote, NoInput, NoOutput, NoQuery)
+import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
@@ -22,8 +21,8 @@ portraits = Proxy :: Proxy "portraits"
 separators = Proxy :: Proxy "separators"
 
 type State =
-  { members :: Maybe (Array Person)
-  , collaborators :: Maybe (Array Person)
+  { members :: Remote (Array Person)
+  , collaborators :: Remote (Array Person)
   }
 
 members = Proxy :: Proxy "members"
