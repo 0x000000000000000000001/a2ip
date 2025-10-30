@@ -22,6 +22,7 @@ import Data.Maybe (Maybe(..), isNothing)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, p, p_, slot, text)
 import Halogen.HTML.Events (onClick)
+import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -36,10 +37,8 @@ render s =
             noSlotAddressIndex
             TimelineComponent.component
             { class_: Nothing
-            , dates: case s of 
-                Loading -> mockDates
-                Loaded { seminars } -> seminars <#> _.date
-            , loading: s == Loading
+            , dates: toMaybe s ?? (\s_ -> s_.seminars <#> _.date) ⇔ mockDates
+            , loading: isLoading s
             , defaultDate: LastBeforeNow
             }
             handleTimelineOutput
@@ -47,30 +46,30 @@ render s =
     , div 
         [ class_ Poster.classId ]
         ( ( case s of 
-            Loaded { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
-              [ p_ [ text $ "title: " <> seminar.title ],
-                p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> seminar.theme ],
-                openThemeDescriptionModal
-                  ? (
-                    slot
-                      themeDescription
-                      noSlotAddressIndex
-                      (Modal.component Fragment.component)
-                      { closable: true
-                      , innerInput: div_ [ text "blablah" ]
-                      }
-                      handleThemeDescriptionModalOutput
-                  ) ↔ noHtml,
-                p_ [ text $ "firstname: " <> seminar.firstname ],
-                p_ [ text $ "lastname: " <> seminar.lastname ],
-                p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ]
-              ]
-            _ -> []
+              Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
+                [ p_ [ text $ "title: " <> seminar.title ],
+                  p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> seminar.theme ],
+                  openThemeDescriptionModal
+                    ? (
+                      slot
+                        themeDescription
+                        noSlotAddressIndex
+                        (Modal.component Fragment.component)
+                        { closable: true
+                        , innerInput: div_ [ text "blablah" ]
+                        }
+                        handleThemeDescriptionModalOutput
+                    ) ↔ noHtml,
+                  p_ [ text $ "firstname: " <> seminar.firstname ],
+                  p_ [ text $ "lastname: " <> seminar.lastname ],
+                  p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ]
+                ]
+              _ -> []
           ) <> 
           -- Aside, because the array above depends on s.openThemeDescriptionModal
           -- We don't want to rerender the video because of modal opening/closing...
           [ case s of
-              Loaded { selectedSeminar: Just { seminar } } | seminar.videoUrl /= "" ->
+              Success { selectedSeminar: Just { seminar } } | seminar.videoUrl /= "" ->
                 slot
                   youtubeVideo
                   noSlotAddressIndex

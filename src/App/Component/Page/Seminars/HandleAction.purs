@@ -5,16 +5,16 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, State(..), day, firstname, lastname, month, theme, title, videoUrl, year)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, day, firstname, lastname, month, theme, title, videoUrl, year)
 import App.Util.Capability.Log (error)
 import Data.Array (find, (!!))
 import Data.Either (Either)
 import Data.Int (fromString)
-import Data.Maybe (Maybe(..), isJust)
+import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Effect.Aff.Class (class MonadAff)
 import Halogen (get, modify_, put)
-import Record (set)
+import Network.RemoteData (RemoteData(..))
 import Util.Google.Sheet (Converter, fetch, seminarsTab)
 import Util.Html.Clean (untag)
 import Util.Time (unsafeDate)
@@ -22,7 +22,7 @@ import Util.Time (unsafeDate)
 handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
   SelectSeminar seminar -> modify_ \s -> case s of 
-    Loaded l -> Loaded $ l 
+    Success l -> Success $ l 
       { selectedSeminar = seminar <#> \sem ->
           { seminar: sem
           , openThemeDescriptionModal: false
@@ -34,16 +34,17 @@ handleAction = case _ of
     state <- get
 
     case state of
-      Loaded { seminars } -> do
+      Success { seminars } -> do
         let seminar = find (\s -> Just s.date == date) seminars
         handleAction $ SelectSeminar seminar
       _ -> ηι
 
   Load -> do
+    put Loading
     seminars <- fetchSeminars
     seminars
       ?! (\sems -> do 
-        put $ Loaded 
+        put $ Success 
           { seminars: sems
           , selectedSeminar: sems !! 0 <#> \sem ->
               { seminar: sem
@@ -51,15 +52,18 @@ handleAction = case _ of
               }
           }
       )
-      ⇿ (error ◁ ("Error fetching seminars: " <> _))
+      ⇿ (\e -> do 
+          error $ "Error fetching seminars: " <> e
+          put $ Failure e
+      )
 
   OpenThemeDescriptionModal -> modify_ \s -> case s of 
-    Loaded l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: false } } -> Loaded $ 
+    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: false } } -> Success $ 
       l { selectedSeminar = Just sel { openThemeDescriptionModal = true } }
     _ -> s
 
   CloseThemeDescriptionModal -> modify_ \s -> case s of
-    Loaded l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: true } } -> Loaded $ 
+    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: true } } -> Success $ 
       l { selectedSeminar = Just sel { openThemeDescriptionModal = false } }
     _ -> s
 

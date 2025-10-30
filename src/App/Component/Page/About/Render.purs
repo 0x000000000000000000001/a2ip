@@ -26,6 +26,7 @@ import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
 import Halogen.HTML (HTML, div, slot, text)
 import Html.Renderer.Halogen (render_)
+import Network.RemoteData (fromMaybe, isLoading, isSuccess, toMaybe, withDefault)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
@@ -44,28 +45,28 @@ render s =
           Separator.component
           { text: "Bureau des membres de l'association"
           , textElementTag: H1
-          , loading: isNothing s.members
+          , loading: not $ isSuccess s.members
           }
           noOutputAction
       , div
           [ class_ Members.classId ]
           $ mapWithIndex
-              (renderCard members $ isNothing s.members)
-              (s.members ??⇒ replicate 6 loadingPerson)
+              (renderCard members $ isLoading s.members)
+              (toMaybe s.members ??⇒ replicate 6 loadingPerson)
       , slot
           separators
           (ᴠ collaborators)
           Separator.component
           { text: "Collaborateurs du comité scientifique international"
           , textElementTag: H2
-          , loading: isNothing s.collaborators
+          , loading: isLoading s.collaborators
           }
           noOutputAction
       , div
           [ class_ Collaborators.classId ]
           $ mapWithIndex
-              (renderCard collaborators $ isNothing s.collaborators)
-              (s.collaborators ??⇒ replicate 8 loadingPerson)
+              (renderCard collaborators $ isLoading s.collaborators)
+              (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
       ]
 
 loadingPlaceholder :: String

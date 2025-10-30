@@ -10,9 +10,9 @@ import Proem
 import App.Component.Page.About.Type (Action(..), AboutM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
 import App.Util.Capability.Log (error)
 import Data.Either (Either)
-import Data.Maybe (Maybe(..))
 import Effect.Aff.Class (class MonadAff)
 import Halogen (fork, modify_)
+import Network.RemoteData (RemoteData(..))
 import Util.Google.Drive (extractPortraitIdFromViewUrl)
 import Util.Google.Sheet (Converter, collaboratorsTab, fetch, membersTab)
 import Util.Html.Clean (untag)
@@ -20,16 +20,24 @@ import Util.Html.Clean (untag)
 handleAction :: Action -> AboutM Unit
 handleAction = case _ of
   Load -> do
+    modify_ _ { members = Loading }
     members <- fetchMembers
     members
-      ?! (\m -> modify_ _ { members = Just m })
-      ⇿ (error ◁ ("Error fetching members: " <> _))
+      ?! (\m -> modify_ _ { members = Success m })
+      ⇿ (\e -> do
+          error $ "Error fetching members: " <> e
+          modify_ _ { members = Failure e }
+      )
 
     ø $ fork do
+      modify_ _ { collaborators = Loading }
       collaborators <- fetchCollaborators
       collaborators
-        ?! (\c -> modify_ _ { collaborators = Just c })
-        ⇿ (error ◁ ("Error fetching collaborators: " <> _))
+        ?! (\c -> modify_ _ { collaborators = Success c })
+        ⇿ (\e -> do
+            error $ "Error fetching collaborators: " <> e
+            modify_ _ { collaborators = Failure e }
+        )
 
 fetchMembers :: ∀ m. MonadAff m => m (Either String (Array Person))
 fetchMembers = fetch membersTab toPerson

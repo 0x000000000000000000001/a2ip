@@ -7,7 +7,7 @@ import App.Component.Common.Modal.Type as Modal
 import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Email (emailOfJoel, emailOfSophie)
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
 import App.Util.Capability.AppM (AppM)
 import Data.Date (Date)
 import Data.Maybe (Maybe(..))
@@ -29,9 +29,8 @@ timeline = Proxy :: Proxy "timeline"
 youtubeVideo = Proxy :: Proxy "youtubeVideo"
 themeDescription = Proxy :: Proxy "themeDescription"
 
-data State 
-  = Loading 
-  | Loaded 
+type State 
+  = Remote 
       { seminars :: Array Seminar
       , selectedSeminar :: 
           Maybe 
@@ -39,8 +38,6 @@ data State
             , openThemeDescriptionModal :: Boolean
             }
       }
-
-derive instance eqState :: Eq State
 
 data Action 
   = Load 
