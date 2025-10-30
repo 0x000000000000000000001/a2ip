@@ -49,8 +49,8 @@ image = Proxy :: Proxy "image"
 youtubeVideo = Proxy :: Proxy "youtubeVideo"
 
 type State = 
-  { slideIndex :: Int
-  , slides :: Array Slide
+  { input :: Input
+  , index :: Int
   }
 
 data Action = GoToPrevious | GoToNext | Receive Input

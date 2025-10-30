@@ -12,14 +12,16 @@ handleAction :: Action -> CarrouselM Unit
 handleAction = case _ of 
   GoToPrevious -> 
     modify_ \s -> 
-      let newIndex = (s.slideIndex - 1 + length s.slides) `mod` length s.slides
-      in s { slideIndex = newIndex }
+      let newIndex = (s.index - 1 + length s.input.slides) `mod` length s.input.slides
+      in s { index = newIndex }
+      
   GoToNext -> 
     modify_ \s -> 
-      let newIndex = (s.slideIndex + 1) `mod` length s.slides
-      in s { slideIndex = newIndex }
+      let newIndex = (s.index + 1) `mod` length s.input.slides
+      in s { index = newIndex }
+      
   Receive input ->
     modify_ \s -> s 
-      { slides = input.slides
-      , slideIndex = s.slides /= input.slides ? 0 ↔ s.slideIndex
+      { input = input
+      , index = s.input.slides /= input.slides ? 0 ↔ s.index
       }

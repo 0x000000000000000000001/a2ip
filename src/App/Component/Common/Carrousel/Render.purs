@@ -28,9 +28,9 @@ import Halogen.HTML.Events (onClick)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s =
+render { input: { slides }, index } =
   let
-    slide = s.slides !! s.slideIndex
+    slide = slides !! index
     media = slide <#> _.media
     caption = trim $ (join $ slide <#> _.caption) ??⇒ ""
   in
@@ -89,5 +89,5 @@ render s =
               [ text caption ]
       , div
           [ class_ Counter.classId ]
-          [ text $ (show $ s.slideIndex + 1) <> " / " <> (show $ length s.slides) ]
+          [ text $ (show $ index + 1) <> " / " <> (show $ length slides) ]
       ]

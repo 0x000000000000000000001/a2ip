@@ -19,7 +19,7 @@ import Html.Renderer.Halogen (renderToArray)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ input, try } =
+render { input, try } =
   try == StopTrying
     ?
       ( div
@@ -39,7 +39,7 @@ render s@{ input, try } =
         in img
           $ [ classes
               $ [ classId ]
-              <> (s.input.class_ ?? (_ : []) ⇔ [])
+              <> (input.class_ ?? (_ : []) ⇔ [])
             ]
             <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
             <> [ onError \_ -> HandleError ]

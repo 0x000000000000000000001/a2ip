@@ -13,7 +13,7 @@ import Halogen (Component, defaultEval, mkComponent, mkEval)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: \input -> { slideIndex: 0, slides: input.slides }
+  { initialState: \input -> { input, index: 0 }
   , render
   , eval: mkEval defaultEval
       { handleAction = handleAction
