@@ -8,7 +8,8 @@ import Proem hiding (top, div)
 
 import App.Component.Router.Menu.HandleAction (handleAction)
 import App.Component.Router.Menu.Render (render)
-import App.Component.Router.Menu.Type (Action(..), Input, Output, Query)
+import App.Component.Router.Menu.Type (Action(..), Output, Query)
+import App.Component.Util.Type (noInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -34,13 +35,11 @@ menu
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-menu _slotLabel slotAddressIndex input outputAction = 
+menu _slotLabel slotAddressIndex = 
   slot
     _slotLabel
     slotAddressIndex
     component
-    input
-    outputAction
+    noInput
+    noOutputAction

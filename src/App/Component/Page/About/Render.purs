@@ -4,8 +4,8 @@ module App.Component.Page.About.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Component as PrettyErrorImage
-import App.Component.Common.Separator.Component as Separator
+import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
 import App.Component.Page.About.Style.About (classId)
 import App.Component.Page.About.Style.Card.Card as Card
@@ -17,14 +17,13 @@ import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Sheet (sheet)
 import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State, _collaborators, _country, _email, _job, _members, _phone, _portraits, _role, _separators)
 import App.Component.Page.Util.Image (ourImageRelativePath)
-import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (mapWithIndex, replicate)
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, slot, text)
+import Halogen.HTML (HTML, div, text)
 import Html.Renderer.Halogen (render_)
 import Network.RemoteData (isSuccess, toMaybe)
 import Prim.Row (class Cons)
@@ -39,29 +38,25 @@ render s =
     [ class_ classId ]
     $
       [ sheet
-      , slot
-          _separators
+      , separator 
+          _separators 
           (ᴠ _members)
-          Separator.component
           { text: "Bureau des membres de l'association"
           , textElementTag: H1
           , loading: not $ isSuccess s.members
           }
-          noOutputAction
       , div
           [ class_ Members.classId ]
           $ mapWithIndex
               (renderCard _members $ not $ isSuccess s.members)
               (toMaybe s.members ??⇒ replicate 6 loadingPerson)
-      , slot
+      , separator
           _separators
           (ᴠ _collaborators)
-          Separator.component
-          { text: "Collaborateurs du comité scientifique international"
-          , textElementTag: H2
+          { text: "Membres du comité scientifique international"
+          , textElementTag: H1
           , loading: not $ isSuccess s.collaborators
           }
-          noOutputAction
       , div
           [ class_ Collaborators.classId ]
           $ mapWithIndex
@@ -94,12 +89,11 @@ renderCard section isLoading idx member =
     ( [ div
           [ class_ CardNames.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
-      , slot
+      , prettyErrorImage
           _portraits
           ( (ᴠ section)
               <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
           )
-          PrettyErrorImage.component
           { class_: Just CardPortrait.classId
           , loading: isLoading
           , sources: 
@@ -117,7 +111,6 @@ renderCard section isLoading idx member =
                     )
               }
           }
-          noOutputAction
       ] <> lines
     )
   where

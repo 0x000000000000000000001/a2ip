@@ -5,8 +5,10 @@ module App.Component.Page.Seminars.Render
 import Proem hiding (div)
 
 import App.Component.Common.Fragment.Component as Fragment
+import App.Component.Common.Modal.Component (modal)
 import App.Component.Common.Modal.Component as Modal
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
+import App.Component.Common.Timeline.Component (timeline)
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
 import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThemeDescriptionModalOutput)
@@ -32,10 +34,9 @@ render s =
     [ sheet
     , div
         [ class_ Timeline.classId ]
-        [ slot
+        [ timeline
             _timeline
             noSlotAddressIndex
-            TimelineComponent.component
             { class_: Nothing
             , dates: toMaybe s ?? (\s_ -> s_.seminars <#> _.date) ⇔ mockDates
             , loading: isLoading s
@@ -51,10 +52,10 @@ render s =
                   p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> seminar.theme ],
                   openThemeDescriptionModal
                     ? (
-                      slot
+                      modal
+                        Fragment.component
                         _themeDescription
                         noSlotAddressIndex
-                        (Modal.component Fragment.component)
                         { closable: true
                         , innerInput: div_ [ text "blablah" ]
                         }
@@ -74,7 +75,6 @@ render s =
                   _youtubeVideo
                   noSlotAddressIndex
                   { url: seminar.videoUrl }
-                  noOutputAction
               _ -> noHtml
           ]
         )

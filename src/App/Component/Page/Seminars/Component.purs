@@ -5,6 +5,7 @@ import Proem
 import App.Component.Page.Seminars.HandleAction (handleAction)
 import App.Component.Page.Seminars.Render (render)
 import App.Component.Page.Seminars.Type (Action(..), Input, Output, Query)
+import App.Component.Util.Type (noInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -31,13 +32,11 @@ seminars
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-seminars _slotLabel slotAddressIndex input outputAction = 
+seminars _slotLabel slotAddressIndex = 
   slot
     _slotLabel
     slotAddressIndex
     component
-    input
-    outputAction
+    noInput
+    noOutputAction

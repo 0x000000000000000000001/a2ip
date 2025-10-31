@@ -6,6 +6,7 @@ import Proem hiding (div)
 
 import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Carrousel.Type (Media(..))
+import App.Component.Common.Modal.Component (modal)
 import App.Component.Common.Modal.Component as Modal
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State, _modal)
@@ -25,10 +26,10 @@ render s =
         [ text $ "modal: " <> (s.showModal ? "visible" ↔ "hidden") ]
     , s.showModal
         ?
-          ( slot
+          ( modal
+              Carrousel.component
               _modal
               noSlotAddressIndex
-              (Modal.component Carrousel.component)
               { closable: true
               , innerInput:
                   { slides:

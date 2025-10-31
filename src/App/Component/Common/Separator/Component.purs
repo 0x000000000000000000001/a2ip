@@ -9,6 +9,7 @@ import Proem
 import App.Component.Common.Separator.HandleAction (handleAction)
 import App.Component.Common.Separator.Render (render)
 import App.Component.Common.Separator.Type (Action(..), Input, Output, Query)
+import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -35,12 +36,11 @@ separator
   => Proxy label
   -> slotAddressIndex
   -> Input
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-separator _slotLabel slotAddressIndex input outputAction = 
+separator _slotLabel slotAddressIndex input = 
   slot
     _slotLabel
     slotAddressIndex
     component
     input
-    outputAction
+    noOutputAction

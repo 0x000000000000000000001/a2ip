@@ -2,19 +2,19 @@ module App.Component.Router.Render where
 
 import Proem hiding (div)
 
-import App.Component.Page.Home.Component as PageHome
-import App.Component.Page.About.Component as PageAbout
-import App.Component.Page.Seminars.Component as PageSeminars
-import App.Component.Router.Menu.Component as Menu
+import App.Component.Page.About.Component (about)
+import App.Component.Page.Home.Component (home)
+import App.Component.Page.Seminars.Component (seminars)
+import App.Component.Router.Menu.Component (menu)
 import App.Component.Router.Style.Core as Core
 import App.Component.Router.Style.Router (classId)
 import App.Component.Router.Style.Sheet (sheet)
 import App.Component.Router.Type (Action, Slots, State, _about, _home, _menu, _seminars)
-import App.Component.Util.Type (noInput, noOutputAction, noSlotAddressIndex)
+import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, main, slot)
+import Halogen.HTML (div, main)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -22,12 +22,12 @@ render { route } =
   div
     [ class_ classId ]
     [ sheet
-    , slot _menu noSlotAddressIndex Menu.component noInput noOutputAction
+    , menu _menu noSlotAddressIndex 
     , main
         [ class_ Core.classId ]
         [ case route of
-            Home -> slot _home noSlotAddressIndex PageHome.component noInput noOutputAction
-            About -> slot _about noSlotAddressIndex PageAbout.component noInput noOutputAction
-            Seminars -> slot _seminars noSlotAddressIndex PageSeminars.component noInput noOutputAction
+            Home -> home _home noSlotAddressIndex
+            About -> about _about noSlotAddressIndex 
+            Seminars -> seminars _seminars noSlotAddressIndex
         ]
     ]

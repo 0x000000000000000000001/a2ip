@@ -5,6 +5,7 @@ import Proem
 import App.Component.Page.Home.HandleAction (handleAction)
 import App.Component.Page.Home.Render (render)
 import App.Component.Page.Home.Type (Input, Query, Output)
+import App.Component.Util.Type (noInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
@@ -30,13 +31,11 @@ home
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-home _slotLabel slotAddressIndex input outputAction = 
+home _slotLabel slotAddressIndex = 
   slot
     _slotLabel
     slotAddressIndex
     component
-    input
-    outputAction
+    noInput
+    noOutputAction

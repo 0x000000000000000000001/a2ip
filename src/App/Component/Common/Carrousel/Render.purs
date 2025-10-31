@@ -13,9 +13,8 @@ import App.Component.Common.Carrousel.Style.Media as Media
 import App.Component.Common.Carrousel.Style.Sheet (sheet)
 import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State, _image, _youtubeVideo)
 import App.Component.Common.Loader.Loader (loader)
-import App.Component.Common.PrettyErrorImage.Component as PrettyErrorImage
+import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
-import App.Component.Common.YoutubeVideo.Component as YoutubeVideo
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import CSS (darken)
@@ -24,7 +23,7 @@ import Data.Array (length, (!!))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, slot, text)
+import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Util.Style (class_, classes)
 
@@ -48,10 +47,9 @@ render { input: { slides }, index } =
           ]
           ( case media of
               Just (Image url) ->
-                [ slot
+                [ prettyErrorImage
                     _image
                     noSlotAddressIndex
-                    PrettyErrorImage.component
                     { class_: Nothing
                     , loading: false
                     , sources: 
@@ -59,7 +57,6 @@ render { input: { slides }, index } =
                         , fallback: Nothing
                         }
                     }
-                    noOutputAction
                 ]
               Just (YoutubeVideo url) ->
                 [ loader $ darken 0.1 white
@@ -67,7 +64,6 @@ render { input: { slides }, index } =
                     _youtubeVideo
                     noSlotAddressIndex
                     { url }
-                    noOutputAction
                 ]
               _ -> []
           )

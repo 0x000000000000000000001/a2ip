@@ -9,6 +9,7 @@ import Proem
 import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
 import App.Component.Common.YoutubeVideo.Render (render)
 import App.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
+import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -35,12 +36,11 @@ youtubeVideo
   => Proxy label
   -> slotAddressIndex
   -> Input
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-youtubeVideo _slotLabel slotAddressIndex input outputAction = 
+youtubeVideo _slotLabel slotAddressIndex input = 
   slot
     _slotLabel
     slotAddressIndex
     component
     input
-    outputAction
+    noOutputAction
