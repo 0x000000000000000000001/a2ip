@@ -9,7 +9,7 @@ import App.Component.Router.Menu.Component as Menu
 import App.Component.Router.Style.Core as Core
 import App.Component.Router.Style.Router (classId)
 import App.Component.Router.Style.Sheet (sheet)
-import App.Component.Router.Type (Action, Slots, State, about, home, menu, seminars)
+import App.Component.Router.Type (Action, Slots, State, _about, _home, _menu, _seminars)
 import App.Component.Util.Type (noInput, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route(..))
@@ -22,12 +22,12 @@ render { route } =
   div
     [ class_ classId ]
     [ sheet
-    , slot menu noSlotAddressIndex Menu.component noInput noOutputAction
+    , slot _menu noSlotAddressIndex Menu.component noInput noOutputAction
     , main
         [ class_ Core.classId ]
         [ case route of
-            Home -> slot home noSlotAddressIndex PageHome.component noInput noOutputAction
-            About -> slot about noSlotAddressIndex PageAbout.component noInput noOutputAction
-            Seminars -> slot seminars noSlotAddressIndex PageSeminars.component noInput noOutputAction
+            Home -> slot _home noSlotAddressIndex PageHome.component noInput noOutputAction
+            About -> slot _about noSlotAddressIndex PageAbout.component noInput noOutputAction
+            Seminars -> slot _seminars noSlotAddressIndex PageSeminars.component noInput noOutputAction
         ]
     ]

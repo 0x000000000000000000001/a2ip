@@ -11,7 +11,7 @@ import Proem hiding (top)
 import App.Component.Page.About.Style.Card.Line as Line
 import App.Component.Page.About.Style.Card.Names as Names
 import App.Component.Page.About.Style.Card.Portrait as Portrait
-import App.Component.Page.About.Type (email, phone)
+import App.Component.Page.About.Type (_email, _phone)
 import CSS (CSS) as CSS
 import CSS (column, flexDirection, hover, (&))
 import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
@@ -83,5 +83,5 @@ style = do
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId
   ______before = ____line & before
-  ______phone = ____line &. Line.classIdWhen (ᴠ phone)
-  ______email = ____line &. Line.classIdWhen (ᴠ email)
+  ______phone = ____line &. Line.classIdWhen (ᴠ _phone)
+  ______email = ____line &. Line.classIdWhen (ᴠ _email)

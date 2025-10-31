@@ -5,7 +5,7 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, day, firstname, lastname, month, theme, title, videoUrl, year)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, _day, _firstname, _lastname, _month, _theme, _title, _videoUrl, _year)
 import App.Util.Capability.Log (error)
 import Data.Array (find, (!!))
 import Data.Either (Either)
@@ -74,14 +74,14 @@ fetchSeminars = fetch seminarsTab toSeminar
 
 toSeminar :: Converter Seminar
 toSeminar getHtmlCell row =
-  { title: getHtmlCell title row
-  , theme: getHtmlCell theme row
-  , firstname: getHtmlCell firstname row
-  , lastname: getHtmlCell lastname row
+  { title: getHtmlCell _title row
+  , theme: getHtmlCell _theme row
+  , firstname: getHtmlCell _firstname row
+  , lastname: getHtmlCell _lastname row
   , date:
       unsafeDate
-        ((fromString $ getHtmlCell year row) ??⇒ 1970)
-        ((fromString $ getHtmlCell month row) ??⇒ 1)
-        ((fromString $ getHtmlCell day row) ??⇒ 1)
-  , videoUrl: untag $ trim $ getHtmlCell videoUrl row
+        ((fromString $ getHtmlCell _year row) ??⇒ 1970)
+        ((fromString $ getHtmlCell _month row) ??⇒ 1)
+        ((fromString $ getHtmlCell _day row) ??⇒ 1)
+  , videoUrl: untag $ trim $ getHtmlCell _videoUrl row
   }

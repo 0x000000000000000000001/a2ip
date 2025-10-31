@@ -8,17 +8,17 @@ import App.Component.Common.Fragment.Component as Fragment
 import App.Component.Common.Modal.Component as Modal
 import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Common.Timeline.Type (DefaultDate(..))
-import App.Component.Common.YoutubeVideo.Component (component) as YoutubeVideoComponent
+import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
 import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThemeDescriptionModalOutput)
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State(..), mockDates, themeDescription, timeline, youtubeVideo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, _themeDescription, _timeline, _youtubeVideo)
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import Data.Maybe (Maybe(..), isNothing)
+import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, p, p_, slot, text)
 import Halogen.HTML.Events (onClick)
@@ -33,7 +33,7 @@ render s =
     , div
         [ class_ Timeline.classId ]
         [ slot
-            timeline
+            _timeline
             noSlotAddressIndex
             TimelineComponent.component
             { class_: Nothing
@@ -52,7 +52,7 @@ render s =
                   openThemeDescriptionModal
                     ? (
                       slot
-                        themeDescription
+                        _themeDescription
                         noSlotAddressIndex
                         (Modal.component Fragment.component)
                         { closable: true
@@ -70,10 +70,9 @@ render s =
           -- We don't want to rerender the video because of modal opening/closing...
           [ case s of
               Success { selectedSeminar: Just { seminar } } | seminar.videoUrl /= "" ->
-                slot
-                  youtubeVideo
+                youtubeVideo
+                  _youtubeVideo
                   noSlotAddressIndex
-                  YoutubeVideoComponent.component
                   { url: seminar.videoUrl }
                   noOutputAction
               _ -> noHtml

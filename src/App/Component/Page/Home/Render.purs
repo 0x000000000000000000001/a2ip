@@ -8,7 +8,7 @@ import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Carrousel.Type (Media(..))
 import App.Component.Common.Modal.Component as Modal
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
-import App.Component.Page.Home.Type (Action(..), Slots, State, modal)
+import App.Component.Page.Home.Type (Action(..), Slots, State, _modal)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
@@ -26,7 +26,7 @@ render s =
     , s.showModal
         ?
           ( slot
-              modal
+              _modal
               noSlotAddressIndex
               (Modal.component Carrousel.component)
               { closable: true

@@ -1,15 +1,21 @@
 module App.Component.Common.YoutubeVideo.Component
   ( component
-  ) where
+  , youtubeVideo
+  )
+  where
 
 import Proem
 
 import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
 import App.Component.Common.YoutubeVideo.Render (render)
-import App.Component.Common.YoutubeVideo.Type (Input, Output, Query, Action(..))
+import App.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, ComponentHTML, Slot, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
@@ -20,3 +26,21 @@ component = mkComponent
     , receive = Just ◁ Receive
     }
   }
+
+youtubeVideo 
+  :: ∀ action slots label slotAddressIndex slots'
+   . Cons label (Slot Query Output slotAddressIndex) slots' slots
+  => IsSymbol label
+  => Ord slotAddressIndex
+  => Proxy label
+  -> slotAddressIndex
+  -> Input
+  -> (Output -> action)
+  -> ComponentHTML action slots AppM
+youtubeVideo _slotLabel slotAddressIndex input outputAction = 
+  slot
+    _slotLabel
+    slotAddressIndex
+    component
+    input
+    outputAction

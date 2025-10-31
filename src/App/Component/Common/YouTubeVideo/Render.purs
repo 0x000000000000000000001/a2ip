@@ -4,10 +4,12 @@ module App.Component.Common.YoutubeVideo.Render
 
 import Proem hiding (div)
 
+import App.Component.Common.Loader.Loader (loader)
 import App.Component.Common.YoutubeVideo.Style.Sheet (sheet)
 import App.Component.Common.YoutubeVideo.Style.YoutubeVideo (classId)
 import App.Component.Common.YoutubeVideo.Type (Action, Slots, State)
 import App.Util.Capability.AppM (AppM)
+import CSS (darken, white)
 import Data.String (Pattern(..), Replacement(..), contains, replaceAll)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div)
@@ -19,6 +21,7 @@ render { input: { url } } =
   div 
     [ class_ classId ]
     [ sheet
+    , loader $ darken 0.1 white
     , render_ $ iframe $ convertToEmbedUrl url 
     ]
 

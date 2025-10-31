@@ -15,7 +15,7 @@ import App.Component.Page.About.Style.Card.Portrait as CardPortrait
 import App.Component.Page.About.Style.Collaborators as Collaborators
 import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Sheet (sheet)
-import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State, collaborators, country, email, job, members, phone, portraits, role, separators)
+import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State, _collaborators, _country, _email, _job, _members, _phone, _portraits, _role, _separators)
 import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
@@ -40,8 +40,8 @@ render s =
     $
       [ sheet
       , slot
-          separators
-          (ᴠ members)
+          _separators
+          (ᴠ _members)
           Separator.component
           { text: "Bureau des membres de l'association"
           , textElementTag: H1
@@ -51,11 +51,11 @@ render s =
       , div
           [ class_ Members.classId ]
           $ mapWithIndex
-              (renderCard members $ not $ isSuccess s.members)
+              (renderCard _members $ not $ isSuccess s.members)
               (toMaybe s.members ??⇒ replicate 6 loadingPerson)
       , slot
-          separators
-          (ᴠ collaborators)
+          _separators
+          (ᴠ _collaborators)
           Separator.component
           { text: "Collaborateurs du comité scientifique international"
           , textElementTag: H2
@@ -65,7 +65,7 @@ render s =
       , div
           [ class_ Collaborators.classId ]
           $ mapWithIndex
-              (renderCard collaborators $ not $ isSuccess s.collaborators)
+              (renderCard _collaborators $ not $ isSuccess s.collaborators)
               (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
       ]
 
@@ -95,7 +95,7 @@ renderCard section isLoading idx member =
           [ class_ CardNames.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , slot
-          portraits
+          _portraits
           ( (ᴠ section)
               <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
           )
@@ -133,8 +133,8 @@ renderCard section isLoading idx member =
 
   lines :: ∀ w i. Array (HTML w i)
   lines =
-    line role
-      <> line job
-      <> line phone
-      <> line email
-      <> line country
+    line _role
+      <> line _job
+      <> line _phone
+      <> line _email
+      <> line _country

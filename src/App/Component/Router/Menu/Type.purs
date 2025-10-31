@@ -6,7 +6,7 @@ module App.Component.Router.Menu.Type
   , Query
   , Slots
   , State
-  , items
+  , _items
   )
   where
 
@@ -24,7 +24,7 @@ type Slots =
   ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
   )
 
-items = Proxy :: Proxy "items"
+_items = Proxy :: Proxy "items"
 
 type State = 
   { unfold :: Boolean 

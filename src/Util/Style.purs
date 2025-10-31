@@ -266,7 +266,6 @@ import CSS.TextAlign (textAlign, center)
 import Color (darken)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
-import Data.Int (toNumber)
 import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)

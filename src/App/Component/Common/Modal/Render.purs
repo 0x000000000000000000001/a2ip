@@ -9,7 +9,7 @@ import App.Component.Common.Modal.Style.Close as Close
 import App.Component.Common.Modal.Style.Core as Core
 import App.Component.Common.Modal.Style.Modal (classId)
 import App.Component.Common.Modal.Style.Sheet (sheet)
-import App.Component.Common.Modal.Type (Action(..), Slots, State, inner)
+import App.Component.Common.Modal.Type (Action(..), Slots, State, _inner)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (Component, ComponentHTML)
@@ -39,7 +39,7 @@ render innerComponent s =
             ) 
             ↔ noHtml
         , slot
-            inner
+            _inner
             noSlotAddressIndex
             innerComponent
             s.innerInput

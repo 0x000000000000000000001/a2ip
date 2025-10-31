@@ -7,7 +7,7 @@ module App.Component.Page.About.HandleAction
 
 import Proem
 
-import App.Component.Page.About.Type (Action(..), AboutM, Person, country, email, firstname, job, lastname, phone, portraitId, role)
+import App.Component.Page.About.Type (Action(..), AboutM, Person, _country, _email, _firstname, _job, _lastname, _phone, _portraitId, _role)
 import App.Util.Capability.Log (error)
 import Data.Either (Either)
 import Effect.Aff.Class (class MonadAff)
@@ -48,14 +48,14 @@ fetchCollaborators = fetch collaboratorsTab toPerson
 toPerson :: Converter Person
 toPerson getHtmlCell row =
   let
-    portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell portraitId row
+    portraitId_ = extractPortraitIdFromViewUrl $ untag $ getHtmlCell _portraitId row
   in
-    { firstname: getHtmlCell firstname row
-    , lastname: getHtmlCell lastname row
-    , role: getHtmlCell role row
-    , job: getHtmlCell job row
-    , phone: getHtmlCell phone row
-    , email: getHtmlCell email row
-    , country: getHtmlCell country row
+    { firstname: getHtmlCell _firstname row
+    , lastname: getHtmlCell _lastname row
+    , role: getHtmlCell _role row
+    , job: getHtmlCell _job row
+    , phone: getHtmlCell _phone row
+    , email: getHtmlCell _email row
+    , country: getHtmlCell _country row
     , portraitId: portraitId_ ??⇒ ""
     }

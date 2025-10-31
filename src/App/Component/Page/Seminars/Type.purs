@@ -25,9 +25,9 @@ type Slots =
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
   )
 
-timeline = Proxy :: Proxy "timeline"
-youtubeVideo = Proxy :: Proxy "youtubeVideo"
-themeDescription = Proxy :: Proxy "themeDescription"
+_timeline = Proxy :: Proxy "timeline"
+_youtubeVideo = Proxy :: Proxy "youtubeVideo"
+_themeDescription = Proxy :: Proxy "themeDescription"
 
 type State 
   = Remote 
@@ -63,14 +63,14 @@ type SeminarRow =
 
 type Seminar = { | SeminarRow }
 
-title = Proxy :: Proxy "title"
-theme = Proxy :: Proxy "theme"
-firstname = Proxy :: Proxy "firstname"
-lastname = Proxy :: Proxy "lastname"
-day = Proxy :: Proxy "day"
-month = Proxy :: Proxy "month"
-year = Proxy :: Proxy "year"
-videoUrl = Proxy :: Proxy "videoUrl"
+_title = Proxy :: Proxy "title"
+_theme = Proxy :: Proxy "theme"
+_firstname = Proxy :: Proxy "firstname"
+_lastname = Proxy :: Proxy "lastname"
+_day = Proxy :: Proxy "day"
+_month = Proxy :: Proxy "month"
+_year = Proxy :: Proxy "year"
+_videoUrl = Proxy :: Proxy "videoUrl"
 
 mockDates :: Array Date
 mockDates = 

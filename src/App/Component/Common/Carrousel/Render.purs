@@ -11,9 +11,10 @@ import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import App.Component.Common.Carrousel.Style.Counter as Counter
 import App.Component.Common.Carrousel.Style.Media as Media
 import App.Component.Common.Carrousel.Style.Sheet (sheet)
-import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State, image, youtubeVideo)
+import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State, _image, _youtubeVideo)
 import App.Component.Common.Loader.Loader (loader)
 import App.Component.Common.PrettyErrorImage.Component as PrettyErrorImage
+import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
 import App.Component.Common.YoutubeVideo.Component as YoutubeVideo
 import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -48,7 +49,7 @@ render { input: { slides }, index } =
           ( case media of
               Just (Image url) ->
                 [ slot
-                    image
+                    _image
                     noSlotAddressIndex
                     PrettyErrorImage.component
                     { class_: Nothing
@@ -62,12 +63,10 @@ render { input: { slides }, index } =
                 ]
               Just (YoutubeVideo url) ->
                 [ loader $ darken 0.1 white
-                , slot
-                    youtubeVideo
+                , youtubeVideo
+                    _youtubeVideo
                     noSlotAddressIndex
-                    YoutubeVideo.component
-                    { url
-                    }
+                    { url }
                     noOutputAction
                 ]
               _ -> []

@@ -9,8 +9,8 @@ module App.Component.Common.Carrousel.Type
   , Slots
   , Source
   , State
-  , image
-  , youtubeVideo
+  , _image
+  , _youtubeVideo
   )
   where
 
@@ -45,8 +45,8 @@ type Slots =
   , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
   )
 
-image = Proxy :: Proxy "image"
-youtubeVideo = Proxy :: Proxy "youtubeVideo"
+_image = Proxy :: Proxy "image"
+_youtubeVideo = Proxy :: Proxy "youtubeVideo"
 
 type State = 
   { input :: Input

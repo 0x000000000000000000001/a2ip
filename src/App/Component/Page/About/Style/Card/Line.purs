@@ -6,7 +6,7 @@ module App.Component.Page.About.Style.Card.Line
 
 import Proem hiding (top)
 
-import App.Component.Page.About.Type (email, phone, role)
+import App.Component.Page.About.Type (_email, _phone, _role)
 import CSS ((&))
 import CSS as CSS
 import Util.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
@@ -45,8 +45,8 @@ style = do
 
   where 
   __allChildren = classId .|> all
-  __role = classId .&. classIdWhen (ᴠ role)
-  __email = classId .&. classIdWhen (ᴠ email)
-  __phone = classId .&. classIdWhen (ᴠ phone)
+  __role = classId .&. classIdWhen (ᴠ _role)
+  __email = classId .&. classIdWhen (ᴠ _email)
+  __phone = classId .&. classIdWhen (ᴠ _phone)
   a___before = __email & before
   b___before = __phone & before

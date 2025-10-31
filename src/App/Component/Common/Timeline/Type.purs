@@ -7,7 +7,7 @@ module App.Component.Common.Timeline.Type
   , Slots
   , State
   , TimelineM
-  , date
+  , _date
   )
   where
 
@@ -52,4 +52,4 @@ type Query = NoQuery
 
 type TimelineM a = HalogenM State Action Slots Output AppM a
 
-date = Proxy :: Proxy "date"
+_date = Proxy :: Proxy "date"

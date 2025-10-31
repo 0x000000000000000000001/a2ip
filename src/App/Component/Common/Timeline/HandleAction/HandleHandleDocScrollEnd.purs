@@ -6,7 +6,7 @@ import Proem
 
 import App.Component.Common.Timeline.HandleAction.HandleSelectDate (handleSelectDate)
 import App.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
-import App.Component.Common.Timeline.Type (TimelineM, date)
+import App.Component.Common.Timeline.Type (TimelineM, _date)
 import App.Component.Common.Timeline.Util (parseDateDataAttr)
 import Data.Foldable (for_, minimumBy)
 import Data.Maybe (Maybe(..))
@@ -58,7 +58,7 @@ calculateDistancesFromCenter elements screenCenter =
         let
           elementMiddle = rect.top + (rect.height / 2.0)
           distance = abs (elementMiddle - screenCenter)
-        maybeDataDate <- getAttribute (dataAttrPrefixed date) el
+        maybeDataDate <- getAttribute (dataAttrPrefixed _date) el
         η { distance, dataDate: maybeDataDate }
     )
     elements

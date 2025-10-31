@@ -1,6 +1,8 @@
 module App.Component.Common.PrettyErrorImage.Component
   ( component
-  ) where
+  , prettyErrorImage
+  )
+  where
 
 import Proem
 
@@ -9,7 +11,11 @@ import App.Component.Common.PrettyErrorImage.Render (render)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query, Try(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
@@ -23,3 +29,21 @@ component = mkComponent
       , receive = Just ◁ Receive
       }
   }
+
+prettyErrorImage 
+  :: ∀ action slots label slotAddressIndex slots'
+   . Cons label (Slot Query Output slotAddressIndex) slots' slots
+  => IsSymbol label
+  => Ord slotAddressIndex
+  => Proxy label
+  -> slotAddressIndex
+  -> Input
+  -> (Output -> action)
+  -> ComponentHTML action slots AppM
+prettyErrorImage _slotLabel slotAddressIndex input outputAction = 
+  slot
+    _slotLabel
+    slotAddressIndex
+    component
+    input
+    outputAction

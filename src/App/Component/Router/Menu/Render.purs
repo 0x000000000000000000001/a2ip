@@ -85,7 +85,7 @@ render s =
   where
   item :: String -> Maybe Route -> String -> Array ChildItem -> ComponentHTML Action Slots AppM
   item label' route iconFileName children =
-    slot Type.items (label' /\ route) Link.component
+    slot Type._items (label' /\ route) Link.component
       { route
       , class_: Just Item.classId
       , display: flex

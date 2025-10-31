@@ -17,16 +17,16 @@ type Slots =
   , separators :: Slot Separator.Query Separator.Output String
   )
 
-portraits = Proxy :: Proxy "portraits"
-separators = Proxy :: Proxy "separators"
+_portraits = Proxy :: Proxy "portraits"
+_separators = Proxy :: Proxy "separators"
 
 type State =
   { members :: Remote (Array Person)
   , collaborators :: Remote (Array Person)
   }
 
-members = Proxy :: Proxy "members"
-collaborators = Proxy :: Proxy "collaborators"
+_members = Proxy :: Proxy "members"
+_collaborators = Proxy :: Proxy "collaborators"
 
 data Action = Load
 
@@ -48,11 +48,11 @@ type PersonRow =
 
 type Person = { | PersonRow }
 
-lastname = Proxy :: Proxy "lastname" 
-firstname = Proxy :: Proxy "firstname"
-role = Proxy :: Proxy "role"
-job = Proxy :: Proxy "job"
-phone = Proxy :: Proxy "phone"
-email = Proxy :: Proxy "email"
-portraitId = Proxy :: Proxy "portraitId"
-country = Proxy :: Proxy "country"
+_lastname = Proxy :: Proxy "lastname" 
+_firstname = Proxy :: Proxy "firstname"
+_role = Proxy :: Proxy "role"
+_job = Proxy :: Proxy "job"
+_phone = Proxy :: Proxy "phone"
+_email = Proxy :: Proxy "email"
+_portraitId = Proxy :: Proxy "portraitId"
+_country = Proxy :: Proxy "country"

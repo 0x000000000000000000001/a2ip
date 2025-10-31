@@ -17,3 +17,21 @@ component = mkComponent
       { handleAction = handleAction 
       }
   }
+
+home 
+  :: ∀ action slots label slotAddressIndex slots'
+   . Cons label (Slot Query Output slotAddressIndex) slots' slots
+  => IsSymbol label
+  => Ord slotAddressIndex
+  => Proxy label
+  -> slotAddressIndex
+  -> Input
+  -> (Output -> action)
+  -> ComponentHTML action slots AppM
+home _slotLabel slotAddressIndex input outputAction = 
+  slot
+    _slotLabel
+    slotAddressIndex
+    component
+    input
+    outputAction

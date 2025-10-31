@@ -7,8 +7,12 @@ import App.Component.Page.About.Render (render)
 import App.Component.Page.About.Type (Action(..), Input, Query, Output)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
 import Network.RemoteData (RemoteData(..))
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
@@ -22,3 +26,21 @@ component = mkComponent
       , initialize = Just Load
       } 
   }
+
+about 
+  :: ∀ action slots label slotAddressIndex slots'
+   . Cons label (Slot Query Output slotAddressIndex) slots' slots
+  => IsSymbol label
+  => Ord slotAddressIndex
+  => Proxy label
+  -> slotAddressIndex
+  -> Input
+  -> (Output -> action)
+  -> ComponentHTML action slots AppM
+about _slotLabel slotAddressIndex input outputAction = 
+  slot
+    _slotLabel
+    slotAddressIndex
+    component
+    input
+    outputAction

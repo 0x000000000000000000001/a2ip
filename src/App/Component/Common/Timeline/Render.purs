@@ -14,7 +14,7 @@ import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
-import App.Component.Common.Timeline.Type (Action(..), Slots, State, date)
+import App.Component.Common.Timeline.Type (Action(..), Slots, State, _date)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
@@ -59,7 +59,7 @@ render { input: { dates, loading }, selectedDate } =
                         [Date.classId] 
                         <> (not loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
                     , onClick $ κ $ SelectDate date_
-                    , dataAttr date dateDataAttr
+                    , dataAttr _date dateDataAttr
                     ]
                     [ div
                         [ class_ Numbers.classId ]
