@@ -1,6 +1,8 @@
 module App.Component.Common.Fragment.Component
   ( component
-  ) where
+  , fragment
+  )
+  where
 
 import Proem
 
@@ -8,7 +10,11 @@ import App.Component.Common.Fragment.HandleAction (handleAction)
 import App.Component.Common.Fragment.Type (Action(..), Input, Output, Query)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 import Unsafe.Coerce (unsafeCoerce)
 
 component :: ∀ w i. Component Query (Input w i) Output AppM
@@ -24,13 +30,13 @@ component = mkComponent
   }
 
 fragment 
-  :: ∀ action slots label slotAddressIndex slots'
+  :: ∀ action slots label slotAddressIndex slots' w i
    . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
+  -> Input w i
   -> (Output -> action)
   -> ComponentHTML action slots AppM
 fragment _slotLabel slotAddressIndex input outputAction = 

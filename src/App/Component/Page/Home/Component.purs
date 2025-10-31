@@ -1,11 +1,16 @@
 module App.Component.Page.Home.Component where
 
+import Proem
+
 import App.Component.Page.Home.HandleAction (handleAction)
 import App.Component.Page.Home.Render (render)
 import App.Component.Page.Home.Type (Input, Query, Output)
 import App.Util.Capability.AppM (AppM)
-import Halogen (Component, defaultEval, mkComponent, mkEval)
-import Proem (κ)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent

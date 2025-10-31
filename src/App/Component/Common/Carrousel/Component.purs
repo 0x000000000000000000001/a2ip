@@ -1,15 +1,21 @@
 module App.Component.Common.Carrousel.Component
-  ( component
-  ) where
+  ( carrousel
+  , component
+  )
+  where
 
 import Proem
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Common.Carrousel.HandleAction (handleAction)
 import App.Component.Common.Carrousel.Render (render)
 import App.Component.Common.Carrousel.Type (Action(..), Input, Output, Query)
+import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent

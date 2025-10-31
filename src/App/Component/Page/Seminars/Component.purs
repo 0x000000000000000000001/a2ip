@@ -7,8 +7,12 @@ import App.Component.Page.Seminars.Render (render)
 import App.Component.Page.Seminars.Type (Action(..), Input, Output, Query)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Halogen (Component, defaultEval, mkComponent, mkEval)
+import Data.Symbol (class IsSymbol)
+import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)
+import Halogen.HTML (slot)
 import Network.RemoteData (RemoteData(..))
+import Prim.Row (class Cons)
+import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
