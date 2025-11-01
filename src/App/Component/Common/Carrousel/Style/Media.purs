@@ -35,10 +35,6 @@ style = do
   classIdWhenYoutubeVideo .? do 
     backgroundColor black
 
-  __loader :? do
-    centerToCenter
-    zIndex 1
-
   __image :? do 
     asset
     raw "object-fit" "contain"
@@ -58,11 +54,9 @@ style = do
   ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
   ______questionMark = ____errored :|*. QuestionMark.classId
   __youtubeVideo = classId .|*. YoutubeVideo.classId 
-  __loader = classId .|*. Loader.classId
 
 asset ∷ StyleM Unit
 asset = do 
   positionRelative
   widthPct100
   heightPct100
-  zIndex 2

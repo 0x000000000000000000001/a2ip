@@ -141,6 +141,7 @@ module Util.Style
   , fontSizePct
   , fontWeightBold
   , getRootFontSize
+  , has
   , hash9
   , heightPct
   , heightPct100
@@ -255,7 +256,7 @@ module Util.Style
 
 import Proem hiding (top, bottom, div)
 
-import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, star, toHexString, top, transform, translate, width, wrap)
+import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -1242,6 +1243,9 @@ after = fromString "::after"
 
 before :: Refinement
 before = fromString "::before"
+
+has :: Selector -> Refinement
+has sel = fromString $ ":has(" <> selector sel <> ")"
 
 -- | Fast polynomial hash function that generates a 9-character identifier
 -- | Perfect for CSS class names with very low collision probability

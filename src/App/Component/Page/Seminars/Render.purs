@@ -6,8 +6,6 @@ import Proem hiding (div)
 
 import App.Component.Common.Fragment.Component as Fragment
 import App.Component.Common.Modal.Component (modal)
-import App.Component.Common.Modal.Component as Modal
-import App.Component.Common.Timeline.Component (component) as TimelineComponent
 import App.Component.Common.Timeline.Component (timeline)
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
@@ -18,11 +16,11 @@ import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
 import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, _themeDescription, _timeline, _youtubeVideo)
-import App.Component.Util.Type (noHtml, noOutputAction, noSlotAddressIndex)
+import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, div_, p, p_, slot, text)
+import Halogen.HTML (div, div_, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Style (class_)

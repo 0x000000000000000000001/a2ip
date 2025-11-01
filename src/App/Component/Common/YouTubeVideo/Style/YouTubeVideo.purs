@@ -5,9 +5,10 @@ module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
 
 import Proem hiding (top)
 
-import CSS (backgroundColor, black, iframe)
+import App.Component.Common.Loader.Style.Loader as Loader
+import CSS (backgroundColor, black, iframe, zIndex, (&))
 import CSS as CSS
-import Util.Style (any, displayFlex, heightPct100, heightRem, justifyContentCenter, widthPct100, widthRem, (.?), (.|*), (.|>), (:?))
+import Util.Style (any, centerToCenter, displayFlex, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 classId :: String
 classId = "U7IRxxSNd"
@@ -21,6 +22,7 @@ height = 25.0
 style :: CSS.CSS
 style = do
   classId .? do
+    positionRelative
     displayFlex
     justifyContentCenter
     widthRem $ ratio * height
@@ -34,7 +36,14 @@ style = do
   __iframe :? do 
     widthPct100
     heightPct100
+    topLeftToTopLeft
+    zIndex 2
+
+  __loader :? do
+    centerToCenter
+    zIndex 1
   
   where 
-  __potentialIframeContainer = classId .|> any
+  __potentialIframeContainer = classId .|> (any & has iframe)
   __iframe = classId .|* iframe
+  __loader = classId .|*. Loader.classId
