@@ -8,7 +8,7 @@ module Bin.Util.Capability.BinM
 import Proem
 
 import Bin.Util.Exit (exitError, exitSuccess)
-import Config.Config (Config)
+import Config.Config (Config, config)
 import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Control.Monad.Reader.Class (ask)
@@ -19,12 +19,13 @@ import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect)
 import Effect.Console as Console
 import Effect.Exception (Error)
+import Util.Aff as UtilAff 
 import Util.Capability.ReadConfig (class ReadConfig)
 
 newtype BinM a = BinM (ReaderT Config Aff a)
 
-runBinM :: Config -> BinM Unit -> Effect Unit
-runBinM config (BinM r) = runBinAff $ runReaderT r config
+runBinM :: Boolean -> BinM Unit -> Effect Unit
+runBinM keepAlive (BinM r) = runBinAff $ runReaderT (keepAlive ? UtilAff.keepAlive r ↔ r) config
 
 runBinAff :: Aff Unit -> Effect Unit
 runBinAff action = runAff_ handleResult action

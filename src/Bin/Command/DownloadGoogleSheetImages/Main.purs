@@ -11,7 +11,6 @@ import Bin.Util.Log.Error (error, errorPrefixed)
 import Bin.Util.Log.Log (carriageReturn, log, write)
 import Bin.Util.Log.Pending (pendingPrefixed)
 import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
-import Config.Config (config)
 import Data.Array (filter, length)
 import Data.String (trim)
 import Data.Traversable (for_)
@@ -27,7 +26,7 @@ import Util.Proxy.Dictionary.Members (members')
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
-main = runBinM config do
+main = runBinM false do
   writeLock <- lock
 
   images <- imagesToDownload 
