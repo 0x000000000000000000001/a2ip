@@ -9,16 +9,19 @@ import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, _semina
 import App.Component.Util.Remote (fetchModify)
 import Data.Array (find, (!!))
 import Data.Int (fromString)
+import Data.Lens (_Just, (.~))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Halogen (get, modify_)
-import Network.RemoteData (RemoteData(..))
+import Network.RemoteData (RemoteData(..), _Success)
 import Util.Google.Sheet (Converter)
 import Util.Html.Clean (untag)
 import Util.Proxy.Dictionary.Day (day')
 import Util.Proxy.Dictionary.Firstname (firstname')
 import Util.Proxy.Dictionary.Lastname (lastname')
 import Util.Proxy.Dictionary.Month (month')
+import Util.Proxy.Dictionary.OpenThemeDescriptionModal (_openThemeDescriptionModal)
+import Util.Proxy.Dictionary.SelectedSeminar (_selectedSeminar)
 import Util.Proxy.Dictionary.Seminars (seminars')
 import Util.Proxy.Dictionary.Theme (theme')
 import Util.Proxy.Dictionary.Title (title')
@@ -29,12 +32,13 @@ import Util.Time (unsafeDate)
 handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
   SelectSeminar seminar -> modify_ \s -> case s of 
-    Success l -> Success $ l 
-      { selectedSeminar = seminar <#> \sem ->
+    Success _ -> 
+      s # _Success ◁ _selectedSeminar .~ 
+        (seminar <#> \sem ->
           { seminar: sem
           , openThemeDescriptionModal: false
           }
-      }
+        )
     _ -> s
 
   SelectSeminarByDate date -> do
@@ -58,13 +62,13 @@ handleAction = case _ of
       )
 
   OpenThemeDescriptionModal -> modify_ \s -> case s of 
-    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: false } } -> 
-      Success $ l { selectedSeminar = Just sel { openThemeDescriptionModal = true } }
+    Success { selectedSeminar: Just { openThemeDescriptionModal: false } } -> 
+      s # _Success ◁ _selectedSeminar ◁ _Just ◁ _openThemeDescriptionModal .~ true
     _ -> s
 
   CloseThemeDescriptionModal -> modify_ \s -> case s of
-    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: true } } -> 
-      Success $ l { selectedSeminar = Just sel { openThemeDescriptionModal = false } }
+    Success { selectedSeminar: Just { openThemeDescriptionModal: true } } -> 
+      s # _Success ◁ _selectedSeminar ◁ _Just ◁ _openThemeDescriptionModal .~ false
     _ -> s
 
   DoNothing -> ηι

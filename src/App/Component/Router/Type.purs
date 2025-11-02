@@ -10,7 +10,6 @@ import App.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
 import Halogen.Query (ForkId)
-import Type.Prelude (Proxy(..))
 
 type Slots =
   ( menu :: Slot Menu.Query Menu.Output NoSlotAddressIndex
