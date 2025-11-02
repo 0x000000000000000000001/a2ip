@@ -5,13 +5,14 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, _seminars)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..), _seminars)
 import App.Component.Util.Remote (fetchModify)
 import Data.Array (find, (!!))
 import Data.Int (fromString)
 import Data.Lens (_Just, (.~))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
+import Data.String.Read (read)
 import Halogen (get, modify_)
 import Network.RemoteData (RemoteData(..), _Success)
 import Util.Google.Sheet (Converter)
@@ -76,7 +77,7 @@ handleAction = case _ of
 toSeminar :: Converter Seminar
 toSeminar get row =
   { title: get title' row
-  , theme: get theme' row
+  , theme: read (get theme' row) ??⇒ Politics
   , firstname: get firstname' row
   , lastname: get lastname' row
   , date:

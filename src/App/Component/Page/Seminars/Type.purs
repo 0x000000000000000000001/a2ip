@@ -16,6 +16,7 @@ import Data.Maybe (Maybe(..))
 import Data.Show.Generic (genericShow)
 import Halogen (HalogenM, Slot)
 import Util.Time (unsafeDate)
+import Data.String.Read (class Read)
 
 type Input = NoInput
 
@@ -97,6 +98,12 @@ derive instance eqTheme :: Eq Theme
 derive instance genericTheme :: Generic Theme _
 instance showTheme :: Show Theme where
   show = genericShow
+
+instance Read Theme where
+  read "Politics" = Just Politics
+  read "Discontents" = Just Discontents
+  read "History" = Just History
+  read _ = Nothing
 
 themeInfo :: Theme -> ThemeInfo
 themeInfo = case _ of
