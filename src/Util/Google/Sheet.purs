@@ -86,15 +86,15 @@ convertExtractedData to extractedData =
     keyIndices = extractedData.keyIndices
     values = extractedData.values
 
-    getHtmlCell :: CellExtractor
-    getHtmlCell key row =
+    get :: CellExtractor
+    get key row =
       let
         idx = lookup (ᴠ key) keyIndices
       in
         idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
   in
-    values <#> (to getHtmlCell)
+    values <#> (to get)
 
 -- | Extract mapping keys and values from a HTML table.
 -- | The first row is treated as keys, subsequent rows as values.

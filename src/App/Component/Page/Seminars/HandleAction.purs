@@ -5,18 +5,25 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, _day, _firstname, _lastname, _month, _theme, _title, _videoUrl, _year)
-import App.Util.Capability.Log (error)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, _seminars)
+import App.Component.Util.Remote (fetchModify)
 import Data.Array (find, (!!))
-import Data.Either (Either)
 import Data.Int (fromString)
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
-import Effect.Aff.Class (class MonadAff)
-import Halogen (get, modify_, put)
+import Halogen (get, modify_)
 import Network.RemoteData (RemoteData(..))
-import Util.Google.Sheet (Converter, fetch, seminarsTab)
+import Util.Google.Sheet (Converter, seminarsTab)
 import Util.Html.Clean (untag)
+import Util.Proxy.Dictionary.Day (day')
+import Util.Proxy.Dictionary.Firstname (firstname')
+import Util.Proxy.Dictionary.Lastname (lastname')
+import Util.Proxy.Dictionary.Month (month')
+import Util.Proxy.Dictionary.Seminars (seminars')
+import Util.Proxy.Dictionary.Theme (theme')
+import Util.Proxy.Dictionary.Title (title')
+import Util.Proxy.Dictionary.VideoUrl (videoUrl')
+import Util.Proxy.Dictionary.Year (year')
 import Util.Time (unsafeDate)
 
 handleAction :: Action -> SeminarsM Unit
@@ -40,48 +47,42 @@ handleAction = case _ of
       _ -> ηι
 
   Load -> do
-    put Loading
-    seminars <- fetchSeminars
-    seminars
-      ?! (\sems -> do 
-        put $ Success 
-          { seminars: sems
-          , selectedSeminar: sems !! 0 <#> \sem ->
-              { seminar: sem
-              , openThemeDescriptionModal: false
-              }
-          }
-      )
-      ⇿ (\e -> do 
-          error $ "Error fetching seminars: " <> e
-          put $ Failure e
+    fetchModify 
+      seminars' 
+      _seminars 
+      seminarsTab 
+      toSeminar
+      (\sems ->  
+        { seminars: sems
+        , selectedSeminar: sems !! 0 <#> \sem ->
+            { seminar: sem
+            , openThemeDescriptionModal: false
+            }
+        }
       )
 
   OpenThemeDescriptionModal -> modify_ \s -> case s of 
-    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: false } } -> Success $ 
-      l { selectedSeminar = Just sel { openThemeDescriptionModal = true } }
+    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: false } } -> 
+      Success $ l { selectedSeminar = Just sel { openThemeDescriptionModal = true } }
     _ -> s
 
   CloseThemeDescriptionModal -> modify_ \s -> case s of
-    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: true } } -> Success $ 
-      l { selectedSeminar = Just sel { openThemeDescriptionModal = false } }
+    Success l@{ selectedSeminar: Just sel@{ openThemeDescriptionModal: true } } -> 
+      Success $ l { selectedSeminar = Just sel { openThemeDescriptionModal = false } }
     _ -> s
 
   DoNothing -> ηι
 
-fetchSeminars :: ∀ m. MonadAff m => m (Either String (Array Seminar))
-fetchSeminars = fetch seminarsTab toSeminar
-
 toSeminar :: Converter Seminar
 toSeminar get row =
-  { title: get _title row
-  , theme: get _theme row
-  , firstname: get _firstname row
-  , lastname: get _lastname row
+  { title: get title' row
+  , theme: get theme' row
+  , firstname: get firstname' row
+  , lastname: get lastname' row
   , date:
       unsafeDate
-        ((fromString $ get _year row) ??⇒ 1970)
-        ((fromString $ get _month row) ??⇒ 1)
-        ((fromString $ get _day row) ??⇒ 1)
-  , videoUrl: untag $ trim $ get _videoUrl row
+        ((fromString $ get year' row) ??⇒ 1970)
+        ((fromString $ get month' row) ??⇒ 1)
+        ((fromString $ get day' row) ??⇒ 1)
+  , videoUrl: untag $ trim $ get videoUrl' row
   }

@@ -6,7 +6,6 @@ module App.Component.Common.Modal.Type
   , Query
   , Slots
   , State
-  , _inner
   )
   where
 
@@ -26,8 +25,6 @@ data Output o = Closed | InnerOutputRaised o
 type Slots q o = 
   ( inner :: Slot q o NoSlotAddressIndex
   )
-
-_inner = Proxy :: Proxy "inner"
 
 type State i = 
   { closable :: Boolean

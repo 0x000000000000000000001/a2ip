@@ -15,7 +15,7 @@ import App.Component.Page.About.Style.Card.Portrait as CardPortrait
 import App.Component.Page.About.Style.Collaborators as Collaborators
 import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Sheet (sheet)
-import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State, _collaborators, _country, _email, _job, _members, _phone, _portraits, _role, _separators)
+import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
 import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (mapWithIndex, replicate)
@@ -29,6 +29,15 @@ import Network.RemoteData (isSuccess, toMaybe)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
+import Util.Proxy.Dictionary.Collaborators (collaborators', collaborators_)
+import Util.Proxy.Dictionary.Country (country')
+import Util.Proxy.Dictionary.Email (email')
+import Util.Proxy.Dictionary.Job (job')
+import Util.Proxy.Dictionary.Members (members', members_)
+import Util.Proxy.Dictionary.Phone (phone')
+import Util.Proxy.Dictionary.Portraits (portraits')
+import Util.Proxy.Dictionary.Role (role')
+import Util.Proxy.Dictionary.Separators (separators')
 import Util.String (slugify)
 import Util.Style (class_, classes)
 
@@ -39,8 +48,8 @@ render s =
     $
       [ sheet
       , separator 
-          _separators 
-          (ᴠ _members)
+          separators' 
+          members_
           { text: "Bureau des membres de l'association"
           , textElementTag: H1
           , loading: not $ isSuccess s.members
@@ -48,11 +57,11 @@ render s =
       , div
           [ class_ Members.classId ]
           $ mapWithIndex
-              (renderCard _members $ not $ isSuccess s.members)
+              (renderCard members' $ not $ isSuccess s.members)
               (toMaybe s.members ??⇒ replicate 6 loadingPerson)
       , separator
-          _separators
-          (ᴠ _collaborators)
+          separators'
+          collaborators_
           { text: "Membres du comité scientifique international"
           , textElementTag: H1
           , loading: not $ isSuccess s.collaborators
@@ -60,7 +69,7 @@ render s =
       , div
           [ class_ Collaborators.classId ]
           $ mapWithIndex
-              (renderCard _collaborators $ not $ isSuccess s.collaborators)
+              (renderCard collaborators' $ not $ isSuccess s.collaborators)
               (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
       ]
 
@@ -90,7 +99,7 @@ renderCard section isLoading idx member =
           [ class_ CardNames.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , prettyErrorImage
-          _portraits
+          portraits'
           ( (ᴠ section)
               <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
           )
@@ -126,8 +135,8 @@ renderCard section isLoading idx member =
 
   lines :: ∀ w i. Array (HTML w i)
   lines =
-    line _role
-      <> line _job
-      <> line _phone
-      <> line _email
-      <> line _country
+    line role'
+      <> line job'
+      <> line phone'
+      <> line email'
+      <> line country'

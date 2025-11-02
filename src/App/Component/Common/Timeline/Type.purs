@@ -1,13 +1,12 @@
 module App.Component.Common.Timeline.Type
   ( Action(..)
-  , Input
   , DefaultDate(..)
+  , Input
   , Output(..)
   , Query
   , Slots
   , State
   , TimelineM
-  , _date
   )
   where
 
@@ -17,7 +16,6 @@ import App.Component.Util.Type (NoQuery, NoSlots)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM)
 import Halogen.Query (ForkId)
-import Type.Prelude (Proxy(..))
 import Data.Date (Date)
 
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
@@ -52,4 +50,3 @@ type Query = NoQuery
 
 type TimelineM a = HalogenM State Action Slots Output AppM a
 
-_date = Proxy :: Proxy "date"

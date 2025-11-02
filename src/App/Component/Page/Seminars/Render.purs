@@ -15,7 +15,7 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, _themeDescription, _timeline, _youtubeVideo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
@@ -23,6 +23,9 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
+import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
+import Util.Proxy.Dictionary.Timeline (timeline')
+import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -33,7 +36,7 @@ render s =
     , div
         [ class_ Timeline.classId ]
         [ timeline
-            _timeline
+            timeline'
             noSlotAddressIndex
             { class_: Nothing
             , dates: toMaybe s ?? (\s_ -> s_.seminars <#> _.date) ⇔ mockDates
@@ -52,7 +55,7 @@ render s =
                     ? (
                       modal
                         Fragment.component
-                        _themeDescription
+                        themeDescription'
                         noSlotAddressIndex
                         { closable: true
                         , innerInput: div_ [ text "blablah" ]
@@ -70,7 +73,7 @@ render s =
           [ case s of
               Success { selectedSeminar: Just { seminar } } | seminar.videoUrl /= "" ->
                 youtubeVideo
-                  _youtubeVideo
+                  youtubeVideo'
                   noSlotAddressIndex
                   { url: seminar.videoUrl }
               _ -> noHtml

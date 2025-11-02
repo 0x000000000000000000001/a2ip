@@ -6,7 +6,7 @@ import Proem
 
 import App.Component.Common.Timeline.HandleAction.HandleSelectDate (handleSelectDate)
 import App.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
-import App.Component.Common.Timeline.Type (TimelineM, _date)
+import App.Component.Common.Timeline.Type (TimelineM)
 import App.Component.Common.Timeline.Util (parseDateDataAttr)
 import Data.Foldable (for_, minimumBy)
 import Data.Maybe (Maybe(..))
@@ -14,6 +14,7 @@ import Data.Number (abs)
 import Data.Traversable (traverse)
 import Halogen (get, modify_)
 import Util.Html.Dom (dataAttrPrefixed, getHalfScreenHeight)
+import Util.Proxy.Dictionary.Date (date')
 import Web.DOM.Element (Element, getAttribute, getBoundingClientRect)
 
 handleHandleDocScrollEnd :: TimelineM Unit
@@ -58,7 +59,7 @@ calculateDistancesFromCenter elements screenCenter =
         let
           elementMiddle = rect.top + (rect.height / 2.0)
           distance = abs (elementMiddle - screenCenter)
-        maybeDataDate <- getAttribute (dataAttrPrefixed _date) el
+        maybeDataDate <- getAttribute (dataAttrPrefixed date') el
         η { distance, dataDate: maybeDataDate }
     )
     elements

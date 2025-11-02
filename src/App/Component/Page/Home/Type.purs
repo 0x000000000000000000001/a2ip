@@ -16,9 +16,6 @@ type Slots =
   , carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
   )
 
-_modal = Proxy :: Proxy "modal"
-_carrousel = Proxy :: Proxy "carrousel"
-
 type State = 
   { showModal :: Boolean
   }

@@ -10,6 +10,7 @@ import App.Component.Util.Email (emailOfJoel, emailOfSophie)
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
 import App.Util.Capability.AppM (AppM)
 import Data.Date (Date)
+import Data.Lens (Lens')
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
@@ -25,10 +26,6 @@ type Slots =
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
   )
 
-_timeline = Proxy :: Proxy "timeline"
-_youtubeVideo = Proxy :: Proxy "youtubeVideo"
-_themeDescription = Proxy :: Proxy "themeDescription"
-
 type State 
   = Remote 
       { seminars :: Array Seminar
@@ -38,6 +35,8 @@ type State
             , openThemeDescriptionModal :: Boolean
             }
       }
+
+_seminars = identity :: Lens' State State
 
 data Action 
   = Load 
@@ -62,15 +61,6 @@ type SeminarRow =
   )
 
 type Seminar = { | SeminarRow }
-
-_title = Proxy :: Proxy "title"
-_theme = Proxy :: Proxy "theme"
-_firstname = Proxy :: Proxy "firstname"
-_lastname = Proxy :: Proxy "lastname"
-_day = Proxy :: Proxy "day"
-_month = Proxy :: Proxy "month"
-_year = Proxy :: Proxy "year"
-_videoUrl = Proxy :: Proxy "videoUrl"
 
 mockDates :: Array Date
 mockDates = 

@@ -1,12 +1,11 @@
 module App.Component.Router.Menu.Type
   ( Action(..)
-  , MenuM
   , Input
+  , MenuM
   , Output
   , Query
   , Slots
   , State
-  , _items
   )
   where
 
@@ -23,8 +22,6 @@ import Web.UIEvent.MouseEvent (MouseEvent)
 type Slots = 
   ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
   )
-
-_items = Proxy :: Proxy "items"
 
 type State = 
   { unfold :: Boolean 

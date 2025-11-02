@@ -10,13 +10,14 @@ module App.Component.Common.Timeline.HandleAction.Util
 
 import Proem
 
-import App.Component.Common.Timeline.Type (TimelineM, _date)
+import App.Component.Common.Timeline.Type (TimelineM)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import Data.Array (head, mapMaybe)
 import Data.Date (Date)
 import Data.Foldable (for_)
 import Data.Maybe (Maybe(..))
 import Util.Html.Dom (dataAttrQuerySelector, isVisible, placeElementInScreenYCenter)
+import Util.Proxy.Dictionary.Date (date')
 import Web.DOM.Element (Element, QuerySelector, fromNode)
 import Web.DOM.NodeList (toArray)
 import Web.DOM.ParentNode (querySelectorAll)
@@ -34,7 +35,7 @@ isDateVisible :: Date -> TimelineM Boolean
 isDateVisible date_ = isVisible $ dateQuerySelector (Just date_)
 
 dateQuerySelector :: Maybe Date -> QuerySelector
-dateQuerySelector date_ = dataAttrQuerySelector _date (date_ <#> dateToDataAttr)
+dateQuerySelector date_ = dataAttrQuerySelector date' (date_ <#> dateToDataAttr)
 
 getDateElement :: Date -> TimelineM (Maybe Element)
 getDateElement date = do 

@@ -9,8 +9,6 @@ module App.Component.Common.Carrousel.Type
   , Slots
   , Source
   , State
-  , _image
-  , _youtubeVideo
   )
   where
 
@@ -21,7 +19,6 @@ import App.Util.Capability.AppM (AppM)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)
-import Type.Prelude (Proxy(..))
 
 type Source = String
 
@@ -44,9 +41,6 @@ type Slots =
   ( image :: Slot PrettyErrorImage.Query PrettyErrorImage.Output NoSlotAddressIndex
   , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
   )
-
-_image = Proxy :: Proxy "image"
-_youtubeVideo = Proxy :: Proxy "youtubeVideo"
 
 type State = 
   { input :: Input

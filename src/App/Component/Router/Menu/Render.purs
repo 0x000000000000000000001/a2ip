@@ -25,6 +25,7 @@ import Halogen.HTML (div, img, nav, slot, text)
 import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Halogen.HTML.Properties as HP
+import Util.Proxy.Dictionary.Items (items')
 import Util.Style (class_)
 
 type Item r =
@@ -85,7 +86,7 @@ render s =
   where
   item :: String -> Maybe Route -> String -> Array ChildItem -> ComponentHTML Action Slots AppM
   item label' route iconFileName children =
-    slot Type._items (label' /\ route) Link.component
+    slot items' (label' /\ route) Link.component
       { route
       , class_: Just Item.classId
       , display: flex

@@ -9,6 +9,8 @@ import Data.Lens (Lens')
 import Data.Lens.Record (prop)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
+import Util.Proxy.Dictionary.Collaborators (collaborators')
+import Util.Proxy.Dictionary.Members (members')
 
 type Input = NoInput
 
@@ -19,18 +21,13 @@ type Slots =
   , separators :: Slot Separator.Query Separator.Output String
   )
 
-_portraits = Proxy :: Proxy "portraits"
-_separators = Proxy :: Proxy "separators"
-
 type State =
   { members :: Remote (Array Person)
   , collaborators :: Remote (Array Person)
   }
 
-_members = Proxy :: Proxy "members"
-members = prop _members :: Lens' State (Remote (Array Person))
-_collaborators = Proxy :: Proxy "collaborators"
-collaborators = prop _collaborators :: Lens' State (Remote (Array Person))
+_members = prop members' :: Lens' State (Remote (Array Person))
+_collaborators = prop collaborators' :: Lens' State (Remote (Array Person))
 
 data Action = Load
 
@@ -51,12 +48,3 @@ type PersonRow =
   )
 
 type Person = { | PersonRow }
-
-_lastname = Proxy :: Proxy "lastname" 
-_firstname = Proxy :: Proxy "firstname"
-_role = Proxy :: Proxy "role"
-_job = Proxy :: Proxy "job"
-_phone = Proxy :: Proxy "phone"
-_email = Proxy :: Proxy "email"
-_portraitId = Proxy :: Proxy "portraitId"
-_country = Proxy :: Proxy "country"

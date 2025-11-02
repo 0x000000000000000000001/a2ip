@@ -19,11 +19,6 @@ type Slots =
   , seminars :: Slot PageSeminars.Query PageSeminars.Output NoSlotAddressIndex
   )
 
-_menu = Proxy :: Proxy "menu"
-_home = Proxy :: Proxy "home"
-_about = Proxy :: Proxy "about"
-_seminars = Proxy :: Proxy "seminars"
-
 type Input = NoInput
 
 type Output = NoOutput

@@ -14,7 +14,7 @@ import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
-import App.Component.Common.Timeline.Type (Action(..), Slots, State, _date)
+import App.Component.Common.Timeline.Type (Action(..), Slots, State)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
@@ -27,6 +27,7 @@ import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen as Renderer
 import Util.Html.Dom (dataAttr)
+import Util.Proxy.Dictionary.Day (day')
 import Util.String (padLeft)
 import Util.Style (class_, classes)
 
@@ -59,7 +60,7 @@ render { input: { dates, loading }, selectedDate } =
                         [Date.classId] 
                         <> (not loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
                     , onClick $ κ $ SelectDate date_
-                    , dataAttr _date dateDataAttr
+                    , dataAttr day' dateDataAttr
                     ]
                     [ div
                         [ class_ Numbers.classId ]

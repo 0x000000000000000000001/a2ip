@@ -42,6 +42,7 @@ You can edit this file as you like.
   , "parallel"
   , "partial"
   , "prelude"
+  , "profunctor-lenses"
   , "record"
   , "remotedata"
   , "routing"

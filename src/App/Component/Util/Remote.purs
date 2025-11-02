@@ -16,18 +16,19 @@ import Util.Google.Sheet (Converter, Tab)
 import Util.Google.Sheet as Sheet
 
 fetchModify
-  :: forall sym state action slots output a
+  :: forall sym state action slots output a b
    . IsSymbol sym 
   => Proxy sym 
-  -> Lens' state (Remote (Array a))
+  -> Lens' state (Remote b)
   -> Tab 
   -> Converter a
+  -> (Array a -> b)
   -> HalogenM state action slots output AppM Unit
-fetchModify proxy lens tab to = do
+fetchModify proxy lens tab to finalize = do
   modify_ (_ # lens .~ Loading)
   data' <- Sheet.fetch tab to
   data'
-    ?! (\m -> modify_ (_ # lens .~ Success m))
+    ?! (\m -> modify_ \s -> s # lens .~ (Success $ finalize m))
     ⇿ (\e -> do
       error $ "Error fetching " <> ᴠ proxy <> ": " <> e
       modify_ (_ # lens .~ Failure e)
