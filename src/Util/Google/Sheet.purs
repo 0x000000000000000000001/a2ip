@@ -2,6 +2,7 @@ module Util.Google.Sheet
   ( CellExtractor
   , Converter
   , ExtractedData
+  , Tab
   , TabId
   , TableRow
   , collaboratorsTab

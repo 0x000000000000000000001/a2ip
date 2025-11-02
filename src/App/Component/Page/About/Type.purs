@@ -5,6 +5,8 @@ import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import App.Component.Common.Separator.Type as Separator
 import App.Component.Util.Type (Remote, NoInput, NoOutput, NoQuery)
 import App.Util.Capability.AppM (AppM)
+import Data.Lens (Lens')
+import Data.Lens.Record (prop)
 import Halogen (HalogenM, Slot)
 import Type.Prelude (Proxy(..))
 
@@ -26,7 +28,9 @@ type State =
   }
 
 _members = Proxy :: Proxy "members"
+members = prop _members :: Lens' State (Remote (Array Person))
 _collaborators = Proxy :: Proxy "collaborators"
+collaborators = prop _collaborators :: Lens' State (Remote (Array Person))
 
 data Action = Load
 

@@ -7,15 +7,14 @@ module App.Component.Common.Carrousel.Style.Media
 
 import Proem hiding (top)
 
-import App.Component.Common.Loader.Style.Loader as Loader
 import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage as PrettyErrorImage
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
-import CSS (StyleM, black, white, zIndex)
+import CSS (StyleM, black, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
 import Color (darken)
-import Util.Style (backgroundColorTransparent, centerToCenter, fill, flexGrow1, heightPct100, positionRelative, raw, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
+import Util.Style (backgroundColorTransparent, fill, flexGrow1, heightPct100, positionRelative, raw, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
 
 classId :: String
 classId = "g3hSj8Cu1"

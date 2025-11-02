@@ -73,15 +73,15 @@ fetchSeminars :: ∀ m. MonadAff m => m (Either String (Array Seminar))
 fetchSeminars = fetch seminarsTab toSeminar
 
 toSeminar :: Converter Seminar
-toSeminar getHtmlCell row =
-  { title: getHtmlCell _title row
-  , theme: getHtmlCell _theme row
-  , firstname: getHtmlCell _firstname row
-  , lastname: getHtmlCell _lastname row
+toSeminar get row =
+  { title: get _title row
+  , theme: get _theme row
+  , firstname: get _firstname row
+  , lastname: get _lastname row
   , date:
       unsafeDate
-        ((fromString $ getHtmlCell _year row) ??⇒ 1970)
-        ((fromString $ getHtmlCell _month row) ??⇒ 1)
-        ((fromString $ getHtmlCell _day row) ??⇒ 1)
-  , videoUrl: untag $ trim $ getHtmlCell _videoUrl row
+        ((fromString $ get _year row) ??⇒ 1970)
+        ((fromString $ get _month row) ??⇒ 1)
+        ((fromString $ get _day row) ??⇒ 1)
+  , videoUrl: untag $ trim $ get _videoUrl row
   }
