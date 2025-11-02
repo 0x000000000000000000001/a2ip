@@ -101,8 +101,17 @@ instance showTheme :: Show Theme where
 
 instance Read Theme where
   read "Politics" = Just Politics
+  read "Politique" = Just Politics
+
   read "Discontents" = Just Discontents
+  read "Malaise" = Just Discontents
+
   read "History" = Just History
+  read "Histoire" = Just History
+
+  read "WorldViews" = Just WorldViews
+  read "Visions" = Just WorldViews
+
   read _ = Nothing
 
 themeInfo :: Theme -> ThemeInfo
