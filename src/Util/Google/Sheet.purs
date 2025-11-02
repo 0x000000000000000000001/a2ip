@@ -49,10 +49,11 @@ type Tab = { id :: TabId, name :: String }
 tab :: ∀ sym. IsSymbol sym => Proxy sym -> Tab 
 tab p = 
   let p_ = ᴠ p 
-  in case ι of
-    _ | members_ == p_ -> { id: "0", name: "Membres A2IP" }
-    _ | collaborators_ == p_ -> { id: "2092489064", name: "Comité international" }
-    _ -> { id: "1531940447", name: "Séminaires" }
+      ans 
+        | members_ == p_ = { id: "0", name: "Membres A2IP" }
+        | collaborators_ == p_ = { id: "2092489064", name: "Comité international" }
+        | otherwise = { id: "1531940447", name: "Séminaires" }
+  in ans
 
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"

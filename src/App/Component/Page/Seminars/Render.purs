@@ -15,12 +15,12 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (classId)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, themeInfo)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, div_, p, p_, text)
+import Halogen.HTML (div, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
@@ -50,7 +50,7 @@ render s =
         ( ( case s of 
               Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
                 [ p_ [ text $ "title: " <> seminar.title ],
-                  p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> seminar.theme ],
+                  p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ],
                   openThemeDescriptionModal
                     ? (
                       modal
@@ -58,7 +58,7 @@ render s =
                         themeDescription'
                         noSlotAddressIndex
                         { closable: true
-                        , innerInput: div_ [ text "blablah" ]
+                        , innerInput: text (themeInfo seminar.theme).description
                         }
                         handleThemeDescriptionModalOutput
                     ) ↔ noHtml,

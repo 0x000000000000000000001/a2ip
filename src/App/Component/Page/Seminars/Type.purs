@@ -10,8 +10,10 @@ import App.Component.Util.Email (emailOfJoel, emailOfSophie)
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
 import App.Util.Capability.AppM (AppM)
 import Data.Date (Date)
+import Data.Generic.Rep (class Generic)
 import Data.Lens (Lens')
 import Data.Maybe (Maybe(..))
+import Data.Show.Generic (genericShow)
 import Halogen (HalogenM, Slot)
 import Util.Time (unsafeDate)
 
@@ -52,7 +54,7 @@ type SeminarsM a = HalogenM State Action Slots Output AppM a
 
 type SeminarRow = 
   ( title :: String
-  , theme :: String
+  , theme :: Theme
   , firstname :: String
   , lastname :: String
   , date :: Date
@@ -90,6 +92,11 @@ data Theme
   | Discontents 
   | History
   | WorldViews
+
+derive instance eqTheme :: Eq Theme
+derive instance genericTheme :: Generic Theme _
+instance showTheme :: Show Theme where
+  show = genericShow
 
 themeInfo :: Theme -> ThemeInfo
 themeInfo = case _ of
