@@ -13,7 +13,7 @@ import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Halogen (get, modify_)
 import Network.RemoteData (RemoteData(..))
-import Util.Google.Sheet (Converter, seminarsTab)
+import Util.Google.Sheet (Converter)
 import Util.Html.Clean (untag)
 import Util.Proxy.Dictionary.Day (day')
 import Util.Proxy.Dictionary.Firstname (firstname')
@@ -50,7 +50,6 @@ handleAction = case _ of
     fetchModify 
       seminars' 
       _seminars 
-      seminarsTab 
       toSeminar
       (\sems ->  
         { seminars: sems

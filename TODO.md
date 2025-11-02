@@ -1,6 +1,5 @@
 -- p1
 
-un seul fichier pour les proxies
 utiliser des lenses pour les maj de state
 mot de passe pour l'accès à chaque vidéo, avec ouverture de modal si la personne ne le connait pas (petit texte en dessous de l'input)
 tooltip sur les pins de la timeline, avec les titres

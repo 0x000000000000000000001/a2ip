@@ -14,7 +14,6 @@ import App.Component.Router.Menu.Style.Logo as Logo
 import App.Component.Router.Menu.Style.Menu (classId)
 import App.Component.Router.Menu.Style.Sheet (sheet)
 import App.Component.Router.Menu.Type (Action(..), State, Slots)
-import App.Component.Router.Menu.Type as Type
 import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route(..))
 import CSS (flex, fromString)

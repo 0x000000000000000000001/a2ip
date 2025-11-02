@@ -22,7 +22,8 @@ import Node.FS.Aff (stat)
 import Util.File.Image.Common (googleDriveImageUrl, suffixWithExt)
 import Util.File.Image.Node (downloadImage)
 import Util.File.Path (rootDirPath)
-import Util.Google.Sheet (fetch, membersTab)
+import Util.Google.Sheet (fetch)
+import Util.Proxy.Dictionary.Members (members')
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
 
 main :: Effect Unit
@@ -51,7 +52,7 @@ type Image =
 
 imagesToDownload :: BinM (Array Image)
 imagesToDownload = do 
-  members <- fetch membersTab toPerson
+  members <- fetch members' toPerson
 
   members 
     ?! (\members_ -> do

@@ -12,7 +12,7 @@ import Halogen (HalogenM, modify_)
 import Network.RemoteData (RemoteData(..))
 import Proem (Unit, bind, discard, ᴠ, (#), ($), (<>), (?!), (⇿))
 import Type.Prelude (Proxy)
-import Util.Google.Sheet (Converter, Tab)
+import Util.Google.Sheet (Converter)
 import Util.Google.Sheet as Sheet
 
 fetchModify
@@ -20,13 +20,14 @@ fetchModify
    . IsSymbol sym 
   => Proxy sym 
   -> Lens' state (Remote b)
-  -> Tab 
   -> Converter a
   -> (Array a -> b)
   -> HalogenM state action slots output AppM Unit
-fetchModify proxy lens tab to finalize = do
+fetchModify proxy lens to finalize = do
   modify_ (_ # lens .~ Loading)
-  data' <- Sheet.fetch tab to
+
+  data' <- Sheet.fetch proxy to
+  
   data'
     ?! (\m -> modify_ \s -> s # lens .~ (Success $ finalize m))
     ⇿ (\e -> do

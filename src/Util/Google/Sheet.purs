@@ -5,15 +5,13 @@ module Util.Google.Sheet
   , Tab
   , TabId
   , TableRow
-  , collaboratorsTab
   , convertExtractedData
   , extractMappingKeysAndValuesFromTableHtml
   , fetch
   , fetchTableHtml
   , googleSheetHtmlZipDownloadUrl
   , googleSheetUrl
-  , membersTab
-  , seminarsTab
+  , tab
   )
   where
 
@@ -33,6 +31,8 @@ import Util.Array.Map (arrayToIndexMap)
 import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
+import Util.Proxy.Dictionary.Collaborators (collaborators_)
+import Util.Proxy.Dictionary.Members (members_)
 
 type ExtractedData = { keys :: Array String, keyIndices :: Map String Int, values :: Array (Array String) }
 
@@ -46,9 +46,13 @@ type Converter output = (CellExtractor -> TableRow -> output)
 
 type Tab = { id :: TabId, name :: String }
 
-membersTab = { id: "0", name: "Membres A2IP" } :: Tab
-collaboratorsTab = { id: "2092489064", name: "Comité international" } :: Tab
-seminarsTab = { id: "1531940447", name: "Séminaires" } :: Tab
+tab :: ∀ sym. IsSymbol sym => Proxy sym -> Tab 
+tab p = 
+  let p_ = ᴠ p 
+  in case ι of
+    _ | members_ == p_ -> { id: "0", name: "Membres A2IP" }
+    _ | collaborators_ == p_ -> { id: "2092489064", name: "Comité international" }
+    _ -> { id: "1531940447", name: "Séminaires" }
 
 googleSheetUrl :: String
 googleSheetUrl = "https://docs.google.com/spreadsheets/d/1k5wU7ARnjasX6y29AEDcpW06Zk_13I2XI6kwgKlsVhE"
@@ -57,21 +61,21 @@ googleSheetHtmlZipDownloadUrl :: String
 googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
 fetchTableHtml :: ∀ m. MonadAff m => Tab -> m (Either String String)
-fetchTableHtml tab = do
+fetchTableHtml tab_ = do
   result <- ʌ' $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result
     ?!
       ( \response -> do
-          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tab.name response.body
+          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tab_.name response.body
           htmlContent
             ?! (η ◁ Right)
             ⇿ \e_ -> η $ Left $ "Failed to unzip: " <> message e_
       )
     ⇿ \e -> η $ Left $ "Failed to fetch ZIP: " <> printError e
 
-fetch :: ∀ m o. MonadAff m => Tab -> Converter o -> m (Either String (Array o))
-fetch tab to = do
-  htmlContent <- fetchTableHtml tab
+fetch :: ∀ sym m o. IsSymbol sym => MonadAff m => Proxy sym -> Converter o -> m (Either String (Array o))
+fetch tabProxy to = do
+  htmlContent <- fetchTableHtml (tab tabProxy)
   htmlContent
     ?!
       ( \h -> do

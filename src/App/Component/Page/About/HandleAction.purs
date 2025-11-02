@@ -9,7 +9,7 @@ import App.Component.Page.About.Type (AboutM, Action(..), Person, _collaborators
 import App.Component.Util.Remote (fetchModify)
 import Halogen (fork)
 import Util.Google.Drive (extractPortraitIdFromViewUrl)
-import Util.Google.Sheet (Converter, collaboratorsTab, membersTab)
+import Util.Google.Sheet (Converter)
 import Util.Html.Clean (untag)
 import Util.Proxy.Dictionary.Collaborators (collaborators')
 import Util.Proxy.Dictionary.Country (country')
@@ -25,9 +25,9 @@ import Util.Proxy.Dictionary.Role (role')
 handleAction :: Action -> AboutM Unit
 handleAction = case _ of
   Load -> do
-    fetchModify members' _members membersTab toPerson identity
+    fetchModify members' _members toPerson identity
 
-    ø $ fork $ fetchModify collaborators' _collaborators collaboratorsTab toPerson identity
+    ø $ fork $ fetchModify collaborators' _collaborators toPerson identity
 
 toPerson :: Converter Person
 toPerson get row =
