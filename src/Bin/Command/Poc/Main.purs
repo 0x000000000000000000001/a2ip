@@ -7,7 +7,6 @@ import Effect (Effect)
 import Effect.AVar (empty)
 import Effect.Aff.AVar as AAVar
 import Effect.Console (log)
-import Util.Aff (keepAlive)
 
 main :: Effect Unit
 main = runBinM true do
