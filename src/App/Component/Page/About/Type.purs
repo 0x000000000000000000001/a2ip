@@ -8,7 +8,6 @@ import App.Util.Capability.AppM (AppM)
 import Data.Lens (Lens')
 import Data.Lens.Record (prop)
 import Halogen (HalogenM, Slot)
-import Type.Prelude (Proxy(..))
 import Util.Proxy.Dictionary.Collaborators (collaborators')
 import Util.Proxy.Dictionary.Members (members')
 

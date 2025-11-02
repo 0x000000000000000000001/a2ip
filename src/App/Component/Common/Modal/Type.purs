@@ -12,7 +12,6 @@ module App.Component.Common.Modal.Type
 import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
-import Type.Prelude (Proxy(..))
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input i = 
