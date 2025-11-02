@@ -15,18 +15,15 @@ import Web.Storage.Storage (getItem, removeItem, setItem)
 
 setInLocalStorage :: ∀ m. MonadEffect m => String -> String -> m Unit
 setInLocalStorage k v = ʌ do 
-  win <- window
-  storage <- localStorage win
+  storage <- localStorage =<< window
   setItem k v storage
 
 getInLocalStorage :: ∀ m. MonadEffect m => String -> m (Maybe String)
 getInLocalStorage k = ʌ do 
-  win <- window
-  storage <- localStorage win
+  storage <- localStorage =<< window
   getItem k storage
 
 removeInLocalStorage :: ∀ m. MonadEffect m => String -> m Unit
 removeInLocalStorage k = ʌ do
-  win <- window
-  storage <- localStorage win
+  storage <- localStorage =<< window
   removeItem k storage

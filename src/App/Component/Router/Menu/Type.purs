@@ -16,7 +16,6 @@ import App.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Data.Tuple (Tuple)
 import Halogen (HalogenM, Slot)
-import Type.Prelude (Proxy(..))
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Slots = 

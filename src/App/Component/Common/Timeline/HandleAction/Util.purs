@@ -47,11 +47,13 @@ getAllDateElements = getDateElements Nothing
 
 getDateElements :: Maybe Date -> TimelineM (Maybe (Array Element))
 getDateElements date = ʌ do
-  win <- window
-  doc <- document win
+  doc <- document =<< window
+
   nodeList <- querySelectorAll (dateQuerySelector date) (toParentNode doc)
   nodes <- toArray nodeList
+  
   let elements = nodes # mapMaybe fromNode
+  
   case elements of
     [] -> η Nothing
     _ -> η $ Just elements

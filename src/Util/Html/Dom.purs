@@ -77,8 +77,7 @@ scrollTo x y = ʌ do
 
 getScrollY :: ∀ m. MonadEffect m => m Int
 getScrollY = ʌ do
-  win <- window
-  y <- scrollY win
+  y <- scrollY =<< window
   η $ round y
 
 placeElementInScreenYCenter :: ∀ m. MonadEffect m => Element -> m Unit
@@ -94,8 +93,7 @@ placeElementInScreenYCenter element = ʌ do
 
 getScreenHeight :: ∀ m. MonadEffect m => m Number
 getScreenHeight = ʌ do
-  win <- window
-  screenHeight <- innerHeight win
+  screenHeight <- innerHeight =<< window
   η $ toNumber screenHeight
 
 getHalfScreenHeight :: ∀ m. MonadEffect m => m Number

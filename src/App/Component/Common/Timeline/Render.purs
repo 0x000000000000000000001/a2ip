@@ -27,7 +27,7 @@ import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen as Renderer
 import Util.Html.Dom (dataAttr)
-import Util.Proxy.Dictionary.Day (day')
+import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
 import Util.Style (class_, classes)
 
@@ -60,7 +60,7 @@ render { input: { dates, loading }, selectedDate } =
                         [Date.classId] 
                         <> (not loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
                     , onClick $ κ $ SelectDate date_
-                    , dataAttr day' dateDataAttr
+                    , dataAttr date' dateDataAttr
                     ]
                     [ div
                         [ class_ Numbers.classId ]

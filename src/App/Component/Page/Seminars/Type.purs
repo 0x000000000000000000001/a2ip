@@ -11,11 +11,8 @@ import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, 
 import App.Util.Capability.AppM (AppM)
 import Data.Date (Date)
 import Data.Lens (Lens')
-import Data.Lens.Record (prop)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM, Slot)
-import Type.Prelude (Proxy(..))
-import Util.Proxy.Dictionary.SelectedSeminar (selectedSeminar')
 import Util.Time (unsafeDate)
 
 type Input = NoInput
