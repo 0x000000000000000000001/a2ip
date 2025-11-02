@@ -47,10 +47,7 @@ handleAction = case _ of
       _ -> ηι
 
   Load -> do
-    fetchModify 
-      seminars' 
-      _seminars 
-      toSeminar
+    fetchModify seminars' _seminars toSeminar
       (\sems ->  
         { seminars: sems
         , selectedSeminar: sems !! 0 <#> \sem ->
