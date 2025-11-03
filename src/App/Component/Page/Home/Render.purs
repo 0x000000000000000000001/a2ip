@@ -9,8 +9,11 @@ import App.Component.Common.Carrousel.Type (Media(..))
 import App.Component.Common.Input.Component (input)
 import App.Component.Common.Input.Type (defaultInput)
 import App.Component.Common.Modal.Component (modal)
-import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
+import App.Component.Common.Vault.Component (vault)
+import App.Component.Common.YoutubeVideo.Component as YoutubeVideo
 import App.Component.Page.Home.HandleInputOutput (handleInputOutput)
+import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
+import App.Component.Page.Home.HandleVaultOutput (handleVaultOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -21,6 +24,7 @@ import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Input (input')
 import Util.Proxy.Dictionary.Modal (modal')
+import Util.Proxy.Dictionary.Vault (vault')
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -61,4 +65,13 @@ render s =
           }
         )
         handleInputOutput
+    , vault 
+        YoutubeVideo.component
+        vault'
+        noSlotAddressIndex
+        { innerInput:
+            { url: "https://www.youtube.com/watch?v=qxYyHqS3FKk"
+            }
+        }
+        handleVaultOutput
     ]

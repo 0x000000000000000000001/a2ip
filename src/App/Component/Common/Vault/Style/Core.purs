@@ -6,8 +6,9 @@ module App.Component.Common.Vault.Style.Core
 
 import Proem hiding (top)
 
+import CSS (zIndex)
 import CSS as CSS
-import Util.Style (nothing, (.?))
+import Util.Style (positionRelative, (.?))
 
 classId :: String
 classId = "CmV9tUiDz"
@@ -15,4 +16,5 @@ classId = "CmV9tUiDz"
 style :: CSS.CSS
 style = do
   classId .? do
-    nothing
+    positionRelative
+    zIndex 1
