@@ -23,8 +23,8 @@ style = do
     borderRadiusRem1 0.2
     overflowHidden
     
-  -- __focus :? do
-  --   borderColor red
+  __focus :? do
+    borderColor red
 
   where 
   __focus = classId .& focus

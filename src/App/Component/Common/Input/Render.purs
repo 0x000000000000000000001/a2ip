@@ -29,7 +29,7 @@ render state@{ input: { placeholder, label, class_: class' } } =
                     ( \l ->
                         [ HH.label
                             [ classes [ Label.classId ] ]
-                            [ text "def" ]
+                            [ text l ]
                         ]
                     )
                 ⇔ []
