@@ -21,7 +21,7 @@ component :: Component Query Input Output AppM
 component = mkComponent
     { initialState: \i -> 
         { input: i
-        , value: i.initialValue
+        , value: Nothing
         }
     , render   
     , eval: mkEval defaultEval

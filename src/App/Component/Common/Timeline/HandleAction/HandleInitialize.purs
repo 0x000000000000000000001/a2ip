@@ -6,7 +6,8 @@ import Proem
 
 import App.Component.Common.Timeline.Type (Action(..), TimelineM)
 import Data.Maybe (Maybe(..))
-import Halogen (subscribe')
+import Effect.Ref (new)
+import Halogen (modify_, subscribe')
 import Halogen.Query.Event (eventListener)
 import Util.Html.Dom (scroll)
 import Web.DOM.Document (toEventTarget)
@@ -21,3 +22,6 @@ handleInitialize = do
     scroll
     (doc # toDocument # toEventTarget)
     (HandleDocScroll # Just # κ)
+
+  ref <- ʌ $ new Nothing
+  modify_ _ { scrollFork = Just ref }

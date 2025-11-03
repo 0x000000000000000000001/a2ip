@@ -10,15 +10,20 @@ import Data.Foldable (for_)
 import Data.Maybe (Maybe(..))
 import Data.Time.Duration (Milliseconds(..))
 import Effect.Aff (delay)
-import Halogen (fork, get, kill, modify_)
+import Effect.Ref (read, write)
+import Halogen (fork, get, kill)
 
 handleHandleDocScroll :: TimelineM Unit
 handleHandleDocScroll = do
   state <- get
-  for_ state.scrollFork kill
+
+  for_ state.scrollFork \ref -> do
+    maybeForkId <- ʌ $ read ref
+    for_ maybeForkId kill
 
   forkId <- fork do
     ʌ' $ delay $ Milliseconds 150.0
     handleHandleDocScrollEnd
 
-  modify_ _ { scrollFork = Just forkId }
+  for_ state.scrollFork \ref ->
+    ʌ $ write (Just forkId) ref

@@ -12,14 +12,18 @@ import Data.Foldable (for_, minimumBy)
 import Data.Maybe (Maybe(..))
 import Data.Number (abs)
 import Data.Traversable (traverse)
-import Halogen (get, modify_)
+import Effect.Ref (write)
+import Halogen (get)
 import Util.Html.Dom (dataAttrPrefixed, getHalfScreenHeight)
 import Util.Proxy.Dictionary.Date (date')
 import Web.DOM.Element (Element, getAttribute, getBoundingClientRect)
 
 handleHandleDocScrollEnd :: TimelineM Unit
 handleHandleDocScrollEnd = do
-  modify_ _ { scrollFork = Nothing }
+  state <- get 
+  
+  for_ state.scrollFork \ref ->
+    ʌ $ write Nothing ref
 
   selectDateClosestToScreenCenterIfNeeded
 

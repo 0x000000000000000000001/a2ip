@@ -16,33 +16,30 @@ import Halogen.HTML (div, input, text)
 import Halogen.HTML as HH
 import Halogen.HTML.Events (onValueInput)
 import Halogen.HTML.Properties as HP
-import Util.Log (unsafeDebugShow)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render state@{ input: { placeholder, label, class_: class' } } =
-    let _ = unsafeDebugShow "render" in
     div
         [ classes $ [ classId ] <> (class' ?? (_ : []) ⇔ []) ]
         ( [ sheet state ]
             <>
-                ( label
-                    ??
+            ( label
+                ??
                     ( \l ->
                         [ HH.label
                             [ classes [ Label.classId ] ]
                             [ text l ]
                         ]
                     )
-                    ⇔ []
-                )
+                ⇔ []
+            )
             <>
-                [ input
-                    $
+            [ input
+                $
                     [ classes [ Field.classId ]
-                    --   , HP.value value
                     , onValueInput HandleInput
                     ]
-                    <> (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
-                ]
+                <> (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
+            ]
         )

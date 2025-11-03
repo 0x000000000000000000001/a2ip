@@ -11,12 +11,13 @@ module App.Component.Common.Timeline.Type
   where
 
 
-import App.Util.Capability.AppM (AppM)
 import App.Component.Util.Type (NoQuery, NoSlots)
+import App.Util.Capability.AppM (AppM)
+import Data.Date (Date)
 import Data.Maybe (Maybe)
+import Effect.Ref (Ref)
 import Halogen (HalogenM)
 import Halogen.Query (ForkId)
-import Data.Date (Date)
 
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
 
@@ -35,7 +36,7 @@ type Slots = NoSlots
 type State = 
   { input :: Input
   , selectedDate :: Maybe Date
-  , scrollFork :: Maybe ForkId
+  , scrollFork :: Maybe (Ref (Maybe ForkId))
   }
 
 data Action 

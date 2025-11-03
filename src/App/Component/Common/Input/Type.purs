@@ -13,6 +13,7 @@ module App.Component.Common.Input.Type
 import App.Component.Util.Type (NoQuery, NoSlots)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
+import Effect.Ref (Ref)
 import Halogen (HalogenM)
 
 type Input =
@@ -37,11 +38,12 @@ type Slots = NoSlots
 
 type State =
   { input :: Input
-  , value :: String
+  , value :: Maybe (Ref String)
   }
 
 data Action 
-  = Receive Input
+  = Initialize
+  | Receive Input
   | HandleInput String
 
 type Query :: ∀ k. k -> Type
