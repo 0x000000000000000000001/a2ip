@@ -2,6 +2,7 @@ module App.Component.Page.Home.Type where
 
 import App.Component.Common.Modal.Type as Modal
 import App.Component.Common.Carrousel.Type as Carrousel
+import App.Component.Common.Input.Type as Input
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
@@ -12,7 +13,7 @@ type Output = NoOutput
 
 type Slots =
   ( modal :: Slot Carrousel.Query (Modal.Output Carrousel.Output) NoSlotAddressIndex
-  , carrousel :: Slot Carrousel.Query Carrousel.Output NoSlotAddressIndex
+  , input :: Slot Input.Query Input.Output NoSlotAddressIndex
   )
 
 type State = 
