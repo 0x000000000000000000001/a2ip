@@ -6,4 +6,3 @@ import App.Component.Common.Vault.Type (Action(..))
 
 handleInnerOutput :: ∀ i o. o -> Action i o
 handleInnerOutput output = RaiseInnerOutput output
-  

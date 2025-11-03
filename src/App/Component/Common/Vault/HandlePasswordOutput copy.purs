@@ -1,0 +1,9 @@
+module App.Component.Common.Vault.HandlePasswordOutput
+  ( handlePasswordOutput
+  ) where
+
+import App.Component.Common.Input.Type as Input
+import App.Component.Common.Vault.Type (Action(..))
+
+handlePasswordOutput :: ∀ i o. Input.Output -> Action i o
+handlePasswordOutput _ = DoNothing

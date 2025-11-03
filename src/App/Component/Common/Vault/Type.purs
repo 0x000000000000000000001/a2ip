@@ -9,6 +9,7 @@ module App.Component.Common.Vault.Type
   )
   where
 
+import App.Component.Common.Input.Type as Input
 import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
@@ -21,13 +22,14 @@ data Output o = InnerOutputRaised o
 
 type Slots q o = 
   ( inner :: Slot q o NoSlotAddressIndex
+  , password :: Slot Input.Query Input.Output NoSlotAddressIndex
   )
 
 type State i = 
   { innerInput :: i
   }
 
-data Action i o = Receive (Input i) | RaiseInnerOutput o
+data Action i o = Receive (Input i) | RaiseInnerOutput o | DoNothing
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

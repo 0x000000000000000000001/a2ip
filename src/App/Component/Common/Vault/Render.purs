@@ -4,7 +4,10 @@ module App.Component.Common.Vault.Render
 
 import Proem hiding (div)
 
+import App.Component.Common.Input.Component (input)
+import App.Component.Common.Input.Type (defaultInput)
 import App.Component.Common.Vault.HandleInnerOutput (handleInnerOutput)
+import App.Component.Common.Vault.HandlePasswordOutput (handlePasswordOutput)
 import App.Component.Common.Vault.Style.Core as Core
 import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Message as Message
@@ -13,10 +16,12 @@ import App.Component.Common.Vault.Style.Vault (classId)
 import App.Component.Common.Vault.Type (Action, Slots, State)
 import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
+import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
+import Util.Proxy.Dictionary.Password (password')
 import Util.Style (class_)
 
 render 
@@ -51,6 +56,15 @@ render innerComponent s =
                 ]
             ]
         , render_ frontDoorSvg 
+        , input
+            password'
+            noSlotAddressIndex
+            ( defaultInput
+              { placeholder = Just "Placeholder"
+              , label = Just "Label"
+              }
+            )
+            handlePasswordOutput
         ]
     ]
 

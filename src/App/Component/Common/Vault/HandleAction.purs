@@ -13,3 +13,5 @@ handleAction = case _ of
   Receive input -> modify_ _ { innerInput = input.innerInput }
   
   RaiseInnerOutput output -> raise (InnerOutputRaised output)
+
+  DoNothing -> ηι
