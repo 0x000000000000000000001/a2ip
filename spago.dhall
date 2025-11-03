@@ -45,6 +45,7 @@ You can edit this file as you like.
   , "profunctor-lenses"
   , "read"
   , "record"
+  , "refs"
   , "remotedata"
   , "routing"
   , "routing-duplex"
