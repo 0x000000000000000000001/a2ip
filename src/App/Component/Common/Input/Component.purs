@@ -22,11 +22,13 @@ component = mkComponent
     { initialState: \i -> 
         { input: i
         , value: Nothing
+        , focus: false
         }
     , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction
         , receive = Just ◁ Receive
+        , initialize = Just Initialize
         }
     }
 

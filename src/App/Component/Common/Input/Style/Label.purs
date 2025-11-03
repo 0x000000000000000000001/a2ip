@@ -5,9 +5,9 @@ module App.Component.Common.Input.Style.Label
 
 import Proem hiding (top)
 
-import CSS (bold, color, fontWeight, marginBottom, px, rgb)
+import CSS (pct, rem, transform, translate)
 import CSS as CSS
-import Util.Style ((.?))
+import Util.Style (left0, positionAbsolute, topPct50, (.?))
 
 classId :: String
 classId = "OmK5nX9TU"
@@ -15,6 +15,7 @@ classId = "OmK5nX9TU"
 style :: CSS.CSS
 style = do
   classId .? do
-    fontWeight bold
-    marginBottom (px 8.0)
-    color $ rgb 51 51 51
+    positionAbsolute
+    topPct50
+    left0
+    transform $ translate (rem 0.4) (pct $ -50.0)

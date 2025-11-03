@@ -6,11 +6,9 @@ dir=$(dirname "$0")/..
 cd "$dir"
 
 echo "Starting development mode with hot reloading..."
-echo "Project will rebuild automatically when files change"
-echo "Browser will refresh automatically"
 
 # Build initially
-$ROOT_DIR/bin/build || exit 1
+$ROOT_DIR/bin/build &>/dev/null
 
 # Start browser-sync with hot reloading
 # Watch for changes in output directory and index.html
@@ -19,16 +17,23 @@ if ! command -v browser-sync &> /dev/null; then
   echo "browser-sync is not installed. Installing now..."
   npm install -g browser-sync
 fi
-browser-sync start --server --files "output/**/*.js,index.html" --port 80 --no-open --single &
+browser-sync start --server --files "index.html,output/**/*.js" --reload-debounce 500 --port 80 --no-open --single &
 SERVER_PID=$!
 
 echo "Development server started!"
-echo "- Server: http://localhost"
-echo "- Hot reloading active - browser will refresh automatically"
-echo "Press Ctrl+C to stop both server and watch"
 
 # Setup cleanup trap
-trap 'echo "Stopping server..."; kill $SERVER_PID 2>/dev/null; exit' INT
+cleanup() {
+  echo ""
+  echo "Stopping server..."
+  kill $SERVER_PID 2>/dev/null || true
+  exit 0
+}
 
-# Start file watcher in foreground
+trap cleanup INT TERM
+
+# Wait indefinitely (or uncomment spago watch below)
+wait $SERVER_PID
+
+# Start file watcher in foreground (n.b. may not needed with Purescript extensions)
 #spago build --watch --purs-args "-g js,sourcemaps"

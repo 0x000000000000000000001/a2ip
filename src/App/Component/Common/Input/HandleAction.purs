@@ -21,7 +21,7 @@ handleAction = case _ of
 
   Receive input -> modify_ _ { input = input }
 
-  HandleInput newValue -> do
+  HandleNewValue newValue -> do
     state <- get
 
     for_
@@ -29,3 +29,10 @@ handleAction = case _ of
       \ref -> ʌ $ write newValue ref
 
     raise $ ChangedValue newValue
+
+  HandleFocus -> modify_ _ { focus = true }
+
+  HandleBlur -> modify_ _ { focus = false }
+
+  HandleClick -> do 
+    

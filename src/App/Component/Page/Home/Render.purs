@@ -56,8 +56,8 @@ render s =
         input'
         noSlotAddressIndex
         ( defaultInput
-          { placeholder = Just "Test placeholder"
-          , label = Just "Test label"
+          { placeholder = Just "Placeholder"
+          , label = Just "Label"
           }
         )
         handleInputOutput

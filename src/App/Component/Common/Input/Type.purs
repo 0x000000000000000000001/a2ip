@@ -39,12 +39,16 @@ type Slots = NoSlots
 type State =
   { input :: Input
   , value :: Maybe (Ref String)
+  , focus :: Boolean
   }
 
 data Action 
   = Initialize
   | Receive Input
-  | HandleInput String
+  | HandleNewValue String
+  | HandleFocus
+  | HandleBlur
+  | HandleClick
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

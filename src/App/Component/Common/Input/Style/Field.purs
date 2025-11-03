@@ -7,7 +7,7 @@ import Proem hiding (top)
 
 import CSS (black, border, borderBottom, borderColor, outline, rem, solid)
 import CSS as CSS
-import Util.Style (borderRadiusRem1, focus, fontSizeRem, loadingGrey, overflowHidden, padding2, red, (.&), (.?), (:?))
+import Util.Style (borderRadiusRem1, focus, fontSizeRem, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
 
 classId :: String
 classId = "EC7ImB484"
@@ -19,7 +19,7 @@ style = do
     border solid (rem 0.0) black
     borderBottom solid (rem 0.2) loadingGrey
     outline solid (rem 0.0) black
-    padding2 0.6 0.4
+    padding4 1.2 0.4 0.6 0.4
     borderRadiusRem1 0.2
     overflowHidden
     

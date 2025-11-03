@@ -5,7 +5,7 @@ module App.Component.Common.Input.Render
 import Proem hiding (div)
 
 import App.Component.Common.Input.Style.Field as Field
-import App.Component.Common.Input.Style.Input (classId)
+import App.Component.Common.Input.Style.Input (classId, classIdWithFocus)
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Input.Style.Sheet (sheet)
 import App.Component.Common.Input.Type (Action(..), Slots, State)
@@ -14,15 +14,20 @@ import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, input, text)
 import Halogen.HTML as HH
-import Halogen.HTML.Events (onValueInput)
+import Halogen.HTML.Events (onBlur, onFocus, onValueInput)
 import Halogen.HTML.Properties as HP
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render state@{ input: { placeholder, label, class_: class' } } =
+render s@{ focus, input: { placeholder, label, class_: class' } } =
     div
-        [ classes $ [ classId ] <> (class' ?? (_ : []) ⇔ []) ]
-        ( [ sheet state ]
+        [ classes 
+            [ classId
+            , class' ??⇒ ""
+            , focus ? classIdWithFocus ↔ "" 
+            ] 
+        ]
+        ( [ sheet s ]
             <>
             ( label
                 ??
@@ -38,8 +43,14 @@ render state@{ input: { placeholder, label, class_: class' } } =
             [ input
                 $
                     [ classes [ Field.classId ]
-                    , onValueInput HandleInput
+                    , onValueInput HandleNewValue
+                    , onFocus $ κ HandleFocus
+                    , onBlur $ κ HandleBlur
                     ]
-                <> (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
+                <> (
+                    focus 
+                    ? (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
+                    ↔ []
+                )
             ]
         )
