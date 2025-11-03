@@ -9,48 +9,54 @@ import App.Component.Common.Input.Style.Input (classId, classIdWithFocus)
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Input.Style.Sheet (sheet)
 import App.Component.Common.Input.Type (Action(..), Slots, State)
+import App.Component.Common.Input.Util (inputRef)
+import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, input, text)
 import Halogen.HTML as HH
-import Halogen.HTML.Events (onBlur, onFocus, onValueInput)
+import Halogen.HTML.Events (onBlur, onClick, onFocus, onValueInput)
+import Halogen.HTML.Properties (ref)
 import Halogen.HTML.Properties as HP
-import Util.Style (classes)
+import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ focus, input: { placeholder, label, class_: class' } } =
-    div
-        [ classes 
-            [ classId
-            , class' ??⇒ ""
-            , focus ? classIdWithFocus ↔ "" 
-            ] 
+  div
+    [ classes
+        [ classId
+        , class' ??⇒ ""
+        , focus ? classIdWithFocus ↔ ""
         ]
-        ( [ sheet s ]
-            <>
-            ( label
-                ??
-                    ( \l ->
-                        [ HH.label
-                            [ classes [ Label.classId ] ]
-                            [ text l ]
-                        ]
-                    )
-                ⇔ []
-            )
-            <>
-            [ input
-                $
-                    [ classes [ Field.classId ]
-                    , onValueInput HandleNewValue
-                    , onFocus $ κ HandleFocus
-                    , onBlur $ κ HandleBlur
-                    ]
-                <> (
-                    focus 
-                    ? (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
-                    ↔ []
+    , onClick $ κ HandleClick
+    ]
+    [ sheet s
+    , label
+        ??
+          ( \l ->
+              HH.label
+                ( [ class_ Label.classId ]
+                    <>
+                      ( focus
+                          ? [ onClick HandleLabelClick ]
+                          ↔ []
+                      )
                 )
-            ]
+                [ text l ]
+          )
+        ⇔ noHtml
+    , input
+        ( [ class_ Field.classId
+          , ref inputRef
+          , onValueInput HandleNewValue
+          , onFocus $ κ HandleFocus
+          , onBlur $ κ HandleBlur
+          ]
+            <>
+              ( focus
+                  ? (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
+                  ↔ []
+              )
         )
+    ]

@@ -15,6 +15,7 @@ import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Effect.Ref (Ref)
 import Halogen (HalogenM)
+import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input =
   { placeholder :: Maybe String
@@ -49,6 +50,7 @@ data Action
   | HandleFocus
   | HandleBlur
   | HandleClick
+  | HandleLabelClick MouseEvent
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

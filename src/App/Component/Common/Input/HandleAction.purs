@@ -5,10 +5,15 @@ module App.Component.Common.Input.HandleAction
 import Proem
 
 import App.Component.Common.Input.Type (Action(..), InputM, Output(..))
+import App.Component.Common.Input.Util (inputRef)
 import Data.Maybe (Maybe(..))
 import Data.Traversable (for_)
 import Effect.Ref (new, write)
-import Halogen (get, modify_, raise)
+import Halogen (get, getHTMLElementRef, modify_, raise)
+import Util.Log (unsafeDebug)
+import Web.Event.Event (stopPropagation)
+import Web.HTML.HTMLElement (focus)
+import Web.UIEvent.MouseEvent (toEvent)
 
 handleAction :: Action -> InputM Unit
 handleAction = case _ of
@@ -34,5 +39,14 @@ handleAction = case _ of
 
   HandleBlur -> modify_ _ { focus = false }
 
-  HandleClick -> do 
-    
+  HandleClick -> do
+    maybeElement <- getHTMLElementRef inputRef
+
+    for_ maybeElement \element -> 
+      ʌ $ focus element
+
+  HandleLabelClick mouseEvent -> do
+    let event = toEvent mouseEvent
+        _ = unsafeDebug "abc"
+
+    ʌ $ stopPropagation event
