@@ -10,8 +10,7 @@ import Data.Maybe (Maybe(..))
 import Data.Traversable (for_)
 import Effect.Ref (new, write)
 import Halogen (get, getHTMLElementRef, modify_, raise)
-import Util.Log (unsafeDebug)
-import Web.Event.Event (stopPropagation)
+import Web.Event.Event (preventDefault, stopPropagation)
 import Web.HTML.HTMLElement (focus)
 import Web.UIEvent.MouseEvent (toEvent)
 
@@ -47,6 +46,14 @@ handleAction = case _ of
 
   HandleLabelClick mouseEvent -> do
     let event = toEvent mouseEvent
-        _ = unsafeDebug "abc"
 
+    ʌ $ preventDefault event
+    ʌ $ stopPropagation event
+
+    handleAction HandleClick
+
+  HandleLabelMouseDown mouseEvent -> do
+    let event = toEvent mouseEvent
+
+    ʌ $ preventDefault event
     ʌ $ stopPropagation event

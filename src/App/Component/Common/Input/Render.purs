@@ -16,7 +16,7 @@ import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, input, text)
 import Halogen.HTML as HH
-import Halogen.HTML.Events (onBlur, onClick, onFocus, onValueInput)
+import Halogen.HTML.Events (onBlur, onClick, onFocus, onMouseDown, onValueInput)
 import Halogen.HTML.Properties (ref)
 import Halogen.HTML.Properties as HP
 import Util.Style (class_, classes)
@@ -39,7 +39,9 @@ render s@{ focus, input: { placeholder, label, class_: class' } } =
                 ( [ class_ Label.classId ]
                     <>
                       ( focus
-                          ? [ onClick HandleLabelClick ]
+                          ? [ onClick HandleLabelClick
+                            , onMouseDown HandleLabelMouseDown
+                            ]
                           ↔ []
                       )
                 )

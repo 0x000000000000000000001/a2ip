@@ -51,6 +51,7 @@ data Action
   | HandleBlur
   | HandleClick
   | HandleLabelClick MouseEvent
+  | HandleLabelMouseDown MouseEvent
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
