@@ -138,7 +138,9 @@ module Util.Style
   , fill
   , flexGrow1
   , flexWrap
+  , focus
   , fontSizePct
+  , fontSizeRem
   , fontWeightBold
   , getRootFontSize
   , has
@@ -407,6 +409,9 @@ flexGrow1 = flexGrow 1.0
 
 fontSizePct :: Number -> CSS.CSS
 fontSizePct p = fontSize (pct p)
+
+fontSizeRem :: Number -> CSS.CSS
+fontSizeRem r = fontSize (rem r)
 
 fontWeightBold :: CSS.CSS
 fontWeightBold = fontWeight bold
@@ -1237,6 +1242,9 @@ classWithClass :: String -> String -> Selector
 classWithClass a b = classWithTyped a (fromString $ "." <> stripDotPrefixFromClassName b)
 
 infix 6 classWithClass as .&.
+
+focus :: Refinement
+focus = fromString ":focus"
 
 after :: Refinement
 after = fromString "::after"

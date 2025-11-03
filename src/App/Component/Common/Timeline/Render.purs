@@ -27,14 +27,12 @@ import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen as Renderer
 import Util.Html.Dom (dataAttr)
-import Util.Log (unsafeDebug)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { input: { dates, loading }, selectedDate } =
-  let _ = unsafeDebug "render" in
   div
     [ classes 
         [ classId 

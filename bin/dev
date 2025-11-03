@@ -10,7 +10,7 @@ echo "Project will rebuild automatically when files change"
 echo "Browser will refresh automatically"
 
 # Build initially
-$ROOT_DIR/bin/build
+$ROOT_DIR/bin/build || exit 1
 
 # Start browser-sync with hot reloading
 # Watch for changes in output directory and index.html
@@ -31,4 +31,4 @@ echo "Press Ctrl+C to stop both server and watch"
 trap 'echo "Stopping server..."; kill $SERVER_PID 2>/dev/null; exit' INT
 
 # Start file watcher in foreground
-spago build --watch --purs-args "-g js,sourcemaps"
+#spago build --watch --purs-args "-g js,sourcemaps"
