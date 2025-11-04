@@ -22,15 +22,13 @@ style :: CSS.CSS
 style = do
   classId .? do
     position relative
-    marginBottom (px 16.0)
-    width (px 300.0)
 
   classIdWithFocus .? do 
     nothing
 
   __label :? do 
     top0
-    transform $ translate (rem 0.4) (rem 0.2)
+    transform $ translate (rem 0.6) (rem 0.2)
     fontSizePct 80.0
     colorRed  
 

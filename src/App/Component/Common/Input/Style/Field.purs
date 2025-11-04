@@ -19,7 +19,7 @@ style = do
     border solid (rem 0.0) black
     borderBottom solid (rem 0.2) loadingGrey
     outline solid (rem 0.0) black
-    padding4 1.2 0.4 0.6 0.4
+    padding4 1.4 0.6 0.8 0.6
     borderRadiusRem1 0.2
     overflowHidden
     

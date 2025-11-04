@@ -60,8 +60,8 @@ render innerComponent s =
             password'
             noSlotAddressIndex
             ( defaultInput
-              { placeholder = Just "Placeholder"
-              , label = Just "Label"
+              { placeholder = Just "Tapez ici"
+              , label = Just "Mot de passe"
               }
             )
             handlePasswordOutput

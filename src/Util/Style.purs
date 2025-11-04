@@ -187,6 +187,7 @@ module Util.Style
   , paddingLeft
   , paddingRight
   , paddingTop
+  , placeholder
   , positionAbsolute
   , positionAbsoluteOnlyTranslatePct
   , positionFixed
@@ -1259,6 +1260,9 @@ after = fromString "::after"
 
 before :: Refinement
 before = fromString "::before"
+
+placeholder :: Refinement
+placeholder = fromString "::placeholder"
 
 has :: Selector -> Refinement
 has sel = fromString $ ":has(" <> selector sel <> ")"
