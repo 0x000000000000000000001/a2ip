@@ -47,6 +47,11 @@ data Phase
   | Unlocking 
   | Unlocked
 
+instance showPhase :: Show Phase where
+  show (Locked _) = "Locked"
+  show Unlocking = "Unlocking"
+  show Unlocked = "Unlocked"
+
 isLocked :: Phase -> Boolean
 isLocked (Locked _) = true
 isLocked _ = false

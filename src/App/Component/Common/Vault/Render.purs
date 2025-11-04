@@ -13,13 +13,14 @@ import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Style.Sheet (sheet)
 import App.Component.Common.Vault.Style.Vault (classId)
-import App.Component.Common.Vault.Type (Action(..), Slots, State, isUnlocking)
+import App.Component.Common.Vault.Type (Action(..), Slots, State, isLocked, isUnlocked, isUnlocking)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Halogen.HTML.Events (onKeyDown)
+import Halogen.HTML.Properties as HP
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
@@ -48,18 +49,20 @@ render innerComponent { innerInput, phase } =
     , div 
         [ classes
             [ Front.classId
-            , isUnlocking phase ? Front.classIdWhenUnlocking ↔ ""
+            , isLocked phase ? "" ↔ Front.classIdWhen phase
             ]
         , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
         ]
         [ div 
-            [ class_ Message.classId ]
+            [ class_ Message.classId 
+            , HP.style $ isUnlocked phase ? "color: red; font-weight: bold;" ↔ ""
+            ]
             [ text $ isUnlocking phase ? "Parfait !" ↔ "Ceci est une ressource protégée." 
             , br_
             , span_ 
-                [ text $ isUnlocking phase ? "Déverrouillage..." ↔ "Veuillez entrer le "
-                , isUnlocking phase ? noHtml ↔ strong_ [ text "mot de passe" ]
-                , isUnlocking phase ? noHtml ↔ text " afférent."
+                [ text $ isLocked phase ? "Veuillez entrer le " ↔ "Déverrouillage..."
+                , isLocked phase ? strong_ [ text "mot de passe" ] ↔ noHtml
+                , isLocked phase ? text " afférent." ↔ noHtml
                 ]
             ]
         , render_ frontDoorSvg 
