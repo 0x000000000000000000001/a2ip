@@ -13,7 +13,7 @@ import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Style.Sheet (sheet)
 import App.Component.Common.Vault.Style.Vault (classId)
-import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isUnlocking phase)
+import App.Component.Common.Vault.Type (Action(..), Slots, State, isUnlocking)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))

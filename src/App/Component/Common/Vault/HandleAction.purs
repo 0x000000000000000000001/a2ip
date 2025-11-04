@@ -5,7 +5,7 @@ module App.Component.Common.Vault.HandleAction
 import Proem
 
 import App.Component.Common.Vault.Type (Action(..), Output(..), Phase(..), VaultM, _Locked)
-import Data.Lens ((.~), (^.))
+import Data.Lens (_Just, (.~), (^?))
 import Data.Maybe (Maybe(..))
 import Data.Traversable (for_)
 import Effect.Aff (Milliseconds(..), delay)
@@ -32,7 +32,7 @@ handleAction = case _ of
   HandleSubmit -> do
     state <- get
 
-    for_ (state ^. _phase ◁ _Locked ◁ _passwordInputValue) \ref -> do
+    for_ (state ^? _phase ◁ _Locked ◁ _passwordInputValue ◁ _Just) \ref -> do
       currentPasswordInputValue <- ʌ $ read ref
 
       when (state.input.password /= currentPasswordInputValue) do 
@@ -48,7 +48,7 @@ handleAction = case _ of
   HandleNewPasswordInputValue newValue -> do 
     state <- get 
 
-    for_ (state ^. _phase ◁ _Locked ◁ _passwordInputValue) \ref ->
+    for_ (state ^? _phase ◁ _Locked ◁ _passwordInputValue ◁ _Just) \ref ->
       ʌ $ write newValue ref
 
   RaiseInnerOutput output -> raise (InnerOutputRaised output)
