@@ -1,17 +1,31 @@
 module App.Component.Common.Vault.Type
   ( Action(..)
   , Input
-  , VaultM
+  , LockedState
   , Output(..)
+  , Phase(..)
   , Query
   , Slots
   , State
+  , VaultM
+  , _Locked
+  , _Unlocked
+  , _Unlocking
+  , isLocked
+  , isUnlocked
+  , isUnlocking
   )
   where
+
+import Proem
 
 import App.Component.Common.Input.Type as Input
 import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
 import App.Util.Capability.AppM (AppM)
+import Data.Either (Either(..))
+import Data.Lens (Prism', prism)
+import Data.Maybe (Maybe)
+import Effect.Ref (Ref)
 import Halogen (HalogenM, Slot)
 
 type Input i = 
@@ -26,12 +40,56 @@ type Slots q o =
   , password :: Slot Input.Query Input.Output NoSlotAddressIndex
   )
 
+type LockedState = { passwordInputValue :: Maybe (Ref String) }
+
+data Phase 
+  = Locked LockedState
+  | Unlocking 
+  | Unlocked
+
+isLocked :: Phase -> Boolean
+isLocked (Locked _) = true
+isLocked _ = false
+
+isUnlocking :: Phase -> Boolean
+isUnlocking Unlocking = true
+isUnlocking _ = false
+
+isUnlocked :: Phase -> Boolean
+isUnlocked Unlocked = true
+isUnlocked _ = false
+
+_Unlocking :: Prism' Phase Unit
+_Unlocking = prism (κ Unlocking) unwrap
+  where
+  unwrap Unlocking = Right ι
+  unwrap y = Left y
+
+_Unlocked :: Prism' Phase Unit
+_Unlocked = prism (κ Unlocked) unwrap
+  where
+  unwrap Unlocked = Right ι
+  unwrap y = Left y
+
+_Locked :: Prism' Phase LockedState
+_Locked = prism Locked unwrap
+  where
+  unwrap (Locked x) = Right x
+  unwrap y = Left y
+
 type State i = 
-  { innerInput :: i
-  , unlocking :: Boolean
+  { input :: Input i
+  , innerInput :: i
+  , phase :: Phase
   }
 
-data Action i o = Receive (Input i) | RaiseInnerOutput o | DoNothing
+data Action i o 
+  = Initialize
+  | Receive (Input i) 
+  | RaiseInnerOutput o 
+  | DoNothing 
+  | HandleSubmit
+  | HandleNewPasswordInputValue String
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

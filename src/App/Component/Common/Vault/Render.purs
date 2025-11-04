@@ -13,23 +13,25 @@ import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Style.Sheet (sheet)
 import App.Component.Common.Vault.Style.Vault (classId)
-import App.Component.Common.Vault.Type (Action, Slots, State)
-import App.Component.Util.Type (noSlotAddressIndex)
+import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isUnlocking phase)
+import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
+import Halogen.HTML.Events (onKeyDown)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
 import Util.Style (class_, classes)
+import Web.UIEvent.KeyboardEvent (code)
 
 render 
   :: ∀ q i o
    . Component q i o AppM
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
-render innerComponent { innerInput, unlocking } = 
+render innerComponent { innerInput, phase } = 
   div 
     [ class_ classId
     ]
@@ -46,17 +48,18 @@ render innerComponent { innerInput, unlocking } =
     , div 
         [ classes
             [ Front.classId
-            , unlocking ? Front.classIdWhenUnlocking ↔ ""
+            , isUnlocking phase ? Front.classIdWhenUnlocking ↔ ""
             ]
+        , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
         ]
         [ div 
             [ class_ Message.classId ]
-            [ text "Ceci est une ressource protégée." 
+            [ text $ isUnlocking phase ? "Parfait !" ↔ "Ceci est une ressource protégée." 
             , br_
             , span_ 
-                [ text "Veuillez entrer le "
-                , strong_ [ text "mot de passe" ]
-                , text " afférent."
+                [ text $ isUnlocking phase ? "Déverrouillage..." ↔ "Veuillez entrer le "
+                , isUnlocking phase ? noHtml ↔ strong_ [ text "mot de passe" ]
+                , isUnlocking phase ? noHtml ↔ text " afférent."
                 ]
             ]
         , render_ frontDoorSvg 

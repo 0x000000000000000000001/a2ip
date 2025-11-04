@@ -10,8 +10,9 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Field as Field
 import App.Component.Common.Input.Style.Input as Input
 import App.Component.Common.Input.Style.Label as Label
-import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, normalAnimationDirection, opacity, outline, rem, rgba, rotate, sec, solid, transforms, white, zIndex)
+import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, normalAnimationDirection, opacity, outline, rem, rgba, rotate, sec, solid, transforms, visibility, white, zIndex)
 import CSS as CSS
+import CSS.Common (hidden)
 import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
@@ -59,6 +60,9 @@ style = do
       normalAnimationDirection
       forwards
 
+  ____input :? do 
+    visibility hidden
+
   __input :? do
     nothing
 
@@ -90,3 +94,4 @@ style = do
   ____label = __input :|*. Label.classId
   __unlocking = classId .&. classIdWhenUnlocking
   ____svg = __unlocking :|*: svg
+  ____input = __unlocking :|*. Input.classId

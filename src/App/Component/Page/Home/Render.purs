@@ -72,6 +72,7 @@ render s =
         { innerInput:
             { url: "https://www.youtube.com/watch?v=qxYyHqS3FKk"
             }
+        , password: "pwd"
         }
         handleVaultOutput
     ]

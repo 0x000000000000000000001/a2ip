@@ -29,7 +29,7 @@ fetchModify proxy lens to finalize = do
   data' <- Sheet.fetch proxy to
   
   data'
-    ?! (\m -> modify_ \s -> s # lens .~ (Success $ finalize m))
+    ?! (\m -> modify_ (_ # lens .~ (Success $ finalize m)))
     ⇿ (\e -> do
       error $ "Error fetching " <> ᴠ proxy <> ": " <> e
       modify_ (_ # lens .~ Failure e)

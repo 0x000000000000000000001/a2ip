@@ -8,7 +8,7 @@ import Proem
 
 import App.Component.Common.Vault.HandleAction (handleAction)
 import App.Component.Common.Vault.Render (render)
-import App.Component.Common.Vault.Type (Action(..), Input, Output)
+import App.Component.Common.Vault.Type (Action(..), Input, Output, Phase(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -22,15 +22,17 @@ component
   -> Component q (Input i) (Output o) AppM
 component innerComponent = mkComponent
   { initialState: \input -> 
-      { innerInput: input.innerInput
-      , unlocking: true
+      { input
+      , innerInput: input.innerInput
+      , phase: Locked { passwordInputValue: Nothing }
       }
   , render: render innerComponent
-  , eval: 
+  , eval:
       mkEval 
-      defaultEval 
+      defaultEval
       { handleAction = handleAction
       , receive = Just ◁ Receive 
+      , initialize = Just Initialize
       }
   }
 
