@@ -55,7 +55,7 @@ render innerComponent { innerInput, phase } =
         ]
         [ div 
             [ class_ Message.classId 
-            , HP.style $ isUnlocked phase ? "color: red; font-weight: bold;" ↔ ""
+            , HP.style $ isUnlocked phase ? "visibility: hidden;" ↔ ""
             ]
             [ text $ isUnlocking phase ? "Parfait !" ↔ "Ceci est une ressource protégée." 
             , br_
