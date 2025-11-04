@@ -16,6 +16,7 @@ import Halogen (HalogenM, Slot)
 
 type Input i = 
   { innerInput :: i
+  , password :: String
   }
 
 data Output o = InnerOutputRaised o
@@ -27,6 +28,7 @@ type Slots q o =
 
 type State i = 
   { innerInput :: i
+  , unlocking :: Boolean
   }
 
 data Action i o = Receive (Input i) | RaiseInnerOutput o | DoNothing

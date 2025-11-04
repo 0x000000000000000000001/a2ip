@@ -23,6 +23,7 @@ component
 component innerComponent = mkComponent
   { initialState: \input -> 
       { innerInput: input.innerInput
+      , unlocking: true
       }
   , render: render innerComponent
   , eval: 

@@ -22,14 +22,14 @@ import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
-import Util.Style (class_)
+import Util.Style (class_, classes)
 
 render 
   :: ∀ q i o
    . Component q i o AppM
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
-render innerComponent s = 
+render innerComponent { innerInput, unlocking } = 
   div 
     [ class_ classId
     ]
@@ -40,11 +40,15 @@ render innerComponent s =
             inner'
             noSlotAddressIndex
             innerComponent
-            s.innerInput
+            innerInput
             handleInnerOutput
         ]
     , div 
-        [ class_ Front.classId ]
+        [ classes
+            [ Front.classId
+            , unlocking ? Front.classIdWhenUnlocking ↔ ""
+            ]
+        ]
         [ div 
             [ class_ Message.classId ]
             [ text "Ceci est une ressource protégée." 
