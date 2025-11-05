@@ -21,10 +21,8 @@ import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, th
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, p, p_, text)
-import Halogen.HTML.Elements.Keyed as HK
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
