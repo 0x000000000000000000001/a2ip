@@ -22,8 +22,7 @@ component
   -> Component q (Input i) (Output o) AppM
 component innerComponent = mkComponent
   { initialState: \input -> 
-      { closable: input.closable 
-      , innerInput: input.innerInput
+      { input
       }
   , render: render innerComponent
   , eval: 

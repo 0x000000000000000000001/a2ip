@@ -1,4 +1,4 @@
-module App.Component.Common.Modal.Style.Close
+module App.Component.Common.Modal.Style.Core.Close
   ( classId
   , style
   )

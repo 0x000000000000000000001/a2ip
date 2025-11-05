@@ -23,14 +23,14 @@ handleAction = case _ of
 
   Receive input -> do
     let _ = unsafeDebugShow "📦 Modal RECEIVE"
-    modify_ _ { closable = input.closable, innerInput = input.innerInput }
+    modify_ _ { input = input }
   
   HandleCloseClick -> raise Closed
 
   HandleClick mouseEvent -> do
     state <- get
 
-    when state.closable do
+    when state.input.closable do
       let event = toEvent mouseEvent
           eventTarget = target event
           htmlElement = eventTarget >>= fromEventTarget

@@ -16,6 +16,7 @@ import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input i = 
   { closable :: Boolean
+  , open :: Boolean
   , innerInput :: i
   }
 
@@ -26,8 +27,7 @@ type Slots q o =
   )
 
 type State i = 
-  { closable :: Boolean
-  , innerInput :: i
+  { input :: Input i
   }
 
 data Action i o = Initialize | Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o

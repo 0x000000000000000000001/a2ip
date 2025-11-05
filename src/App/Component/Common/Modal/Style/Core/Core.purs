@@ -1,4 +1,4 @@
-module App.Component.Common.Modal.Style.Core
+module App.Component.Common.Modal.Style.Core.Core
   ( classId
   , style
   )
@@ -8,6 +8,7 @@ import Proem hiding (top)
 
 import CSS as CSS
 import Util.Style (backgroundColorWhite, borderRadiusRem1, reflectHashModuleName, margin2, padding1, positionRelative, widthRem, (.?))
+import App.Component.Router.Menu.Style.Menu as Menu
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -21,3 +22,6 @@ style = do
     padding1 2.0
     borderRadiusRem1 0.5
     margin2 8.0 2.0
+
+  Menu.classId .? do
+    CSS.zIndex $ -1

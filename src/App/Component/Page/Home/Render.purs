@@ -15,7 +15,7 @@ import App.Component.Page.Home.HandleInputOutput (handleInputOutput)
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.HandleVaultOutput (handleVaultOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
-import App.Component.Util.Type (noHtml, noSlotAddressIndex)
+import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
@@ -27,35 +27,32 @@ import Util.Proxy.Dictionary.Modal (modal')
 import Util.Proxy.Dictionary.Vault (vault')
 
 render :: State -> ComponentHTML Action Slots AppM
-render s =
+render { showModal } =
   div_
     [ div
         [ onClick $ κ $ ShowModal ]
-        [ text $ "modal: " <> (s.showModal ? "visible" ↔ "hidden") ]
-    , s.showModal
-        ?
-          ( modal
-              Carrousel.component
-              modal'
-              noSlotAddressIndex
-              { closable: true
-              , innerInput:
-                  { slides:
-                      [ { media: Image $ ourImageRelativePath "component/page" "kevin-francart"
-                        , caption: Just "Kevin Francart"
-                        }
-                      , { media: YoutubeVideo $ "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                        , caption: Just "Super émission CCA !"
-                        }
-                      , { media: Image $ ourImageRelativePath "component/page" "ellen-corin"
-                        , caption: Nothing
-                        }
-                      ]
+        [ text $ "modal: " <> (showModal ? "visible" ↔ "hidden") ]
+    , modal
+        Carrousel.component
+        modal'
+        noSlotAddressIndex
+        { closable: true
+        , open: showModal
+        , innerInput:
+            { slides:
+                [ { media: Image $ ourImageRelativePath "component/page" "kevin-francart"
+                  , caption: Just "Kevin Francart"
                   }
-              }
-              handleModalOutput
-          )
-        ↔ noHtml
+                , { media: YoutubeVideo $ "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  , caption: Just "Super émission CCA !"
+                  }
+                , { media: Image $ ourImageRelativePath "component/page" "ellen-corin"
+                  , caption: Nothing
+                  }
+                ]
+            }
+        }
+        handleModalOutput
     , input
         input'
         noSlotAddressIndex

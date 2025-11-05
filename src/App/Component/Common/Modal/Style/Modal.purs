@@ -1,5 +1,7 @@
 module App.Component.Common.Modal.Style.Modal
   ( classId
+  , classIdWhenClosed
+  , classIdWhenOpen
   , style
   , zIndex
   )
@@ -11,10 +13,16 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style (displayFlex, reflectHashModuleName, heightPct, justifyContentCenter, left0, positionFixed, top0, widthPct100, (.?))
+import Util.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refine, reflectHashModuleName, top0, widthPct100, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
+
+classIdWhenOpen :: String
+classIdWhenOpen = refine classId "open"
+
+classIdWhenClosed :: String
+classIdWhenClosed = refine classId "closed"
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex
@@ -34,5 +42,8 @@ style = do
     CSS.zIndex zIndex
     overflow overflowAuto
 
-  Menu.classId .? do
-    CSS.zIndex $ -1
+  classIdWhenClosed .? do 
+    displayNone
+
+  classIdWhenOpen .? do
+    nothing

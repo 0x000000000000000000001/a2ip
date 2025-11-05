@@ -49,28 +49,24 @@ render s =
             }
             handleTimelineOutput
         ]
-    , HK.div 
+    , div 
         [ class_ Poster.classId ]
         ( case s of 
             Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
               [ 
-              "title" /\ (p_ [ text $ "title: " <> seminar.title ])
-              , "theme" /\ (p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ])
-              , "themeDescription" /\ 
-                  (
-                    openThemeDescriptionModal
-                      ? (
-                        modal
-                          Fragment.component
-                          themeDescription'
-                          noSlotAddressIndex
-                          { closable: true
-                          , innerInput: text (themeInfo seminar.theme).description
-                          }
-                          handleThemeDescriptionModalOutput
-                      ) ↔ noHtml
-                  )
-                  , "videoRecord" /\  (
+               (p_ [ text $ "title: " <> seminar.title ])
+              ,  (p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ])
+              ,  
+                  modal
+                    Fragment.component
+                    themeDescription'
+                    noSlotAddressIndex
+                    { closable: true
+                    , open: openThemeDescriptionModal
+                    , innerInput: text (themeInfo seminar.theme).description
+                    }
+                    handleThemeDescriptionModalOutput
+                  ,   (
                     seminar.videoUrl == "" ? noHtml ↔
                       vault 
                           YoutubeVideo.component
@@ -83,9 +79,9 @@ render s =
                           }
                           handleVideoRecordOutput
                   )
-              , "firstname" /\  (p_ [ text $ "firstname: " <> seminar.firstname ])
-              , "lastname" /\  (p_ [ text $ "lastname: " <> seminar.lastname ])
-              , "date" /\  (p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ])
+              ,   (p_ [ text $ "firstname: " <> seminar.firstname ])
+              ,   (p_ [ text $ "lastname: " <> seminar.lastname ])
+              ,   (p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ])
               ]
             _ -> []
         )
