@@ -10,10 +10,12 @@ import Halogen (get, modify_)
 
 handleAction :: Action -> YoutubeVideoM Unit
 handleAction = case _ of
+  Initialize -> 
+    debugShow "init"
+
   Receive input -> do 
     state <- get
 
-    debugShow (state.input /= input)
-    
+     -- Avoid rerender whenever possible, because the iframe is sensitive...
     when (state.input /= input) do
       modify_ _ { input = input }

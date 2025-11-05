@@ -25,6 +25,7 @@ component = mkComponent
   , eval: mkEval defaultEval
     { handleAction = handleAction
     , receive = Just ◁ Receive
+    , initialize = Just Initialize
     }
   }
 

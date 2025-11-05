@@ -30,7 +30,7 @@ type State i =
   , innerInput :: i
   }
 
-data Action i o = Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o
+data Action i o = Initialize | Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

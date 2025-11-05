@@ -26,7 +26,7 @@ type State =
   { input :: Input
   }
 
-data Action = Receive Input
+data Action = Initialize | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

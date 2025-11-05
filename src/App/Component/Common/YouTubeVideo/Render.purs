@@ -14,10 +14,12 @@ import Data.String (Pattern(..), Replacement(..), contains, replaceAll)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div)
 import Html.Renderer.Halogen (render_)
+import Util.Log (unsafeDebugShow)
 import Util.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { input: { url } } = 
+  let _ = unsafeDebugShow "rerender" in
   div 
     [ class_ classId ]
     [ sheet

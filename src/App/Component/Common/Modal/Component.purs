@@ -30,7 +30,8 @@ component innerComponent = mkComponent
       mkEval 
       defaultEval 
       { handleAction = handleAction
-      , receive = Just ◁ Receive 
+      , receive = Just ◁ Receive
+      , initialize = Just Initialize
       }
   }
 
