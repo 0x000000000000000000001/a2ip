@@ -4,7 +4,6 @@ module App.Component.Page.Seminars.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Fragment.Component (fragment)
 import App.Component.Common.Fragment.Component as Fragment
 import App.Component.Common.Modal.Component (modal)
 import App.Component.Common.Timeline.Component (timeline)
@@ -22,14 +21,12 @@ import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, th
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
-import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, div_, p, p_, text)
+import Halogen.HTML (div, p, p_, text)
 import Halogen.HTML.Elements.Keyed as HK
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
-import Type.Prelude (Proxy(..))
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
 import Util.Proxy.Dictionary.Timeline (timeline')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
@@ -52,14 +49,14 @@ render s =
             }
             handleTimelineOutput
         ]
-    , div 
+    , HK.div 
         [ class_ Poster.classId ]
         ( case s of 
             Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
               [ 
-              (p_ [ text $ "title: " <> seminar.title ])
-              ,  (p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ])
-              , 
+              "title" /\ (p_ [ text $ "title: " <> seminar.title ])
+              , "theme" /\ (p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ])
+              , "themeDescription" /\ 
                   (
                     openThemeDescriptionModal
                       ? (
@@ -71,12 +68,9 @@ render s =
                           , innerInput: text (themeInfo seminar.theme).description
                           }
                           handleThemeDescriptionModalOutput
-                      ) ↔ fragment 
-                          (Proxy :: Proxy "themeDescription2")
-                          noSlotAddressIndex
-                          (text "")
+                      ) ↔ noHtml
                   )
-                  ,  (
+                  , "videoRecord" /\  (
                     seminar.videoUrl == "" ? noHtml ↔
                       vault 
                           YoutubeVideo.component
@@ -89,9 +83,9 @@ render s =
                           }
                           handleVideoRecordOutput
                   )
-              ,  (p_ [ text $ "firstname: " <> seminar.firstname ])
-              ,  (p_ [ text $ "lastname: " <> seminar.lastname ])
-              ,  (p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ])
+              , "firstname" /\  (p_ [ text $ "firstname: " <> seminar.firstname ])
+              , "lastname" /\  (p_ [ text $ "lastname: " <> seminar.lastname ])
+              , "date" /\  (p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ])
               ]
             _ -> []
         )
