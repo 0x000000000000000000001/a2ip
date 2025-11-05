@@ -53,17 +53,6 @@ render s =
             Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
               [ p_ [ text $ "title: " <> seminar.title ]
               , p [ onClick $ κ $ OpenThemeDescriptionModal ] [ text $ "theme " <> (openThemeDescriptionModal ? "open" ↔ "closed") <> ": " <> show seminar.theme ]
-              , seminar.videoUrl == "" ? noHtml ↔
-                  vault 
-                      YoutubeVideo.component
-                      videoRecord'
-                      noSlotAddressIndex
-                      { innerInput:
-                          { url: seminar.videoUrl
-                          }
-                      , password: "pwd"
-                      }
-                      handleVideoRecordOutput
               , modal
                   Fragment.component
                   themeDescription'
@@ -76,6 +65,17 @@ render s =
               , p_ [ text $ "firstname: " <> seminar.firstname ]
               , p_ [ text $ "lastname: " <> seminar.lastname ]
               , p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ]
+              , seminar.videoUrl == "" ? noHtml ↔
+                  vault 
+                      YoutubeVideo.component
+                      videoRecord'
+                      noSlotAddressIndex
+                      { innerInput:
+                          { url: seminar.videoUrl
+                          }
+                      , password: "pwd"
+                      }
+                      handleVideoRecordOutput
               ]
             _ -> []
         )

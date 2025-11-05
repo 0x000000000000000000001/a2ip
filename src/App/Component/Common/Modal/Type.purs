@@ -16,7 +16,7 @@ import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input i = 
   { closable :: Boolean
-  , open :: Boolean
+  , open :: Boolean -- Better than conditional rendering: in child arrays, disappearing/reappearing disturbs the lifecycle of the siblings...
   , innerInput :: i
   }
 
