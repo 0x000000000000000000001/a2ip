@@ -15,6 +15,7 @@ import Halogen (fork, get, modify_)
 import Halogen.Query.HalogenM (raise)
 import Util.Proxy.Dictionary.PasswordInputValue (_passwordInputValue)
 import Util.Proxy.Dictionary.Phase (_phase)
+import App.Component.Common.Vault.Style.Front as Front
 
 handleAction :: ∀ q i o. Action i o -> (VaultM q i o) Unit
 handleAction = case _ of
@@ -42,7 +43,7 @@ handleAction = case _ of
         modify_ _ { phase = Unlocking }
 
         ø $ fork do 
-          ʌ' $ delay $ Milliseconds 750.0
+          ʌ' $ delay $ Milliseconds $ Front.animationDurationMs + 200.0 -- +100 for a little bit of suspense...
           modify_ _ { phase = Unlocked }
 
   HandleNewPasswordInputValue newValue -> do 

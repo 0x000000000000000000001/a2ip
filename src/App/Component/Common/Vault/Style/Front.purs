@@ -1,5 +1,6 @@
 module App.Component.Common.Vault.Style.Front
-  ( classId
+  ( animationDurationMs
+  , classId
   , classIdWhen
   , style
   )
@@ -10,15 +11,16 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Field as Field
 import App.Component.Common.Input.Style.Input as Input
 import App.Component.Common.Input.Style.Label as Label
+import App.Component.Common.Vault.Style.Door as Door
+import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Type (Phase(..))
-import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, normalAnimationDirection, opacity, outline, rem, rgba, rotate, sec, solid, transforms, visibility, white, zIndex)
+import CSS (animation, backgroundColor, border, borderBottom, borderColor, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, transforms, white, zIndex)
 import CSS as CSS
-import CSS.Common (hidden)
 import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
-import Util.Style (alignItemsCenter, displayFlex, hash9, heightPct100, heightRem, justifyContentCenter, margin1, nothing, overflowHidden, placeholder, positionRelative, svg, topLeftToTopLeft, transparent, widthPct100, widthRem, (.&.), (.?), (.|*.), (.|*:), (:&:), (:?), (:|*.), (:|*:))
+import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, hash9, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (|*.))
 
 classId :: String
 classId = "j8djWsw23"
@@ -29,13 +31,14 @@ classIdWhen phase = hash9 $ classId <> "-" <> show phase
 animationId :: String
 animationId = "XfIdRyd3W"
 
+animationDurationMs :: Number
+animationDurationMs = 300.0
+
 style :: CSS.CSS
 style = do
   classId .? do
-    positionRelative
     topLeftToTopLeft
-    zIndex 2
-    backgroundColor $ rgba 0 0 0 0.75
+    zIndex 3
     widthPct100
     heightPct100
     displayFlex
@@ -44,14 +47,9 @@ style = do
     flexDirection column
     overflowHidden
 
-  __svg :? do 
-    widthRem 8.0
-    heightRem 8.0
-    margin1 1.2
-    opacity 0.9
-
   __input :? do
-    nothing
+    positionRelative
+    zIndex 5
 
   ____field :? do 
     outline solid (rem 0.2) white
@@ -68,10 +66,15 @@ style = do
   __unlocking :? do 
     nothing
 
-  ____svg :? do 
+  a___message :? do 
+    opacity 0.0
+
+  a___lock :? do
+    outline solid (rem 0.3) limegreen
+    borderRadiusPct1 50.0
     animation
       (fromString animationId) 
-      (sec 0.75)
+      (sec $ animationDurationMs / 1000.0)
       linear
       (sec 0.0)
       (iterationCount 1.0)
@@ -80,35 +83,48 @@ style = do
 
   a___input :? do 
     opacity 0.0
-    visibility hidden
+    pointerEventsNone
 
   __unlocked :? do 
-    nothing 
+    zIndex 1
 
   b___input :? do 
       opacity 0.0
-      visibility hidden
+      pointerEventsNone
 
-  ____message :? do 
-    visibility hidden
+  b___message :? do 
+    opacity 0.0
+
+  ____leftDoor :? do 
+    leftPct $ -50.0
+
+  ____rightDoor :? do 
+    rightPct $ -50.0
+
+  b___lock :? do
+    marginLeft (pct 100.0)
+    opacity 0.0
 
   keyframes animationId (
     ( 0.0 /\ transforms [ rotate $ deg 0.0 ]
     ) :| 
     [ 90.0 /\ transforms [ rotate $ deg $ -180.0 ]
-    , 100.0 /\ transforms [ rotate $ deg $ -180.0, scale 1.1 1.1 ]
+    , 100.0 /\ transforms [ rotate $ deg $ -180.0, scale 1.11 1.11 ]
     ]
   )
 
   where 
-  __svg = classId .|*: svg
   __input = classId .|*. Input.classId
   ____field = __input :|*. Field.classId
   ______placeholder = ____field :&: placeholder
   ____label = __input :|*. Label.classId
   __unlocking = classId .&. classIdWhen Unlocking
-  ____svg = __unlocking :|*: svg
+  a___lock = __unlocking :|*. Lock.classId
+  a___message = __unlocking :|*. Message.classId
   a___input = __unlocking :|*. Input.classId
   __unlocked = classId .&. classIdWhen Unlocked
-  ____message = __unlocked :|*. Message.classId
+  b___message = __unlocked :|*. Message.classId
   b___input = __unlocked :|*. Input.classId
+  ____leftDoor = __unlocked |*. Door.classIdWhenLeft
+  ____rightDoor = __unlocked |*. Door.classIdWhenRight
+  b___lock = __unlocked |*. Lock.classId

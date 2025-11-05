@@ -78,6 +78,7 @@ module Util.Style
   , bottomLeftToTopCenter
   , bottomLeftToTopLeft
   , bottomLeftToTopRight
+  , bottomPct
   , bottomPct100
   , bottomPct50
   , bottomRem
@@ -150,9 +151,11 @@ module Util.Style
   , heightRem
   , justifyContentCenter
   , left0
+  , leftPct
   , leftPct100
   , leftPct50
   , leftRem
+  , limegreen
   , loading
   , loadingGrey
   , loadingShimmerAnimationId
@@ -188,6 +191,7 @@ module Util.Style
   , paddingRight
   , paddingTop
   , placeholder
+  , pointerEventsNone
   , positionAbsolute
   , positionAbsoluteOnlyTranslatePct
   , positionFixed
@@ -205,6 +209,7 @@ module Util.Style
   , rawWithTyped
   , red
   , right0
+  , rightPct
   , rightPct100
   , rightPct50
   , rightRem
@@ -296,6 +301,9 @@ loadingGrey = hsl 0.0 0.0 0.9
 
 backgroundWhite :: Color
 backgroundWhite = hsl 196.0 1.0 0.98
+
+limegreen :: Color
+limegreen = hsl 120.0 0.61 0.49
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
@@ -481,6 +489,9 @@ alignItemsCenter = alignItems CSSC.center
 
 cursorPointer :: CSS.CSS
 cursorPointer = cursor pointer
+
+pointerEventsNone :: CSS.CSS
+pointerEventsNone = raw "pointer-events" "none"
 
 positionAbsoluteOnlyTranslatePct :: Number -> Number -> CSS.CSS
 positionAbsoluteOnlyTranslatePct x y = do

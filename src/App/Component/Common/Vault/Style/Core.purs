@@ -17,4 +17,4 @@ style :: CSS.CSS
 style = do
   classId .? do
     positionRelative
-    zIndex 1
+    zIndex 2

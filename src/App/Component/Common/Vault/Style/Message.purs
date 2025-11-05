@@ -6,9 +6,9 @@ module App.Component.Common.Vault.Style.Message
 
 import Proem hiding (top)
 
-import CSS (color, white)
+import CSS (color, white, zIndex)
 import CSS as CSS
-import Util.Style (textAlignCenter, widthPct100, (.?))
+import Util.Style (positionRelative, textAlignCenter, widthPct100, (.?))
 
 classId :: String
 classId = "sAkylaG9S"
@@ -19,3 +19,5 @@ style = do
     color white
     widthPct100
     textAlignCenter
+    positionRelative
+    zIndex 5
