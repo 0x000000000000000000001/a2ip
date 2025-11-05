@@ -14,13 +14,13 @@ import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadiusPct1, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadiusPct1, displayFlex, reflectHashModuleName, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
 
 width :: Number
 width = 3.2
 
 classId :: String
-classId = "gcMO1hLjZ"
+classId = reflectHashModuleName ι
 
 boxShadow :: Number -> Number -> CSS.CSS
 boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)

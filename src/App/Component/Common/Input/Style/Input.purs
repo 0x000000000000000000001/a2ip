@@ -8,15 +8,16 @@ module App.Component.Common.Input.Style.Input
 import Proem hiding (top)
 
 import App.Component.Common.Input.Style.Label as Label
-import CSS (marginBottom, position, px, relative, rem, transform, translate, width)
+import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Style (colorRed, fontSizePct, nothing, top0, (.?), (.|*.), (:?))
+import Util.Proxy.Dictionary.Focus (focus_)
+import Util.Style (colorRed, fontSizePct, nothing, refine, reflectHashModuleName, top0, (.?), (.|*.), (:?))
 
 classId :: String
-classId = "arRAAae18"
+classId = reflectHashModuleName ι
 
 classIdWithFocus :: String
-classIdWithFocus = "Po0mMicGl"
+classIdWithFocus = refine classId focus_
 
 style :: CSS.CSS
 style = do

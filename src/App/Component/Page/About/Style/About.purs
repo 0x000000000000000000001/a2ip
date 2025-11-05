@@ -6,10 +6,10 @@ module App.Component.Page.About.Style.About
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (displayFlex, flexWrap, justifyContentCenter, widthPct100, (.?))
+import Util.Style (displayFlex, flexWrap, reflectHashModuleName, justifyContentCenter, widthPct100, (.?))
 
 classId :: String
-classId = "mH916ksxM"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

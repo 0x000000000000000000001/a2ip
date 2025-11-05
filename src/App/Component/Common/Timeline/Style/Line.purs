@@ -6,13 +6,13 @@ module App.Component.Common.Timeline.Style.Line
 
 import Proem hiding (top)
 
+import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
 import CSS as CSS
-import App.Component.Common.Timeline.Style.Util (grey)
-import Util.Style (borderRadiusRem1, heightPct100, topCenterToTopCenter, widthRem, (.?))
+import Util.Style (borderRadiusRem1, reflectHashModuleName, heightPct100, topCenterToTopCenter, widthRem, (.?))
 
 classId :: String
-classId = "wN3cW8fkU"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

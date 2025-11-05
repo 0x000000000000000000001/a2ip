@@ -8,10 +8,10 @@ import Proem hiding (top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS as CSS
-import Util.Style (alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
+import Util.Style (alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, reflectHashModuleName, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
 
 classId :: String
-classId = "Gnkn8ajS5"
+classId = reflectHashModuleName ι
 
 size :: Number
 size = 3.0

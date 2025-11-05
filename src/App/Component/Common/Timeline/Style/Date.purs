@@ -12,13 +12,14 @@ import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS (outline, rem, solid, transform)
 import CSS as CSS
 import Color (lighten)
-import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Proxy.Dictionary.Selected (selected_)
+import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refine, reflectHashModuleName, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 classId :: String
-classId = "JFD1v5Z7l"
+classId = reflectHashModuleName ι
 
 classIdWhenSelected :: String 
-classIdWhenSelected = "Tu2jY45nL"
+classIdWhenSelected = refine classId selected_
 
 style :: CSS.CSS
 style = do

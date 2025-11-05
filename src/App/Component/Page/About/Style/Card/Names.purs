@@ -6,10 +6,10 @@ module App.Component.Page.About.Style.Card.Names
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (fontWeightBold, colorRed, fontSizePct, raw, widthPct, (.?))
+import Util.Style (colorRed, fontSizePct, fontWeightBold, reflectHashModuleName, raw, widthPct, (.?))
 
 classId :: String
-classId = "eq6HaLP07"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

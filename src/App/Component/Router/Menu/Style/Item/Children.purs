@@ -6,13 +6,13 @@ module App.Component.Router.Menu.Style.Item.Children
 
 import Proem hiding (top, div)
 
+import App.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
 import CSS (backgroundColor, rgba)
 import CSS as CSS
-import App.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
-import Util.Style (displayNone, flexWrap, topLeftToTopRight, widthPct100, (.?))
+import Util.Style (displayNone, flexWrap, reflectHashModuleName, topLeftToTopRight, widthPct100, (.?))
 
 classId :: String
-classId = "YLBJc5NfZ"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

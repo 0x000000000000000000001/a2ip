@@ -7,17 +7,18 @@ module App.Component.Common.Separator.Style.Separator
 
 import Proem hiding (top)
 
-import CSS (borderBottom, borderColor, rem, solid)
-import CSS as CSS
 import App.Component.Common.Separator.Style.Text.Text as Text
 import App.Component.Common.Separator.Style.Util (grey)
-import Util.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, top0, widthPct100, (.?), (.|*.), (:?))
+import CSS (borderBottom, borderColor, rem, solid)
+import CSS as CSS
+import Util.Proxy.Dictionary.Loading (loading_)
+import Util.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refine, reflectHashModuleName, top0, widthPct100, (.?), (.|*.), (:?))
 
 classId :: String
-classId = "keWMC9TZj"
+classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = "K5u7bPEBt"
+classIdWhenLoading = refine classId loading_
 
 style :: CSS.CSS
 style = do

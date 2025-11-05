@@ -7,10 +7,10 @@ import Proem hiding (top)
 
 import CSS (darken)
 import CSS as CSS
-import Util.Style (fill, loadingGrey, widthRem, (.?))
+import Util.Style (fill, reflectHashModuleName, loadingGrey, widthRem, (.?))
 
 classId :: String
-classId = "nyO0Zg17q"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

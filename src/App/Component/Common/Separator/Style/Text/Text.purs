@@ -5,14 +5,14 @@ module App.Component.Common.Separator.Style.Text.Text
 
 import Proem hiding (top)
 
+import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, sansSerif, solid)
 import CSS as CSS
-import App.Component.Common.Separator.Style.Util (grey)
 import Data.NonEmpty ((:|))
-import Util.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, margin0, padding1, positionRelative, (.?))
+import Util.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, reflectHashModuleName, margin0, padding1, positionRelative, (.?))
 
 classId :: String
-classId = "wRKg6JrGY"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

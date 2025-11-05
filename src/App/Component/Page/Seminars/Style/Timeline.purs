@@ -6,10 +6,10 @@ module App.Component.Page.Seminars.Style.Timeline
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, widthRem, (.?))
+import Util.Style (alignItemsCenter, displayFlex, reflectHashModuleName, justifyContentCenter, widthRem, (.?))
 
 classId :: String
-classId = "u8NVJpmCE"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

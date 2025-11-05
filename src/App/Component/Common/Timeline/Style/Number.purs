@@ -7,10 +7,10 @@ module App.Component.Common.Timeline.Style.Number
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (nothing, (.?))
+import Util.Style (reflectHashModuleName, nothing, (.?))
 
 classId :: String
-classId = "tMm7IlU2V"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

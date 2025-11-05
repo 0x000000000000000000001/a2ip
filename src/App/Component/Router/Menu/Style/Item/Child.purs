@@ -7,10 +7,10 @@ import Proem hiding (top, div)
 
 import CSS (hover)
 import CSS as CSS
-import Util.Style (backgroundColorRed, padding1, raw, widthPct100, (.&), (.?), (:?))
+import Util.Style (backgroundColorRed, reflectHashModuleName, padding1, raw, widthPct100, (.&), (.?), (:?))
 
 classId :: String
-classId = "A9EgPEH39"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

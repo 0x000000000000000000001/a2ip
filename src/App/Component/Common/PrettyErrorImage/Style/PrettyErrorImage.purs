@@ -10,16 +10,18 @@ import Proem hiding (top)
 
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, (.?))
+import Util.Proxy.Dictionary.Errored (errored_)
+import Util.Proxy.Dictionary.Loading (loading_)
+import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refine, reflectHashModuleName, (.?))
 
 classId :: String
-classId = "ZNnop1mxZ"
+classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = "HxYQxjUQ9"
+classIdWhenLoading = refine classId loading_
 
 classIdWhenErrored :: String
-classIdWhenErrored = "w2aEZlO9q"
+classIdWhenErrored = refine classId errored_
 
 style :: CSS.CSS
 style = do

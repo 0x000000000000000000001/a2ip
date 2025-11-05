@@ -1,6 +1,8 @@
-export const reflectModuleName = function() {
+export const reflectCallingModuleName = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
+
+    // console.log(lines);
 
     let ans = '';
     
@@ -13,11 +15,10 @@ export const reflectModuleName = function() {
 
         if (line.startsWith('file') || line.startsWith('http')) {
             ans = line.split('/output/')[1].split('/index.js')[0];
-            break;
         }
     }
 
-    // console.log(ans);
+    console.log(ans);
 
     return ans;
 };

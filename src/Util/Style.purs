@@ -208,6 +208,8 @@ module Util.Style
   , rawWithRaw
   , rawWithTyped
   , red
+  , refine
+  , reflectHashModuleName
   , right0
   , rightPct
   , rightPct100
@@ -264,7 +266,7 @@ module Util.Style
   )
   where
 
-import Proem hiding (top, bottom, div)
+import Proem hiding (bottom, top)
 
 import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
@@ -277,6 +279,7 @@ import CSS.TextAlign (textAlign, center)
 import Color (darken)
 import Data.Array (foldl, (!!))
 import Data.Char (toCharCode)
+import Data.Foldable (intercalate)
 import Data.Int as Int
 import Data.String (Pattern(..), stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
@@ -284,6 +287,7 @@ import Data.Tuple.Nested ((/\))
 import Effect (Effect)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
+import Util.Module (reflectCallingModuleName)
 
 foreign import getRootFontSize :: Effect Number
 
@@ -304,6 +308,12 @@ backgroundWhite = hsl 196.0 1.0 0.98
 
 limegreen :: Color
 limegreen = hsl 120.0 0.61 0.49
+
+reflectHashModuleName :: Unit -> String
+reflectHashModuleName = reflectCallingModuleName ▷ hash9
+
+refine :: String -> String -> String 
+refine classId with = hash9 $ classId <> "&" <> with
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.

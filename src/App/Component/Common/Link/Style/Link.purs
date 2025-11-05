@@ -7,10 +7,10 @@ import Proem hiding (top)
 
 import CSS (Display, display, noneTextDecoration, textDecoration)
 import CSS as CSS
-import Util.Style ((.?))
+import Util.Style (reflectHashModuleName, (.?))
 
 classId :: String
-classId = "PDme34MR8"
+classId = reflectHashModuleName ι
 
 style :: Display -> CSS.CSS
 style display_ = do

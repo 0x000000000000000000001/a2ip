@@ -7,10 +7,10 @@ module App.Component.Common.Carrousel.Style.Control.Icon
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (positionRelative, (.?))
+import Util.Style (reflectHashModuleName, positionRelative, (.?))
 
 classId :: String
-classId = "m6qHR69Aa"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

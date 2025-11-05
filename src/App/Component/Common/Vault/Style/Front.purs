@@ -22,17 +22,16 @@ import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
-import Util.Module (reflectModuleName)
-import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, hash9, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (|*.))
+import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, refine, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (|*.))
 
 classId :: String
-classId = reflectModuleName ι
+classId = reflectHashModuleName ι
 
 classIdWhen :: Phase -> String
-classIdWhen phase = hash9 $ classId <> show phase
+classIdWhen phase = refine classId $ show phase
 
 classIdWhenIncorrect :: String
-classIdWhenIncorrect = hash9 $ classId <> incorrect_
+classIdWhenIncorrect = refine classId incorrect_
 
 animationId :: String
 animationId = "XfIdRyd3W"

@@ -9,10 +9,10 @@ import Proem hiding (top)
 import CSS (color, deg, hover, rotate, transforms, white, (|*))
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
+import Util.Style (bottomLeftToTopRight, cursorPointer, fill, reflectHashModuleName, heightRem, nothing, padding1, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
 classId :: String
-classId = "FeG0FXVPw"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

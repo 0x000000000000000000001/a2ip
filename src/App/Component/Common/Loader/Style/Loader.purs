@@ -7,10 +7,10 @@ module App.Component.Common.Loader.Style.Loader
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (nothing, positionRelative, (.?))
+import Util.Style (reflectHashModuleName, nothing, positionRelative, (.?))
 
 classId :: String
-classId = "SYaITRzw4"
+classId = reflectHashModuleName ι
 
 -- | This wrapper is useful when we want to position the loader
 -- | without interfering with its animation.

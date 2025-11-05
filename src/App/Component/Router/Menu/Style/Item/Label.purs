@@ -5,14 +5,14 @@ module App.Component.Router.Menu.Style.Item.Label
 
 import Proem hiding (top, div)
 
+import App.Component.Router.Menu.Type (State)
 import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
-import App.Component.Router.Menu.Type (State)
-import Util.Style (marginLeft, flexGrow1, overflowHidden, widthRem, (.?))
+import Util.Style (flexGrow1, reflectHashModuleName, marginLeft, overflowHidden, widthRem, (.?))
 
 classId :: String 
-classId = "uLX54Ih61"
+classId = reflectHashModuleName ι
 
 style :: State -> CSS.CSS
 style s = do

@@ -9,15 +9,15 @@ module App.Component.Common.Timeline.Style.Numbers
 
 import Proem hiding (top)
 
+import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (Transformation, color, column, flexDirection, pct, rem, transform)
 import CSS as CSS
 import Color (darken)
-import App.Component.Common.Timeline.Style.Util (grey)
-import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style (alignItemsCenter, displayFlex, reflectHashModuleName, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
 import Util.Style as UtilStyle
 
 classId :: String
-classId = "ck6YcOjPV"
+classId = reflectHashModuleName ι
 
 fontSizePct :: Number 
 fontSizePct = 110.0

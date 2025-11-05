@@ -14,17 +14,19 @@ import App.Component.Page.About.Style.Card.Portrait as Portrait
 import CSS (CSS) as CSS
 import CSS (column, flexDirection, hover, (&))
 import Util.Proxy.Dictionary.Email (email_)
+import Util.Proxy.Dictionary.Loaded (loaded_)
+import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, refine, reflectHashModuleName, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
-classId = "xt156nvNM"
+classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = "vrptC0jM2"
+classIdWhenLoading = refine classId loading_
 
 classIdWhenLoaded :: String
-classIdWhenLoaded = "FI8nIaPpM"
+classIdWhenLoaded = refine classId loaded_
 
 style :: CSS.CSS
 style = do

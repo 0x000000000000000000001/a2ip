@@ -12,16 +12,18 @@ import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import CSS (backgroundColor, color, hover, rgba, white)
 import CSS as CSS
 import Color (darken)
-import Util.Style (alignItemsCenter, borderRadiusPct1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Proxy.Dictionary.Next (next_)
+import Util.Proxy.Dictionary.Prev (prev_)
+import Util.Style (alignItemsCenter, borderRadiusPct1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refine, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
-classId = "MrL2fqlli"
+classId = reflectHashModuleName ι
 
 classIdWhenPrev :: String
-classIdWhenPrev = "RcTXs8T8D"
+classIdWhenPrev = refine classId prev_
 
 classIdWhenNext :: String
-classIdWhenNext = "M6RWLsugg"
+classIdWhenNext = refine classId next_
 
 style :: CSS.CSS
 style = do

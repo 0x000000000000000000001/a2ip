@@ -10,16 +10,18 @@ import Proem hiding (top)
 
 import CSS (backgroundColor, rgba, zIndex)
 import CSS as CSS
-import Util.Style (heightPct100, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
+import Util.Proxy.Dictionary.Left (left_)
+import Util.Proxy.Dictionary.Right (right_)
+import Util.Style (heightPct100, refine, reflectHashModuleName, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
 classId :: String
-classId = "fFGXQ4uVs"
+classId = reflectHashModuleName ι
 
 classIdWhenLeft :: String
-classIdWhenLeft = "a84Qb0kH6"
+classIdWhenLeft = refine classId left_
 
 classIdWhenRight :: String
-classIdWhenRight = "QJHx5CtxJ"
+classIdWhenRight = refine classId right_
 
 style :: CSS.CSS
 style = do

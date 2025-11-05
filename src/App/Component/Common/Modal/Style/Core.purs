@@ -7,10 +7,10 @@ module App.Component.Common.Modal.Style.Core
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (backgroundColorWhite, borderRadiusRem1, margin2, padding1, positionRelative, widthRem, (.?))
+import Util.Style (backgroundColorWhite, borderRadiusRem1, reflectHashModuleName, margin2, padding1, positionRelative, widthRem, (.?))
 
 classId :: String
-classId = "J9zhpuRLP"
+classId = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do

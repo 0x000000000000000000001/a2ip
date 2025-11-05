@@ -11,10 +11,10 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style (displayFlex, heightPct, justifyContentCenter, left0, positionFixed, top0, widthPct100, (.?))
+import Util.Style (displayFlex, reflectHashModuleName, heightPct, justifyContentCenter, left0, positionFixed, top0, widthPct100, (.?))
 
 classId :: String
-classId = "BVUZF1mw8"
+classId = reflectHashModuleName ι
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex

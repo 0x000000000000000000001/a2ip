@@ -3,18 +3,17 @@ module App.Component.Router.Menu.Style.Item.Item
   , style
   ) where
 
-import Proem (discard, when)
-
-import CSS (color, graytone, hover)
-import CSS as CSS
+import Proem (discard, when, ι)
 import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Type (State)
-import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, typedDeepClass, displayFlex, heightRem, justifyContentCenter, padding2, positionRelative, raw, userSelectNone, widthPct100, (.&), (.?), (:?))
+import CSS (color, graytone, hover)
+import CSS as CSS
+import Util.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, reflectHashModuleName, heightRem, justifyContentCenter, padding2, positionRelative, raw, typedDeepClass, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
-classId = "hJyLm9YwK"
+classId = reflectHashModuleName ι
 
 style :: State -> CSS.CSS
 style s = do
