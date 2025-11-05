@@ -5,18 +5,18 @@ import Proem
 import App.Component.Common.Fragment.Type as Fragment
 import App.Component.Common.Modal.Type as Modal
 import App.Component.Common.Timeline.Type as Timeline
+import App.Component.Common.Vault.Type as Vault
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
 import App.Component.Util.Email (emailOfJoel, emailOfSophie)
 import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
 import App.Util.Capability.AppM (AppM)
 import Data.Date (Date)
 import Data.Generic.Rep (class Generic)
-import Data.Lens (Lens')
 import Data.Maybe (Maybe(..))
 import Data.Show.Generic (genericShow)
+import Data.String.Read (class Read)
 import Halogen (HalogenM, Slot)
 import Util.Time (unsafeDate)
-import Data.String.Read (class Read)
 
 type Input = NoInput
 
@@ -24,7 +24,7 @@ type Output = NoOutput
 
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
-  , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
+  , videoRecord :: Slot YoutubeVideo.Query (Vault.Output YoutubeVideo.Output) NoSlotAddressIndex
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
   )
 
@@ -37,8 +37,6 @@ type State
             , openThemeDescriptionModal :: Boolean
             }
       }
-
-_seminars = identity :: Lens' State State
 
 data Action 
   = Load 

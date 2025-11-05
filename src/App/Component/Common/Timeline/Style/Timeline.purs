@@ -14,7 +14,7 @@ import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS ((|*))
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style (alignItemsCenter, displayFlex, fill, hash9, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refine, reflectHashModuleName, svg, (.&.), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refine, reflectHashModuleName, svg, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι

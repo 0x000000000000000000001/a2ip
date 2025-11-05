@@ -5,7 +5,7 @@ module App.Component.Page.Seminars.HandleAction
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..), _seminars)
+import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
 import App.Component.Util.Remote (fetchModify)
 import Data.Array (find, (!!))
 import Data.Int (fromString)
@@ -52,7 +52,7 @@ handleAction = case _ of
       _ -> ηι
 
   Load -> do
-    fetchModify seminars' _seminars toSeminar
+    fetchModify seminars' identity toSeminar
       (\sems ->  
         { seminars: sems
         , selectedSeminar: sems !! 0 <#> \sem ->
