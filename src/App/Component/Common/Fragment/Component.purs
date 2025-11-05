@@ -8,6 +8,7 @@ import Proem
 
 import App.Component.Common.Fragment.HandleAction (handleAction)
 import App.Component.Common.Fragment.Type (Action(..), Input, Output, Query)
+import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -37,12 +38,11 @@ fragment
   => Proxy label
   -> slotAddressIndex
   -> Input w i
-  -> (Output -> action)
   -> ComponentHTML action slots AppM
-fragment _slotLabel slotAddressIndex input outputAction = 
+fragment _slotLabel slotAddressIndex input = 
   slot
     _slotLabel
     slotAddressIndex
     component
     input
-    outputAction
+    noOutputAction

@@ -26,6 +26,7 @@ type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
   , videoRecord :: Slot YoutubeVideo.Query (Vault.Output YoutubeVideo.Output) NoSlotAddressIndex
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
+  , themeDescription2 :: Slot Fragment.Query Fragment.Output NoSlotAddressIndex
   )
 
 type State 
