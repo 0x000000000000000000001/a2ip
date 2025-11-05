@@ -40,7 +40,10 @@ type Slots q o =
   , password :: Slot Input.Query Input.Output NoSlotAddressIndex
   )
 
-type LockedState = { passwordInputValue :: Maybe (Ref String) }
+type LockedState = 
+  { passwordInputValue :: Maybe (Ref String)
+  , incorrect :: Boolean 
+  }
 
 data Phase 
   = Locked LockedState

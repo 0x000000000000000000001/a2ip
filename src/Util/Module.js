@@ -1,4 +1,4 @@
-export const captureModuleName = function() {
+export const reflectModuleName = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
 
@@ -11,11 +11,13 @@ export const captureModuleName = function() {
             || line.includes(import.meta.dirname)
         ) continue;
 
-        if (line.startsWith('file:')) {
+        if (line.startsWith('file') || line.startsWith('http')) {
             ans = line.split('/output/')[1].split('/index.js')[0];
             break;
         }
     }
+
+    // console.log(ans);
 
     return ans;
 };

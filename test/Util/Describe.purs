@@ -7,11 +7,10 @@ import Proem
 
 import Test.Spec (class FocusWarning, SpecT)
 import Test.Spec as TestSpec
-
-foreign import captureModuleName :: Unit -> String
+import Util.Module (reflectModuleName)
 
 generateDescription :: Unit -> String 
-generateDescription _ = captureModuleName ι <> ":"
+generateDescription _ = reflectModuleName ι <> ":"
 
 describe :: 
   ∀ m g i a

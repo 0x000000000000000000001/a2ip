@@ -2,6 +2,7 @@ module App.Component.Common.Vault.Style.Front
   ( animationDurationMs
   , classId
   , classIdWhen
+  , classIdWhenIncorrect
   , style
   )
   where
@@ -15,18 +16,23 @@ import App.Component.Common.Vault.Style.Door as Door
 import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Type (Phase(..))
-import CSS (animation, backgroundColor, border, borderBottom, borderColor, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, transforms, white, zIndex)
+import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, transforms, white, zIndex)
 import CSS as CSS
 import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
+import Util.Proxy.Dictionary.Incorrect (incorrect_)
+import Util.Module (reflectModuleName)
 import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, hash9, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (|*.))
 
 classId :: String
-classId = "j8djWsw23"
+classId = reflectModuleName ι
 
 classIdWhen :: Phase -> String
-classIdWhen phase = hash9 $ classId <> "-" <> show phase
+classIdWhen phase = hash9 $ classId <> show phase
+
+classIdWhenIncorrect :: String
+classIdWhenIncorrect = hash9 $ classId <> incorrect_
 
 animationId :: String
 animationId = "XfIdRyd3W"

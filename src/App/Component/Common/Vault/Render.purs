@@ -15,18 +15,18 @@ import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Style.Sheet (sheet)
 import App.Component.Common.Vault.Style.Vault (classId)
-import App.Component.Common.Vault.Type (Action(..), Slots, State, isLocked)
+import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Halogen.HTML.Events (onKeyDown)
+import Html.Renderer.Halogen as HR
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
 import Util.Style (class_, classes)
 import Web.UIEvent.KeyboardEvent (code)
-import Html.Renderer.Halogen as HR
 
 render 
   :: ∀ q i o
@@ -51,6 +51,9 @@ render innerComponent { innerInput, phase } =
         [ classes
             [ Front.classId
             , isLocked phase ? "" ↔ Front.classIdWhen phase
+            , case phase of 
+                Locked { incorrect: true } -> Front.classIdWhenIncorrect
+                _ -> ""
             ]
         , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
         ]

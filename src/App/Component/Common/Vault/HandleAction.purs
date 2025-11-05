@@ -4,6 +4,7 @@ module App.Component.Common.Vault.HandleAction
 
 import Proem
 
+import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Type (Action(..), Output(..), Phase(..), VaultM, _Locked)
 import Data.Lens (_Just, (.~), (^?))
 import Data.Maybe (Maybe(..))
@@ -13,9 +14,9 @@ import Effect.Console (log)
 import Effect.Ref (new, read, write)
 import Halogen (fork, get, modify_)
 import Halogen.Query.HalogenM (raise)
+import Util.Proxy.Dictionary.Incorrect (_incorrect)
 import Util.Proxy.Dictionary.PasswordInputValue (_passwordInputValue)
 import Util.Proxy.Dictionary.Phase (_phase)
-import App.Component.Common.Vault.Style.Front as Front
 
 handleAction :: ∀ q i o. Action i o -> (VaultM q i o) Unit
 handleAction = case _ of
@@ -37,7 +38,7 @@ handleAction = case _ of
       currentPasswordInputValue <- ʌ $ read ref
 
       when (state.input.password /= currentPasswordInputValue) do 
-        ʌ $ log "Incorrect password entered."
+        modify_ (_ # _phase ◁ _Locked ◁ _incorrect .~ true) 
 
       when (state.input.password == currentPasswordInputValue) do 
         modify_ _ { phase = Unlocking }
