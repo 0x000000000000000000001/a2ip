@@ -61,9 +61,7 @@ items =
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   nav
-    ( [ class_ classId
-      , HP.id "menu"
-      ] 
+    ( [ class_ classId ] 
       <> (
         s.animating 
           ? []
