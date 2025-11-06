@@ -45,7 +45,6 @@ module Util.Style
   , (¨|>.)
   , (¨|>:)
   , (¨|>¨)
-  , Position(..)
   , after
   , alignItemsCenter
   , all
@@ -585,90 +584,6 @@ cursorPointer = cursor pointer
 
 pointerEventsNone :: CSS.CSS
 pointerEventsNone = raw "pointer-events" "none"
-
-data Position 
-  = TopRightToTopLeft 
-  | TopRightToTopCenter 
-  | TopRightToTopRight
-  | TopRightToCenterLeft 
-  | TopRightToCenter
-  | TopRightToCenterRight
-  | TopRightToBottomLeft 
-  | TopRightToBottomCenter
-  | TopRightToBottomRight
-  | TopCenterToTopLeft 
-  | TopCenterToTopCenter 
-  | TopCenterToTopRight
-  | TopCenterToCenterLeft 
-  | TopCenterToCenter
-  | TopCenterToCenterRight
-  | TopCenterToBottomLeft 
-  | TopCenterToBottomCenter
-  | TopCenterToBottomRight
-  | TopLeftToTopLeft 
-  | TopLeftToTopCenter 
-  | TopLeftToTopRight
-  | TopLeftToCenterLeft 
-  | TopLeftToCenter
-  | TopLeftToCenterRight
-  | TopLeftToBottomLeft 
-  | TopLeftToBottomCenter
-  | TopLeftToBottomRight
-  | CenterRightToTopLeft 
-  | CenterRightToTopCenter 
-  | CenterRightToTopRight
-  | CenterRightToCenterLeft 
-  | CenterRightToCenter
-  | CenterRightToCenterRight
-  | CenterRightToBottomLeft 
-  | CenterRightToBottomCenter
-  | CenterRightToBottomRight
-  | CenterCenterToTopLeft 
-  | CenterCenterToTopCenter 
-  | CenterCenterToTopRight
-  | CenterCenterToCenterLeft 
-  | CenterCenterToCenter
-  | CenterCenterToCenterRight
-  | CenterCenterToBottomLeft 
-  | CenterCenterToBottomCenter
-  | CenterCenterToBottomRight
-  | CenterLeftToTopLeft 
-  | CenterLeftToTopCenter 
-  | CenterLeftToTopRight
-  | CenterLeftToCenterLeft 
-  | CenterLeftToCenter
-  | CenterLeftToCenterRight
-  | CenterLeftToBottomLeft 
-  | CenterLeftToBottomCenter
-  | CenterLeftToBottomRight
-  | BottomRightToTopLeft 
-  | BottomRightToTopCenter 
-  | BottomRightToTopRight
-  | BottomRightToCenterLeft 
-  | BottomRightToCenter
-  | BottomRightToCenterRight
-  | BottomRightToBottomLeft 
-  | BottomRightToBottomCenter
-  | BottomRightToBottomRight
-  | BottomCenterToTopLeft 
-  | BottomCenterToTopCenter 
-  | BottomCenterToTopRight
-  | BottomCenterToCenterLeft 
-  | BottomCenterToCenter
-  | BottomCenterToCenterRight
-  | BottomCenterToBottomLeft 
-  | BottomCenterToBottomCenter
-  | BottomCenterToBottomRight
-  | BottomLeftToTopLeft 
-  | BottomLeftToTopCenter 
-  | BottomLeftToTopRight
-  | BottomLeftToCenterLeft 
-  | BottomLeftToCenter
-  | BottomLeftToCenterRight
-  | BottomLeftToBottomLeft 
-  | BottomLeftToBottomCenter
-  | BottomLeftToBottomRight
-
 
 positionAbsoluteOnlyTranslatePct :: Number -> Number -> CSS.CSS
 positionAbsoluteOnlyTranslatePct x y = do

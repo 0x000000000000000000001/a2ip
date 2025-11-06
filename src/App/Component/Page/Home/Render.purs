@@ -8,17 +8,19 @@ import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Carrousel.Type (Media(..))
 import App.Component.Common.Modal.Component (modal)
 import App.Component.Common.Tooltip.Tooltip (tooltip)
+import App.Component.Common.Tooltip.Type (defaultInput)
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
+import CSS (color)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, text)
 import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Modal (modal')
-import Util.Style (Position(..))
+import Util.Style (red)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { showModal, innerClicks, outerClicks } =
@@ -29,16 +31,18 @@ render { showModal, innerClicks, outerClicks } =
         , text $ "Outer clicks: " <> show outerClicks
         ]
     , tooltip
-        { inner:
-            div
-              [ onClick $ κ $ InnerClicked ]
-              [ text $ "Click me (inner) - modal: " <> (showModal ? "visible" ↔ "hidden") ]
-        , outer: 
-            div
-              [ onClick $ κ $ OuterClicked ]
-              [ text "Click me too (outer)" ]
-        , outerPosition: CenterRightToCenterLeft
-        }
+        defaultInput 
+          { inner =
+              div
+                [ onClick $ κ $ InnerClicked ]
+                [ text $ "Modal: " <> (showModal ? "visible" ↔ "hidden") ]
+          , outer = 
+              div
+                [ onClick $ κ $ OuterClicked ]
+                [ text "Click me too (outer)" ]
+          , outerStyle = do 
+              color red
+          }
     , modal
         Carrousel.component
         modal'
