@@ -5,6 +5,7 @@ module App.Component.Page.About.Render
 import Proem hiding (div)
 
 import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
 import App.Component.Page.About.Style.About (classId)
@@ -103,23 +104,24 @@ renderCard section isLoading idx member =
           ( (ᴠ section)
               <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
           )
-          { class_: Just CardPortrait.classId
-          , loading: isLoading
-          , sources: 
-              { first: 
-                  ourImageRelativePath
-                    ( member.portraitId == ""
-                        ? (slugify $ member.firstname <> "-" <> member.lastname)
-                        ↔ member.portraitId
-                    )
-              , fallback: 
-                  Just $ ourImageRelativePath
-                    ( member.portraitId /= ""
-                        ? (slugify $ member.firstname <> "-" <> member.lastname)
-                        ↔ "anonymous"
-                    )
-              }
-          }
+          defaultInput 
+            { class_ = Just CardPortrait.classId
+            , loading = isLoading
+            , sources =
+                { first: 
+                    ourImageRelativePath
+                      ( member.portraitId == ""
+                          ? (slugify $ member.firstname <> "-" <> member.lastname)
+                          ↔ member.portraitId
+                      )
+                , fallback: 
+                    Just $ ourImageRelativePath
+                      ( member.portraitId /= ""
+                          ? (slugify $ member.firstname <> "-" <> member.lastname)
+                          ↔ "anonymous"
+                      )
+                }
+            }
       ] <> lines
     )
   where

@@ -19,16 +19,16 @@ import Html.Renderer.Halogen (renderToArray)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render { input, try } =
+render { try, input: { class_, loading, style } } =
   try == StopTrying
     ?
       ( div
           [ classes
-              $ [ classId, classIdWhenErrored, input.loading ? classIdWhenLoading ↔ "" ]
-              <> (input.class_ ?? (_ : []) ⇔ [])
+              $ [ classId, classIdWhenErrored, loading ? classIdWhenLoading ↔ "" ]
+              <> (class_ ?? (_ : []) ⇔ [])
           ]
           ( [ sheet ]
-              <> (not input.loading ? (renderToArray $ questionMarkSvg QuestionMark.classId) ↔ [])
+              <> (not loading ? (renderToArray $ questionMarkSvg QuestionMark.classId) ↔ [])
           )
       )
     ↔
@@ -39,7 +39,7 @@ render { input, try } =
         in img
           $ [ classes
               $ [ classId ]
-              <> (input.class_ ?? (_ : []) ⇔ [])
+              <> (class_ ?? (_ : []) ⇔ [])
             ]
             <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
             <> [ onError \_ -> HandleError ]

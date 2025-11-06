@@ -13,6 +13,7 @@ import App.Component.Common.Carrousel.Style.Media as Media
 import App.Component.Common.Carrousel.Style.Sheet (sheet)
 import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
 import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -49,13 +50,12 @@ render { input: { slides }, index } =
                 [ prettyErrorImage
                     image'
                     noSlotAddressIndex
-                    { class_: Nothing
-                    , loading: false
-                    , sources: 
-                        { first: url
-                        , fallback: Nothing
-                        }
-                    }
+                    defaultInput
+                      { sources =
+                          { first: url
+                          , fallback: Nothing
+                          }
+                      }
                 ]
               Just (YoutubeVideo url) ->
                 [ youtubeVideo

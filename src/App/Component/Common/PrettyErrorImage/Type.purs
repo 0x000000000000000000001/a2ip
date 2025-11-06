@@ -7,20 +7,25 @@ module App.Component.Common.PrettyErrorImage.Type
   , Slots
   , Sources
   , State
+  , Style
   , Try(..)
   , Url
+  , defaultInput
   )
   where
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import App.Util.Capability.AppM (AppM)
+import CSS as CSS
 import Data.Eq (class Eq)
-import Data.Maybe (Maybe)
+import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
+import Util.Style (nothing)
 
 type Style = 
-  { 
-
+  { root :: 
+      { 
+      }
   }
 
 type Url = String
@@ -34,7 +39,22 @@ type Input =
   { class_ :: Maybe String
   , loading :: Boolean
   , sources :: Sources
+  , style :: Style
   } 
+
+defaultInput :: Input
+defaultInput =
+  { class_: Nothing
+  , loading: false
+  , sources: 
+      { first: ""
+      , fallback: Nothing
+      }
+  , style: 
+      { root: nothing
+      , questionMark: nothing
+      }
+  }
  
 type Output = NoOutput
 

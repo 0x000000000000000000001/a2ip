@@ -32,9 +32,6 @@ style = do
     topLeftToTopLeft
     raw "transition" "background-color 0s"
 
-  classIdWhenYoutubeVideo .? do 
-    backgroundColor black
-
   __image :? do 
     asset
     raw "object-fit" "contain"
@@ -45,6 +42,9 @@ style = do
 
   ______questionMark :? do
     fill $ darken 0.16 white
+
+  classIdWhenYoutubeVideo .? do 
+    backgroundColor black
 
   __youtubeVideo :? do 
     asset
