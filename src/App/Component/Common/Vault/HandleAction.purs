@@ -56,6 +56,8 @@ handleAction = case _ of
     for_ (state ^? _phase ◁ _Locked ◁ _passwordInputValue ◁ _Just) \ref ->
       ʌ $ write newValue ref
 
+    modify_ (_ # _phase ◁ _Locked ◁ _incorrect .~ false)
+
   RaiseInnerOutput output -> raise (InnerOutputRaised output)
 
   DoNothing -> ηι

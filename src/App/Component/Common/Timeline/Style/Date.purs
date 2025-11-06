@@ -13,7 +13,7 @@ import CSS (outline, rem, solid, transform)
 import CSS as CSS
 import Color (lighten)
 import Util.Proxy.Dictionary.Selected (selected_)
-import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct1, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refine, reflectHashModuleName, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refine, reflectHashModuleName, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -36,7 +36,7 @@ style = do
 
   __selected :? do 
     outline solid (rem 0.2) $ lighten 0.1 red
-    borderRadiusPct1 50.0
+    borderRadiusPct50
   
   ____numbers :? do
     colorRed

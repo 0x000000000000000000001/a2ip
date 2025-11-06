@@ -11,7 +11,7 @@ import CSS (Color, animation, borderBox, borderRight, borderTop, boxSizing, deg,
 import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
-import Util.Style (borderRadiusPct1, displayInlineBlock, heightRem, refine, reflectHashModuleName, transparent, widthRem, (.?))
+import Util.Style (borderRadiusPct50, displayInlineBlock, heightRem, refine, reflectHashModuleName, transparent, widthRem, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -27,7 +27,7 @@ style color = do
   classId .? do
     widthRem 3.0
     heightRem 3.0
-    borderRadiusPct1 50.0
+    borderRadiusPct50
     displayInlineBlock
     borderRight solid (rem 0.4) transparent
     boxSizing borderBox

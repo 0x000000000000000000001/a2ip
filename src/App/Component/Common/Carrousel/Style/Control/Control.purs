@@ -14,7 +14,7 @@ import CSS as CSS
 import Color (darken)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style (alignItemsCenter, borderRadiusPct1, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refine, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refine, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -33,7 +33,7 @@ style = do
     backgroundColor $ rgba 0 0 0 0.75
     heightRem 5.0
     widthRem 5.0
-    borderRadiusPct1 50.0
+    borderRadiusPct50
     displayFlex
     justifyContentCenter
     alignItemsCenter

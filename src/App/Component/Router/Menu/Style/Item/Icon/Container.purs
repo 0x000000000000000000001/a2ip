@@ -14,7 +14,7 @@ import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
 import Data.NonEmpty (singleton)
-import Util.Style (borderRadiusPct1, displayFlex, reflectHashModuleName, heightRem, justifyContentCenter, marginLeft, minWidthRem, widthRem, (.?))
+import Util.Style (borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, reflectHashModuleName, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -29,7 +29,7 @@ style :: State -> CSS.CSS
 style s = do
   classId .? do
     backgroundColor (rgba 0 0 0 0.2)
-    borderRadiusPct1 50.0
+    borderRadiusPct50
     minWidthRem width
     widthRem width
     heightRem width

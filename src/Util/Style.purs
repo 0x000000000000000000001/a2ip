@@ -56,6 +56,7 @@ module Util.Style
   , before
   , borderRadiusPct1
   , borderRadiusPct4
+  , borderRadiusPct50
   , borderRadiusRem1
   , borderRadiusRem4
   , borderWidth
@@ -1103,6 +1104,9 @@ borderRadiusPct4 tl tr br bl = borderRadius (pct tl) (pct tr) (pct br) (pct bl)
 
 borderRadiusPct1 :: Number -> CSS.CSS
 borderRadiusPct1 r = borderRadiusPct4 r r r r
+
+borderRadiusPct50 :: CSS.CSS
+borderRadiusPct50 = borderRadiusPct1 50.0
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w

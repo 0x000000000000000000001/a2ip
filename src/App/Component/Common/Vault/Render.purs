@@ -61,12 +61,34 @@ render innerComponent { phase, input: { innerInput } } =
         , div [ classes [ Door.classId, Door.classIdWhenRight ] ] []
         , div 
             [ class_ Message.classId ]
-            [ text $ not (isLocked phase) ? "Parfait !" ↔ "Ceci est une ressource protégée." 
+            [ span_ $ 
+                not (isLocked phase) 
+                    ? [text "Parfait !"]
+                    ↔ (case phase of 
+                        Locked { incorrect: true } -> [text "Mot de passe ", strong_ [text "incorrect"], text "."]
+                        _ -> [text "Ceci est une ressource protégée."]
+                    ) 
             , br_
             , span_ 
-                [ text $ not (isLocked phase) ? "Déverrouillage..." ↔ "Veuillez entrer le "
-                , not (isLocked phase) ? noHtml ↔ strong_ [ text "mot de passe" ] 
-                , not (isLocked phase) ? noHtml ↔ text " afférent." 
+                [ text $ 
+                    not (isLocked phase) 
+                        ? "Déverrouillage..." 
+                        ↔ (case phase of 
+                            Locked { incorrect: true } -> "Veuillez réessayer."
+                            _ -> "Veuillez entrer le "
+                        )
+                , not (isLocked phase) 
+                    ? noHtml 
+                    ↔ (case phase of 
+                        Locked { incorrect: true } -> noHtml
+                        _ -> strong_ [ text "mot de passe" ] 
+                    )
+                , not (isLocked phase) 
+                    ? noHtml 
+                    ↔ (case phase of 
+                        Locked { incorrect: true } -> noHtml
+                        _ -> text " afférent." 
+                    )
                 ]
             ]
         , HR.render [ class_ Lock.classId ] frontDoorSvg

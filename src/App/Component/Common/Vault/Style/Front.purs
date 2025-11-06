@@ -16,13 +16,13 @@ import App.Component.Common.Vault.Style.Door as Door
 import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Type (Phase(..))
-import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, transforms, white, zIndex)
+import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, lighten, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, strong, transforms, white, zIndex)
 import CSS as CSS
 import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
-import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, refine, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (|*.))
+import Util.Style (alignItemsCenter, borderRadiusPct1, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refine, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -76,7 +76,6 @@ style = do
 
   a___lock :? do
     outline solid (rem 0.3) limegreen
-    borderRadiusPct1 50.0
     animation
       (fromString animationId) 
       (sec $ animationDurationMs / 1000.0)
@@ -110,6 +109,18 @@ style = do
     marginLeft (pct 100.0)
     opacity 0.0
 
+  __incorrect :? do 
+    nothing
+
+  c___lock :? do 
+    outline solid (rem 0.3) red
+
+  c___message :? do 
+    nothing
+
+  ______strong :? do 
+    color $ lighten 0.2 red
+
   keyframes animationId (
     ( 0.0 /\ transforms [ rotate $ deg 0.0 ]
     ) :| 
@@ -133,3 +144,7 @@ style = do
   ____leftDoor = __unlocked |*. Door.classIdWhenLeft
   ____rightDoor = __unlocked |*. Door.classIdWhenRight
   b___lock = __unlocked |*. Lock.classId
+  __incorrect = classId .&. classIdWhenIncorrect
+  c___lock = __incorrect :|*. Lock.classId
+  c___message = __incorrect :|*. Message.classId
+  ______strong = c___message :|*: strong

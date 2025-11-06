@@ -8,7 +8,7 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import CSS (border, rem, solid)
 import CSS as CSS
-import Util.Style (borderRadiusPct1, fill, reflectHashModuleName, heightRem, marginTop, raw, red, textRed, widthRem, (.?), (.|*.), (:?))
+import Util.Style (borderRadiusPct50, fill, heightRem, marginTop, raw, red, reflectHashModuleName, textRed, widthRem, (.?), (.|*.), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -23,7 +23,7 @@ style = do
     heightRem width
     raw "object-fit" "cover"
     border solid (rem 0.3) red
-    borderRadiusPct1 50.0
+    borderRadiusPct50
     marginTop 0.4
 
   __questionMark :? do
