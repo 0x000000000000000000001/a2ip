@@ -5,7 +5,7 @@ module App.Component.Common.Input.Render
 import Proem hiding (div)
 
 import App.Component.Common.Input.Style.Field as Field
-import App.Component.Common.Input.Style.Input (classId, classIdWithFocus)
+import App.Component.Common.Input.Style.Input (classId, classIdWhenOpen)
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Input.Style.Sheet (sheet)
 import App.Component.Common.Input.Type (Action(..), Slots, State)
@@ -22,12 +22,12 @@ import Halogen.HTML.Properties as HP
 import Util.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ focus, input: { placeholder, label, class_: class' } } =
+render s@{ open, input: { placeholder, label, class_: class' } } =
   div
     [ classes
         [ classId
         , class' ??⇒ ""
-        , focus ? classIdWithFocus ↔ ""
+        , open ? classIdWhenOpen ↔ ""
         ]
     , onClick $ κ HandleClick
     ]
@@ -38,7 +38,7 @@ render s@{ focus, input: { placeholder, label, class_: class' } } =
               HH.label
                 ( [ class_ Label.classId ]
                     <>
-                      ( focus
+                      ( open
                           ? [ onClick HandleLabelClick
                             , onMouseDown HandleLabelMouseDown
                             ]
@@ -56,7 +56,7 @@ render s@{ focus, input: { placeholder, label, class_: class' } } =
           , onBlur $ κ HandleBlur
           ]
             <>
-              ( focus
+              ( open
                   ? (placeholder ?? (HP.placeholder ▷ (_ : [])) ⇔ [])
                   ↔ []
               )

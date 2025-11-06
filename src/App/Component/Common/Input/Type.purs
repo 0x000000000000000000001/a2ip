@@ -40,7 +40,7 @@ type Slots = NoSlots
 type State =
   { input :: Input
   , value :: Maybe (Ref String)
-  , focus :: Boolean
+  , open :: Boolean
   }
 
 data Action 

@@ -22,7 +22,7 @@ component = mkComponent
     { initialState: \i -> 
         { input: i
         , value: Nothing
-        , focus: false
+        , open: false
         }
     , render   
     , eval: mkEval defaultEval

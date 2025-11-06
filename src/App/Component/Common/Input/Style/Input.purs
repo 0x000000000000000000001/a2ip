@@ -1,6 +1,6 @@
 module App.Component.Common.Input.Style.Input
   ( classId
-  , classIdWithFocus
+  , classIdWhenOpen
   , style
   )
   where
@@ -10,21 +10,20 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Proxy.Dictionary.Focus (focus_)
 import Util.Style (colorRed, fontSizePct, nothing, refine, reflectHashModuleName, top0, (.?), (.|*.), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
-classIdWithFocus :: String
-classIdWithFocus = refine classId focus_
+classIdWhenOpen :: String
+classIdWhenOpen = refine classId "open"
 
 style :: CSS.CSS
 style = do
   classId .? do
     position relative
 
-  classIdWithFocus .? do 
+  classIdWhenOpen .? do 
     nothing
 
   __label :? do 
@@ -34,4 +33,4 @@ style = do
     colorRed  
 
   where 
-  __label = classIdWithFocus .|*. Label.classId
+  __label = classIdWhenOpen .|*. Label.classId

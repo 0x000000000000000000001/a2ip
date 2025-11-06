@@ -8,7 +8,7 @@ import App.Component.Common.Input.Type (Action(..), InputM, Output(..))
 import App.Component.Common.Input.Util (inputRef)
 import Data.Maybe (Maybe(..))
 import Data.Traversable (for_)
-import Effect.Ref (new, write)
+import Effect.Ref (new, read, write)
 import Halogen (get, getHTMLElementRef, modify_, raise)
 import Web.Event.Event (preventDefault, stopPropagation)
 import Web.HTML.HTMLElement (focus)
@@ -34,9 +34,18 @@ handleAction = case _ of
 
     raise $ ChangedValue newValue
 
-  HandleFocus -> modify_ _ { focus = true }
+  HandleFocus -> modify_ _ { open = true }
 
-  HandleBlur -> modify_ _ { focus = false }
+  HandleBlur -> do 
+    state <- get 
+
+    for_
+      state.value
+      \ref -> do
+        currentValue <- ʌ $ read ref
+
+        when (currentValue == "") do
+          modify_ _ { open = false }
 
   HandleClick -> do
     maybeElement <- getHTMLElementRef inputRef
