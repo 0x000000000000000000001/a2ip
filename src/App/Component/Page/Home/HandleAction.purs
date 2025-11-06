@@ -13,3 +13,5 @@ handleAction = case _ of
   ShowModal -> modify_ _ { showModal = true }
   HideModal -> modify_ _ { showModal = false }
   DoNothing -> ηι
+  InnerClicked -> modify_ \s -> s { innerClicks = s.innerClicks + 1, showModal = true }
+  OuterClicked -> modify_ \s -> s { outerClicks = s.outerClicks + 1 }

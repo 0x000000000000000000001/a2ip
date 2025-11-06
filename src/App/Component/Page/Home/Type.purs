@@ -16,9 +16,11 @@ type Slots =
 
 type State = 
   { showModal :: Boolean
+  , innerClicks :: Int
+  , outerClicks :: Int
   }
 
-data Action = ShowModal | HideModal | DoNothing
+data Action = ShowModal | HideModal | DoNothing | InnerClicked | OuterClicked
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery

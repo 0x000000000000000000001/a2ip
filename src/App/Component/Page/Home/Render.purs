@@ -7,7 +7,7 @@ import Proem hiding (div)
 import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Carrousel.Type (Media(..))
 import App.Component.Common.Modal.Component (modal)
-import App.Component.Common.Tooltip.Component (tooltip)
+import App.Component.Common.Tooltip.Tooltip (tooltip)
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noSlotAddressIndex)
@@ -18,20 +18,25 @@ import Halogen.HTML (div, div_, text)
 import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Modal (modal')
-import Util.Proxy.Dictionary.Tooltip (tooltip')
 import Util.Style (Position(..))
 
 render :: State -> ComponentHTML Action Slots AppM
-render { showModal } =
+render { showModal, innerClicks, outerClicks } =
   div_
-    [ tooltip
-        tooltip'
-        noSlotAddressIndex
+    [ div_
+        [ text $ "Inner clicks: " <> show innerClicks
+        , text " | "
+        , text $ "Outer clicks: " <> show outerClicks
+        ]
+    , tooltip
         { inner:
             div
-              [ onClick $ κ $ ShowModal ]
-              [ text $ "modal: " <> (showModal ? "visible" ↔ "hidden") ]
-        , outer: text "Test toggle"
+              [ onClick $ κ $ InnerClicked ]
+              [ text $ "Click me (inner) - modal: " <> (showModal ? "visible" ↔ "hidden") ]
+        , outer: 
+            div
+              [ onClick $ κ $ OuterClicked ]
+              [ text "Click me too (outer)" ]
         , outerPosition: CenterRightToCenterLeft
         }
     , modal

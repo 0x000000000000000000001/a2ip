@@ -17,6 +17,8 @@ component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: κ
       { showModal: false
+      , innerClicks: 0
+      , outerClicks: 0
       }
   , render
   , eval: mkEval defaultEval 

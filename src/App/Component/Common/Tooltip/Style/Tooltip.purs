@@ -1,6 +1,5 @@
 module App.Component.Common.Tooltip.Style.Tooltip
   ( classId
-  , classIdWhenOpen
   , style
   )
   where
@@ -8,13 +7,10 @@ module App.Component.Common.Tooltip.Style.Tooltip
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (nothing, refineClassId, reflectHashModuleName, (.?))
+import Util.Style (nothing, reflectHashModuleName, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
-
-classIdWhenOpen :: String
-classIdWhenOpen = refineClassId classId "open"
 
 style :: CSS.CSS
 style = do
