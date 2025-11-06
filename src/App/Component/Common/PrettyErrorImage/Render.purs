@@ -19,7 +19,7 @@ import Html.Renderer.Halogen (renderToArray)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render { try, input: { class_, loading, style } } =
+render { try, input: { class_, loading } } =
   try == StopTrying
     ?
       ( div

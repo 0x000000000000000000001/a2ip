@@ -16,14 +16,15 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import App.Util.Capability.AppM (AppM)
-import CSS as CSS
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
-import Util.Style (nothing)
 
 type Style = 
   { root :: 
+      { 
+      }
+  , questionMark :: 
       { 
       }
   }
@@ -51,8 +52,8 @@ defaultInput =
       , fallback: Nothing
       }
   , style: 
-      { root: nothing
-      , questionMark: nothing
+      { root: {}
+      , questionMark: {}
       }
   }
  
