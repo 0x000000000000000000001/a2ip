@@ -61,64 +61,64 @@ module Util.Style
   , borderRadiusRem4
   , borderWidth
   , bottom0
-  , bottomCenterToBottomCenter
-  , bottomCenterToBottomLeft
-  , bottomCenterToBottomRight
-  , bottomCenterToCenter
-  , bottomCenterToCenterLeft
-  , bottomCenterToCenterRight
-  , bottomCenterToTopCenter
-  , bottomCenterToTopLeft
-  , bottomCenterToTopRight
-  , bottomLeftToBottomCenter
-  , bottomLeftToBottomLeft
-  , bottomLeftToBottomRight
-  , bottomLeftToCenter
-  , bottomLeftToCenterLeft
-  , bottomLeftToCenterRight
-  , bottomLeftToTopCenter
-  , bottomLeftToTopLeft
-  , bottomLeftToTopRight
+  , bottomCenterToBottomCenterWithRemDelta
+  , bottomCenterToBottomLeftWithRemDelta
+  , bottomCenterToBottomRightWithRemDelta
+  , bottomCenterToCenterWithRemDelta
+  , bottomCenterToCenterLeftWithRemDelta
+  , bottomCenterToCenterRightWithRemDelta
+  , bottomCenterToTopCenterWithRemDelta
+  , bottomCenterToTopLeftWithRemDelta
+  , bottomCenterToTopRightWithRemDelta
+  , bottomLeftToBottomCenterWithRemDelta
+  , bottomLeftToBottomLeftWithRemDelta
+  , bottomLeftToBottomRightWithRemDelta
+  , bottomLeftToCenterWithRemDelta
+  , bottomLeftToCenterLeftWithRemDelta
+  , bottomLeftToCenterRightWithRemDelta
+  , bottomLeftToTopCenterWithRemDelta
+  , bottomLeftToTopLeftWithRemDelta
+  , bottomLeftToTopRightWithRemDelta
   , bottomPct
   , bottomPct100
   , bottomPct50
   , bottomRem
-  , bottomRightToBottomCenter
-  , bottomRightToBottomLeft
-  , bottomRightToBottomRight
-  , bottomRightToCenter
-  , bottomRightToCenterLeft
-  , bottomRightToCenterRight
-  , bottomRightToTopCenter
-  , bottomRightToTopLeft
-  , bottomRightToTopRight
-  , centerLeftToBottomCenter
-  , centerLeftToBottomLeft
-  , centerLeftToBottomRight
-  , centerLeftToCenter
-  , centerLeftToCenterLeft
-  , centerLeftToCenterRight
-  , centerLeftToTopCenter
-  , centerLeftToTopLeft
-  , centerLeftToTopRight
-  , centerRightToBottomCenter
-  , centerRightToBottomLeft
-  , centerRightToBottomRight
-  , centerRightToCenter
-  , centerRightToCenterLeft
-  , centerRightToCenterRight
-  , centerRightToTopCenter
-  , centerRightToTopLeft
-  , centerRightToTopRight
-  , centerToBottomCenter
-  , centerToBottomLeft
-  , centerToBottomRight
-  , centerToCenter
-  , centerToCenterLeft
-  , centerToCenterRight
-  , centerToTopCenter
-  , centerToTopLeft
-  , centerToTopRight
+  , bottomRightToBottomCenterWithRemDelta
+  , bottomRightToBottomLeftWithRemDelta
+  , bottomRightToBottomRightWithRemDelta
+  , bottomRightToCenterWithRemDelta
+  , bottomRightToCenterLeftWithRemDelta
+  , bottomRightToCenterRightWithRemDelta
+  , bottomRightToTopCenterWithRemDelta
+  , bottomRightToTopLeftWithRemDelta
+  , bottomRightToTopRightWithRemDelta
+  , centerLeftToBottomCenterWithRemDelta
+  , centerLeftToBottomLeftWithRemDelta
+  , centerLeftToBottomRightWithRemDelta
+  , centerLeftToCenterWithRemDelta
+  , centerLeftToCenterLeftWithRemDelta
+  , centerLeftToCenterRightWithRemDelta
+  , centerLeftToTopCenterWithRemDelta
+  , centerLeftToTopLeftWithRemDelta
+  , centerLeftToTopRightWithRemDelta
+  , centerRightToBottomCenterWithRemDelta
+  , centerRightToBottomLeftWithRemDelta
+  , centerRightToBottomRightWithRemDelta
+  , centerRightToCenterWithRemDelta
+  , centerRightToCenterLeftWithRemDelta
+  , centerRightToCenterRightWithRemDelta
+  , centerRightToTopCenterWithRemDelta
+  , centerRightToTopLeftWithRemDelta
+  , centerRightToTopRightWithRemDelta
+  , centerToBottomCenterWithRemDelta
+  , centerToBottomLeftWithRemDelta
+  , centerToBottomRightWithRemDelta
+  , centerToCenterWithRemDelta
+  , centerToCenterLeftWithRemDelta
+  , centerToCenterRightWithRemDelta
+  , centerToTopCenterWithRemDelta
+  , centerToTopLeftWithRemDelta
+  , centerToTopRightWithRemDelta
   , classChildClass
   , classChildRaw
   , classChildTyped
@@ -220,37 +220,37 @@ module Util.Style
   , textAlignCenter
   , textRed
   , top0
-  , topCenterToBottomCenter
-  , topCenterToBottomLeft
-  , topCenterToBottomRight
-  , topCenterToCenter
-  , topCenterToCenterLeft
-  , topCenterToCenterRight
-  , topCenterToTopCenter
-  , topCenterToTopLeft
-  , topCenterToTopRight
-  , topLeftToBottomCenter
-  , topLeftToBottomLeft
-  , topLeftToBottomRight
-  , topLeftToCenter
-  , topLeftToCenterLeft
-  , topLeftToCenterRight
-  , topLeftToTopCenter
-  , topLeftToTopLeft
-  , topLeftToTopRight
+  , topCenterToBottomCenterWithRemDelta
+  , topCenterToBottomLeftWithRemDelta
+  , topCenterToBottomRightWithRemDelta
+  , topCenterToCenterWithRemDelta
+  , topCenterToCenterLeftWithRemDelta
+  , topCenterToCenterRightWithRemDelta
+  , topCenterToTopCenterWithRemDelta
+  , topCenterToTopLeftWithRemDelta
+  , topCenterToTopRightWithRemDelta
+  , topLeftToBottomCenterWithRemDelta
+  , topLeftToBottomLeftWithRemDelta
+  , topLeftToBottomRightWithRemDelta
+  , topLeftToCenterWithRemDelta
+  , topLeftToCenterLeftWithRemDelta
+  , topLeftToCenterRightWithRemDelta
+  , topLeftToTopCenterWithRemDelta
+  , topLeftToTopLeftWithRemDelta
+  , topLeftToTopRightWithRemDelta
   , topPct
   , topPct100
   , topPct50
   , topRem
-  , topRightToBottomCenter
-  , topRightToBottomLeft
-  , topRightToBottomRight
-  , topRightToCenter
-  , topRightToCenterLeft
-  , topRightToCenterRight
-  , topRightToTopCenter
-  , topRightToTopLeft
-  , topRightToTopRight
+  , topRightToBottomCenterWithRemDelta
+  , topRightToBottomLeftWithRemDelta
+  , topRightToBottomRightWithRemDelta
+  , topRightToCenterWithRemDelta
+  , topRightToCenterLeftWithRemDelta
+  , topRightToCenterRightWithRemDelta
+  , topRightToTopCenterWithRemDelta
+  , topRightToTopLeftWithRemDelta
+  , topRightToTopRightWithRemDelta
   , translatePct
   , translateRem
   , transparent
@@ -276,6 +276,7 @@ import CSS.Common as CSSC
 import CSS.Cursor (pointer)
 import CSS.Overflow (hidden, overflow)
 import CSS.Selector (child, deep, with)
+import CSS.Size (calcSum)
 import CSS.TextAlign (textAlign, center)
 import Color (darken)
 import Data.Array (foldl, (!!))
@@ -508,491 +509,491 @@ positionAbsoluteOnlyTranslatePct x y = do
   positionAbsolute
   onlyTranslatePct x y
 
-topLeftToTopLeft :: CSS.CSS 
-topLeftToTopLeft = do
+topLeftToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  top0
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topCenterToTopLeft :: CSS.CSS 
-topCenterToTopLeft = do
+topCenterToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  top0
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topRightToTopLeft :: CSS.CSS 
-topRightToTopLeft = do
+topRightToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  top0
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerLeftToTopLeft :: CSS.CSS
-centerLeftToTopLeft = do
+centerLeftToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  left0
-  top0
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerToTopLeft :: CSS.CSS
-centerToTopLeft = do
+centerToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  left0
-  top0
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerRightToTopLeft :: CSS.CSS
-centerRightToTopLeft = do
+centerRightToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct100
-  top0
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-bottomLeftToTopLeft :: CSS.CSS
-bottomLeftToTopLeft = do
+bottomLeftToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  bottomPct100
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToTopLeft :: CSS.CSS
-bottomCenterToTopLeft = do
+bottomCenterToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  bottomPct100
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToTopLeft :: CSS.CSS
-bottomRightToTopLeft = do
+bottomRightToTopLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToTopLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  bottomPct100
+  right $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToTopCenter :: CSS.CSS 
-topLeftToTopCenter = do
+topLeftToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  top0
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topCenterToTopCenter :: CSS.CSS 
-topCenterToTopCenter = do
+topCenterToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  top0
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topRightToTopCenter :: CSS.CSS 
-topRightToTopCenter = do
+topRightToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  top0
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerLeftToTopCenter :: CSS.CSS
-centerLeftToTopCenter = do
+centerLeftToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct50
-  top0
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerToTopCenter :: CSS.CSS
-centerToTopCenter = do
+centerToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct50
-  top0
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerRightToTopCenter :: CSS.CSS
-centerRightToTopCenter = do
+centerRightToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct50
-  top0
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-bottomLeftToTopCenter :: CSS.CSS
-bottomLeftToTopCenter = do
+bottomLeftToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  bottomPct100
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToTopCenter :: CSS.CSS
-bottomCenterToTopCenter = do
+bottomCenterToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  bottomPct100
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToTopCenter :: CSS.CSS
-bottomRightToTopCenter = do
+bottomRightToTopCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToTopCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  bottomPct100
+  right $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToTopRight :: CSS.CSS 
-topLeftToTopRight = do
+topLeftToTopRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  top0
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topCenterToTopRight :: CSS.CSS 
-topCenterToTopRight = do
+topCenterToTopRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  top0
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-topRightToTopRight :: CSS.CSS 
-topRightToTopRight = do
+topRightToTopRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  top0
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerLeftToTopRight :: CSS.CSS
-centerLeftToTopRight = do
+centerLeftToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct100
-  top0
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerToTopRight :: CSS.CSS
-centerToTopRight = do
+centerToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct100
-  top0
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-centerRightToTopRight :: CSS.CSS
-centerRightToTopRight = do
+centerRightToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  right0
-  top0
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 0.0) (rem y)
 
-bottomLeftToTopRight :: CSS.CSS
-bottomLeftToTopRight = do
+bottomLeftToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  bottomPct100
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToTopRight :: CSS.CSS
-bottomCenterToTopRight = do
+bottomCenterToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  bottomPct100
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToTopRight :: CSS.CSS
-bottomRightToTopRight = do
+bottomRightToTopRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToTopRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  bottomPct100
+  right $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToCenterLeft :: CSS.CSS 
-topLeftToCenterLeft = do
+topLeftToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  topPct50
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topCenterToCenterLeft :: CSS.CSS 
-topCenterToCenterLeft = do
+topCenterToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  topPct50
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topRightToCenterLeft :: CSS.CSS 
-topRightToCenterLeft = do
+topRightToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  topPct50
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerLeftToCenterLeft :: CSS.CSS
-centerLeftToCenterLeft = do
+centerLeftToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  left0
-  topPct50
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerToCenterLeft :: CSS.CSS
-centerToCenterLeft = do
+centerToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  left0
-  topPct50
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerRightToCenterLeft :: CSS.CSS
-centerRightToCenterLeft = do
+centerRightToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct100
-  topPct50
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-bottomLeftToCenterLeft :: CSS.CSS
-bottomLeftToCenterLeft = do
+bottomLeftToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  bottomPct100
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToCenterLeft :: CSS.CSS
-bottomCenterToCenterLeft = do
+bottomCenterToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  bottomPct100
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToCenterLeft :: CSS.CSS
-bottomRightToCenterLeft = do
+bottomRightToCenterLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToCenterLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  bottomPct100
+  right $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToCenter :: CSS.CSS 
-topLeftToCenter = do
+topLeftToCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  topPct50
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topCenterToCenter :: CSS.CSS 
-topCenterToCenter = do
+topCenterToCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  topPct50
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topRightToCenter :: CSS.CSS 
-topRightToCenter = do
+topRightToCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  topPct50
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerLeftToCenter :: CSS.CSS
-centerLeftToCenter = do
+centerLeftToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct50
-  topPct50
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerToCenter :: CSS.CSS
-centerToCenter = do
+centerToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct50
-  topPct50
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerRightToCenter :: CSS.CSS
-centerRightToCenter = do
+centerRightToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct50
-  topPct50
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-bottomLeftToCenter :: CSS.CSS
-bottomLeftToCenter = do
+bottomLeftToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  bottomPct100
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToCenter :: CSS.CSS
-bottomCenterToCenter = do
+bottomCenterToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  bottomPct100
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToCenter :: CSS.CSS
-bottomRightToCenter = do
+bottomRightToCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  bottomPct100
+  right $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToCenterRight :: CSS.CSS 
-topLeftToCenterRight = do
+topLeftToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  topPct50
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topCenterToCenterRight :: CSS.CSS 
-topCenterToCenterRight = do
+topCenterToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  topPct50
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-topRightToCenterRight :: CSS.CSS 
-topRightToCenterRight = do
+topRightToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  topPct50
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerLeftToCenterRight :: CSS.CSS
-centerLeftToCenterRight = do
+centerLeftToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct100
-  topPct50
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerToCenterRight :: CSS.CSS
-centerToCenterRight = do
+centerToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct100
-  topPct50
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-centerRightToCenterRight :: CSS.CSS
-centerRightToCenterRight = do
+centerRightToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  right0
-  topPct50
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 50.0) (rem y)
 
-bottomLeftToCenterRight :: CSS.CSS
-bottomLeftToCenterRight = do
+bottomLeftToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  bottomPct100
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomCenterToCenterRight :: CSS.CSS
-bottomCenterToCenterRight = do
+bottomCenterToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  bottomPct100
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-bottomRightToCenterRight :: CSS.CSS
-bottomRightToCenterRight = do
+bottomRightToCenterRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToCenterRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  bottomPct100
+  right $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 100.0) (rem y)
 
-topLeftToBottomLeft :: CSS.CSS 
-topLeftToBottomLeft = do
+topLeftToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  topPct100
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topCenterToBottomLeft :: CSS.CSS 
-topCenterToBottomLeft = do
+topCenterToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  topPct100
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topRightToBottomLeft :: CSS.CSS 
-topRightToBottomLeft = do
+topRightToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  topPct100
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerLeftToBottomLeft :: CSS.CSS
-centerLeftToBottomLeft = do
+centerLeftToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  left0
-  topPct100
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerToBottomLeft :: CSS.CSS
-centerToBottomLeft = do
+centerToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  left0
-  topPct100
+  left $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerRightToBottomLeft :: CSS.CSS
-centerRightToBottomLeft = do
+centerRightToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct100
-  topPct100
+  right $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-bottomLeftToBottomLeft :: CSS.CSS
-bottomLeftToBottomLeft = do
+bottomLeftToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  left0
-  bottom0
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomCenterToBottomLeft :: CSS.CSS
-bottomCenterToBottomLeft = do
+bottomCenterToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  left0
-  bottom0
+  left $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomRightToBottomLeft :: CSS.CSS
-bottomRightToBottomLeft = do
+bottomRightToBottomLeftWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToBottomLeftWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct100
-  bottom0
+  right $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-topLeftToBottomCenter :: CSS.CSS 
-topLeftToBottomCenter = do
+topLeftToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  topPct100
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topCenterToBottomCenter :: CSS.CSS 
-topCenterToBottomCenter = do
+topCenterToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topCenterToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  topPct100
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topRightToBottomCenter :: CSS.CSS 
-topRightToBottomCenter = do
+topRightToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS 
+topRightToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  topPct100
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerLeftToBottomCenter :: CSS.CSS
-centerLeftToBottomCenter = do
+centerLeftToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct50
-  topPct100
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerToBottomCenter :: CSS.CSS
-centerToBottomCenter = do
+centerToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct50
-  topPct100
+  left $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerRightToBottomCenter :: CSS.CSS
-centerRightToBottomCenter = do
+centerRightToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  rightPct50
-  topPct100
+  right $ calcSum (pct 50.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-bottomLeftToBottomCenter :: CSS.CSS
-bottomLeftToBottomCenter = do
+bottomLeftToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct50
-  bottom0
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomCenterToBottomCenter :: CSS.CSS
-bottomCenterToBottomCenter = do
+bottomCenterToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct50
-  bottom0
+  left $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomRightToBottomCenter :: CSS.CSS
-bottomRightToBottomCenter = do
+bottomRightToBottomCenterWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToBottomCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  rightPct50
-  bottom0
+  right $ calcSum (pct 50.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-topLeftToBottomRight :: CSS.CSS 
-topLeftToBottomRight = do
+topLeftToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS 
+topLeftToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  topPct100
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topCenterToBottomRight :: CSS.CSS
-topCenterToBottomRight = do
+topCenterToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+topCenterToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  topPct100
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-topRightToBottomRight :: CSS.CSS
-topRightToBottomRight = do
+topRightToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+topRightToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  topPct100
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerLeftToBottomRight :: CSS.CSS
-centerLeftToBottomRight = do
+centerLeftToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerLeftToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  leftPct100
-  topPct100
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerToBottomRight :: CSS.CSS
-centerToBottomRight = do
+centerToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) (-50.0)
-  leftPct100
-  topPct100
+  left $ calcSum (pct 100.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-centerRightToBottomRight :: CSS.CSS
-centerRightToBottomRight = do
+centerRightToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+centerRightToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  right0
-  topPct100
+  right $ calcSum (pct 0.0) (rem x)
+  top $ calcSum (pct 100.0) (rem y)
 
-bottomLeftToBottomRight :: CSS.CSS
-bottomLeftToBottomRight = do
+bottomLeftToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomLeftToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  leftPct100
-  bottom0
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomCenterToBottomRight :: CSS.CSS
-bottomCenterToBottomRight = do
+bottomCenterToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomCenterToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct (-50.0) 0.0
-  leftPct100
-  bottom0
+  left $ calcSum (pct 100.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
-bottomRightToBottomRight :: CSS.CSS
-bottomRightToBottomRight = do
+bottomRightToBottomRightWithRemDelta :: Number -> Number -> CSS.CSS
+bottomRightToBottomRightWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 0.0
-  right0
-  bottom0
+  right $ calcSum (pct 0.0) (rem x)
+  bottom $ calcSum (pct 0.0) (rem y)
 
 fill :: Color -> CSS.CSS
 fill c = raw "fill" $ toHexString c
