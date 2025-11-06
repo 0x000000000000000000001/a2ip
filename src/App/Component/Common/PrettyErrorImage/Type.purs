@@ -18,6 +18,11 @@ import Data.Eq (class Eq)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM)
 
+type Style = 
+  { 
+
+  }
+
 type Url = String
 
 type Sources = 

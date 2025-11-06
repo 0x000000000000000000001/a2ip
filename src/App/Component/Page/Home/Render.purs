@@ -40,8 +40,9 @@ render { showModal, innerClicks, outerClicks } =
               div
                 [ onClick $ κ $ OuterClicked ]
                 [ text "Click me too (outer)" ]
-          , outerStyle = do 
-              color red
+          , style = 
+              { outer: color red
+              }
           }
     , modal
         Carrousel.component

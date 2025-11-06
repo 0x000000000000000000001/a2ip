@@ -21,7 +21,7 @@ tooltip
   :: ∀ action slots
    . Input action slots
   -> ComponentHTML action slots AppM
-tooltip { inner, outer, outerOffset, outerStyle } = 
+tooltip { inner, outer, outerOffset, style: style_ } = 
   div 
     [ class_ classId ]
     [ sheet
@@ -34,7 +34,7 @@ tooltip { inner, outer, outerOffset, outerStyle } =
         ]
         [ div 
             [ class_ Core.classId 
-            , style outerStyle
+            , style style_.outer
             ]
             [ outer ]
         ]
