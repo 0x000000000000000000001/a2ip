@@ -13,16 +13,16 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refine, reflectHashModuleName, top0, widthPct100, (.?))
+import Util.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refineClassId, reflectHashModuleName, top0, widthPct100, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenOpen :: String
-classIdWhenOpen = refine classId "open"
+classIdWhenOpen = refineClassId classId "open"
 
 classIdWhenClosed :: String
-classIdWhenClosed = refine classId "closed"
+classIdWhenClosed = refineClassId classId "closed"
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex

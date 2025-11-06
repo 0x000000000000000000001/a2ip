@@ -17,16 +17,16 @@ import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Loaded (loaded_)
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, refine, reflectHashModuleName, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, refineClassId, reflectHashModuleName, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = refine classId loading_
+classIdWhenLoading = refineClassId classId loading_
 
 classIdWhenLoaded :: String
-classIdWhenLoaded = refine classId loaded_
+classIdWhenLoaded = refineClassId classId loaded_
 
 style :: CSS.CSS
 style = do

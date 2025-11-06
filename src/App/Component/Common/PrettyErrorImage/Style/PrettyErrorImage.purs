@@ -12,16 +12,16 @@ import CSS (backgroundColor)
 import CSS as CSS
 import Util.Proxy.Dictionary.Errored (errored_)
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refine, reflectHashModuleName, (.?))
+import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refineClassId, reflectHashModuleName, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = refine classId loading_
+classIdWhenLoading = refineClassId classId loading_
 
 classIdWhenErrored :: String
-classIdWhenErrored = refine classId errored_
+classIdWhenErrored = refineClassId classId errored_
 
 style :: CSS.CSS
 style = do

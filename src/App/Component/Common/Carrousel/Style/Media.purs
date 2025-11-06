@@ -15,13 +15,13 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Color (darken)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo_)
-import Util.Style (backgroundColorTransparent, fill, flexGrow1, heightPct100, positionRelative, raw, refine, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
+import Util.Style (backgroundColorTransparent, fill, flexGrow1, heightPct100, positionRelative, raw, refineClassId, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenYoutubeVideo :: String
-classIdWhenYoutubeVideo = refine classId youtubeVideo_
+classIdWhenYoutubeVideo = refineClassId classId youtubeVideo_
 
 style :: CSS.CSS
 style = do

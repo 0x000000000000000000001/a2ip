@@ -263,7 +263,7 @@ module Util.Style
   , rawWithRaw
   , rawWithTyped
   , red
-  , refine
+  , refineClassId
   , reflectHashModuleName
   , right0
   , rightPct
@@ -394,8 +394,8 @@ limegreen = hsl 120.0 0.61 0.49
 reflectHashModuleName :: Unit -> String
 reflectHashModuleName = reflectCallingModuleName ▷ hash9
 
-refine :: String -> String -> String 
-refine classId with = hash9 $ classId <> "&" <> with
+refineClassId :: String -> String -> String 
+refineClassId classId with = hash9 $ classId <> "&" <> with
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
@@ -526,7 +526,7 @@ fontWeightBold :: CSS.CSS
 fontWeightBold = fontWeight bold
 
 loadingShimmerAnimationId :: String
-loadingShimmerAnimationId = "BoE6IFJ8r"
+loadingShimmerAnimationId = hash9 "loadingShimmerAnimation"
 
 loadingShimmerWidth :: Number
 loadingShimmerWidth = 12.5

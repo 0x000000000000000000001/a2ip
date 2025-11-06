@@ -22,19 +22,19 @@ import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
-import Util.Style (alignItemsCenter, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refine, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style (alignItemsCenter, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClassId, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhen :: Phase -> String
-classIdWhen phase = refine classId $ show phase
+classIdWhen phase = refineClassId classId $ show phase
 
 classIdWhenIncorrect :: String
-classIdWhenIncorrect = refine classId incorrect_
+classIdWhenIncorrect = refineClassId classId incorrect_
 
-animationId :: String
-animationId = "XfIdRyd3W"
+lockAnimationId :: String
+lockAnimationId = refineClassId classId "lockAnimation"
 
 animationDurationMs :: Number
 animationDurationMs = 300.0
@@ -77,7 +77,7 @@ style = do
   a___lock :? do
     outline solid (rem 0.3) limegreen
     animation
-      (fromString animationId) 
+      (fromString lockAnimationId) 
       (sec $ animationDurationMs / 1000.0)
       linear
       (sec 0.0)
@@ -121,7 +121,7 @@ style = do
   ______strong :? do 
     color $ lighten 0.2 red
 
-  keyframes animationId (
+  keyframes lockAnimationId (
     ( 0.0 /\ transforms [ rotate $ deg 0.0 ]
     ) :| 
     [ 90.0 /\ transforms [ rotate $ deg $ -180.0 ]

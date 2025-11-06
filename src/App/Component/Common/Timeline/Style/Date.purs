@@ -13,13 +13,13 @@ import CSS (outline, rem, solid, transform)
 import CSS as CSS
 import Color (lighten)
 import Util.Proxy.Dictionary.Selected (selected_)
-import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refine, reflectHashModuleName, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refineClassId, reflectHashModuleName, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenSelected :: String 
-classIdWhenSelected = refine classId selected_
+classIdWhenSelected = refineClassId classId selected_
 
 style :: CSS.CSS
 style = do
