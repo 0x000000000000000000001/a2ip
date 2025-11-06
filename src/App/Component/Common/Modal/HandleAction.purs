@@ -9,7 +9,6 @@ import App.Component.Common.Modal.Type (Action(..), ModalM, Output(..))
 import Data.String (Pattern(..), contains)
 import Halogen (get, modify_)
 import Halogen.Query.HalogenM (raise)
-import Util.Log (unsafeDebugShow)
 import Web.DOM.Element (className)
 import Web.Event.Event (target)
 import Web.HTML.HTMLElement (fromEventTarget, toElement)
@@ -17,13 +16,9 @@ import Web.UIEvent.MouseEvent (toEvent)
 
 handleAction :: ∀ q i o. Action i o -> (ModalM q i o) Unit
 handleAction = case _ of
-  Initialize -> do
-    let _ = unsafeDebugShow "📦 Modal INIT"
-    pure unit
+  Initialize -> ηι
 
-  Receive input -> do
-    let _ = unsafeDebugShow "📦 Modal RECEIVE"
-    modify_ _ { input = input }
+  Receive input -> modify_ _ { input = input }
   
   HandleCloseClick -> raise Closed
 

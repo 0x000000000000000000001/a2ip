@@ -5,13 +5,11 @@ module App.Component.Common.YoutubeVideo.HandleAction
 import Proem
 
 import App.Component.Common.YoutubeVideo.Type (Action(..), YoutubeVideoM)
-import App.Util.Capability.Log (debugShow)
 import Halogen (get, modify_)
 
 handleAction :: Action -> YoutubeVideoM Unit
 handleAction = case _ of
-  Initialize -> 
-    debugShow "init"
+  Initialize -> ηι
 
   Receive input -> do 
     state <- get
