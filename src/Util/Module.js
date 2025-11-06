@@ -2,7 +2,7 @@ export const reflectCallingModuleName = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
 
-    // console.log(lines);
+    console.log(lines);
 
     let ans = '';
     
