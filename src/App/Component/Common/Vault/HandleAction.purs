@@ -32,7 +32,6 @@ handleAction = case _ of
     
     modify_ _ 
       { input = input
-      , innerInput = input.innerInput
       }
   
   HandleSubmit -> do

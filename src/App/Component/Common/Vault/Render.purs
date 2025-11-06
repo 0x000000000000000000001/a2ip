@@ -33,7 +33,7 @@ render
    . Component q i o AppM
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
-render innerComponent { innerInput, phase } = 
+render innerComponent { phase, input: { innerInput } } = 
   div 
     [ class_ classId
     ]

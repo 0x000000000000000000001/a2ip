@@ -87,7 +87,6 @@ _Locked = prism Locked unwrap
 
 type State i = 
   { input :: Input i
-  , innerInput :: i
   , phase :: Phase
   }
 

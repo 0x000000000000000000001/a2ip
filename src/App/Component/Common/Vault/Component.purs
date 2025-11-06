@@ -23,7 +23,6 @@ component
 component innerComponent = mkComponent
   { initialState: \input -> 
       { input
-      , innerInput: input.innerInput
       , phase: Locked 
           { passwordInputValue: Nothing 
           , incorrect: false
