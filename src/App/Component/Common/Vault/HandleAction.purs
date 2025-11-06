@@ -32,10 +32,12 @@ handleAction = case _ of
     for_ (state ^? _phase ◁ _Locked ◁ _passwordInputValue ◁ _Just) \ref -> do
       currentPasswordInputValue <- ʌ $ read ref
 
-      when (state.input.password /= currentPasswordInputValue) do 
-        modify_ (_ # _phase ◁ _Locked ◁ _incorrect .~ true) 
+      let isPasswordCorrect = state.input.password == currentPasswordInputValue
 
-      when (state.input.password == currentPasswordInputValue) do 
+      when (not isPasswordCorrect) do
+        modify_ (_ # _phase ◁ _Locked ◁ _incorrect .~ true)
+
+      when (isPasswordCorrect) do
         modify_ _ { phase = Unlocking }
 
         ø $ fork do 

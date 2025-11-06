@@ -30,4 +30,5 @@ render innerComponent { open, input: { innerInput } } =
         innerComponent
         innerInput
         handleInnerOutput
+    , text 
     ]

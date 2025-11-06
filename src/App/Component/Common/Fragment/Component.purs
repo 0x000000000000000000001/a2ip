@@ -20,7 +20,7 @@ import Unsafe.Coerce (unsafeCoerce)
 
 component :: ∀ w i. Component Query (Input w i) Output AppM
 component = mkComponent
-  { initialState: \html -> html
+  { initialState: \inner -> inner
   , render: unsafeCoerce
   , eval:
       mkEval 
