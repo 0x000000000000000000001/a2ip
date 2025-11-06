@@ -8,7 +8,7 @@ import Proem hiding (top)
 
 import CSS (opacity, zIndex)
 import CSS as CSS
-import Util.Style (borderRadiusPct50, heightRem, margin1, positionRelative, reflectHashModuleName, svg, widthRem, (.?), (.|*:), (:?))
+import Util.Style (alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectHashModuleName, svg, widthRem, (.?), (.|*:), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
@@ -21,6 +21,9 @@ style = do
     positionRelative
     zIndex 5
     borderRadiusPct50
+    displayFlex
+    justifyContentCenter
+    alignItemsCenter
 
   __svg :? do 
     widthRem 8.0
