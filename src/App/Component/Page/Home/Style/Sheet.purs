@@ -6,6 +6,6 @@ import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import App.Component.Page.Home.Style.Home as Home
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Home.style  

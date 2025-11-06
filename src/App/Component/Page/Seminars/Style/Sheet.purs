@@ -9,7 +9,7 @@ import App.Component.Page.Seminars.Style.Seminars as Seminars
 import App.Component.Page.Seminars.Style.Timeline as Timeline
 import App.Component.Page.Seminars.Style.Poster as Poster
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Poster.style
   Seminars.style  

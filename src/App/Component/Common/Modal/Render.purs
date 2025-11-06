@@ -6,9 +6,9 @@ import Proem hiding (div)
 
 import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Modal.Style.Core.Close as Close
-import App.Component.Common.Modal.Style.Core.Core (classId) as Core
+import App.Component.Common.Modal.Style.Core.Core (statelessClass) as Core
 import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
-import App.Component.Common.Modal.Style.Modal (classId, classIdWhenOpen, classIdWhenClosed)
+import App.Component.Common.Modal.Style.Modal (statefulClass, statelessClass)
 import App.Component.Common.Modal.Style.Sheet (sheet)
 import App.Component.Common.Modal.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
@@ -17,6 +17,7 @@ import Halogen (Component, ComponentHTML)
 import Halogen.HTML (div, slot)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen (render_)
+import Util.Log (unsafeDebugShow)
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Style (class_, classes)
 
@@ -25,19 +26,20 @@ render
    . Component q i o AppM
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
-render innerComponent { input: { closable, open, innerInput } } = 
+render innerComponent s@{ id, input: { closable, open, innerInput } } = 
+  let _ = unsafeDebugShow id in
   div 
-    ( [ classes [ classId, open ? classIdWhenOpen ↔ classIdWhenClosed ] ]
+    ( [ classes [ statelessClass, statefulClass id ] ]
       <> (open ? [ onClick HandleClick ] ↔ [])    
     )
-    [ sheet
+    [ sheet s
     , not open ? noHtml ↔ div 
-        [ class_ Core.classId ]
+        [ class_ Core.statelessClass ]
         [ Core.sheet
         , closable 
             ? (
               div
-                [ class_ Close.classId, onClick $ κ $ HandleCloseClick ]
+                [ class_ Close.statelessClass, onClick $ κ $ HandleCloseClick ]
                 [ render_ closeSvg ]
             ) 
             ↔ noHtml

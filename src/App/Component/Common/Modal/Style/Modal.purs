@@ -1,7 +1,6 @@
 module App.Component.Common.Modal.Style.Modal
-  ( classId
-  , classIdWhenClosed
-  , classIdWhenOpen
+  ( statelessClass
+  , statefulClass
   , style
   , zIndex
   )
@@ -9,27 +8,25 @@ module App.Component.Common.Modal.Style.Modal
 
 import Proem hiding (top)
 
+import App.Component.Common.Modal.Type (State)
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
 import Util.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refineClassId, reflectHashModuleName, top0, widthPct100, (.?))
 
-classId :: String
-classId = reflectHashModuleName ι
+statelessClass :: String
+statelessClass = reflectHashModuleName ι
 
-classIdWhenOpen :: String
-classIdWhenOpen = refineClassId classId "open"
-
-classIdWhenClosed :: String
-classIdWhenClosed = refineClassId classId "closed"
+statefulClass :: String -> String
+statefulClass id = refineClassId statelessClass id
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex
 
-style :: CSS.CSS
-style = do
-  classId .? do
+style :: ∀ i. State i -> CSS.CSS
+style { id, input: { open } } = do
+  statelessClass .? do
     positionFixed
     top0
     left0
@@ -42,8 +39,10 @@ style = do
     CSS.zIndex zIndex
     overflow overflowAuto
 
-  classIdWhenClosed .? do 
-    displayNone
+  statefulClass id .? do
+    when open do 
+      nothing
 
-  classIdWhenOpen .? do
-    nothing
+    when (not open) do
+      displayNone
+    

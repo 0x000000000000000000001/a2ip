@@ -12,7 +12,7 @@ import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Vault.style 
   Core.style

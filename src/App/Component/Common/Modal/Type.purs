@@ -29,7 +29,8 @@ type Slots q o =
   )
 
 type State i = 
-  { input :: Input i
+  { id :: String 
+  , input :: Input i
   }
 
 data Action i o = Initialize | Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o

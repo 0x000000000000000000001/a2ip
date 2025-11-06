@@ -8,7 +8,7 @@ import Halogen.HTML.CSS (stylesheet)
 import App.Component.Common.Modal.Style.Core.Core as Core
 import App.Component.Common.Modal.Style.Core.Close as Close
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Core.style 
   Close.style 

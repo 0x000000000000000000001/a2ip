@@ -9,7 +9,7 @@ import App.Component.Common.Input.Style.Label as Label
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
-sheet :: ∀ p i s. s -> HTML p i
+sheet :: ∀ w i s. s -> HTML w i
 sheet _ = stylesheet do
   Field.style
   Input.style

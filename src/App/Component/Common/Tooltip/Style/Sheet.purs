@@ -9,7 +9,7 @@ import App.Component.Common.Tooltip.Style.Tooltip as Tooltip
 import App.Component.Common.Tooltip.Style.Inner as Inner
 import App.Component.Common.Tooltip.Style.Outer.Index as Outer
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Tooltip.style 
   Inner.style

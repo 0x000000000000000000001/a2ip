@@ -14,7 +14,7 @@ import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Timeline.style
   Line.style

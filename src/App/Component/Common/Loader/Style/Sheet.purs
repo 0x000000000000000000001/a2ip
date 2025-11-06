@@ -9,7 +9,7 @@ import CSS (Color)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
-sheet :: ∀ p i. Color -> HTML p i
+sheet :: ∀ w i. Color -> HTML w i
 sheet color = stylesheet do
   Animation.style color
   Loader.style

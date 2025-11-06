@@ -11,7 +11,7 @@ import App.Component.Common.Carrousel.Style.Counter as Counter
 import App.Component.Common.Carrousel.Style.Media as Media
 import App.Component.Common.Carrousel.Style.Control.Index as Control
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   Caption.style
   Carrousel.style 

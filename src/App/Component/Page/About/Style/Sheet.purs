@@ -11,7 +11,7 @@ import App.Component.Page.About.Style.Collaborators as Collaborators
 import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Card.Index as Card 
 
-sheet :: ∀ p i. HTML p i
+sheet :: ∀ w i. HTML w i
 sheet = stylesheet do
   About.style  
   Collaborators.style  
