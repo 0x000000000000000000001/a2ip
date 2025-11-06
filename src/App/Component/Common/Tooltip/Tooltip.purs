@@ -3,7 +3,8 @@ module App.Component.Common.Tooltip.Tooltip
   )
   where
 
-import Proem (discard)
+import Proem hiding (div)
+
 import App.Component.Common.Tooltip.Style.Inner as Inner
 import App.Component.Common.Tooltip.Style.Outer.Core as Core
 import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
@@ -28,13 +29,13 @@ tooltip { inner, outer, outerOffset, outerStyle } =
         [ class_ Inner.classId ]
         [ inner ]
     , div 
-        [ class_ Outer.classId
-        , style do 
-            padding1 outerOffset
-            outerStyle
+        [ class_ Outer.classId 
+        , style $ padding1 outerOffset
         ]
         [ div 
-            [ class_ Core.classId ]
+            [ class_ Core.classId 
+            , style outerStyle
+            ]
             [ outer ]
         ]
     ]
