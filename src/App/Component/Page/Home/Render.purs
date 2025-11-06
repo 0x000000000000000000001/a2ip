@@ -7,6 +7,7 @@ import Proem hiding (div)
 import App.Component.Common.Carrousel.Component as Carrousel
 import App.Component.Common.Carrousel.Type (Media(..))
 import App.Component.Common.Modal.Component (modal)
+import App.Component.Common.Tooltip.Component (tooltip)
 import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noSlotAddressIndex)
@@ -17,13 +18,22 @@ import Halogen.HTML (div, div_, text)
 import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Modal (modal')
+import Util.Proxy.Dictionary.Tooltip (tooltip')
+import Util.Style (Position(..))
 
 render :: State -> ComponentHTML Action Slots AppM
 render { showModal } =
   div_
-    [ div
-        [ onClick $ κ $ ShowModal ]
-        [ text $ "modal: " <> (showModal ? "visible" ↔ "hidden") ]
+    [ tooltip
+        tooltip'
+        noSlotAddressIndex
+        { inner:
+            div
+              [ onClick $ κ $ ShowModal ]
+              [ text $ "modal: " <> (showModal ? "visible" ↔ "hidden") ]
+        , outer: text "Test toggle"
+        , outerPosition: CenterRightToCenterLeft
+        }
     , modal
         Carrousel.component
         modal'
