@@ -17,7 +17,6 @@ import Halogen (Component, ComponentHTML)
 import Halogen.HTML (div, slot)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen (render_)
-import Util.Log (unsafeDebugShow)
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Style (class_, classes)
 
@@ -27,7 +26,6 @@ render
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
 render innerComponent s@{ id, input: { closable, open, innerInput } } = 
-  let _ = unsafeDebugShow id in
   div 
     ( [ classes [ statelessClass, statefulClass id ] ]
       <> (open ? [ onClick HandleClick ] ↔ [])    

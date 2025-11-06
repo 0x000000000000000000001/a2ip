@@ -1,6 +1,6 @@
 module App.Component.Common.Modal.Style.Modal
-  ( statelessClass
-  , statefulClass
+  ( statefulClass
+  , statelessClass
   , style
   , zIndex
   )
