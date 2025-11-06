@@ -45,6 +45,7 @@ module Util.Style
   , (¨|>.)
   , (¨|>:)
   , (¨|>¨)
+  , Position(..)
   , after
   , alignItemsCenter
   , all

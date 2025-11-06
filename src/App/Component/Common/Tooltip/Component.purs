@@ -7,8 +7,8 @@ module App.Component.Common.Tooltip.Component
 import Proem
 
 import App.Component.Common.Tooltip.HandleAction (handleAction)
-import App.Component.Common.Tooltip.Render (render)
-import App.Component.Common.Tooltip.Type (Action(..), Input, Output)
+import App.Component.Common.Tooltip.Type (Action(..), Input, Output, Query)
+import App.Component.Util.Type (noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -16,16 +16,15 @@ import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval
 import Halogen.HTML (slot)
 import Prim.Row (class Cons)
 import Type.Prelude (Proxy)
+import Unsafe.Coerce (unsafeCoerce)
 
-component
-  :: ∀ q i o. Component q i o AppM
-  -> Component q (Input i) (Output o) AppM
-component innerComponent = mkComponent
+component :: ∀ w i. Component Query (Input w i) Output AppM
+component = mkComponent
   { initialState: \input -> 
       { input
       , open: false
       }
-  , render: render innerComponent
+  , render: unsafeCoerce
   , eval: 
       mkEval 
       defaultEval 
@@ -36,20 +35,18 @@ component innerComponent = mkComponent
   }
 
 tooltip 
-  :: ∀ action slots label slotAddressIndex slots' query input output
-   . Cons label (Slot query (Output output) slotAddressIndex) slots' slots
+  :: ∀ action slots label slotAddressIndex slots' w i
+   . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
-  => Component query input output AppM
-  -> Proxy label
+  => Proxy label
   -> slotAddressIndex
-  -> Input input
-  -> (Output output -> action)
+  -> Input w i
   -> ComponentHTML action slots AppM
-tooltip innerComponent _slotLabel slotAddressIndex input outputAction = 
+tooltip _slotLabel slotAddressIndex input = 
   slot
     _slotLabel
     slotAddressIndex
-    (component innerComponent)
+    component
     input
-    outputAction
+    noOutputAction

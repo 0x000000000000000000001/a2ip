@@ -1,36 +1,45 @@
 module App.Component.Common.Tooltip.Type
   ( Action(..)
   , Input
-  , TooltipM
+  , OuterPosition
   , Output(..)
+  , PositionDelta
   , Query
   , Slots
   , State
+  , TooltipM
   )
   where
 
-import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
+import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import App.Util.Capability.AppM (AppM)
-import Halogen (HalogenM, Slot)
+import Halogen (HalogenM)
+import Halogen.HTML (HTML)
+import Util.Style (Position)
 
-type Input i = 
-  { innerInput :: i
+type PositionDelta = { x :: Number, y :: Number } -- in rem
+
+type OuterPosition = { pos :: Position, delta :: PositionDelta }
+
+type Input w i = 
+  { inner :: HTML w i
+  , outer :: HTML w i
+  , outerPosition :: OuterPosition
   }
 
-data Output o = InnerOutputRaised o
+type Output = NoOutput
 
-type Slots q o = 
-  ( inner :: Slot q o NoSlotAddressIndex
-  )
+type Slots :: ∀ k. Row k
+type Slots = NoSlots
 
-type State i = 
-  { input :: Input i
+type State w i = 
+  { input :: Input w i
   , open :: Boolean
   }
 
-data Action i o = Initialize | Receive (Input i) | RaiseInnerOutput o
+data Action w i = Initialize | Receive (Input w i)
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type TooltipM q i o a = HalogenM (State i) (Action i o) (Slots q o) (Output o) AppM a
+type TooltipM w i a = HalogenM (State w i) (Action w i) Slots Output AppM a

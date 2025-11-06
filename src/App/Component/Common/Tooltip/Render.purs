@@ -15,20 +15,14 @@ import Util.Proxy.Dictionary.Inner (inner')
 import Util.Style (classes)
 
 render 
-  :: ∀ q i o
-   . Component q i o AppM
-  -> State i
-  -> ComponentHTML (Action i o) (Slots q o) AppM
-render innerComponent { open, input: { innerInput } } = 
+  :: ∀ w i
+   . State w i
+  -> ComponentHTML (Action w i) Slots AppM
+render { open, input: { inner, outer, outerPosition } } = 
   div 
     ( [ classes [ classId, open ? classIdWhenOpen ↔ "" ] ]
       -- <> (open ? [ onMouseOver HandleMouseOver ] ↔ [])    
     )
-    [ slot
-        inner'
-        noSlotAddressIndex
-        innerComponent
-        innerInput
-        handleInnerOutput
-    , text 
+    [ inner
+    , outer
     ]
