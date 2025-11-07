@@ -6,8 +6,9 @@ module App.Component.Common.PrettyErrorImage.Style.QuestionMark
 import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State)
+import CSS (darken)
 import CSS as CSS
-import Util.Style.Style (fill, reflectHashModuleName, widthRem, (.?))
+import Util.Style.Style (fill, loadingGrey, reflectHashModuleName, widthRem, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -28,4 +29,4 @@ style
   } = do
   statelessClass .? do
     widthRem 3.0
-    fill color
+    fill $ color ??⇒ darken 0.4 loadingGrey

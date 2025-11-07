@@ -15,15 +15,15 @@ module App.Component.Common.PrettyErrorImage.Type
   )
   where
 
+import Proem
+
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
-import CSS (Size, darken)
+import CSS (Size)
 import Color (Color)
-import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
 import Util.Style.Image (ObjectFit, fill)
-import Util.Style.Style (loadingGrey)
 
 type Url = String
 
@@ -33,19 +33,19 @@ type Sources =
   }
 
 type Style u = 
-  { when :: 
-      { errored :: 
-          { backgroundColor :: Color
-          }
-      }
-  , fit :: ObjectFit
+  { fit :: Maybe ObjectFit
   , width :: Maybe (Size u)
   , height :: Maybe (Size u)
   , questionMark :: 
       { when :: 
           { errored :: 
-              { color :: Color
+              { color :: Maybe Color
               }
+          }
+      }
+  , when :: 
+      { errored :: 
+          { backgroundColor :: Maybe Color
           }
       }
   }
@@ -59,19 +59,19 @@ type Input u =
 
 defaultInputStyle :: ∀ u. Style u
 defaultInputStyle =
-  { when: 
-      { errored: 
-          { backgroundColor: loadingGrey
-          }
-      }
-  , fit: fill
+  { fit: Just fill
   , width: Nothing
   , height: Nothing
   , questionMark: 
       { when: 
           { errored: 
-              { color: darken 0.4 loadingGrey
+              { color: Nothing
               }
+          }
+      }
+  , when: 
+      { errored: 
+          { backgroundColor: Nothing
           }
       }
   }

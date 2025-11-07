@@ -13,14 +13,12 @@ import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
 import App.Component.Page.Home.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import CSS (color)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, text)
 import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Modal (modal')
-import Util.Style.Style (red)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { showModal, innerClicks, outerClicks } =
@@ -40,9 +38,6 @@ render { showModal, innerClicks, outerClicks } =
               div
                 [ onClick $ κ $ OuterClicked ]
                 [ text "Click me too (outer)" ]
-          , style = 
-              { outer: color red
-              }
           }
     , modal
         Carrousel.component

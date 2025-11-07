@@ -10,7 +10,9 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, nothing, refineClass, reflectHashModuleName, (.?))
+import Data.Maybe (isJust)
+import Util.Style.Image (fill, objectFit)
+import Util.Style.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -25,7 +27,8 @@ style
   , input: 
       { loading: loading' 
       , style: 
-          { when: 
+          { fit
+          , when: 
               { errored: 
                   { backgroundColor: backgroundColor'
                   }
@@ -36,12 +39,15 @@ style
   statelessClass .? do 
     nothing
 
-  statefulClass id .? do 
+  statefulClass id .? do
+    when (isJust fit) do 
+      objectFit $ fit ??⇒ fill
+
     when (try == StopTrying) do
       displayFlex
       justifyContentCenter
       alignItemsCenter
-      backgroundColor backgroundColor'
+      backgroundColor $ backgroundColor' ??⇒ loadingGrey
 
     when loading' do 
       loading

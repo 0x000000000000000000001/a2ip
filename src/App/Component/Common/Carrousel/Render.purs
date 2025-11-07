@@ -17,7 +17,7 @@ import App.Component.Common.PrettyErrorImage.Type (defaultInput, defaultInputSty
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import CSS (darken, white)
+import CSS (darken, pct, white)
 import Data.Array (length, (!!))
 import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
@@ -28,10 +28,14 @@ import Halogen.HTML.Events (onClick)
 import Util.Proxy.Dictionary.BackgroundColor (_backgroundColor)
 import Util.Proxy.Dictionary.Color (_color)
 import Util.Proxy.Dictionary.Errored (_errored)
+import Util.Proxy.Dictionary.Fit (_fit)
+import Util.Proxy.Dictionary.Height (_height)
 import Util.Proxy.Dictionary.Image (image')
 import Util.Proxy.Dictionary.QuestionMark (_questionMark)
 import Util.Proxy.Dictionary.When (_when)
+import Util.Proxy.Dictionary.Width (_width)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
+import Util.Style.Image (contain)
 import Util.Style.Style (class_, classes, transparent)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -62,8 +66,11 @@ render s@{ id, input: { slides }, index } =
                           }
                       , style = 
                           defaultInputStyle 
-                            # _when ◁ _errored ◁ _backgroundColor .~ transparent
-                            # _questionMark ◁ _when ◁ _errored ◁ _color .~ darken 0.16 white
+                            # _when ◁ _errored ◁ _backgroundColor .~ (Just transparent)
+                            # _questionMark ◁ _when ◁ _errored ◁ _color .~ (Just $ darken 0.16 white)
+                            # _fit .~ (Just contain)
+                            # _width .~ (Just $ pct 100.0)
+                            # _height .~ (Just $ pct 100.0)
                       }
                 ]
               Just (YoutubeVideo url) ->
