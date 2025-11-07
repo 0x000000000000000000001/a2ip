@@ -25,7 +25,7 @@ import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
-import Html.Renderer.Halogen as Renderer
+import Html.Renderer.Halogen as HRH
 import Util.Html.Dom (dataAttr)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
@@ -75,7 +75,7 @@ render { input: { dates, loading }, selectedDate } =
                             && idx /= length dates - 1
                             && not isSelected
                             && not isNextSelected
-                                ? Renderer.render [ class_ DownArrow.classId ] downArrowSvg
+                                ? HRH.render [ class_ DownArrow.classId ] downArrowSvg
                                 ↔ noHtml
                         ]
                     ]

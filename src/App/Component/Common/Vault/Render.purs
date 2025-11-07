@@ -22,7 +22,7 @@ import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Halogen.HTML.Events (onKeyDown)
-import Html.Renderer.Halogen as HR
+import Html.Renderer.Halogen as HRH
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
 import Util.Style.Style (class_, classes)
@@ -91,7 +91,7 @@ render innerComponent { phase, input: { innerInput } } =
                     )
                 ]
             ]
-        , HR.render [ class_ Lock.classId ] frontDoorSvg
+        , HRH.render [ class_ Lock.classId ] frontDoorSvg
         , input
             password'
             noSlotAddressIndex
