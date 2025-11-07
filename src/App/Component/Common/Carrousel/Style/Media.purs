@@ -38,6 +38,3 @@ style { id, index, input: { slides } } = do
     case media of 
       Just (YoutubeVideo _) -> backgroundColor black
       _ -> nothing
-
-  -- __youtubeVideo :? do 
-  --   asset

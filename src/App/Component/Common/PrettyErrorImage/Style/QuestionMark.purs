@@ -35,11 +35,11 @@ style
       } 
   } = do
   statelessClass .? do
-    nothing
-
-  statefulClass id .? do
     widthRem 3.0
 
+  statefulClass id .? do
+    nothing
+    
   __svg :? do
       fill $ color ??⇒ darken 0.4 loadingGrey
 
