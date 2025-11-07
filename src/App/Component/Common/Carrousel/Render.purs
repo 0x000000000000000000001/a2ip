@@ -25,7 +25,7 @@ import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Util.Proxy.Dictionary.Image (image')
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
-import Util.Style (class_, classes)
+import Util.Style (class_, classes, transparent)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { input: { slides }, index } =
@@ -55,6 +55,7 @@ render { input: { slides }, index } =
                           { first: url
                           , fallback: Nothing
                           }
+                      , style = defaultInputStyle # _root ◁ _when ◁ _errored ◁ _backgroundColor .~ transparent
                       }
                 ]
               Just (YoutubeVideo url) ->

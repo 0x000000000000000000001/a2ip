@@ -10,7 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refineClass, reflectHashModuleName, (.?))
+import Util.Style (displayFlex, justifyContentCenter, loading, nothing, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -19,19 +19,30 @@ statefulClass :: String -> String
 statefulClass id = refineClass statelessClass id
 
 style :: State -> CSS.CSS
-style { id, try, input: { loading: loading' } } = do
+style 
+  { id
+  , try
+  , input: 
+      { loading: loading' 
+      , style: 
+          { root: 
+              { when: 
+                  { errored: 
+                      { backgroundColor: backgroundColor'
+                      }
+                  }
+              }
+          }
+      } 
+  } = do
   statelessClass .? do 
     nothing
 
   statefulClass id .? do 
-    let errored = case try of
-          StopTrying -> true
-          _          -> false
-
-    when errored do
+    when (try == StopTrying) do
       displayFlex
       justifyContentCenter
-      backgroundColor loadingGrey
+      backgroundColor backgroundColor'
 
     when loading' do 
       loading

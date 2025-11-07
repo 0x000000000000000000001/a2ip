@@ -36,12 +36,12 @@ style = do
     asset
     raw "object-fit" "contain"
 
-  ____errored :? do
-    backgroundColorTransparent
-    flexGrow1
+  -- ____errored :? do
+  --   backgroundColorTransparent
+  --   flexGrow1
 
-  ______questionMark :? do
-    fill $ darken 0.16 white
+  -- ______questionMark :? do
+  --   fill $ darken 0.16 white
 
   classIdWhenYoutubeVideo .? do 
     backgroundColor black
@@ -51,8 +51,8 @@ style = do
 
   where 
   __image = classId .|*. PrettyErrorImage.statelessClass 
-  ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
-  ______questionMark = ____errored :|*. QuestionMark.classId
+  -- ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
+  -- ______questionMark = ____errored :|*. QuestionMark.classId
   __youtubeVideo = classId .|*. YoutubeVideo.classId 
 
 asset ∷ StyleM Unit

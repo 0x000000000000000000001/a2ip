@@ -1,5 +1,5 @@
 module App.Component.Common.PrettyErrorImage.Style.QuestionMark
-  ( classId
+  ( statelessClass
   , style
   ) where
 
@@ -9,11 +9,11 @@ import CSS (darken)
 import CSS as CSS
 import Util.Style (fill, reflectHashModuleName, loadingGrey, widthRem, (.?))
 
-classId :: String
-classId = reflectHashModuleName ι
+statelessClass :: String
+statelessClass = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     widthRem 3.0
     fill $ darken 0.4 loadingGrey

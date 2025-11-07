@@ -16,24 +16,30 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
+import Color (Color)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
-
-type Style = 
-  { root :: 
-      { 
-      }
-  , questionMark :: 
-      { 
-      }
-  }
+import Util.Style (loadingGrey)
 
 type Url = String
 
 type Sources = 
   { first :: Url
   , fallback :: Maybe Url
+  }
+
+type Style = 
+  { root :: 
+      { when :: 
+          { errored :: 
+              { backgroundColor :: Color
+              }
+          }
+      }
+  , questionMark :: 
+      { 
+      }
   }
 
 type Input =
@@ -43,6 +49,18 @@ type Input =
   , style :: Style
   } 
 
+defaultInputStyle :: Style
+defaultInputStyle =
+  { root: 
+      { when: 
+          { errored: 
+              { backgroundColor: loadingGrey
+              }
+          }
+      }
+  , questionMark: {}
+  }
+
 defaultInput :: Input
 defaultInput =
   { class_: Nothing
@@ -51,10 +69,7 @@ defaultInput =
       { first: ""
       , fallback: Nothing
       }
-  , style: 
-      { root: {}
-      , questionMark: {}
-      }
+  , style: defaultInputStyle
   }
  
 type Output = NoOutput

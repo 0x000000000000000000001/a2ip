@@ -31,4 +31,4 @@ style = do
 
   where 
 
-  __questionMark = classId .|*. QuestionMark.classId
+  __questionMark = classId .|*. QuestionMark.statelessClass
