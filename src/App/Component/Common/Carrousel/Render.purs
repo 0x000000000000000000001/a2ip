@@ -79,8 +79,8 @@ render s@{ id, input: { slides }, index } =
                     noSlotAddressIndex
                     { url 
                     , style: 
-                        { width: Just (pct 100.0)
-                        , height: Just (pct 100.0)
+                        { width: Just $ pct 100.0
+                        , height: Just $ pct 100.0
                         }
                     }
                 ]
