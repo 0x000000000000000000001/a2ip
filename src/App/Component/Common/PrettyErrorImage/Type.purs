@@ -11,7 +11,7 @@ module App.Component.Common.PrettyErrorImage.Type
   , Try(..)
   , Url
   , defaultInput
-  , defaultInputStyle
+  , defaultStyle
   )
   where
 
@@ -57,8 +57,8 @@ type Input u =
   , style :: Style u
   } 
 
-defaultInputStyle :: ∀ u. Style u
-defaultInputStyle =
+defaultStyle :: ∀ u. Style u
+defaultStyle =
   { fit: Just fill
   , width: Nothing
   , height: Nothing
@@ -84,7 +84,7 @@ defaultInput =
       { first: ""
       , fallback: Nothing
       }
-  , style: defaultInputStyle
+  , style: defaultStyle
   }
  
 type Output = NoOutput

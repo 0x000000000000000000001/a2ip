@@ -30,10 +30,6 @@ style { id, index, input: { slides } } = do
     topLeftToTopLeft
     raw "transition" "background-color 0s"
 
-  -- __image :? do 
-  --   asset
-  --   raw "object-fit" "contain"
-
   statefulClass id .? do 
     let
       slide = slides !! index
@@ -45,13 +41,3 @@ style { id, index, input: { slides } } = do
 
   -- __youtubeVideo :? do 
   --   asset
-
-  -- where 
-  -- __image = statelessClass .|*. PrettyErrorImage.statelessClass 
-  -- __youtubeVideo = statelessClass .|*. YoutubeVideo.classId 
-
--- asset ∷ StyleM Unit
--- asset = do 
---   positionRelative
---   widthPct100
---   heightPct100

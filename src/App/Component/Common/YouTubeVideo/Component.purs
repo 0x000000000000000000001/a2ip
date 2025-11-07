@@ -9,7 +9,7 @@ import Proem
 import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
 import App.Component.Common.YoutubeVideo.Render (render)
 import App.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
-import App.Component.Util.Type (noOutputAction)
+import App.Component.Util.Type (mkInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -18,9 +18,9 @@ import Halogen.HTML (slot)
 import Prim.Row (class Cons)
 import Type.Prelude (Proxy)
 
-component :: Component Query Input Output AppM
+component :: ∀ u. Component Query (Input u) Output AppM
 component = mkComponent
-  { initialState: \input -> { input }
+  { initialState: mkInput \input -> { input }
   , render
   , eval: mkEval defaultEval
     { handleAction = handleAction
@@ -30,13 +30,13 @@ component = mkComponent
   }
 
 youtubeVideo 
-  :: ∀ action slots label slotAddressIndex slots'
+  :: ∀ action slots label slotAddressIndex slots' u
    . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
+  -> Input u
   -> ComponentHTML action slots AppM
 youtubeVideo _slotLabel slotAddressIndex input = 
   slot

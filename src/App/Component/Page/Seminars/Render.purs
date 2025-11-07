@@ -10,6 +10,7 @@ import App.Component.Common.Timeline.Component (timeline)
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.Vault.Component (vault)
 import App.Component.Common.YoutubeVideo.Component as YoutubeVideo
+import App.Component.Common.YoutubeVideo.Type (defaultStyle)
 import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThemeDescriptionModalOutput)
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.HandleVideoRecordOutput (handleVideoRecordOutput)
@@ -72,6 +73,7 @@ render s =
                       noSlotAddressIndex
                       { innerInput:
                           { url: seminar.videoUrl
+                          , style: defaultStyle
                           }
                       , password: "pwd"
                       }

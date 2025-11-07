@@ -16,7 +16,7 @@ import Halogen.HTML (div)
 import Html.Renderer.Halogen (render_)
 import Util.Style.Style (class_)
 
-render :: State -> ComponentHTML Action Slots AppM
+render :: ∀ u. State u -> ComponentHTML (Action u) Slots AppM
 render { input: { url } } = 
   div 
     [ class_ classId ]
