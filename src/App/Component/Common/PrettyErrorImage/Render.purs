@@ -9,7 +9,6 @@ import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Image as Image
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
-import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Data.Maybe (Maybe(..))

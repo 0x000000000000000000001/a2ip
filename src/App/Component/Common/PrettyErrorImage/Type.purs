@@ -51,8 +51,7 @@ type Style u =
   }
 
 type Input u =
-  { class_ :: Maybe String
-  , loading :: Boolean
+  { loading :: Boolean
   , sources :: Sources
   , style :: Style u
   } 

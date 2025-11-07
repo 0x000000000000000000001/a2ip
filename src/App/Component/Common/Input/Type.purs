@@ -21,7 +21,6 @@ type Input =
   { placeholder :: Maybe String
   , label :: Maybe String
   , initialValue :: String
-  , class_ :: Maybe String
   } 
 
 defaultInput :: Input

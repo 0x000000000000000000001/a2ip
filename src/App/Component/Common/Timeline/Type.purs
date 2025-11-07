@@ -22,8 +22,7 @@ import Halogen.Query (ForkId)
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
 
 type Input =
-  { class_ :: Maybe String
-  , dates :: Array Date
+  { dates :: Array Date
   , loading :: Boolean
   , defaultDate :: DefaultDate
   }
