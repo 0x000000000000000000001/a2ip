@@ -1,5 +1,6 @@
 -- p1
 
+stateful / stateless class
 input pour les styles étrangers
 tooltip sur les pins de la timeline, avec les titres
 modal filtres
