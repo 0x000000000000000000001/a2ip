@@ -11,16 +11,16 @@ import CSS (Color, animation, borderBox, borderRight, borderTop, boxSizing, deg,
 import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
-import Util.Style (borderRadiusPct50, displayInlineBlock, heightRem, refineClassId, reflectHashModuleName, transparent, widthRem, (.?))
+import Util.Style (borderRadiusPct50, displayInlineBlock, heightRem, refineClass, reflectHashModuleName, transparent, widthRem, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWithColor :: Color -> String
-classIdWithColor color = refineClassId classId $ show color
+classIdWithColor color = refineClass classId $ show color
 
 animationId :: String
-animationId = refineClassId classId "animation"
+animationId = refineClass classId "animation"
 
 style :: Color -> CSS.CSS
 style color = do

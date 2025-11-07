@@ -263,7 +263,7 @@ module Util.Style
   , rawWithRaw
   , rawWithTyped
   , red
-  , refineClassId
+  , refineClass
   , reflectHashModuleName
   , right0
   , rightPct
@@ -394,8 +394,8 @@ limegreen = hsl 120.0 0.61 0.49
 reflectHashModuleName :: Unit -> String
 reflectHashModuleName = reflectCallingModuleName ▷ hash9
 
-refineClassId :: String -> String -> String 
-refineClassId classId with = hash9 $ classId <> "&" <> with
+refineClass :: String -> String -> String 
+refineClass classId with = hash9 $ classId <> "&" <> with
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.

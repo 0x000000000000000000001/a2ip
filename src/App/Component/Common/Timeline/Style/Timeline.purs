@@ -14,13 +14,13 @@ import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS ((|*))
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style (alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClassId, reflectHashModuleName, svg, (.&.), (.?), (:?), (:|*.))
+import Util.Style (alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass, reflectHashModuleName, svg, (.&.), (.?), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = refineClassId classId loading_
+classIdWhenLoading = refineClass classId loading_
 
 style :: CSS.CSS
 style = do

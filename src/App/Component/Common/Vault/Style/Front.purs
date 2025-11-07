@@ -22,19 +22,19 @@ import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
-import Util.Style (alignItemsCenter, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClassId, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style (alignItemsCenter, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClass, reflectHashModuleName, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhen :: Phase -> String
-classIdWhen phase = refineClassId classId $ show phase
+classIdWhen phase = refineClass classId $ show phase
 
 classIdWhenIncorrect :: String
-classIdWhenIncorrect = refineClassId classId incorrect_
+classIdWhenIncorrect = refineClass classId incorrect_
 
 lockAnimationId :: String
-lockAnimationId = refineClassId classId "lockAnimation"
+lockAnimationId = refineClass classId "lockAnimation"
 
 animationDurationMs :: Number
 animationDurationMs = 300.0

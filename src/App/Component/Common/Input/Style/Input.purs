@@ -10,13 +10,13 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Style (colorRed, fontSizePct, nothing, refineClassId, reflectHashModuleName, top0, (.?), (.|*.), (:?))
+import Util.Style (colorRed, fontSizePct, nothing, refineClass, reflectHashModuleName, top0, (.?), (.|*.), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenOpen :: String
-classIdWhenOpen = refineClassId classId "open"
+classIdWhenOpen = refineClass classId "open"
 
 style :: CSS.CSS
 style = do

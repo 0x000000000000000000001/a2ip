@@ -1,37 +1,37 @@
 module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
-  ( classId
-  , classIdWhenErrored
-  , classIdWhenLoading
+  ( statefulClass
+  , statelessClass
   , style
   )
   where
 
 import Proem hiding (top)
 
+import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Proxy.Dictionary.Errored (errored_)
-import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refineClassId, reflectHashModuleName, (.?))
+import Util.Style (displayFlex, justifyContentCenter, loading, loadingGrey, nothing, refineClass, reflectHashModuleName, (.?))
 
-classId :: String
-classId = reflectHashModuleName ι
+statelessClass :: String
+statelessClass = reflectHashModuleName ι
 
-classIdWhenLoading :: String
-classIdWhenLoading = refineClassId classId loading_
+statefulClass :: String -> String
+statefulClass id = refineClass statelessClass id
 
-classIdWhenErrored :: String
-classIdWhenErrored = refineClassId classId errored_
-
-style :: CSS.CSS
-style = do
-  classId .? do 
+style :: State -> CSS.CSS
+style { id, try, input: { loading: loading' } } = do
+  statelessClass .? do 
     nothing
-    
-  classIdWhenErrored .? do
-    displayFlex
-    justifyContentCenter
-    backgroundColor loadingGrey
 
-  classIdWhenLoading .? do
-    loading
+  statefulClass id .? do 
+    let errored = case try of
+          StopTrying -> true
+          _          -> false
+
+    when errored do
+      displayFlex
+      justifyContentCenter
+      backgroundColor loadingGrey
+
+    when loading' do 
+      loading

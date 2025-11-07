@@ -4,7 +4,7 @@ module App.Component.Common.PrettyErrorImage.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classId, classIdWhenErrored, classIdWhenLoading)
+import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (classIdWhenErrored, classIdWhenLoading, statefulClass, statelessClass)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
@@ -19,12 +19,12 @@ import Html.Renderer.Halogen (renderToArray)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render { try, input: { class_, loading } } =
+render { id, try, input: { class_, loading } } =
   try == StopTrying
     ?
       ( div
           [ classes
-              $ [ classId, classIdWhenErrored, loading ? classIdWhenLoading ↔ "" ]
+              $ [ statelessClass, statefulClass id ]
               <> (class_ ?? (_ : []) ⇔ [])
           ]
           ( [ sheet ]
@@ -38,7 +38,7 @@ render { try, input: { class_, loading } } =
               _ -> Nothing
         in img
           $ [ classes
-              $ [ classId ]
+              $ [ statelessClass ]
               <> (class_ ?? (_ : []) ⇔ [])
             ]
             <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])

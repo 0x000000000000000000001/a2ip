@@ -15,13 +15,13 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Color (darken)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo_)
-import Util.Style (backgroundColorTransparent, fill, flexGrow1, heightPct100, positionRelative, raw, refineClassId, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
+import Util.Style (backgroundColorTransparent, fill, flexGrow1, heightPct100, positionRelative, raw, refineClass, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?), (.|*.), (:&.), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι
 
 classIdWhenYoutubeVideo :: String
-classIdWhenYoutubeVideo = refineClassId classId youtubeVideo_
+classIdWhenYoutubeVideo = refineClass classId youtubeVideo_
 
 style :: CSS.CSS
 style = do
@@ -50,7 +50,7 @@ style = do
     asset
 
   where 
-  __image = classId .|*. PrettyErrorImage.classId 
+  __image = classId .|*. PrettyErrorImage.statelessClass 
   ____errored = __image :&. PrettyErrorImage.classIdWhenErrored
   ______questionMark = ____errored :|*. QuestionMark.classId
   __youtubeVideo = classId .|*. YoutubeVideo.classId 

@@ -9,15 +9,16 @@ module App.Component.Common.Modal.Type
   )
   where
 
-import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
+import App.Component.Util.Type (NoQuery, NoSlotAddressIndex, MkState)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input i = 
   { closable :: Boolean
-  -- Better than conditional rendering: in child arrays, disappearing/reappearing 
-  -- may slightly disturb the lifecycle of the siblings...
+  -- Better than conditional rendering: in child-arrays, disappearing/reappearing 
+  -- may slightly disturb the rerendering flow and the inner workings of 
+  -- the siblings (e.g. ones with iframes)
   , open :: Boolean 
   , innerInput :: i
   }
@@ -28,10 +29,9 @@ type Slots q o =
   ( inner :: Slot q o NoSlotAddressIndex
   )
 
-type State i = 
-  { id :: String 
-  , input :: Input i
-  }
+type State i = MkState
+  ( input :: Input i
+  )
 
 data Action i o = Initialize | Receive (Input i) | HandleClick MouseEvent | HandleCloseClick | RaiseInnerOutput o
 

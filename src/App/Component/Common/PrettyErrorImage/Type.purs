@@ -14,7 +14,7 @@ module App.Component.Common.PrettyErrorImage.Type
   )
   where
 
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
@@ -66,10 +66,10 @@ data Try = FirstTry Url | FallbackTry Url | StopTrying
 
 derive instance eqTry :: Eq Try
 
-type State =
-  { input :: Input
+type State = MkState
+  ( input :: Input
   , try :: Try
-  }
+  )
 
 data Action 
   = HandleError
