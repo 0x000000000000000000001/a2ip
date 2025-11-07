@@ -9,7 +9,7 @@ import Proem
 import App.Component.Common.PrettyErrorImage.HandleAction (handleAction)
 import App.Component.Common.PrettyErrorImage.Render (render)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query, Try(..))
-import App.Component.Util.Type (noOutputAction)
+import App.Component.Util.Type (mkInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -20,7 +20,7 @@ import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: \input ->
+  { initialState: mkInput \input ->
       { input 
       , try: FirstTry input.sources.first
       }

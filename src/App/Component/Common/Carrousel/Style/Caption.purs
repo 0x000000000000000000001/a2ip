@@ -1,5 +1,5 @@
 module App.Component.Common.Carrousel.Style.Caption
-  ( classId
+  ( statelessClass
   , style
   ) where
 
@@ -10,12 +10,12 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Util.Style (borderRadiusRem4, displayFlex, reflectHashModuleName, justifyContentCenter, padding2, topCenterToTopCenter, (.?))
 
-classId :: String
-classId = reflectHashModuleName ι
+statelessClass :: String
+statelessClass = reflectHashModuleName ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     topCenterToTopCenter
     displayFlex
     justifyContentCenter

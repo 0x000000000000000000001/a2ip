@@ -11,11 +11,13 @@ module App.Component.Common.PrettyErrorImage.Type
   , Try(..)
   , Url
   , defaultInput
+  , defaultInputStyle
   )
   where
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
+import CSS (darken)
 import Color (Color)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
@@ -38,7 +40,11 @@ type Style =
           }
       }
   , questionMark :: 
-      { 
+      { when :: 
+          { errored :: 
+              { color :: Color
+              }
+          }
       }
   }
 
@@ -58,7 +64,13 @@ defaultInputStyle =
               }
           }
       }
-  , questionMark: {}
+  , questionMark: 
+      { when: 
+          { errored: 
+              { color: darken 0.4 loadingGrey
+              }
+          }
+      }
   }
 
 defaultInput :: Input

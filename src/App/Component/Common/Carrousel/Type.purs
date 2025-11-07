@@ -14,7 +14,7 @@ module App.Component.Common.Carrousel.Type
 
 import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex)
+import App.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex, MkState)
 import App.Util.Capability.AppM (AppM)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe)
@@ -42,10 +42,10 @@ type Slots =
   , youtubeVideo :: Slot YoutubeVideo.Query YoutubeVideo.Output NoSlotAddressIndex
   )
 
-type State = 
-  { input :: Input
+type State = MkState
+  ( input :: Input
   , index :: Int
-  }
+  )
 
 data Action = GoToPrevious | GoToNext | Receive Input
 

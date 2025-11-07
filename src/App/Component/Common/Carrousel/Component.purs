@@ -9,6 +9,7 @@ import Proem
 import App.Component.Common.Carrousel.HandleAction (handleAction)
 import App.Component.Common.Carrousel.Render (render)
 import App.Component.Common.Carrousel.Type (Action(..), Input, Output, Query)
+import App.Component.Util.Type (mkInput)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -19,7 +20,7 @@ import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: \input -> { input, index: 0 }
+  { initialState: mkInput \input -> { input, index: 0 }
   , render
   , eval: mkEval defaultEval
       { handleAction = handleAction

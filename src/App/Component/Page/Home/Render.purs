@@ -61,6 +61,9 @@ render { showModal, innerClicks, outerClicks } =
                 , { media: Image $ ourImageRelativePath "component/page" "ellen-corin"
                   , caption: Nothing
                   }
+                , { media: Image $ ourImageRelativePath "component/page" "ellen-corin2222"
+                  , caption: Nothing
+                  }
                 ]
             }
         }

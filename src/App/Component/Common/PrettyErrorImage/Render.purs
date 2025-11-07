@@ -8,6 +8,7 @@ import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (statefulCla
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
+import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Data.Maybe (Maybe(..))
@@ -15,11 +16,11 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
-import Html.Renderer.Halogen (renderToArray)
+import Html.Renderer.Halogen (render_)
 import Util.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render { id, try, input: { class_, loading } } =
+render s@{ id, try, input: { class_, loading } } =
   try == StopTrying
     ?
       ( div
@@ -27,9 +28,9 @@ render { id, try, input: { class_, loading } } =
               $ [ statelessClass, statefulClass id ]
               <> (class_ ?? (_ : []) ⇔ [])
           ]
-          ( [ sheet ]
-              <> (not loading ? (renderToArray $ questionMarkSvg QuestionMark.statelessClass) ↔ [])
-          )
+          [ sheet s
+          , loading ? noHtml ↔ (render_ $ questionMarkSvg QuestionMark.statelessClass)
+          ]
       )
     ↔
       ( let src_ = case try of
