@@ -13,8 +13,8 @@ import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (Transformation, color, column, flexDirection, pct, rem, transform)
 import CSS as CSS
 import Color (darken)
-import Util.Style (alignItemsCenter, displayFlex, reflectHashModuleName, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
-import Util.Style as UtilStyle
+import Util.Style.Style (alignItemsCenter, displayFlex, reflectHashModuleName, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style.Style as UtilStyle
 
 classId :: String
 classId = reflectHashModuleName ι

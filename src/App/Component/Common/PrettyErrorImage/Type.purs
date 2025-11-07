@@ -22,7 +22,8 @@ import Color (Color)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
-import Util.Style (loadingGrey)
+import Util.Style.Style (loadingGrey)
+import Util.Style.Image (ObjectFit, fill)
 
 type Url = String
 
@@ -32,13 +33,12 @@ type Sources =
   }
 
 type Style = 
-  { root :: 
-      { when :: 
-          { errored :: 
-              { backgroundColor :: Color
-              }
+  { when :: 
+      { errored :: 
+          { backgroundColor :: Color
           }
       }
+  , fit :: ObjectFit
   , questionMark :: 
       { when :: 
           { errored :: 
@@ -57,13 +57,12 @@ type Input =
 
 defaultInputStyle :: Style
 defaultInputStyle =
-  { root: 
-      { when: 
-          { errored: 
-              { backgroundColor: loadingGrey
-              }
+  { when: 
+      { errored: 
+          { backgroundColor: loadingGrey
           }
       }
+  , fit: fill
   , questionMark: 
       { when: 
           { errored: 

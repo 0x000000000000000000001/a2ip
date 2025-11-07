@@ -7,7 +7,7 @@ import Proem hiding (top, div)
 
 import CSS (fromString, key)
 import CSS as CSS
-import Util.Style (reflectHashModuleName, margin1, (.?))
+import Util.Style.Style (reflectHashModuleName, margin1, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

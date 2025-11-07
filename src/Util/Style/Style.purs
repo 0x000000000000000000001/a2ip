@@ -1,4 +1,4 @@
-module Util.Style
+module Util.Style.Style
   ( (&.)
   , (&:)
   , (&¨)

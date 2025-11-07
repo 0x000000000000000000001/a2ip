@@ -7,7 +7,7 @@ module App.Component.Common.Loader.Style.Loader
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style (reflectHashModuleName, nothing, positionRelative, (.?))
+import Util.Style.Style (reflectHashModuleName, nothing, positionRelative, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

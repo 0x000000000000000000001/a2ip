@@ -9,7 +9,7 @@ import Proem hiding (top)
 import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
 import CSS (hover)
 import CSS as CSS
-import Util.Style (displayInlineBlock, displayNone, nothing, positionRelative, reflectHashModuleName, (.&), (.?), (.|*.), (:?), (|*.))
+import Util.Style.Style (displayInlineBlock, displayNone, nothing, positionRelative, reflectHashModuleName, (.&), (.?), (.|*.), (:?), (|*.))
 
 classId :: String
 classId = reflectHashModuleName ι

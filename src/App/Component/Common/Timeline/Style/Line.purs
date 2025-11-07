@@ -9,7 +9,7 @@ import Proem hiding (top)
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style (borderRadiusRem1, reflectHashModuleName, heightPct100, topCenterToTopCenter, widthRem, (.?))
+import Util.Style.Style (borderRadiusRem1, reflectHashModuleName, heightPct100, topCenterToTopCenter, widthRem, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

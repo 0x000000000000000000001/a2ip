@@ -40,7 +40,7 @@ import Util.Proxy.Dictionary.Portraits (portraits')
 import Util.Proxy.Dictionary.Role (role')
 import Util.Proxy.Dictionary.Separators (separators')
 import Util.String (slugify)
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =

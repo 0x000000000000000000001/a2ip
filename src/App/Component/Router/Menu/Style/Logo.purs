@@ -9,7 +9,7 @@ import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import CSS (alignSelf, fromString, key)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style (cursorPointer, reflectHashModuleName, margin4, widthRem, (.?))
+import Util.Style.Style (cursorPointer, reflectHashModuleName, margin4, widthRem, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

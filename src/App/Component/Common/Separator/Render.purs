@@ -14,7 +14,7 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Core (ElemName(..))
 import Halogen.HTML.Elements (element)
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { input: input@{ loading, textElementTag } } =

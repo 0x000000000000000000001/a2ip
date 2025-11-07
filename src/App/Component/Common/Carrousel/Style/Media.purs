@@ -13,7 +13,7 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Data.Array ((!!))
 import Data.Maybe (Maybe(..))
-import Util.Style (heightPct100, nothing, positionRelative, raw, refineClass, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?))
+import Util.Style.Style (heightPct100, nothing, positionRelative, raw, refineClass, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι

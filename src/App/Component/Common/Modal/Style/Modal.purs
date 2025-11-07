@@ -13,7 +13,7 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refineClass, reflectHashModuleName, top0, widthPct100, (.?))
+import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, refineClass, reflectHashModuleName, top0, widthPct100, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι

@@ -24,7 +24,7 @@ import Halogen.HTML (div, img, nav, slot, text)
 import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Util.Proxy.Dictionary.Items (items')
-import Util.Style (class_)
+import Util.Style.Style (class_)
 
 type Item r =
   ( label :: String

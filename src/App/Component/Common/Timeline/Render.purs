@@ -29,7 +29,7 @@ import Html.Renderer.Halogen as Renderer
 import Util.Html.Dom (dataAttr)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { input: { dates, loading }, selectedDate } =

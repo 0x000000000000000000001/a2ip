@@ -8,7 +8,7 @@ import Proem hiding (top)
 
 import CSS (backgroundColor, color, rgba, white)
 import CSS as CSS
-import Util.Style (borderRadiusRem1, overflowHidden, padding1, reflectHashModuleName, userSelectNone, widthPct100, (.?))
+import Util.Style.Style (borderRadiusRem1, overflowHidden, padding1, reflectHashModuleName, userSelectNone, widthPct100, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

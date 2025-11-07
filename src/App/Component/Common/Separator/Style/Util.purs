@@ -7,7 +7,7 @@ import Proem hiding (top)
 
 import CSS (darken)
 import Color (Color)
-import Util.Style (loadingGrey)
+import Util.Style.Style (loadingGrey)
 
 grey :: Color
 grey = darken 0.1 loadingGrey

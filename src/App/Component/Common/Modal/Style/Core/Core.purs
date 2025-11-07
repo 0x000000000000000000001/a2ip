@@ -8,7 +8,7 @@ import Proem hiding (top)
 
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
-import Util.Style (backgroundColorWhite, borderRadiusRem1, margin2, padding1, positionRelative, reflectHashModuleName, widthRem, (.?))
+import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, margin2, padding1, positionRelative, reflectHashModuleName, widthRem, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι

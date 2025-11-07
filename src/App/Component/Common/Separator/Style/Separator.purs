@@ -12,7 +12,7 @@ import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderBottom, borderColor, rem, solid)
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass, reflectHashModuleName, top0, widthPct100, (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass, reflectHashModuleName, top0, widthPct100, (.?), (.|*.), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι

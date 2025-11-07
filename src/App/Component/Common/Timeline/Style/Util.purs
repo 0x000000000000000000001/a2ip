@@ -6,7 +6,7 @@ module App.Component.Common.Timeline.Style.Util
 import Proem hiding (top)
 
 import Color (Color, darken)
-import Util.Style (loadingGrey)
+import Util.Style.Style (loadingGrey)
 
 grey :: Color
 grey = darken 0.2 loadingGrey

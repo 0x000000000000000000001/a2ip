@@ -16,7 +16,7 @@ import Halogen.HTML (a)
 import Halogen.HTML.Events (onClick)
 import Halogen.HTML.Properties (href)
 import Routing.Duplex (print)
-import Util.Style (classes)
+import Util.Style.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ input: input@{ route, children } } = a

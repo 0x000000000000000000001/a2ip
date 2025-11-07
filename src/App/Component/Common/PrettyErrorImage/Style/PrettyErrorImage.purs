@@ -10,7 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, nothing, refineClass, reflectHashModuleName, (.?))
+import Util.Style.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, nothing, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -25,11 +25,9 @@ style
   , input: 
       { loading: loading' 
       , style: 
-          { root: 
-              { when: 
-                  { errored: 
-                      { backgroundColor: backgroundColor'
-                      }
+          { when: 
+              { errored: 
+                  { backgroundColor: backgroundColor'
                   }
               }
           }

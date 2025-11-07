@@ -19,7 +19,7 @@ import Util.Proxy.Dictionary.About (about')
 import Util.Proxy.Dictionary.Home (home')
 import Util.Proxy.Dictionary.Menu (menu')
 import Util.Proxy.Dictionary.Seminars (seminars')
-import Util.Style (class_)
+import Util.Style.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { route } =

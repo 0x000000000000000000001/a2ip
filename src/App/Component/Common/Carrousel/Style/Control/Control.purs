@@ -14,7 +14,7 @@ import CSS as CSS
 import Color (darken)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
 classId = reflectHashModuleName ι

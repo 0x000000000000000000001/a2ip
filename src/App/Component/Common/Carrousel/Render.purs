@@ -30,10 +30,9 @@ import Util.Proxy.Dictionary.Color (_color)
 import Util.Proxy.Dictionary.Errored (_errored)
 import Util.Proxy.Dictionary.Image (image')
 import Util.Proxy.Dictionary.QuestionMark (_questionMark)
-import Util.Proxy.Dictionary.Root (_root)
 import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
-import Util.Style (class_, classes, transparent)
+import Util.Style.Style (class_, classes, transparent)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, input: { slides }, index } =
@@ -63,7 +62,7 @@ render s@{ id, input: { slides }, index } =
                           }
                       , style = 
                           defaultInputStyle 
-                            # _root ◁ _when ◁ _errored ◁ _backgroundColor .~ transparent
+                            # _when ◁ _errored ◁ _backgroundColor .~ transparent
                             # _questionMark ◁ _when ◁ _errored ◁ _color .~ darken 0.16 white
                       }
                 ]

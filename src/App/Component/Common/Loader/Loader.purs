@@ -11,7 +11,7 @@ import App.Component.Common.Loader.Style.Sheet (sheet)
 import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div)
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 loader :: ∀ action slots. Input -> ComponentHTML action slots AppM
 loader color = 

@@ -20,7 +20,7 @@ import Halogen.HTML (div, div_, text)
 import Halogen.HTML.Events (onClick)
 import Util.File.Image.Common (ourImageRelativePath)
 import Util.Proxy.Dictionary.Modal (modal')
-import Util.Style (red)
+import Util.Style.Style (red)
 
 render :: State -> ComponentHTML Action Slots AppM
 render { showModal, innerClicks, outerClicks } =

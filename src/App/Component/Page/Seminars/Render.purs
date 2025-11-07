@@ -28,7 +28,7 @@ import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
 import Util.Proxy.Dictionary.Timeline (timeline')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
-import Util.Style (class_)
+import Util.Style.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =

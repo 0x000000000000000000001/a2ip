@@ -7,7 +7,7 @@ import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS as CSS
-import Util.Style (fill, reflectHashModuleName, widthRem, (.?))
+import Util.Style.Style (fill, reflectHashModuleName, widthRem, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι

@@ -18,7 +18,7 @@ import Halogen.HTML (div, slot)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 render 
   :: ∀ q i o

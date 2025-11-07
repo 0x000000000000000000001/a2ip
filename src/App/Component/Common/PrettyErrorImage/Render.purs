@@ -17,7 +17,7 @@ import Halogen.HTML (div, img)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
-import Util.Style (classes)
+import Util.Style.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, try, input: { class_, loading } } =

@@ -25,7 +25,7 @@ import Halogen.HTML.Events (onKeyDown)
 import Html.Renderer.Halogen as HR
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 import Web.UIEvent.KeyboardEvent (code)
 
 render 

@@ -19,7 +19,7 @@ import Halogen.HTML as HH
 import Halogen.HTML.Events (onBlur, onClick, onFocus, onMouseDown, onValueInput)
 import Halogen.HTML.Properties (ref)
 import Halogen.HTML.Properties as HP
-import Util.Style (class_, classes)
+import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ open, input: { placeholder, label, class_: class' } } =

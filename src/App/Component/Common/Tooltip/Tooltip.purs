@@ -15,7 +15,7 @@ import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div)
 import Halogen.HTML.CSS (style)
-import Util.Style (class_, padding1)
+import Util.Style.Style (class_, padding1)
 
 tooltip 
   :: ∀ action slots

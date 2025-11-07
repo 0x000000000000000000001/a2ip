@@ -12,7 +12,7 @@ import CSS (backgroundColor, rgba, zIndex)
 import CSS as CSS
 import Util.Proxy.Dictionary.Left (left_)
 import Util.Proxy.Dictionary.Right (right_)
-import Util.Style (heightPct100, refineClass, reflectHashModuleName, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
+import Util.Style.Style (heightPct100, refineClass, reflectHashModuleName, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

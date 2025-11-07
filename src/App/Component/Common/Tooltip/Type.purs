@@ -4,7 +4,7 @@ import App.Util.Capability.AppM (AppM)
 import CSS as CSS
 import Halogen (ComponentHTML)
 import Halogen.HTML (text)
-import Util.Style (nothing)
+import Util.Style.Style (nothing)
 
 type Style = 
     { outer :: CSS.CSS

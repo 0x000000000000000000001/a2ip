@@ -8,7 +8,7 @@ import Proem hiding (top)
 
 import CSS (alignItems, flexStart)
 import CSS as CSS
-import Util.Style (displayFlex, reflectHashModuleName, justifyContentCenter, widthPct100, (.?))
+import Util.Style.Style (displayFlex, reflectHashModuleName, justifyContentCenter, widthPct100, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

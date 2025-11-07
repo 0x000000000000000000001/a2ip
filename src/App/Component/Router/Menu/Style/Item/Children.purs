@@ -9,7 +9,7 @@ import Proem hiding (top, div)
 import App.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
 import CSS (backgroundColor, rgba)
 import CSS as CSS
-import Util.Style (displayNone, flexWrap, reflectHashModuleName, topLeftToTopRight, widthPct100, (.?))
+import Util.Style.Style (displayNone, flexWrap, reflectHashModuleName, topLeftToTopRight, widthPct100, (.?))
 
 classId :: String
 classId = reflectHashModuleName ι

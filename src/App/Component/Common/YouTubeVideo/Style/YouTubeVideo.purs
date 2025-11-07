@@ -8,7 +8,7 @@ import Proem hiding (top)
 import App.Component.Common.Loader.Style.Loader as Loader
 import CSS (backgroundColor, black, iframe, zIndex, (&))
 import CSS as CSS
-import Util.Style (any, centerToCenter, displayFlex, reflectHashModuleName, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (any, centerToCenter, displayFlex, reflectHashModuleName, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 classId :: String
 classId = reflectHashModuleName ι
