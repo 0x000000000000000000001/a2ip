@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 focus' = Proxy :: Proxy "focus"
 focus_ = ᴠ focus' :: String
-_focus = prop focus' :: forall a r. Lens' (Record (focus :: a | r)) a
+_focus = prop focus' :: ∀ a r. Lens' (Record (focus :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 carrousel' = Proxy :: Proxy "carrousel"
 carrousel_ = ᴠ carrousel' :: String
-_carrousel = prop carrousel' :: forall a r. Lens' (Record (carrousel :: a | r)) a
+_carrousel = prop carrousel' :: ∀ a r. Lens' (Record (carrousel :: a | r)) a

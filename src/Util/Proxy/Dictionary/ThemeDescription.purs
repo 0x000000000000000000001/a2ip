@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 themeDescription' = Proxy :: Proxy "themeDescription"
 themeDescription_ = ᴠ themeDescription' :: String
-_themeDescription = prop themeDescription' :: forall a r. Lens' (Record (themeDescription :: a | r)) a
+_themeDescription = prop themeDescription' :: ∀ a r. Lens' (Record (themeDescription :: a | r)) a

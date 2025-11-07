@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 modal' = Proxy :: Proxy "modal"
 modal_ = ᴠ modal' :: String
-_modal = prop modal' :: forall a r. Lens' (Record (modal :: a | r)) a
+_modal = prop modal' :: ∀ a r. Lens' (Record (modal :: a | r)) a

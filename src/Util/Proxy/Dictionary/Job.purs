@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 job' = Proxy :: Proxy "job"
 job_ = ᴠ job' :: String
-_job = prop job' :: forall a r. Lens' (Record (job :: a | r)) a
+_job = prop job' :: ∀ a r. Lens' (Record (job :: a | r)) a

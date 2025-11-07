@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 home' = Proxy :: Proxy "home"
 home_ = ᴠ home' :: String
-_home = prop home' :: forall a r. Lens' (Record (home :: a | r)) a
+_home = prop home' :: ∀ a r. Lens' (Record (home :: a | r)) a

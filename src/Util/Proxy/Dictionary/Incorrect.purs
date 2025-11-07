@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 incorrect' = Proxy :: Proxy "incorrect"
 incorrect_ = ᴠ incorrect' :: String
-_incorrect = prop incorrect' :: forall a r. Lens' (Record (incorrect :: a | r)) a
+_incorrect = prop incorrect' :: ∀ a r. Lens' (Record (incorrect :: a | r)) a

@@ -18,7 +18,7 @@ statelessClass = reflectHashModuleName ι
 statefulClass :: String -> String
 statefulClass id = refineClass statelessClass id
 
-style :: State -> CSS.CSS
+style :: ∀ u. State u -> CSS.CSS
 style 
   { id
   , try

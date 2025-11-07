@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 backgroundColor' = Proxy :: Proxy "backgroundColor"
 backgroundColor_ = ᴠ backgroundColor' :: String
-_backgroundColor = prop backgroundColor' :: forall a r. Lens' (Record (backgroundColor :: a | r)) a
+_backgroundColor = prop backgroundColor' :: ∀ a r. Lens' (Record (backgroundColor :: a | r)) a

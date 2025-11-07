@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 year' = Proxy :: Proxy "year"
 year_ = ᴠ year' :: String
-_year = prop year' :: forall a r. Lens' (Record (year :: a | r)) a
+_year = prop year' :: ∀ a r. Lens' (Record (year :: a | r)) a

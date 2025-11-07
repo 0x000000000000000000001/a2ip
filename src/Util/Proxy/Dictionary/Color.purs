@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 color' = Proxy :: Proxy "color"
 color_ = ᴠ color' :: String
-_color = prop color' :: forall a r. Lens' (Record (color :: a | r)) a
+_color = prop color' :: ∀ a r. Lens' (Record (color :: a | r)) a

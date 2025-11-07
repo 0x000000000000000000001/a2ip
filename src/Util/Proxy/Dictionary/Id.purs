@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 id' = Proxy :: Proxy "id"
 id_ = ᴠ id' :: String
-_id = prop id' :: forall a r. Lens' (Record (id :: a | r)) a
+_id = prop id' :: ∀ a r. Lens' (Record (id :: a | r)) a

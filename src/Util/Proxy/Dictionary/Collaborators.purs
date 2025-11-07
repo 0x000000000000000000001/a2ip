@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 collaborators' = Proxy :: Proxy "collaborators"
 collaborators_ = ᴠ collaborators' :: String
-_collaborators = prop collaborators' :: forall a r. Lens' (Record (collaborators :: a | r)) a
+_collaborators = prop collaborators' :: ∀ a r. Lens' (Record (collaborators :: a | r)) a

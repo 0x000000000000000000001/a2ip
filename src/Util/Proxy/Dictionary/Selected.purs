@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 selected' = Proxy :: Proxy "selected"
 selected_ = ᴠ selected' :: String
-_selected = prop selected' :: forall a r. Lens' (Record (selected :: a | r)) a
+_selected = prop selected' :: ∀ a r. Lens' (Record (selected :: a | r)) a

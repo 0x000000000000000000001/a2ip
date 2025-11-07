@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 root' = Proxy :: Proxy "root"
 root_ = ᴠ root' :: String
-_root = prop root' :: forall a r. Lens' (Record (root :: a | r)) a
+_root = prop root' :: ∀ a r. Lens' (Record (root :: a | r)) a

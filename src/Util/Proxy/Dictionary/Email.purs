@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 email' = Proxy :: Proxy "email"
 email_ = ᴠ email' :: String
-_email = prop email' :: forall a r. Lens' (Record (email :: a | r)) a
+_email = prop email' :: ∀ a r. Lens' (Record (email :: a | r)) a

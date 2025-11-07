@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 questionMark' = Proxy :: Proxy "questionMark"
 questionMark_ = ᴠ questionMark' :: String
-_questionMark = prop questionMark' :: forall a r. Lens' (Record (questionMark :: a | r)) a
+_questionMark = prop questionMark' :: ∀ a r. Lens' (Record (questionMark :: a | r)) a

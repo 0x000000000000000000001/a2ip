@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 separators' = Proxy :: Proxy "separators"
 separators_ = ᴠ separators' :: String
-_separators = prop separators' :: forall a r. Lens' (Record (separators :: a | r)) a
+_separators = prop separators' :: ∀ a r. Lens' (Record (separators :: a | r)) a

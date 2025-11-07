@@ -7,7 +7,7 @@ import Proem
 import App.Component.Common.PrettyErrorImage.Type (Action(..), PrettyErrorImageM, Try(..))
 import Halogen (modify_)
 
-handleAction :: Action -> PrettyErrorImageM Unit
+handleAction :: ∀ u. Action u -> PrettyErrorImageM u Unit
 handleAction = case _ of
   HandleError -> modify_ $ \s -> case s of
     { try: FirstTry _ } ->

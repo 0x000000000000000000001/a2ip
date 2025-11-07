@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 portraitId' = Proxy :: Proxy "portraitId"
 portraitId_ = ᴠ portraitId' :: String
-_portraitId = prop portraitId' :: forall a r. Lens' (Record (portraitId :: a | r)) a
+_portraitId = prop portraitId' :: ∀ a r. Lens' (Record (portraitId :: a | r)) a

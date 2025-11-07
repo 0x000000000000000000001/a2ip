@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 tooltip' = Proxy :: Proxy "tooltip"
 tooltip_ = ᴠ tooltip' :: String
-_tooltip = prop tooltip' :: forall a r. Lens' (Record (tooltip :: a | r)) a
+_tooltip = prop tooltip' :: ∀ a r. Lens' (Record (tooltip :: a | r)) a

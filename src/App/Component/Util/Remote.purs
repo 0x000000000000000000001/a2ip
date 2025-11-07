@@ -16,7 +16,7 @@ import Util.Google.Sheet (Converter)
 import Util.Google.Sheet as Sheet
 
 fetchModify
-  :: forall sym state action slots output a b
+  :: ∀ sym state action slots output a b
    . IsSymbol sym 
   => Proxy sym 
   -> Lens' state (Remote b)

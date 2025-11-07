@@ -12,7 +12,7 @@ import Util.Style.Style (fill, reflectHashModuleName, widthRem, (.?))
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
 
-style :: State -> CSS.CSS
+style :: ∀ u. State u -> CSS.CSS
 style 
   { input: 
       { style: 

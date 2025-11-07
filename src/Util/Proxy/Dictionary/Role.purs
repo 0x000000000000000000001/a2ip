@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 role' = Proxy :: Proxy "role"
 role_ = ᴠ role' :: String
-_role = prop role' :: forall a r. Lens' (Record (role :: a | r)) a
+_role = prop role' :: ∀ a r. Lens' (Record (role :: a | r)) a

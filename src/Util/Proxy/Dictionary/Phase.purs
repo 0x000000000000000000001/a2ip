@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 phase' = Proxy :: Proxy "phase"
 phase_ = ᴠ phase' :: String
-_phase = prop phase' :: forall a r. Lens' (Record (phase :: a | r)) a
+_phase = prop phase' :: ∀ a r. Lens' (Record (phase :: a | r)) a

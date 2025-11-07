@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 country' = Proxy :: Proxy "country"
 country_ = ᴠ country' :: String
-_country = prop country' :: forall a r. Lens' (Record (country :: a | r)) a
+_country = prop country' :: ∀ a r. Lens' (Record (country :: a | r)) a

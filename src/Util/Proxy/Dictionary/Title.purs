@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 title' = Proxy :: Proxy "title"
 title_ = ᴠ title' :: String
-_title = prop title' :: forall a r. Lens' (Record (title :: a | r)) a
+_title = prop title' :: ∀ a r. Lens' (Record (title :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 image' = Proxy :: Proxy "image"
 image_ = ᴠ image' :: String
-_image = prop image' :: forall a r. Lens' (Record (image :: a | r)) a
+_image = prop image' :: ∀ a r. Lens' (Record (image :: a | r)) a

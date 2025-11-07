@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 next' = Proxy :: Proxy "next"
 next_ = ᴠ next' :: String
-_next = prop next' :: forall a r. Lens' (Record (next :: a | r)) a
+_next = prop next' :: ∀ a r. Lens' (Record (next :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 about' = Proxy :: Proxy "about"
 about_ = ᴠ about' :: String
-_about = prop about' :: forall a r. Lens' (Record (about :: a | r)) a
+_about = prop about' :: ∀ a r. Lens' (Record (about :: a | r)) a

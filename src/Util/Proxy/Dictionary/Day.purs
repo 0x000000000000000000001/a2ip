@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 day' = Proxy :: Proxy "day"
 day_ = ᴠ day' :: String
-_day = prop day' :: forall a r. Lens' (Record (day :: a | r)) a
+_day = prop day' :: ∀ a r. Lens' (Record (day :: a | r)) a

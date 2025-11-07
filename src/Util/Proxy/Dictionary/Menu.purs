@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 menu' = Proxy :: Proxy "menu"
 menu_ = ᴠ menu' :: String
-_menu = prop menu' :: forall a r. Lens' (Record (menu :: a | r)) a
+_menu = prop menu' :: ∀ a r. Lens' (Record (menu :: a | r)) a

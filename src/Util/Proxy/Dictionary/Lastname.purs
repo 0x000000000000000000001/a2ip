@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 lastname' = Proxy :: Proxy "lastname" 
 lastname_ = ᴠ lastname' :: String
-_lastname = prop lastname' :: forall a r. Lens' (Record (lastname :: a | r)) a
+_lastname = prop lastname' :: ∀ a r. Lens' (Record (lastname :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 when' = Proxy :: Proxy "when"
 when_ = ᴠ when' :: String
-_when = prop when' :: forall a r. Lens' (Record (when :: a | r)) a
+_when = prop when' :: ∀ a r. Lens' (Record (when :: a | r)) a

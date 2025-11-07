@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 timeline' = Proxy :: Proxy "timeline"
 timeline_ = ᴠ timeline' :: String
-_timeline = prop timeline' :: forall a r. Lens' (Record (timeline :: a | r)) a
+_timeline = prop timeline' :: ∀ a r. Lens' (Record (timeline :: a | r)) a

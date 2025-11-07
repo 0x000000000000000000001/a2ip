@@ -17,13 +17,13 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
-import CSS (darken)
+import CSS (Size, darken)
 import Color (Color)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
-import Util.Style.Style (loadingGrey)
 import Util.Style.Image (ObjectFit, fill)
+import Util.Style.Style (loadingGrey)
 
 type Url = String
 
@@ -32,13 +32,15 @@ type Sources =
   , fallback :: Maybe Url
   }
 
-type Style = 
+type Style u = 
   { when :: 
       { errored :: 
           { backgroundColor :: Color
           }
       }
   , fit :: ObjectFit
+  , width :: Maybe (Size u)
+  , height :: Maybe (Size u)
   , questionMark :: 
       { when :: 
           { errored :: 
@@ -48,14 +50,14 @@ type Style =
       }
   }
 
-type Input =
+type Input u =
   { class_ :: Maybe String
   , loading :: Boolean
   , sources :: Sources
-  , style :: Style
+  , style :: Style u
   } 
 
-defaultInputStyle :: Style
+defaultInputStyle :: ∀ u. Style u
 defaultInputStyle =
   { when: 
       { errored: 
@@ -63,6 +65,8 @@ defaultInputStyle =
           }
       }
   , fit: fill
+  , width: Nothing
+  , height: Nothing
   , questionMark: 
       { when: 
           { errored: 
@@ -72,7 +76,7 @@ defaultInputStyle =
       }
   }
 
-defaultInput :: Input
+defaultInput :: ∀ u. Input u
 defaultInput =
   { class_: Nothing
   , loading: false
@@ -92,16 +96,16 @@ data Try = FirstTry Url | FallbackTry Url | StopTrying
 
 derive instance eqTry :: Eq Try
 
-type State = MkState
-  ( input :: Input
+type State u = MkState
+  ( input :: Input u
   , try :: Try
   )
 
-data Action 
+data Action u
   = HandleError
-  | Receive Input
+  | Receive (Input u)
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type PrettyErrorImageM a = HalogenM State Action Slots Output AppM a
+type PrettyErrorImageM u a = HalogenM (State u) (Action u) Slots Output AppM a

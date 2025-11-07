@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 videoUrl' = Proxy :: Proxy "videoUrl"
 videoUrl_ = ᴠ videoUrl' :: String
-_videoUrl = prop videoUrl' :: forall a r. Lens' (Record (videoUrl :: a | r)) a
+_videoUrl = prop videoUrl' :: ∀ a r. Lens' (Record (videoUrl :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 vault' = Proxy :: Proxy "vault"
 vault_ = ᴠ vault' :: String
-_vault = prop vault' :: forall a r. Lens' (Record (vault :: a | r)) a
+_vault = prop vault' :: ∀ a r. Lens' (Record (vault :: a | r)) a

@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 password' = Proxy :: Proxy "password"
 password_ = ᴠ password' :: String
-_password = prop password' :: forall a r. Lens' (Record (password :: a | r)) a
+_password = prop password' :: ∀ a r. Lens' (Record (password :: a | r)) a

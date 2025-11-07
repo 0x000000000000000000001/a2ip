@@ -7,4 +7,4 @@ import Type.Prelude (Proxy(..))
 
 loading' = Proxy :: Proxy "loading"
 loading_ = ᴠ loading' :: String
-_loading = prop loading' :: forall a r. Lens' (Record (loading :: a | r)) a
+_loading = prop loading' :: ∀ a r. Lens' (Record (loading :: a | r)) a

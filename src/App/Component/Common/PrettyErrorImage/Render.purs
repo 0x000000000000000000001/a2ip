@@ -19,7 +19,7 @@ import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen (render_)
 import Util.Style.Style (classes)
 
-render :: State -> ComponentHTML Action Slots AppM
+render :: ∀ u. State u -> ComponentHTML (Action u) Slots AppM
 render s@{ id, try, input: { class_, loading } } =
   try == StopTrying
     ?
