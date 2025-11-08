@@ -37,14 +37,13 @@ style = do
 innerStyle :: Style
 innerStyle = 
   defaultStyle
+    # (_questionMark ◁ _when ◁ _errored ◁ _color) .~ (Just textRed)
     # _fit .~ (Just cover)
     # _width .~ (Just $ Rem width)
     # _height .~ (Just $ Rem width)
     # _border .~ 
-        ( Just 
+        Just 
           { radius: Just $ Pct 50.0
           , width: Just 0.3
           , color: Just red 
           }
-        )
-    # (_questionMark <<< _when ◁ _errored ◁ _color) .~ (Just textRed)
