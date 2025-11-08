@@ -1,7 +1,7 @@
 module App.Component.Common.Carrousel.Style.Control.Control
-  ( statelessClass
-  , statelessClassWhenNext
-  , statelessClassWhenPrev
+  ( staticClass
+  , staticClassWhenNext
+  , staticClassWhenPrev
   , style
   )
   where
@@ -14,20 +14,20 @@ import CSS as CSS
 import Color (darken)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStatelessClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStaticClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statelessClassWhenPrev :: String
-statelessClassWhenPrev = refineClass' statelessClass prev_
+staticClassWhenPrev :: String
+staticClassWhenPrev = refineClass' staticClass prev_
 
-statelessClassWhenNext :: String
-statelessClassWhenNext = refineClass' statelessClass next_
+staticClassWhenNext :: String
+staticClassWhenNext = refineClass' staticClass next_
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     cursorPointer
     userSelectNone
     backgroundColor $ rgba 0 0 0 0.75
@@ -46,19 +46,19 @@ style = do
     heightRem 6.3
     widthRem 6.3
 
-  statelessClassWhenPrev .? do 
+  staticClassWhenPrev .? do 
     centerToCenterLeft
 
   a___icon :? do
     leftRem 1.0
 
-  statelessClassWhenNext .? do
+  staticClassWhenNext .? do
     centerToCenterRight
 
   b___icon :? do
     rightRem 1.0
   
   where 
-  __hover = statelessClass .&: hover
-  a___icon = statelessClassWhenPrev .|*. Icon.statelessClass
-  b___icon = statelessClassWhenNext .|*. Icon.statelessClass
+  __hover = staticClass .&: hover
+  a___icon = staticClassWhenPrev .|*. Icon.staticClass
+  b___icon = staticClassWhenNext .|*. Icon.staticClass

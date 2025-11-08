@@ -6,9 +6,9 @@ import Proem hiding (div)
 
 import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Modal.Style.Core.Close as Close
-import App.Component.Common.Modal.Style.Core.Core (statelessClass) as Core
+import App.Component.Common.Modal.Style.Core.Core (staticClass) as Core
 import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
-import App.Component.Common.Modal.Style.Modal (statefulClass, statelessClass)
+import App.Component.Common.Modal.Style.Modal (class', staticClass)
 import App.Component.Common.Modal.Style.Sheet (sheet)
 import App.Component.Common.Modal.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
@@ -27,17 +27,17 @@ render
   -> ComponentHTML (Action i o) (Slots q o) AppM
 render innerComponent s@{ id, input: { closable, open, innerInput } } = 
   div 
-    ( [ classes [ statelessClass, statefulClass id ] ]
+    ( [ classes [ staticClass, class' id ] ]
       <> (open ? [ onClick HandleClick ] ↔ [])    
     )
     [ sheet s
     , not open ? noHtml ↔ div 
-        [ class_ Core.statelessClass ]
+        [ class_ Core.staticClass ]
         [ Core.sheet
         , closable 
             ? (
               div
-                [ class_ Close.statelessClass, onClick $ κ $ HandleCloseClick ]
+                [ class_ Close.staticClass, onClick $ κ $ HandleCloseClick ]
                 [ render_ closeSvg ]
             ) 
             ↔ noHtml

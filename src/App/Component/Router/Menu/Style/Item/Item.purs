@@ -10,10 +10,10 @@ import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Type (State)
 import CSS (color, graytone, hover)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, reflectStatelessClass, heightRem, justifyContentCenter, padding2, positionRelative, raw, typedDeepClass, userSelectNone, widthPct100, (.&), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, reflectStaticClass, heightRem, justifyContentCenter, padding2, positionRelative, raw, typedDeepClass, userSelectNone, widthPct100, (.&), (.?), (:?))
 
 classId :: String 
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: State -> CSS.CSS
 style s = do
@@ -44,6 +44,6 @@ style s = do
   where
   __hover = classId .& hover
   deepClassHover = typedDeepClass __hover
-  ____children = deepClassHover Children.statelessClass
+  ____children = deepClassHover Children.staticClass
   ____iconContainer = deepClassHover IconContainer.classId
   ____label = deepClassHover Label.classId

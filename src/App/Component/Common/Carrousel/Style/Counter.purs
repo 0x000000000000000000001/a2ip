@@ -1,5 +1,5 @@
 module App.Component.Common.Carrousel.Style.Counter
-  ( statelessClass
+  ( staticClass
   , style
   ) where
 
@@ -8,14 +8,14 @@ import Proem hiding (top)
 import CSS (color, rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, reflectStatelessClass, justifyContentCenter, padding2, (.?))
+import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, reflectStaticClass, justifyContentCenter, padding2, (.?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     bottomCenterToBottomCenter
     displayFlex
     justifyContentCenter

@@ -9,10 +9,10 @@ import Proem hiding (top)
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, reflectStatelessClass, heightPct100, topCenterToTopCenter, widthRem, (.?))
+import Util.Style.Style (borderRadiusRem1, reflectStaticClass, heightPct100, topCenterToTopCenter, widthRem, (.?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

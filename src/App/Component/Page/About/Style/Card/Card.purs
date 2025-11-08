@@ -17,16 +17,16 @@ import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Loaded (loaded_)
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, inferStatefulClass, reflectStatelessClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, inferClass, justifyContentCenter, loading, nothing, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = inferStatefulClass classId loading_
+classIdWhenLoading = refineClass' classId loading_
 
 classIdWhenLoaded :: String
-classIdWhenLoaded = inferStatefulClass classId loaded_
+classIdWhenLoaded = refineClass' classId loaded_
 
 style :: CSS.CSS
 style = do
@@ -79,10 +79,10 @@ style = do
   __loaded = classId .&. classIdWhenLoaded
   ____hover = __loaded & hover
   deepClassHover = typedDeepClass ____hover
-  ______portrait = deepClassHover Portrait.statelessClass
+  ______portrait = deepClassHover Portrait.staticClass
   __loading = classId .&. classIdWhenLoading
   deepClassLoading = typedDeepClass __loading
-  ____portrait = deepClassLoading Portrait.statelessClass
+  ____portrait = deepClassLoading Portrait.staticClass
   ____names = deepClassLoading Names.classId
   ____line = deepClassLoading Line.classId
   ______before = ____line & before

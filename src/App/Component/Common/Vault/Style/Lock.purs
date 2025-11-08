@@ -8,10 +8,10 @@ import Proem hiding (top)
 
 import CSS (opacity, zIndex)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStatelessClass, svg, widthRem, (.?), (.|*:), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

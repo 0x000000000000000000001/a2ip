@@ -33,7 +33,7 @@ handleAction = case _ of
           
       classNameStr <- element ?? (ʌ ◁ className) ⇔ η ""
       
-      let shouldClose = contains (Pattern $ Modal.statefulClass state.id) classNameStr
+      let shouldClose = contains (Pattern $ Modal.class' state.id) classNameStr
 
       when shouldClose (raise Closed)
 

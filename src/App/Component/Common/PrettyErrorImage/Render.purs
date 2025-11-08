@@ -4,7 +4,7 @@ module App.Component.Common.PrettyErrorImage.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (statefulClass, statelessClass)
+import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (class', staticClass)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Style.Image as Image
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
@@ -21,12 +21,12 @@ import Util.Style.Style (classes)
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, try } =
   div 
-    [ classes $ [ statelessClass, statefulClass id ] ]
+    [ classes $ [ staticClass, class' id ] ]
     [ sheet s
     , try == StopTrying
         ? (
           HRH.render 
-          [ classes [ QuestionMark.statelessClass, QuestionMark.statefulClass id ] ]
+          [ classes [ QuestionMark.staticClass, QuestionMark.class' id ] ]
           questionMarkSvg
         )
         ↔ ( let src_ = case try of
@@ -34,7 +34,7 @@ render s@{ id, try } =
                   FallbackTry url -> Just url
                   _ -> Nothing
             in img
-              $ [ classes [ Image.statelessClass, Image.statefulClass id ] ]
+              $ [ classes [ Image.staticClass, Image.class' id ] ]
                 <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
                 <> [ onError \_ -> HandleError ]
           )

@@ -1,5 +1,5 @@
 module App.Component.Common.Separator.Style.Text.Text
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -9,14 +9,14 @@ import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, sansSerif, solid)
 import CSS as CSS
 import Data.NonEmpty ((:|))
-import Util.Style.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, reflectStatelessClass, margin0, padding1, positionRelative, (.?))
+import Util.Style.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, reflectStaticClass, margin0, padding1, positionRelative, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayInlineBlock
     margin0
     positionRelative

@@ -1,6 +1,6 @@
 module App.Component.Common.Input.Style.Input
-  ( statelessClass
-  , statelessClassWhenOpen
+  ( staticClass
+  , staticClassWhenOpen
   , style
   )
   where
@@ -10,20 +10,20 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Style.Style (colorRed, fontSizePct, nothing, refineClass', reflectStatelessClass, top0, (.?), (.|*.), (:?))
+import Util.Style.Style (colorRed, fontSizePct, nothing, refineClass', reflectStaticClass, top0, (.?), (.|*.), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statelessClassWhenOpen :: String
-statelessClassWhenOpen = refineClass' statelessClass "open"
+staticClassWhenOpen :: String
+staticClassWhenOpen = refineClass' staticClass "open"
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     position relative
 
-  statelessClassWhenOpen .? do 
+  staticClassWhenOpen .? do 
     nothing
 
   __label :? do 
@@ -33,4 +33,4 @@ style = do
     colorRed
 
   where 
-  __label = statelessClassWhenOpen .|*. Label.statelessClass
+  __label = staticClassWhenOpen .|*. Label.staticClass

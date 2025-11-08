@@ -5,7 +5,7 @@ module App.Component.Common.Carrousel.Render
 import Proem hiding (div)
 
 import App.Component.Common.Carrousel.Style.Caption as Caption
-import App.Component.Common.Carrousel.Style.Carrousel (statelessClass)
+import App.Component.Common.Carrousel.Style.Carrousel (staticClass)
 import App.Component.Common.Carrousel.Style.Control.Control as Control
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import App.Component.Common.Carrousel.Style.Counter as Counter
@@ -46,12 +46,12 @@ render s@{ id, input: { slides }, index } =
     caption = trim $ (join $ slide <#> _.caption) ??⇒ ""
   in
     div
-      [ class_ statelessClass ]
+      [ class_ staticClass ]
       [ sheet s
       , div
           [ classes
-              [ Media.statelessClass
-              , Media.statefulClass id
+              [ Media.staticClass
+              , Media.class' id
               ]
           ]
           ( case media of
@@ -87,21 +87,21 @@ render s@{ id, input: { slides }, index } =
               _ -> []
           )
       , div
-          [ classes [ Control.statelessClass, Control.statelessClassWhenPrev ]
+          [ classes [ Control.staticClass, Control.staticClassWhenPrev ]
           , onClick $ κ GoToPrevious
           ]
-          [ div [ class_ Icon.statelessClass ] [ text "◀︎" ] ]
+          [ div [ class_ Icon.staticClass ] [ text "◀︎" ] ]
       , div
-          [ classes [ Control.statelessClass, Control.statelessClassWhenNext ]
+          [ classes [ Control.staticClass, Control.staticClassWhenNext ]
           , onClick $ κ GoToNext
           ]
-          [ div [ class_ Icon.statelessClass ] [ text "▶︎" ] ]
+          [ div [ class_ Icon.staticClass ] [ text "▶︎" ] ]
       , caption == ""
           ? noHtml
           ↔ div
-              [ class_ Caption.statelessClass ]
+              [ class_ Caption.staticClass ]
               [ text caption ]
       , div
-          [ class_ Counter.statelessClass ]
+          [ class_ Counter.staticClass ]
           [ text $ (show $ index + 1) <> " / " <> (show $ length slides) ]
       ]

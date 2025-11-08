@@ -1,6 +1,6 @@
 module App.Component.Common.Loader.Style.Animation
-  ( class'
-  , classWithColor
+  ( classWithColor
+  , staticClass
   , style
   )
   where
@@ -12,20 +12,20 @@ import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Color (color_)
-import Util.Style.Style (borderRadiusPct50, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStatelessClass, transparent, widthRem, (.?))
+import Util.Style.Style (borderRadiusPct50, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStaticClass, transparent, widthRem, (.?))
 
-class' :: String
-class' = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 classWithColor :: Color -> String
-classWithColor color = refineClass class' color_ $ show color
+classWithColor color = refineClass staticClass color_ $ show color
 
 animationId :: String
-animationId = inferAnimationId class'
+animationId = inferAnimationId staticClass
 
 style :: Color -> CSS.CSS
 style color = do
-  class' .? do
+  staticClass .? do
     widthRem 3.0
     heightRem 3.0
     borderRadiusPct50

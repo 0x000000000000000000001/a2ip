@@ -1,6 +1,6 @@
 module App.Component.Page.About.Style.Card.Portrait
   ( innerStyle
-  , statelessClass
+  , staticClass
   , style
   )
   where
@@ -23,17 +23,17 @@ import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Proxy.Dictionary.With (_with)
 import Util.Style.Image (cover)
-import Util.Style.Style (marginTop, red, reflectStatelessClass, textRed, (.?))
+import Util.Style.Style (marginTop, red, reflectStaticClass, textRed, (.?))
 
-statelessClass :: String 
-statelessClass = reflectStatelessClass ι
+staticClass :: String 
+staticClass = reflectStaticClass ι
 
 width :: Number
 width = 12.0
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     marginTop 0.4
 
 innerStyle :: Style

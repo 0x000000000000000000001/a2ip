@@ -7,10 +7,10 @@ import Proem hiding (top)
 
 import CSS (alignContent, flexStart)
 import CSS as CSS
-import Util.Style.Style (displayFlex, flexWrap, reflectStatelessClass, justifyContentCenter, padding1, widthPct100, (.?))
+import Util.Style.Style (displayFlex, flexWrap, reflectStaticClass, justifyContentCenter, padding1, widthPct100, (.?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

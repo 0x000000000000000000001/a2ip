@@ -1,5 +1,5 @@
 module App.Component.Common.Input.Style.Label
-  ( statelessClass
+  ( staticClass
   , style
   ) where
 
@@ -8,14 +8,14 @@ import Proem hiding (top)
 import CSS (cursor, pct, rem, transform, translate)
 import CSS as CSS
 import CSS.Cursor (text)
-import Util.Style.Style (reflectStatelessClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style.Style (reflectStaticClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     positionAbsolute
     topPct50
     left0

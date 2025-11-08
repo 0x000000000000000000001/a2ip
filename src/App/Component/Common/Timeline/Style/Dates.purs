@@ -8,10 +8,10 @@ import Proem hiding (top)
 
 import CSS (column, flexDirection)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, displayFlex, reflectStatelessClass, justifyContentCenter, (.?))
+import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, (.?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

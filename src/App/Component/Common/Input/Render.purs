@@ -5,7 +5,7 @@ module App.Component.Common.Input.Render
 import Proem hiding (div)
 
 import App.Component.Common.Input.Style.Field as Field
-import App.Component.Common.Input.Style.Input (statelessClass, statelessClassWhenOpen)
+import App.Component.Common.Input.Style.Input (staticClass, staticClassWhenOpen)
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Input.Style.Sheet (sheet)
 import App.Component.Common.Input.Type (Action(..), Slots, State)
@@ -25,8 +25,8 @@ render :: State -> ComponentHTML Action Slots AppM
 render s@{ open, input: { placeholder, label } } =
   div
     [ classes
-        [ statelessClass
-        , open ? statelessClassWhenOpen ↔ ""
+        [ staticClass
+        , open ? staticClassWhenOpen ↔ ""
         ]
     , onClick $ κ HandleClick
     ]
@@ -35,7 +35,7 @@ render s@{ open, input: { placeholder, label } } =
         ??
           ( \l ->
               HH.label
-                ( [ class_ Label.statelessClass ]
+                ( [ class_ Label.staticClass ]
                     <>
                       ( open
                           ? [ onClick HandleLabelClick
@@ -48,7 +48,7 @@ render s@{ open, input: { placeholder, label } } =
           )
         ⇔ noHtml
     , input
-        ( [ class_ Field.statelessClass
+        ( [ class_ Field.staticClass
           , ref inputRef
           , onValueInput HandleNewValue
           , onFocus $ κ HandleFocus

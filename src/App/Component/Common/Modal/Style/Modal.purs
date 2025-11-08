@@ -1,6 +1,6 @@
 module App.Component.Common.Modal.Style.Modal
-  ( statefulClass
-  , statelessClass
+  ( class'
+  , staticClass
   , style
   , zIndex
   )
@@ -13,20 +13,20 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, inferStatefulClass, reflectStatelessClass, top0, widthPct100, (.?))
+import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statefulClass :: String -> String
-statefulClass = inferStatefulClass statelessClass
+class' :: String -> String
+class' = inferClass staticClass
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex
 
 style :: ∀ i. State i -> CSS.CSS
 style { id, input: { open } } = do
-  statelessClass .? do
+  staticClass .? do
     positionFixed
     top0
     left0
@@ -39,7 +39,7 @@ style { id, input: { open } } = do
     CSS.zIndex zIndex
     overflow overflowAuto
 
-  statefulClass id .? do
+  class' id .? do
     when open do 
       nothing
 

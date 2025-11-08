@@ -8,10 +8,10 @@ import Proem hiding (top)
 import App.Component.Common.Loader.Style.Loader as Loader
 import CSS (backgroundColor, black, iframe, zIndex, (&))
 import CSS as CSS
-import Util.Style.Style (any, centerToCenter, displayFlex, reflectStatelessClass, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (any, centerToCenter, displayFlex, reflectStaticClass, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 ratio :: Number 
 ratio = 16.0 / 9.0
@@ -46,4 +46,4 @@ style = do
   where 
   __potentialIframeContainer = classId .|> (any & has iframe)
   __iframe = classId .|* iframe
-  __loader = classId .|*. Loader.class'
+  __loader = classId .|*. Loader.staticClass

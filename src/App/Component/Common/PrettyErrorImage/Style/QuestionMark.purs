@@ -1,6 +1,6 @@
 module App.Component.Common.PrettyErrorImage.Style.QuestionMark
-  ( statefulClass
-  , statelessClass
+  ( class'
+  , staticClass
   , style
   )
   where
@@ -10,13 +10,13 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (darken, opacity)
 import CSS as CSS
-import Util.Style.Style (fill, loadingGrey, nothing, inferStatefulClass, reflectStatelessClass, svg, widthRem, (.?), (.|>), (:?))
+import Util.Style.Style (fill, loadingGrey, nothing, inferClass, reflectStaticClass, svg, widthRem, (.?), (.|>), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statefulClass :: String -> String
-statefulClass = inferStatefulClass statelessClass
+class' :: String -> String
+class' = inferClass staticClass
 
 style :: State -> CSS.CSS
 style 
@@ -34,10 +34,10 @@ style
           }
       } 
   } = do
-  statelessClass .? do
+  staticClass .? do
     widthRem 3.0
 
-  statefulClass id .? do
+  class' id .? do
     nothing
 
     when loading do
@@ -47,4 +47,4 @@ style
     fill $ color ??⇒ darken 0.4 loadingGrey
     
   where 
-  __svg = statefulClass id .|> svg
+  __svg = class' id .|> svg

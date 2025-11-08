@@ -1,5 +1,5 @@
 module App.Component.Common.Loader.Style.Loader
-  ( class'
+  ( staticClass
   , style
   )
   where
@@ -7,14 +7,14 @@ module App.Component.Common.Loader.Style.Loader
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style.Style (reflectStatelessClass, nothing, positionRelative, (.?))
+import Util.Style.Style (positionRelative, reflectStaticClass, (.?))
 
-class' :: String
-class' = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 -- | This wrapper is useful when we want to position the loader
 -- | without interfering with its animation.
 style :: CSS.CSS
 style = do
-  class' .? do
+  staticClass .? do
     positionRelative -- For zIndex customization

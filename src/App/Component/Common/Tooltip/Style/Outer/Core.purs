@@ -8,10 +8,10 @@ import Proem hiding (top)
 
 import CSS (backgroundColor, color, rgba, white)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, overflowHidden, padding1, reflectStatelessClass, userSelectNone, widthPct100, (.?))
+import Util.Style.Style (borderRadiusRem1, overflowHidden, padding1, reflectStaticClass, userSelectNone, widthPct100, (.?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

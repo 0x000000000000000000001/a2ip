@@ -100,7 +100,7 @@ renderCard section isLoading idx member =
           [ class_ Names.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , div 
-          [ class_ Portrait.statelessClass ]
+          [ class_ Portrait.staticClass ]
           [ prettyErrorImage
               portraits'
               ( (ᴠ section)

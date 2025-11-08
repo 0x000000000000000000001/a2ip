@@ -1,6 +1,6 @@
 module App.Component.Common.Separator.Style.Separator
-  ( statelessClass
-  , statelessClassWhenLoading
+  ( staticClass
+  , staticClassWhenLoading
   , style
   )
   where
@@ -12,20 +12,20 @@ import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderBottom, borderColor, rem, solid)
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (alignItemsCenter, backgroundColorWhite, displayFlex, inferStatefulClass, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass', reflectStatelessClass, top0, widthPct100, (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass', reflectStaticClass, top0, widthPct100, (.?), (.|*.), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statelessClassWhenLoading :: String
-statelessClassWhenLoading = refineClass' statelessClass loading_
+staticClassWhenLoading :: String
+staticClassWhenLoading = refineClass' staticClass loading_
 
 zIndex :: Int
 zIndex = 100
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     alignItemsCenter
@@ -37,11 +37,11 @@ style = do
     borderBottom solid (rem 0.15) grey
     CSS.zIndex zIndex
 
-  statelessClassWhenLoading .? do
+  staticClassWhenLoading .? do
     borderColor loadingGrey
     
   __text :? do 
     loading
 
   where 
-  __text = statelessClassWhenLoading .|*. Text.classId
+  __text = staticClassWhenLoading .|*. Text.staticClass

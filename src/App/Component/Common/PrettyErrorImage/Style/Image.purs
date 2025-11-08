@@ -1,6 +1,6 @@
 module App.Component.Common.PrettyErrorImage.Style.Image
-  ( statefulClass
-  , statelessClass
+  ( class'
+  , staticClass
   , style
   )
   where
@@ -11,13 +11,13 @@ import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (opacity)
 import CSS as CSS
 import Util.Style.Image (fill, objectFit)
-import Util.Style.Style (heightPct100, inferStatefulClass, reflectStatelessClass, widthPct100, (.?))
+import Util.Style.Style (heightPct100, inferClass, reflectStaticClass, widthPct100, (.?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-statefulClass :: String -> String
-statefulClass = inferStatefulClass statelessClass
+class' :: String -> String
+class' = inferClass staticClass
 
 style :: State -> CSS.CSS
 style 
@@ -29,11 +29,11 @@ style
           }
       } 
   } = do
-  statelessClass .? do 
+  staticClass .? do 
     widthPct100
     heightPct100
 
-  statefulClass id .? do
+  class' id .? do
     objectFit $ fit ??⇒ fill
 
     when loading' do 

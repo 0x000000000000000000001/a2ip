@@ -1,5 +1,5 @@
 module App.Component.Router.Menu.Style.Item.Children
-  ( statelessClass
+  ( staticClass
   , style
   )
   where
@@ -9,14 +9,14 @@ import Proem hiding (top, div)
 import App.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
 import CSS (backgroundColor, rgba)
 import CSS as CSS
-import Util.Style.Style (displayNone, flexWrap, reflectStatelessClass, topLeftToTopRight, widthPct100, (.?))
+import Util.Style.Style (displayNone, flexWrap, reflectStaticClass, topLeftToTopRight, widthPct100, (.?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     backgroundColor (rgba 0 0 0 backgroundBlackAlpha)
     topLeftToTopRight
     displayNone

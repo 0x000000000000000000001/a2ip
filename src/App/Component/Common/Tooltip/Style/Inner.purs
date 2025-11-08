@@ -7,10 +7,10 @@ module App.Component.Common.Tooltip.Style.Inner
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style.Style (nothing, reflectStatelessClass, (.?))
+import Util.Style.Style (nothing, reflectStaticClass, (.?))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do

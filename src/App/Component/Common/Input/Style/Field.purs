@@ -1,5 +1,5 @@
 module App.Component.Common.Input.Style.Field
-  ( statelessClass
+  ( staticClass
   , style
   ) where
 
@@ -7,14 +7,14 @@ import Proem hiding (top)
 
 import CSS (black, border, borderBottom, borderColor, outline, rem, solid)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, focus, fontSizeRem, reflectStatelessClass, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
+import Util.Style.Style (borderRadiusRem1, focus, fontSizeRem, reflectStaticClass, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     fontSizeRem 1.0
     border solid (rem 0.0) black
     borderBottom solid (rem 0.2) loadingGrey
@@ -27,4 +27,4 @@ style = do
     borderColor red
 
   where 
-  __focus = statelessClass .& focus
+  __focus = staticClass .& focus

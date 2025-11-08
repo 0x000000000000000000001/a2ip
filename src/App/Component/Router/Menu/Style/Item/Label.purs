@@ -9,10 +9,10 @@ import App.Component.Router.Menu.Type (State)
 import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
-import Util.Style.Style (flexGrow1, reflectStatelessClass, marginLeft, overflowHidden, widthRem, (.?))
+import Util.Style.Style (flexGrow1, reflectStaticClass, marginLeft, overflowHidden, widthRem, (.?))
 
 classId :: String 
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 style :: State -> CSS.CSS
 style s = do

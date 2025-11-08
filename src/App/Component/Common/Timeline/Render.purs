@@ -57,8 +57,8 @@ render { input: { dates, loading }, selectedDate } =
                     isNextSelected = next == selectedDate
                 in ( div
                     [ classes $ 
-                        [Date.classId] 
-                        <> (not loading && isSelected ? [Date.classIdWhenSelected] ↔ [])
+                        [Date.staticClass] 
+                        <> (not loading && isSelected ? [Date.staticClassWhenSelected] ↔ [])
                     , onClick $ κ $ SelectDate date_
                     , dataAttr date' dateDataAttr
                     ]

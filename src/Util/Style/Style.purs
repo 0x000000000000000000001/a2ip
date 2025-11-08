@@ -207,7 +207,7 @@ module Util.Style.Style
   , heightPct100
   , heightRem
   , inferAnimationId
-  , inferStatefulClass
+  , inferClass
   , justifyContentCenter
   , left0
   , leftPct
@@ -269,7 +269,7 @@ module Util.Style.Style
   , red
   , refineClass
   , refineClass'
-  , reflectStatelessClass
+  , reflectStaticClass
   , right0
   , rightPct
   , rightPct100
@@ -398,16 +398,16 @@ limegreen :: Color
 limegreen = hsl 120.0 0.61 0.49
 
 -- BEM notation: "-" is an infix for a block name
-reflectStatelessClass :: Unit -> String
-reflectStatelessClass _ = 
+reflectStaticClass :: Unit -> String
+reflectStaticClass _ = 
   let moduleName = captureCallingModuleName ι
       hash = hash9 $ moduleName
       name = (last $ split (Pattern ".") moduleName) ??⇒ ""
   in name <> "-" <> hash
       
 -- BEM notation: "--" is a prefix for a refinement
-inferStatefulClass :: String -> String -> String 
-inferStatefulClass class' id = refineClass class' id_ id
+inferClass :: String -> String -> String 
+inferClass class' id = refineClass class' id_ id
 
 -- BEM notation: "--" is a prefix for a refinement
 refineClass :: String -> String -> String -> String 

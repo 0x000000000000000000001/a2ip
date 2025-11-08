@@ -5,7 +5,7 @@ module App.Component.Common.Link.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Link.Style.Link (statefulClass, statelessClass)
+import App.Component.Common.Link.Style.Link (class', staticClass)
 import App.Component.Common.Link.Style.Sheet (sheet)
 import App.Component.Common.Link.Type (Action(..), Slots, State)
 import App.Util.Capability.AppM (AppM)
@@ -21,8 +21,8 @@ render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, input: { route, class_, children } } = 
   a
     ( [ classes 
-          [ statelessClass
-          , statefulClass id
+          [ staticClass
+          , class' id
           , class_ ??⇒ ""
           ] 
       ] <> (

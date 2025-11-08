@@ -1,5 +1,5 @@
 module App.Component.Common.Modal.Style.Core.Close
-  ( statelessClass
+  ( staticClass
   , style
   )
   where
@@ -9,14 +9,14 @@ import Proem hiding (top)
 import CSS (color, deg, hover, rotate, transforms, white, (|*))
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, reflectStatelessClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
+import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, reflectStaticClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
-statelessClass :: String
-statelessClass = reflectStatelessClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  statelessClass .? do
+  staticClass .? do
     color white
     bottomLeftToTopRight
     padding1 0.88
@@ -35,6 +35,6 @@ style = do
     transforms [ rotate $ deg 90.0, scale 1.5 1.5 ]
 
   where
-  __svg = statelessClass .|* svg
-  __hover = statelessClass .& hover
+  __svg = staticClass .|* svg
+  __hover = staticClass .& hover
   ____svg = __hover |* svg

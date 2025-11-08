@@ -22,19 +22,20 @@ import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
-import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, inferStatefulClass, reflectStatelessClass, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
+import Util.Proxy.Dictionary.Phase (phase_)
+import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
 
 classId :: String
-classId = reflectStatelessClass ι
+classId = reflectStaticClass ι
 
 classIdWhen :: Phase -> String
-classIdWhen phase = inferStatefulClass classId $ show phase
+classIdWhen phase = refineClass classId phase_ $ show phase
 
 classIdWhenIncorrect :: String
-classIdWhenIncorrect = inferStatefulClass classId incorrect_
+classIdWhenIncorrect = refineClass' classId incorrect_
 
 lockAnimationId :: String
-lockAnimationId = inferStatefulClass classId "lockAnimation"
+lockAnimationId = inferAnimationId classId
 
 animationDurationMs :: Number
 animationDurationMs = 300.0
@@ -130,17 +131,17 @@ style = do
   )
 
   where 
-  __input = classId .|*. Input.statelessClass
-  ____field = __input :|*. Field.statelessClass
+  __input = classId .|*. Input.staticClass
+  ____field = __input :|*. Field.staticClass
   ______placeholder = ____field :&: placeholder
-  ____label = __input :|*. Label.statelessClass
+  ____label = __input :|*. Label.staticClass
   __unlocking = classId .&. classIdWhen Unlocking
   a___lock = __unlocking :|*. Lock.classId
   a___message = __unlocking :|*. Message.classId
-  a___input = __unlocking :|*. Input.statelessClass
+  a___input = __unlocking :|*. Input.staticClass
   __unlocked = classId .&. classIdWhen Unlocked
   b___message = __unlocked :|*. Message.classId
-  b___input = __unlocked :|*. Input.statelessClass
+  b___input = __unlocked :|*. Input.staticClass
   ____leftDoor = __unlocked |*. Door.classIdWhenLeft
   ____rightDoor = __unlocked |*. Door.classIdWhenRight
   b___lock = __unlocked |*. Lock.classId
