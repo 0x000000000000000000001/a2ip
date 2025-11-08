@@ -22,11 +22,10 @@ import Halogen.HTML.Properties as HP
 import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ open, input: { placeholder, label, class_: class' } } =
+render s@{ open, input: { placeholder, label } } =
   div
     [ classes
         [ classId
-        , class' ??⇒ ""
         , open ? classIdWhenOpen ↔ ""
         ]
     , onClick $ κ HandleClick

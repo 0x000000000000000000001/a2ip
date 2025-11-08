@@ -10,7 +10,6 @@ import App.Component.Common.PrettyErrorImage.Style.Image as Image
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
 import App.Util.Capability.AppM (AppM)
-import Data.Array ((:))
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, img)
@@ -20,9 +19,9 @@ import Html.Renderer.Halogen as HRH
 import Util.Style.Style (classes)
 
 render :: ∀ u. State u -> ComponentHTML (Action u) Slots AppM
-render s@{ id, try, input: { class_ } } =
+render s@{ id, try } =
   div 
-    [ classes $ [ statelessClass, statefulClass id ] <> (class_ ?? (_ : []) ⇔ []) ]
+    [ classes $ [ statelessClass, statefulClass id ] ]
     [ sheet s
     , try == StopTrying
         ? (

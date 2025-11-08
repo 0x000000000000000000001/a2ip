@@ -77,8 +77,7 @@ defaultStyle =
 
 defaultInput :: ∀ u. Input u
 defaultInput =
-  { class_: Nothing
-  , loading: false
+  { loading: false
   , sources: 
       { first: ""
       , fallback: Nothing

@@ -105,8 +105,7 @@ renderCard section isLoading idx member =
               <> (isLoading ? show idx ↔ member.firstname <> " " <> member.lastname)
           )
           defaultInput 
-            { class_ = Just CardPortrait.classId
-            , loading = isLoading
+            { loading = isLoading
             , sources =
                 { first: 
                     ourImageRelativePath

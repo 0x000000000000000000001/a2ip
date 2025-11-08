@@ -28,7 +28,6 @@ defaultInput =
   { placeholder: Nothing
   , label: Nothing
   , initialValue: ""
-  , class_: Nothing
   }
  
 data Output = ChangedValue String

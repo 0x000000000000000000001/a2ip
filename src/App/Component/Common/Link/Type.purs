@@ -27,7 +27,6 @@ type Input =
 defaultInput :: Input
 defaultInput = 
   { route: Just Home 
-  , class_: Nothing 
   , display: inlineBlock
   , children: []
   }

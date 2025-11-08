@@ -84,7 +84,6 @@ render s =
   item label' route iconFileName children =
     slot items' (label' /\ route) Link.component
       { route
-      , class_: Just Item.classId
       , display: flex
       , children: 
         [ div
