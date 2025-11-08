@@ -10,9 +10,8 @@ import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
 import App.Component.Page.About.Style.About (classId)
 import App.Component.Page.About.Style.Card.Card as Card
-import App.Component.Page.About.Style.Card.Line as CardLine
-import App.Component.Page.About.Style.Card.Names as CardNames
-import App.Component.Page.About.Style.Card.Portrait as CardPortrait
+import App.Component.Page.About.Style.Card.Line as Line
+import App.Component.Page.About.Style.Card.Names as Names
 import App.Component.Page.About.Style.Collaborators as Collaborators
 import App.Component.Page.About.Style.Members as Members
 import App.Component.Page.About.Style.Sheet (sheet)
@@ -97,7 +96,7 @@ renderCard section isLoading idx member =
         <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
     ]
     ( [ div
-          [ class_ CardNames.classId ]
+          [ class_ Names.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , prettyErrorImage
           portraits'
@@ -130,7 +129,7 @@ renderCard section isLoading idx member =
       ? []
       ↔
         [ div
-            [ classes [ CardLine.classId, CardLine.classIdWhen $ ᴠ key ] ]
+            [ classes [ Line.classId, Line.classIdWhen $ ᴠ key ] ]
             [ render_ $ get key member ]
         ]
 
