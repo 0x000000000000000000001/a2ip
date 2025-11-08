@@ -46,4 +46,4 @@ style = do
   where 
   __potentialIframeContainer = classId .|> (any & has iframe)
   __iframe = classId .|* iframe
-  __loader = classId .|*. Loader.classId
+  __loader = classId .|*. Loader.class'

@@ -4,7 +4,7 @@ module App.Component.Common.Separator.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Separator.Style.Separator (classId, classIdWhenLoading)
+import App.Component.Common.Separator.Style.Separator (statelessClass, statelessClassIdWhenLoading)
 import App.Component.Common.Separator.Style.Sheet (sheet)
 import App.Component.Common.Separator.Style.Text.Text as Text
 import App.Component.Common.Separator.Type (Action, Slots, State, TextElementTag)
@@ -20,8 +20,8 @@ render :: State -> ComponentHTML Action Slots AppM
 render { input: input@{ loading, textElementTag } } =
   div
     [ classes
-        $ [ classId ]
-        <> (loading ? [ classIdWhenLoading ] ↔ [])
+        $ [ statelessClass ]
+        <> (loading ? [ statelessClassIdWhenLoading ] ↔ [])
     ]
     [ sheet
     , element

@@ -206,6 +206,7 @@ module Util.Style.Style
   , heightPct
   , heightPct100
   , heightRem
+  , inferAnimationId
   , inferStatefulClass
   , justifyContentCenter
   , left0
@@ -373,7 +374,7 @@ import Data.Tuple.Nested ((/\))
 import Effect (Effect)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
-import Util.Module (reflectCallingModuleName)
+import Util.Module (captureCallingModuleName)
 import Util.Proxy.Dictionary.Id (id_)
 
 foreign import getRootFontSize :: Effect Number
@@ -399,7 +400,7 @@ limegreen = hsl 120.0 0.61 0.49
 -- BEM notation: "-" is an infix for a block name
 reflectStatelessClass :: Unit -> String
 reflectStatelessClass _ = 
-  let moduleName = reflectCallingModuleName ι
+  let moduleName = captureCallingModuleName ι
       hash = hash9 $ moduleName
       name = (last $ split (Pattern ".") moduleName) ??⇒ ""
   in name <> "-" <> hash
@@ -416,6 +417,9 @@ refineClass class' key value =
 
 refineClass' :: String -> String -> String 
 refineClass' class' with = refineClass class' with with
+
+inferAnimationId :: String -> String 
+inferAnimationId class' = refineClass' class' "animated"
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.

@@ -1,4 +1,4 @@
-export const reflectCallingModuleName = function() {
+export const captureCallingModuleName = function() {
     const stack = new Error().stack;
     const lines = stack.split('    at ');
 

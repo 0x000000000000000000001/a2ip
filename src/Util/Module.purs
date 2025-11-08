@@ -1,8 +1,8 @@
 module Util.Module
-  ( reflectCallingModuleName
+  ( captureCallingModuleName
   )
   where
 
 import Data.Unit (Unit)
 
-foreign import reflectCallingModuleName :: Unit -> String
+foreign import captureCallingModuleName :: Unit -> String

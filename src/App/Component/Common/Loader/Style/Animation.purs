@@ -1,6 +1,6 @@
 module App.Component.Common.Loader.Style.Animation
-  ( classId
-  , classIdWithColor
+  ( statelessClass
+  , statefulClassWithColor
   , style
   )
   where
@@ -11,20 +11,21 @@ import CSS (Color, animation, borderBox, borderRight, borderTop, boxSizing, deg,
 import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
-import Util.Style.Style (borderRadiusPct50, displayInlineBlock, heightRem, inferStatefulClass, reflectStatelessClass, transparent, widthRem, (.?))
+import Util.Proxy.Dictionary.Color (color_)
+import Util.Style.Style (borderRadiusPct50, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStatelessClass, transparent, widthRem, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+class' :: String
+class' = reflectStatelessClass ι
 
-classIdWithColor :: Color -> String
-classIdWithColor color = inferStatefulClass classId $ show color
+classWithColor :: Color -> String
+classWithColor color = refineClass class' color_ $ show color
 
 animationId :: String
-animationId = inferStatefulClass classId "animation"
+animationId = inferAnimationId class'
 
 style :: Color -> CSS.CSS
 style color = do
-  classId .? do
+  class' .? do
     widthRem 3.0
     heightRem 3.0
     borderRadiusPct50
@@ -46,5 +47,5 @@ style color = do
     :| [100.0 /\ (transform $ rotate $ deg 360.0)]
   )
 
-  classIdWithColor color .? do
+  classWithColor color .? do
     borderTop solid (rem 0.4) color
