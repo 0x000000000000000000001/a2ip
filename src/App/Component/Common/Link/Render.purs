@@ -15,17 +15,24 @@ import Halogen.HTML (a)
 import Halogen.HTML.Events (onClick)
 import Halogen.HTML.Properties (href)
 import Routing.Duplex (print)
-import Util.Style.Style (class_)
+import Util.Style.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ input: { route, children } } = a
-  (
-    [ class_ classId ]
-    <> (route ?? (\r -> [ 
-      href $ print routeCodec r 
-    , onClick $ HandleClick r
-    ]) ⇔ [])
-  )
-  ( [ sheet s ]
-    <> children
-  )
+render s@{ input: { route, class_, children } } = 
+  a
+    ( [ classes 
+          [ classId
+          , class_ ??⇒ ""
+          ] 
+      ] <> (
+        route 
+          ?? (\r -> [ 
+            href $ print routeCodec r 
+          , onClick $ HandleClick r
+          ]) 
+          ⇔ []
+      )
+    )
+    ( [ sheet s ]
+      <> children
+    )

@@ -20,6 +20,7 @@ import Web.UIEvent.MouseEvent (MouseEvent)
 
 type Input =
   { route :: Maybe Route
+  , class_ :: Maybe String
   , display :: Display
   , children :: Children Action Slots
   } 
@@ -27,6 +28,7 @@ type Input =
 defaultInput :: Input
 defaultInput = 
   { route: Just Home 
+  , class_: Nothing
   , display: inlineBlock
   , children: []
   }

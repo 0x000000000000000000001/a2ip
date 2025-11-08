@@ -6,6 +6,7 @@ import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child as Child
 import App.Component.Router.Menu.Style.Item.Children as Children
+import App.Component.Router.Menu.Style.Item.Item as Item
 import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import App.Component.Router.Menu.Style.Item.Icon.Icon as ItemIcon
 import App.Component.Router.Menu.Style.Item.Label as Label
@@ -83,6 +84,7 @@ render s =
   item label' route iconFileName children =
     slot items' (label' /\ route) Link.component
       { route
+      , class_: Just Item.classId
       , display: flex
       , children: 
         [ div
