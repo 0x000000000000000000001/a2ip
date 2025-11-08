@@ -26,7 +26,7 @@ boxShadow :: Number -> Number -> CSS.CSS
 boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)
 
 style :: State -> CSS.CSS
-style s = do
+style { unfold } = do
   classId .? do
     backgroundColor (rgba 0 0 0 0.2)
     borderRadiusPct50
@@ -37,4 +37,4 @@ style s = do
     displayFlex
     justifyContentCenter
     alignSelf center
-    when s.unfold $ boxShadow 0.12 0.12
+    when unfold $ boxShadow 0.12 0.12

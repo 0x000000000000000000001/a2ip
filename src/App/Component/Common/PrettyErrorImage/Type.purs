@@ -55,6 +55,11 @@ type Style =
           { backgroundColor :: Maybe Color
           }
       }
+  , with :: 
+      { hover ::
+          { border :: Maybe Border
+          }
+      }
   }
 
 type Input =
@@ -79,6 +84,11 @@ defaultStyle =
   , when: 
       { errored: 
           { backgroundColor: Nothing
+          }
+      }
+  , with: 
+      { hover:
+          { border: Nothing
           }
       }
   }

@@ -2,16 +2,15 @@ module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
   ( statefulClass
   , statelessClass
   , style
-  )
-  where
+  ) where
 
 import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import App.Component.Util.Type (applyToSize)
-import CSS (backgroundColor, borderColor, height, solid, width)
+import CSS (backgroundColor, borderColor, height, hover, solid, width)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, overflowHidden, positionRelative, inferStatefulClass, reflectStatelessClass, (.?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, inferStatefulClass, justifyContentCenter, loading, loadingGrey, nothing, overflowHidden, positionRelative, reflectStatelessClass, (.&), (.?), (:?))
 
 statelessClass :: String
 statelessClass = reflectStatelessClass ι
@@ -20,24 +19,29 @@ statefulClass :: String -> String
 statefulClass id = inferStatefulClass statelessClass id
 
 style :: State -> CSS.CSS
-style 
+style
   { id
   , try
-  , input: 
-      { loading: loading' 
-      , style: 
+  , input:
+      { loading: loading'
+      , style:
           { width: width'
           , height: height'
           , border
-          , when: 
-              { errored: 
+          , when:
+              { errored:
                   { backgroundColor: backgroundColor'
                   }
               }
+          , with: 
+              { hover: 
+                  { border: border'
+                  }
+              }
           }
-      } 
+      }
   } = do
-  statelessClass .? do 
+  statelessClass .? do
     positionRelative
     borderStyle solid
     overflowHidden
@@ -45,19 +49,33 @@ style
   statefulClass id .? do
     width' ?? (applyToSize width) ⇔ nothing
     height' ?? (applyToSize height) ⇔ nothing
-    border 
-      ?? (\border' -> do 
-        border'.radius ?? (applyToSize borderRadius1) ⇔ nothing
-        border'.width ?? borderWidthRem1 ⇔ nothing
-        border'.color ?? borderColor ⇔ nothing
-      )
+    border
+      ??
+        ( \b -> do
+            b.radius ?? (applyToSize borderRadius1) ⇔ nothing
+            b.width ?? borderWidthRem1 ⇔ nothing
+            b.color ?? borderColor ⇔ nothing
+        )
       ⇔ nothing
-
+    
     when (try == StopTrying) do
       displayFlex
       justifyContentCenter
       alignItemsCenter
       backgroundColor $ backgroundColor' ??⇒ loadingGrey
 
-    when loading' do 
+    when loading' do
       loading
+  
+  __hover :? do
+      border'
+        ??
+          ( \b -> do
+              b.radius ?? (applyToSize borderRadius1) ⇔ nothing
+              b.width ?? borderWidthRem1 ⇔ nothing
+              b.color ?? borderColor ⇔ nothing
+          )
+        ⇔ nothing
+        
+  where
+  __hover = statefulClass id .& hover
