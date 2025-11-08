@@ -60,7 +60,8 @@ module Util.Style.Style
   , borderRadiusPct50
   , borderRadiusRem1
   , borderRadiusRem4
-  , borderWidth
+  , borderStyle
+  , borderWidthRem1
   , bottom0
   , bottomCenterToBottomCenter
   , bottomCenterToBottomCenterWithRemDelta
@@ -351,7 +352,7 @@ module Util.Style.Style
 
 import Proem hiding (bottom, top)
 
-import CSS (Refinement, Selector, Size, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, width, wrap)
+import CSS (class Val, Refinement, Selector, Size, Stroke(..), StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, value, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -409,7 +410,7 @@ classes classNames = HP.classes $ ClassName <$> (stripDotPrefixFromClassName <$>
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className = (stripPrefix (Pattern ".") className) ??⇒ className
 
-raw :: String -> String -> CSS.CSS
+raw :: forall a. Val a => String -> a -> CSS.CSS
 raw k v = key (fromString k) v
 
 nothing :: CSS.CSS
@@ -1437,8 +1438,11 @@ borderRadiusPct50 = borderRadiusPct1 50.0
 borderRadius1 :: ∀ a. Size a -> CSS.CSS
 borderRadius1 b = borderRadius b b b b
 
-borderWidth :: Number -> CSS.CSS
-borderWidth w = raw "border-width" $ show w
+borderWidthRem1 :: Number -> CSS.CSS
+borderWidthRem1 w = raw "border-width" $ show w <> "rem"
+
+borderStyle :: Stroke -> CSS.CSS 
+borderStyle stroke = raw "border-style" (value stroke)
 
 any :: Selector
 any = star

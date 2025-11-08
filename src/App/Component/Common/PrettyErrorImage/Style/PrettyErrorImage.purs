@@ -9,9 +9,9 @@ import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import App.Component.Util.Type (applyToSize)
-import CSS (backgroundColor, borderColor, height, width)
+import CSS (backgroundColor, borderColor, height, solid, width)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadius1, borderWidth, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass, reflectHashModuleName, (.?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -39,6 +39,7 @@ style
   } = do
   statelessClass .? do 
     positionRelative
+    borderStyle solid
 
   statefulClass id .? do
     width' ?? (applyToSize width) ⇔ nothing
@@ -46,7 +47,7 @@ style
     border 
       ?? (\border' -> do 
         border'.radius ?? (applyToSize borderRadius1) ⇔ nothing
-        border'.width ?? borderWidth ⇔ nothing
+        border'.width ?? borderWidthRem1 ⇔ nothing
         border'.color ?? borderColor ⇔ nothing
       )
       ⇔ nothing
