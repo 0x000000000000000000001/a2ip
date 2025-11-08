@@ -17,20 +17,20 @@ import CSS (Size)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
 
-type Style u = 
-  { width :: Maybe (Size u)
-  , height :: Maybe (Size u)
+type Style = 
+  { width :: ∀ u. Maybe (Size u)
+  , height :: ∀ u. Maybe (Size u)
   }
 
-defaultStyle :: ∀ u. Style u
+defaultStyle :: Style
 defaultStyle =
   { width: Nothing
   , height: Nothing
   }
 
-type Input u = 
+type Input = 
   { url :: String 
-  , style :: Style u
+  , style :: Style
   }
 
 type Output = NoOutput
@@ -38,13 +38,13 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State u = MkState
-  ( input :: Input u
+type State = MkState
+  ( input :: Input
   )
 
-data Action u = Initialize | Receive (Input u)
+data Action = Initialize | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type YoutubeVideoM u a = HalogenM (State u) (Action u) Slots Output AppM a
+type YoutubeVideoM a = HalogenM State Action Slots Output AppM a

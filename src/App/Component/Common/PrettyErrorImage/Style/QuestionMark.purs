@@ -10,9 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (darken, opacity)
 import CSS as CSS
-import Halogen.HTML.Properties (id)
-import Util.Style.Style (fill, loadingGrey, nothing, refineClass, reflectHashModuleName, svg, widthRem, (.?), (.|*), (.|>), (:?))
-import Web.HTML.HTMLImageElement (loading)
+import Util.Style.Style (fill, loadingGrey, nothing, refineClass, reflectHashModuleName, svg, widthRem, (.?), (.|>), (:?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -20,7 +18,7 @@ statelessClass = reflectHashModuleName ι
 statefulClass :: String -> String
 statefulClass id = refineClass statelessClass id
 
-style :: ∀ u. State u -> CSS.CSS
+style :: State -> CSS.CSS
 style 
   { id
   , input: 

@@ -18,7 +18,7 @@ import Halogen.HTML (slot)
 import Prim.Row (class Cons)
 import Type.Prelude (Proxy)
 
-component :: ∀ u. Component Query (Input u) Output AppM
+component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: mkInput \input -> { input }
   , render

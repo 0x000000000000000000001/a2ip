@@ -1,5 +1,6 @@
 module App.Component.Common.PrettyErrorImage.Type
   ( Action(..)
+  , Border
   , Input
   , Output
   , PrettyErrorImageM
@@ -32,10 +33,17 @@ type Sources =
   , fallback :: Maybe Url
   }
 
-type Style u = 
+type Border = 
+  { radius :: ∀ u. Maybe (Size u)
+  , size :: Maybe Number
+  , color :: Maybe Color
+  }
+
+type Style = 
   { fit :: Maybe ObjectFit
-  , width :: Maybe (Size u)
-  , height :: Maybe (Size u)
+  , width :: ∀ u. Maybe (Size u)
+  , height :: ∀ u. Maybe (Size u)
+  , border :: Maybe Border
   , questionMark :: 
       { when :: 
           { errored :: 
@@ -50,17 +58,18 @@ type Style u =
       }
   }
 
-type Input u =
+type Input =
   { loading :: Boolean
   , sources :: Sources
-  , style :: Style u
+  , style :: Style
   } 
 
-defaultStyle :: ∀ u. Style u
+defaultStyle :: Style
 defaultStyle =
   { fit: Just fill
   , width: Nothing
   , height: Nothing
+  , border: Nothing
   , questionMark: 
       { when: 
           { errored: 
@@ -75,7 +84,7 @@ defaultStyle =
       }
   }
 
-defaultInput :: ∀ u. Input u
+defaultInput :: Input
 defaultInput =
   { loading: false
   , sources: 
@@ -94,16 +103,16 @@ data Try = FirstTry Url | FallbackTry Url | StopTrying
 
 derive instance eqTry :: Eq Try
 
-type State u = MkState
-  ( input :: Input u
+type State = MkState
+  ( input :: Input
   , try :: Try
   )
 
-data Action u
+data Action
   = HandleError
-  | Receive (Input u)
+  | Receive Input
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type PrettyErrorImageM u a = HalogenM (State u) (Action u) Slots Output AppM a
+type PrettyErrorImageM a = HalogenM State Action Slots Output AppM a

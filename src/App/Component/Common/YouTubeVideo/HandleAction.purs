@@ -7,7 +7,7 @@ import Proem
 import App.Component.Common.YoutubeVideo.Type (Action(..), YoutubeVideoM)
 import Halogen (modify_)
 
-handleAction :: ∀ u. Action u -> YoutubeVideoM u Unit
+handleAction :: Action -> YoutubeVideoM Unit
 handleAction = case _ of
   Initialize -> ηι
 
