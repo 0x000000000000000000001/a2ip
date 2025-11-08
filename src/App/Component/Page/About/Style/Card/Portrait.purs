@@ -42,9 +42,9 @@ innerStyle =
     # _height .~ (Just $ rem width)
     # _border .~ 
         ( Just 
-          { radius: Just $ pct 50.0
+          { radius: Just $ rem (width / 2.0)
           , size: Just 0.3
           , color: Just red 
           }
         )
-    # _questionMark ◁ _when ◁ _errored _color .~ (Just textRed)
+    # (_questionMark <<< _when ◁ _errored ◁ _color) .~ (Just textRed)

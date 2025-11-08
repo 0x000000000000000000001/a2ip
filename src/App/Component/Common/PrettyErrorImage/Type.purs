@@ -20,7 +20,7 @@ import Proem
 
 import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
-import CSS (Size)
+import CSS (LengthUnit, Percentage, Size)
 import Color (Color)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
@@ -34,15 +34,15 @@ type Sources =
   }
 
 type Border = 
-  { radius :: ∀ u3. Maybe (Size u3)
+  { radius :: Maybe (Size Percentage)
   , size :: Maybe Number
   , color :: Maybe Color
   }
 
 type Style = 
   { fit :: Maybe ObjectFit
-  , width :: ∀ u1. Maybe (Size u1)
-  , height :: ∀ u2. Maybe (Size u2)
+  , width :: forall s. Maybe s
+  , height :: Maybe (Size LengthUnit)
   , border :: Maybe Border
   , questionMark :: 
       { when :: 
