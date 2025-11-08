@@ -8,10 +8,10 @@ import Proem hiding (top)
 import CSS (color, rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, reflectHashModuleName, justifyContentCenter, padding2, (.?))
+import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, reflectStatelessClass, justifyContentCenter, padding2, (.?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

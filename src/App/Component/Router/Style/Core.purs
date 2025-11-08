@@ -9,10 +9,10 @@ import Proem hiding (top)
 
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
-import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, displayFlex, flexGrow1, reflectHashModuleName, margin4, padding1, positionRelative, (.?))
+import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, displayFlex, flexGrow1, reflectStatelessClass, margin4, padding1, positionRelative, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 zIndex :: Int
 zIndex = Menu.zIndex - 10

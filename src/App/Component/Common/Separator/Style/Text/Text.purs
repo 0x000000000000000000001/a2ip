@@ -9,10 +9,10 @@ import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, sansSerif, solid)
 import CSS as CSS
 import Data.NonEmpty ((:|))
-import Util.Style.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, reflectHashModuleName, margin0, padding1, positionRelative, (.?))
+import Util.Style.Style (borderRadiusRem4, displayInlineBlock, fontSizePct, fontWeightBold, reflectStatelessClass, margin0, padding1, positionRelative, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

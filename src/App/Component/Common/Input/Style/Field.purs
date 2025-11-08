@@ -7,10 +7,10 @@ import Proem hiding (top)
 
 import CSS (black, border, borderBottom, borderColor, outline, rem, solid)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, focus, fontSizeRem, reflectHashModuleName, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
+import Util.Style.Style (borderRadiusRem1, focus, fontSizeRem, reflectStatelessClass, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

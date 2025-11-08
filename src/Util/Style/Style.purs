@@ -265,8 +265,8 @@ module Util.Style.Style
   , rawWithRaw
   , rawWithTyped
   , red
-  , refineClass
-  , reflectHashModuleName
+  , inferStatefulClass
+  , reflectStatelessClass
   , right0
   , rightPct
   , rightPct100
@@ -352,7 +352,7 @@ module Util.Style.Style
 
 import Proem hiding (bottom, top)
 
-import CSS (class Val, Refinement, Selector, Size, Stroke(..), StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, value, width, wrap)
+import CSS (class Val, Refinement, Selector, Size, Stroke, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, value, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -362,10 +362,10 @@ import CSS.Selector (child, deep, with)
 import CSS.Size (calcSum)
 import CSS.TextAlign (textAlign, center)
 import Color (darken)
-import Data.Array (foldl, (!!))
+import Data.Array (foldl, last, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
-import Data.String (Pattern(..), stripPrefix)
+import Data.String (Pattern(..), split, stripPrefix)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Data.Tuple.Nested ((/\))
 import Effect (Effect)
@@ -393,11 +393,19 @@ backgroundWhite = hsl 196.0 1.0 0.98
 limegreen :: Color
 limegreen = hsl 120.0 0.61 0.49
 
-reflectHashModuleName :: Unit -> String
-reflectHashModuleName = reflectCallingModuleName ▷ hash9
-
-refineClass :: String -> String -> String 
-refineClass classId with = hash9 $ classId <> "&" <> with
+-- BEM notation: "-" is for a block name
+reflectStatelessClass :: Unit -> String
+reflectStatelessClass _ = 
+  let moduleName = reflectCallingModuleName ι
+      hash = hash9 $ moduleName
+      name = (last $ split (Pattern ".") moduleName) ??⇒ ""
+  in name <> "-" <> hash
+      
+-- BEM notation: "_" is for a refinement
+inferStatefulClass :: String -> String -> String 
+inferStatefulClass class' with = 
+  let hash = hash9 $ class' <> "&" <> with
+  in "_" <> hash
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.

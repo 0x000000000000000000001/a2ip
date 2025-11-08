@@ -9,10 +9,10 @@ import Proem hiding (top)
 import CSS (rgba)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem1, displayFlex, reflectHashModuleName, heightRem, justifyContentCenter, overflowHidden, positionRelative, widthRem, (.?))
+import Util.Style.Style (borderRadiusRem1, displayFlex, reflectStatelessClass, heightRem, justifyContentCenter, overflowHidden, positionRelative, widthRem, (.?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

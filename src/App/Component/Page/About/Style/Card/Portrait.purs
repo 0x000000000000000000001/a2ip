@@ -21,10 +21,10 @@ import Util.Proxy.Dictionary.QuestionMark (_questionMark)
 import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Style.Image (cover)
-import Util.Style.Style (marginTop, red, reflectHashModuleName, textRed, (.?))
+import Util.Style.Style (marginTop, red, reflectStatelessClass, textRed, (.?))
 
 statelessClass :: String 
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 width :: Number
 width = 12.0

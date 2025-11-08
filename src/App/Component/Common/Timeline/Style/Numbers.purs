@@ -13,11 +13,11 @@ import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (Transformation, color, column, flexDirection, pct, rem, transform)
 import CSS as CSS
 import Color (darken)
-import Util.Style.Style (alignItemsCenter, displayFlex, reflectHashModuleName, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style.Style (alignItemsCenter, displayFlex, reflectStatelessClass, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
 import Util.Style.Style as UtilStyle
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 fontSizePct :: Number 
 fontSizePct = 110.0

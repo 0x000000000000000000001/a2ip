@@ -11,13 +11,13 @@ import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, borderColor, height, solid, width)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass, reflectHashModuleName, (.?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, overflowHidden, positionRelative, inferStatefulClass, reflectStatelessClass, (.?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 statefulClass :: String -> String
-statefulClass id = refineClass statelessClass id
+statefulClass id = inferStatefulClass statelessClass id
 
 style :: State -> CSS.CSS
 style 
@@ -40,6 +40,7 @@ style
   statelessClass .? do 
     positionRelative
     borderStyle solid
+    overflowHidden
 
   statefulClass id .? do
     width' ?? (applyToSize width) ⇔ nothing

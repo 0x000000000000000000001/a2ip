@@ -12,16 +12,16 @@ import CSS (backgroundColor, rgba, zIndex)
 import CSS as CSS
 import Util.Proxy.Dictionary.Left (left_)
 import Util.Proxy.Dictionary.Right (right_)
-import Util.Style.Style (heightPct100, refineClass, reflectHashModuleName, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
+import Util.Style.Style (heightPct100, inferStatefulClass, reflectStatelessClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 classIdWhenLeft :: String
-classIdWhenLeft = refineClass classId left_
+classIdWhenLeft = inferStatefulClass classId left_
 
 classIdWhenRight :: String
-classIdWhenRight = refineClass classId right_
+classIdWhenRight = inferStatefulClass classId right_
 
 style :: CSS.CSS
 style = do

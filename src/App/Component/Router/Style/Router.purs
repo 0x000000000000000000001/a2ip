@@ -13,13 +13,13 @@ import CSS as CSS
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style.Style (all, borderRadiusRem1, displayFlex, heightRem, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, refineClass, reflectHashModuleName, widthRem, (.?), (:&:), (:?))
+import Util.Style.Style (all, borderRadiusRem1, displayFlex, heightRem, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, inferStatefulClass, reflectStatelessClass, widthRem, (.?), (:&:), (:?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 bodyGradientAnimationId :: String
-bodyGradientAnimationId = refineClass classId "bodyGradientAnimation"
+bodyGradientAnimationId = inferStatefulClass classId "bodyGradientAnimation"
 
 animationDurationMs :: Number
 animationDurationMs = 300.0

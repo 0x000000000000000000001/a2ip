@@ -8,10 +8,10 @@ import Proem hiding (top)
 
 import CSS (zIndex)
 import CSS as CSS
-import Util.Style.Style (reflectHashModuleName, positionRelative, (.?))
+import Util.Style.Style (reflectStatelessClass, positionRelative, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

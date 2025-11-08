@@ -11,10 +11,10 @@ import CSS as CSS
 import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Phone (phone_)
 import Util.Proxy.Dictionary.Role (role_)
-import Util.Style.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, reflectHashModuleName, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, reflectStatelessClass, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 classIdWhen :: String -> String
 classIdWhen = hash9 ◁ (classId <> _)

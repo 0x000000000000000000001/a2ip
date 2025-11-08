@@ -8,10 +8,10 @@ import Proem hiding (top)
 import CSS (cursor, pct, rem, transform, translate)
 import CSS as CSS
 import CSS.Cursor (text)
-import Util.Style.Style (reflectHashModuleName, left0, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style.Style (reflectStatelessClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

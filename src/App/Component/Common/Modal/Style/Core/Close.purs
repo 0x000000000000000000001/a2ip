@@ -9,10 +9,10 @@ import Proem hiding (top)
 import CSS (color, deg, hover, rotate, transforms, white, (|*))
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, reflectHashModuleName, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
+import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, reflectStatelessClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

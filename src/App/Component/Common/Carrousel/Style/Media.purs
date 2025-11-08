@@ -13,13 +13,13 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Data.Array ((!!))
 import Data.Maybe (Maybe(..))
-import Util.Style.Style (heightPct100, nothing, positionRelative, raw, refineClass, reflectHashModuleName, topLeftToTopLeft, widthPct100, (.?))
+import Util.Style.Style (heightPct100, nothing, positionRelative, raw, inferStatefulClass, reflectStatelessClass, topLeftToTopLeft, widthPct100, (.?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 statefulClass :: String -> String
-statefulClass id = refineClass statelessClass id
+statefulClass id = inferStatefulClass statelessClass id
 
 style :: State -> CSS.CSS
 style { id, index, input: { slides } } = do

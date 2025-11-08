@@ -10,13 +10,13 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (darken, opacity)
 import CSS as CSS
-import Util.Style.Style (fill, loadingGrey, nothing, refineClass, reflectHashModuleName, svg, widthRem, (.?), (.|>), (:?))
+import Util.Style.Style (fill, loadingGrey, nothing, inferStatefulClass, reflectStatelessClass, svg, widthRem, (.?), (.|>), (:?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 statefulClass :: String -> String
-statefulClass id = refineClass statelessClass id
+statefulClass id = inferStatefulClass statelessClass id
 
 style :: State -> CSS.CSS
 style 

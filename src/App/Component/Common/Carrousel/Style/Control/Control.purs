@@ -14,16 +14,16 @@ import CSS as CSS
 import Color (darken)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass, reflectHashModuleName, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, inferStatefulClass, reflectStatelessClass, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 classIdWhenPrev :: String
-classIdWhenPrev = refineClass classId prev_
+classIdWhenPrev = inferStatefulClass classId prev_
 
 classIdWhenNext :: String
-classIdWhenNext = refineClass classId next_
+classIdWhenNext = inferStatefulClass classId next_
 
 style :: CSS.CSS
 style = do

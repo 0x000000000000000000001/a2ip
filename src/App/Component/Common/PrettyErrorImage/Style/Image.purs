@@ -11,13 +11,13 @@ import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (opacity)
 import CSS as CSS
 import Util.Style.Image (fill, objectFit)
-import Util.Style.Style (heightPct100, positionRelative, refineClass, reflectHashModuleName, widthPct100, (.?))
+import Util.Style.Style (heightPct100, positionRelative, inferStatefulClass, reflectStatelessClass, widthPct100, (.?))
 
 statelessClass :: String
-statelessClass = reflectHashModuleName ι
+statelessClass = reflectStatelessClass ι
 
 statefulClass :: String -> String
-statefulClass id = refineClass statelessClass id
+statefulClass id = inferStatefulClass statelessClass id
 
 style :: State -> CSS.CSS
 style 
@@ -30,7 +30,6 @@ style
       } 
   } = do
   statelessClass .? do 
-    positionRelative
     widthPct100
     heightPct100
 

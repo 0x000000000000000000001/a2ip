@@ -7,10 +7,10 @@ import Proem hiding (top, div)
 
 import CSS (fromString, key)
 import CSS as CSS
-import Util.Style.Style (reflectHashModuleName, margin1, (.?))
+import Util.Style.Style (reflectStatelessClass, margin1, (.?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do

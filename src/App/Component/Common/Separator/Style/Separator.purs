@@ -12,13 +12,16 @@ import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderBottom, borderColor, rem, solid)
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass, reflectHashModuleName, top0, widthPct100, (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, inferStatefulClass, reflectStatelessClass, top0, widthPct100, (.?), (.|*.), (:?))
 
 classId :: String
-classId = reflectHashModuleName ι
+classId = reflectStatelessClass ι
 
 classIdWhenLoading :: String
-classIdWhenLoading = refineClass classId loading_
+classIdWhenLoading = inferStatefulClass classId loading_
+
+zIndex :: Int
+zIndex = 100
 
 style :: CSS.CSS
 style = do
@@ -32,6 +35,7 @@ style = do
     top0
     padding4 0.6 0.6 0.0 0.6
     borderBottom solid (rem 0.15) grey
+    CSS.zIndex zIndex
 
   classIdWhenLoading .? do
     borderColor loadingGrey
