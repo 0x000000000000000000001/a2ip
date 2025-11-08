@@ -39,9 +39,9 @@ type Border =
   , color :: Maybe Color
   }
 
-type Style = 
+newtype Style = Style
   { fit :: Maybe ObjectFit
-  , width :: forall s. Maybe s
+  , width :: ∀ u. Maybe (Size u)
   , height :: Maybe (Size LengthUnit)
   , border :: Maybe Border
   , questionMark :: 
