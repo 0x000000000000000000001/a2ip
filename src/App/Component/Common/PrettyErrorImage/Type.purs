@@ -41,8 +41,8 @@ type Border =
 
 type Style = 
   { fit :: Maybe ObjectFit
-  , width :: ∀ u. Maybe (Size u)
-  , height :: ∀ u. Maybe (Size u)
+  , width :: ∀ u1. Maybe (Size u1)
+  , height :: ∀ u2. Maybe (Size u2)
   , border :: Maybe Border
   , questionMark :: 
       { when :: 
