@@ -44,6 +44,6 @@ style s = do
   where
   __hover = classId .& hover
   deepClassHover = typedDeepClass __hover
-  ____children = deepClassHover Children.classId
+  ____children = deepClassHover Children.statelessClass
   ____iconContainer = deepClassHover IconContainer.classId
   ____label = deepClassHover Label.classId

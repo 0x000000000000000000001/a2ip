@@ -11,7 +11,7 @@ import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (opacity)
 import CSS as CSS
 import Util.Style.Image (fill, objectFit)
-import Util.Style.Style (heightPct100, positionRelative, inferStatefulClass, reflectStatelessClass, widthPct100, (.?))
+import Util.Style.Style (heightPct100, inferStatefulClass, reflectStatelessClass, widthPct100, (.?))
 
 statelessClass :: String
 statelessClass = reflectStatelessClass ι

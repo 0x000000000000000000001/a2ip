@@ -1,5 +1,5 @@
 module App.Component.Router.Menu.Style.Item.Children
-  ( classId
+  ( statelessClass
   , style
   )
   where
@@ -11,12 +11,12 @@ import CSS (backgroundColor, rgba)
 import CSS as CSS
 import Util.Style.Style (displayNone, flexWrap, reflectStatelessClass, topLeftToTopRight, widthPct100, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     backgroundColor (rgba 0 0 0 backgroundBlackAlpha)
     topLeftToTopRight
     displayNone

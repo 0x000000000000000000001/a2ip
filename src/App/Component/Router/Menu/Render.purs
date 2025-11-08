@@ -88,7 +88,7 @@ render s =
         [ div
           [ class_ $ ItemIconContainer.classId ]
           [ img
-            [ class_ ItemIcon.classId
+            [ class_ ItemIcon.statelessClass
             , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
             ]
           ]
@@ -96,8 +96,8 @@ render s =
           [ class_ Label.classId ]
           [ text label' ]
         , div
-          [ class_ Children.classId ]
-          (children <#> \(ChildItem { label }) -> div [ class_ Child.classId ] [ text label ])
+          [ class_ Children.statelessClass ]
+          (children <#> \(ChildItem { label }) -> div [ class_ Child.statelessClass ] [ text label ])
         ]
       }
       handleLinkOutput
