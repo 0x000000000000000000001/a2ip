@@ -8,7 +8,7 @@ module App.Component.Common.PrettyErrorImage.Type
   , Slots
   , Sources
   , State
-  , Style
+  , Style(..)
   , Try(..)
   , Url
   , defaultInput
@@ -18,9 +18,8 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import Proem
 
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
+import App.Component.Util.Type (MkState, NoOutput, NoQuery, NoSlots, Size)
 import App.Util.Capability.AppM (AppM)
-import CSS (LengthUnit, Percentage, Size)
 import Color (Color)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
@@ -34,15 +33,15 @@ type Sources =
   }
 
 type Border = 
-  { radius :: Maybe (Size Percentage)
+  { radius :: Maybe Size
   , size :: Maybe Number
   , color :: Maybe Color
   }
 
-newtype Style = Style
+type Style =
   { fit :: Maybe ObjectFit
-  , width :: ∀ u. Maybe (Size u)
-  , height :: Maybe (Size LengthUnit)
+  , width :: Maybe Size
+  , height :: Maybe Size
   , border :: Maybe Border
   , questionMark :: 
       { when :: 
@@ -65,7 +64,7 @@ type Input =
   } 
 
 defaultStyle :: Style
-defaultStyle =
+defaultStyle = 
   { fit: Just fill
   , width: Nothing
   , height: Nothing

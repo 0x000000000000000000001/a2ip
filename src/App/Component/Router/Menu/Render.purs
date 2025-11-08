@@ -8,7 +8,6 @@ import App.Component.Router.Menu.Style.Item.Child as Child
 import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import App.Component.Router.Menu.Style.Item.Icon.Icon as ItemIcon
-import App.Component.Router.Menu.Style.Item.Item as Item
 import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Style.Logo as Logo
 import App.Component.Router.Menu.Style.Menu (classId)

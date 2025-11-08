@@ -15,9 +15,9 @@ import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
 import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
 import App.Component.Common.PrettyErrorImage.Type (defaultInput, defaultStyle)
 import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
-import App.Component.Util.Type (noHtml, noSlotAddressIndex)
+import App.Component.Util.Type (Size(..), noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import CSS (darken, pct, white)
+import CSS (darken, white)
 import Data.Array (length, (!!))
 import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
@@ -69,8 +69,8 @@ render s@{ id, input: { slides }, index } =
                             # _when ◁ _errored ◁ _backgroundColor .~ (Just transparent)
                             # _questionMark ◁ _when ◁ _errored ◁ _color .~ (Just $ darken 0.16 white)
                             # _fit .~ (Just contain)
-                            # _width .~ (Just $ pct 100.0)
-                            # _height .~ (Just $ pct 100.0)
+                            # _width .~ (Just $ Pct 100.0)
+                            # _height .~ (Just $ Pct 100.0)
                       }
                 ]
               Just (YoutubeVideo url) ->
@@ -79,8 +79,8 @@ render s@{ id, input: { slides }, index } =
                     noSlotAddressIndex
                     { url 
                     , style: 
-                        { width: Just $ pct 100.0
-                        , height: Just $ pct 100.0
+                        { width: Just $ Pct 100.0
+                        , height: Just $ Pct 100.0
                         }
                     }
                 ]

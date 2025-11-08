@@ -18,7 +18,7 @@ import Halogen.HTML (slot)
 import Prim.Row (class Cons)
 import Type.Prelude (Proxy)
 
-component :: ∀ u. Component Query (Input u) Output AppM
+component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: mkInput \input ->
       { input 
@@ -32,13 +32,13 @@ component = mkComponent
   }
 
 prettyErrorImage 
-  :: ∀ action slots label slotAddressIndex slots' u
+  :: ∀ action slots label slotAddressIndex slots'
    . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input u
+  -> Input
   -> ComponentHTML action slots AppM
 prettyErrorImage _slotLabel slotAddressIndex input = 
   slot

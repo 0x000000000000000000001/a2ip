@@ -5,7 +5,7 @@ module App.Component.Page.About.Render
 import Proem hiding (div)
 
 import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
-import App.Component.Common.PrettyErrorImage.Type (defaultInput, defaultStyle)
+import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
 import App.Component.Page.About.Style.About (classId)
@@ -20,7 +20,6 @@ import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
 import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (mapWithIndex, replicate)
-import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
@@ -34,16 +33,13 @@ import Type.Prelude (Proxy)
 import Util.Proxy.Dictionary.Collaborators (collaborators', collaborators_)
 import Util.Proxy.Dictionary.Country (country')
 import Util.Proxy.Dictionary.Email (email')
-import Util.Proxy.Dictionary.Fit (_fit)
 import Util.Proxy.Dictionary.Job (job')
 import Util.Proxy.Dictionary.Members (members', members_)
 import Util.Proxy.Dictionary.Phone (phone')
 import Util.Proxy.Dictionary.Portraits (portraits')
 import Util.Proxy.Dictionary.Role (role')
 import Util.Proxy.Dictionary.Separators (separators')
-import Util.Proxy.Dictionary.Width (_width)
 import Util.String (slugify)
-import Util.Style.Image (cover)
 import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
@@ -104,7 +100,7 @@ renderCard section isLoading idx member =
           [ class_ Names.classId ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , div 
-          [ class_ Portrait.classId ]
+          [ class_ Portrait.statelessClass ]
           [ prettyErrorImage
               portraits'
               ( (ᴠ section)

@@ -1,14 +1,14 @@
 module App.Component.Page.About.Style.Card.Portrait
   ( innerStyle
+  , statelessClass
   , style
   )
   where
 
 import Proem hiding (top)
 
-import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
 import App.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
-import CSS (border, pct, rem, solid)
+import App.Component.Util.Type (Size(..))
 import CSS as CSS
 import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
@@ -21,7 +21,7 @@ import Util.Proxy.Dictionary.QuestionMark (_questionMark)
 import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Style.Image (cover)
-import Util.Style.Style (borderRadiusPct50, fill, heightRem, marginTop, raw, red, reflectHashModuleName, textRed, widthRem, (.?), (.|*.), (:?))
+import Util.Style.Style (marginTop, red, reflectHashModuleName, textRed, (.?))
 
 statelessClass :: String 
 statelessClass = reflectHashModuleName ι
@@ -38,11 +38,11 @@ innerStyle :: Style
 innerStyle = 
   defaultStyle
     # _fit .~ (Just cover)
-    # _width .~ (Just $ rem width)
-    # _height .~ (Just $ rem width)
+    # _width .~ (Just $ Rem width)
+    # _height .~ (Just $ Rem width)
     # _border .~ 
         ( Just 
-          { radius: Just $ rem (width / 2.0)
+          { radius: Just $ Pct 50.0
           , size: Just 0.3
           , color: Just red 
           }

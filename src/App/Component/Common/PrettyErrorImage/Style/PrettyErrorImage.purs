@@ -8,10 +8,9 @@ module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
 import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
+import App.Component.Util.Type (Size(..), applyToSize)
 import CSS (backgroundColor, height, width)
 import CSS as CSS
-import CSS.Common (auto)
-import Util.Style.Image (fill, objectFit)
 import Util.Style.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, loadingGrey, positionRelative, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
@@ -41,8 +40,8 @@ style
     positionRelative
 
   statefulClass id .? do
-    width $ width' ??⇒ auto
-    height $ height' ??⇒ auto
+    applyToSize width $ width' ??⇒ Auto
+    applyToSize height $ height' ??⇒ Auto
 
     when (try == StopTrying) do
       displayFlex

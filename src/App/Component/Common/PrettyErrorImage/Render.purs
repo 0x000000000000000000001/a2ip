@@ -18,7 +18,7 @@ import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen as HRH
 import Util.Style.Style (classes)
 
-render :: ∀ u. State u -> ComponentHTML (Action u) Slots AppM
+render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, try } =
   div 
     [ classes $ [ statelessClass, statefulClass id ] ]

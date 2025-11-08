@@ -10,7 +10,9 @@ module App.Component.Util.Type
   , NoSlots
   , NoState
   , Remote
+  , Size(..)
   , State
+  , applyToSize
   , baseState
   , mkInput
   , noHtml
@@ -25,6 +27,9 @@ module App.Component.Util.Type
 import Proem
 
 import App.Util.Capability.AppM (AppM)
+import CSS (pct, rem)
+import CSS as CSS
+import CSS.Common (auto)
 import Data.Const (Const)
 import Data.Int (floor, hexadecimal, toStringAs)
 import Effect (Effect)
@@ -46,6 +51,11 @@ type NoSlots = ()
 type NoInput = Unit
 
 type NoOutput = Void
+
+data Size 
+  = Pct Number
+  | Rem Number
+  | Auto
 
 type State r = { id :: String | r }
 type MkState r = State r
@@ -90,3 +100,9 @@ generateInstanceId = do
 
 noHtml :: ∀ w i. HTML w i
 noHtml = text ""
+
+applyToSize :: ∀ a. (∀ u. CSS.Size u -> a) -> Size -> a
+applyToSize f = case _ of
+  Pct p -> f (pct p)
+  Rem r -> f (rem r)
+  _ -> f auto

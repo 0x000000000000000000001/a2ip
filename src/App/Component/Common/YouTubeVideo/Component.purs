@@ -30,13 +30,13 @@ component = mkComponent
   }
 
 youtubeVideo 
-  :: ∀ action slots label slotAddressIndex slots' u
+  :: ∀ action slots label slotAddressIndex slots'
    . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input u
+  -> Input
   -> ComponentHTML action slots AppM
 youtubeVideo _slotLabel slotAddressIndex input = 
   slot

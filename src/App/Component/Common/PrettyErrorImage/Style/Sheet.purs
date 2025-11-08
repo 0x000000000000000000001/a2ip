@@ -10,7 +10,7 @@ import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Proem (discard)
 
-sheet :: ∀ u w i. State u -> HTML w i
+sheet :: ∀ w i. State -> HTML w i
 sheet s = stylesheet do
   QuestionMark.style s
   PrettyErrorImage.style s

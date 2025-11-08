@@ -11,15 +11,14 @@ module App.Component.Common.YoutubeVideo.Type
   )
   where
 
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlots, MkState)
+import App.Component.Util.Type (MkState, NoOutput, NoQuery, NoSlots, Size)
 import App.Util.Capability.AppM (AppM)
-import CSS (Size)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
 
 type Style = 
-  { width :: ∀ u. Maybe (Size u)
-  , height :: ∀ u. Maybe (Size u)
+  { width :: Maybe Size
+  , height :: Maybe Size
   }
 
 defaultStyle :: Style

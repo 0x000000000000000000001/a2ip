@@ -42,10 +42,9 @@ style
 
     when loading do
       opacity 0.0
-    
+
   __svg :? do
-      fill $ color ??⇒ darken 0.4 loadingGrey
-
-
+    fill $ color ??⇒ darken 0.4 loadingGrey
+    
   where 
   __svg = statefulClass id .|> svg
