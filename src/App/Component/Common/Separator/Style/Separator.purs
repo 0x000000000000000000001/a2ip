@@ -1,6 +1,6 @@
 module App.Component.Common.Separator.Style.Separator
   ( statelessClass
-  , statelessClassIdWhenLoading
+  , statelessClassWhenLoading
   , style
   )
   where
@@ -37,11 +37,11 @@ style = do
     borderBottom solid (rem 0.15) grey
     CSS.zIndex zIndex
 
-  statelessClassIdWhenLoading .? do
+  statelessClassWhenLoading .? do
     borderColor loadingGrey
     
   __text :? do 
     loading
 
   where 
-  __text = statelessClassIdWhenLoading .|*. Text.classId
+  __text = statelessClassWhenLoading .|*. Text.classId

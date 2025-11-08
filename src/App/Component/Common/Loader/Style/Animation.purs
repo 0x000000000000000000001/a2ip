@@ -1,6 +1,6 @@
 module App.Component.Common.Loader.Style.Animation
-  ( statelessClass
-  , statefulClassWithColor
+  ( class'
+  , classWithColor
   , style
   )
   where

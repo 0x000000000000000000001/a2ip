@@ -18,6 +18,6 @@ loader color =
   div 
     [ class_ class' ] 
     [ sheet color 
-    , div [ classes [ Animation.statelessClass, Animation.statefulClassWithColor color ] ] []
+    , div [ classes [ Animation.class', Animation.classWithColor color ] ] []
     ]
   
