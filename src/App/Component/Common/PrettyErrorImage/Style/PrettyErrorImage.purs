@@ -8,10 +8,10 @@ module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
 import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
-import App.Component.Util.Type (Size(..), applyToSize)
-import CSS (backgroundColor, height, width)
+import App.Component.Util.Type (applyToSize)
+import CSS (backgroundColor, borderColor, height, width)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, displayFlex, justifyContentCenter, loading, loadingGrey, positionRelative, refineClass, reflectHashModuleName, (.?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderWidth, displayFlex, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass, reflectHashModuleName, (.?))
 
 statelessClass :: String
 statelessClass = reflectHashModuleName ι
@@ -28,6 +28,7 @@ style
       , style: 
           { width: width'
           , height: height'
+          , border
           , when: 
               { errored: 
                   { backgroundColor: backgroundColor'
@@ -40,8 +41,15 @@ style
     positionRelative
 
   statefulClass id .? do
-    applyToSize width $ width' ??⇒ Auto
-    applyToSize height $ height' ??⇒ Auto
+    width' ?? (applyToSize width) ⇔ nothing
+    height' ?? (applyToSize height) ⇔ nothing
+    border 
+      ?? (\border' -> do 
+        border'.radius ?? (applyToSize borderRadius1) ⇔ nothing
+        border'.width ?? borderWidth ⇔ nothing
+        border'.color ?? borderColor ⇔ nothing
+      )
+      ⇔ nothing
 
     when (try == StopTrying) do
       displayFlex

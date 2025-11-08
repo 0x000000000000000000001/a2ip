@@ -54,6 +54,7 @@ module Util.Style.Style
   , backgroundColorWhite
   , backgroundWhite
   , before
+  , borderRadius1
   , borderRadiusPct1
   , borderRadiusPct4
   , borderRadiusPct50
@@ -350,7 +351,7 @@ module Util.Style.Style
 
 import Proem hiding (bottom, top)
 
-import CSS (Refinement, Selector, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, width, wrap)
+import CSS (Refinement, Selector, Size, StyleM, Transformation, absolute, alignItems, angular, animation, backgroundColor, backgroundImage, backgroundRepeat, backgroundSize, bold, borderColor, borderRadius, bottom, by, color, cursor, deg, display, fixed, flex, flexGrow, fontSize, fontWeight, forwards, fromString, height, infinite, inlineBlock, justifyContent, key, left, linear, linearGradient, margin, maxHeight, maxWidth, minHeight, minWidth, noRepeat, normalAnimationDirection, padding, pct, position, relative, rem, rgba, right, sec, select, selector, star, toHexString, top, transform, translate, width, wrap)
 import CSS as CSS
 import CSS.Color (Color, hsl)
 import CSS.Common as CSSC
@@ -1432,6 +1433,9 @@ borderRadiusPct1 r = borderRadiusPct4 r r r r
 
 borderRadiusPct50 :: CSS.CSS
 borderRadiusPct50 = borderRadiusPct1 50.0
+
+borderRadius1 :: ∀ a. Size a -> CSS.CSS
+borderRadius1 b = borderRadius b b b b
 
 borderWidth :: Number -> CSS.CSS
 borderWidth w = raw "border-width" $ show w

@@ -34,7 +34,7 @@ type Sources =
 
 type Border = 
   { radius :: Maybe Size
-  , size :: Maybe Number
+  , width :: Maybe Number
   , color :: Maybe Color
   }
 

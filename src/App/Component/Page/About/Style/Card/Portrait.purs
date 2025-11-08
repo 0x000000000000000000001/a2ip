@@ -43,7 +43,7 @@ innerStyle =
     # _border .~ 
         ( Just 
           { radius: Just $ Pct 50.0
-          , size: Just 0.3
+          , width: Just 0.3
           , color: Just red 
           }
         )
