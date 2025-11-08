@@ -35,7 +35,7 @@ render s@{ open, input: { placeholder, label } } =
         ??
           ( \l ->
               HH.label
-                ( [ class_ Label.classId ]
+                ( [ class_ Label.statelessClass ]
                     <>
                       ( open
                           ? [ onClick HandleLabelClick

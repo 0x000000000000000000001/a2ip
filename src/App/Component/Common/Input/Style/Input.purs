@@ -30,7 +30,7 @@ style = do
     top0
     transform $ translate (rem 0.6) (rem 0.2)
     fontSizePct 80.0
-    colorRed  
+    colorRed
 
   where 
-  __label = statelessClassWhenOpen .|*. Label.classId
+  __label = statelessClassWhenOpen .|*. Label.statelessClass

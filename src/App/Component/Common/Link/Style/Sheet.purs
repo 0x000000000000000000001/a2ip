@@ -8,5 +8,5 @@ import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 
 sheet :: ∀ w i. State -> HTML w i
-sheet { input: { display } } = stylesheet do
-  Link.style display
+sheet s = stylesheet do
+  Link.style s

@@ -10,7 +10,7 @@ module App.Component.Common.Link.Type
   )
   where
 
-import App.Component.Util.Type (Children, NoQuery, NoSlots)
+import App.Component.Util.Type (Children, NoQuery, NoSlots, MkState)
 import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route(..))
 import CSS (Display, inlineBlock)
@@ -38,9 +38,9 @@ data Output = Clicked Route MouseEvent
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State =
-  { input :: Input
-  }
+type State = MkState
+  ( input :: Input
+  )
 
 data Action 
   = Navigate Route 

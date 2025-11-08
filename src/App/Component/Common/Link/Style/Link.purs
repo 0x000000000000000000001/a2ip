@@ -1,19 +1,27 @@
 module App.Component.Common.Link.Style.Link
-  ( classId
+  ( statefulClass
+  , statelessClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 
-import CSS (Display, display, noneTextDecoration, textDecoration)
+import App.Component.Common.Link.Type (State)
+import CSS (display, noneTextDecoration, textDecoration)
 import CSS as CSS
-import Util.Style.Style (reflectStatelessClass, (.?))
+import Util.Style.Style (inferStatefulClass, reflectStatelessClass, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
-style :: Display -> CSS.CSS
-style display_ = do
-  classId .? do
-    display display_
+statefulClass :: String -> String
+statefulClass id = inferStatefulClass statelessClass id
+
+style :: State -> CSS.CSS
+style { id, input: { display: display_ } } = do
+  statelessClass .? do 
     textDecoration noneTextDecoration
+
+  statefulClass id .? do
+    display display_

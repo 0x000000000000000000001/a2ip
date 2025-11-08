@@ -1,5 +1,5 @@
 module App.Component.Common.Input.Style.Label
-  ( classId
+  ( statelessClass
   , style
   ) where
 
@@ -10,12 +10,12 @@ import CSS as CSS
 import CSS.Cursor (text)
 import Util.Style.Style (reflectStatelessClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     positionAbsolute
     topPct50
     left0
