@@ -1,6 +1,6 @@
 module App.Component.Common.Input.Style.Input
-  ( classId
-  , classIdWhenOpen
+  ( statelessClass
+  , statelessClassWhenOpen
   , style
   )
   where
@@ -10,20 +10,20 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Style.Style (colorRed, fontSizePct, nothing, inferStatefulClass, reflectStatelessClass, top0, (.?), (.|*.), (:?))
+import Util.Style.Style (colorRed, fontSizePct, nothing, refineClass', reflectStatelessClass, top0, (.?), (.|*.), (:?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
-classIdWhenOpen :: String
-classIdWhenOpen = inferStatefulClass classId "open"
+statelessClassWhenOpen :: String
+statelessClassWhenOpen = refineClass' statelessClass "open"
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     position relative
 
-  classIdWhenOpen .? do 
+  statelessClassWhenOpen .? do 
     nothing
 
   __label :? do 
@@ -33,4 +33,4 @@ style = do
     colorRed  
 
   where 
-  __label = classIdWhenOpen .|*. Label.classId
+  __label = statelessClassWhenOpen .|*. Label.classId

@@ -130,17 +130,17 @@ style = do
   )
 
   where 
-  __input = classId .|*. Input.classId
-  ____field = __input :|*. Field.classId
+  __input = classId .|*. Input.statelessClass
+  ____field = __input :|*. Field.statelessClass
   ______placeholder = ____field :&: placeholder
   ____label = __input :|*. Label.classId
   __unlocking = classId .&. classIdWhen Unlocking
   a___lock = __unlocking :|*. Lock.classId
   a___message = __unlocking :|*. Message.classId
-  a___input = __unlocking :|*. Input.classId
+  a___input = __unlocking :|*. Input.statelessClass
   __unlocked = classId .&. classIdWhen Unlocked
   b___message = __unlocked :|*. Message.classId
-  b___input = __unlocked :|*. Input.classId
+  b___input = __unlocked :|*. Input.statelessClass
   ____leftDoor = __unlocked |*. Door.classIdWhenLeft
   ____rightDoor = __unlocked |*. Door.classIdWhenRight
   b___lock = __unlocked |*. Lock.classId

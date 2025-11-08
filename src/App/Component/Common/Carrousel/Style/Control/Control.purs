@@ -1,7 +1,7 @@
 module App.Component.Common.Carrousel.Style.Control.Control
-  ( classId
-  , classIdWhenNext
-  , classIdWhenPrev
+  ( statelessClass
+  , statelessClassWhenNext
+  , statelessClassWhenPrev
   , style
   )
   where
@@ -14,20 +14,20 @@ import CSS as CSS
 import Color (darken)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, inferStatefulClass, reflectStatelessClass, rightRem, userSelectNone, widthRem, (.&.), (.&:), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStatelessClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
-classIdWhenPrev :: String
-classIdWhenPrev = inferStatefulClass classId prev_
+statelessClassWhenPrev :: String
+statelessClassWhenPrev = refineClass' statelessClass prev_
 
-classIdWhenNext :: String
-classIdWhenNext = inferStatefulClass classId next_
+statelessClassWhenNext :: String
+statelessClassWhenNext = refineClass' statelessClass next_
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     cursorPointer
     userSelectNone
     backgroundColor $ rgba 0 0 0 0.75
@@ -46,21 +46,19 @@ style = do
     heightRem 6.3
     widthRem 6.3
 
-  __prev :? do 
+  statelessClassWhenPrev .? do 
     centerToCenterLeft
 
   a___icon :? do
     leftRem 1.0
 
-  __next :? do
+  statelessClassWhenNext .? do
     centerToCenterRight
 
   b___icon :? do
     rightRem 1.0
   
   where 
-  __hover = classId .&: hover
-  __prev = classId .&. classIdWhenPrev
-  a___icon = __prev :|*. Icon.classId
-  __next = classId .&. classIdWhenNext
-  b___icon = __next :|*. Icon.classId
+  __hover = statelessClass .&: hover
+  a___icon = statelessClassWhenPrev .|*. Icon.statelessClass
+  b___icon = statelessClassWhenNext .|*. Icon.statelessClass

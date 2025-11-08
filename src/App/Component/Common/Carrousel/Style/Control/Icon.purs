@@ -1,5 +1,5 @@
 module App.Component.Common.Carrousel.Style.Control.Icon
-  ( classId
+  ( statelessClass
   , style
   )
   where
@@ -9,10 +9,10 @@ import Proem hiding (top)
 import CSS as CSS
 import Util.Style.Style (reflectStatelessClass, positionRelative, (.?))
 
-classId :: String
-classId = reflectStatelessClass ι
+statelessClass :: String
+statelessClass = reflectStatelessClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  statelessClass .? do
     positionRelative

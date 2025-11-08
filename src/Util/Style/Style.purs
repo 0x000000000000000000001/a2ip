@@ -206,6 +206,7 @@ module Util.Style.Style
   , heightPct
   , heightPct100
   , heightRem
+  , inferStatefulClass
   , justifyContentCenter
   , left0
   , leftPct
@@ -265,7 +266,8 @@ module Util.Style.Style
   , rawWithRaw
   , rawWithTyped
   , red
-  , inferStatefulClass
+  , refineClass
+  , refineClass'
   , reflectStatelessClass
   , right0
   , rightPct
@@ -362,16 +364,17 @@ import CSS.Selector (child, deep, with)
 import CSS.Size (calcSum)
 import CSS.TextAlign (textAlign, center)
 import Color (darken)
-import Data.Array (foldl, last, (!!))
+import Data.Array (filter, foldl, last, (!!))
 import Data.Char (toCharCode)
 import Data.Int as Int
-import Data.String (Pattern(..), split, stripPrefix)
+import Data.String (Pattern(..), split, stripPrefix, trim)
 import Data.String.CodeUnits (toCharArray, fromCharArray)
 import Data.Tuple.Nested ((/\))
 import Effect (Effect)
 import Halogen.HTML (ClassName(..), IProp)
 import Halogen.HTML.Properties as HP
 import Util.Module (reflectCallingModuleName)
+import Util.Proxy.Dictionary.Id (id_)
 
 foreign import getRootFontSize :: Effect Number
 
@@ -393,7 +396,7 @@ backgroundWhite = hsl 196.0 1.0 0.98
 limegreen :: Color
 limegreen = hsl 120.0 0.61 0.49
 
--- BEM notation: "-" is for a block name
+-- BEM notation: "-" is an infix for a block name
 reflectStatelessClass :: Unit -> String
 reflectStatelessClass _ = 
   let moduleName = reflectCallingModuleName ι
@@ -401,11 +404,18 @@ reflectStatelessClass _ =
       name = (last $ split (Pattern ".") moduleName) ??⇒ ""
   in name <> "-" <> hash
       
--- BEM notation: "_" is for a refinement
+-- BEM notation: "--" is a prefix for a refinement
 inferStatefulClass :: String -> String -> String 
-inferStatefulClass class' with = 
-  let hash = hash9 $ class' <> "&" <> with
-  in "_" <> hash
+inferStatefulClass class' id = refineClass class' id_ id
+
+-- BEM notation: "--" is a prefix for a refinement
+refineClass :: String -> String -> String -> String 
+refineClass class' key value = 
+  let hash = hash9 $ class' <> "&" <> value
+  in "--" <> key <> "-" <> hash
+
+refineClass' :: String -> String -> String 
+refineClass' class' with = refineClass class' with with
 
 -- | Utility function to set the class attribute on an HTML element.
 -- | It automatically removes any "." prefix from the class name.
@@ -413,7 +423,14 @@ class_ :: ∀ r i. String -> IProp (class :: String | r) i
 class_ className = HP.class_ $ ClassName $ stripDotPrefixFromClassName className
 
 classes :: ∀ r i. Array String -> IProp (class :: String | r) i
-classes classNames = HP.classes $ ClassName <$> (stripDotPrefixFromClassName <$> classNames)
+classes classNames = 
+  HP.classes $ 
+    ClassName 
+    <$> 
+    ( classNames
+      <#> (stripDotPrefixFromClassName ◁ trim)
+      # (filter (_ /= ""))
+    )
 
 stripDotPrefixFromClassName :: String -> String
 stripDotPrefixFromClassName className = (stripPrefix (Pattern ".") className) ??⇒ className

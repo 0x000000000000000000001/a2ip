@@ -19,7 +19,7 @@ statelessClass :: String
 statelessClass = reflectStatelessClass ι
 
 statefulClass :: String -> String
-statefulClass id = inferStatefulClass statelessClass id
+statefulClass = inferStatefulClass statelessClass
 
 zIndex :: Int
 zIndex = 1000 + Menu.zIndex

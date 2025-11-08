@@ -87,15 +87,15 @@ render s@{ id, input: { slides }, index } =
               _ -> []
           )
       , div
-          [ classes [ Control.classId, Control.classIdWhenPrev ]
+          [ classes [ Control.statelessClass, Control.statelessClassWhenPrev ]
           , onClick $ κ GoToPrevious
           ]
-          [ div [ class_ Icon.classId ] [ text "◀︎" ] ]
+          [ div [ class_ Icon.statelessClass ] [ text "◀︎" ] ]
       , div
-          [ classes [ Control.classId, Control.classIdWhenNext ]
+          [ classes [ Control.statelessClass, Control.statelessClassWhenNext ]
           , onClick $ κ GoToNext
           ]
-          [ div [ class_ Icon.classId ] [ text "▶︎" ] ]
+          [ div [ class_ Icon.statelessClass ] [ text "▶︎" ] ]
       , caption == ""
           ? noHtml
           ↔ div
