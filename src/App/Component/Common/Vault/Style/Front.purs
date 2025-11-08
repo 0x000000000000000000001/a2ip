@@ -32,7 +32,7 @@ classIdWhen :: Phase -> String
 classIdWhen phase = refineClass classId phase_ $ show phase
 
 classIdWhenIncorrect :: String
-classIdWhenIncorrect = refineClass' classId incorrect_
+classIdWhenIncorrect = refineClass' classId incorrect_ 
 
 lockAnimationId :: String
 lockAnimationId = inferAnimationId classId
