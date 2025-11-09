@@ -19,6 +19,6 @@ style = do
     positionAbsolute
     topPct50
     left0
-    transform $ translate (rem 0.6) (pct $ -50.0)
+    transform $ translate (rem 0.8) (pct $ -50.0)
     cursor text
     userSelectNone

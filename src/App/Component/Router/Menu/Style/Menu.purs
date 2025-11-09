@@ -14,7 +14,7 @@ import Proem hiding (top)
 import App.Component.Router.Menu.Type (State)
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh)
 import CSS as CSS
-import Util.Style.Style (borderWidthRem1, displayFlex, inferClass, left0, positionFixed, reflectStaticClass, top0, widthRem, (.&), (.?), (:?))
+import Util.Style.Style (borderWidth1, displayFlex, inferClass, left0, positionFixed, reflectStaticClass, top0, widthRem, (.&), (.?), (:?))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -48,7 +48,7 @@ style { id, unfold } = do
     alignItems flexStart
 
   __hover :? do 
-    borderWidthRem1 0.0
+    borderWidth1 0.0
 
   class' id .? do
     widthRem $ unfold ? unfoldWidth ↔ foldWidth

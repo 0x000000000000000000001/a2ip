@@ -16,7 +16,7 @@ staticClass :: String
 staticClass = reflectStaticClass ι
 
 class' :: String -> String
-class' id = inferClass staticClass id
+class' = inferClass staticClass
 
 style :: State -> CSS.CSS
 style { id, input: { display: display_ } } = do

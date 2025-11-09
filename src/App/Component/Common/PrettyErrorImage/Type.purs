@@ -42,7 +42,7 @@ type Style =
   { fit :: Maybe ObjectFit
   , width :: Maybe Size
   , height :: Maybe Size
-  , border :: Maybe Border
+  , border :: Border
   , questionMark :: 
       { when :: 
           { errored :: 
@@ -57,7 +57,7 @@ type Style =
       }
   , with :: 
       { hover ::
-          { border :: Maybe Border
+          { border :: Border
           }
       }
   }
@@ -73,7 +73,11 @@ defaultStyle =
   { fit: Just fill
   , width: Nothing
   , height: Nothing
-  , border: Nothing
+  , border: 
+      { radius: Nothing
+      , width: Nothing
+      , color: Nothing
+      }
   , questionMark: 
       { when: 
           { errored: 
@@ -88,7 +92,11 @@ defaultStyle =
       }
   , with: 
       { hover:
-          { border: Nothing
+          { border: 
+              { radius: Nothing
+              , width: Nothing
+              , color: Nothing
+              }
           }
       }
   }

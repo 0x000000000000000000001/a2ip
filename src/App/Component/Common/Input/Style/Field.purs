@@ -1,30 +1,58 @@
 module App.Component.Common.Input.Style.Field
-  ( staticClass
+  ( class'
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 
-import CSS (black, border, borderBottom, borderColor, outline, rem, solid)
+import App.Component.Common.Input.Type (State)
+import CSS (backgroundColor, borderColor, color, outlineWidth, rem, solid)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, focus, fontSizeRem, reflectStaticClass, loadingGrey, overflowHidden, padding4, red, (.&), (.?), (:?))
+import Util.Style.Style (borderBottomWidth, borderLeftWidth, borderRadiusRem1, borderRightWidth, borderStyle, borderTopWidth, focus, fontSizeRem, inferClass, loadingGrey, nothing, overflowHidden, padding4, placeholder, red, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
 
-style :: CSS.CSS
-style = do
+class' :: String -> String
+class' = inferClass staticClass
+
+style :: State -> CSS.CSS
+style 
+  { id
+  , input: 
+      { style: 
+          { backgroundColor: backgroundColor' 
+          , textColor
+          , placeholderColor
+          , border
+          } 
+      } 
+  } = do
   staticClass .? do
     fontSizeRem 1.0
-    border solid (rem 0.0) black
-    borderBottom solid (rem 0.2) loadingGrey
-    outline solid (rem 0.0) black
-    padding4 1.4 0.6 0.8 0.6
+    borderStyle solid
+    padding4 1.6 0.7 0.8 0.7
+    outlineWidth $ rem 0.0
     borderRadiusRem1 0.2
     overflowHidden
     
   __focus :? do
     borderColor red
 
+  class' id .? do 
+    backgroundColor' ?? backgroundColor ⇔ nothing
+    borderColor $ border.color ??⇒ loadingGrey
+    borderTopWidth $ border.width.top ??⇒ 0.0
+    borderRightWidth $ border.width.right ??⇒ 0.0
+    borderBottomWidth $ border.width.bottom ??⇒ 0.2
+    borderLeftWidth $ border.width.left ??⇒ 0.0
+    textColor ?? color ⇔ nothing
+
+  __placeholder :? do
+    placeholderColor ?? color ⇔ nothing
+
   where 
   __focus = staticClass .& focus
+  __placeholder = class' id .& placeholder

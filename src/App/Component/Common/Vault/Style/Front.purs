@@ -9,21 +9,20 @@ module App.Component.Common.Vault.Style.Front
 
 import Proem hiding (top)
 
-import App.Component.Common.Input.Style.Field as Field
 import App.Component.Common.Input.Style.Input as Input
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Vault.Style.Door as Door
 import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Type (Phase(..))
-import CSS (animation, backgroundColor, borderBottom, color, column, darken, deg, flexDirection, forwards, fromString, iterationCount, keyframes, lighten, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, strong, transforms, white, zIndex)
+import CSS (animation, color, column, deg, flexDirection, forwards, fromString, iterationCount, keyframes, lighten, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, strong, transforms, white, zIndex)
 import CSS as CSS
 import CSS.Transform (scale)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
-import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -56,15 +55,6 @@ style = do
   __input :? do
     positionRelative
     zIndex 5
-
-  ____field :? do 
-    outline solid (rem 0.2) white
-    borderBottom solid (rem 0.0) white
-    backgroundColor transparent
-    color white
-
-  ______placeholder :? do
-    color $ darken 0.24 white
 
   ____label :? do
     color white
@@ -132,8 +122,6 @@ style = do
 
   where 
   __input = staticClass .|*. Input.staticClass
-  ____field = __input :|*. Field.staticClass
-  ______placeholder = ____field :&: placeholder
   ____label = __input :|*. Label.staticClass
   __unlocking = staticClass .&. staticClassWhen Unlocking
   a___lock = __unlocking :|*. Lock.staticClass

@@ -28,7 +28,7 @@ style = do
 
   __label :? do 
     top0
-    transform $ translate (rem 0.6) (rem 0.2)
+    transform $ translate (rem 0.8) (rem 0.6)
     fontSizePct 80.0
     colorRed
 

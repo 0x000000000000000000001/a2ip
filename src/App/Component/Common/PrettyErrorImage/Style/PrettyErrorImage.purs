@@ -10,7 +10,7 @@ import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, borderColor, height, hover, solid, width)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidthRem1, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, nothing, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidth1, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, nothing, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -49,14 +49,9 @@ style
   class' id .? do
     width' ?? (applyToSize width) ⇔ nothing
     height' ?? (applyToSize height) ⇔ nothing
-    border
-      ??
-        ( \b -> do
-            b.radius ?? (applyToSize borderRadius1) ⇔ nothing
-            b.width ?? borderWidthRem1 ⇔ nothing
-            b.color ?? borderColor ⇔ nothing
-        )
-      ⇔ nothing
+    border.radius ?? (applyToSize borderRadius1) ⇔ nothing
+    border.width ?? borderWidth1 ⇔ nothing
+    border.color ?? borderColor ⇔ nothing
     
     when (try == StopTrying) do
       displayFlex
@@ -68,14 +63,9 @@ style
       loading
   
   __hover :? do
-      border'
-        ??
-          ( \b -> do
-              b.radius ?? (applyToSize borderRadius1) ⇔ nothing
-              b.width ?? borderWidthRem1 ⇔ nothing
-              b.color ?? borderColor ⇔ nothing
-          )
-        ⇔ nothing
+      border'.radius ?? (applyToSize borderRadius1) ⇔ nothing
+      border'.width ?? borderWidth1 ⇔ nothing
+      border'.color ?? borderColor ⇔ nothing
         
   where
   __hover = class' id .& hover

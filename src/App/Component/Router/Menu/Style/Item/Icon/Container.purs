@@ -25,7 +25,7 @@ staticClass :: String
 staticClass = reflectStaticClass ι
 
 class' :: String -> String
-class' id = inferClass staticClass id
+class' = inferClass staticClass
 
 boxShadow :: Number -> Number -> CSS.CSS
 boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)

@@ -54,14 +54,18 @@ module Util.Style.Style
   , backgroundColorWhite
   , backgroundWhite
   , before
+  , borderBottomWidth
+  , borderLeftWidth
   , borderRadius1
   , borderRadiusPct1
   , borderRadiusPct4
   , borderRadiusPct50
   , borderRadiusRem1
   , borderRadiusRem4
+  , borderRightWidth
   , borderStyle
-  , borderWidthRem1
+  , borderTopWidth
+  , borderWidth1
   , bottom0
   , bottomCenterToBottomCenter
   , bottomCenterToBottomCenterWithRemDelta
@@ -1467,11 +1471,23 @@ borderRadiusPct50 = borderRadiusPct1 50.0
 borderRadius1 :: ∀ a. Size a -> CSS.CSS
 borderRadius1 b = borderRadius b b b b
 
-borderWidthRem1 :: Number -> CSS.CSS
-borderWidthRem1 w = raw "border-width" $ show w <> "rem"
+borderWidth1 :: Number -> CSS.CSS
+borderWidth1 w = raw "border-width" $ show w <> "rem"
 
 borderStyle :: Stroke -> CSS.CSS 
 borderStyle stroke = raw "border-style" (value stroke)
+
+borderBottomWidth :: Number -> CSS.CSS
+borderBottomWidth w = raw "border-bottom-width" $ show w <> "rem"
+
+borderTopWidth :: Number -> CSS.CSS
+borderTopWidth w = raw "border-top-width" $ show w <> "rem"
+
+borderLeftWidth :: Number -> CSS.CSS
+borderLeftWidth w = raw "border-left-width" $ show w <> "rem"
+
+borderRightWidth :: Number -> CSS.CSS
+borderRightWidth w = raw "border-right-width" $ show w <> "rem"
 
 any :: Selector
 any = star

@@ -18,6 +18,7 @@ import App.Component.Common.Vault.Style.Vault (staticClass)
 import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
+import CSS (darken, white)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
@@ -25,7 +26,7 @@ import Halogen.HTML.Events (onKeyDown)
 import Html.Renderer.Halogen as HRH
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
-import Util.Style.Style (class_, classes)
+import Util.Style.Style (class_, classes, transparent)
 import Web.UIEvent.KeyboardEvent (code)
 
 render 
@@ -98,6 +99,20 @@ render innerComponent { phase, input: { innerInput } } =
             ( defaultInput
               { placeholder = Just "Tapez ici"
               , label = Just "Mot de passe"
+              , style =
+                    { backgroundColor: Just transparent
+                    , placeholderColor: Just $ darken 0.24 white
+                    , textColor: Just white
+                    , border:
+                        { color: Just white
+                        , width: 
+                            { top: Just 0.2
+                            , right: Just 0.2
+                            , bottom: Just 0.2
+                            , left: Just 0.2
+                            }
+                        }
+                    }
               }
             )
             handlePasswordOutput

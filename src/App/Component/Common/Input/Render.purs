@@ -22,7 +22,7 @@ import Halogen.HTML.Properties as HP
 import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ open, input: { placeholder, label } } =
+render s@{ id, open, input: { placeholder, label } } =
   div
     [ classes
         [ staticClass
@@ -48,7 +48,7 @@ render s@{ open, input: { placeholder, label } } =
           )
         ⇔ noHtml
     , input
-        ( [ class_ Field.staticClass
+        ( [ classes [ Field.staticClass, Field.class' id ]
           , ref inputRef
           , onValueInput HandleNewValue
           , onFocus $ κ HandleFocus
