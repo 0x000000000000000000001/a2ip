@@ -95,7 +95,7 @@ render s@{ id, animating, unfold } =
             ]
           ]
         , div
-          [ class_ Label.staticClass ]
+          [ classes [ Label.staticClass, Label.class' id ] ]
           [ text label' ]
         , div
           [ class_ Children.staticClass ]
