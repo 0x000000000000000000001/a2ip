@@ -1,32 +1,39 @@
 module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
-  ( staticClass
+  ( class'
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 
 import App.Component.Common.Loader.Style.Loader as Loader
-import CSS (backgroundColor, black, iframe, zIndex, (&))
+import App.Component.Common.YoutubeVideo.Type (State)
+import App.Component.Util.Type (applyToSize)
+import CSS (backgroundColor, black, height, iframe, width, zIndex, (&))
 import CSS as CSS
-import Util.Style.Style (any, centerToCenter, displayFlex, reflectStaticClass, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, nothing, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
 
+class' :: String -> String
+class' = inferClass staticClass
+
 ratio :: Number 
 ratio = 16.0 / 9.0
 
-height :: Number
-height = 25.0
+height_ :: Number
+height_ = 25.0
 
-style :: CSS.CSS
-style = do
+style :: State -> CSS.CSS
+style { id, input: { style: { width: width', height: height' } } } = do
   staticClass .? do
     positionRelative
     displayFlex
     justifyContentCenter
-    widthRem $ ratio * height
-    heightRem height
+    widthRem $ ratio * height_
+    heightRem height_
     backgroundColor black
 
   __potentialIframeContainer :? do 
@@ -42,6 +49,10 @@ style = do
   __loader :? do
     centerToCenter
     zIndex 1
+
+  class' id .? do 
+    width' ?? (applyToSize width) ⇔ nothing
+    height' ?? (applyToSize height) ⇔ nothing
   
   where 
   __potentialIframeContainer = staticClass .|> (any & has iframe)
