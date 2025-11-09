@@ -1,7 +1,7 @@
 module App.Component.Common.Vault.Style.Door
-  ( classId
-  , classIdWhenLeft
-  , classIdWhenRight
+  ( staticClass
+  , staticClassWhenLeft
+  , staticClassWhenRight
   , style
   )
   where
@@ -14,27 +14,27 @@ import Util.Proxy.Dictionary.Left (left_)
 import Util.Proxy.Dictionary.Right (right_)
 import Util.Style.Style (heightPct100, refineClass', reflectStaticClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-classIdWhenLeft :: String
-classIdWhenLeft = refineClass' classId left_
+staticClassWhenLeft :: String
+staticClassWhenLeft = refineClass' staticClass left_
 
-classIdWhenRight :: String
-classIdWhenRight = refineClass' classId right_
+staticClassWhenRight :: String
+staticClassWhenRight = refineClass' staticClass right_
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     backgroundColor $ rgba 0 0 0 0.75
     widthPct 50.0
     heightPct100
     zIndex 4
 
-  classIdWhenLeft .? do 
+  staticClassWhenLeft .? do 
     topLeftToTopLeft
 
-  classIdWhenRight .? do
+  staticClassWhenRight .? do
     topRightToTopRight
 
   

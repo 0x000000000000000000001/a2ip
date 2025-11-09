@@ -1,5 +1,5 @@
 module App.Component.Page.Seminars.Style.Seminars
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,12 +10,12 @@ import CSS (alignItems, flexStart)
 import CSS as CSS
 import Util.Style.Style (displayFlex, reflectStaticClass, justifyContentCenter, widthPct100, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     alignItems flexStart

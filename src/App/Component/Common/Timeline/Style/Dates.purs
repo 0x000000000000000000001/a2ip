@@ -1,5 +1,5 @@
 module App.Component.Common.Timeline.Style.Dates
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,12 +10,12 @@ import CSS (column, flexDirection)
 import CSS as CSS
 import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     alignItemsCenter

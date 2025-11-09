@@ -1,5 +1,5 @@
 module App.Component.Page.About.Style.About
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -8,12 +8,12 @@ import Proem hiding (top)
 import CSS as CSS
 import Util.Style.Style (displayFlex, flexWrap, reflectStaticClass, justifyContentCenter, widthPct100, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     flexWrap

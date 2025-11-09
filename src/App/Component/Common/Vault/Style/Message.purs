@@ -1,5 +1,5 @@
 module App.Component.Common.Vault.Style.Message
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,12 +10,12 @@ import CSS (color, white, zIndex)
 import CSS as CSS
 import Util.Style.Style (reflectStaticClass, positionRelative, textAlignCenter, widthPct100, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     color white
     widthPct100
     textAlignCenter

@@ -1,5 +1,5 @@
 module App.Component.Common.Tooltip.Style.Outer.Core
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,12 +10,12 @@ import CSS (backgroundColor, color, rgba, white)
 import CSS as CSS
 import Util.Style.Style (borderRadiusRem1, overflowHidden, padding1, reflectStaticClass, userSelectNone, widthPct100, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     backgroundColor $ rgba 0 0 0 0.9
     color white
     padding1 1.0

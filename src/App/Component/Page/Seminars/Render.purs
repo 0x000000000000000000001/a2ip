@@ -15,7 +15,7 @@ import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThem
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.HandleVideoRecordOutput (handleVideoRecordOutput)
 import App.Component.Page.Seminars.Style.Poster as Poster
-import App.Component.Page.Seminars.Style.Seminars (classId)
+import App.Component.Page.Seminars.Style.Seminars (staticClass)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
 import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, themeInfo)
@@ -34,10 +34,10 @@ import Util.Style.Style (class_)
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   div
-    [ class_ classId ]
+    [ class_ staticClass ]
     [ sheet
     , div
-        [ class_ Timeline.classId ]
+        [ class_ Timeline.staticClass ]
         [ timeline
             timeline'
             noSlotAddressIndex
@@ -48,7 +48,7 @@ render s =
             handleTimelineOutput
         ]
     , div 
-        [ class_ Poster.classId ]
+        [ class_ Poster.staticClass ]
         ( case s of 
             Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
               [ p_ [ text $ "title: " <> seminar.title ]

@@ -18,13 +18,13 @@ import Routing.Duplex (print)
 import Util.Style.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render s@{ id, input: { route, class_, children } } = 
+render s@{ id, input: { route, classes: classes', children } } = 
   a
     ( [ classes 
-          [ staticClass
-          , class' id
-          , class_ ??⇒ ""
-          ] 
+          ( [ staticClass
+            , class' id
+            ] <> (classes' ??⇒ [])
+          )
       ] <> (
         route 
           ?? (\r -> [ 

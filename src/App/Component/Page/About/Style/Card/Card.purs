@@ -1,7 +1,7 @@
 module App.Component.Page.About.Style.Card.Card
-  ( classId
-  , classIdWhenLoaded
-  , classIdWhenLoading
+  ( staticClass
+  , staticClassWhenLoaded
+  , staticClassWhenLoading
   , style
   )
   where
@@ -19,18 +19,18 @@ import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
 import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, inferClass, justifyContentCenter, loading, nothing, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-classIdWhenLoading :: String
-classIdWhenLoading = refineClass' classId loading_
+staticClassWhenLoading :: String
+staticClassWhenLoading = refineClass' staticClass loading_
 
-classIdWhenLoaded :: String
-classIdWhenLoaded = refineClass' classId loaded_
+staticClassWhenLoaded :: String
+staticClassWhenLoaded = refineClass' staticClass loaded_
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     widthRem 30.0
     padding1 1.4
     textAlignCenter
@@ -76,15 +76,15 @@ style = do
     widthPct 45.0
 
   where
-  __loaded = classId .&. classIdWhenLoaded
+  __loaded = staticClass .&. staticClassWhenLoaded
   ____hover = __loaded & hover
   deepClassHover = typedDeepClass ____hover
   ______portrait = deepClassHover Portrait.staticClass
-  __loading = classId .&. classIdWhenLoading
+  __loading = staticClass .&. staticClassWhenLoading
   deepClassLoading = typedDeepClass __loading
   ____portrait = deepClassLoading Portrait.staticClass
-  ____names = deepClassLoading Names.classId
-  ____line = deepClassLoading Line.classId
+  ____names = deepClassLoading Names.staticClass
+  ____line = deepClassLoading Line.staticClass
   ______before = ____line & before
-  ______phone = ____line &. Line.classIdWhen phone_
-  ______email = ____line &. Line.classIdWhen email_
+  ______phone = ____line &. Line.staticClassWhen phone_
+  ______email = ____line &. Line.staticClassWhen email_

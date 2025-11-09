@@ -1,6 +1,6 @@
 module App.Component.Common.Timeline.Style.Timeline
-  ( classId
-  , classIdWhenLoading
+  ( staticClass
+  , staticClassWhenLoading
   , style
   )
   where
@@ -16,15 +16,15 @@ import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Style.Style (alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, nothing, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-classIdWhenLoading :: String
-classIdWhenLoading = refineClass' classId loading_
+staticClassWhenLoading :: String
+staticClassWhenLoading = refineClass' staticClass loading_
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     positionRelative
     displayFlex
     justifyContentCenter
@@ -46,8 +46,8 @@ style = do
     fill loadingGrey
 
   where 
-  __loading = classId .&. classIdWhenLoading
-  ____line = __loading :|*. Line.classId
-  ____pin = __loading :|*. Pin.classId
-  ____number = __loading :|*. Number.classId
-  ____downArrowSvg = (__loading :|*. DownArrow.classId) |* svg
+  __loading = staticClass .&. staticClassWhenLoading
+  ____line = __loading :|*. Line.staticClass
+  ____pin = __loading :|*. Pin.staticClass
+  ____number = __loading :|*. Number.staticClass
+  ____downArrowSvg = (__loading :|*. DownArrow.staticClass) |* svg

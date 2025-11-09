@@ -13,7 +13,7 @@ import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
-import App.Component.Common.Timeline.Style.Timeline (classId, classIdWhenLoading)
+import App.Component.Common.Timeline.Style.Timeline (staticClass, staticClassWhenLoading)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Component.Util.Type (noHtml)
@@ -35,16 +35,16 @@ render :: State -> ComponentHTML Action Slots AppM
 render { input: { dates, loading }, selectedDate } =
   div
     [ classes 
-        [ classId 
-        , loading ? classIdWhenLoading ↔ ""
+        [ staticClass 
+        , loading ? staticClassWhenLoading ↔ ""
         ]
     ]
     [ sheet
     , div
-        [ class_ Line.classId ]
+        [ class_ Line.staticClass ]
         []
     , div
-        [ class_ Dates.classId ]
+        [ class_ Dates.staticClass ]
         ( 
             mapWithIndex 
             (\idx date_ ->
@@ -63,19 +63,19 @@ render { input: { dates, loading }, selectedDate } =
                     , dataAttr date' dateDataAttr
                     ]
                     [ div
-                        [ class_ Numbers.classId ]
-                        [ div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show d ]
-                        , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show m ]
-                        , div [ class_ Number.classId ] [ text $ padLeft 2 '0' $ show $ y `mod` 100 ]
+                        [ class_ Numbers.staticClass ]
+                        [ div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show d ]
+                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show m ]
+                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show $ y `mod` 100 ]
                         ]
                     , div
-                        [ class_ Pin.classId ]
+                        [ class_ Pin.staticClass ]
                         [ 
                             0 == idx `mod` 3 
                             && idx /= length dates - 1
                             && not isSelected
                             && not isNextSelected
-                                ? HRH.render [ class_ DownArrow.classId ] downArrowSvg
+                                ? HRH.render [ class_ DownArrow.staticClass ] downArrowSvg
                                 ↔ noHtml
                         ]
                     ]

@@ -14,7 +14,7 @@ import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Lock as Lock
 import App.Component.Common.Vault.Style.Message as Message
 import App.Component.Common.Vault.Style.Sheet (sheet)
-import App.Component.Common.Vault.Style.Vault (classId)
+import App.Component.Common.Vault.Style.Vault (staticClass)
 import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -35,11 +35,11 @@ render
   -> ComponentHTML (Action i o) (Slots q o) AppM
 render innerComponent { phase, input: { innerInput } } = 
   div 
-    [ class_ classId
+    [ class_ staticClass
     ]
     [ sheet
     , div 
-        [ class_ Core.classId ]
+        [ class_ Core.staticClass ]
         [ slot
             inner'
             noSlotAddressIndex
@@ -49,18 +49,18 @@ render innerComponent { phase, input: { innerInput } } =
         ]
     , div 
         [ classes
-            [ Front.classId
-            , isLocked phase ? "" ↔ Front.classIdWhen phase
+            [ Front.staticClass
+            , isLocked phase ? "" ↔ Front.staticClassWhen phase
             , case phase of 
-                Locked { incorrect: true } -> Front.classIdWhenIncorrect
+                Locked { incorrect: true } -> Front.staticClassWhenIncorrect
                 _ -> ""
             ]
         , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
         ]
-        [ div [ classes [ Door.classId, Door.classIdWhenLeft ] ] []
-        , div [ classes [ Door.classId, Door.classIdWhenRight ] ] []
+        [ div [ classes [ Door.staticClass, Door.staticClassWhenLeft ] ] []
+        , div [ classes [ Door.staticClass, Door.staticClassWhenRight ] ] []
         , div 
-            [ class_ Message.classId ]
+            [ class_ Message.staticClass ]
             [ span_ $ 
                 not (isLocked phase) 
                     ? [text "Parfait !"]
@@ -91,7 +91,7 @@ render innerComponent { phase, input: { innerInput } } =
                     )
                 ]
             ]
-        , HRH.render [ class_ Lock.classId ] frontDoorSvg
+        , HRH.render [ class_ Lock.staticClass ] frontDoorSvg
         , input
             password'
             noSlotAddressIndex

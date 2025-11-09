@@ -1,5 +1,5 @@
 module App.Component.Page.About.Style.Card.Portrait
-  ( innerStyle
+  ( prettyErrorImageStyle
   , staticClass
   , style
   )
@@ -36,8 +36,8 @@ style = do
   staticClass .? do
     marginTop 0.4
 
-innerStyle :: Style
-innerStyle = 
+prettyErrorImageStyle :: Style
+prettyErrorImageStyle = 
   defaultStyle
     # _fit .~ Just cover
     # _width .~ (Just $ Rem width)

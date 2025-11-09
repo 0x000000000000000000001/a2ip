@@ -1,5 +1,5 @@
 module App.Component.Common.Tooltip.Style.Inner
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -9,10 +9,10 @@ import Proem hiding (top)
 import CSS as CSS
 import Util.Style.Style (nothing, reflectStaticClass, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     nothing

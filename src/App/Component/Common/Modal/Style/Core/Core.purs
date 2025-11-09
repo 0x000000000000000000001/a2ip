@@ -23,5 +23,5 @@ style = do
     borderRadiusRem1 0.5
     margin2 8.0 2.0
 
-  Menu.classId .? do
+  Menu.staticClass .? do
     CSS.zIndex $ -1

@@ -1,5 +1,5 @@
 module App.Component.Router.Menu.Style.Item.Label
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -11,12 +11,12 @@ import CSS as CSS
 import CSS.Common (hidden, visible)
 import Util.Style.Style (flexGrow1, reflectStaticClass, marginLeft, overflowHidden, widthRem, (.?))
 
-classId :: String 
-classId = reflectStaticClass ι
+staticClass :: String 
+staticClass = reflectStaticClass ι
 
 style :: State -> CSS.CSS
 style s = do
-  classId .? do
+  staticClass .? do
     visibility (s.unfold ? visible ↔ hidden)
     opacity (s.unfold ? 1.0 ↔ 0.0)
     flexGrow1

@@ -1,5 +1,5 @@
 module App.Component.Page.Seminars.Style.Poster
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -10,12 +10,12 @@ import CSS as CSS
 import CSS.Common (center)
 import Util.Style.Style (displayFlex, flexGrow1, reflectStaticClass, justifyContentCenter, padding1, positionSticky, top0, widthRem, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     alignItems center

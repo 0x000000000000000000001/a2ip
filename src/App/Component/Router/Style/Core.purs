@@ -1,5 +1,5 @@
 module App.Component.Router.Style.Core
-  ( classId
+  ( staticClass
   , style
   , zIndex
   )
@@ -11,15 +11,15 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
 import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, displayFlex, flexGrow1, reflectStaticClass, margin4, padding1, positionRelative, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 zIndex :: Int
 zIndex = Menu.zIndex - 10
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     margin4 2.0 2.0 2.0 $ 2.0 + Menu.foldWidth
     displayFlex
     backgroundColorWhite

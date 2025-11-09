@@ -1,7 +1,7 @@
 module App.Component.Router.Style.Router
   ( animationDurationMs
   , bodyGradientAnimationId
-  , classId
+  , staticClass
   , style
   )
   where
@@ -15,18 +15,18 @@ import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
 import Util.Style.Style (all, borderRadiusRem1, displayFlex, heightRem, inferAnimationId, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, reflectStaticClass, widthRem, (.?), (:&:), (:?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 bodyGradientAnimationId :: String
-bodyGradientAnimationId = inferAnimationId classId
+bodyGradientAnimationId = inferAnimationId staticClass
 
 animationDurationMs :: Number
 animationDurationMs = 300.0
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     minHeight (vh 100.0)
 

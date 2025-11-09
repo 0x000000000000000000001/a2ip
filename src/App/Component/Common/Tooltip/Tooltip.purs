@@ -9,7 +9,7 @@ import App.Component.Common.Tooltip.Style.Inner as Inner
 import App.Component.Common.Tooltip.Style.Outer.Core as Core
 import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
 import App.Component.Common.Tooltip.Style.Sheet (sheet)
-import App.Component.Common.Tooltip.Style.Tooltip (classId)
+import App.Component.Common.Tooltip.Style.Tooltip (staticClass)
 import App.Component.Common.Tooltip.Type (Input)
 import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
@@ -23,17 +23,17 @@ tooltip
   -> ComponentHTML action slots AppM
 tooltip { inner, outer, outerOffset } = 
   div 
-    [ class_ classId ]
+    [ class_ staticClass ]
     [ sheet
     , div 
-        [ class_ Inner.classId ]
+        [ class_ Inner.staticClass ]
         [ inner ]
     , div 
-        [ class_ Outer.classId 
+        [ class_ Outer.staticClass 
         , style $ padding1 outerOffset
         ]
         [ div 
-            [ class_ Core.classId ]
+            [ class_ Core.staticClass ]
             [ outer ]
         ]
     ]

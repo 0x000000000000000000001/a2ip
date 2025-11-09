@@ -6,12 +6,12 @@ import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child as Child
 import App.Component.Router.Menu.Style.Item.Children as Children
+import App.Component.Router.Menu.Style.Item.Icon.Container as Container
+import App.Component.Router.Menu.Style.Item.Icon.Icon as Icon
 import App.Component.Router.Menu.Style.Item.Item as Item
-import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
-import App.Component.Router.Menu.Style.Item.Icon.Icon as ItemIcon
 import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Style.Logo as Logo
-import App.Component.Router.Menu.Style.Menu (classId)
+import App.Component.Router.Menu.Style.Menu (class', staticClass)
 import App.Component.Router.Menu.Style.Sheet (sheet)
 import App.Component.Router.Menu.Type (Action(..), State, Slots)
 import App.Util.Capability.AppM (AppM)
@@ -24,7 +24,7 @@ import Halogen.HTML (div, img, nav, slot, text)
 import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Util.Proxy.Dictionary.Items (items')
-import Util.Style.Style (class_)
+import Util.Style.Style (class_, classes)
 
 type Item r =
   ( label :: String
@@ -58,14 +58,14 @@ items =
   ]
 
 render :: State -> ComponentHTML Action Slots AppM
-render s =
+render s@{ id, animating, unfold } =
   nav
-    ( [ class_ classId ] 
+    ( [ classes [ staticClass, class' id ] ] 
       <> (
-        s.animating 
+        animating 
           ? []
           ↔ [ 
-            s.unfold
+            unfold
               ? (onMouseLeave $ κ $ ToggleFolding true)
               ↔ (onMouseOver $ κ $ ToggleFolding false)
           ]
@@ -73,7 +73,7 @@ render s =
     )
     ( [ sheet s
       , img
-          [ class_ Logo.classId
+          [ class_ Logo.staticClass
           , src "asset/image/logo.png"
           , alt "Logo"
           ]
@@ -84,18 +84,18 @@ render s =
   item label' route iconFileName children =
     slot items' (label' /\ route) Link.component
       { route
-      , class_: Just Item.classId
+      , classes: Just [ Item.staticClass, Item.class' id ]
       , display: flex
       , children: 
         [ div
-          [ class_ $ ItemIconContainer.classId ]
+          [ classes [ Container.staticClass, Container.class' id ] ]
           [ img
-            [ class_ ItemIcon.staticClass
+            [ class_ Icon.staticClass
             , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
             ]
           ]
         , div
-          [ class_ Label.classId ]
+          [ class_ Label.staticClass ]
           [ text label' ]
         , div
           [ class_ Children.staticClass ]

@@ -1,5 +1,5 @@
 module App.Component.Common.Vault.Style.Lock
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,12 +10,12 @@ import CSS (opacity, zIndex)
 import CSS as CSS
 import Util.Style.Style (alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     margin1 1.2
     opacity 0.9
     positionRelative
@@ -30,6 +30,6 @@ style = do
     heightRem 8.0
 
   where 
-  __svg = classId .|*: svg
+  __svg = staticClass .|*: svg
 
   

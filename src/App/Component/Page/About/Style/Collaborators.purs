@@ -1,5 +1,5 @@
 module App.Component.Page.About.Style.Collaborators
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -10,12 +10,12 @@ import CSS as CSS
 import CSS.Common (center)
 import Util.Style.Style (displayFlex, flexWrap, reflectStaticClass, justifyContentCenter, padding4, widthPct100, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     displayFlex
     justifyContentCenter
     alignContent center

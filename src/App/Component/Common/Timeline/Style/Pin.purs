@@ -1,5 +1,5 @@
 module App.Component.Common.Timeline.Style.Pin
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -11,12 +11,12 @@ import CSS (backgroundColor)
 import CSS as CSS
 import Util.Style.Style (borderRadiusPct50, heightRem, reflectStaticClass, widthRem, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     widthRem 1.4
     heightRem 1.4
     borderRadiusPct50

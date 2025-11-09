@@ -1,5 +1,5 @@
 module App.Component.Common.Timeline.Style.Numbers
-  ( classId
+  ( staticClass
   , fontSizePct
   , style
   , translate
@@ -16,8 +16,8 @@ import Color (darken)
 import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
 import Util.Style.Style as UtilStyle
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 fontSizePct :: Number 
 fontSizePct = 110.0
@@ -30,7 +30,7 @@ translate xDelta = CSS.translate (rem xDelta) (pct $ -50.0)
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     positionAbsolute
     topPct50
     leftPct50

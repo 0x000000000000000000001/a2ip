@@ -1,5 +1,5 @@
 module App.Component.Router.Menu.Style.Logo
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -11,12 +11,12 @@ import CSS as CSS
 import CSS.Common (center)
 import Util.Style.Style (cursorPointer, reflectStaticClass, margin4, widthRem, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     widthRem $ ItemIconContainer.width * 1.2
     margin4 1.4 1.0 1.0 1.0
     key (fromString "filter") "invert(1)"

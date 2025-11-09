@@ -6,7 +6,7 @@ import Proem hiding (div)
 
 import App.Component.Common.Loader.Loader (loader)
 import App.Component.Common.YoutubeVideo.Style.Sheet (sheet)
-import App.Component.Common.YoutubeVideo.Style.YoutubeVideo (classId)
+import App.Component.Common.YoutubeVideo.Style.YoutubeVideo (staticClass)
 import App.Component.Common.YoutubeVideo.Type (Action, Slots, State)
 import App.Util.Capability.AppM (AppM)
 import CSS (darken, white)
@@ -19,7 +19,7 @@ import Util.Style.Style (class_)
 render :: State -> ComponentHTML Action Slots AppM
 render { input: { url } } = 
   div 
-    [ class_ classId ]
+    [ class_ staticClass ]
     [ sheet
     , loader $ darken 0.1 white
     , render_ $ iframe $ convertToEmbedUrl url 

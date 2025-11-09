@@ -1,7 +1,8 @@
 module App.Component.Router.Menu.Style.Menu
   ( backgroundBlackAlpha
-  , classId
+  , class'
   , foldWidth
+  , staticClass
   , style
   , unfoldWidth
   , zIndex
@@ -13,7 +14,7 @@ import Proem hiding (top)
 import App.Component.Router.Menu.Type (State)
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh)
 import CSS as CSS
-import Util.Style.Style (borderWidthRem1, displayFlex, reflectStaticClass, left0, positionFixed, top0, widthRem, (.&), (.?), (:?))
+import Util.Style.Style (borderWidthRem1, displayFlex, inferClass, left0, positionFixed, reflectStaticClass, top0, widthRem, (.&), (.?), (:?))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -24,17 +25,18 @@ unfoldWidth = 3.4 * foldWidth
 backgroundBlackAlpha ∷ Number
 backgroundBlackAlpha = 0.85
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
+
+class' :: String -> String
+class' = inferClass staticClass
 
 zIndex :: Int
 zIndex = 1000
 
 style :: State -> CSS.CSS
-style s = do
-  classId .? do
-    widthRem $ s.unfold ? unfoldWidth ↔ foldWidth
-    backgroundColor (rgba 0 0 0 $ s.unfold ? backgroundBlackAlpha ↔ 0.3)
+style { id, unfold } = do
+  staticClass .? do
     positionFixed
     top0
     left0
@@ -48,5 +50,9 @@ style s = do
   __hover :? do 
     borderWidthRem1 0.0
 
+  class' id .? do
+    widthRem $ unfold ? unfoldWidth ↔ foldWidth
+    backgroundColor (rgba 0 0 0 $ unfold ? backgroundBlackAlpha ↔ 0.3)
+
   where 
-  __hover = classId .& hover
+  __hover = staticClass .& hover

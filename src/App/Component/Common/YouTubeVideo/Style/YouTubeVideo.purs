@@ -1,5 +1,5 @@
 module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
-  ( classId
+  ( staticClass
   , style
   ) where
 
@@ -10,8 +10,8 @@ import CSS (backgroundColor, black, iframe, zIndex, (&))
 import CSS as CSS
 import Util.Style.Style (any, centerToCenter, displayFlex, reflectStaticClass, has, heightPct100, heightRem, justifyContentCenter, positionRelative, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 ratio :: Number 
 ratio = 16.0 / 9.0
@@ -21,7 +21,7 @@ height = 25.0
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     positionRelative
     displayFlex
     justifyContentCenter
@@ -44,6 +44,6 @@ style = do
     zIndex 1
   
   where 
-  __potentialIframeContainer = classId .|> (any & has iframe)
-  __iframe = classId .|* iframe
-  __loader = classId .|*. Loader.staticClass
+  __potentialIframeContainer = staticClass .|> (any & has iframe)
+  __iframe = staticClass .|* iframe
+  __loader = staticClass .|*. Loader.staticClass

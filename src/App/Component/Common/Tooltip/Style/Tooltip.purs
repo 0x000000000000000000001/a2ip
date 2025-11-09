@@ -1,5 +1,5 @@
 module App.Component.Common.Tooltip.Style.Tooltip
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -11,12 +11,12 @@ import CSS (hover)
 import CSS as CSS
 import Util.Style.Style (displayInlineBlock, displayNone, nothing, positionRelative, reflectStaticClass, (.&), (.?), (.|*.), (:?), (|*.))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     positionRelative
 
   a___outer :? do
@@ -30,6 +30,6 @@ style = do
     displayInlineBlock
 
   where 
-  a___outer = classId .|*. Outer.classId
-  __hover = classId .& hover
-  b___outer = __hover |*. Outer.classId
+  a___outer = staticClass .|*. Outer.staticClass
+  __hover = staticClass .& hover
+  b___outer = __hover |*. Outer.staticClass

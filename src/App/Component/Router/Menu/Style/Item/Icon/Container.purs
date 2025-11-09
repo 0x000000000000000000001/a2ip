@@ -1,9 +1,11 @@
 module App.Component.Router.Menu.Style.Item.Icon.Container
-  ( classId
+  ( boxShadow
+  , class'
+  , staticClass
   , style
-  , boxShadow
   , width
-  ) where
+  )
+  where
 
 import Proem hiding (top, div)
 
@@ -14,20 +16,23 @@ import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
 import Data.NonEmpty (singleton)
-import Util.Style.Style (borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, marginLeft, minWidthRem, reflectStaticClass, widthRem, (.?))
+import Util.Style.Style (borderRadiusPct50, displayFlex, heightRem, inferClass, justifyContentCenter, marginLeft, minWidthRem, reflectStaticClass, widthRem, (.?))
 
 width :: Number
 width = 3.2
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
+
+class' :: String -> String
+class' id = inferClass staticClass id
 
 boxShadow :: Number -> Number -> CSS.CSS
 boxShadow x y = CSS.boxShadow $ singleton $ bsColor white $ shadow (rem x) (rem y)
 
 style :: State -> CSS.CSS
-style { unfold } = do
-  classId .? do
+style { id, unfold } = do
+  staticClass .? do
     backgroundColor (rgba 0 0 0 0.2)
     borderRadiusPct50
     minWidthRem width
@@ -37,4 +42,6 @@ style { unfold } = do
     displayFlex
     justifyContentCenter
     alignSelf center
+
+  class' id .? do 
     when unfold $ boxShadow 0.12 0.12

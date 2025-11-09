@@ -8,7 +8,7 @@ import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
 import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
-import App.Component.Page.About.Style.About (classId)
+import App.Component.Page.About.Style.About (staticClass)
 import App.Component.Page.About.Style.Card.Card as Card
 import App.Component.Page.About.Style.Card.Line as Line
 import App.Component.Page.About.Style.Card.Names as Names
@@ -45,7 +45,7 @@ import Util.Style.Style (class_, classes)
 render :: State -> ComponentHTML Action Slots AppM
 render s =
   div
-    [ class_ classId ]
+    [ class_ staticClass ]
     $
       [ sheet
       , separator 
@@ -56,7 +56,7 @@ render s =
           , loading: not $ isSuccess s.members
           }
       , div
-          [ class_ Members.classId ]
+          [ class_ Members.staticClass ]
           $ mapWithIndex
               (renderCard members' $ not $ isSuccess s.members)
               (toMaybe s.members ??⇒ replicate 6 loadingPerson)
@@ -68,7 +68,7 @@ render s =
           , loading: not $ isSuccess s.collaborators
           }
       , div
-          [ class_ Collaborators.classId ]
+          [ class_ Collaborators.staticClass ]
           $ mapWithIndex
               (renderCard collaborators' $ not $ isSuccess s.collaborators)
               (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
@@ -93,11 +93,11 @@ renderCard :: ∀ sym. IsSymbol sym => Proxy sym -> Boolean -> Int -> Person -> 
 renderCard section isLoading idx member =
   div
     [ classes
-        $ [ Card.classId ]
-        <> (isLoading ? [ Card.classIdWhenLoading ] ↔ [ Card.classIdWhenLoaded ])
+        $ [ Card.staticClass ]
+        <> (isLoading ? [ Card.staticClassWhenLoading ] ↔ [ Card.staticClassWhenLoaded ])
     ]
     ( [ div
-          [ class_ Names.classId ]
+          [ class_ Names.staticClass ]
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
       , div 
           [ class_ Portrait.staticClass ]
@@ -122,7 +122,7 @@ renderCard section isLoading idx member =
                               ↔ "anonymous"
                           )
                     }
-                , style = Portrait.innerStyle
+                , style = Portrait.prettyErrorImageStyle
                 }
           ]
       ] <> lines
@@ -134,7 +134,7 @@ renderCard section isLoading idx member =
       ? []
       ↔
         [ div
-            [ classes [ Line.classId, Line.classIdWhen $ ᴠ key ] ]
+            [ classes [ Line.staticClass, Line.staticClassWhen $ ᴠ key ] ]
             [ render_ $ get key member ]
         ]
 

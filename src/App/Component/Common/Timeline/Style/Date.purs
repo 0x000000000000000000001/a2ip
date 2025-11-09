@@ -48,7 +48,7 @@ style = do
     backgroundColorRed
 
   where 
-  __numbers = staticClass .|*. Numbers.classId
+  __numbers = staticClass .|*. Numbers.staticClass
   __selected = staticClass .&. staticClassWhenSelected
-  ____numbers = __selected :|*. Numbers.classId
-  ____pin = __selected :|*. Pin.classId
+  ____numbers = __selected :|*. Numbers.staticClass
+  ____pin = __selected :|*. Pin.staticClass

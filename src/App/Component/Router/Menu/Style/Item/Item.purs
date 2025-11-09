@@ -1,23 +1,28 @@
 module App.Component.Router.Menu.Style.Item.Item
-  ( classId
+  ( class'
+  , staticClass
   , style
-  ) where
+  )
+  where
 
-import Proem (discard, when, ι)
 import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container as IconContainer
 import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Type (State)
 import CSS (color, graytone, hover)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, reflectStaticClass, heightRem, justifyContentCenter, padding2, positionRelative, raw, typedDeepClass, userSelectNone, widthPct100, (.&), (.?), (:?))
+import Proem (discard, when, ι)
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, nothing, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
 
-classId :: String 
-classId = reflectStaticClass ι
+staticClass :: String 
+staticClass = reflectStaticClass ι
+
+class' :: String -> String
+class' = inferClass staticClass
 
 style :: State -> CSS.CSS
-style s = do
-  classId .? do
+style { id, unfold } = do
+  staticClass .? do
     color (graytone 0.9)
     justifyContentCenter
     alignItemsCenter
@@ -32,18 +37,25 @@ style s = do
   __hover :? do
     backgroundColorRed
 
-  ____children :? do 
-    when s.unfold displayFlex
-
   ____iconContainer :? do
     IconContainer.boxShadow 0.22 0.10
 
   ____label :? do
     widthPct100
 
+  class' id .? do
+    nothing
+
+  b_hover :? do
+    nothing
+    
+  b___children :? do 
+    when unfold displayFlex
+
   where
-  __hover = classId .& hover
-  deepClassHover = typedDeepClass __hover
-  ____children = deepClassHover Children.staticClass
-  ____iconContainer = deepClassHover IconContainer.classId
-  ____label = deepClassHover Label.classId
+  __hover = staticClass .& hover
+  ____children = __hover |*. Children.staticClass
+  ____iconContainer = __hover |*. IconContainer.staticClass
+  ____label = __hover |*. Label.staticClass
+  b_hover = class' id .& hover
+  b___children = b_hover |*. Children.staticClass

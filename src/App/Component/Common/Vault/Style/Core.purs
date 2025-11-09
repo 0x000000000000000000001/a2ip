@@ -1,5 +1,5 @@
 module App.Component.Common.Vault.Style.Core
-  ( classId
+  ( staticClass
   , style
   )
   where
@@ -10,11 +10,11 @@ import CSS (zIndex)
 import CSS as CSS
 import Util.Style.Style (reflectStaticClass, positionRelative, (.?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     positionRelative
     zIndex 2

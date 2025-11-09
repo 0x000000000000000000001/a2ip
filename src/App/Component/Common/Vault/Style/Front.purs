@@ -1,8 +1,8 @@
 module App.Component.Common.Vault.Style.Front
   ( animationDurationMs
-  , classId
-  , classIdWhen
-  , classIdWhenIncorrect
+  , staticClass
+  , staticClassWhen
+  , staticClassWhenIncorrect
   , style
   )
   where
@@ -25,24 +25,24 @@ import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
 import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, placeholder, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, transparent, widthPct100, (.&.), (.?), (.|*.), (:&:), (:?), (:|*.), (:|*:), (|*.))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-classIdWhen :: Phase -> String
-classIdWhen phase = refineClass classId phase_ $ show phase
+staticClassWhen :: Phase -> String
+staticClassWhen phase = refineClass staticClass phase_ $ show phase
 
-classIdWhenIncorrect :: String
-classIdWhenIncorrect = refineClass' classId incorrect_ 
+staticClassWhenIncorrect :: String
+staticClassWhenIncorrect = refineClass' staticClass incorrect_ 
 
 lockAnimationId :: String
-lockAnimationId = inferAnimationId classId
+lockAnimationId = inferAnimationId staticClass
 
 animationDurationMs :: Number
 animationDurationMs = 300.0
 
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     topLeftToTopLeft
     zIndex 3
     widthPct100
@@ -131,21 +131,21 @@ style = do
   )
 
   where 
-  __input = classId .|*. Input.staticClass
+  __input = staticClass .|*. Input.staticClass
   ____field = __input :|*. Field.staticClass
   ______placeholder = ____field :&: placeholder
   ____label = __input :|*. Label.staticClass
-  __unlocking = classId .&. classIdWhen Unlocking
-  a___lock = __unlocking :|*. Lock.classId
-  a___message = __unlocking :|*. Message.classId
+  __unlocking = staticClass .&. staticClassWhen Unlocking
+  a___lock = __unlocking :|*. Lock.staticClass
+  a___message = __unlocking :|*. Message.staticClass
   a___input = __unlocking :|*. Input.staticClass
-  __unlocked = classId .&. classIdWhen Unlocked
-  b___message = __unlocked :|*. Message.classId
+  __unlocked = staticClass .&. staticClassWhen Unlocked
+  b___message = __unlocked :|*. Message.staticClass
   b___input = __unlocked :|*. Input.staticClass
-  ____leftDoor = __unlocked |*. Door.classIdWhenLeft
-  ____rightDoor = __unlocked |*. Door.classIdWhenRight
-  b___lock = __unlocked |*. Lock.classId
-  __incorrect = classId .&. classIdWhenIncorrect
-  c___lock = __incorrect :|*. Lock.classId
-  c___message = __incorrect :|*. Message.classId
+  ____leftDoor = __unlocked |*. Door.staticClassWhenLeft
+  ____rightDoor = __unlocked |*. Door.staticClassWhenRight
+  b___lock = __unlocked |*. Lock.staticClass
+  __incorrect = staticClass .&. staticClassWhenIncorrect
+  c___lock = __incorrect :|*. Lock.staticClass
+  c___message = __incorrect :|*. Message.staticClass
   ______strong = c___message :|*: strong

@@ -1,8 +1,9 @@
 module App.Component.Page.About.Style.Card.Line
-  ( classId
-  , classIdWhen
+  ( staticClass
+  , staticClassWhen
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top)
 
@@ -11,17 +12,17 @@ import CSS as CSS
 import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Phone (phone_)
 import Util.Proxy.Dictionary.Role (role_)
-import Util.Style.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, reflectStaticClass, hash9, marginTop, nothing, raw, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style.Style (all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, marginTop, nothing, raw, refineClass', reflectStaticClass, widthPct, (.&.), (.?), (.|>), (:?))
 
-classId :: String
-classId = reflectStaticClass ι
+staticClass :: String
+staticClass = reflectStaticClass ι
 
-classIdWhen :: String -> String
-classIdWhen = hash9 ◁ (classId <> _)
+staticClassWhen :: String -> String
+staticClassWhen = refineClass' staticClass
  
 style :: CSS.CSS
 style = do
-  classId .? do
+  staticClass .? do
     marginTop 0.6
     widthPct 75.0
     raw "transition" "background-color 0s; color 0s"
@@ -46,9 +47,9 @@ style = do
     displayInlineBlock
 
   where 
-  __allChildren = classId .|> all
-  __role = classId .&. classIdWhen role_
-  __email = classId .&. classIdWhen email_
-  __phone = classId .&. classIdWhen phone_
+  __allChildren = staticClass .|> all
+  __role = staticClass .&. staticClassWhen role_
+  __email = staticClass .&. staticClassWhen email_
+  __phone = staticClass .&. staticClassWhen phone_
   a___before = __email & before
   b___before = __phone & before
