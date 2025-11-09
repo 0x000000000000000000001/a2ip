@@ -51,7 +51,7 @@ prettyErrorImageStyle =
     # _questionMark ◁ _when ◁ _errored ◁ _color .~ Just textRed
     # _with ◁ _hover ◁ _border .~ 
         Just 
-          { radius: Just $ Rem 1.0
+          { radius: Just $ Rem 0.5
           , width: Nothing
           , color: Nothing
           }

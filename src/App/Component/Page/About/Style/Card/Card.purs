@@ -52,9 +52,6 @@ style = do
   __loading :? do
     nothing
 
-  ____portrait :? do
-    loading
-
   ____names :? do
     loading
     borderRadiusRem1 0.3
@@ -82,7 +79,6 @@ style = do
   ______portrait = deepClassHover Portrait.staticClass
   __loading = staticClass .&. staticClassWhenLoading
   deepClassLoading = typedDeepClass __loading
-  ____portrait = deepClassLoading Portrait.staticClass
   ____names = deepClassLoading Names.staticClass
   ____line = deepClassLoading Line.staticClass
   ______before = ____line & before
