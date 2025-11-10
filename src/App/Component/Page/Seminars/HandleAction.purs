@@ -8,6 +8,7 @@ import Proem
 import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
 import App.Component.Util.Remote (fetchModify)
 import Data.Array (filter, find, (!!))
+import Data.DateTime (date)
 import Data.DateTime.Instant (toDateTime)
 import Data.Int (fromString)
 import Data.Lens (_Just, (.~))
@@ -55,7 +56,7 @@ handleAction = case _ of
 
   Load -> do
     currentTime <- ʌ now
-    let currentDate = toDate $ toDateTime currentTime
+    let currentDate = date $ toDateTime currentTime
 
     fetchModify seminars' identity toSeminar
       (\sems_ ->  
