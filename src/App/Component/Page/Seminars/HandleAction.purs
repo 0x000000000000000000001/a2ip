@@ -7,7 +7,7 @@ import Proem
 
 import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
 import App.Component.Util.Remote (fetchModify)
-import Data.Array (find, (!!))
+import Data.Array (filter, find, (!!))
 import Data.Int (fromString)
 import Data.Lens (_Just, (.~))
 import Data.Maybe (Maybe(..))
@@ -29,6 +29,7 @@ import Util.Proxy.Dictionary.Title (title')
 import Util.Proxy.Dictionary.VideoUrl (videoUrl')
 import Util.Proxy.Dictionary.Year (year')
 import Util.Time (unsafeDate)
+import Web.HTML.HTMLImageElement (currentSrc)
 
 handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
@@ -52,14 +53,18 @@ handleAction = case _ of
       _ -> ηι
 
   Load -> do
+    current
+
     fetchModify seminars' identity toSeminar
-      (\sems ->  
-        { seminars: sems
-        , selectedSeminar: sems !! 0 <#> \sem ->
-            { seminar: sem
-            , openThemeDescriptionModal: false
-            }
-        }
+      (\sems_ ->  
+        let sems = filter (\s -> trim s.videoUrl /= "" || s.date > currentTs) sems_
+        in 
+          { seminars: sems
+          , selectedSeminar: sems !! 0 <#> \sem ->
+              { seminar: sem
+              , openThemeDescriptionModal: false
+              }
+          }
       )
 
   OpenThemeDescriptionModal -> modify_ \s -> case s of 

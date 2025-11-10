@@ -18,7 +18,7 @@ import App.Component.Common.Timeline.Type (Action(..), Slots, State)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Component.Common.Tooltip.Tooltip (tooltip)
 import App.Component.Common.Tooltip.Type (defaultInput)
-import App.Component.Util.Type (noHtml)
+import App.Component.Util.Type (Size(..), noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (length, mapWithIndex, (!!))
 import Data.Date (day, month, year)
@@ -88,7 +88,7 @@ render { input: { items, loading }, selectedItem } =
                                     ]
                             , style =
                                 { offset: Just 0.5
-                                , minWidth: Nothing
+                                , minWidth: Just $ Rem 14.0
                                 }
                             }
             ) 

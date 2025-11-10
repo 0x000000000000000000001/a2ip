@@ -26,6 +26,7 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (div, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
+import Util.Html.Clean (untag)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
 import Util.Proxy.Dictionary.Timeline (timeline')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
@@ -41,7 +42,7 @@ render s =
         [ timeline
             timeline'
             noSlotAddressIndex
-            { items: toMaybe s ?? (\s_ -> s_.seminars <#> \s' -> { date: s'.date, label: s'.title ?→ "Vous ?" }) ⇔ mockItems
+            { items: toMaybe s ?? (\s_ -> s_.seminars <#> \s' -> { date: s'.date, label: untag $ s'.title ?→ "Vous ?" }) ⇔ mockItems
             , loading: isLoading s
             , defaultDate: LastBeforeNow
             }
