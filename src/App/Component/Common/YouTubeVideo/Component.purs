@@ -9,7 +9,7 @@ import Proem
 import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
 import App.Component.Common.YoutubeVideo.Render (render)
 import App.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
-import App.Component.Util.Type (mkInput, noOutputAction)
+import App.Component.Util.Type (withId, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -20,7 +20,7 @@ import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-  { initialState: mkInput \input -> { input }
+  { initialState: withId \input -> { input }
   , render
   , eval: mkEval defaultEval
     { handleAction = handleAction

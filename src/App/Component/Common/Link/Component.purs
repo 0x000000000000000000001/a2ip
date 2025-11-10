@@ -9,7 +9,7 @@ import Proem
 import App.Component.Common.Link.HandleAction (handleAction)
 import App.Component.Common.Link.Render (render)
 import App.Component.Common.Link.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (mkInput)
+import App.Component.Util.Type (withId)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -20,7 +20,7 @@ import Type.Prelude (Proxy)
 
 component :: Component Query Input Output AppM
 component = mkComponent
-    { initialState: mkInput \input -> { input }
+    { initialState: withId \input -> { input }
     , render   
     , eval: mkEval defaultEval
         { handleAction = handleAction

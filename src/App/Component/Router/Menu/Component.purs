@@ -9,7 +9,7 @@ import Proem hiding (top, div)
 import App.Component.Router.Menu.HandleAction (handleAction)
 import App.Component.Router.Menu.Render (render)
 import App.Component.Router.Menu.Type (Action(..), Output, Query)
-import App.Component.Util.Type (mkInput, noInput, noOutputAction)
+import App.Component.Util.Type (withId, noInput, noOutputAction)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -20,7 +20,7 @@ import Type.Prelude (Proxy)
 
 component :: Component Query Unit Output AppM
 component = mkComponent
-  { initialState: mkInput $ κ { unfold: false, animating: false }
+  { initialState: withId $ κ { unfold: false, animating: false }
   , render
   , eval: mkEval defaultEval 
       { handleAction = handleAction

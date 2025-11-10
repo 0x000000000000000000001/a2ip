@@ -1,7 +1,7 @@
 module App.Component.Util.Type
   ( BaseState
   , Children
-  , MkState
+  , WithId
   , NoAction(..)
   , NoInput
   , NoOutput
@@ -14,7 +14,7 @@ module App.Component.Util.Type
   , State
   , applyToSize
   , baseState
-  , mkInput
+  , withId
   , noHtml
   , noInput
   , noOutputAction
@@ -58,8 +58,8 @@ data Size
   | Auto
 
 type State r = { id :: String | r }
-type MkState r = State r
-type BaseState = MkState ()
+type WithId r = State r
+type BaseState = WithId ()
 type NoState = {}
 
 data NoAction
@@ -89,8 +89,8 @@ noState' = κ noState
 noInput :: NoInput
 noInput = ι
 
-mkInput :: ∀ i r. Lacks "id" r => (i -> { | r }) -> (i -> State r )
-mkInput f i = insert id' (unsafePerformEffect generateInstanceId) (f i)
+withId :: ∀ i r. Lacks "id" r => (i -> { | r }) -> (i -> State r )
+withId f i = insert id' (unsafePerformEffect generateInstanceId) (f i)
 
 generateInstanceId :: Effect String
 generateInstanceId = do

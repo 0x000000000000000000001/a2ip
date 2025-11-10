@@ -11,7 +11,7 @@ module App.Component.Common.YoutubeVideo.Type
   )
   where
 
-import App.Component.Util.Type (MkState, NoOutput, NoQuery, NoSlots, Size)
+import App.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
@@ -37,7 +37,7 @@ type Output = NoOutput
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State = MkState
+type State = WithId
   ( input :: Input
   )
 

@@ -12,7 +12,7 @@ module App.Component.Common.Input.Type
   )
   where
 
-import App.Component.Util.Type (NoQuery, NoSlots, MkState)
+import App.Component.Util.Type (NoQuery, NoSlots, WithId)
 import App.Util.Capability.AppM (AppM)
 import Color (Color)
 import Data.Maybe (Maybe(..))
@@ -71,7 +71,7 @@ data Output = ChangedValue String
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State = MkState
+type State = WithId
   ( input :: Input
   , value :: Maybe (Ref String)
   , open :: Boolean

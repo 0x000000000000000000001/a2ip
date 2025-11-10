@@ -67,16 +67,17 @@ render s =
               , p_ [ text $ "date: " <> show seminar.date <> " de 18 à 20h" ]
               , seminar.videoUrl == "" ? noHtml ↔
                   vault 
-                      YoutubeVideo.component
-                      videoRecord'
-                      noSlotAddressIndex
-                      { innerInput:
-                          { url: seminar.videoUrl
-                          , style: defaultStyle
-                          }
-                      , password: "pwd"
-                      }
-                      handleVideoRecordOutput
+                        YoutubeVideo.component
+                        videoRecord'
+                        noSlotAddressIndex
+                        { innerInput:
+                            { url: seminar.videoUrl
+                            , style: defaultStyle
+                            }
+                        , memoId: show seminar.theme
+                        , password: "pwd"
+                        }
+                        handleVideoRecordOutput
               ]
             _ -> []
         )

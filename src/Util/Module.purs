@@ -1,8 +1,12 @@
 module Util.Module
   ( captureCallingModuleName
+  , reflectModuleName
   )
   where
 
-import Data.Unit (Unit)
+import Proem
 
 foreign import captureCallingModuleName :: Unit -> String
+
+reflectModuleName :: String
+reflectModuleName = captureCallingModuleName ι

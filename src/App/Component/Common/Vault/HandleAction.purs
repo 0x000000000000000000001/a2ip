@@ -7,12 +7,15 @@ import Proem
 import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Type (Action(..), Output(..), Phase(..), VaultM, _Locked)
 import Data.Lens (_Just, (.~), (^?))
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), isJust)
+import Data.Time.Duration (Seconds(..))
 import Data.Traversable (for_)
 import Effect.Aff (Milliseconds(..), delay)
 import Effect.Ref (new, read, write)
 import Halogen (fork, get, modify_)
 import Halogen.Query.HalogenM (raise)
+import Util.LocalStorage (getInLocalStorage, setInLocalStorage)
+import Util.Module (reflectModuleName)
 import Util.Proxy.Dictionary.Incorrect (_incorrect)
 import Util.Proxy.Dictionary.PasswordInputValue (_passwordInputValue)
 import Util.Proxy.Dictionary.Phase (_phase)
@@ -23,6 +26,15 @@ handleAction = case _ of
     ref <- ʌ $ new ""
 
     modify_ (_ # _phase ◁ _Locked ◁ _passwordInputValue .~ Just ref)
+
+    state <- get
+
+    let memoId = state.input.memoId
+
+    alreadyUnlocked <- detectTraceOfSuccessfulUnlock memoId
+
+    when alreadyUnlocked do
+      modify_ _ { phase = Unlocked }
 
   Receive input -> modify_ _ { input = input }
   
@@ -38,6 +50,8 @@ handleAction = case _ of
         modify_ (_ # _phase ◁ _Locked ◁ _incorrect .~ true)
 
       when (isPasswordCorrect) do
+        leaveTraceOfSuccessfulUnlock state.input.memoId
+
         modify_ _ { phase = Unlocking }
 
         ø $ fork do 
@@ -55,4 +69,20 @@ handleAction = case _ of
   RaiseInnerOutput output -> raise (InnerOutputRaised output)
 
   DoNothing -> ηι
+
+successfulUnlockTraceKey :: String -> String
+successfulUnlockTraceKey id = reflectModuleName <> ":unlocked:" <> id
+
+leaveTraceOfSuccessfulUnlock :: ∀ q i o. String -> VaultM q i o Unit
+leaveTraceOfSuccessfulUnlock id = do
+  setInLocalStorage 
+    (successfulUnlockTraceKey id) 
+    true 
+    (Just $ Seconds 10.0) -- 1 hour
+
+detectTraceOfSuccessfulUnlock :: ∀ q i o. String -> VaultM q i o Boolean
+detectTraceOfSuccessfulUnlock id = do
+  maybeTrace <- (getInLocalStorage $ successfulUnlockTraceKey id) :: VaultM q i o (Maybe Boolean)
+  η $ isJust maybeTrace
+
     

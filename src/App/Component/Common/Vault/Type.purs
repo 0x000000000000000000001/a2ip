@@ -30,6 +30,7 @@ import Halogen (HalogenM, Slot)
 
 type Input i = 
   { innerInput :: i
+  , memoId :: String -- Every vault associated with this ID will remember "password successfully entered"
   , password :: String
   }
 

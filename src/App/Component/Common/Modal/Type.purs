@@ -9,7 +9,7 @@ module App.Component.Common.Modal.Type
   )
   where
 
-import App.Component.Util.Type (NoQuery, NoSlotAddressIndex, MkState)
+import App.Component.Util.Type (NoQuery, NoSlotAddressIndex, WithId)
 import App.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 import Web.UIEvent.MouseEvent (MouseEvent)
@@ -29,7 +29,7 @@ type Slots q o =
   ( inner :: Slot q o NoSlotAddressIndex
   )
 
-type State i = MkState
+type State i = WithId
   ( input :: Input i
   )
 

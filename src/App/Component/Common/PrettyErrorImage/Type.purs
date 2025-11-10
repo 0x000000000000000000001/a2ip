@@ -18,7 +18,7 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import Proem
 
-import App.Component.Util.Type (MkState, NoOutput, NoQuery, NoSlots, Size)
+import App.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
 import App.Util.Capability.AppM (AppM)
 import Color (Color)
 import Data.Maybe (Maybe(..))
@@ -120,7 +120,7 @@ data Try = FirstTry Url | FallbackTry Url | StopTrying
 
 derive instance eqTry :: Eq Try
 
-type State = MkState
+type State = WithId
   ( input :: Input
   , try :: Try
   )

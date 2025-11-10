@@ -10,7 +10,7 @@ module App.Component.Router.Menu.Type
   where
 
 import App.Component.Common.Link.Type as Link
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, MkState)
+import App.Component.Util.Type (NoInput, NoOutput, NoQuery, WithId)
 import App.Util.Capability.AppM (AppM)
 import App.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
@@ -22,7 +22,7 @@ type Slots =
   ( items :: Slot Link.Query Link.Output (Tuple String (Maybe Route))
   )
 
-type State = MkState
+type State = WithId
   ( unfold :: Boolean 
   , animating :: Boolean
   )

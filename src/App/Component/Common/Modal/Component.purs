@@ -9,7 +9,7 @@ import Proem
 import App.Component.Common.Modal.HandleAction (handleAction)
 import App.Component.Common.Modal.Render (render)
 import App.Component.Common.Modal.Type (Action(..), Input, Output)
-import App.Component.Util.Type (mkInput)
+import App.Component.Util.Type (withId)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
@@ -23,7 +23,7 @@ component
    . Component q i o AppM
   -> Component q (Input i) (Output o) AppM
 component innerComponent = mkComponent
-  { initialState: mkInput \input -> 
+  { initialState: withId \input -> 
       { input
       }
   , render: render innerComponent
