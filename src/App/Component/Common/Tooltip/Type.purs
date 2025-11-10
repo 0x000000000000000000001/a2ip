@@ -8,12 +8,12 @@ import Halogen.HTML (text)
 
 type Style = 
     { minWidth :: Maybe Size
+    , offset :: Maybe Number
     }
 
 type Input action slots = 
     { inner :: ComponentHTML action slots AppM
     , outer :: ComponentHTML action slots AppM
-    , outerOffset :: Number
     , style :: Style
     }
 
@@ -21,8 +21,8 @@ defaultInput :: ∀ action slots. Input action slots
 defaultInput = 
     { inner: text ""
     , outer: text ""
-    , outerOffset: 1.0
     , style: 
         { minWidth: Nothing
+        , offset: Nothing
         }
     }
