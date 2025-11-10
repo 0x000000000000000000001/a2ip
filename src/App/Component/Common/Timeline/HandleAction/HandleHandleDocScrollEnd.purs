@@ -4,7 +4,6 @@ module App.Component.Common.Timeline.HandleAction.HandleHandleDocScrollEnd
 
 import Proem
 
-import App.Component.Common.Timeline.HandleAction.HandleSelectDate (handleSelectDate)
 import App.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
 import App.Component.Common.Timeline.Type (TimelineM)
 import App.Component.Common.Timeline.Util (parseDateDataAttr)
@@ -44,10 +43,10 @@ selectDateClosestToScreenCenterIfNeeded :: TimelineM Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
 
-  state.selectedDate
+  state.selectedItem
     ??
-      ( \selectedDate -> do
-          isVisible <- isDateVisible selectedDate
+      ( \selectedItem -> do
+          isVisible <- isDateVisible selectedItem.date
           unless isVisible selectDateClosestToScreenCenter
       )
     ⇔ selectDateClosestToScreenCenter
@@ -77,6 +76,6 @@ selectClosestDate distancesWithDates =
       ( \closest ->
           for_ closest.dataDate \dateStr ->
             for_ (parseDateDataAttr dateStr) \date ->
-              handleSelectDate date
+              handleSelectItemByDate date
       )
     ⇔ ηι

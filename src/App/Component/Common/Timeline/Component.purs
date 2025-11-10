@@ -22,10 +22,10 @@ component :: Component Query Input Output AppM
 component = mkComponent
   { initialState: \input ->
       let
-        dates = input.dates # nubEq
+        items = input.items # nubEq
       in
-        { input: input { dates = dates }
-        , selectedDate: Nothing
+        { input: input { items = items }
+        , selectedItem: Nothing
         , scrollFork: Nothing
         }
   , render

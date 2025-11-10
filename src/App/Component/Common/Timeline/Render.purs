@@ -21,7 +21,7 @@ import App.Util.Capability.AppM (AppM)
 import Data.Array (length, mapWithIndex, (!!))
 import Data.Date (day, month, year)
 import Data.Enum (fromEnum)
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe(..), isJust)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
@@ -32,7 +32,7 @@ import Util.String (padLeft)
 import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
-render { input: { dates, loading }, selectedDate } =
+render { input: { items, loading }, selectedItem } =
   div
     [ classes 
         [ staticClass 
@@ -47,14 +47,14 @@ render { input: { dates, loading }, selectedDate } =
         [ class_ Dates.staticClass ]
         ( 
             mapWithIndex 
-            (\idx date_ ->
+            (\idx item@{ date: date_ } ->
                 let y = fromEnum $ year date_
                     m = fromEnum $ month date_
                     d = fromEnum $ day date_
                     dateDataAttr = dateToDataAttr date_
-                    isSelected = Just date_ == selectedDate
-                    next = dates !! (idx + 1)
-                    isNextSelected = next == selectedDate
+                    isSelected = Just item == selectedItem
+                    next = items !! (idx + 1)
+                    isNextSelected = isJust next && next == selectedItem
                 in ( div
                     [ classes $ 
                         [Date.staticClass] 
@@ -72,7 +72,7 @@ render { input: { dates, loading }, selectedDate } =
                         [ class_ Pin.staticClass ]
                         [ 
                             0 == idx `mod` 3 
-                            && idx /= length dates - 1
+                            && idx /= length items - 1
                             && not isSelected
                             && not isNextSelected
                                 ? HRH.render [ class_ DownArrow.staticClass ] downArrowSvg
@@ -81,7 +81,7 @@ render { input: { dates, loading }, selectedDate } =
                     ]
                 )
             ) 
-            dates
+            items
         )
     ]
 

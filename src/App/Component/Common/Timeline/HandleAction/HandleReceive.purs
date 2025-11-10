@@ -16,25 +16,25 @@ handleReceive :: Input -> TimelineM Unit
 handleReceive input = do
   now <- ʌ nowDate
 
-  let dates = input.dates # nubEq
-      defaultDate = case input.defaultDate of
-        First -> dates !! 0
-        Last -> dates !! (length dates - 1)
-        FirstAfterNow -> find (_ > now) dates
-        LastBeforeNow -> dates # reverse # find (_ < now)
+  let items = input.items # nubEq
+      defaultItem = case input.defaultDate of
+        First -> items !! 0
+        Last -> items !! (length items - 1)
+        FirstAfterNow -> find (_.date ▷ (_ > now)) items
+        LastBeforeNow -> items # reverse # find (_.date ▷ (_ > now))
         _ -> Nothing
 
   oldState <- get
-  let oldSelectedDate = oldState.selectedDate
+  let oldSelectedItem = oldState.selectedItem
 
   newState <- modify (\s -> s 
     { input = input
-    , selectedDate = s.input.dates /= dates ? defaultDate ↔ s.selectedDate 
+    , selectedItem = s.input.items /= items ? defaultItem ↔ s.selectedItem
     }
   )
 
-  let newSelectedDate = newState.selectedDate
-  when (oldSelectedDate /= newSelectedDate) do
-    raise $ SelectedDate newSelectedDate
+  let newSelectedItem = newState.selectedItem
+  when (oldSelectedItem /= newSelectedItem) do
+    raise $ SelectedDate $ newSelectedItem <#> _.date
 
-    for_ newSelectedDate scrollToDate
+    for_ newSelectedItem (scrollToDate ◁ _.date)

@@ -2,6 +2,7 @@ module App.Component.Common.Timeline.Type
   ( Action(..)
   , DefaultDate(..)
   , Input
+  , Item
   , Output(..)
   , Query
   , Slots
@@ -21,8 +22,13 @@ import Halogen.Query (ForkId)
 
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
 
+type Item = 
+  { date :: Date
+  , label :: String
+  }
+
 type Input =
-  { dates :: Array Date
+  { items :: Array Item
   , loading :: Boolean
   , defaultDate :: DefaultDate
   }
@@ -34,7 +40,7 @@ type Slots = NoSlots
 
 type State = 
   { input :: Input
-  , selectedDate :: Maybe Date
+  , selectedItem :: Maybe Item
   , scrollFork :: Maybe (Ref (Maybe ForkId))
   }
 
