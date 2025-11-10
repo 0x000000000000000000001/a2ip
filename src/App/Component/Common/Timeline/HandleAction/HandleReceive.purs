@@ -21,7 +21,7 @@ handleReceive input = do
         First -> items !! 0
         Last -> items !! (length items - 1)
         FirstAfterNow -> find (_.date ▷ (_ > now)) items
-        LastBeforeNow -> items # reverse # find (_.date ▷ (_ > now))
+        LastBeforeNow -> items # reverse # find (_.date ▷ (_ < now))
         _ -> Nothing
 
   oldState <- get
