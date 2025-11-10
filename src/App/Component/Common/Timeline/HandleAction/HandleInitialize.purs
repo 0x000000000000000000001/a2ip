@@ -15,7 +15,7 @@ import Web.HTML (window)
 import Web.HTML.HTMLDocument (toDocument)
 import Web.HTML.Window (document)
 
-handleInitialize :: TimelineM Unit
+handleInitialize :: ∀ w i. TimelineM w i Unit
 handleInitialize = do
   doc <- ʌ $ document =<< window
   subscribe' $ κ $ eventListener

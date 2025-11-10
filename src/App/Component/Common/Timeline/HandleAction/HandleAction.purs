@@ -12,7 +12,7 @@ import App.Component.Common.Timeline.HandleAction.HandleSelectItem (handleSelect
 import App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate (handleSelectItemByDate)
 import App.Component.Common.Timeline.Type (Action(..), TimelineM)
 
-handleAction :: Action -> TimelineM Unit
+handleAction :: ∀ w i. Action w i -> TimelineM w i Unit
 handleAction = case _ of
   Initialize -> handleInitialize
   SelectItem item -> handleSelectItem item

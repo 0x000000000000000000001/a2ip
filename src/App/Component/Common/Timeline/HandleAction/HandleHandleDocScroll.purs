@@ -13,7 +13,7 @@ import Effect.Aff (delay)
 import Effect.Ref (read, write)
 import Halogen (fork, get, kill)
 
-handleHandleDocScroll :: TimelineM Unit
+handleHandleDocScroll :: ∀ w i. TimelineM w i Unit
 handleHandleDocScroll = do
   state <- get
 

@@ -10,7 +10,7 @@ import Data.Date (Date)
 import Data.Maybe (Maybe(..))
 import Halogen (get, modify_, raise)
 
-handleSelectItemByDate :: Date -> TimelineM Unit
+handleSelectItemByDate :: ∀ w i. Date -> TimelineM w i Unit
 handleSelectItemByDate date = do
   state <- get 
   

@@ -23,13 +23,13 @@ import Halogen.Query (ForkId)
 
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
 
-type Item = 
+type Item w i = 
   { date :: Date
-  , label :: ∀ w i. HTML w i
+  , label :: HTML w i
   }
 
-type Input =
-  { items :: Array Item
+type Input w i =
+  { items :: Array (Item w i)
   , loading :: Boolean
   , defaultDate :: DefaultDate
   }
@@ -39,22 +39,22 @@ data Output = SelectedDate (Maybe Date)
 type Slots :: ∀ k. Row k
 type Slots = NoSlots
 
-type State = 
-  { input :: Input
-  , selectedItem :: Maybe Item
+type State w i = 
+  { input :: Input w i
+  , selectedItem :: Maybe (Item w i)
   , scrollFork :: Maybe (Ref (Maybe ForkId))
   }
 
-data Action 
+data Action w i
   = Initialize
-  | SelectItem Item
+  | SelectItem (Item w i)
   | SelectItemByDate Date 
-  | Receive Input
+  | Receive (Input w i)
   | HandleDocScroll
   | HandleDocScrollEnd
 
 type Query :: ∀ k. k -> Type
 type Query = NoQuery
 
-type TimelineM a = HalogenM State Action Slots Output AppM a
+type TimelineM w i a = HalogenM (State w i) (Action w i) Slots Output AppM a
 

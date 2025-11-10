@@ -25,27 +25,27 @@ import Web.HTML (window)
 import Web.HTML.HTMLDocument (toParentNode)
 import Web.HTML.Window (document)
 
-scrollToDate :: Date -> TimelineM Unit
+scrollToDate :: ∀ w i. Date -> TimelineM w i Unit
 scrollToDate date_ = do
   element <- getDateElement date_
 
   for_ element placeElementInScreenYCenter
 
-isDateVisible :: Date -> TimelineM Boolean
+isDateVisible :: ∀ w i. Date -> TimelineM w i Boolean
 isDateVisible date_ = isVisible $ dateQuerySelector (Just date_)
 
 dateQuerySelector :: Maybe Date -> QuerySelector
 dateQuerySelector date_ = dataAttrQuerySelector date' (date_ <#> dateToDataAttr)
 
-getDateElement :: Date -> TimelineM (Maybe Element)
+getDateElement :: ∀ w i. Date -> TimelineM w i (Maybe Element)
 getDateElement date = do 
   elements <- getDateElements (Just date) 
   pure $ elements >>= head 
 
-getAllDateElements :: TimelineM (Maybe (Array Element))
+getAllDateElements :: ∀ w i. TimelineM w i (Maybe (Array Element))
 getAllDateElements = getDateElements Nothing
 
-getDateElements :: Maybe Date -> TimelineM (Maybe (Array Element))
+getDateElements :: ∀ w i. Maybe Date -> TimelineM w i (Maybe (Array Element))
 getDateElements date = ʌ do
   doc <- document =<< window
 

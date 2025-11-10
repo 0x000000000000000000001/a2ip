@@ -1,6 +1,8 @@
 -- p1
 
-tooltip sur les pins de la timeline, avec les titres
+check si existe de quoi convertir les &... html en caractères normaux
+étendre les capacités de ? en s'inspirant de Conditional
+petites photos des intervenants dans les tooltips
 page conférences
 factoriser pages
 page colloques

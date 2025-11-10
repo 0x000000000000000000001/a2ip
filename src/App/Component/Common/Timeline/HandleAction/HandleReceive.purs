@@ -12,7 +12,7 @@ import Data.Maybe (Maybe(..))
 import Effect.Now (nowDate)
 import Halogen (get, modify, raise)
 
-handleReceive :: Input -> TimelineM Unit
+handleReceive ::  ∀ w i. Input w i -> TimelineM w i Unit
 handleReceive input = do
   now <- ʌ nowDate
 

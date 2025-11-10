@@ -34,7 +34,7 @@ import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
 import Util.Style.Style (class_, classes)
 
-render :: State -> ComponentHTML Action Slots AppM
+render :: ∀ w i. State w i -> ComponentHTML (Action w i) Slots AppM
 render { input: { items, loading }, selectedItem } =
   div
     [ classes 
@@ -90,7 +90,6 @@ render { input: { items, loading }, selectedItem } =
                                     ]
                             , style =
                                 { offset: Just 0.5
-                                , minWidth: Just $ Rem 14.0
                                 }
                             }
             ) 

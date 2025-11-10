@@ -18,7 +18,7 @@ import Halogen.HTML (slot)
 import Prim.Row (class Cons)
 import Type.Prelude (Proxy)
 
-component :: Component Query Input Output AppM
+component :: ∀ w i. Component Query (Input w i) Output AppM
 component = mkComponent
   { initialState: \input ->
       let
@@ -37,13 +37,13 @@ component = mkComponent
   }
 
 timeline 
-  :: ∀ action slots label slotAddressIndex slots'
+  :: ∀ action slots label slotAddressIndex slots' w i
    . Cons label (Slot Query Output slotAddressIndex) slots' slots
   => IsSymbol label
   => Ord slotAddressIndex
   => Proxy label
   -> slotAddressIndex
-  -> Input
+  -> Input w i
   -> (Output -> action)
   -> ComponentHTML action slots AppM
 timeline _slotLabel slotAddressIndex input outputAction = 

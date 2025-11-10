@@ -18,7 +18,7 @@ import Util.Html.Dom (dataAttrPrefixed, getHalfScreenHeight)
 import Util.Proxy.Dictionary.Date (date')
 import Web.DOM.Element (Element, getAttribute, getBoundingClientRect)
 
-handleHandleDocScrollEnd :: TimelineM Unit
+handleHandleDocScrollEnd :: ∀ w i. TimelineM w i Unit
 handleHandleDocScrollEnd = do
   state <- get 
   
@@ -27,7 +27,7 @@ handleHandleDocScrollEnd = do
 
   selectDateClosestToScreenCenterIfNeeded
 
-selectDateClosestToScreenCenter :: TimelineM Unit
+selectDateClosestToScreenCenter :: ∀ w i. TimelineM w i Unit
 selectDateClosestToScreenCenter = do
   elements <- getAllDateElements
 
@@ -40,7 +40,7 @@ selectDateClosestToScreenCenter = do
       )
     ⇔ ηι
 
-selectDateClosestToScreenCenterIfNeeded :: TimelineM Unit
+selectDateClosestToScreenCenterIfNeeded :: ∀ w i. TimelineM w i Unit
 selectDateClosestToScreenCenterIfNeeded = do
   state <- get
 
@@ -53,9 +53,10 @@ selectDateClosestToScreenCenterIfNeeded = do
     ⇔ selectDateClosestToScreenCenter
 
 calculateDistancesFromCenter
-  :: Array Element
+  :: forall w i 
+   . Array Element
   -> Number
-  -> TimelineM (Array { distance :: Number, dataDate :: Maybe String })
+  -> TimelineM w i (Array { distance :: Number, dataDate :: Maybe String })
 calculateDistancesFromCenter elements screenCenter =
   ʌ $ traverse
     ( \el -> do
@@ -69,8 +70,9 @@ calculateDistancesFromCenter elements screenCenter =
     elements
 
 selectClosestDate
-  :: Array { distance :: Number, dataDate :: Maybe String }
-  -> TimelineM Unit
+  :: ∀ w i
+   . Array { distance :: Number, dataDate :: Maybe String }
+  -> TimelineM w i Unit
 selectClosestDate distancesWithDates =
   minimumBy (\a b -> compare a.distance b.distance) distancesWithDates
     ??

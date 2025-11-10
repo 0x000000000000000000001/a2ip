@@ -16,6 +16,7 @@ import Data.Maybe (Maybe(..))
 import Data.Show.Generic (genericShow)
 import Data.String.Read (class Read)
 import Halogen (HalogenM, Slot)
+import Halogen.HTML (text)
 import Util.Time (unsafeDate)
 
 type Input = NoInput
@@ -79,10 +80,10 @@ mockDates =
   , { d: 31, m: 12, y: 2024 }
   ] <#> \{ d, m, y } -> unsafeDate y m d
 
-mockItems :: Array Timeline.Item
+mockItems :: forall w i. Array (Timeline.Item w i)
 mockItems = mockDates <#> \date_ -> 
   { date: date_
-  , label: show date_
+  , label: text $ show date_
   }
 
 type ThemeInfo = 
