@@ -1,6 +1,5 @@
 -- p1
 
-mémoire vault
 tooltip sur les pins de la timeline, avec les titres
 modal filtres
 filtres en tête de timeline (sticky) ?
