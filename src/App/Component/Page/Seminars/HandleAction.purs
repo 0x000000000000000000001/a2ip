@@ -8,11 +8,13 @@ import Proem
 import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
 import App.Component.Util.Remote (fetchModify)
 import Data.Array (filter, find, (!!))
+import Data.DateTime.Instant (toDateTime)
 import Data.Int (fromString)
 import Data.Lens (_Just, (.~))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.String.Read (read)
+import Effect.Now (now)
 import Halogen (get, modify_)
 import Network.RemoteData (RemoteData(..), _Success)
 import Util.Google.Sheet (Converter)
@@ -29,7 +31,6 @@ import Util.Proxy.Dictionary.Title (title')
 import Util.Proxy.Dictionary.VideoUrl (videoUrl')
 import Util.Proxy.Dictionary.Year (year')
 import Util.Time (unsafeDate)
-import Web.HTML.HTMLImageElement (currentSrc)
 
 handleAction :: Action -> SeminarsM Unit
 handleAction = case _ of 
@@ -53,11 +54,17 @@ handleAction = case _ of
       _ -> ηι
 
   Load -> do
-    current
+    currentTime <- ʌ now
+    let currentDate = toDate $ toDateTime currentTime
 
     fetchModify seminars' identity toSeminar
       (\sems_ ->  
-        let sems = filter (\s -> trim s.videoUrl /= "" || s.date > currentTs) sems_
+        let sems = 
+              filter 
+              ( \s -> trim s.videoUrl /= "" -- useless
+                || s.date >= currentDate -- yet to come
+              ) 
+              sems_
         in 
           { seminars: sems
           , selectedSeminar: sems !! 0 <#> \sem ->
