@@ -13,7 +13,7 @@ import CSS as CSS
 import CSS.Background (backgroundColor)
 import Data.Array ((!!))
 import Data.Maybe (Maybe(..))
-import Util.Style.Style (heightPct100, nothing, positionRelative, raw, inferClass, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
+import Util.Style.Style (heightPct100, noCss, positionRelative, raw, inferClass, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -37,4 +37,4 @@ style { id, index, input: { slides } } = do
 
     case media of 
       Just (YoutubeVideo _) -> backgroundColor black
-      _ -> nothing
+      _ -> noCss

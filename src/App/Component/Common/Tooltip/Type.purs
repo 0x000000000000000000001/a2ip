@@ -12,14 +12,16 @@ type Style =
     }
 
 type Input action slots = 
-    { inner :: ComponentHTML action slots AppM
+    { disabled :: Boolean
+    , inner :: ComponentHTML action slots AppM
     , outer :: ComponentHTML action slots AppM
     , style :: Style
     }
 
 defaultInput :: ∀ action slots. Input action slots
 defaultInput = 
-    { inner: text ""
+    { disabled: false
+    , inner: text ""
     , outer: text ""
     , style: 
         { minWidth: Nothing

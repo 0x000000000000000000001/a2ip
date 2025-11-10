@@ -10,7 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.Input.Type (State)
 import CSS (backgroundColor, borderColor, color, outlineWidth, rem, solid)
 import CSS as CSS
-import Util.Style.Style (borderBottomWidth, borderLeftWidth, borderRadiusRem1, borderRightWidth, borderStyle, borderTopWidth, focus, fontSizeRem, inferClass, loadingGrey, nothing, overflowHidden, padding4, placeholder, red, reflectStaticClass, (.&), (.?), (:?))
+import Util.Style.Style (borderBottomWidth, borderLeftWidth, borderRadiusRem1, borderRightWidth, borderStyle, borderTopWidth, focus, fontSizeRem, inferClass, loadingGrey, noCss, overflowHidden, padding4, placeholder, red, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -42,16 +42,16 @@ style
     borderColor red
 
   class' id .? do 
-    backgroundColor' ?? backgroundColor ⇔ nothing
+    backgroundColor' ?? backgroundColor ⇔ noCss
     borderColor $ border.color ??⇒ loadingGrey
     borderTopWidth $ border.width.top ??⇒ 0.0
     borderRightWidth $ border.width.right ??⇒ 0.0
     borderBottomWidth $ border.width.bottom ??⇒ 0.2
     borderLeftWidth $ border.width.left ??⇒ 0.0
-    textColor ?? color ⇔ nothing
+    textColor ?? color ⇔ noCss
 
   __placeholder :? do
-    placeholderColor ?? color ⇔ nothing
+    placeholderColor ?? color ⇔ noCss
 
   where 
   __focus = staticClass .& focus

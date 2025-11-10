@@ -241,7 +241,7 @@ module Util.Style.Style
   , minWidthPct
   , minWidthPct100
   , minWidthRem
-  , nothing
+  , noCss
   , onlyTranslatePct
   , onlyTranslateRem
   , overflowHidden
@@ -446,8 +446,8 @@ stripDotPrefixFromClassName className = (stripPrefix (Pattern ".") className) ??
 raw :: forall a. Val a => String -> a -> CSS.CSS
 raw k v = key (fromString k) v
 
-nothing :: CSS.CSS
-nothing = ηι
+noCss :: CSS.CSS
+noCss = ηι
 
 translatePct :: Number -> Number -> Transformation
 translatePct x y = translate (pct x) (pct y)

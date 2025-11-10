@@ -9,7 +9,7 @@ import Proem hiding (top)
 import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
 import CSS (hover)
 import CSS as CSS
-import Util.Style.Style (displayInlineBlock, displayNone, nothing, positionRelative, reflectStaticClass, (.&), (.?), (.|*.), (:?), (|*.))
+import Util.Style.Style (displayInlineBlock, displayNone, noCss, positionRelative, reflectStaticClass, (.&), (.?), (.|*.), (:?), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -23,7 +23,7 @@ style = do
     displayNone
 
   __hover :? do 
-    nothing
+    noCss
 
   ____outer :? do
     displayInlineBlock

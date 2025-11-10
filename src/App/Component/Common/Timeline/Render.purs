@@ -60,7 +60,8 @@ render { input: { items, loading }, selectedItem } =
                 in 
                     tooltip
                         defaultInput
-                            { outer = text item.label
+                            { disabled = loading
+                            , outer = text item.label
                             , inner = 
                                 div
                                     [ classes $ 

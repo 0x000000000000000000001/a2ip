@@ -10,7 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
-import Util.Style.Style (colorRed, fontSizePct, nothing, refineClass', reflectStaticClass, top0, (.?), (.|*.), (:?))
+import Util.Style.Style (colorRed, fontSizePct, noCss, refineClass', reflectStaticClass, top0, (.?), (.|*.), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -24,7 +24,7 @@ style = do
     position relative
 
   staticClassWhenOpen .? do 
-    nothing
+    noCss
 
   __label :? do 
     top0

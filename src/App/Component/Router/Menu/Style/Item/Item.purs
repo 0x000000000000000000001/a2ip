@@ -12,7 +12,7 @@ import App.Component.Router.Menu.Type (State)
 import CSS (color, graytone, hover)
 import CSS as CSS
 import Proem (discard, when, ι)
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, nothing, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι
@@ -44,10 +44,10 @@ style { id, unfold } = do
     widthPct100
 
   class' id .? do
-    nothing
+    noCss
 
   b_hover :? do
-    nothing
+    noCss
     
   b___children :? do 
     when unfold displayFlex

@@ -22,7 +22,7 @@ import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
-import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, nothing, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -60,7 +60,7 @@ style = do
     color white
 
   __unlocking :? do 
-    nothing
+    noCss
 
   a___message :? do 
     opacity 0.0
@@ -101,13 +101,13 @@ style = do
     opacity 0.0
 
   __incorrect :? do 
-    nothing
+    noCss
 
   c___lock :? do 
     outline solid (rem 0.3) red
 
   c___message :? do 
-    nothing
+    noCss
 
   ______strong :? do 
     color $ lighten 0.2 red

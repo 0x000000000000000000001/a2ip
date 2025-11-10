@@ -9,7 +9,7 @@ import Proem hiding (top)
 import CSS (color, deg, hover, rotate, transforms, white, (|*))
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, nothing, padding1, reflectStaticClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
+import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, noCss, padding1, reflectStaticClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -29,7 +29,7 @@ style = do
     fill white
 
   __hover :? do
-    nothing
+    noCss
 
   ____svg :? do
     transforms [ rotate $ deg 90.0, scale 1.5 1.5 ]

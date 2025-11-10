@@ -7,7 +7,7 @@ module App.Component.Common.Tooltip.Style.Inner
 import Proem hiding (top)
 
 import CSS as CSS
-import Util.Style.Style (nothing, reflectStaticClass, (.?))
+import Util.Style.Style (noCss, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -15,4 +15,4 @@ staticClass = reflectStaticClass ι
 style :: CSS.CSS
 style = do
   staticClass .? do
-    nothing
+    noCss

@@ -12,7 +12,7 @@ import App.Component.Common.YoutubeVideo.Type (State)
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, black, height, iframe, width, zIndex, (&))
 import CSS as CSS
-import Util.Style.Style (any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, nothing, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, noCss, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -51,8 +51,8 @@ style { id, input: { style: { width: width', height: height' } } } = do
     zIndex 1
 
   class' id .? do 
-    width' ?? (applyToSize width) ⇔ nothing
-    height' ?? (applyToSize height) ⇔ nothing
+    width' ?? (applyToSize width) ⇔ noCss
+    height' ?? (applyToSize height) ⇔ noCss
   
   where 
   __potentialIframeContainer = staticClass .|> (any & has iframe)

@@ -13,7 +13,7 @@ import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, nothing, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
+import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, noCss, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -41,7 +41,7 @@ style { id, input: { open } } = do
 
   class' id .? do
     when open do 
-      nothing
+      noCss
 
     when (not open) do
       displayNone

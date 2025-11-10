@@ -10,7 +10,7 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (darken, opacity)
 import CSS as CSS
-import Util.Style.Style (fill, loadingGrey, nothing, inferClass, reflectStaticClass, svg, widthRem, (.?), (.|>), (:?))
+import Util.Style.Style (fill, loadingGrey, noCss, inferClass, reflectStaticClass, svg, widthRem, (.?), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -38,7 +38,7 @@ style
     widthRem 3.0
 
   class' id .? do
-    nothing
+    noCss
 
     when loading do
       opacity 0.0

@@ -17,7 +17,7 @@ import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Loaded (loaded_)
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, nothing, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, noCss, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -41,16 +41,16 @@ style = do
     flexDirection column
 
   __loaded :? do 
-    nothing
+    noCss
 
   ____hover :? do
-    nothing
+    noCss
 
   ______portrait :? do
     borderRadiusRem1 0.3
 
   __loading :? do
-    nothing
+    noCss
 
   ____names :? do
     loading
