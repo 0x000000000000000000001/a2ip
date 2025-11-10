@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Dates
+module App.Component.Common.Timeline.Style.Items
   ( staticClass
   , style
   )

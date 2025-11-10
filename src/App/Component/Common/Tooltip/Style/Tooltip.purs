@@ -19,17 +19,16 @@ style = do
   staticClass .? do
     positionRelative
 
-  a___outer :? do
-    displayInlineBlock
+  __outer :? do
     displayNone
 
   __hover :? do 
     nothing
 
-  b___outer :? do
+  ____outer :? do
     displayInlineBlock
 
   where 
-  a___outer = staticClass .|*. Outer.staticClass
+  __outer = staticClass .|*. Outer.staticClass
   __hover = staticClass .& hover
-  b___outer = __hover |*. Outer.staticClass
+  ____outer = __hover |*. Outer.staticClass

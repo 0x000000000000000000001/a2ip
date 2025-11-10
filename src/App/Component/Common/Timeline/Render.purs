@@ -6,16 +6,18 @@ module App.Component.Common.Timeline.Render
 import Proem hiding (div)
 
 import App.Component.Common.Timeline.Style.Date as Date
-import App.Component.Common.Timeline.Style.Dates as Dates
 import App.Component.Common.Timeline.Style.DownArrow as DownArrow
+import App.Component.Common.Timeline.Style.Item as Item
+import App.Component.Common.Timeline.Style.Items as Items
 import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
-import App.Component.Common.Timeline.Style.Numbers as Numbers
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (staticClass, staticClassWhenLoading)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
+import App.Component.Common.Tooltip.Tooltip (tooltip)
+import App.Component.Common.Tooltip.Type (defaultInput)
 import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array (length, mapWithIndex, (!!))
@@ -44,7 +46,7 @@ render { input: { items, loading }, selectedItem } =
         [ class_ Line.staticClass ]
         []
     , div
-        [ class_ Dates.staticClass ]
+        [ class_ Items.staticClass ]
         ( 
             mapWithIndex 
             (\idx item@{ date: date_ } ->
@@ -55,31 +57,36 @@ render { input: { items, loading }, selectedItem } =
                     isSelected = Just item == selectedItem
                     next = items !! (idx + 1)
                     isNextSelected = isJust next && next == selectedItem
-                in ( div
-                    [ classes $ 
-                        [Date.staticClass] 
-                        <> (not loading && isSelected ? [Date.staticClassWhenSelected] ↔ [])
-                    , onClick $ κ $ SelectItem item
-                    , dataAttr date' dateDataAttr
-                    ]
-                    [ div
-                        [ class_ Numbers.staticClass ]
-                        [ div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show d ]
-                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show m ]
-                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show $ y `mod` 100 ]
-                        ]
-                    , div
-                        [ class_ Pin.staticClass ]
-                        [ 
-                            0 == idx `mod` 3 
-                            && idx /= length items - 1
-                            && not isSelected
-                            && not isNextSelected
-                                ? HRH.render [ class_ DownArrow.staticClass ] downArrowSvg
-                                ↔ noHtml
-                        ]
-                    ]
-                )
+                in 
+                    tooltip
+                        defaultInput
+                            { outer = text item.label
+                            , inner = 
+                                div
+                                    [ classes $ 
+                                        [Item.staticClass] 
+                                        <> (not loading && isSelected ? [Item.staticClassWhenSelected] ↔ [])
+                                    , onClick $ κ $ SelectItem item
+                                    , dataAttr date' dateDataAttr
+                                    ]
+                                    [ div
+                                        [ class_ Date.staticClass ]
+                                        [ div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show d ]
+                                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show m ]
+                                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show $ y `mod` 100 ]
+                                        ]
+                                    , div
+                                        [ class_ Pin.staticClass ]
+                                        [ 
+                                            0 == idx `mod` 3 
+                                            && idx /= length items - 1
+                                            && not isSelected
+                                            && not isNextSelected
+                                                ? HRH.render [ class_ DownArrow.staticClass ] downArrowSvg
+                                                ↔ noHtml
+                                        ]
+                                    ]
+                            }
             ) 
             items
         )

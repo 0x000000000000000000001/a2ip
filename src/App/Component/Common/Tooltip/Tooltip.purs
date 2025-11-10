@@ -12,6 +12,7 @@ import App.Component.Common.Tooltip.Style.Sheet (sheet)
 import App.Component.Common.Tooltip.Style.Tooltip (staticClass)
 import App.Component.Common.Tooltip.Type (Input)
 import App.Util.Capability.AppM (AppM)
+import CSS (minWidth)
 import Halogen (ComponentHTML)
 import Halogen.HTML (div)
 import Halogen.HTML.CSS (style)
@@ -30,7 +31,9 @@ tooltip { inner, outer, outerOffset } =
         [ inner ]
     , div 
         [ class_ Outer.staticClass 
-        , style $ padding1 outerOffset
+        , style do 
+            padding1 outerOffset
+            minWidth outer.style.minWidth
         ]
         [ div 
             [ class_ Core.staticClass ]
