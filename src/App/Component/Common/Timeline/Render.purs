@@ -28,6 +28,7 @@ import Halogen (ComponentHTML)
 import Halogen.HTML (div, text)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen as HRH
+import Unsafe.Coerce (unsafeCoerce)
 import Util.Html.Dom (dataAttr)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
@@ -54,14 +55,14 @@ render { input: { items, loading }, selectedItem } =
                     m = fromEnum $ month date_
                     d = fromEnum $ day date_
                     dateDataAttr = dateToDataAttr date_
-                    isSelected = Just item == selectedItem
+                    isSelected = (selectedItem <#> _.date) == Just date_
                     next = items !! (idx + 1)
-                    isNextSelected = isJust next && next == selectedItem
+                    isNextSelected = isJust next && (next <#> _.date) == (selectedItem <#> _.date)
                 in 
                     tooltip
                         defaultInput
                             { disabled = loading
-                            , outer = text item.label
+                            , outer = unsafeCoerce item.label
                             , inner = 
                                 div
                                     [ classes $ 

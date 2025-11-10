@@ -18,13 +18,14 @@ import Data.Date (Date)
 import Data.Maybe (Maybe)
 import Effect.Ref (Ref)
 import Halogen (HalogenM)
+import Halogen.HTML.Core (HTML)
 import Halogen.Query (ForkId)
 
 data DefaultDate = First | Last | LastBeforeNow | FirstAfterNow | None
 
 type Item = 
   { date :: Date
-  , label :: String
+  , label :: ∀ w i. HTML w i
   }
 
 type Input =

@@ -6,7 +6,7 @@ import Proem
 
 import App.Component.Common.Timeline.HandleAction.Util (scrollToDate)
 import App.Component.Common.Timeline.Type (DefaultDate(..), Input, Output(..), TimelineM)
-import Data.Array (find, length, nubEq, reverse, (!!))
+import Data.Array (find, length, nubByEq, reverse, (!!))
 import Data.Foldable (for_)
 import Data.Maybe (Maybe(..))
 import Effect.Now (nowDate)
@@ -16,7 +16,7 @@ handleReceive :: Input -> TimelineM Unit
 handleReceive input = do
   now <- ʌ nowDate
 
-  let items = input.items # nubEq
+  let items = input.items # nubByEq (\a b -> a.date == b.date)
       defaultItem = case input.defaultDate of
         First -> items !! 0
         Last -> items !! (length items - 1)
@@ -26,15 +26,16 @@ handleReceive input = do
 
   oldState <- get
   let oldSelectedItem = oldState.selectedItem
+      itemsChanged = (length oldState.input.items /= length items) || (oldState.input.items <#> _.date) /= (items <#> _.date)
 
   newState <- modify (\s -> s 
     { input = input
-    , selectedItem = s.input.items /= items ? defaultItem ↔ s.selectedItem
+    , selectedItem = itemsChanged ? defaultItem ↔ s.selectedItem
     }
   )
 
   let newSelectedItem = newState.selectedItem
-  when (oldSelectedItem /= newSelectedItem) do
+  when ((oldSelectedItem <#> _.date) /= (newSelectedItem <#> _.date)) do
     raise $ SelectedDate $ newSelectedItem <#> _.date
 
     for_ newSelectedItem (scrollToDate ◁ _.date)
