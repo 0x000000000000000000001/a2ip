@@ -18,7 +18,7 @@ import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (staticClass)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline as Timeline
-import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockDates, themeInfo)
+import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockItems, themeInfo)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
@@ -41,7 +41,7 @@ render s =
         [ timeline
             timeline'
             noSlotAddressIndex
-            { dates: toMaybe s ?? (\s_ -> s_.seminars <#> _.date) ⇔ mockDates
+            { items: toMaybe s ?? (\s_ -> s_.seminars <#> \s' -> { date: s'.date, label: s'.title }) ⇔ mockItems
             , loading: isLoading s
             , defaultDate: LastBeforeNow
             }

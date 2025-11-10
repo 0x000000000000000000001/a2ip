@@ -79,6 +79,12 @@ mockDates =
   , { d: 31, m: 12, y: 2024 }
   ] <#> \{ d, m, y } -> unsafeDate y m d
 
+mockItems :: Array Timeline.Item
+mockItems = mockDates <#> \date_ -> 
+  { date: date_
+  , label: show date_
+  }
+
 type ThemeInfo = 
   { name :: String
   , description :: String

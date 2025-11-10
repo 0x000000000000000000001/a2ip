@@ -59,7 +59,7 @@ render { input: { items, loading }, selectedItem } =
                     [ classes $ 
                         [Date.staticClass] 
                         <> (not loading && isSelected ? [Date.staticClassWhenSelected] ↔ [])
-                    , onClick $ κ $ SelectDate date_
+                    , onClick $ κ $ SelectItem item
                     , dataAttr date' dateDataAttr
                     ]
                     [ div

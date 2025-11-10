@@ -46,7 +46,8 @@ type State =
 
 data Action 
   = Initialize
-  | SelectDate Date 
+  | SelectItem Item
+  | SelectItemByDate Date 
   | Receive Input
   | HandleDocScroll
   | HandleDocScrollEnd

@@ -4,6 +4,7 @@ module App.Component.Common.Timeline.HandleAction.HandleHandleDocScrollEnd
 
 import Proem
 
+import App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate (handleSelectItemByDate)
 import App.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
 import App.Component.Common.Timeline.Type (TimelineM)
 import App.Component.Common.Timeline.Util (parseDateDataAttr)

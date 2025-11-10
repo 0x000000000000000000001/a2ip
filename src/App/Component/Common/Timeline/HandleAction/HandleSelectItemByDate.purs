@@ -4,7 +4,7 @@ module App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Output(..), TimelineM, Item)
+import App.Component.Common.Timeline.Type (Output(..), TimelineM)
 import Data.Array (find)
 import Data.Date (Date)
 import Data.Maybe (Maybe(..))
@@ -15,8 +15,8 @@ handleSelectItemByDate date = do
   state <- get 
   
   let items = state.input.items
-      item = find (_.date == date) items
+      item = find (\i -> i.date == date) items
 
   modify_ _ { selectedItem = item }
 
-  raise $ SelectedDate $ date
+  raise $ SelectedDate (Just date)
