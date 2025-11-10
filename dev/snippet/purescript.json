@@ -109,22 +109,52 @@
     "body": "↔",
     "description": "Or ↔ (If)"
   },
+  "?→": {
+    "prefix": "orDefault",
+    "body": "?→",
+    "description": "Default if falsy ?→"
+  },
+  "?→ ": {
+    "prefix": "orRight",
+    "body": "?→",
+    "description": "Default if falsy ?→"
+  },
+  "?→  ": {
+    "prefix": "rightOr",
+    "body": "?→",
+    "description": "Default if falsy ?→"
+  },
+  "?→   ": {
+    "prefix": "elseRight",
+    "body": "?→",
+    "description": "Default if falsy ?→"
+  },
+  "?→    ": {
+    "prefix": "rightElse",
+    "body": "?→",
+    "description": "Default if falsy ?→"
+  },
   "⇔": {
-    "prefix": "default",
+    "prefix": "elseMaybe",
     "body": "⇔",
-    "description": "Default ⇔ (Maybe)"
+    "description": "Else ⇔ (Maybe)"
   },
   "⇔ ": {
+    "prefix": "maybeElse",
+    "body": "⇔",
+    "description": "Else ⇔ (Maybe)"
+  },
+  "⇔  ": {
     "prefix": "orMaybe",
     "body": "⇔",
     "description": "Or ⇔ (Maybe)"
   },
-  "⇔  ": {
+  "⇔   ": {
     "prefix": "maybeOr",
     "body": "⇔",
     "description": "Or ⇔ (Maybe)"
   },
-  "⇔   ": {
+  "⇔    ": {
     "prefix": "⇔",
     "body": "⇔",
     "description": "Or ⇔ (Maybe)"
@@ -140,6 +170,16 @@
     "description": "Or ⇿ (Either)"
   },
   "⇿  ": {
+    "prefix": "elseEither",
+    "body": "⇿",
+    "description": "Or ⇿ (Either)"
+  },
+  "⇿   ": {
+    "prefix": "eitherElse",
+    "body": "⇿",
+    "description": "Or ⇿ (Either)"
+  },
+  "⇿    ": {
     "prefix": "⇿",
     "body": "⇿",
     "description": "Or ⇿ (Either)"
@@ -150,6 +190,16 @@
     "description": "From maybe ??⇒"
   },
   "??⇒ ": {
+    "prefix": "rightMaybe",
+    "body": "??⇒",
+    "description": "From maybe ??⇒"
+  },
+  "??⇒  ": {
+    "prefix": "maybeRight",
+    "body": "??⇒",
+    "description": "From maybe ??⇒"
+  },
+  "??⇒   ": {
     "prefix": "??⇒",
     "body": "??⇒",
     "description": "From maybe ??⇒"
