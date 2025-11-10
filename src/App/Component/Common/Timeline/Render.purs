@@ -86,6 +86,10 @@ render { input: { items, loading }, selectedItem } =
                                                 ↔ noHtml
                                         ]
                                     ]
+                            , style =
+                                { offset: Just $ -1.0
+                                , minWidth: Nothing
+                                }
                             }
             ) 
             items
