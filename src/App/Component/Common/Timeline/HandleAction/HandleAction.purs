@@ -9,6 +9,7 @@ import App.Component.Common.Timeline.HandleAction.HandleHandleDocScrollEnd (hand
 import App.Component.Common.Timeline.HandleAction.HandleInitialize (handleInitialize)
 import App.Component.Common.Timeline.HandleAction.HandleReceive (handleReceive)
 import App.Component.Common.Timeline.HandleAction.HandleSelectItem (handleSelectItem)
+import App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate (handleSelectItemByDate)
 import App.Component.Common.Timeline.Type (Action(..), TimelineM)
 
 handleAction :: Action -> TimelineM Unit
