@@ -1,11 +1,13 @@
 module Util.Condition
   ( (?)
+  , (?→)
   , (↔)
+  , class Conditional
   , if_
+  , orDefault
   )
   where
 
-import Data.Eq ((==))
 import Data.Function (apply)
 import Data.Maybe (Maybe(..))
 

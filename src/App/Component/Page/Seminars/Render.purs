@@ -41,7 +41,7 @@ render s =
         [ timeline
             timeline'
             noSlotAddressIndex
-            { items: toMaybe s ?? (\s_ -> s_.seminars <#> \s' -> { date: s'.date, label: s'.title }) ⇔ mockItems
+            { items: toMaybe s ?? (\s_ -> s_.seminars <#> \s' -> { date: s'.date, label: s'.title ?→ "Vous ?" }) ⇔ mockItems
             , loading: isLoading s
             , defaultDate: LastBeforeNow
             }
