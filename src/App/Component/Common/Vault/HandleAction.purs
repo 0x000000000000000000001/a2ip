@@ -78,7 +78,7 @@ leaveTraceOfSuccessfulUnlock id = do
   setInLocalStorage 
     (successfulUnlockTraceKey id) 
     true 
-    (Just $ Seconds 10.0) -- 1 hour
+    (Just $ Seconds 3600.0) -- 1 hour
 
 detectTraceOfSuccessfulUnlock :: ∀ q i o. String -> VaultM q i o Boolean
 detectTraceOfSuccessfulUnlock id = do
