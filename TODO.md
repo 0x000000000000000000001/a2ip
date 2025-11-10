@@ -1,7 +1,5 @@
 -- p1
 
-stateful / stateless class
-input pour les styles étrangers
 refaire une passe intégrale : bien vérifier que infer est utilisé aux bons endroits, etc.
 mémoire vault
 tooltip sur les pins de la timeline, avec les titres
