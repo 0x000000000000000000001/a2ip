@@ -4,6 +4,7 @@ import Proem hiding (div)
 
 import App.Component.Router.Type (Action, RouteM)
 import App.Util.Capability.Navigate (Route, routePath)
+import Data.Maybe (Maybe(..))
 import Effect.Class (class MonadEffect)
 import Util.LocalStorage (setInLocalStorage)
 
@@ -38,4 +39,4 @@ scrollKey :: String
 scrollKey = "lastScrollEndPosY"
 
 saveScrollY :: ∀ m. MonadEffect m => Route -> Int -> m Unit
-saveScrollY route y = setInLocalStorage scrollKey (routePath route <> ":" <> show y)
+saveScrollY route y = setInLocalStorage scrollKey (routePath route <> ":" <> show y) Nothing

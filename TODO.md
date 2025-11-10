@@ -1,6 +1,5 @@
 -- p1
 
-refaire une passe intégrale : bien vérifier que infer est utilisé aux bons endroits, etc.
 mémoire vault
 tooltip sur les pins de la timeline, avec les titres
 modal filtres
