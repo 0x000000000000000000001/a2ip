@@ -1,11 +1,10 @@
 -- p1
 
 tooltip sur les pins de la timeline, avec les titres
-modal filtres
-filtres en tête de timeline (sticky) ?
 page conférences
 factoriser pages
 page colloques
+download pdf / word
 
 -- p2
 
