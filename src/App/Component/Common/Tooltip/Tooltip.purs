@@ -33,7 +33,7 @@ tooltip { inner, outer, style: { offset, minWidth: minWidth' } } =
     , div 
         [ class_ Outer.staticClass 
         , style do 
-            offset ?? padding1 ⇔ nothing
+            padding1 $ offset ??⇒ 1.0
             minWidth' ?? (applyToSize minWidth) ⇔ nothing
         ]
         [ div 

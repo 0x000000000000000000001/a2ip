@@ -87,7 +87,7 @@ render { input: { items, loading }, selectedItem } =
                                         ]
                                     ]
                             , style =
-                                { offset: Just $ -1.0
+                                { offset: Just 0.5
                                 , minWidth: Nothing
                                 }
                             }
