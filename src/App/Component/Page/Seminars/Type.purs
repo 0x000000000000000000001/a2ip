@@ -24,7 +24,7 @@ type Output = NoOutput
 
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
-  , videoRecord :: Slot YoutubeVideo.Query (Vault.Output YoutubeVideo.Output) NoSlotAddressIndex
+  , videoRecord :: Slot YoutubeVideo.Query (Vault.Output YoutubeVideo.Output) Seminar
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
   , themeDescription2 :: Slot Fragment.Query Fragment.Output NoSlotAddressIndex
   )
@@ -94,6 +94,7 @@ data Theme
   | WorldViews
 
 derive instance eqTheme :: Eq Theme
+derive instance ordTheme :: Ord Theme
 derive instance genericTheme :: Generic Theme _
 instance showTheme :: Show Theme where
   show = genericShow
