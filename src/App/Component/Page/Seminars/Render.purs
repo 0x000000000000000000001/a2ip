@@ -91,7 +91,7 @@ render s =
                                                             defaultInput
                                                                 { sources = 
                                                                     { first: ourImageRelativePath $ slugify $ clean $ s'.firstname <> " " <> s'.lastname
-                                                                    , fallback: Nothing
+                                                                    , fallback: Just $ ourImageRelativePath "anonymous"
                                                                     }
                                                                 , style = prettyErrorImageStyle
                                                                 }

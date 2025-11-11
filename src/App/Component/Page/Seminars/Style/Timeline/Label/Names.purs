@@ -8,12 +8,12 @@ module App.Component.Page.Seminars.Style.Timeline.Label.Names
 
 import Proem hiding (top, div)
 
-import CSS (flexEnd, justifyContent)
+import CSS (alignItems, column, flexDirection, flexEnd)
 import CSS as CSS
 import CSS.TextAlign (endTextAlign, textAlign)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import Util.Style.Style (alignItemsCenter, class_, displayFlex, flexGrow1, flexWrap, marginRight, reflectStaticClass, (.?))
+import Util.Style.Style (class_, displayFlex, flexGrow1, flexWrap, justifyContentCenter, marginRight, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -22,9 +22,10 @@ style :: CSS.CSS
 style = do
   staticClass .? do
     displayFlex
-    justifyContent flexEnd
-    alignItemsCenter
+    justifyContentCenter
+    alignItems flexEnd
     flexWrap
+    flexDirection column
     flexGrow1
     textAlign endTextAlign
     marginRight 0.8
