@@ -16,7 +16,6 @@ import CSS as CSS
 import Color (darken)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import Halogen.HTML.Properties (class_)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
 import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, classes, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStaticClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))

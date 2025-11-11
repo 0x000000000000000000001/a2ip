@@ -9,7 +9,7 @@ import Proem hiding (top)
 
 import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Pin as Pin
-import CSS (outline, rem, solid, transform)
+import CSS (outline, rem, solid)
 import CSS as CSS
 import Color (lighten)
 import Util.Proxy.Dictionary.Selected (selected_)
