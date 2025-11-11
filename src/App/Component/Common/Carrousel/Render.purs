@@ -9,7 +9,7 @@ import App.Component.Common.Carrousel.Style.Carrousel (staticClass)
 import App.Component.Common.Carrousel.Style.Control.Control as Control
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import App.Component.Common.Carrousel.Style.Counter as Counter
-import App.Component.Common.Carrousel.Style.Media as Media
+import App.Component.Common.Carrousel.Style.Media (media_)
 import App.Component.Common.Carrousel.Style.Sheet (sheet)
 import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
 import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
@@ -48,12 +48,7 @@ render s@{ id, input: { slides }, index } =
     div
       [ class_ staticClass ]
       [ sheet s
-      , div
-          [ classes
-              [ Media.staticClass
-              , Media.class' id
-              ]
-          ]
+      , media_ id
           ( case media of
               Just (Image url) ->
                 [ prettyErrorImage

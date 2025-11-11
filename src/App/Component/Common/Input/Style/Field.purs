@@ -1,16 +1,20 @@
 module App.Component.Common.Input.Style.Field
   ( class'
+  , field
+  , field_
   , staticClass
   , style
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import App.Component.Common.Input.Type (State)
 import CSS (backgroundColor, borderColor, color, outlineWidth, rem, solid)
 import CSS as CSS
-import Util.Style.Style (borderBottomWidth, borderLeftWidth, borderRadiusRem1, borderRightWidth, borderStyle, borderTopWidth, focus, fontSizeRem, inferClass, loadingGrey, noCss, overflowHidden, padding4, placeholder, red, reflectStaticClass, (.&), (.?), (:?))
+import DOM.HTML.Indexed (HTMLinput)
+import Halogen.HTML (HTML, Leaf, input)
+import Util.Style.Style (borderBottomWidth, borderLeftWidth, borderRadiusRem1, borderRightWidth, borderStyle, borderTopWidth, classes, focus, fontSizeRem, inferClass, loadingGrey, noCss, overflowHidden, padding4, placeholder, red, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -56,3 +60,9 @@ style
   where 
   __focus = staticClass .& focus
   __placeholder = class' id .& placeholder
+
+field :: ∀ w i. String -> Leaf HTMLinput w i
+field id props = input ([ classes [staticClass, class' id] ] <> props)
+
+field_ :: ∀ w i. String -> HTML w i
+field_ id = field id []

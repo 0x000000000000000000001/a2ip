@@ -1,19 +1,23 @@
 module App.Component.Common.Carrousel.Style.Media
   ( class'
+  , media
+  , media_
   , staticClass
   , style
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import App.Component.Common.Carrousel.Type (Media(..), State)
-import CSS (black)
+import CSS (alignItems, backgroundColor, black, column, flexDirection, flexEnd)
 import CSS as CSS
-import CSS.Background (backgroundColor)
+import CSS.TextAlign (endTextAlign, textAlign)
+import DOM.HTML.Indexed (HTMLdiv)
 import Data.Array ((!!))
 import Data.Maybe (Maybe(..))
-import Util.Style.Style (heightPct100, noCss, positionRelative, raw, inferClass, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, classes, displayFlex, flexGrow1, flexWrap, heightPct100, inferClass, justifyContentCenter, marginRight, noCss, positionRelative, raw, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -33,8 +37,14 @@ style { id, index, input: { slides } } = do
   class' id .? do 
     let
       slide = slides !! index
-      media = slide <#> _.media
+      media' = slide <#> _.media
 
-    case media of 
+    case media' of 
       Just (YoutubeVideo _) -> backgroundColor black
       _ -> noCss
+
+media :: ∀ w i. String -> Node HTMLdiv w i
+media id props = div ([ classes [staticClass, class' id] ] <> props)
+
+media_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+media_ id = media id []

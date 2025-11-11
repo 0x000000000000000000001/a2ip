@@ -4,15 +4,15 @@ module App.Component.Common.PrettyErrorImage.Render
 
 import Proem hiding (div)
 
+import App.Component.Common.PrettyErrorImage.Style.Image (image)
 import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (class', staticClass)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark as QuestionMark
-import App.Component.Common.PrettyErrorImage.Style.Image as Image
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, img)
+import Halogen.HTML (div)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
 import Html.Renderer.Halogen as HRH
@@ -33,10 +33,10 @@ render s@{ id, try } =
                   FirstTry url -> Just url
                   FallbackTry url -> Just url
                   _ -> Nothing
-            in img
-              $ [ classes [ Image.staticClass, Image.class' id ] ]
-                <> (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
-                <> [ onError \_ -> HandleError ]
+            in 
+              image id $
+                  (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
+                  <> [ onError \_ -> HandleError ]
           )
 
     ]

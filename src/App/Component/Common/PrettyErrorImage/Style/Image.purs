@@ -1,5 +1,7 @@
 module App.Component.Common.PrettyErrorImage.Style.Image
   ( class'
+  , image
+  , image_
   , staticClass
   , style
   )
@@ -10,8 +12,10 @@ import Proem hiding (top)
 import App.Component.Common.PrettyErrorImage.Type (State)
 import CSS (opacity)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLimg)
+import Halogen.HTML (HTML, Leaf, img)
 import Util.Style.Image (fill, objectFit)
-import Util.Style.Style (heightPct100, inferClass, reflectStaticClass, widthPct100, (.?))
+import Util.Style.Style (classes, heightPct100, inferClass, reflectStaticClass, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -38,3 +42,9 @@ style
 
     when loading' do 
       opacity 0.0
+
+image :: ∀ w i. String -> Leaf HTMLimg w i
+image id props = img ([ classes [staticClass, class' id] ] <> props)
+
+image_ :: ∀ w i. String -> HTML w i
+image_ id = image id []

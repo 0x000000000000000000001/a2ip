@@ -1,6 +1,8 @@
 module App.Component.Router.Menu.Style.Item.Icon.Container
   ( boxShadow
   , class'
+  , container
+  , container_
   , staticClass
   , style
   , width
@@ -15,8 +17,10 @@ import CSS (alignSelf, backgroundColor, rem, rgba, white)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)
 import CSS.Common (center)
+import DOM.HTML.Indexed (HTMLdiv)
 import Data.NonEmpty (singleton)
-import Util.Style.Style (borderRadiusPct50, displayFlex, heightRem, inferClass, justifyContentCenter, marginLeft, minWidthRem, reflectStaticClass, widthRem, (.?))
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (borderRadiusPct50, classes, displayFlex, heightRem, inferClass, justifyContentCenter, marginLeft, minWidthRem, reflectStaticClass, widthRem, (.?))
 
 width :: Number
 width = 3.2
@@ -45,3 +49,9 @@ style { id, unfold } = do
 
   class' id .? do 
     when unfold $ boxShadow 0.12 0.12
+
+container :: ∀ w i. String -> Node HTMLdiv w i
+container id props = div ([ classes [staticClass, class' id] ] <> props)
+
+container_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+container_ id = container id []

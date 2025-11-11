@@ -6,10 +6,10 @@ import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child as Child
 import App.Component.Router.Menu.Style.Item.Children as Children
-import App.Component.Router.Menu.Style.Item.Icon.Container as Container
+import App.Component.Router.Menu.Style.Item.Icon.Container (container_)
 import App.Component.Router.Menu.Style.Item.Icon.Icon as Icon
 import App.Component.Router.Menu.Style.Item.Item as Item
-import App.Component.Router.Menu.Style.Item.Label as Label
+import App.Component.Router.Menu.Style.Item.Label (label_)
 import App.Component.Router.Menu.Style.Logo as Logo
 import App.Component.Router.Menu.Style.Menu (class', staticClass)
 import App.Component.Router.Menu.Style.Sheet (sheet)
@@ -87,15 +87,13 @@ render s@{ id, animating, unfold } =
       , classes: Just [ Item.staticClass, Item.class' id ]
       , display: flex
       , children: 
-        [ div
-          [ classes [ Container.staticClass, Container.class' id ] ]
+        [ container_ id
           [ img
             [ class_ Icon.staticClass
             , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
             ]
           ]
-        , div
-          [ classes [ Label.staticClass, Label.class' id ] ]
+        , label_ id
           [ text label' ]
         , div
           [ class_ Children.staticClass ]

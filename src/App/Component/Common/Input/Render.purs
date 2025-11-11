@@ -4,7 +4,7 @@ module App.Component.Common.Input.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Input.Style.Field as Field
+import App.Component.Common.Input.Style.Field (field)
 import App.Component.Common.Input.Style.Input (staticClass, staticClassWhenOpen)
 import App.Component.Common.Input.Style.Label as Label
 import App.Component.Common.Input.Style.Sheet (sheet)
@@ -14,7 +14,7 @@ import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, input, text)
+import Halogen.HTML (div, text)
 import Halogen.HTML as HH
 import Halogen.HTML.Events (onBlur, onClick, onFocus, onMouseDown, onValueInput)
 import Halogen.HTML.Properties (ref)
@@ -47,9 +47,8 @@ render s@{ id, open, input: { placeholder, label } } =
                 [ text l ]
           )
         ⇔ noHtml
-    , input
-        ( [ classes [ Field.staticClass, Field.class' id ]
-          , ref inputRef
+    , field id
+        ( [ ref inputRef
           , onValueInput HandleNewValue
           , onFocus $ κ HandleFocus
           , onBlur $ κ HandleBlur
