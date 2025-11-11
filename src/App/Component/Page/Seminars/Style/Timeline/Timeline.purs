@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline
+module App.Component.Page.Seminars.Style.Timeline.Timeline
   ( staticClass
   , style
   ) where

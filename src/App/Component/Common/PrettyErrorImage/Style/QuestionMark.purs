@@ -8,9 +8,10 @@ module App.Component.Common.PrettyErrorImage.Style.QuestionMark
 import Proem hiding (top)
 
 import App.Component.Common.PrettyErrorImage.Type (State)
-import CSS (darken, opacity)
+import App.Component.Util.Type (Size(..), applyToSize)
+import CSS (darken, opacity, width)
 import CSS as CSS
-import Util.Style.Style (fill, loadingGrey, noCss, inferClass, reflectStaticClass, svg, widthRem, (.?), (.|>), (:?))
+import Util.Style.Style (fill, inferClass, loadingGrey, noCss, reflectStaticClass, svg, (.?), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -25,7 +26,8 @@ style
       { loading
       , style: 
           { questionMark:
-              { when:
+              { width: width'
+              , when:
                   { errored:
                       { color: color
                       }
@@ -35,10 +37,10 @@ style
       } 
   } = do
   staticClass .? do
-    widthRem 3.0
+    noCss
 
   class' id .? do
-    noCss
+    applyToSize width $ width' ??⇒ (Rem 3.0)
 
     when loading do
       opacity 0.0

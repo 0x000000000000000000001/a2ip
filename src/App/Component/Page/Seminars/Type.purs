@@ -4,6 +4,7 @@ import Proem
 
 import App.Component.Common.Fragment.Type as Fragment
 import App.Component.Common.Modal.Type as Modal
+import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
 import App.Component.Common.Timeline.Type as Timeline
 import App.Component.Common.Vault.Type as Vault
 import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
@@ -25,6 +26,7 @@ type Output = NoOutput
 
 type Slots =
   ( timeline :: Slot Timeline.Query Timeline.Output NoSlotAddressIndex
+  , timelinePortraits :: Slot PrettyErrorImage.Query PrettyErrorImage.Output String
   , videoRecord :: Slot YoutubeVideo.Query (Vault.Output YoutubeVideo.Output) Seminar
   , themeDescription :: Slot Fragment.Query (Modal.Output Fragment.Output) NoSlotAddressIndex
   , themeDescription2 :: Slot Fragment.Query Fragment.Output NoSlotAddressIndex

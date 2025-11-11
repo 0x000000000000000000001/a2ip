@@ -1,7 +1,6 @@
 -- p1
 
-check si existe de quoi convertir les &... html en caractères normaux
-petites photos des intervenants dans les tooltips
+helpers pour chaque element (div [ class_ Label.staticClass ] -> label)
 page conférences
 factoriser pages
 page colloques

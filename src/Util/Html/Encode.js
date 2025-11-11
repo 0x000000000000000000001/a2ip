@@ -1,11 +1,35 @@
-const textArea = document.createElement('textarea');
+import { isNode } from '../Util.Env/index.js'
+
+const textArea = !isNode ? document.createElement('textarea') : null;
 
 export const decodeHtmlEntities = function(str) {
-    textArea.innerHTML = str;
-    return textArea.value;
+    // Browser
+    if (textArea) {
+        textArea.innerHTML = str;
+        return textArea.value;
+    }
+    
+    // Node
+    try {
+        const he = require('he');
+        return he.decode(str);
+    } catch (e) {
+        return str;
+    }
 };
 
 export const encodeHtmlEntities = function(str) {
-    textArea.textContent = str;
-    return textArea.innerHTML;
+    // Browser
+    if (textArea) {
+        textArea.textContent = str;
+        return textArea.innerHTML;
+    }
+    
+    // Node
+    try {
+        const he = require('he');
+        return he.encode(str);
+    } catch (e) {
+        return str;
+    }
 };

@@ -6,6 +6,8 @@ import Proem hiding (div)
 
 import App.Component.Common.Fragment.Component as Fragment
 import App.Component.Common.Modal.Component (modal)
+import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.Timeline.Component (timeline)
 import App.Component.Common.Timeline.Type (DefaultDate(..))
 import App.Component.Common.Vault.Component (vault)
@@ -17,23 +19,32 @@ import App.Component.Page.Seminars.HandleVideoRecordOutput (handleVideoRecordOut
 import App.Component.Page.Seminars.Style.Poster as Poster
 import App.Component.Page.Seminars.Style.Seminars (staticClass)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
-import App.Component.Page.Seminars.Style.Timeline as Timeline
+import App.Component.Page.Seminars.Style.Timeline.Label.Lastname as Lastname
+import App.Component.Page.Seminars.Style.Timeline.Label.Names (names_)
+import App.Component.Page.Seminars.Style.Timeline.Label.Person (person_)
+import App.Component.Page.Seminars.Style.Timeline.Label.Person as Person
+import App.Component.Page.Seminars.Style.Timeline.Label.Portrait (prettyErrorImageStyle)
+import App.Component.Page.Seminars.Style.Timeline.Label.Quote as Quote
+import App.Component.Page.Seminars.Style.Timeline.Label.Quoted as Quoted
+import App.Component.Page.Seminars.Style.Timeline.Label.Title as Title
+import App.Component.Page.Seminars.Style.Timeline.Timeline as Timeline
 import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockItems, themeInfo)
+import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
-import CSS (alignItems, flexStart)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (br_, div, div_, p, p_, span_, strong_, text)
-import Halogen.HTML.CSS (style)
+import Halogen.HTML (div, div_, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Condition ((?), (↔))
 import Util.Html.Clean (clean)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
 import Util.Proxy.Dictionary.Timeline (timeline')
+import Util.Proxy.Dictionary.TimelinePortraits (timelinePortraits')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
-import Util.Style.Style (class_, displayFlex, flexGrow1, fontSizePct, justifyContentCenter, minWidthRem, padding1, positionRelative)
+import Util.String (slugify)
+import Util.Style.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -55,36 +66,35 @@ render s =
                                     let s'' = clean s'.title 
                                         isEmpty = s'' == ""
                                     in  
-                                        div_ 
+                                        div_
                                             [ isEmpty 
                                                     ? text "Vous ?" 
                                                     ↔ div 
-                                                        [ style do
-                                                            minWidthRem 14.0 
-                                                            displayFlex
-                                                            justifyContentCenter
-                                                            alignItems flexStart
-                                                        ] 
+                                                        [ class_ Title.staticClass ] 
                                                         [ div 
-                                                            [ style do 
-                                                                fontSizePct 240.0 
-                                                                positionRelative
-                                                            ] 
+                                                            [ class_ Quote.staticClass ] 
                                                             [ text "“" ]
                                                         , div 
-                                                            [ style do 
-                                                                flexGrow1
-                                                                padding1 0.5
-                                                            ] 
+                                                            [ class_ Quoted.staticClass ] 
                                                             [ text s'' ]
                                                         ]
-                                            , isEmpty ? noHtml ↔ br_
-                                            , isEmpty ? noHtml ↔ br_
                                             , isEmpty 
                                                     ? noHtml 
-                                                    ↔ span_ 
-                                                        [ text $ clean s'.firstname <> " "
-                                                        , strong_ [ text $ clean s'.lastname ] 
+                                                    ↔ person_
+                                                        [ names_
+                                                            [ div_ [ text $ clean s'.firstname <> " " ]
+                                                            , div [ class_ Lastname.staticClass ] [ text $ clean s'.lastname ]
+                                                            ] 
+                                                        , prettyErrorImage
+                                                            timelinePortraits'
+                                                            (s'.firstname <> s'.lastname <> show s'.date)
+                                                            defaultInput
+                                                                { sources = 
+                                                                    { first: ourImageRelativePath $ slugify $ clean $ s'.firstname <> " " <> s'.lastname
+                                                                    , fallback: Nothing
+                                                                    }
+                                                                , style = prettyErrorImageStyle
+                                                                }
                                                         ]
                                             ]
                                 }

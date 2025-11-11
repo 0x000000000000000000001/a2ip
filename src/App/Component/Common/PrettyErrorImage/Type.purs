@@ -44,7 +44,8 @@ type Style =
   , height :: Maybe Size
   , border :: Border
   , questionMark :: 
-      { when :: 
+      { width :: Maybe Size 
+      , when :: 
           { errored :: 
               { color :: Maybe Color
               }
@@ -79,7 +80,8 @@ defaultStyle =
       , color: Nothing
       }
   , questionMark: 
-      { when: 
+      { width: Nothing
+      , when: 
           { errored: 
               { color: Nothing
               }
