@@ -3,34 +3,45 @@ module Util.Condition
   , (?→)
   , (↔)
   , class Conditional
+  , isFalsy
   , if_
   , orDefault
   )
   where
 
+import Data.Either (Either, isLeft)
 import Data.Function (apply)
-import Data.Maybe (Maybe(..))
+import Data.Maybe (Maybe, isNothing)
+import Prelude (not)
 
-if_ :: ∀ a. Boolean -> a -> a -> a
-if_ b t e = if b then t else e
+if_ :: ∀ a b. Conditional a => a -> b -> b -> b
+if_ b t e = if isFalsy b then e else t
 
 infixl 1 if_ as ?
 
 infixr 0 apply as ↔
 
 class Conditional a where
-  orDefault :: a -> a -> a
+  isFalsy :: a -> Boolean
 
-instance defaultableString :: Conditional String where
-  orDefault "" default = default
-  orDefault str _ = str
+instance conditionalBoolean :: Conditional Boolean where
+  isFalsy = not
 
-instance defaultableMaybe :: Conditional (Maybe a) where
-  orDefault Nothing default = default
-  orDefault (Just x) _ = Just x
+instance conditionalString :: Conditional String where
+  isFalsy "" = true
+  isFalsy _ = false
 
-instance defaultableArray :: Conditional (Array a) where
-  orDefault [] default = default
-  orDefault arr _ = arr
+instance conditionalMaybe :: Conditional (Maybe a) where
+  isFalsy = isNothing
+
+instance conditionalEither :: Conditional (Either a b) where
+  isFalsy = isLeft
+
+instance conditionalArray :: Conditional (Array a) where
+  isFalsy [] = true
+  isFalsy _ = false
+
+orDefault :: ∀ a. Conditional a => a -> a -> a
+orDefault val def = val ? val ↔ def
 
 infixr 8 orDefault as ?→
