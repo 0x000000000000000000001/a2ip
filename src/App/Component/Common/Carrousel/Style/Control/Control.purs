@@ -1,20 +1,25 @@
 module App.Component.Common.Carrousel.Style.Control.Control
-  ( staticClass
+  ( control
+  , control_
+  , staticClass
   , staticClassWhenNext
   , staticClassWhenPrev
   , style
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import App.Component.Common.Carrousel.Style.Control.Icon as Icon
 import CSS (backgroundColor, color, hover, rgba, white)
 import CSS as CSS
 import Color (darken)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Halogen.HTML.Properties (class_)
 import Util.Proxy.Dictionary.Next (next_)
 import Util.Proxy.Dictionary.Prev (prev_)
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStaticClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, centerToCenterLeft, centerToCenterRight, classes, cursorPointer, displayFlex, fontSizePct, fontWeightBold, heightRem, justifyContentCenter, leftRem, refineClass', reflectStaticClass, rightRem, userSelectNone, widthRem, (.&:), (.?), (.|*.), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -62,3 +67,9 @@ style = do
   __hover = staticClass .&: hover
   a___icon = staticClassWhenPrev .|*. Icon.staticClass
   b___icon = staticClassWhenNext .|*. Icon.staticClass
+
+control :: ∀ w i. Boolean -> Node HTMLdiv w i
+control prev props = div ([ classes [ staticClass, prev ? staticClassWhenPrev ↔ staticClassWhenNext ] ] <> props)
+
+control_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+control_ prev = control prev []

@@ -1,14 +1,19 @@
 module App.Component.Common.Carrousel.Style.Caption
-  ( staticClass
+  ( caption
+  , caption_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import CSS (color, rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem4, displayFlex, reflectStaticClass, justifyContentCenter, padding2, topCenterToTopCenter, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (borderRadiusRem4, class_, displayFlex, justifyContentCenter, padding2, reflectStaticClass, topCenterToTopCenter, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -23,3 +28,9 @@ style = do
     borderRadiusRem4 0.0 0.0 0.6 0.6
     color white
     padding2 0.3 0.5
+
+caption :: ∀ w i. Node HTMLdiv w i
+caption props = div ([ class_ staticClass ] <> props)
+
+caption_ :: ∀ w i. Array (HTML w i) -> HTML w i
+caption_ = caption []

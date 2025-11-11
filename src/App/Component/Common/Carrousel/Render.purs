@@ -4,11 +4,11 @@ module App.Component.Common.Carrousel.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Carrousel.Style.Caption as Caption
+import App.Component.Common.Carrousel.Style.Caption (caption_)
 import App.Component.Common.Carrousel.Style.Carrousel (staticClass)
-import App.Component.Common.Carrousel.Style.Control.Control as Control
-import App.Component.Common.Carrousel.Style.Control.Icon as Icon
-import App.Component.Common.Carrousel.Style.Counter as Counter
+import App.Component.Common.Carrousel.Style.Control.Control (control)
+import App.Component.Common.Carrousel.Style.Control.Icon (icon_)
+import App.Component.Common.Carrousel.Style.Counter (counter_)
 import App.Component.Common.Carrousel.Style.Media (media_)
 import App.Component.Common.Carrousel.Style.Sheet (sheet)
 import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
@@ -36,7 +36,7 @@ import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
 import Util.Style.Image (contain)
-import Util.Style.Style (class_, classes, transparent)
+import Util.Style.Style (class_, transparent)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, input: { slides }, index } =
@@ -81,22 +81,14 @@ render s@{ id, input: { slides }, index } =
                 ]
               _ -> []
           )
-      , div
-          [ classes [ Control.staticClass, Control.staticClassWhenPrev ]
-          , onClick $ κ GoToPrevious
-          ]
-          [ div [ class_ Icon.staticClass ] [ text "◀︎" ] ]
-      , div
-          [ classes [ Control.staticClass, Control.staticClassWhenNext ]
-          , onClick $ κ GoToNext
-          ]
-          [ div [ class_ Icon.staticClass ] [ text "▶︎" ] ]
+      , control true
+          [ onClick $ κ GoToPrevious ]
+          [ icon_ [ text "◀︎" ] ]
+      , control false
+          [ onClick $ κ GoToNext ]
+          [ icon_ [ text "▶︎" ] ]
       , caption == ""
           ? noHtml
-          ↔ div
-              [ class_ Caption.staticClass ]
-              [ text caption ]
-      , div
-          [ class_ Counter.staticClass ]
-          [ text $ (show $ index + 1) <> " / " <> (show $ length slides) ]
+          ↔ caption_ [ text caption ]
+      , counter_ [ text $ (show $ index + 1) <> " / " <> (show $ length slides) ]
       ]

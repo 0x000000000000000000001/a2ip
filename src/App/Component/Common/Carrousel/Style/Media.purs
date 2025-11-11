@@ -10,14 +10,13 @@ module App.Component.Common.Carrousel.Style.Media
 import Proem hiding (top, div)
 
 import App.Component.Common.Carrousel.Type (Media(..), State)
-import CSS (alignItems, backgroundColor, black, column, flexDirection, flexEnd)
+import CSS (backgroundColor, black)
 import CSS as CSS
-import CSS.TextAlign (endTextAlign, textAlign)
 import DOM.HTML.Indexed (HTMLdiv)
 import Data.Array ((!!))
 import Data.Maybe (Maybe(..))
 import Halogen.HTML (HTML, Node, div)
-import Util.Style.Style (class_, classes, displayFlex, flexGrow1, flexWrap, heightPct100, inferClass, justifyContentCenter, marginRight, noCss, positionRelative, raw, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
+import Util.Style.Style (classes, heightPct100, inferClass, noCss, positionRelative, raw, reflectStaticClass, topLeftToTopLeft, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

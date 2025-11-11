@@ -1,14 +1,19 @@
 module App.Component.Common.Carrousel.Style.Counter
-  ( staticClass
+  ( counter
+  , counter_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import CSS (color, rgba, white)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, displayFlex, reflectStaticClass, justifyContentCenter, padding2, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (borderRadiusRem4, bottomCenterToBottomCenter, class_, displayFlex, justifyContentCenter, padding2, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -23,3 +28,9 @@ style = do
     borderRadiusRem4 0.6 0.6 0.0 0.0
     color white
     padding2 0.3 0.5
+
+counter :: ∀ w i. Node HTMLdiv w i
+counter props = div ([ class_ staticClass ] <> props)
+
+counter_ :: ∀ w i. Array (HTML w i) -> HTML w i
+counter_ = counter []
