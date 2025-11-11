@@ -19,6 +19,7 @@ You can edit this file as you like.
   , "const"
   , "css"
   , "datetime"
+  , "dom-indexed"
   , "effect"
   , "either"
   , "enums"

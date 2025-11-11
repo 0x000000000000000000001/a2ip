@@ -22,7 +22,6 @@ import App.Component.Page.Seminars.Style.Sheet (sheet)
 import App.Component.Page.Seminars.Style.Timeline.Label.Lastname as Lastname
 import App.Component.Page.Seminars.Style.Timeline.Label.Names (names_)
 import App.Component.Page.Seminars.Style.Timeline.Label.Person (person_)
-import App.Component.Page.Seminars.Style.Timeline.Label.Person as Person
 import App.Component.Page.Seminars.Style.Timeline.Label.Portrait (prettyErrorImageStyle)
 import App.Component.Page.Seminars.Style.Timeline.Label.Quote as Quote
 import App.Component.Page.Seminars.Style.Timeline.Label.Quoted as Quoted
