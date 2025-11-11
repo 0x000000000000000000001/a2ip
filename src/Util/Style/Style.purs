@@ -997,7 +997,7 @@ centerToCenter = centerToCenterWithRemDelta 0.0 0.0
 centerRightToCenterWithRemDelta :: Number -> Number -> CSS.CSS
 centerRightToCenterWithRemDelta x y = do
   positionAbsoluteOnlyTranslatePct 0.0 (-50.0)
-  right $ calcSum (pct 50.0) (rem x)
+  right $ calcSum (pct 50.0) (rem $ -1.0 * x)
   top $ calcSum (pct 50.0) (rem y)
 
 centerRightToCenter :: CSS.CSS

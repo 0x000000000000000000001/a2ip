@@ -21,19 +21,19 @@ import App.Component.Page.Seminars.Style.Timeline as Timeline
 import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockItems, themeInfo)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
+import CSS (alignItems, flexStart)
 import Data.Maybe (Maybe(..))
-import Data.String (trim)
 import Halogen (ComponentHTML)
 import Halogen.HTML (br_, div, div_, p, p_, span_, strong_, text)
 import Halogen.HTML.CSS (style)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Condition ((?), (↔))
-import Util.Html.Clean (untag)
+import Util.Html.Clean (clean)
 import Util.Proxy.Dictionary.ThemeDescription (themeDescription')
 import Util.Proxy.Dictionary.Timeline (timeline')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
-import Util.Style.Style (class_, minWidthRem)
+import Util.Style.Style (class_, displayFlex, flexGrow1, fontSizePct, justifyContentCenter, minWidthRem, padding1, positionRelative)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -52,18 +52,39 @@ render s =
                             \s' -> 
                                 { date: s'.date
                                 , label:  
-                                    let s'' = trim $ untag s'.title 
+                                    let s'' = clean s'.title 
                                         isEmpty = s'' == ""
                                     in  
                                         div_ 
-                                            [ isEmpty ? text "Vous ?" ↔ div [ style $ minWidthRem 14.0 ] [ text s'' ]
+                                            [ isEmpty 
+                                                    ? text "Vous ?" 
+                                                    ↔ div 
+                                                        [ style do
+                                                            minWidthRem 14.0 
+                                                            displayFlex
+                                                            justifyContentCenter
+                                                            alignItems flexStart
+                                                        ] 
+                                                        [ div 
+                                                            [ style do 
+                                                                fontSizePct 240.0 
+                                                                positionRelative
+                                                            ] 
+                                                            [ text "“" ]
+                                                        , div 
+                                                            [ style do 
+                                                                flexGrow1
+                                                                padding1 0.5
+                                                            ] 
+                                                            [ text s'' ]
+                                                        ]
                                             , isEmpty ? noHtml ↔ br_
                                             , isEmpty ? noHtml ↔ br_
                                             , isEmpty 
                                                     ? noHtml 
                                                     ↔ span_ 
-                                                        [ text $ untag s'.firstname <> " "
-                                                        , strong_ [ text $ untag s'.lastname ] 
+                                                        [ text $ clean s'.firstname <> " "
+                                                        , strong_ [ text $ clean s'.lastname ] 
                                                         ]
                                             ]
                                 }

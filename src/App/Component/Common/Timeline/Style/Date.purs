@@ -2,18 +2,16 @@ module App.Component.Common.Timeline.Style.Date
   ( staticClass
   , fontSizePct
   , style
-  , translate
-  , translateXDelta
   )
   where
 
 import Proem hiding (top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
-import CSS (Transformation, color, column, flexDirection, pct, rem, transform)
+import CSS (alignItems, color, column, flexDirection, flexEnd)
 import CSS as CSS
 import Color (darken)
-import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, leftPct50, positionAbsolute, topPct50, userSelectNone, (.?))
+import Util.Style.Style (centerRightToCenterWithRemDelta, displayFlex, justifyContentCenter, reflectStaticClass, userSelectNone, (.?))
 import Util.Style.Style as UtilStyle
 
 staticClass :: String
@@ -22,22 +20,13 @@ staticClass = reflectStaticClass ι
 fontSizePct :: Number 
 fontSizePct = 110.0
 
-translateXDelta :: Number
-translateXDelta = -2.4
-
-translate :: Number -> Transformation
-translate xDelta = CSS.translate (rem xDelta) (pct $ -50.0)
-
 style :: CSS.CSS
 style = do
   staticClass .? do
-    positionAbsolute
-    topPct50
-    leftPct50
-    transform $ translate translateXDelta
+    centerRightToCenterWithRemDelta (-1.4) 0.0
     displayFlex
     justifyContentCenter
-    alignItemsCenter
+    alignItems flexEnd
     flexDirection column
     UtilStyle.fontSizePct fontSizePct
     userSelectNone

@@ -6,6 +6,7 @@ module App.Component.Common.Tooltip.Style.Outer.Outer
 
 import Proem hiding (top)
 
+import CSS (zIndex)
 import CSS as CSS
 import Util.Style.Style (centerLeftToCenterRight, positionRelative, reflectStaticClass, (.?))
 
@@ -17,3 +18,4 @@ style = do
   staticClass .? do
     positionRelative
     centerLeftToCenterRight
+    zIndex 10

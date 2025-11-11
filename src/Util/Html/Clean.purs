@@ -1,5 +1,6 @@
 module Util.Html.Clean
-  ( cleanAttributesInTag
+  ( clean
+  , cleanAttributesInTag
   , cleanAttributesInTags
   , findUnescapedQuote
   , removeAttribute
@@ -13,7 +14,8 @@ import Proem
 
 import Data.Array (foldl, snoc)
 import Data.Maybe (Maybe(..))
-import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray)
+import Data.String (CodePoint, Pattern(..), codePointFromChar, drop, fromCodePointArray, indexOf, split, take, toCodePointArray, trim)
+import Util.Html.Encode (decodeHtmlEntities)
 
 -- | Remove a specific attribute from an HTML tag string.
 -- |
@@ -171,3 +173,6 @@ untag str =
     | codePoint == codePointFromChar '>' && acc.inTag = acc { inTag = false }
     | acc.inTag = acc
     | otherwise = acc { result = snoc acc.result codePoint }
+
+clean :: String -> String
+clean = removeComments ▷ untag ▷ decodeHtmlEntities ▷ trim
