@@ -16,24 +16,24 @@ import App.Component.Common.YoutubeVideo.Type (defaultStyle)
 import App.Component.Page.Seminars.HandleThemeDescriptionModalOutput (handleThemeDescriptionModalOutput)
 import App.Component.Page.Seminars.HandleTimelineOutput (handleTimelineOutput)
 import App.Component.Page.Seminars.HandleVideoRecordOutput (handleVideoRecordOutput)
-import App.Component.Page.Seminars.Style.Poster as Poster
-import App.Component.Page.Seminars.Style.Seminars (staticClass)
+import App.Component.Page.Seminars.Style.Poster (poster_)
+import App.Component.Page.Seminars.Style.Seminars (seminars_)
 import App.Component.Page.Seminars.Style.Sheet (sheet)
-import App.Component.Page.Seminars.Style.Timeline.Label.Lastname as Lastname
+import App.Component.Page.Seminars.Style.Timeline.Label.Lastname (lastname_)
 import App.Component.Page.Seminars.Style.Timeline.Label.Names (names_)
 import App.Component.Page.Seminars.Style.Timeline.Label.Person (person_)
 import App.Component.Page.Seminars.Style.Timeline.Label.Portrait (prettyErrorImageStyle)
-import App.Component.Page.Seminars.Style.Timeline.Label.Quote as Quote
-import App.Component.Page.Seminars.Style.Timeline.Label.Quoted as Quoted
-import App.Component.Page.Seminars.Style.Timeline.Label.Title as Title
-import App.Component.Page.Seminars.Style.Timeline.Timeline as Timeline
+import App.Component.Page.Seminars.Style.Timeline.Label.Quote (quote_)
+import App.Component.Page.Seminars.Style.Timeline.Label.Quoted (quoted_)
+import App.Component.Page.Seminars.Style.Timeline.Label.Title (title_)
+import App.Component.Page.Seminars.Style.Timeline.Timeline (timeline_)
 import App.Component.Page.Seminars.Type (Action(..), Slots, State, mockItems, themeInfo)
 import App.Component.Page.Util.Image (ourImageRelativePath)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, div_, p, p_, text)
+import Halogen.HTML (div_, p, p_, text)
 import Halogen.HTML.Events (onClick)
 import Network.RemoteData (RemoteData(..), isLoading, toMaybe)
 import Util.Condition ((?), (↔))
@@ -43,15 +43,12 @@ import Util.Proxy.Dictionary.Timeline (timeline')
 import Util.Proxy.Dictionary.TimelinePortraits (timelinePortraits')
 import Util.Proxy.Dictionary.VideoRecord (videoRecord')
 import Util.String (slugify)
-import Util.Style.Style (class_)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
-  div
-    [ class_ staticClass ]
+  seminars_
     [ sheet
-    , div
-        [ class_ Timeline.staticClass ]
+    , timeline_
         [ timeline
             timeline'
             noSlotAddressIndex
@@ -68,21 +65,16 @@ render s =
                                         div_
                                             [ isEmpty 
                                                     ? text "Vous ?" 
-                                                    ↔ div 
-                                                        [ class_ Title.staticClass ] 
-                                                        [ div 
-                                                            [ class_ Quote.staticClass ] 
-                                                            [ text "“" ]
-                                                        , div 
-                                                            [ class_ Quoted.staticClass ] 
-                                                            [ text s'' ]
+                                                    ↔ title_
+                                                        [ quote_ [ text "“" ]
+                                                        , quoted_ [ text s'' ]
                                                         ]
                                             , isEmpty 
                                                     ? noHtml 
                                                     ↔ person_
                                                         [ names_
                                                             [ div_ [ text $ clean s'.firstname <> " " ]
-                                                            , div [ class_ Lastname.staticClass ] [ text $ clean s'.lastname ]
+                                                            , lastname_ [ text $ clean s'.lastname ]
                                                             ] 
                                                         , prettyErrorImage
                                                             timelinePortraits'
@@ -104,8 +96,7 @@ render s =
             }
             handleTimelineOutput
         ]
-    , div 
-        [ class_ Poster.staticClass ]
+    , poster_
         ( case s of 
             Success { selectedSeminar: Just { seminar, openThemeDescriptionModal } } ->
                 [ p_ [ text $ "title: " <> seminar.title ]

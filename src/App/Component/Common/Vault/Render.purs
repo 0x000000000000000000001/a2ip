@@ -8,14 +8,14 @@ import App.Component.Common.Input.Component (input)
 import App.Component.Common.Input.Type (defaultInput)
 import App.Component.Common.Vault.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Vault.HandlePasswordOutput (handlePasswordOutput)
-import App.Component.Common.Vault.Style.Core as Core
+import App.Component.Common.Vault.Style.Core (core_)
 import App.Component.Common.Vault.Style.Door (door_)
-import App.Component.Common.Vault.Style.Door as Door
+import App.Component.Common.Vault.Style.Front (front)
 import App.Component.Common.Vault.Style.Front as Front
-import App.Component.Common.Vault.Style.Lock as Lock
-import App.Component.Common.Vault.Style.Message as Message
+import App.Component.Common.Vault.Style.Lock (lock_)
+import App.Component.Common.Vault.Style.Message (message_)
 import App.Component.Common.Vault.Style.Sheet (sheet)
-import App.Component.Common.Vault.Style.Vault (staticClass)
+import App.Component.Common.Vault.Style.Vault (vault_)
 import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
@@ -24,10 +24,9 @@ import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (br_, div, slot, span_, strong_, text)
 import Halogen.HTML.Events (onKeyDown)
-import Html.Renderer.Halogen as HRH
 import Util.Proxy.Dictionary.Inner (inner')
 import Util.Proxy.Dictionary.Password (password')
-import Util.Style.Style (class_, classes, transparent)
+import Util.Style.Style (classes, transparent)
 import Web.UIEvent.KeyboardEvent (code)
 
 render 
@@ -36,12 +35,9 @@ render
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
 render innerComponent { phase, input: { innerInput } } = 
-  div 
-    [ class_ staticClass
-    ]
+  vault_
     [ sheet
-    , div 
-        [ class_ Core.staticClass ]
+    , core_
         [ slot
             inner'
             noSlotAddressIndex
@@ -49,20 +45,11 @@ render innerComponent { phase, input: { innerInput } } =
             innerInput
             handleInnerOutput
         ]
-    , div 
-        [ classes
-            [ Front.staticClass
-            , isLocked phase ? "" ↔ Front.staticClassWhen phase
-            , case phase of 
-                Locked { incorrect: true } -> Front.staticClassWhenIncorrect
-                _ -> ""
-            ]
-        , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
-        ]
-        [ door_ true 
+    , front phase 
+        [ onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing ]
+        [ door_ true
         , door_ false
-        , div 
-            [ class_ Message.staticClass ]
+        , message_
             [ span_ $ 
                 not (isLocked phase) 
                     ? [text "Parfait !"]
@@ -93,7 +80,7 @@ render innerComponent { phase, input: { innerInput } } =
                     )
                 ]
             ]
-        , HRH.render [ class_ Lock.staticClass ] frontDoorSvg
+        , lock_ lockSvg
         , input
             password'
             noSlotAddressIndex
@@ -120,8 +107,8 @@ render innerComponent { phase, input: { innerInput } } =
         ]
     ]
 
-frontDoorSvg :: String
-frontDoorSvg = """
+lockSvg :: String
+lockSvg = """
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 

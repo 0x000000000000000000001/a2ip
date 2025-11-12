@@ -8,13 +8,14 @@ import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
 import App.Component.Common.PrettyErrorImage.Type (defaultInput)
 import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
-import App.Component.Page.About.Style.About (staticClass)
-import App.Component.Page.About.Style.Card.Card as Card
+import App.Component.Page.About.Style.About (about_)
+import App.Component.Page.About.Style.Card.Card (card_)
 import App.Component.Page.About.Style.Card.Line (line_)
-import App.Component.Page.About.Style.Card.Names as Names
+import App.Component.Page.About.Style.Card.Names (names_)
+import App.Component.Page.About.Style.Card.Portrait (portrait_)
 import App.Component.Page.About.Style.Card.Portrait as Portrait
-import App.Component.Page.About.Style.Collaborators as Collaborators
-import App.Component.Page.About.Style.Members as Members
+import App.Component.Page.About.Style.Collaborators (collaborators_)
+import App.Component.Page.About.Style.Members (members_)
 import App.Component.Page.About.Style.Sheet (sheet)
 import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
 import App.Component.Page.Util.Image (ourImageRelativePath)
@@ -24,55 +25,50 @@ import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, div, text)
+import Halogen.HTML (HTML, text)
 import Html.Renderer.Halogen (render_)
 import Network.RemoteData (isSuccess, toMaybe)
 import Prim.Row (class Cons)
 import Record (get)
 import Type.Prelude (Proxy)
-import Util.Proxy.Dictionary.Collaborators (collaborators', collaborators_)
+import Util.Proxy.Dictionary.Collaborators (collaborators')
 import Util.Proxy.Dictionary.Country (country')
 import Util.Proxy.Dictionary.Email (email')
 import Util.Proxy.Dictionary.Job (job')
-import Util.Proxy.Dictionary.Members (members', members_)
+import Util.Proxy.Dictionary.Members (members')
 import Util.Proxy.Dictionary.Phone (phone')
 import Util.Proxy.Dictionary.Portraits (portraits')
 import Util.Proxy.Dictionary.Role (role')
 import Util.Proxy.Dictionary.Separators (separators')
 import Util.String (slugify)
-import Util.Style.Style (class_, classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
-  div
-    [ class_ staticClass ]
-    $
-      [ sheet
-      , separator 
-          separators' 
-          members_
-          { text: "Bureau des membres de l'association"
-          , textElementTag: H1
-          , loading: not $ isSuccess s.members
-          }
-      , div
-          [ class_ Members.staticClass ]
-          $ mapWithIndex
-              (renderCard members' $ not $ isSuccess s.members)
-              (toMaybe s.members ??⇒ replicate 6 loadingPerson)
-      , separator
-          separators'
-          collaborators_
-          { text: "Membres du comité scientifique international"
-          , textElementTag: H1
-          , loading: not $ isSuccess s.collaborators
-          }
-      , div
-          [ class_ Collaborators.staticClass ]
-          $ mapWithIndex
-              (renderCard collaborators' $ not $ isSuccess s.collaborators)
-              (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
-      ]
+  about_
+    [ sheet
+    , separator 
+        separators' 
+        (ᴠ members')
+        { text: "Bureau des membres de l'association"
+        , textElementTag: H1
+        , loading: not $ isSuccess s.members
+        }
+    , members_
+        $ mapWithIndex
+            (renderCard members' $ not $ isSuccess s.members)
+            (toMaybe s.members ??⇒ replicate 6 loadingPerson)
+    , separator
+        separators'
+        (ᴠ collaborators')
+        { text: "Membres du comité scientifique international"
+        , textElementTag: H1
+        , loading: not $ isSuccess s.collaborators
+        }
+    , collaborators_
+        $ mapWithIndex
+            (renderCard collaborators' $ not $ isSuccess s.collaborators)
+            (toMaybe s.collaborators ??⇒ replicate 8 loadingPerson)
+    ]
 
 loadingPlaceholder :: String
 loadingPlaceholder = "__loading__"
@@ -91,16 +87,10 @@ loadingPerson =
 
 renderCard :: ∀ sym. IsSymbol sym => Proxy sym -> Boolean -> Int -> Person -> ComponentHTML Action Slots AppM
 renderCard section isLoading idx member =
-  div
-    [ classes
-        $ [ Card.staticClass ]
-        <> (isLoading ? [ Card.staticClassWhenLoading ] ↔ [ Card.staticClassWhenLoaded ])
-    ]
-    ( [ div
-          [ class_ Names.staticClass ]
+  card_ isLoading
+    ( [ names_
           [ text $ isLoading ? loadingPlaceholder ↔ trim $ member.firstname <> " " <> member.lastname ]
-      , div 
-          [ class_ Portrait.staticClass ]
+      , portrait_
           [ prettyErrorImage
               portraits'
               ( (ᴠ section)

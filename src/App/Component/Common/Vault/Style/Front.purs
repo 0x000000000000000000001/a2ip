@@ -26,7 +26,7 @@ import Data.Tuple.Nested ((/\))
 import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
-import Util.Style.Style (alignItemsCenter, class_, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style.Style (alignItemsCenter, class_, classes, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -142,8 +142,18 @@ style = do
   c___message = __incorrect :|*. Message.staticClass
   ______strong = c___message :|*: strong
 
-front :: ∀ w i. Node HTMLdiv w i
-front props = div ([ class_ staticClass ] <> props)
+front :: ∀ w i. Phase -> Node HTMLdiv w i
+front phase props = 
+  div 
+  ( [ classes 
+        [staticClass
+        , staticClassWhen phase
+        , case phase of
+            Locked { incorrect: true } -> staticClassWhenIncorrect
+            _ -> ""
+        ] 
+    ] <> props
+  )
 
-front_ :: ∀ w i. Array (HTML w i) -> HTML w i
-front_ = front []
+front_ :: ∀ w i. Phase -> Array (HTML w i) -> HTML w i
+front_ phase = front phase []

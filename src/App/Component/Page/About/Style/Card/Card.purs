@@ -21,7 +21,7 @@ import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Loaded (loaded_)
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, class_, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, noCss, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, classes, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, noCss, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -89,8 +89,8 @@ style = do
   ______phone = ____line &. Line.staticClassWhen phone_
   ______email = ____line &. Line.staticClassWhen email_
 
-card :: ∀ w i. Node HTMLdiv w i
-card props = div ([ class_ staticClass ] <> props)
+card :: ∀ w i. Boolean -> Node HTMLdiv w i
+card loading props = div ([ classes [staticClass, loading ? staticClassWhenLoading ↔ staticClassWhenLoaded] ] <> props)
 
-card_ :: ∀ w i. Array (HTML w i) -> HTML w i
-card_ = card []
+card_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+card_ loading = card loading []

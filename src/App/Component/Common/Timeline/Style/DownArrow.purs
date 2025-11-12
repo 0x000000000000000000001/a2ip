@@ -11,7 +11,8 @@ import Proem hiding (div, top)
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
+import Halogen.HTML (HTML, IProp, Node, div)
+import Html.Renderer.Halogen (render)
 import Util.Style.Style (class_, alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, reflectStaticClass, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
 
 staticClass :: String
@@ -37,8 +38,8 @@ style = do
   where 
   __svg = staticClass .|* svg
 
-downArrow :: ∀ w i. Node HTMLdiv w i
-downArrow props = div ([ class_ staticClass ] <> props)
+downArrow :: ∀ w i. Array (IProp HTMLdiv i) -> String -> HTML w i
+downArrow props = render ([ class_ staticClass ] <> props)
 
-downArrow_ :: ∀ w i. Array (HTML w i) -> HTML w i
-downArrow_ = downArrow []
+downArrow_ :: ∀ w i. String -> HTML w i
+downArrow_ svgXml = downArrow [] svgXml

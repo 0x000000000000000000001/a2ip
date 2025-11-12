@@ -9,10 +9,11 @@ module App.Component.Common.Vault.Style.Lock
 import Proem hiding (div, top)
 
 import CSS (opacity, zIndex)
-import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (class_, alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, IProp, Node, div)
+import Html.Renderer.Halogen (render)
+import Util.Style.Style (alignItemsCenter, borderRadiusPct50, class_, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -36,8 +37,8 @@ style = do
   where 
   __svg = staticClass .|*: svg
 
-lock :: ∀ w i. Node HTMLdiv w i
-lock props = div ([ class_ staticClass ] <> props)
+lock :: ∀ w i. Array (IProp HTMLdiv i) -> String -> HTML w i
+lock props = render ([ class_ staticClass ] <> props)
 
-lock_ :: ∀ w i. Array (HTML w i) -> HTML w i
-lock_ = lock []
+lock_ :: ∀ w i. String -> HTML w i
+lock_ svgXml = lock [] svgXml

@@ -6,7 +6,7 @@ import Proem hiding (div)
 
 import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Modal.Style.Core.Close (close)
-import App.Component.Common.Modal.Style.Core.Core (staticClass) as Core
+import App.Component.Common.Modal.Style.Core.Core (core_)
 import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
 import App.Component.Common.Modal.Style.Modal (modal)
 import App.Component.Common.Modal.Style.Sheet (sheet)
@@ -14,11 +14,10 @@ import App.Component.Common.Modal.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
 import App.Util.Capability.AppM (AppM)
 import Halogen (Component, ComponentHTML)
-import Halogen.HTML (div, slot)
+import Halogen.HTML (slot)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
-import Util.Style.Style (class_)
 
 render 
   :: ∀ q i o
@@ -29,23 +28,24 @@ render innerComponent s@{ id, input: { closable, open, innerInput } } =
   modal id
     (open ? [ onClick HandleClick ] ↔ [])    
     [ sheet s
-    , not open ? noHtml ↔ div 
-        [ class_ Core.staticClass ]
-        [ Core.sheet
-        , closable 
-            ? ( 
-              close 
-                [ onClick $ κ $ HandleCloseClick ]
-                [ render_ closeSvg ]
-            ) 
-            ↔ noHtml
-        , slot
-            inner'
-            noSlotAddressIndex
-            innerComponent
-            innerInput
-            handleInnerOutput
-        ]
+    , not open 
+        ? noHtml 
+        ↔ core_
+          [ Core.sheet
+          , closable 
+              ? ( 
+                close 
+                  [ onClick $ κ $ HandleCloseClick ]
+                  [ render_ closeSvg ]
+              ) 
+              ↔ noHtml
+          , slot
+              inner'
+              noSlotAddressIndex
+              innerComponent
+              innerInput
+              handleInnerOutput
+          ]
     ]
 
 closeSvg :: String

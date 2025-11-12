@@ -5,11 +5,14 @@ module App.Component.Common.Tooltip.Tooltip
 
 import Proem hiding (div)
 
+import App.Component.Common.Tooltip.Style.Inner (inner_)
 import App.Component.Common.Tooltip.Style.Inner as Inner
+import App.Component.Common.Tooltip.Style.Outer.Core (core_)
 import App.Component.Common.Tooltip.Style.Outer.Core as Core
+import App.Component.Common.Tooltip.Style.Outer.Outer (outer)
 import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
 import App.Component.Common.Tooltip.Style.Sheet (sheet)
-import App.Component.Common.Tooltip.Style.Tooltip (staticClass)
+import App.Component.Common.Tooltip.Style.Tooltip (staticClass, tooltip_)
 import App.Component.Common.Tooltip.Type (Input)
 import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
@@ -23,21 +26,14 @@ tooltip
    . Input action slots
   -> ComponentHTML action slots AppM
 tooltip { disabled, inner, outer, style: { offset } } = 
-  div 
-    [ class_ staticClass ]
+  tooltip_
     [ sheet
-    , div 
-        [ class_ Inner.staticClass ]
-        [ inner ]
+    , inner_ [ inner ]
     , disabled 
         ? noHtml 
-        ↔ div 
-            [ class_ Outer.staticClass 
-            , style do 
+        ↔ outer 
+            [ style do 
                 padding1 $ offset ??⇒ 1.0
             ]
-            [ div 
-                [ class_ Core.staticClass ]
-                [ outer ]
-            ]
+            [ core_ [ outer ] ]
     ]

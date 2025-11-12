@@ -6,12 +6,13 @@ module App.Component.Common.Timeline.Render
 import Proem hiding (div)
 
 import App.Component.Common.Timeline.Style.Date (date_)
+import App.Component.Common.Timeline.Style.DownArrow (downArrow_)
 import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import App.Component.Common.Timeline.Style.Item (item)
-import App.Component.Common.Timeline.Style.Items as Items
-import App.Component.Common.Timeline.Style.Line as Line
-import App.Component.Common.Timeline.Style.Number as Number
-import App.Component.Common.Timeline.Style.Pin as Pin
+import App.Component.Common.Timeline.Style.Items (items_)
+import App.Component.Common.Timeline.Style.Line (line_)
+import App.Component.Common.Timeline.Style.Number (number_)
+import App.Component.Common.Timeline.Style.Pin (pin_)
 import App.Component.Common.Timeline.Style.Sheet (sheet)
 import App.Component.Common.Timeline.Style.Timeline (timeline_)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State)
@@ -25,7 +26,7 @@ import Data.Date (day, month, year)
 import Data.Enum (fromEnum)
 import Data.Maybe (Maybe(..), isJust)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, text)
+import Halogen.HTML (text)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen as HRH
 import Unsafe.Coerce (unsafeCoerce)
@@ -38,11 +39,8 @@ render :: ∀ w i. State w i -> ComponentHTML (Action w i) Slots AppM
 render { input: { items, loading }, selectedItem } =
   timeline_ loading
     [ sheet
-    , div
-        [ class_ Line.staticClass ]
-        []
-    , div
-        [ class_ Items.staticClass ]
+    , line_
+    , items_
         ( 
             mapWithIndex 
             (\idx item'@{ date: _date } ->
@@ -64,18 +62,16 @@ render { input: { items, loading }, selectedItem } =
                                     , dataAttr date' dateDataAttr
                                     ]
                                     [ date_
-                                        [ div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show d ]
-                                        , div [ class_ Number.staticClass ] [ text $ monthIntToName m ]
-                                        , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show $ 2000 + y `mod` 100 ]
+                                        [ number_ [ text $ padLeft 2 '0' $ show d ]
+                                        , number_ [ text $ monthIntToName m ]
+                                        , number_ [ text $ padLeft 2 '0' $ show $ 2000 + y `mod` 100 ]
                                         ]
-                                    , div
-                                        [ class_ Pin.staticClass ]
-                                        [ 
-                                            0 == idx `mod` 3 
+                                    , pin_
+                                        [   0 == idx `mod` 3 
                                             && idx /= length items - 1
                                             && not isSelected
                                             && not isNextSelected
-                                                ? HRH.render [ class_ DownArrow.staticClass ] downArrowSvg
+                                                ? (downArrow_ downArrowSvg)
                                                 ↔ noHtml
                                         ]
                                     ]

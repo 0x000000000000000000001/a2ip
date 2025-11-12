@@ -10,9 +10,9 @@ import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
-import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, IProp, div)
 import Util.Style.Style (class_, borderRadiusRem1, reflectStaticClass, heightPct100, topCenterToTopCenter, widthRem, (.?))
 
 staticClass :: String
@@ -27,8 +27,8 @@ style = do
     backgroundColor grey
     heightPct100
 
-line :: ∀ w i. Node HTMLdiv w i
-line props = div ([ class_ staticClass ] <> props)
+line :: ∀ w i.Array (IProp HTMLdiv i) -> HTML w i
+line props = div ([ class_ staticClass ] <> props) []
 
-line_ :: ∀ w i. Array (HTML w i) -> HTML w i
+line_ :: ∀ w i. HTML w i
 line_ = line []
