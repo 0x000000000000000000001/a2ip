@@ -1,19 +1,23 @@
 module App.Component.Router.Style.Router
   ( animationDurationMs
   , bodyGradientAnimationId
+  , router
+  , router_
   , staticClass
   , style
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import CSS (angular, animation, background, backgroundColor, backgroundPosition, backgroundSize, body, by, darken, deg, desaturate, ease, fontFamily, forwards, fromString, hover, html, infinite, keyframes, lighten, linearGradient, minHeight, normalAnimationDirection, pct, positioned, rem, rgba, sansSerif, saturate, sec, vh)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
 import Data.NonEmpty ((:|))
 import Data.Tuple (Tuple(..))
 import Data.Tuple.Nested ((/\))
-import Util.Style.Style (all, borderRadiusRem1, displayFlex, heightRem, inferAnimationId, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, reflectStaticClass, widthRem, (.?), (:&:), (:?))
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (all, borderRadiusRem1, class_, displayFlex, heightRem, inferAnimationId, loadingShimmerAnimationId, loadingShimmerWidth, margin1, padding1, raw, red, reflectStaticClass, widthRem, (.?), (:&:), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -96,3 +100,9 @@ style = do
   __webkitScrollbarThumb = all :&: fromString "::-webkit-scrollbar-thumb"
   __webkitScrollbarThumbHover = __webkitScrollbarThumb :&: hover
   __webkitScrollbarCorner = all :&: fromString "::-webkit-scrollbar-corner"
+
+router :: ∀ w i. Node HTMLdiv w i
+router props = div ([ class_ staticClass ] <> props)
+
+router_ :: ∀ w i. Array (HTML w i) -> HTML w i
+router_ = router []

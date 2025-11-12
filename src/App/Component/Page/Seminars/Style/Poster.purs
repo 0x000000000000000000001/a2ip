@@ -25,3 +25,9 @@ style = do
     positionSticky
     top0
     padding1 2.0
+
+poster :: ∀ w i. Node HTMLdiv w i
+poster props = div ([ class_ staticClass ] <> props)
+
+poster_ :: ∀ w i. Array (HTML w i) -> HTML w i
+poster_ = poster []

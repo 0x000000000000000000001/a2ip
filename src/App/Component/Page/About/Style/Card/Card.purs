@@ -84,3 +84,9 @@ style = do
   ______before = ____line & before
   ______phone = ____line &. Line.staticClassWhen phone_
   ______email = ____line &. Line.staticClassWhen email_
+
+card :: ∀ w i. Node HTMLdiv w i
+card props = div ([ class_ staticClass ] <> props)
+
+card_ :: ∀ w i. Array (HTML w i) -> HTML w i
+card_ = card []

@@ -1,5 +1,7 @@
 module App.Component.Router.Style.Core
-  ( staticClass
+  ( core
+  , core_
+  , staticClass
   , style
   , zIndex
   )
@@ -9,7 +11,9 @@ import Proem hiding (top)
 
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
-import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, displayFlex, flexGrow1, reflectStaticClass, margin4, padding1, positionRelative, (.?))
+import DOM.HTML.Indexed (HTMLmain)
+import Halogen.HTML (HTML, Node, main)
+import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, class_, displayFlex, flexGrow1, margin4, padding1, positionRelative, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -28,3 +32,9 @@ style = do
     flexGrow1
     positionRelative
     CSS.zIndex zIndex
+
+core :: ∀ w i. Node HTMLmain w i
+core props = main ([ class_ staticClass ] <> props)
+
+core_ :: ∀ w i. Array (HTML w i) -> HTML w i
+core_ = core []

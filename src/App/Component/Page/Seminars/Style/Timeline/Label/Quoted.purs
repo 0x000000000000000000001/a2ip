@@ -16,3 +16,9 @@ style = do
   staticClass .? do
     flexGrow1
     padding1 0.5
+
+quoted :: ∀ w i. Node HTMLdiv w i
+quoted props = div ([ class_ staticClass ] <> props)
+
+quoted_ :: ∀ w i. Array (HTML w i) -> HTML w i
+quoted_ = quoted []

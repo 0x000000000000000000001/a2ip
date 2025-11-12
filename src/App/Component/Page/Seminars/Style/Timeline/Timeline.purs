@@ -18,3 +18,9 @@ style = do
     displayFlex
     justifyContentCenter
     alignItemsCenter
+
+timeline :: ∀ w i. Node HTMLdiv w i
+timeline props = div ([ class_ staticClass ] <> props)
+
+timeline_ :: ∀ w i. Array (HTML w i) -> HTML w i
+timeline_ = timeline []

@@ -20,3 +20,9 @@ style = do
     justifyContentCenter
     alignItemsCenter
     flexDirection column
+
+items :: ∀ w i. Node HTMLdiv w i
+items props = div ([ class_ staticClass ] <> props)
+
+items_ :: ∀ w i. Array (HTML w i) -> HTML w i
+items_ = items []

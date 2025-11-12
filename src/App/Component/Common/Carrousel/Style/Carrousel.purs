@@ -25,3 +25,9 @@ style = do
     backgroundColor $ rgba 0 0 0 0.6
     borderRadiusRem1 0.6
     overflowHidden
+
+carrousel :: ∀ w i. Node HTMLdiv w i
+carrousel = div ([ class_ staticClass ] <> props)
+
+carrousel_ :: ∀ w i. Array (HTML w i) -> HTML w i
+carrousel_ = carrousel []

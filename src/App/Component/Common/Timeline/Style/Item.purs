@@ -52,3 +52,9 @@ style = do
   __selected = staticClass .&. staticClassWhenSelected
   ____date = __selected :|*. Date.staticClass
   ____pin = __selected :|*. Pin.staticClass
+
+item :: ∀ w i. Node HTMLdiv w i
+item props = div ([ class_ staticClass ] <> props)
+
+item_ :: ∀ w i. Array (HTML w i) -> HTML w i
+item_ = item []

@@ -18,3 +18,9 @@ style = do
     justifyContentCenter
     flexWrap
     widthPct100
+
+about :: ∀ w i. Node HTMLdiv w i
+about props = div ([ class_ staticClass ] <> props)
+
+about_ :: ∀ w i. Array (HTML w i) -> HTML w i
+about_ = about []

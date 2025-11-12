@@ -22,3 +22,9 @@ style = do
     flexWrap
     padding4 1.0 1.3 3.0 1.3
     widthPct100
+
+collaborators :: ∀ w i. Node HTMLdiv w i
+collaborators props = div ([ class_ staticClass ] <> props)
+
+collaborators_ :: ∀ w i. Array (HTML w i) -> HTML w i
+collaborators_ = collaborators []

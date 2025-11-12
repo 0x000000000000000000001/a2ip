@@ -69,3 +69,9 @@ style
         
   where
   __hover = class' id .& hover
+
+prettyErrorImage :: ∀ w i. Node HTMLdiv w i
+prettyErrorImage props = div ([ class_ staticClass ] <> props)
+
+prettyErrorImage_ :: ∀ w i. Array (HTML w i) -> HTML w i
+prettyErrorImage_ = prettyErrorImage []

@@ -22,3 +22,9 @@ style = do
     borderRadiusRem1 0.3
     overflowHidden
     widthPct100
+
+core :: ∀ w i. Node HTMLdiv w i
+core props = div ([ class_ staticClass ] <> props)
+
+core_ :: ∀ w i. Array (HTML w i) -> HTML w i
+core_ = core []

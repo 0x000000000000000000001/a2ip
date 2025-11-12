@@ -1,13 +1,18 @@
 module App.Component.Router.Menu.Style.Item.Child
-  ( staticClass
+  ( child
+  , child_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top, div)
 
 import CSS (hover)
 import CSS as CSS
-import Util.Style.Style (backgroundColorRed, reflectStaticClass, padding1, raw, widthPct100, (.&), (.?), (:?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (backgroundColorRed, class_, padding1, raw, reflectStaticClass, widthPct100, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -24,3 +29,9 @@ style = do
 
   where 
   __hover = staticClass .& hover 
+
+child :: ∀ w i. Node HTMLdiv w i
+child props = div ([ class_ staticClass ] <> props)
+
+child_ :: ∀ w i. Array (HTML w i) -> HTML w i
+child_ = child []

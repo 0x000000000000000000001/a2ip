@@ -20,3 +20,9 @@ style = do
     displayFlex
     justifyContentCenter
     alignItems flexStart
+
+vault :: ∀ w i. Node HTMLdiv w i
+vault props = div ([ class_ staticClass ] <> props)
+
+vault_ :: ∀ w i. Array (HTML w i) -> HTML w i
+vault_ = vault []

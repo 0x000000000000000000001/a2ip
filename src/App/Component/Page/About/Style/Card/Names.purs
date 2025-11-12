@@ -19,3 +19,9 @@ style = do
     colorRed
     widthPct 80.0
     raw "transition" "background-color 0s; color 0s"
+
+names :: ∀ w i. Node HTMLdiv w i
+names props = div ([ class_ staticClass ] <> props)
+
+names_ :: ∀ w i. Array (HTML w i) -> HTML w i
+names_ = names []

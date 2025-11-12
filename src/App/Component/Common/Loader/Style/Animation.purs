@@ -33,7 +33,7 @@ style color = do
     borderRight solid (rem 0.4) transparent
     boxSizing borderBox
 
-    animation 
+    CSS.animation 
       (fromString animationId) 
       (sec 0.5)
       linear
@@ -49,3 +49,9 @@ style color = do
 
   classWithColor color .? do
     borderTop solid (rem 0.4) color
+
+animation :: ∀ w i. Node HTMLdiv w i
+animation props = div ([ class_ staticClass ] <> props)
+
+animation_ :: ∀ w i. Array (HTML w i) -> HTML w i
+animation_ = animation []

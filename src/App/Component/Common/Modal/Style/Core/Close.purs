@@ -38,3 +38,9 @@ style = do
   __svg = staticClass .|* svg
   __hover = staticClass .& hover
   ____svg = __hover |* svg
+
+close :: ∀ w i. Node HTMLdiv w i
+close props = div ([ class_ staticClass ] <> props)
+
+close_ :: ∀ w i. Array (HTML w i) -> HTML w i
+close_ = close []

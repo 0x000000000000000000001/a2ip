@@ -21,3 +21,9 @@ style = do
     heightRem 1.4
     borderRadiusPct50
     backgroundColor grey
+
+pin :: ∀ w i. Node HTMLdiv w i
+pin props = div ([ class_ staticClass ] <> props)
+
+pin_ :: ∀ w i. Array (HTML w i) -> HTML w i
+pin_ = pin []

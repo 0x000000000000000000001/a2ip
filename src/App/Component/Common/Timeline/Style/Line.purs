@@ -22,3 +22,9 @@ style = do
     borderRadiusRem1 1.0
     backgroundColor grey
     heightPct100
+
+line :: ∀ w i. Node HTMLdiv w i
+line props = div ([ class_ staticClass ] <> props)
+
+line_ :: ∀ w i. Array (HTML w i) -> HTML w i
+line_ = line []

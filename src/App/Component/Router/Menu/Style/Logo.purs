@@ -1,7 +1,10 @@
 module App.Component.Router.Menu.Style.Logo
-  ( staticClass
+  ( logo
+  , logo_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (top, div)
 
@@ -9,7 +12,9 @@ import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import CSS (alignSelf, fromString, key)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style.Style (cursorPointer, reflectStaticClass, margin4, widthRem, (.?))
+import DOM.HTML.Indexed (HTMLimg)
+import Halogen.HTML (HTML, Leaf, Node, img)
+import Util.Style.Style (class_, cursorPointer, margin4, reflectStaticClass, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -22,3 +27,9 @@ style = do
     key (fromString "filter") "invert(1)"
     cursorPointer
     alignSelf center
+
+logo :: ∀ w i. Leaf HTMLimg w i
+logo props = img ([ class_ staticClass ] <> props)
+
+logo_ :: ∀ w i. HTML w i
+logo_ = logo []

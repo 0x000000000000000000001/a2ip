@@ -46,3 +46,8 @@ style { id, input: { open } } = do
     when (not open) do
       displayNone
     
+modal :: ∀ w i. Node HTMLdiv w i
+modal props = div ([ class_ staticClass ] <> props)
+
+modal_ :: ∀ w i. Array (HTML w i) -> HTML w i
+modal_ = modal []

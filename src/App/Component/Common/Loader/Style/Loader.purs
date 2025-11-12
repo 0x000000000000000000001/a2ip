@@ -18,3 +18,9 @@ style :: CSS.CSS
 style = do
   staticClass .? do
     positionRelative -- For zIndex customization
+
+loader :: ∀ w i. Node HTMLdiv w i
+loader props = div ([ class_ staticClass ] <> props)
+
+loader_ :: ∀ w i. Array (HTML w i) -> HTML w i
+loader_ = loader []

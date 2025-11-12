@@ -51,3 +51,9 @@ style = do
   ____pin = __loading :|*. Pin.staticClass
   ____number = __loading :|*. Number.staticClass
   ____downArrowSvg = (__loading :|*. DownArrow.staticClass) |* svg
+
+timeline :: ∀ w i. Node HTMLdiv w i
+timeline props = div ([ class_ staticClass ] <> props)
+
+timeline_ :: ∀ w i. Array (HTML w i) -> HTML w i
+timeline_ = timeline []

@@ -32,4 +32,8 @@ style = do
   where 
   __svg = staticClass .|*: svg
 
-  
+lock :: ∀ w i. Node HTMLdiv w i
+lock props = div ([ class_ staticClass ] <> props)
+
+lock_ :: ∀ w i. Array (HTML w i) -> HTML w i
+lock_ = lock []

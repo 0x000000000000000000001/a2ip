@@ -137,3 +137,9 @@ style = do
   c___lock = __incorrect :|*. Lock.staticClass
   c___message = __incorrect :|*. Message.staticClass
   ______strong = c___message :|*: strong
+
+front :: ∀ w i. Node HTMLdiv w i
+front props = div ([ class_ staticClass ] <> props)
+
+front_ :: ∀ w i. Array (HTML w i) -> HTML w i
+front_ = front []

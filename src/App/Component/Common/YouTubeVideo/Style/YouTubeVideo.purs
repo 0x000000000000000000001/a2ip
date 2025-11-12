@@ -58,3 +58,9 @@ style { id, input: { style: { width: width', height: height' } } } = do
   __potentialIframeContainer = staticClass .|> (any & has iframe)
   __iframe = staticClass .|* iframe
   __loader = staticClass .|*. Loader.staticClass
+
+youtubeVideo :: ∀ w i. Node HTMLdiv w i
+youtubeVideo props = div ([ class_ staticClass ] <> props)
+
+youtubeVideo_ :: ∀ w i. Array (HTML w i) -> HTML w i
+youtubeVideo_ = youtubeVideo []

@@ -16,3 +16,9 @@ style = do
   staticClass .? do
     fontSizePct 240.0 
     positionRelative
+
+quote :: ∀ w i. Node HTMLdiv w i
+quote props = div ([ class_ staticClass ] <> props)
+
+quote_ :: ∀ w i. Array (HTML w i) -> HTML w i
+quote_ = quote []

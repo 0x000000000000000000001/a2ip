@@ -31,3 +31,9 @@ style = do
     UtilStyle.fontSizePct fontSizePct
     userSelectNone
     color $ darken 0.3 grey
+
+date :: ∀ w i. Node HTMLdiv w i
+date props = div ([ class_ staticClass ] <> props)
+
+date_ :: ∀ w i. Array (HTML w i) -> HTML w i
+date_ = date []

@@ -21,3 +21,9 @@ style = do
     textAlignCenter
     positionRelative
     zIndex 5
+
+message :: ∀ w i. Node HTMLdiv w i
+message props = div ([ class_ staticClass ] <> props)
+
+message_ :: ∀ w i. Array (HTML w i) -> HTML w i
+message_ = message []

@@ -29,3 +29,9 @@ style = do
     fontWeightBold
     fontSizePct 110.0 
     fontFamily ["Oswald"] (sansSerif :| [])
+
+text :: ∀ w i. Node HTMLdiv w i
+text props = div ([ class_ staticClass ] <> props)
+
+text_ :: ∀ w i. Array (HTML w i) -> HTML w i
+text_ = text []

@@ -59,3 +59,9 @@ style { id, unfold } = do
   ____label = __hover |*. Label.staticClass
   b_hover = class' id .& hover
   b___children = b_hover |*. Children.staticClass
+
+item :: ∀ w i. Node HTMLdiv w i
+item props = div ([ class_ staticClass ] <> props)
+
+item_ :: ∀ w i. Array (HTML w i) -> HTML w i
+item_ = item []

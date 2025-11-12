@@ -53,3 +53,9 @@ style = do
   __phone = staticClass .&. staticClassWhen phone_
   a___before = __email & before
   b___before = __phone & before
+
+line :: ∀ w i. Node HTMLdiv w i
+line props = div ([ class_ staticClass ] <> props)
+
+line_ :: ∀ w i. Array (HTML w i) -> HTML w i
+line_ = line []

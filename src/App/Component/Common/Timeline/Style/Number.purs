@@ -16,3 +16,9 @@ style :: CSS.CSS
 style = do
   staticClass .? do
     noCss
+  
+number :: ∀ w i. Node HTMLdiv w i
+number props = div ([ class_ staticClass ] <> props)
+
+number_ :: ∀ w i. Array (HTML w i) -> HTML w i
+number_ = number []

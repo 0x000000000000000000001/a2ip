@@ -4,14 +4,18 @@ import Proem hiding (top, div)
 
 import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
+import App.Component.Router.Menu.Style.Item.Child (child_)
 import App.Component.Router.Menu.Style.Item.Child as Child
+import App.Component.Router.Menu.Style.Item.Children (children_)
 import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container (container_)
+import App.Component.Router.Menu.Style.Item.Icon.Icon (icon)
 import App.Component.Router.Menu.Style.Item.Icon.Icon as Icon
 import App.Component.Router.Menu.Style.Item.Item as Item
 import App.Component.Router.Menu.Style.Item.Label (label_)
+import App.Component.Router.Menu.Style.Logo (logo)
 import App.Component.Router.Menu.Style.Logo as Logo
-import App.Component.Router.Menu.Style.Menu (class', staticClass)
+import App.Component.Router.Menu.Style.Menu (class', menu, staticClass)
 import App.Component.Router.Menu.Style.Sheet (sheet)
 import App.Component.Router.Menu.Type (Action(..), State, Slots)
 import App.Util.Capability.AppM (AppM)
@@ -59,22 +63,18 @@ items =
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, animating, unfold } =
-  nav
-    ( [ classes [ staticClass, class' id ] ] 
-      <> (
-        animating 
-          ? []
-          ↔ [ 
-            unfold
-              ? (onMouseLeave $ κ $ ToggleFolding true)
-              ↔ (onMouseOver $ κ $ ToggleFolding false)
-          ]
-      )
+  menu id
+    ( animating 
+        ? []
+        ↔ [ 
+          unfold
+            ? (onMouseLeave $ κ $ ToggleFolding true)
+            ↔ (onMouseOver $ κ $ ToggleFolding false)
+        ]
     )
     ( [ sheet s
-      , img
-          [ class_ Logo.staticClass
-          , src "asset/image/logo.png"
+      , logo
+          [ src "asset/image/logo.png"
           , alt "Logo"
           ]
       ] <> (items <#> \(ParentItem { label, route, iconFileName, children }) -> item label route iconFileName children)
@@ -88,16 +88,14 @@ render s@{ id, animating, unfold } =
       , display: flex
       , children: 
         [ container_ id
-          [ img
-            [ class_ Icon.staticClass
-            , src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
+            [ icon
+              [ src (fromString "asset/image/component/router/menu/" <> iconFileName <> ".png")
+              ]
             ]
-          ]
         , label_ id
-          [ text label' ]
-        , div
-          [ class_ Children.staticClass ]
-          (children <#> \(ChildItem { label }) -> div [ class_ Child.staticClass ] [ text label ])
+            [ text label' ]
+        , children_
+            (children <#> \(ChildItem { label }) -> child_ [ text label ])
         ]
       }
       handleLinkOutput

@@ -45,3 +45,9 @@ style = do
 
   where 
   __text = staticClassWhenLoading .|*. Text.staticClass
+
+separator :: ∀ w i. Node HTMLdiv w i
+separator props = div ([ class_ staticClass ] <> props)
+
+separator_ :: ∀ w i. Array (HTML w i) -> HTML w i
+separator_ = separator []

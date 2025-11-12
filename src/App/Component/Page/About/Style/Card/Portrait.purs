@@ -37,6 +37,12 @@ style = do
   staticClass .? do
     marginTop 0.4
 
+portrait :: ∀ w i. Node HTMLdiv w i
+portrait props = div ([ class_ staticClass ] <> props)
+
+portrait_ :: ∀ w i. Array (HTML w i) -> HTML w i
+portrait_ = portrait []
+
 prettyErrorImageStyle :: Style
 prettyErrorImageStyle = 
   defaultStyle

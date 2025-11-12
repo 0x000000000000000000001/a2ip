@@ -17,3 +17,8 @@ style = do
     fontWeightBold
     widthPct100
 
+lastname :: ∀ w i. Node HTMLdiv w i
+lastname props = div ([ class_ staticClass ] <> props)
+
+lastname_ :: ∀ w i. Array (HTML w i) -> HTML w i
+lastname_ = lastname []

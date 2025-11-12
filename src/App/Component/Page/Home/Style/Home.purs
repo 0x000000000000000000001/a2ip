@@ -17,3 +17,9 @@ style = do
     displayFlex
     justifyContentCenter
     widthPct100
+
+home :: ∀ w i. Node HTMLdiv w i
+home props = div ([ class_ staticClass ] <> props)
+
+home_ :: ∀ w i. Array (HTML w i) -> HTML w i
+home_ = home []

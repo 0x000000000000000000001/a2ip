@@ -22,3 +22,9 @@ style = do
     transform $ translate (rem 0.8) (pct $ -50.0)
     cursor text
     userSelectNone
+
+label :: ∀ w i. Node HTMLdiv w i
+label props = div ([ class_ staticClass ] <> props)
+
+label_ :: ∀ w i. Array (HTML w i) -> HTML w i
+label_ = label []

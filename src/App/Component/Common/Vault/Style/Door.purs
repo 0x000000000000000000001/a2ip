@@ -37,4 +37,8 @@ style = do
   staticClassWhenRight .? do
     topRightToTopRight
 
-  
+door :: ∀ w i. Node HTMLdiv w i
+door props = div ([ class_ staticClass ] <> props)
+
+door_ :: ∀ w i. Array (HTML w i) -> HTML w i
+door_ = door []

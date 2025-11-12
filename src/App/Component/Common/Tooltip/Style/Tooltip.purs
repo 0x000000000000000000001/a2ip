@@ -32,3 +32,9 @@ style = do
   __outer = staticClass .|*. Outer.staticClass
   __hover = staticClass .& hover
   ____outer = __hover |*. Outer.staticClass
+
+tooltip :: ∀ w i. Node HTMLdiv w i
+tooltip props = div ([ class_ staticClass ] <> props)
+
+tooltip_ :: ∀ w i. Array (HTML w i) -> HTML w i
+tooltip_ = tooltip []

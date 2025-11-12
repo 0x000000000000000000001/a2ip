@@ -2,6 +2,8 @@ module App.Component.Router.Menu.Style.Menu
   ( backgroundBlackAlpha
   , class'
   , foldWidth
+  , menu
+  , menu_
   , staticClass
   , style
   , unfoldWidth
@@ -14,7 +16,9 @@ import Proem hiding (top)
 import App.Component.Router.Menu.Type (State)
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh)
 import CSS as CSS
-import Util.Style.Style (borderWidth1, displayFlex, inferClass, left0, positionFixed, reflectStaticClass, top0, widthRem, (.&), (.?), (:?))
+import DOM.HTML.Indexed (HTMLnav)
+import Halogen.HTML (HTML, Node, nav)
+import Util.Style.Style (borderWidth1, classes, displayFlex, inferClass, left0, positionFixed, reflectStaticClass, top0, widthRem, (.&), (.?), (:?))
 
 foldWidth :: Number
 foldWidth = 6.2
@@ -56,3 +60,9 @@ style { id, unfold } = do
 
   where 
   __hover = staticClass .& hover
+
+menu :: ∀ w i. String -> Node HTMLnav w i
+menu id props = nav ([ classes [staticClass, class' id] ] <> props)
+
+menu_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+menu_ id = menu id []

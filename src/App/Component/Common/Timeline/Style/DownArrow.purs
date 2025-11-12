@@ -32,3 +32,9 @@ style = do
 
   where 
   __svg = staticClass .|* svg
+
+downArrow :: ∀ w i. Node HTMLdiv w i
+downArrow props = div ([ class_ staticClass ] <> props)
+
+downArrow_ :: ∀ w i. Array (HTML w i) -> HTML w i
+downArrow_ = downArrow []
