@@ -1,5 +1,7 @@
 module App.Component.Common.PrettyErrorImage.Style.QuestionMark
   ( class'
+  , questionMark
+  , questionMark_
   , staticClass
   , style
   )
@@ -11,7 +13,10 @@ import App.Component.Common.PrettyErrorImage.Type (State)
 import App.Component.Util.Type (Size(..), applyToSize)
 import CSS (darken, opacity, width)
 import CSS as CSS
-import Util.Style.Style (fill, inferClass, loadingGrey, noCss, reflectStaticClass, svg, (.?), (.|>), (:?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, IProp)
+import Html.Renderer.Halogen (render)
+import Util.Style.Style (classes, fill, inferClass, loadingGrey, noCss, reflectStaticClass, svg, (.?), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -50,3 +55,11 @@ style
     
   where 
   __svg = class' id .|> svg
+
+questionMark :: ∀ w i. String -> Array (IProp HTMLdiv i) -> String -> HTML w i
+questionMark id props = 
+  render
+  ([ classes [ staticClass, class' id ] ] <> props)
+
+questionMark_ :: ∀ w i. String -> String -> HTML w i
+questionMark_ id svgXml = questionMark id [] svgXml
