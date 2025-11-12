@@ -1,5 +1,7 @@
 module App.Component.Common.Input.Style.Input
-  ( staticClass
+  ( input
+  , input_
+  , staticClass
   , staticClassWhenOpen
   , style
   )

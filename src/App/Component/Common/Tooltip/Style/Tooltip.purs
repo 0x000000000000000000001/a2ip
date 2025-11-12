@@ -1,6 +1,8 @@
 module App.Component.Common.Tooltip.Style.Tooltip
   ( staticClass
   , style
+  , tooltip
+  , tooltip_
   )
   where
 

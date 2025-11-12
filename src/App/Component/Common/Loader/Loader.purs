@@ -4,20 +4,17 @@ module App.Component.Common.Loader.Loader
 
 import Proem hiding (div)
 
-import App.Component.Common.Loader.Type (Input)
-import App.Component.Common.Loader.Style.Animation as Animation
-import App.Component.Common.Loader.Style.Loader (staticClass)
+import App.Component.Common.Loader.Style.Animation (animation_)
+import App.Component.Common.Loader.Style.Loader (loader_)
 import App.Component.Common.Loader.Style.Sheet (sheet)
+import App.Component.Common.Loader.Type (Input)
 import App.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div)
-import Util.Style.Style (class_, classes)
 
 loader :: ∀ action slots. Input -> ComponentHTML action slots AppM
 loader color = 
-  div 
-    [ class_ staticClass ]
+  loader_
     [ sheet color 
-    , div [ classes [ Animation.staticClass, Animation.classWithColor color ] ] []
+    , animation_ color
     ]
   

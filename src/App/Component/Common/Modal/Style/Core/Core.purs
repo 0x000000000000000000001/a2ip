@@ -1,5 +1,7 @@
 module App.Component.Common.Modal.Style.Core.Core
-  ( staticClass
+  ( core
+  , core_
+  , staticClass
   , style
   )
   where

@@ -1,5 +1,7 @@
 module App.Component.Common.Tooltip.Style.Outer.Outer
-  ( staticClass
+  ( outer
+  , outer_
+  , staticClass
   , style
   )
   where

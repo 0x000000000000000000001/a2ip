@@ -1,5 +1,7 @@
 module App.Component.Common.Modal.Style.Core.Close
-  ( staticClass
+  ( close
+  , close_
+  , staticClass
   , style
   )
   where

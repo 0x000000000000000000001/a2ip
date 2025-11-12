@@ -1,7 +1,10 @@
 module App.Component.Page.About.Style.Collaborators
-  ( staticClass
+  ( collaborators
+  , collaborators_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

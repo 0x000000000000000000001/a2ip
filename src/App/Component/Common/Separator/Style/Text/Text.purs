@@ -1,7 +1,10 @@
 module App.Component.Common.Separator.Style.Text.Text
   ( staticClass
   , style
-  ) where
+  , text
+  , text_
+  )
+  where
 
 import Proem hiding (div, top)
 

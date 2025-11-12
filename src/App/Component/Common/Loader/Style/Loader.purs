@@ -1,5 +1,7 @@
 module App.Component.Common.Loader.Style.Loader
-  ( staticClass
+  ( loader
+  , loader_
+  , staticClass
   , style
   )
   where

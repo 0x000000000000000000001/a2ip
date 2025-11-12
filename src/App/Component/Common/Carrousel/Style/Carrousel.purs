@@ -1,5 +1,7 @@
 module App.Component.Common.Carrousel.Style.Carrousel
-  ( staticClass
+  ( carrousel
+  , carrousel_
+  , staticClass
   , style
   )
   where

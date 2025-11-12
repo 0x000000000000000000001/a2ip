@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.Pin
-  ( staticClass
+  ( pin
+  , pin_
+  , staticClass
   , style
   )
   where

@@ -2,6 +2,8 @@ module App.Component.Common.Timeline.Style.Timeline
   ( staticClass
   , staticClassWhenLoading
   , style
+  , timeline
+  , timeline_
   )
   where
 
@@ -12,11 +14,11 @@ import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS ((|*))
+import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (class_, alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, classes, displayFlex, fill, justifyContentCenter, loading, loadingGrey, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -54,8 +56,8 @@ style = do
   ____number = __loading :|*. Number.staticClass
   ____downArrowSvg = (__loading :|*. DownArrow.staticClass) |* svg
 
-timeline :: ∀ w i. Node HTMLdiv w i
-timeline props = div ([ class_ staticClass ] <> props)
+timeline :: ∀ w i. Boolean -> Node HTMLdiv w i
+timeline loading props = div ([ classes [staticClass, loading ? staticClassWhenLoading ↔ ""] ] <> props)
 
-timeline_ :: ∀ w i. Array (HTML w i) -> HTML w i
-timeline_ = timeline []
+timeline_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+timeline_ loading = timeline loading []

@@ -1,7 +1,10 @@
 module App.Component.Page.Seminars.Style.Timeline.Timeline
   ( staticClass
   , style
-  ) where
+  , timeline
+  , timeline_
+  )
+  where
 
 import Proem hiding (div, top)
 

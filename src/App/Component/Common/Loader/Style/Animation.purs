@@ -14,9 +14,9 @@ import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
-import Halogen.HTML (HTML, Node, div)
+import Halogen.HTML (HTML, IProp, div)
 import Util.Proxy.Dictionary.Color (color_)
-import Util.Style.Style (borderRadiusPct50, class_, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStaticClass, transparent, widthRem, (.?))
+import Util.Style.Style (borderRadiusPct50, classes, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStaticClass, transparent, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -54,8 +54,8 @@ style color = do
   classWithColor color .? do
     borderTop solid (rem 0.4) color
 
-animation :: ∀ w i. Node HTMLdiv w i
-animation props = div ([ class_ staticClass ] <> props)
+animation :: ∀ w i. Color -> Array (IProp HTMLdiv i) -> HTML w i
+animation color props = div ([ classes [staticClass, classWithColor color] ] <> props) []
 
-animation_ :: ∀ w i. Array (HTML w i) -> HTML w i
-animation_ = animation []
+animation_ :: ∀ w i. Color -> HTML w i
+animation_ color = animation color []

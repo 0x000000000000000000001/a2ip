@@ -1,5 +1,7 @@
 module App.Component.Page.About.Style.Card.Card
-  ( staticClass
+  ( card
+  , card_
+  , staticClass
   , staticClassWhenLoaded
   , staticClassWhenLoading
   , style

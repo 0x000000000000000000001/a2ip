@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.Number
-  ( staticClass
+  ( number
+  , number_
+  , staticClass
   , style
   )
   where

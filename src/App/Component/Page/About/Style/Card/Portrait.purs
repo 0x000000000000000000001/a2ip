@@ -1,5 +1,7 @@
 module App.Component.Page.About.Style.Card.Portrait
-  ( prettyErrorImageStyle
+  ( portrait
+  , portrait_
+  , prettyErrorImageStyle
   , staticClass
   , style
   )

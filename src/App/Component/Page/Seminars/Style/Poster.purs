@@ -1,7 +1,10 @@
 module App.Component.Page.Seminars.Style.Poster
-  ( staticClass
+  ( poster
+  , poster_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

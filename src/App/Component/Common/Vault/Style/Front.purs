@@ -1,5 +1,7 @@
 module App.Component.Common.Vault.Style.Front
   ( animationDurationMs
+  , front
+  , front_
   , staticClass
   , staticClassWhen
   , staticClassWhenIncorrect

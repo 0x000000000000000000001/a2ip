@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.Item
-  ( staticClass
+  ( item
+  , item_
+  , staticClass
   , staticClassWhenSelected
   , style
   )

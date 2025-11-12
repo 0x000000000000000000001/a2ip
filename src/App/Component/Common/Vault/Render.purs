@@ -9,6 +9,7 @@ import App.Component.Common.Input.Type (defaultInput)
 import App.Component.Common.Vault.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Vault.HandlePasswordOutput (handlePasswordOutput)
 import App.Component.Common.Vault.Style.Core as Core
+import App.Component.Common.Vault.Style.Door (door_)
 import App.Component.Common.Vault.Style.Door as Door
 import App.Component.Common.Vault.Style.Front as Front
 import App.Component.Common.Vault.Style.Lock as Lock
@@ -58,8 +59,8 @@ render innerComponent { phase, input: { innerInput } } =
             ]
         , onKeyDown \e -> code e == "Enter" ? HandleSubmit ↔ DoNothing
         ]
-        [ div [ classes [ Door.staticClass, Door.staticClassWhenLeft ] ] []
-        , div [ classes [ Door.staticClass, Door.staticClassWhenRight ] ] []
+        [ door_ true 
+        , door_ false
         , div 
             [ class_ Message.staticClass ]
             [ span_ $ 

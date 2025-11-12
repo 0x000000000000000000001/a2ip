@@ -2,6 +2,8 @@ module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
   ( class'
   , staticClass
   , style
+  , youtubeVideo
+  , youtubeVideo_
   )
   where
 
@@ -11,10 +13,10 @@ import App.Component.Common.Loader.Style.Loader as Loader
 import App.Component.Common.YoutubeVideo.Type (State)
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, black, height, iframe, width, zIndex, (&))
+import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import CSS as CSS
-import Util.Style.Style (class_, any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, noCss, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (any, centerToCenter, class_, classes, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, noCss, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -61,8 +63,8 @@ style { id, input: { style: { width: width', height: height' } } } = do
   __iframe = staticClass .|* iframe
   __loader = staticClass .|*. Loader.staticClass
 
-youtubeVideo :: ∀ w i. Node HTMLdiv w i
-youtubeVideo props = div ([ class_ staticClass ] <> props)
+youtubeVideo :: ∀ w i. String -> Node HTMLdiv w i
+youtubeVideo id props = div ([ classes [staticClass, class' id] ] <> props)
 
-youtubeVideo_ :: ∀ w i. Array (HTML w i) -> HTML w i
-youtubeVideo_ = youtubeVideo []
+youtubeVideo_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+youtubeVideo_ id = youtubeVideo id []

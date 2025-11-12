@@ -10,7 +10,7 @@ import App.Component.Common.Separator.Component (separator)
 import App.Component.Common.Separator.Type (TextElementTag(..))
 import App.Component.Page.About.Style.About (staticClass)
 import App.Component.Page.About.Style.Card.Card as Card
-import App.Component.Page.About.Style.Card.Line as Line
+import App.Component.Page.About.Style.Card.Line (line_)
 import App.Component.Page.About.Style.Card.Names as Names
 import App.Component.Page.About.Style.Card.Portrait as Portrait
 import App.Component.Page.About.Style.Collaborators as Collaborators
@@ -132,9 +132,7 @@ renderCard section isLoading idx member =
   line key =
     not isLoading && get key member == ""
       ? []
-      ↔
-        [ div
-            [ classes [ Line.staticClass, Line.staticClassWhen $ ᴠ key ] ]
+      ↔ [ line_ key
             [ render_ $ get key member ]
         ]
 

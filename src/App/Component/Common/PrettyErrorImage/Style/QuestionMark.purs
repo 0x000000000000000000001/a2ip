@@ -57,9 +57,7 @@ style
   __svg = class' id .|> svg
 
 questionMark :: ∀ w i. String -> Array (IProp HTMLdiv i) -> String -> HTML w i
-questionMark id props = 
-  render
-  ([ classes [ staticClass, class' id ] ] <> props)
+questionMark id props = render ([ classes [ staticClass, class' id ] ] <> props)
 
 questionMark_ :: ∀ w i. String -> String -> HTML w i
 questionMark_ id svgXml = questionMark id [] svgXml

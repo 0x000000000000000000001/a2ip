@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.Items
-  ( staticClass
+  ( items
+  , items_
+  , staticClass
   , style
   )
   where

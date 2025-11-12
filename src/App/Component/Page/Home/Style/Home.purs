@@ -1,7 +1,10 @@
 module App.Component.Page.Home.Style.Home
-  ( staticClass
+  ( home
+  , home_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

@@ -13,7 +13,7 @@ import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Pin as Pin
 import App.Component.Common.Timeline.Style.Sheet (sheet)
-import App.Component.Common.Timeline.Style.Timeline (staticClass, staticClassWhenLoading)
+import App.Component.Common.Timeline.Style.Timeline (timeline_)
 import App.Component.Common.Timeline.Type (Action(..), Slots, State)
 import App.Component.Common.Timeline.Util (dateToDataAttr)
 import App.Component.Common.Tooltip.Tooltip (tooltip)
@@ -36,12 +36,7 @@ import Util.Style.Style (class_, classes)
 
 render :: ∀ w i. State w i -> ComponentHTML (Action w i) Slots AppM
 render { input: { items, loading }, selectedItem } =
-  div
-    [ classes 
-        [ staticClass 
-        , loading ? staticClassWhenLoading ↔ ""
-        ]
-    ]
+  timeline_ loading
     [ sheet
     , div
         [ class_ Line.staticClass ]

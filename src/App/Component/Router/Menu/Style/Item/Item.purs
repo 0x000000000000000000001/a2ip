@@ -16,7 +16,7 @@ import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
 import Proem (discard, when, ι, (<>))
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, class_, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, class_, classes, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι
@@ -64,8 +64,8 @@ style { id, unfold } = do
   b_hover = class' id .& hover
   b___children = b_hover |*. Children.staticClass
 
-item :: ∀ w i. Node HTMLdiv w i
-item props = div ([ class_ staticClass ] <> props)
+item :: ∀ w i. String -> Node HTMLdiv w i
+item id props = div ([ classes [staticClass, class' id] ] <> props)
 
-item_ :: ∀ w i. Array (HTML w i) -> HTML w i
-item_ = item []
+item_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+item_ id = item id []

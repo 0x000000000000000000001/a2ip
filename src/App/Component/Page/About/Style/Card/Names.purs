@@ -1,7 +1,10 @@
 module App.Component.Page.About.Style.Card.Names
-  ( staticClass
+  ( names
+  , names_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

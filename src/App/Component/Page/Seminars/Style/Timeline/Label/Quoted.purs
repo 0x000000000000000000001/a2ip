@@ -1,7 +1,10 @@
 module App.Component.Page.Seminars.Style.Timeline.Label.Quoted
-  ( staticClass
+  ( quoted
+  , quoted_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

@@ -1,5 +1,7 @@
 module App.Component.Page.Seminars.Style.Seminars
-  ( staticClass
+  ( seminars
+  , seminars_
+  , staticClass
   , style
   )
   where

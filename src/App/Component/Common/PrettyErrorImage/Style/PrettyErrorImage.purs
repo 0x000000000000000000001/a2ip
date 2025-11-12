@@ -1,18 +1,21 @@
 module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
   ( class'
+  , prettyErrorImage
+  , prettyErrorImage_
   , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 
 import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, borderColor, height, hover, solid, width)
+import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import CSS as CSS
-import Util.Style.Style (class_, alignItemsCenter, borderRadius1, borderStyle, borderWidth1, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, noCss, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidth1, class_, classes, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, noCss, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -72,8 +75,8 @@ style
   where
   __hover = class' id .& hover
 
-prettyErrorImage :: ∀ w i. Node HTMLdiv w i
-prettyErrorImage props = div ([ class_ staticClass ] <> props)
+prettyErrorImage :: ∀ w i. String -> Node HTMLdiv w i
+prettyErrorImage id props = div ([ classes [staticClass, class' id] ] <> props)
 
-prettyErrorImage_ :: ∀ w i. Array (HTML w i) -> HTML w i
-prettyErrorImage_ = prettyErrorImage []
+prettyErrorImage_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+prettyErrorImage_ id = prettyErrorImage id []

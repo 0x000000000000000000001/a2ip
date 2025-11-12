@@ -1,5 +1,7 @@
 module App.Component.Common.Vault.Style.Core
-  ( staticClass
+  ( core
+  , core_
+  , staticClass
   , style
   )
   where

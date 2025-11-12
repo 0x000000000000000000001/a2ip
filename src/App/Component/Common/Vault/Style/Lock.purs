@@ -1,5 +1,7 @@
 module App.Component.Common.Vault.Style.Lock
-  ( staticClass
+  ( lock
+  , lock_
+  , staticClass
   , style
   )
   where

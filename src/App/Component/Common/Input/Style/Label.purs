@@ -1,7 +1,9 @@
 module App.Component.Common.Input.Style.Label
-  ( staticClass
+  ( label
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

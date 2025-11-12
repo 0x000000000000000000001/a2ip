@@ -1,6 +1,8 @@
 module App.Component.Common.Timeline.Style.Date
-  ( staticClass
+  ( date
+  , date_
   , fontSizePct
+  , staticClass
   , style
   )
   where

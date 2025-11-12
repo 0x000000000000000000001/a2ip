@@ -5,7 +5,7 @@ module App.Component.Common.Carrousel.Render
 import Proem hiding (div)
 
 import App.Component.Common.Carrousel.Style.Caption (caption_)
-import App.Component.Common.Carrousel.Style.Carrousel (staticClass)
+import App.Component.Common.Carrousel.Style.Carrousel (carrousel_)
 import App.Component.Common.Carrousel.Style.Control.Control (control)
 import App.Component.Common.Carrousel.Style.Control.Icon (icon_)
 import App.Component.Common.Carrousel.Style.Counter (counter_)
@@ -23,7 +23,7 @@ import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
 import Data.String (trim)
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, text)
+import Halogen.HTML (text)
 import Halogen.HTML.Events (onClick)
 import Util.Proxy.Dictionary.BackgroundColor (_backgroundColor)
 import Util.Proxy.Dictionary.Color (_color)
@@ -36,7 +36,7 @@ import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Proxy.Dictionary.YoutubeVideo (youtubeVideo')
 import Util.Style.Image (contain)
-import Util.Style.Style (class_, transparent)
+import Util.Style.Style (transparent)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, input: { slides }, index } =
@@ -45,8 +45,7 @@ render s@{ id, input: { slides }, index } =
     media = slide <#> _.media
     caption = trim $ (join $ slide <#> _.caption) ??⇒ ""
   in
-    div
-      [ class_ staticClass ]
+    carrousel_
       [ sheet s
       , media_ id
           ( case media of

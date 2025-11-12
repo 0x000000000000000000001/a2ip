@@ -5,10 +5,11 @@ module App.Component.Common.Modal.Render
 import Proem hiding (div)
 
 import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
+import App.Component.Common.Modal.Style.Core.Close (close)
 import App.Component.Common.Modal.Style.Core.Close as Close
 import App.Component.Common.Modal.Style.Core.Core (staticClass) as Core
 import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
-import App.Component.Common.Modal.Style.Modal (class', staticClass)
+import App.Component.Common.Modal.Style.Modal (modal)
 import App.Component.Common.Modal.Style.Sheet (sheet)
 import App.Component.Common.Modal.Type (Action(..), Slots, State)
 import App.Component.Util.Type (noHtml, noSlotAddressIndex)
@@ -18,7 +19,7 @@ import Halogen.HTML (div, slot)
 import Halogen.HTML.Events (onClick)
 import Html.Renderer.Halogen (render_)
 import Util.Proxy.Dictionary.Inner (inner')
-import Util.Style.Style (class_, classes)
+import Util.Style.Style (class_)
 
 render 
   :: ∀ q i o
@@ -26,18 +27,16 @@ render
   -> State i
   -> ComponentHTML (Action i o) (Slots q o) AppM
 render innerComponent s@{ id, input: { closable, open, innerInput } } = 
-  div 
-    ( [ classes [ staticClass, class' id ] ]
-      <> (open ? [ onClick HandleClick ] ↔ [])    
-    )
+  modal id
+    (open ? [ onClick HandleClick ] ↔ [])    
     [ sheet s
     , not open ? noHtml ↔ div 
         [ class_ Core.staticClass ]
         [ Core.sheet
         , closable 
-            ? (
-              div
-                [ class_ Close.staticClass, onClick $ κ $ HandleCloseClick ]
+            ? ( 
+              close 
+                [ onClick $ κ $ HandleCloseClick ]
                 [ render_ closeSvg ]
             ) 
             ↔ noHtml

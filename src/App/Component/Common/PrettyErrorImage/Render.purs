@@ -5,22 +5,19 @@ module App.Component.Common.PrettyErrorImage.Render
 import Proem hiding (div)
 
 import App.Component.Common.PrettyErrorImage.Style.Image (image)
-import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (class', staticClass)
+import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (prettyErrorImage_)
 import App.Component.Common.PrettyErrorImage.Style.QuestionMark (questionMark_)
 import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
 import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
 import App.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div)
 import Halogen.HTML.Events (onError)
 import Halogen.HTML.Properties (src)
-import Util.Style.Style (classes)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s@{ id, try } =
-  div 
-    [ classes $ [ staticClass, class' id ] ]
+  prettyErrorImage_ id
     [ sheet s
     , try == StopTrying
         ? ( questionMark_ id questionMarkSvg )

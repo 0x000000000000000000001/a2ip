@@ -1,5 +1,7 @@
 module App.Component.Common.Vault.Style.Door
-  ( staticClass
+  ( door
+  , door_
+  , staticClass
   , staticClassWhenLeft
   , staticClassWhenRight
   , style
@@ -9,12 +11,12 @@ module App.Component.Common.Vault.Style.Door
 import Proem hiding (div, top)
 
 import CSS (backgroundColor, rgba, zIndex)
-import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, IProp, Node, div)
 import Util.Proxy.Dictionary.Left (left_)
 import Util.Proxy.Dictionary.Right (right_)
-import Util.Style.Style (class_, heightPct100, refineClass', reflectStaticClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
+import Util.Style.Style (classes, heightPct100, refineClass', reflectStaticClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -39,8 +41,8 @@ style = do
   staticClassWhenRight .? do
     topRightToTopRight
 
-door :: ∀ w i. Node HTMLdiv w i
-door props = div ([ class_ staticClass ] <> props)
+door :: ∀ w i. Boolean -> Array (IProp HTMLdiv i) -> HTML w i
+door left props = div ([ classes [ staticClass, left ? staticClassWhenLeft ↔ staticClassWhenRight ] ] <> props) []
 
-door_ :: ∀ w i. Array (HTML w i) -> HTML w i
-door_ = door []
+door_ :: ∀ w i. Boolean -> HTML w i
+door_ left = door left []

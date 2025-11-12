@@ -1,5 +1,7 @@
 module App.Component.Common.Separator.Style.Separator
-  ( staticClass
+  ( separator
+  , separator_
+  , staticClass
   , staticClassWhenLoading
   , style
   )
@@ -10,11 +12,11 @@ import Proem hiding (div, top)
 import App.Component.Common.Separator.Style.Text.Text as Text
 import App.Component.Common.Separator.Style.Util (grey)
 import CSS (borderBottom, borderColor, rem, solid)
+import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (class_, alignItemsCenter, backgroundColorWhite, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass', reflectStaticClass, top0, widthPct100, (.?), (.|*.), (:?))
+import Util.Style.Style (alignItemsCenter, backgroundColorWhite, classes, displayFlex, justifyContentCenter, loading, loadingGrey, padding4, positionSticky, refineClass', reflectStaticClass, top0, widthPct100, (.?), (.|*.), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -48,8 +50,8 @@ style = do
   where 
   __text = staticClassWhenLoading .|*. Text.staticClass
 
-separator :: ∀ w i. Node HTMLdiv w i
-separator props = div ([ class_ staticClass ] <> props)
+separator :: ∀ w i. Boolean -> Node HTMLdiv w i
+separator loading props = div ([ classes [staticClass, loading ? staticClassWhenLoading ↔ ""] ] <> props)
 
-separator_ :: ∀ w i. Array (HTML w i) -> HTML w i
-separator_ = separator []
+separator_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+separator_ loading = separator loading []

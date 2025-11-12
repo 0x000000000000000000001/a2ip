@@ -1,7 +1,10 @@
 module App.Component.Page.Seminars.Style.Timeline.Label.Lastname
-  ( staticClass
+  ( lastname
+  , lastname_
+  , staticClass
   , style
-  ) where
+  )
+  where
 
 import Proem hiding (div, top)
 

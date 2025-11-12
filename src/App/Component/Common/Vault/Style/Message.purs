@@ -1,5 +1,7 @@
 module App.Component.Common.Vault.Style.Message
-  ( staticClass
+  ( message
+  , message_
+  , staticClass
   , style
   )
   where

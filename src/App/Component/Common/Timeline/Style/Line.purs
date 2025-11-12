@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.Line
-  ( staticClass
+  ( line
+  , line_
+  , staticClass
   , style
   )
   where

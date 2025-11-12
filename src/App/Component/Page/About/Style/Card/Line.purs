@@ -1,5 +1,7 @@
 module App.Component.Page.About.Style.Card.Line
-  ( staticClass
+  ( line
+  , line_
+  , staticClass
   , staticClassWhen
   , style
   )
@@ -8,13 +10,15 @@ module App.Component.Page.About.Style.Card.Line
 import Proem hiding (div, top)
 
 import CSS ((&))
-import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Data.Symbol (class IsSymbol)
+import Halogen.HTML (HTML, Node, div)
+import Type.Prelude (Proxy)
 import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Phone (phone_)
 import Util.Proxy.Dictionary.Role (role_)
-import Util.Style.Style (class_, all, before, content, displayInlineBlock, fontSizePct, fontWeightBold, marginTop, noCss, raw, refineClass', reflectStaticClass, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style.Style (all, before, class_, classes, content, displayInlineBlock, fontSizePct, fontWeightBold, marginTop, noCss, raw, refineClass', reflectStaticClass, widthPct, (.&.), (.?), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -56,8 +60,8 @@ style = do
   a___before = __email & before
   b___before = __phone & before
 
-line :: ∀ w i. Node HTMLdiv w i
-line props = div ([ class_ staticClass ] <> props)
+line :: ∀ sym w i. IsSymbol sym => Proxy sym -> Node HTMLdiv w i
+line key props = div ([ classes [staticClass, staticClassWhen $ ᴠ key] ] <> props)
 
-line_ :: ∀ w i. Array (HTML w i) -> HTML w i
-line_ = line []
+line_ :: ∀ sym w i. IsSymbol sym => Proxy sym -> Array (HTML w i) -> HTML w i
+line_ key = line key []

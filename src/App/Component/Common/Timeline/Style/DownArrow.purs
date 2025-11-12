@@ -1,5 +1,7 @@
 module App.Component.Common.Timeline.Style.DownArrow
-  ( staticClass
+  ( downArrow
+  , downArrow_
+  , staticClass
   , style
   )
   where

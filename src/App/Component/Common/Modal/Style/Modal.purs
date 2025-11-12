@@ -1,5 +1,7 @@
 module App.Component.Common.Modal.Style.Modal
   ( class'
+  , modal
+  , modal_
   , staticClass
   , style
   , zIndex
@@ -15,7 +17,7 @@ import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import Util.Style.Style (class_, displayFlex, displayNone, heightPct, justifyContentCenter, left0, noCss, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
+import Util.Style.Style (class_, classes, displayFlex, displayNone, heightPct, inferClass, justifyContentCenter, left0, noCss, positionFixed, reflectStaticClass, top0, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -48,8 +50,8 @@ style { id, input: { open } } = do
     when (not open) do
       displayNone
     
-modal :: ∀ w i. Node HTMLdiv w i
-modal props = div ([ class_ staticClass ] <> props)
+modal :: ∀ w i. String -> Node HTMLdiv w i
+modal id props = div ([ classes [staticClass, class' id] ] <> props)
 
-modal_ :: ∀ w i. Array (HTML w i) -> HTML w i
-modal_ = modal []
+modal_ :: ∀ w i. String -> Array (HTML w i) -> HTML w i
+modal_ id = modal id []
