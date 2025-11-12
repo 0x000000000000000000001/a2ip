@@ -33,7 +33,6 @@ render s@{ id, try } =
                   (src_ ?? (\s_ -> [ src s_ ]) ⇔ [])
                   <> [ onError \_ -> HandleError ]
           )
-
     ]
 
 questionMarkSvg :: String
