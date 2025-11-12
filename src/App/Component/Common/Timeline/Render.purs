@@ -5,9 +5,9 @@ module App.Component.Common.Timeline.Render
 
 import Proem hiding (div)
 
-import App.Component.Common.Timeline.Style.Date as Date
+import App.Component.Common.Timeline.Style.Date (date_)
 import App.Component.Common.Timeline.Style.DownArrow as DownArrow
-import App.Component.Common.Timeline.Style.Item as Item
+import App.Component.Common.Timeline.Style.Item (item)
 import App.Component.Common.Timeline.Style.Items as Items
 import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
@@ -32,7 +32,7 @@ import Unsafe.Coerce (unsafeCoerce)
 import Util.Html.Dom (dataAttr)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
-import Util.Style.Style (class_, classes)
+import Util.Style.Style (class_)
 
 render :: ∀ w i. State w i -> ComponentHTML (Action w i) Slots AppM
 render { input: { items, loading }, selectedItem } =
@@ -45,29 +45,25 @@ render { input: { items, loading }, selectedItem } =
         [ class_ Items.staticClass ]
         ( 
             mapWithIndex 
-            (\idx item@{ date: date_ } ->
-                let y = fromEnum $ year date_
-                    m = fromEnum $ month date_
-                    d = fromEnum $ day date_
-                    dateDataAttr = dateToDataAttr date_
-                    isSelected = (selectedItem <#> _.date) == Just date_
+            (\idx item'@{ date: _date } ->
+                let y = fromEnum $ year _date
+                    m = fromEnum $ month _date
+                    d = fromEnum $ day _date
+                    dateDataAttr = dateToDataAttr _date
+                    isSelected = (selectedItem <#> _.date) == Just _date
                     next = items !! (idx + 1)
                     isNextSelected = isJust next && (next <#> _.date) == (selectedItem <#> _.date)
                 in 
                     tooltip
                         defaultInput
                             { disabled = loading
-                            , outer = unsafeCoerce item.label
+                            , outer = unsafeCoerce item'.label
                             , inner = 
-                                div
-                                    [ classes $ 
-                                        [Item.staticClass] 
-                                        <> (not loading && isSelected ? [Item.staticClassWhenSelected] ↔ [])
-                                    , onClick $ κ $ SelectItem item
+                                item (not loading && isSelected)
+                                    [ onClick $ κ $ SelectItem item'
                                     , dataAttr date' dateDataAttr
                                     ]
-                                    [ div
-                                        [ class_ Date.staticClass ]
+                                    [ date_
                                         [ div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show d ]
                                         , div [ class_ Number.staticClass ] [ text $ monthIntToName m ]
                                         , div [ class_ Number.staticClass ] [ text $ padLeft 2 '0' $ show $ 2000 + y `mod` 100 ]

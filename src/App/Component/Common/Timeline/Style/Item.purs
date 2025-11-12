@@ -12,12 +12,12 @@ import Proem hiding (div, top)
 import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS (outline, rem, solid)
-import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import Color (lighten)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Selected (selected_)
-import Util.Style.Style (class_, alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, centerRightToCenterWithRemDelta, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refineClass', reflectStaticClass, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, centerRightToCenterWithRemDelta, classes, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refineClass', reflectStaticClass, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -57,8 +57,8 @@ style = do
   ____date = __selected :|*. Date.staticClass
   ____pin = __selected :|*. Pin.staticClass
 
-item :: ∀ w i. Node HTMLdiv w i
-item props = div ([ class_ staticClass ] <> props)
+item :: ∀ w i. Boolean -> Node HTMLdiv w i
+item selected props = div ([ classes [staticClass, selected ? staticClassWhenSelected ↔ ""] ] <> props)
 
-item_ :: ∀ w i. Array (HTML w i) -> HTML w i
-item_ = item []
+item_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+item_ selected = item selected []

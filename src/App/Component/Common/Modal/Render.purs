@@ -6,7 +6,6 @@ import Proem hiding (div)
 
 import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
 import App.Component.Common.Modal.Style.Core.Close (close)
-import App.Component.Common.Modal.Style.Core.Close as Close
 import App.Component.Common.Modal.Style.Core.Core (staticClass) as Core
 import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
 import App.Component.Common.Modal.Style.Modal (modal)
