@@ -6,10 +6,10 @@ import Proem hiding (div)
 
 import App.Component.Common.Input.Style.Field (field)
 import App.Component.Common.Input.Style.Input (input)
+import App.Component.Common.Input.Style.Label (label)
 import App.Component.Common.Input.Style.Sheet (sheet)
 import App.Component.Common.Input.Type (Action(..), Slots, State)
 import App.Component.Common.Input.Util (inputRef)
-import App.Component.Router.Menu.Style.Item.Label (label)
 import App.Component.Util.Type (noHtml)
 import App.Util.Capability.AppM (AppM)
 import Data.Array ((:))
@@ -27,7 +27,7 @@ render s@{ id, open, input: { placeholder, label: label' } } =
     , label'
         ??
           ( \l ->
-              label id
+              label
                 ( open
                     ? [ onClick HandleLabelClick
                       , onMouseDown HandleLabelMouseDown

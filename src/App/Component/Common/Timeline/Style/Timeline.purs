@@ -13,12 +13,13 @@ import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Pin as Pin
-import CSS ((|*))
+import CSS (border, borderBox, borderRadius, boxSizing, height, inset, rem, solid, white, (|*))
 import CSS as CSS
+import Control.Monad.ST (while)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (alignItemsCenter, classes, displayFlex, fill, justifyContentCenter, loading, loadingGrey, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, backgroundWhite, borderRadius1, borderRadiusRem1, classes, displayFlex, fill, justifyContentCenter, loading, loadingGrey, margin1, margin2, noCss, overflowHidden, positionRelative, refineClass', reflectStaticClass, svg, transparent, (.&.), (.?), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -45,6 +46,9 @@ style = do
 
   ____number :? do
     loading
+    margin2 0.2 0.0
+    borderRadiusRem1 0.3
+    height (rem 0.9)
 
   ____downArrowSvg :? do
     fill loadingGrey

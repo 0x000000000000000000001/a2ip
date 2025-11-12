@@ -1,5 +1,6 @@
 module App.Component.Common.Input.Style.Label
   ( label
+  , label_
   , staticClass
   , style
   )
@@ -11,7 +12,7 @@ import CSS (cursor, pct, rem, transform, translate)
 import CSS as CSS
 import CSS.Cursor (text)
 import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (Node, div)
+import Halogen.HTML (HTML, Node, div)
 import Util.Style.Style (class_, reflectStaticClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
 
 staticClass :: String
@@ -29,3 +30,6 @@ style = do
 
 label :: ∀ w i. Node HTMLdiv w i
 label props = div ([ class_ staticClass ] <> props)
+
+label_ :: ∀ w i. Array (HTML w i) -> HTML w i
+label_ = label []

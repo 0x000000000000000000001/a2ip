@@ -7,7 +7,6 @@ import Proem hiding (div)
 
 import App.Component.Common.Timeline.Style.Date (date_)
 import App.Component.Common.Timeline.Style.DownArrow (downArrow_)
-import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import App.Component.Common.Timeline.Style.Item (item)
 import App.Component.Common.Timeline.Style.Items (items_)
 import App.Component.Common.Timeline.Style.Line (line_)
@@ -28,12 +27,10 @@ import Data.Maybe (Maybe(..), isJust)
 import Halogen (ComponentHTML)
 import Halogen.HTML (text)
 import Halogen.HTML.Events (onClick)
-import Html.Renderer.Halogen as HRH
 import Unsafe.Coerce (unsafeCoerce)
 import Util.Html.Dom (dataAttr)
 import Util.Proxy.Dictionary.Date (date')
 import Util.String (padLeft)
-import Util.Style.Style (class_)
 
 render :: ∀ w i. State w i -> ComponentHTML (Action w i) Slots AppM
 render { input: { items, loading }, selectedItem } =
