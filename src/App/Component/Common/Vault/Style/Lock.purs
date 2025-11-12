@@ -4,11 +4,13 @@ module App.Component.Common.Vault.Style.Lock
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (opacity, zIndex)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
+import Util.Style.Style (class_, alignItemsCenter, borderRadiusPct50, displayFlex, heightRem, justifyContentCenter, margin1, positionRelative, reflectStaticClass, svg, widthRem, (.?), (.|*:), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

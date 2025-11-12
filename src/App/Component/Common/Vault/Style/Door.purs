@@ -6,13 +6,15 @@ module App.Component.Common.Vault.Style.Door
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (backgroundColor, rgba, zIndex)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import Util.Proxy.Dictionary.Left (left_)
 import Util.Proxy.Dictionary.Right (right_)
-import Util.Style.Style (heightPct100, refineClass', reflectStaticClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
+import Util.Style.Style (class_, heightPct100, refineClass', reflectStaticClass, topLeftToTopLeft, topRightToTopRight, widthPct, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

@@ -1,18 +1,22 @@
 module App.Component.Common.Loader.Style.Animation
-  ( classWithColor
+  ( animation
+  , animation_
+  , classWithColor
   , staticClass
   , style
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
-import CSS (Color, animation, borderBox, borderRight, borderTop, boxSizing, deg, forwards, fromString, infinite, keyframes, linear, normalAnimationDirection, rem, rotate, sec, solid, transform)
+import CSS (Color, borderBox, borderRight, borderTop, boxSizing, deg, forwards, fromString, infinite, keyframes, linear, normalAnimationDirection, rem, rotate, sec, solid, transform)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
+import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Color (color_)
-import Util.Style.Style (borderRadiusPct50, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStaticClass, transparent, widthRem, (.?))
+import Util.Style.Style (borderRadiusPct50, class_, displayInlineBlock, heightRem, inferAnimationId, refineClass, reflectStaticClass, transparent, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

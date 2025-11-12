@@ -4,11 +4,13 @@ module App.Component.Common.Modal.Style.Core.Core
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
-import Util.Style.Style (backgroundColorWhite, borderRadiusRem1, margin2, padding1, positionRelative, reflectStaticClass, widthRem, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, backgroundColorWhite, borderRadiusRem1, margin2, padding1, positionRelative, reflectStaticClass, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

@@ -3,10 +3,12 @@ module App.Component.Page.Seminars.Style.Timeline.Label.Quoted
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS as CSS
-import Util.Style.Style (flexGrow1, padding1, reflectStaticClass, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, flexGrow1, padding1, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

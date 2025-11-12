@@ -7,7 +7,7 @@ module App.Component.Common.Vault.Style.Front
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Input.Style.Input as Input
 import App.Component.Common.Input.Style.Label as Label
@@ -18,11 +18,13 @@ import App.Component.Common.Vault.Type (Phase(..))
 import CSS (animation, color, column, deg, flexDirection, forwards, fromString, iterationCount, keyframes, lighten, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, strong, transforms, white, zIndex)
 import CSS as CSS
 import CSS.Transform (scale)
+import DOM.HTML.Indexed (HTMLdiv)
 import Data.NonEmpty ((:|))
 import Data.Tuple.Nested ((/\))
+import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
-import Util.Style.Style (alignItemsCenter, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style.Style (alignItemsCenter, class_, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

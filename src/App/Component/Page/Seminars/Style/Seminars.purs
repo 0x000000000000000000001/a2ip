@@ -4,11 +4,13 @@ module App.Component.Page.Seminars.Style.Seminars
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (alignItems, flexStart)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (displayFlex, reflectStaticClass, justifyContentCenter, widthPct100, (.?))
+import Util.Style.Style (class_, displayFlex, reflectStaticClass, justifyContentCenter, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

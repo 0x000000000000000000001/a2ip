@@ -3,12 +3,14 @@ module App.Component.Page.Seminars.Style.Poster
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (alignItems, column, flexDirection)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import CSS.Common (center)
-import Util.Style.Style (displayFlex, flexGrow1, reflectStaticClass, justifyContentCenter, padding1, positionSticky, top0, widthRem, (.?))
+import Util.Style.Style (class_, displayFlex, flexGrow1, reflectStaticClass, justifyContentCenter, padding1, positionSticky, top0, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

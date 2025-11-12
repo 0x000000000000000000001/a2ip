@@ -3,11 +3,13 @@ module App.Component.Page.About.Style.Members
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (alignContent, flexStart)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (displayFlex, flexWrap, reflectStaticClass, justifyContentCenter, padding1, widthPct100, (.?))
+import Util.Style.Style (class_, displayFlex, flexWrap, reflectStaticClass, justifyContentCenter, padding1, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

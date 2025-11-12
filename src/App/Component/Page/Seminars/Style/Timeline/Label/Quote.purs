@@ -7,8 +7,8 @@ import Proem hiding (top)
 
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (Node)
-import Util.Style.Style (fontSizePct, positionRelative, reflectStaticClass, (.?))
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, fontSizePct, positionRelative, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

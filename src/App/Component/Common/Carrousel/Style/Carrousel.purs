@@ -4,12 +4,14 @@ module App.Component.Common.Carrousel.Style.Carrousel
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (rgba)
 import CSS as CSS
 import CSS.Background (backgroundColor)
-import Util.Style.Style (borderRadiusRem1, displayFlex, reflectStaticClass, heightRem, justifyContentCenter, overflowHidden, positionRelative, widthRem, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (borderRadiusRem1, class_, displayFlex, reflectStaticClass, heightRem, justifyContentCenter, overflowHidden, positionRelative, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -27,7 +29,7 @@ style = do
     overflowHidden
 
 carrousel :: ∀ w i. Node HTMLdiv w i
-carrousel = div ([ class_ staticClass ] <> props)
+carrousel props = div ([ class_ staticClass ] <> props)
 
 carrousel_ :: ∀ w i. Array (HTML w i) -> HTML w i
 carrousel_ = carrousel []

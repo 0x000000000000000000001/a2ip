@@ -5,13 +5,15 @@ module App.Component.Common.Timeline.Style.Date
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (alignItems, color, column, flexDirection, flexEnd)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import Color (darken)
-import Util.Style.Style (centerRightToCenterWithRemDelta, displayFlex, justifyContentCenter, reflectStaticClass, userSelectNone, (.?))
+import Util.Style.Style (class_, centerRightToCenterWithRemDelta, displayFlex, justifyContentCenter, reflectStaticClass, userSelectNone, (.?))
 import Util.Style.Style as UtilStyle
 
 staticClass :: String

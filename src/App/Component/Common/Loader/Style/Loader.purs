@@ -4,10 +4,12 @@ module App.Component.Common.Loader.Style.Loader
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS as CSS
-import Util.Style.Style (positionRelative, reflectStaticClass, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, positionRelative, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

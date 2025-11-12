@@ -6,18 +6,20 @@ module App.Component.Page.About.Style.Card.Card
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Page.About.Style.Card.Line as Line
 import App.Component.Page.About.Style.Card.Names as Names
 import App.Component.Page.About.Style.Card.Portrait as Portrait
 import CSS (CSS) as CSS
 import CSS (column, flexDirection, hover, (&))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Loaded (loaded_)
 import Util.Proxy.Dictionary.Loading (loading_)
 import Util.Proxy.Dictionary.Phone (phone_)
-import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, noCss, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, before, borderRadiusRem1, class_, content, displayFlex, flexWrap, heightRem, justifyContentCenter, loading, noCss, padding1, refineClass', reflectStaticClass, textAlignCenter, typedDeepClass, widthPct, widthRem, (&.), (.&.), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

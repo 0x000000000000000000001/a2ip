@@ -4,11 +4,13 @@ module App.Component.Common.Tooltip.Style.Outer.Core
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (backgroundColor, color, rgba, white)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (borderRadiusRem1, overflowHidden, padding1, reflectStaticClass, widthPct100, (.?))
+import Util.Style.Style (class_, borderRadiusRem1, overflowHidden, padding1, reflectStaticClass, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

@@ -5,16 +5,18 @@ module App.Component.Common.Timeline.Style.Timeline
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.DownArrow as DownArrow
 import App.Component.Common.Timeline.Style.Line as Line
 import App.Component.Common.Timeline.Style.Number as Number
 import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS ((|*))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
+import Util.Style.Style (class_, alignItemsCenter, displayFlex, fill, justifyContentCenter, loading, loadingGrey, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

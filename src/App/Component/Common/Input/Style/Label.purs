@@ -3,12 +3,14 @@ module App.Component.Common.Input.Style.Label
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (cursor, pct, rem, transform, translate)
 import CSS as CSS
 import CSS.Cursor (text)
-import Util.Style.Style (reflectStaticClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (Node, div)
+import Util.Style.Style (class_, reflectStaticClass, left0, positionAbsolute, topPct50, userSelectNone, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -25,6 +27,3 @@ style = do
 
 label :: ∀ w i. Node HTMLdiv w i
 label props = div ([ class_ staticClass ] <> props)
-
-label_ :: ∀ w i. Array (HTML w i) -> HTML w i
-label_ = label []

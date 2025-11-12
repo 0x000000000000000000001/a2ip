@@ -5,11 +5,13 @@ module App.Component.Common.Input.Style.Input
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import Util.Style.Style (classes, colorRed, fontSizePct, noCss, refineClass', reflectStaticClass, top0, (.?), (.|*.), (:?))
 
 staticClass :: String
@@ -38,5 +40,5 @@ style = do
 input :: ∀ w i. Boolean -> Node HTMLdiv w i
 input open props = div ([ classes [ staticClass, open ? staticClassWhenOpen ↔ "" ] ] <> props)
 
-input_ :: ∀ w i. Array (HTML w i) -> HTML w i
-input_ = input []
+input_ :: ∀ w i. Boolean -> Array (HTML w i) -> HTML w i
+input_ open = input open []

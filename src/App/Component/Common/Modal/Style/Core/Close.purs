@@ -4,12 +4,14 @@ module App.Component.Common.Modal.Style.Core.Close
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (color, deg, hover, rotate, transforms, white, (|*))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import CSS.Transform (scale)
-import Util.Style.Style (bottomLeftToTopRight, cursorPointer, fill, heightRem, noCss, padding1, reflectStaticClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
+import Util.Style.Style (class_, bottomLeftToTopRight, cursorPointer, fill, heightRem, noCss, padding1, reflectStaticClass, svg, userSelectNone, widthRem, (.&), (.?), (.|*), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

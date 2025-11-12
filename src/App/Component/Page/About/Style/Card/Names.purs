@@ -3,10 +3,12 @@ module App.Component.Page.About.Style.Card.Names
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS as CSS
-import Util.Style.Style (colorRed, fontSizePct, fontWeightBold, reflectStaticClass, raw, widthPct, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, colorRed, fontSizePct, fontWeightBold, reflectStaticClass, raw, widthPct, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

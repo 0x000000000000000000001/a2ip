@@ -5,15 +5,17 @@ module App.Component.Common.Timeline.Style.Item
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.Date as Date
 import App.Component.Common.Timeline.Style.Pin as Pin
 import CSS (outline, rem, solid)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
 import Color (lighten)
 import Util.Proxy.Dictionary.Selected (selected_)
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, centerRightToCenterWithRemDelta, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refineClass', reflectStaticClass, (.&.), (.?), (.|*.), (:?), (:|*.))
+import Util.Style.Style (class_, alignItemsCenter, backgroundColorRed, backgroundColorWhite, borderRadiusPct50, centerRightToCenterWithRemDelta, colorRed, cursorPointer, displayFlex, fontSizePct, fontWeightBold, justifyContentCenter, padding1, positionRelative, red, refineClass', reflectStaticClass, (.&.), (.?), (.|*.), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

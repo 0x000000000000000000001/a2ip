@@ -4,12 +4,14 @@ module App.Component.Common.Timeline.Style.Pin
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (borderRadiusPct50, heightRem, reflectStaticClass, widthRem, (.?))
+import Util.Style.Style (class_, borderRadiusPct50, heightRem, reflectStaticClass, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

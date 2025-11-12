@@ -4,11 +4,13 @@ module App.Component.Common.Timeline.Style.DownArrow
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Timeline.Style.Util (grey)
 import CSS as CSS
-import Util.Style.Style (alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, reflectStaticClass, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, reflectStaticClass, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

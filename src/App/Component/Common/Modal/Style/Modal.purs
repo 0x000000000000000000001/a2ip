@@ -6,14 +6,16 @@ module App.Component.Common.Modal.Style.Modal
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Modal.Type (State)
 import App.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
-import Util.Style.Style (displayFlex, displayNone, heightPct, justifyContentCenter, left0, noCss, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (class_, displayFlex, displayNone, heightPct, justifyContentCenter, left0, noCss, positionFixed, inferClass, reflectStaticClass, top0, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

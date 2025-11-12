@@ -4,11 +4,13 @@ module App.Component.Common.Vault.Style.Core
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (zIndex)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (reflectStaticClass, positionRelative, (.?))
+import Util.Style.Style (class_, reflectStaticClass, positionRelative, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

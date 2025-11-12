@@ -5,14 +5,16 @@ module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.Loader.Style.Loader as Loader
 import App.Component.Common.YoutubeVideo.Type (State)
 import App.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, black, height, iframe, width, zIndex, (&))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, noCss, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
+import Util.Style.Style (class_, any, centerToCenter, displayFlex, has, heightPct100, heightRem, inferClass, justifyContentCenter, noCss, positionRelative, reflectStaticClass, topLeftToTopLeft, widthPct100, widthRem, (.?), (.|*), (.|*.), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

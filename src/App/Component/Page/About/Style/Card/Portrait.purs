@@ -5,11 +5,13 @@ module App.Component.Page.About.Style.Card.Portrait
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import App.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
 import App.Component.Util.Type (Size(..))
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import Data.Lens ((.~))
 import Data.Maybe (Maybe(..))
 import Util.Proxy.Dictionary.Border (_border)
@@ -24,7 +26,7 @@ import Util.Proxy.Dictionary.When (_when)
 import Util.Proxy.Dictionary.Width (_width)
 import Util.Proxy.Dictionary.With (_with)
 import Util.Style.Image (cover)
-import Util.Style.Style (marginTop, red, reflectStaticClass, textRed, (.?))
+import Util.Style.Style (class_, marginTop, red, reflectStaticClass, textRed, (.?))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι

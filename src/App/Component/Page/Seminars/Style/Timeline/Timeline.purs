@@ -3,12 +3,12 @@ module App.Component.Page.Seminars.Style.Timeline.Timeline
   , style
   ) where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, Node)
-import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, widthRem, (.?))
+import Halogen.HTML (HTML, Node, div)
+import Util.Style.Style (alignItemsCenter, class_, displayFlex, reflectStaticClass, justifyContentCenter, widthRem, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

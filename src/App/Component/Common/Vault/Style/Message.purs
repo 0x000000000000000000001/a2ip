@@ -4,11 +4,13 @@ module App.Component.Common.Vault.Style.Message
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (div, top)
 
 import CSS (color, white, zIndex)
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
 import CSS as CSS
-import Util.Style.Style (reflectStaticClass, positionRelative, textAlignCenter, widthPct100, (.?))
+import Util.Style.Style (class_, reflectStaticClass, positionRelative, textAlignCenter, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
