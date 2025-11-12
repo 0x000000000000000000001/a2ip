@@ -2,20 +2,17 @@ module App.Component.Router.Menu.Render (render) where
 
 import Proem hiding (top, div)
 
+import App.Component.Common.Link.Component (link)
 import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child (child_)
-import App.Component.Router.Menu.Style.Item.Child as Child
 import App.Component.Router.Menu.Style.Item.Children (children_)
-import App.Component.Router.Menu.Style.Item.Children as Children
 import App.Component.Router.Menu.Style.Item.Icon.Container (container_)
 import App.Component.Router.Menu.Style.Item.Icon.Icon (icon)
-import App.Component.Router.Menu.Style.Item.Icon.Icon as Icon
 import App.Component.Router.Menu.Style.Item.Item as Item
 import App.Component.Router.Menu.Style.Item.Label (label_)
 import App.Component.Router.Menu.Style.Logo (logo)
-import App.Component.Router.Menu.Style.Logo as Logo
-import App.Component.Router.Menu.Style.Menu (class', menu, staticClass)
+import App.Component.Router.Menu.Style.Menu (menu)
 import App.Component.Router.Menu.Style.Sheet (sheet)
 import App.Component.Router.Menu.Type (Action(..), State, Slots)
 import App.Util.Capability.AppM (AppM)
@@ -24,11 +21,10 @@ import CSS (flex, fromString)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
-import Halogen.HTML (div, img, nav, slot, text)
+import Halogen.HTML (slot, text)
 import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Util.Proxy.Dictionary.Items (items')
-import Util.Style.Style (class_, classes)
 
 type Item r =
   ( label :: String
@@ -82,7 +78,9 @@ render s@{ id, animating, unfold } =
   where
   item :: String -> Maybe Route -> String -> Array ChildItem -> ComponentHTML Action Slots AppM
   item label' route iconFileName children =
-    slot items' (label' /\ route) Link.component
+    link
+      items'
+      (label' /\ route)
       { route
       , classes: Just [ Item.staticClass, Item.class' id ]
       , display: flex

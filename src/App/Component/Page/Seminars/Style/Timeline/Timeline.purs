@@ -6,6 +6,8 @@ module App.Component.Page.Seminars.Style.Timeline.Timeline
 import Proem hiding (top)
 
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node)
 import Util.Style.Style (alignItemsCenter, displayFlex, reflectStaticClass, justifyContentCenter, widthRem, (.?))
 
 staticClass :: String

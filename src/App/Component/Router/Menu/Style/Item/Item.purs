@@ -1,5 +1,7 @@
 module App.Component.Router.Menu.Style.Item.Item
   ( class'
+  , item
+  , item_
   , staticClass
   , style
   )
@@ -11,8 +13,10 @@ import App.Component.Router.Menu.Style.Item.Label as Label
 import App.Component.Router.Menu.Type (State)
 import CSS (color, graytone, hover)
 import CSS as CSS
-import Proem (discard, when, ι)
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (HTML, Node, div)
+import Proem (discard, when, ι, (<>))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, class_, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι

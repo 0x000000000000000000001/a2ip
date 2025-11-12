@@ -6,6 +6,8 @@ module App.Component.Page.Seminars.Style.Timeline.Label.Quote
 import Proem hiding (top)
 
 import CSS as CSS
+import DOM.HTML.Indexed (HTMLdiv)
+import Halogen.HTML (Node)
 import Util.Style.Style (fontSizePct, positionRelative, reflectStaticClass, (.?))
 
 staticClass :: String

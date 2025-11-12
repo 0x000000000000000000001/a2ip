@@ -13,7 +13,7 @@ import CSS (alignSelf, fromString, key)
 import CSS as CSS
 import CSS.Common (center)
 import DOM.HTML.Indexed (HTMLimg)
-import Halogen.HTML (HTML, Leaf, Node, img)
+import Halogen.HTML (HTML, Leaf, img)
 import Util.Style.Style (class_, cursorPointer, margin4, reflectStaticClass, widthRem, (.?))
 
 staticClass :: String
