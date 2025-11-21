@@ -1,4 +1,4 @@
-module App.Component.Common.Separator.Style.Text.Text
+module Ui.Component.Common.Separator.Style.Text.Text
   ( staticClass
   , style
   , text
@@ -8,7 +8,7 @@ module App.Component.Common.Separator.Style.Text.Text
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Separator.Style.Util (grey)
+import Ui.Component.Common.Separator.Style.Util (grey)
 import CSS (borderLeft, borderRight, borderTop, color, darken, fontFamily, rem, sansSerif, solid)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

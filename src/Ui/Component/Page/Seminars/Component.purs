@@ -1,12 +1,12 @@
-module App.Component.Page.Seminars.Component where
+module Ui.Component.Page.Seminars.Component where
 
 import Proem
 
-import App.Component.Page.Seminars.HandleAction (handleAction)
-import App.Component.Page.Seminars.Render (render)
-import App.Component.Page.Seminars.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (noInput, noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Page.Seminars.HandleAction (handleAction)
+import Ui.Component.Page.Seminars.Render (render)
+import Ui.Component.Page.Seminars.Type (Action(..), Input, Output, Query)
+import Ui.Component.Util.Type (noInput, noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

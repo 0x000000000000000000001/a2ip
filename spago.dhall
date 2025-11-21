@@ -59,7 +59,6 @@ You can edit this file as you like.
   , "simple-json"
   , "spec"
   , "spec-node"
-  , "st"
   , "strings"
   , "transformers"
   , "tuples"

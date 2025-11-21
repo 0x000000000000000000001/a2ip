@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Type
+module Ui.Component.Common.Timeline.Type
   ( Action(..)
   , DefaultDate(..)
   , Input
@@ -12,8 +12,8 @@ module App.Component.Common.Timeline.Type
   where
 
 
-import App.Component.Util.Type (NoQuery, NoSlots)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (NoQuery, NoSlots)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Date (Date)
 import Data.Maybe (Maybe)
 import Effect.Ref (Ref)

@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Component
+module Ui.Component.Common.Timeline.Component
   ( component
   , timeline
   )
@@ -6,10 +6,10 @@ module App.Component.Common.Timeline.Component
 
 import Proem
 
-import App.Component.Common.Timeline.HandleAction.HandleAction (handleAction)
-import App.Component.Common.Timeline.Render (render)
-import App.Component.Common.Timeline.Type (Action(..), Input, Output, Query)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Timeline.HandleAction.HandleAction (handleAction)
+import Ui.Component.Common.Timeline.Render (render)
+import Ui.Component.Common.Timeline.Type (Action(..), Input, Output, Query)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Array (nubByEq)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)

@@ -1,12 +1,12 @@
-module App.Component.Router.Type where
+module Ui.Component.Router.Type where
 
-import App.Component.Page.About.Type as PageAbout
-import App.Component.Page.Home.Type as PageHome
-import App.Component.Page.Seminars.Type as PageSeminars
-import App.Component.Router.Menu.Type as Menu
-import App.Component.Util.Type (NoInput, NoOutput, NoSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (Route)
+import Ui.Component.Page.About.Type as PageAbout
+import Ui.Component.Page.Home.Type as PageHome
+import Ui.Component.Page.Seminars.Type as PageSeminars
+import Ui.Component.Router.Menu.Type as Menu
+import Ui.Component.Util.Type (NoInput, NoOutput, NoSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Effect.Ref (Ref)
 import Halogen (HalogenM, Slot)

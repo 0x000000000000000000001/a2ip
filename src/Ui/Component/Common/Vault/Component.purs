@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Component
+module Ui.Component.Common.Vault.Component
   ( component
   , vault
   )
@@ -6,10 +6,10 @@ module App.Component.Common.Vault.Component
 
 import Proem
 
-import App.Component.Common.Vault.HandleAction (handleAction)
-import App.Component.Common.Vault.Render (render)
-import App.Component.Common.Vault.Type (Action(..), Input, Output, Phase(..))
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Vault.HandleAction (handleAction)
+import Ui.Component.Common.Vault.Render (render)
+import Ui.Component.Common.Vault.Type (Action(..), Input, Output, Phase(..))
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

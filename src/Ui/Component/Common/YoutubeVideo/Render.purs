@@ -1,14 +1,14 @@
-module App.Component.Common.YoutubeVideo.Render
+module Ui.Component.Common.YoutubeVideo.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Loader.Loader (loader)
-import App.Component.Common.YoutubeVideo.Style.Sheet (sheet)
-import App.Component.Common.YoutubeVideo.Style.YoutubeVideo (youtubeVideo_)
-import App.Component.Common.YoutubeVideo.Type (Action, Slots, State)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Loader.Loader (loader)
+import Ui.Component.Common.YoutubeVideo.Style.Sheet (sheet)
+import Ui.Component.Common.YoutubeVideo.Style.YoutubeVideo (youtubeVideo_)
+import Ui.Component.Common.YoutubeVideo.Type (Action, Slots, State)
+import Ui.Util.Capability.AppM (AppM)
 import CSS (darken, white)
 import Data.String (Pattern(..), Replacement(..), contains, replaceAll)
 import Halogen (ComponentHTML)

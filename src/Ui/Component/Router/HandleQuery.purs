@@ -1,10 +1,10 @@
-module App.Component.Router.HandleQuery where
+module Ui.Component.Router.HandleQuery where
 
 import Proem hiding (div)
 
-import App.Component.Router.HandleAction (scrollKey)
-import App.Component.Router.Type (RouteM, Query(..))
-import App.Util.Capability.Navigate (Route, routePath)
+import Ui.Component.Router.HandleAction (scrollKey)
+import Ui.Component.Router.Type (RouteM, Query(..))
+import Ui.Util.Capability.Navigate (Route, routePath)
 import Data.Array ((!!))
 import Data.Int (fromNumber)
 import Data.Maybe (Maybe(..))

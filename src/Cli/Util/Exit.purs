@@ -1,4 +1,4 @@
-module Bin.Util.Exit
+module Cli.Util.Exit
   ( exit
   , exitError
   , exitSuccess

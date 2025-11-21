@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Style.Door
+module Ui.Component.Common.Vault.Style.Door
   ( door
   , door_
   , staticClass

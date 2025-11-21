@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Style.Label
+module Ui.Component.Common.Input.Style.Label
   ( label
   , label_
   , staticClass

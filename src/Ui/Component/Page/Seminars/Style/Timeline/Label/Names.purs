@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Label.Names
+module Ui.Component.Page.Seminars.Style.Timeline.Label.Names
   ( names
   , names_
   , staticClass

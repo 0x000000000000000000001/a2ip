@@ -1,11 +1,11 @@
-module App.Component.Common.Timeline.HandleAction.HandleReceive
+module Ui.Component.Common.Timeline.HandleAction.HandleReceive
   ( handleReceive
   ) where
 
 import Proem
 
-import App.Component.Common.Timeline.HandleAction.Util (scrollToDate)
-import App.Component.Common.Timeline.Type (DefaultDate(..), Input, Output(..), TimelineM)
+import Ui.Component.Common.Timeline.HandleAction.Util (scrollToDate)
+import Ui.Component.Common.Timeline.Type (DefaultDate(..), Input, Output(..), TimelineM)
 import Data.Array (find, length, nubByEq, reverse, (!!))
 import Data.Foldable (for_)
 import Data.Maybe (Maybe(..))

@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Type
+module Ui.Component.Common.Carrousel.Type
   ( Action(..)
   , CarrouselM
   , Input
@@ -12,10 +12,10 @@ module App.Component.Common.Carrousel.Type
   )
   where
 
-import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
-import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex, WithId)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
+import Ui.Component.Common.YoutubeVideo.Type as YoutubeVideo
+import Ui.Component.Util.Type (NoOutput, NoQuery, NoSlotAddressIndex, WithId)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Eq (class Eq)
 import Data.Maybe (Maybe)
 import Halogen (HalogenM, Slot)

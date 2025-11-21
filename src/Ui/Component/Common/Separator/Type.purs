@@ -1,4 +1,4 @@
-module App.Component.Common.Separator.Type
+module Ui.Component.Common.Separator.Type
   ( Action(..)
   , Input
   , Output(..)
@@ -11,8 +11,8 @@ module App.Component.Common.Separator.Type
   where
 
 import Proem
-import App.Util.Capability.AppM (AppM)
-import App.Component.Util.Type (NoOutput, NoQuery, NoSlots)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (NoOutput, NoQuery, NoSlots)
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)
 import Halogen (HalogenM)

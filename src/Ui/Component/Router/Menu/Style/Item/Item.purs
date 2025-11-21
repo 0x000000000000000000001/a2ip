@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Item
+module Ui.Component.Router.Menu.Style.Item.Item
   ( class'
   , item
   , item_
@@ -7,10 +7,10 @@ module App.Component.Router.Menu.Style.Item.Item
   )
   where
 
-import App.Component.Router.Menu.Style.Item.Children as Children
-import App.Component.Router.Menu.Style.Item.Icon.Container as IconContainer
-import App.Component.Router.Menu.Style.Item.Label as Label
-import App.Component.Router.Menu.Type (State)
+import Ui.Component.Router.Menu.Style.Item.Children as Children
+import Ui.Component.Router.Menu.Style.Item.Icon.Container as IconContainer
+import Ui.Component.Router.Menu.Style.Item.Label as Label
+import Ui.Component.Router.Menu.Type (State)
 import CSS (color, graytone, hover)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

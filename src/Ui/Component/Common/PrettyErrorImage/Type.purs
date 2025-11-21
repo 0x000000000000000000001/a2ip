@@ -1,4 +1,4 @@
-module App.Component.Common.PrettyErrorImage.Type
+module Ui.Component.Common.PrettyErrorImage.Type
   ( Action(..)
   , Border
   , Input
@@ -18,8 +18,8 @@ module App.Component.Common.PrettyErrorImage.Type
 
 import Proem
 
-import App.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
+import Ui.Util.Capability.AppM (AppM)
 import Color (Color)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)

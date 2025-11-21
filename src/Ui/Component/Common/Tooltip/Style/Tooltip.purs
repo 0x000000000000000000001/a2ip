@@ -1,4 +1,4 @@
-module App.Component.Common.Tooltip.Style.Tooltip
+module Ui.Component.Common.Tooltip.Style.Tooltip
   ( staticClass
   , style
   , tooltip
@@ -8,7 +8,7 @@ module App.Component.Common.Tooltip.Style.Tooltip
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Tooltip.Style.Outer.Outer as Outer
+import Ui.Component.Common.Tooltip.Style.Outer.Outer as Outer
 import CSS (hover)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

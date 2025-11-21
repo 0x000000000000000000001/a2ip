@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Timeline
+module Ui.Component.Page.Seminars.Style.Timeline.Timeline
   ( staticClass
   , style
   , timeline

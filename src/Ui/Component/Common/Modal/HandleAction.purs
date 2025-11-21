@@ -1,11 +1,11 @@
-module App.Component.Common.Modal.HandleAction
+module Ui.Component.Common.Modal.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.Modal.Style.Modal as Modal
-import App.Component.Common.Modal.Type (Action(..), ModalM, Output(..))
+import Ui.Component.Common.Modal.Style.Modal as Modal
+import Ui.Component.Common.Modal.Type (Action(..), ModalM, Output(..))
 import Data.String (Pattern(..), contains)
 import Halogen (get, modify_)
 import Halogen.Query.HalogenM (raise)

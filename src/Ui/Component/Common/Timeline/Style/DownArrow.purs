@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.DownArrow
+module Ui.Component.Common.Timeline.Style.DownArrow
   ( downArrow
   , downArrow_
   , staticClass
@@ -8,10 +8,10 @@ module App.Component.Common.Timeline.Style.DownArrow
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.Util (grey)
+import Ui.Component.Common.Timeline.Style.Util (grey)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
-import Halogen.HTML (HTML, IProp, Node, div)
+import Halogen.HTML (HTML, IProp)
 import Html.Renderer.Halogen (render)
 import Util.Style.Style (class_, alignItemsCenter, centerToBottomCenter, centerToCenter, displayFlex, fill, reflectStaticClass, heightRem, justifyContentCenter, svg, widthRem, (.?), (.|*), (:?))
 

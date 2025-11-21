@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Icon.Container
+module Ui.Component.Router.Menu.Style.Item.Icon.Container
   ( boxShadow
   , class'
   , container
@@ -11,8 +11,8 @@ module App.Component.Router.Menu.Style.Item.Icon.Container
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.Style.Menu as MenuStyle
-import App.Component.Router.Menu.Type (State)
+import Ui.Component.Router.Menu.Style.Menu as MenuStyle
+import Ui.Component.Router.Menu.Type (State)
 import CSS (alignSelf, backgroundColor, rem, rgba, white)
 import CSS as CSS
 import CSS.Box (bsColor, shadow)

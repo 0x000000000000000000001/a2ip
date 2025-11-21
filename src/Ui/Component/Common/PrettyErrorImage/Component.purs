@@ -1,4 +1,4 @@
-module App.Component.Common.PrettyErrorImage.Component
+module Ui.Component.Common.PrettyErrorImage.Component
   ( component
   , prettyErrorImage
   )
@@ -6,11 +6,11 @@ module App.Component.Common.PrettyErrorImage.Component
 
 import Proem
 
-import App.Component.Common.PrettyErrorImage.HandleAction (handleAction)
-import App.Component.Common.PrettyErrorImage.Render (render)
-import App.Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query, Try(..))
-import App.Component.Util.Type (withId, noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.PrettyErrorImage.HandleAction (handleAction)
+import Ui.Component.Common.PrettyErrorImage.Render (render)
+import Ui.Component.Common.PrettyErrorImage.Type (Action(..), Input, Output, Query, Try(..))
+import Ui.Component.Util.Type (withId, noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

@@ -1,9 +1,9 @@
-module App.Component.Common.Modal.Style.Sheet
+module Ui.Component.Common.Modal.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.Modal.Style.Modal as Modal
-import App.Component.Common.Modal.Type (State)
+import Ui.Component.Common.Modal.Style.Modal as Modal
+import Ui.Component.Common.Modal.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 

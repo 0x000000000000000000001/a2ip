@@ -1,15 +1,15 @@
-module App.Component.Common.Link.Render
+module Ui.Component.Common.Link.Render
   ( render
   )
   where
 
 import Proem hiding (div)
 
-import App.Component.Common.Link.Style.Link (link)
-import App.Component.Common.Link.Style.Sheet (sheet)
-import App.Component.Common.Link.Type (Action(..), Slots, State)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (routeCodec)
+import Ui.Component.Common.Link.Style.Link (link)
+import Ui.Component.Common.Link.Style.Sheet (sheet)
+import Ui.Component.Common.Link.Type (Action(..), Slots, State)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (routeCodec)
 import Halogen (ComponentHTML)
 import Halogen.HTML.Events (onClick)
 import Halogen.HTML.Properties (href)

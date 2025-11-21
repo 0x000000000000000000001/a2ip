@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Card.Portrait
+module Ui.Component.Page.About.Style.Card.Portrait
   ( portrait
   , portrait_
   , prettyErrorImageStyle
@@ -9,8 +9,8 @@ module App.Component.Page.About.Style.Card.Portrait
 
 import Proem hiding (div, top)
 
-import App.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
-import App.Component.Util.Type (Size(..))
+import Ui.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
+import Ui.Component.Util.Type (Size(..))
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

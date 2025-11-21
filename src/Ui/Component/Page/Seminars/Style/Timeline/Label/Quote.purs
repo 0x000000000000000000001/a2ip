@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Label.Quote
+module Ui.Component.Page.Seminars.Style.Timeline.Label.Quote
   ( quote
   , quote_
   , staticClass

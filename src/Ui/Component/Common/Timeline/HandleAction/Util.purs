@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.HandleAction.Util
+module Ui.Component.Common.Timeline.HandleAction.Util
   ( dateQuerySelector
   , getAllDateElements
   , getDateElement
@@ -10,8 +10,8 @@ module App.Component.Common.Timeline.HandleAction.Util
 
 import Proem
 
-import App.Component.Common.Timeline.Type (TimelineM)
-import App.Component.Common.Timeline.Util (dateToDataAttr)
+import Ui.Component.Common.Timeline.Type (TimelineM)
+import Ui.Component.Common.Timeline.Util (dateToDataAttr)
 import Data.Array (head, mapMaybe)
 import Data.Date (Date)
 import Data.Foldable (for_)

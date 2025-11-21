@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Type
+module Ui.Component.Router.Menu.Type
   ( Action(..)
   , Input
   , MenuM
@@ -9,10 +9,10 @@ module App.Component.Router.Menu.Type
   )
   where
 
-import App.Component.Common.Link.Type as Link
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, WithId)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (Route)
+import Ui.Component.Common.Link.Type as Link
+import Ui.Component.Util.Type (NoInput, NoOutput, NoQuery, WithId)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (Route)
 import Data.Maybe (Maybe)
 import Data.Tuple (Tuple)
 import Halogen (HalogenM, Slot)

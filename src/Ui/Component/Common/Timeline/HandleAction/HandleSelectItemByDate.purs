@@ -1,10 +1,10 @@
-module App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate
+module Ui.Component.Common.Timeline.HandleAction.HandleSelectItemByDate
   ( handleSelectItemByDate
   ) where
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Output(..), TimelineM)
+import Ui.Component.Common.Timeline.Type (Output(..), TimelineM)
 import Data.Array (find)
 import Data.Date (Date)
 import Data.Maybe (Maybe(..))

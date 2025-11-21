@@ -1,4 +1,4 @@
-module App.Component.Page.Home.Style.Home
+module Ui.Component.Page.Home.Style.Home
   ( home
   , home_
   , staticClass

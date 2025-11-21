@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Control.Control
+module Ui.Component.Common.Carrousel.Style.Control.Control
   ( control
   , control_
   , staticClass
@@ -10,7 +10,7 @@ module App.Component.Common.Carrousel.Style.Control.Control
 
 import Proem hiding (top, div)
 
-import App.Component.Common.Carrousel.Style.Control.Icon as Icon
+import Ui.Component.Common.Carrousel.Style.Control.Icon as Icon
 import CSS (backgroundColor, color, hover, rgba, white)
 import CSS as CSS
 import Color (darken)

@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Style.Vault
+module Ui.Component.Common.Vault.Style.Vault
   ( staticClass
   , style
   , vault

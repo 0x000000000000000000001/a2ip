@@ -1,12 +1,12 @@
-module App.Component.Page.Home.HandleModalOutput
+module Ui.Component.Page.Home.HandleModalOutput
   ( handleModalOutput
   )
   where
 
 
-import App.Component.Common.Modal.Type (Output(..))
-import App.Component.Common.Modal.Type as Modal
-import App.Component.Page.Home.Type (Action(..))
+import Ui.Component.Common.Modal.Type (Output(..))
+import Ui.Component.Common.Modal.Type as Modal
+import Ui.Component.Page.Home.Type (Action(..))
 
 handleModalOutput :: ∀ o. Modal.Output o -> Action
 handleModalOutput = case _ of

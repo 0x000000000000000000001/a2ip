@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Card.Card
+module Ui.Component.Page.About.Style.Card.Card
   ( card
   , card_
   , staticClass
@@ -10,9 +10,9 @@ module App.Component.Page.About.Style.Card.Card
 
 import Proem hiding (div, top)
 
-import App.Component.Page.About.Style.Card.Line as Line
-import App.Component.Page.About.Style.Card.Names as Names
-import App.Component.Page.About.Style.Card.Portrait as Portrait
+import Ui.Component.Page.About.Style.Card.Line as Line
+import Ui.Component.Page.About.Style.Card.Names as Names
+import Ui.Component.Page.About.Style.Card.Portrait as Portrait
 import CSS (CSS) as CSS
 import CSS (column, flexDirection, hover, (&))
 import DOM.HTML.Indexed (HTMLdiv)

@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Caption
+module Ui.Component.Common.Carrousel.Style.Caption
   ( caption
   , caption_
   , staticClass

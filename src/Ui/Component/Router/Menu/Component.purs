@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Component
+module Ui.Component.Router.Menu.Component
   ( component
   , menu
   )
@@ -6,11 +6,11 @@ module App.Component.Router.Menu.Component
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.HandleAction (handleAction)
-import App.Component.Router.Menu.Render (render)
-import App.Component.Router.Menu.Type (Action(..), Output, Query)
-import App.Component.Util.Type (withId, noInput, noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Router.Menu.HandleAction (handleAction)
+import Ui.Component.Router.Menu.Render (render)
+import Ui.Component.Router.Menu.Type (Action(..), Output, Query)
+import Ui.Component.Util.Type (withId, noInput, noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

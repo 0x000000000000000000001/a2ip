@@ -1,10 +1,10 @@
-module App.Component.Common.Timeline.HandleAction.HandleInitialize
+module Ui.Component.Common.Timeline.HandleAction.HandleInitialize
   ( handleInitialize
   ) where
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Action(..), TimelineM)
+import Ui.Component.Common.Timeline.Type (Action(..), TimelineM)
 import Data.Maybe (Maybe(..))
 import Effect.Ref (new)
 import Halogen (modify_, subscribe')

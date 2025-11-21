@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Style.Field
+module Ui.Component.Common.Input.Style.Field
   ( class'
   , field
   , field_
@@ -9,7 +9,7 @@ module App.Component.Common.Input.Style.Field
 
 import Proem hiding (top, div)
 
-import App.Component.Common.Input.Type (State)
+import Ui.Component.Common.Input.Type (State)
 import CSS (backgroundColor, borderColor, color, outlineWidth, rem, solid)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLinput)

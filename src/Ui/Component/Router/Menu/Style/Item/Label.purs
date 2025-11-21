@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Label
+module Ui.Component.Router.Menu.Style.Item.Label
   ( class'
   , label
   , label_
@@ -9,7 +9,7 @@ module App.Component.Router.Menu.Style.Item.Label
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.Type (State)
+import Ui.Component.Router.Menu.Type (State)
 import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)

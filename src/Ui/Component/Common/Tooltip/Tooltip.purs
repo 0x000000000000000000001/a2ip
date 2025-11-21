@@ -1,18 +1,18 @@
-module App.Component.Common.Tooltip.Tooltip
+module Ui.Component.Common.Tooltip.Tooltip
   ( tooltip
   )
   where
 
 import Proem hiding (div)
 
-import App.Component.Common.Tooltip.Style.Inner (inner_)
-import App.Component.Common.Tooltip.Style.Outer.Core (core_)
-import App.Component.Common.Tooltip.Style.Outer.Outer (outer)
-import App.Component.Common.Tooltip.Style.Sheet (sheet)
-import App.Component.Common.Tooltip.Style.Tooltip (tooltip_)
-import App.Component.Common.Tooltip.Type (Input)
-import App.Component.Util.Type (noHtml)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Tooltip.Style.Inner (inner_)
+import Ui.Component.Common.Tooltip.Style.Outer.Core (core_)
+import Ui.Component.Common.Tooltip.Style.Outer.Outer (outer)
+import Ui.Component.Common.Tooltip.Style.Sheet (sheet)
+import Ui.Component.Common.Tooltip.Style.Tooltip (tooltip_)
+import Ui.Component.Common.Tooltip.Type (Input)
+import Ui.Component.Util.Type (noHtml)
+import Ui.Util.Capability.AppM (AppM)
 import Halogen (ComponentHTML)
 import Halogen.HTML.CSS (style)
 import Util.Style.Style (padding1)

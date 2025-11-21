@@ -1,10 +1,10 @@
-module App.Component.Common.Carrousel.HandleAction
+module Ui.Component.Common.Carrousel.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.Carrousel.Type (Action(..), CarrouselM)
+import Ui.Component.Common.Carrousel.Type (Action(..), CarrouselM)
 import Data.Array (length)
 import Halogen (modify_)
 

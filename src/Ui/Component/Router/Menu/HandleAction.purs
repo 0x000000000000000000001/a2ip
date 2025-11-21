@@ -1,10 +1,10 @@
-module App.Component.Router.Menu.HandleAction (handleAction) where
+module Ui.Component.Router.Menu.HandleAction (handleAction) where
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.Style.Menu (foldWidth)
-import App.Component.Router.Menu.Type (Action(..), MenuM)
-import App.Component.Router.Style.Router (animationDurationMs)
+import Ui.Component.Router.Menu.Style.Menu (foldWidth)
+import Ui.Component.Router.Menu.Type (Action(..), MenuM)
+import Ui.Component.Router.Style.Router (animationDurationMs)
 import Data.Int (toNumber)
 import Effect.Aff (Milliseconds(..), delay)
 import Halogen (get, modify_, subscribe')

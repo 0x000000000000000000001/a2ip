@@ -1,9 +1,9 @@
-module App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput) where
+module Ui.Component.Router.Menu.HandleLinkOutput (handleLinkOutput) where
 
 import Proem hiding (top, div)
 
-import App.Component.Common.Link.Type as Link
-import App.Component.Router.Menu.Type (Action(..))
+import Ui.Component.Common.Link.Type as Link
+import Ui.Component.Router.Menu.Type (Action(..))
 
 handleLinkOutput :: Link.Output -> Action
 handleLinkOutput _ = DoNothing

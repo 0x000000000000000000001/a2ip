@@ -1,4 +1,4 @@
-module App.Component.Common.PrettyErrorImage.Style.Image
+module Ui.Component.Common.PrettyErrorImage.Style.Image
   ( class'
   , image
   , image_
@@ -9,7 +9,7 @@ module App.Component.Common.PrettyErrorImage.Style.Image
 
 import Proem hiding (top)
 
-import App.Component.Common.PrettyErrorImage.Type (State)
+import Ui.Component.Common.PrettyErrorImage.Type (State)
 import CSS (opacity)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLimg)

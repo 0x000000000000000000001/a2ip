@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Number
+module Ui.Component.Common.Timeline.Style.Number
   ( number
   , number_
   , staticClass

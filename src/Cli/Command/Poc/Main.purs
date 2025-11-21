@@ -1,8 +1,8 @@
-module Bin.Command.Poc.Main (main) where
+module Cli.Command.Poc.Main (main) where
 
 import Proem
 
-import Bin.Util.Capability.BinM (runBinM)
+import Cli.Util.Capability.BinM (runBinM)
 import Effect (Effect)
 import Effect.AVar (empty)
 import Effect.Aff.AVar as AAVar

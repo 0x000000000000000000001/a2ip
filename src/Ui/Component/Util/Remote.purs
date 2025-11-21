@@ -1,11 +1,11 @@
-module App.Component.Util.Remote
+module Ui.Component.Util.Remote
   ( fetchModify
   )
   where
 
-import App.Component.Util.Type (Remote)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Log (error)
+import Ui.Component.Util.Type (Remote)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Log (error)
 import Data.Lens (Lens', (.~))
 import Data.Symbol (class IsSymbol)
 import Halogen (HalogenM, modify_)

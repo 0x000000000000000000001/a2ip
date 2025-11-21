@@ -1,12 +1,12 @@
-module App.Component.Router.Style.Sheet
+module Ui.Component.Router.Style.Sheet
   ( sheet
   ) where
 
 import Proem
 
-import App.Component.Router.Style.Router (style)
+import Ui.Component.Router.Style.Router (style)
 import Halogen.HTML (HTML)
-import App.Component.Router.Style.Core as Core
+import Ui.Component.Router.Style.Core as Core
 import Halogen.HTML.CSS (stylesheet)
 
 sheet :: ∀ w i. HTML w i

@@ -1,16 +1,16 @@
-module Bin.Command.DownloadGoogleSheetImages.Main (main) where
+module Cli.Command.DownloadGoogleSheetImages.Main (main) where
 
 import Proem
 
 import Ansi.Codes (EscapeCode(..), EraseParam(..), escapeCodeToString)
-import App.Component.Page.About.HandleAction (toPerson)
-import App.Component.Page.Util.Image (ourImageRelativePath)
-import Bin.Util.Capability.BinM (BinM, runBinM)
-import Bin.Util.Log.Download (downloadPrefixed)
-import Bin.Util.Log.Error (error, errorPrefixed)
-import Bin.Util.Log.Log (carriageReturn, log, write)
-import Bin.Util.Log.Pending (pendingPrefixed)
-import Bin.Util.Log.Success (successPrefixed, successShortAfterNewline)
+import Ui.Component.Page.About.HandleAction (toPerson)
+import Ui.Component.Page.Util.Image (ourImageRelativePath)
+import Cli.Util.Capability.BinM (BinM, runBinM)
+import Cli.Util.Log.Download (downloadPrefixed)
+import Cli.Util.Log.Error (error, errorPrefixed)
+import Cli.Util.Log.Log (carriageReturn, log, write)
+import Cli.Util.Log.Pending (pendingPrefixed)
+import Cli.Util.Log.Success (successPrefixed, successShortAfterNewline)
 import Data.Array (filter, length)
 import Data.String (trim)
 import Data.Traversable (for_)

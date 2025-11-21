@@ -1,4 +1,4 @@
-module App.Component.Util.Type
+module Ui.Component.Util.Type
   ( BaseState
   , Children
   , WithId
@@ -26,7 +26,7 @@ module App.Component.Util.Type
 
 import Proem
 
-import App.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.AppM (AppM)
 import CSS (pct, rem)
 import CSS as CSS
 import CSS.Common (auto)

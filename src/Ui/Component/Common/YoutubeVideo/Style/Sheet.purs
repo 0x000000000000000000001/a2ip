@@ -1,9 +1,9 @@
-module App.Component.Common.YoutubeVideo.Style.Sheet
+module Ui.Component.Common.YoutubeVideo.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
-import App.Component.Common.YoutubeVideo.Type (State)
+import Ui.Component.Common.YoutubeVideo.Style.YoutubeVideo as YoutubeVideo
+import Ui.Component.Common.YoutubeVideo.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 

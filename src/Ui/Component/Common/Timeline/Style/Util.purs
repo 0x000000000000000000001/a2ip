@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Util
+module Ui.Component.Common.Timeline.Style.Util
   ( grey
   )
   where

@@ -1,4 +1,4 @@
-module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
+module Ui.Component.Common.YoutubeVideo.Style.YoutubeVideo
   ( class'
   , staticClass
   , style
@@ -9,9 +9,9 @@ module App.Component.Common.YoutubeVideo.Style.YoutubeVideo
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Loader.Style.Loader as Loader
-import App.Component.Common.YoutubeVideo.Type (State)
-import App.Component.Util.Type (applyToSize)
+import Ui.Component.Common.Loader.Style.Loader as Loader
+import Ui.Component.Common.YoutubeVideo.Type (State)
+import Ui.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, black, height, iframe, width, zIndex, (&))
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

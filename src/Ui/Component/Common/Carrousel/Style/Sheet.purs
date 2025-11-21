@@ -1,13 +1,13 @@
-module App.Component.Common.Carrousel.Style.Sheet
+module Ui.Component.Common.Carrousel.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.Carrousel.Style.Caption as Caption
-import App.Component.Common.Carrousel.Style.Carrousel as Carrousel
-import App.Component.Common.Carrousel.Style.Control.Index as Control
-import App.Component.Common.Carrousel.Style.Counter as Counter
-import App.Component.Common.Carrousel.Style.Media as Media
-import App.Component.Common.Carrousel.Type (State)
+import Ui.Component.Common.Carrousel.Style.Caption as Caption
+import Ui.Component.Common.Carrousel.Style.Carrousel as Carrousel
+import Ui.Component.Common.Carrousel.Style.Control.Index as Control
+import Ui.Component.Common.Carrousel.Style.Counter as Counter
+import Ui.Component.Common.Carrousel.Style.Media as Media
+import Ui.Component.Common.Carrousel.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Proem (discard)

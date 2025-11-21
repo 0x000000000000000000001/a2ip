@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Media
+module Ui.Component.Common.Carrousel.Style.Media
   ( class'
   , media
   , media_
@@ -9,7 +9,7 @@ module App.Component.Common.Carrousel.Style.Media
 
 import Proem hiding (top, div)
 
-import App.Component.Common.Carrousel.Type (Media(..), State)
+import Ui.Component.Common.Carrousel.Type (Media(..), State)
 import CSS (backgroundColor, black)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

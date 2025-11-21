@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Component
+module Ui.Component.Common.Input.Component
   ( component
   , input
   )
@@ -6,11 +6,11 @@ module App.Component.Common.Input.Component
 
 import Proem
 
-import App.Component.Common.Input.HandleAction (handleAction)
-import App.Component.Common.Input.Render (render)
-import App.Component.Common.Input.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (withId)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Input.HandleAction (handleAction)
+import Ui.Component.Common.Input.Render (render)
+import Ui.Component.Common.Input.Type (Action(..), Input, Output, Query)
+import Ui.Component.Util.Type (withId)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

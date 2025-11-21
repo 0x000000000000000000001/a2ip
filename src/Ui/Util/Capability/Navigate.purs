@@ -1,8 +1,8 @@
-module App.Util.Capability.Navigate where
+module Ui.Util.Capability.Navigate where
 
 import Proem
 
-import App.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.AppM (AppM)
 import Control.Monad.Trans.Class (lift)
 import Data.Generic.Rep (class Generic)
 import Data.Show.Generic (genericShow)

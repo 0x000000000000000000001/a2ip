@@ -1,9 +1,9 @@
-module App.Component.Page.Home.Type where
+module Ui.Component.Page.Home.Type where
 
-import App.Component.Common.Carrousel.Type as Carrousel
-import App.Component.Common.Modal.Type as Modal
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Carrousel.Type as Carrousel
+import Ui.Component.Common.Modal.Type as Modal
+import Ui.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
 import Halogen (HalogenM, Slot)
 
 type Input = NoInput

@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Items
+module Ui.Component.Common.Timeline.Style.Items
   ( items
   , items_
   , staticClass

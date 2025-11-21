@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Carrousel
+module Ui.Component.Common.Carrousel.Style.Carrousel
   ( carrousel
   , carrousel_
   , staticClass

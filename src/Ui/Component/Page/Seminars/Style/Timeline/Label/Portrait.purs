@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Label.Portrait
+module Ui.Component.Page.Seminars.Style.Timeline.Label.Portrait
   ( prettyErrorImageStyle
   , staticClass
   )
@@ -6,8 +6,8 @@ module App.Component.Page.Seminars.Style.Timeline.Label.Portrait
 
 import Proem hiding (top)
 
-import App.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
-import App.Component.Util.Type (Size(..))
+import Ui.Component.Common.PrettyErrorImage.Type (Style, defaultStyle)
+import Ui.Component.Util.Type (Size(..))
 import Color (white)
 import Data.Maybe (Maybe(..))
 import Util.Style.Image (cover)

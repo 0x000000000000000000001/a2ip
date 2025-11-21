@@ -1,11 +1,11 @@
-module App.Component.Common.Vault.HandleAction
+module Ui.Component.Common.Vault.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.Vault.Style.Front as Front
-import App.Component.Common.Vault.Type (Action(..), Output(..), Phase(..), VaultM, _Locked)
+import Ui.Component.Common.Vault.Style.Front as Front
+import Ui.Component.Common.Vault.Type (Action(..), Output(..), Phase(..), VaultM, _Locked)
 import Data.Lens (_Just, (.~), (^?))
 import Data.Maybe (Maybe(..), isJust)
 import Data.Time.Duration (Seconds(..))

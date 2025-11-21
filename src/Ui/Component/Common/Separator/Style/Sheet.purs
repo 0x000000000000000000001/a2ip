@@ -1,9 +1,9 @@
-module App.Component.Common.Separator.Style.Sheet
+module Ui.Component.Common.Separator.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.Separator.Style.Separator as Separator
-import App.Component.Common.Separator.Style.Text.Index as Text
+import Ui.Component.Common.Separator.Style.Separator as Separator
+import Ui.Component.Common.Separator.Style.Text.Index as Text
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Proem (discard)

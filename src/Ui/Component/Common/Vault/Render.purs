@@ -1,23 +1,23 @@
-module App.Component.Common.Vault.Render
+module Ui.Component.Common.Vault.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Input.Component (input)
-import App.Component.Common.Input.Type (defaultInput)
-import App.Component.Common.Vault.HandleInnerOutput (handleInnerOutput)
-import App.Component.Common.Vault.HandlePasswordOutput (handlePasswordOutput)
-import App.Component.Common.Vault.Style.Core (core_)
-import App.Component.Common.Vault.Style.Door (door_)
-import App.Component.Common.Vault.Style.Front (front)
-import App.Component.Common.Vault.Style.Lock (lock_)
-import App.Component.Common.Vault.Style.Message (message_)
-import App.Component.Common.Vault.Style.Sheet (sheet)
-import App.Component.Common.Vault.Style.Vault (vault_)
-import App.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
-import App.Component.Util.Type (noHtml, noSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Input.Component (input)
+import Ui.Component.Common.Input.Type (defaultInput)
+import Ui.Component.Common.Vault.HandleInnerOutput (handleInnerOutput)
+import Ui.Component.Common.Vault.HandlePasswordOutput (handlePasswordOutput)
+import Ui.Component.Common.Vault.Style.Core (core_)
+import Ui.Component.Common.Vault.Style.Door (door_)
+import Ui.Component.Common.Vault.Style.Front (front)
+import Ui.Component.Common.Vault.Style.Lock (lock_)
+import Ui.Component.Common.Vault.Style.Message (message_)
+import Ui.Component.Common.Vault.Style.Sheet (sheet)
+import Ui.Component.Common.Vault.Style.Vault (vault_)
+import Ui.Component.Common.Vault.Type (Action(..), Phase(..), Slots, State, isLocked)
+import Ui.Component.Util.Type (noHtml, noSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
 import CSS (darken, white)
 import Data.Maybe (Maybe(..))
 import Halogen (Component, ComponentHTML)

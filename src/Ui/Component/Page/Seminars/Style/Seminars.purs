@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Seminars
+module Ui.Component.Page.Seminars.Style.Seminars
   ( seminars
   , seminars_
   , staticClass

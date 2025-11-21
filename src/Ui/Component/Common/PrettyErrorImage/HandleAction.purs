@@ -1,10 +1,10 @@
-module App.Component.Common.PrettyErrorImage.HandleAction
+module Ui.Component.Common.PrettyErrorImage.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.PrettyErrorImage.Type (Action(..), PrettyErrorImageM, Try(..))
+import Ui.Component.Common.PrettyErrorImage.Type (Action(..), PrettyErrorImageM, Try(..))
 import Halogen (modify_)
 
 handleAction :: Action -> PrettyErrorImageM Unit

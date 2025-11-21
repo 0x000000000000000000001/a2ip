@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Type
+module Ui.Component.Common.Input.Type
   ( Action(..)
   , Input
   , InputM
@@ -12,8 +12,8 @@ module App.Component.Common.Input.Type
   )
   where
 
-import App.Component.Util.Type (NoQuery, NoSlots, WithId)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (NoQuery, NoSlots, WithId)
+import Ui.Util.Capability.AppM (AppM)
 import Color (Color)
 import Data.Maybe (Maybe(..))
 import Effect.Ref (Ref)

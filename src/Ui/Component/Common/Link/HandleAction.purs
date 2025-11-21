@@ -1,12 +1,12 @@
-module App.Component.Common.Link.HandleAction
+module Ui.Component.Common.Link.HandleAction
   ( handleAction
   )
   where
 
 import Proem
 
-import App.Util.Capability.Navigate (navigate)
-import App.Component.Common.Link.Type (Action(..), LinkM, Output(..))
+import Ui.Util.Capability.Navigate (navigate)
+import Ui.Component.Common.Link.Type (Action(..), LinkM, Output(..))
 import Halogen (modify_, raise)
 import Web.Event.Event (preventDefault)
 import Web.UIEvent.MouseEvent (MouseEvent, altKey, button, ctrlKey, metaKey, shiftKey, toEvent)

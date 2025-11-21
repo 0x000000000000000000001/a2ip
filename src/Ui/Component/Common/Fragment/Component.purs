@@ -1,4 +1,4 @@
-module App.Component.Common.Fragment.Component
+module Ui.Component.Common.Fragment.Component
   ( component
   , fragment
   )
@@ -6,10 +6,10 @@ module App.Component.Common.Fragment.Component
 
 import Proem
 
-import App.Component.Common.Fragment.HandleAction (handleAction)
-import App.Component.Common.Fragment.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Fragment.HandleAction (handleAction)
+import Ui.Component.Common.Fragment.Type (Action(..), Input, Output, Query)
+import Ui.Component.Util.Type (noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

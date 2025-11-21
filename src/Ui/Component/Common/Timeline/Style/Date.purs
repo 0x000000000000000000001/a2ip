@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Date
+module Ui.Component.Common.Timeline.Style.Date
   ( date
   , date_
   , fontSizePct
@@ -9,7 +9,7 @@ module App.Component.Common.Timeline.Style.Date
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.Util (grey)
+import Ui.Component.Common.Timeline.Style.Util (grey)
 import CSS (alignItems, color, column, flexDirection, flexEnd)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

@@ -1,4 +1,4 @@
-module Bin.Util.Log.Log
+module Cli.Util.Log.Log
   ( carriageReturn
   , colorize
   , log

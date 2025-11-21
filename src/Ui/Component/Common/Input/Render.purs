@@ -1,17 +1,17 @@
-module App.Component.Common.Input.Render
+module Ui.Component.Common.Input.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Input.Style.Field (field)
-import App.Component.Common.Input.Style.Input (input)
-import App.Component.Common.Input.Style.Label (label)
-import App.Component.Common.Input.Style.Sheet (sheet)
-import App.Component.Common.Input.Type (Action(..), Slots, State)
-import App.Component.Common.Input.Util (inputRef)
-import App.Component.Util.Type (noHtml)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Input.Style.Field (field)
+import Ui.Component.Common.Input.Style.Input (input)
+import Ui.Component.Common.Input.Style.Label (label)
+import Ui.Component.Common.Input.Style.Sheet (sheet)
+import Ui.Component.Common.Input.Type (Action(..), Slots, State)
+import Ui.Component.Common.Input.Util (inputRef)
+import Ui.Component.Util.Type (noHtml)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Array ((:))
 import Halogen (ComponentHTML)
 import Halogen.HTML (text)

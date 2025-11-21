@@ -1,4 +1,4 @@
-module App.Component.Router.Style.Router
+module Ui.Component.Router.Style.Router
   ( animationDurationMs
   , bodyGradientAnimationId
   , router

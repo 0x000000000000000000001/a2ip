@@ -1,10 +1,10 @@
-module App.Component.Common.YoutubeVideo.HandleAction
+module Ui.Component.Common.YoutubeVideo.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.YoutubeVideo.Type (Action(..), YoutubeVideoM)
+import Ui.Component.Common.YoutubeVideo.Type (Action(..), YoutubeVideoM)
 import Halogen (modify_)
 
 handleAction :: Action -> YoutubeVideoM Unit

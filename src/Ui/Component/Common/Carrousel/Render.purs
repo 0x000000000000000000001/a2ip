@@ -1,22 +1,22 @@
-module App.Component.Common.Carrousel.Render
+module Ui.Component.Common.Carrousel.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Carrousel.Style.Caption (caption_)
-import App.Component.Common.Carrousel.Style.Carrousel (carrousel_)
-import App.Component.Common.Carrousel.Style.Control.Control (control)
-import App.Component.Common.Carrousel.Style.Control.Icon (icon_)
-import App.Component.Common.Carrousel.Style.Counter (counter_)
-import App.Component.Common.Carrousel.Style.Media (media_)
-import App.Component.Common.Carrousel.Style.Sheet (sheet)
-import App.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
-import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
-import App.Component.Common.PrettyErrorImage.Type (defaultInput, defaultStyle)
-import App.Component.Common.YoutubeVideo.Component (youtubeVideo)
-import App.Component.Util.Type (Size(..), noHtml, noSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Carrousel.Style.Caption (caption_)
+import Ui.Component.Common.Carrousel.Style.Carrousel (carrousel_)
+import Ui.Component.Common.Carrousel.Style.Control.Control (control)
+import Ui.Component.Common.Carrousel.Style.Control.Icon (icon_)
+import Ui.Component.Common.Carrousel.Style.Counter (counter_)
+import Ui.Component.Common.Carrousel.Style.Media (media_)
+import Ui.Component.Common.Carrousel.Style.Sheet (sheet)
+import Ui.Component.Common.Carrousel.Type (Action(..), Media(..), Slots, State)
+import Ui.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import Ui.Component.Common.PrettyErrorImage.Type (defaultInput, defaultStyle)
+import Ui.Component.Common.YoutubeVideo.Component (youtubeVideo)
+import Ui.Component.Util.Type (Size(..), noHtml, noSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
 import CSS (darken, white)
 import Data.Array (length, (!!))
 import Data.Lens ((.~))

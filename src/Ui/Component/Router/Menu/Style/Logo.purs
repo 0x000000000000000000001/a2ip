@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Logo
+module Ui.Component.Router.Menu.Style.Logo
   ( logo
   , logo_
   , staticClass
@@ -8,7 +8,7 @@ module App.Component.Router.Menu.Style.Logo
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
+import Ui.Component.Router.Menu.Style.Item.Icon.Container as ItemIconContainer
 import CSS (alignSelf, fromString, key)
 import CSS as CSS
 import CSS.Common (center)

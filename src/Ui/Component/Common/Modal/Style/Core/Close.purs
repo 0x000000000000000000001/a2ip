@@ -1,4 +1,4 @@
-module App.Component.Common.Modal.Style.Core.Close
+module Ui.Component.Common.Modal.Style.Core.Close
   ( close
   , close_
   , staticClass

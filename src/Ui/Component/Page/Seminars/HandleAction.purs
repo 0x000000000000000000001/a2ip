@@ -1,12 +1,12 @@
-module App.Component.Page.Seminars.HandleAction
+module Ui.Component.Page.Seminars.HandleAction
   ( handleAction
   )
   where
 
 import Proem
 
-import App.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
-import App.Component.Util.Remote (fetchModify)
+import Ui.Component.Page.Seminars.Type (Action(..), Seminar, SeminarsM, Theme(..))
+import Ui.Component.Util.Remote (fetchModify)
 import Data.Array (filter, find, (!!))
 import Data.DateTime (date)
 import Data.DateTime.Instant (toDateTime)

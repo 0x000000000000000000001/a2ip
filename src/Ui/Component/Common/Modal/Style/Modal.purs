@@ -1,4 +1,4 @@
-module App.Component.Common.Modal.Style.Modal
+module Ui.Component.Common.Modal.Style.Modal
   ( class'
   , modal
   , modal_
@@ -10,8 +10,8 @@ module App.Component.Common.Modal.Style.Modal
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Modal.Type (State)
-import App.Component.Router.Menu.Style.Menu as Menu
+import Ui.Component.Common.Modal.Type (State)
+import Ui.Component.Router.Menu.Style.Menu as Menu
 import CSS (alignItems, backgroundColor, flexStart, rgba)
 import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)

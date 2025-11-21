@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Label.Quoted
+module Ui.Component.Page.Seminars.Style.Timeline.Label.Quoted
   ( quoted
   , quoted_
   , staticClass

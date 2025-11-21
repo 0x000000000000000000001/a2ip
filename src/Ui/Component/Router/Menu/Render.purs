@@ -1,21 +1,21 @@
-module App.Component.Router.Menu.Render (render) where
+module Ui.Component.Router.Menu.Render (render) where
 
 import Proem hiding (top, div)
 
-import App.Component.Common.Link.Component (link)
-import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
-import App.Component.Router.Menu.Style.Item.Child (child_)
-import App.Component.Router.Menu.Style.Item.Children (children_)
-import App.Component.Router.Menu.Style.Item.Icon.Container (container_)
-import App.Component.Router.Menu.Style.Item.Icon.Icon (icon)
-import App.Component.Router.Menu.Style.Item.Item as Item
-import App.Component.Router.Menu.Style.Item.Label (label_)
-import App.Component.Router.Menu.Style.Logo (logo)
-import App.Component.Router.Menu.Style.Menu (menu)
-import App.Component.Router.Menu.Style.Sheet (sheet)
-import App.Component.Router.Menu.Type (Action(..), State, Slots)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (Route(..))
+import Ui.Component.Common.Link.Component (link)
+import Ui.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
+import Ui.Component.Router.Menu.Style.Item.Child (child_)
+import Ui.Component.Router.Menu.Style.Item.Children (children_)
+import Ui.Component.Router.Menu.Style.Item.Icon.Container (container_)
+import Ui.Component.Router.Menu.Style.Item.Icon.Icon (icon)
+import Ui.Component.Router.Menu.Style.Item.Item as Item
+import Ui.Component.Router.Menu.Style.Item.Label (label_)
+import Ui.Component.Router.Menu.Style.Logo (logo)
+import Ui.Component.Router.Menu.Style.Menu (menu)
+import Ui.Component.Router.Menu.Style.Sheet (sheet)
+import Ui.Component.Router.Menu.Type (Action(..), State, Slots)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (Route(..))
 import CSS (flex, fromString)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))

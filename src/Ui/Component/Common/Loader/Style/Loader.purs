@@ -1,4 +1,4 @@
-module App.Component.Common.Loader.Style.Loader
+module Ui.Component.Common.Loader.Style.Loader
   ( loader
   , loader_
   , staticClass

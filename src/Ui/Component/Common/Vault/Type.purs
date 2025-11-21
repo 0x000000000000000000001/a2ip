@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Type
+module Ui.Component.Common.Vault.Type
   ( Action(..)
   , Input
   , LockedState
@@ -19,9 +19,9 @@ module App.Component.Common.Vault.Type
 
 import Proem
 
-import App.Component.Common.Input.Type as Input
-import App.Component.Util.Type (NoSlotAddressIndex, NoQuery)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Input.Type as Input
+import Ui.Component.Util.Type (NoSlotAddressIndex, NoQuery)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Either (Either(..))
 import Data.Lens (Prism', prism)
 import Data.Maybe (Maybe)

@@ -1,4 +1,4 @@
-module App.Component.Common.Fragment.Type
+module Ui.Component.Common.Fragment.Type
   ( Action(..)
   , Input
   , Output(..)
@@ -9,8 +9,8 @@ module App.Component.Common.Fragment.Type
   )
   where
 
-import App.Component.Util.Type (NoOutput, NoSlots, NoQuery)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (NoOutput, NoSlots, NoQuery)
+import Ui.Util.Capability.AppM (AppM)
 import Halogen (HalogenM)
 import Halogen.HTML (HTML)
 

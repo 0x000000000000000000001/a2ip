@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Icon.Icon
+module Ui.Component.Router.Menu.Style.Item.Icon.Icon
   ( icon
   , icon_
   , staticClass

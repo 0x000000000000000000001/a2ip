@@ -1,4 +1,4 @@
-module App.Component.Common.Separator.Component
+module Ui.Component.Common.Separator.Component
   ( component
   , separator
   )
@@ -6,11 +6,11 @@ module App.Component.Common.Separator.Component
 
 import Proem
 
-import App.Component.Common.Separator.HandleAction (handleAction)
-import App.Component.Common.Separator.Render (render)
-import App.Component.Common.Separator.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Separator.HandleAction (handleAction)
+import Ui.Component.Common.Separator.Render (render)
+import Ui.Component.Common.Separator.Type (Action(..), Input, Output, Query)
+import Ui.Component.Util.Type (noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

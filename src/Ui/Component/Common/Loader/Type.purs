@@ -1,4 +1,4 @@
-module App.Component.Common.Loader.Type where
+module Ui.Component.Common.Loader.Type where
 
 import Color (Color)
 

@@ -1,10 +1,10 @@
-module App.Component.Page.About.Type   where
+module Ui.Component.Page.About.Type   where
 
 
-import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
-import App.Component.Common.Separator.Type as Separator
-import App.Component.Util.Type (Remote, NoInput, NoOutput, NoQuery)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
+import Ui.Component.Common.Separator.Type as Separator
+import Ui.Component.Util.Type (Remote, NoInput, NoOutput, NoQuery)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Lens (Lens')
 import Data.Lens.Record (prop)
 import Halogen (HalogenM, Slot)

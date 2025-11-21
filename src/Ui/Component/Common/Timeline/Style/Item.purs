@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Item
+module Ui.Component.Common.Timeline.Style.Item
   ( item
   , item_
   , staticClass
@@ -9,8 +9,8 @@ module App.Component.Common.Timeline.Style.Item
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.Date as Date
-import App.Component.Common.Timeline.Style.Pin as Pin
+import Ui.Component.Common.Timeline.Style.Date as Date
+import Ui.Component.Common.Timeline.Style.Pin as Pin
 import CSS (outline, rem, solid)
 import CSS as CSS
 import Color (lighten)

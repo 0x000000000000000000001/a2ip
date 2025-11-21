@@ -1,11 +1,11 @@
-module App.Component.Page.Home.HandleAction
+module Ui.Component.Page.Home.HandleAction
   ( handleAction
   )
   where
 
 import Proem
 
-import App.Component.Page.Home.Type (Action(..), HomeM)
+import Ui.Component.Page.Home.Type (Action(..), HomeM)
 import Halogen (modify_)
 
 handleAction :: Action -> HomeM Unit

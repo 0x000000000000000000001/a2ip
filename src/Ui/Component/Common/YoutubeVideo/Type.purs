@@ -1,4 +1,4 @@
-module App.Component.Common.YoutubeVideo.Type
+module Ui.Component.Common.YoutubeVideo.Type
   ( Action(..)
   , Input
   , Output
@@ -11,8 +11,8 @@ module App.Component.Common.YoutubeVideo.Type
   )
   where
 
-import App.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Util.Type (WithId, NoOutput, NoQuery, NoSlots, Size)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)
 

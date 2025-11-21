@@ -1,4 +1,4 @@
-module App.Component.Common.Modal.Style.Core.Core
+module Ui.Component.Common.Modal.Style.Core.Core
   ( core
   , core_
   , staticClass
@@ -8,7 +8,7 @@ module App.Component.Common.Modal.Style.Core.Core
 
 import Proem hiding (div, top)
 
-import App.Component.Router.Menu.Style.Menu as Menu
+import Ui.Component.Router.Menu.Style.Menu as Menu
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

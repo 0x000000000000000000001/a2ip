@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Collaborators
+module Ui.Component.Page.About.Style.Collaborators
   ( collaborators
   , collaborators_
   , staticClass

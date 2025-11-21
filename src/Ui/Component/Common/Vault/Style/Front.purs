@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Style.Front
+module Ui.Component.Common.Vault.Style.Front
   ( animationDurationMs
   , front
   , front_
@@ -11,12 +11,12 @@ module App.Component.Common.Vault.Style.Front
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Input.Style.Input as Input
-import App.Component.Common.Input.Style.Label as Label
-import App.Component.Common.Vault.Style.Door as Door
-import App.Component.Common.Vault.Style.Lock as Lock
-import App.Component.Common.Vault.Style.Message as Message
-import App.Component.Common.Vault.Type (Phase(..))
+import Ui.Component.Common.Input.Style.Input as Input
+import Ui.Component.Common.Input.Style.Label as Label
+import Ui.Component.Common.Vault.Style.Door as Door
+import Ui.Component.Common.Vault.Style.Lock as Lock
+import Ui.Component.Common.Vault.Style.Message as Message
+import Ui.Component.Common.Vault.Type (Phase(..))
 import CSS (animation, color, column, deg, flexDirection, forwards, fromString, iterationCount, keyframes, lighten, linear, marginLeft, normalAnimationDirection, opacity, outline, pct, rem, rotate, sec, solid, strong, transforms, white, zIndex)
 import CSS as CSS
 import CSS.Transform (scale)

@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Members
+module Ui.Component.Page.About.Style.Members
   ( members
   , members_
   , staticClass

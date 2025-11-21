@@ -1,4 +1,4 @@
-module Bin.Util.Log.Error
+module Cli.Util.Log.Error
   ( error
   , errorAfterNewline
   , errorColor
@@ -17,7 +17,7 @@ module Bin.Util.Log.Error
 import Proem
 
 import Ansi.Codes (Color(..))
-import Bin.Util.Log.Log (colorize, newline, prefixed)
+import Cli.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Console as Console
 

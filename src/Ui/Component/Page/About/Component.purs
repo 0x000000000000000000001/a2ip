@@ -1,12 +1,12 @@
-module App.Component.Page.About.Component where
+module Ui.Component.Page.About.Component where
 
 import Proem
 
-import App.Component.Page.About.HandleAction (handleAction)
-import App.Component.Page.About.Render (render)
-import App.Component.Page.About.Type (Action(..), Input, Query, Output)
-import App.Component.Util.Type (noInput, noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Page.About.HandleAction (handleAction)
+import Ui.Component.Page.About.Render (render)
+import Ui.Component.Page.About.Type (Action(..), Input, Query, Output)
+import Ui.Component.Util.Type (noInput, noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

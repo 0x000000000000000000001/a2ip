@@ -1,4 +1,4 @@
-module App.Component.Common.Link.Style.Link
+module Ui.Component.Common.Link.Style.Link
   ( class'
   , link
   , link_
@@ -9,7 +9,7 @@ module App.Component.Common.Link.Style.Link
 
 import Proem hiding (top)
 
-import App.Component.Common.Link.Type (State)
+import Ui.Component.Common.Link.Type (State)
 import CSS (display, noneTextDecoration, textDecoration)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLa)

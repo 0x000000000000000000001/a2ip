@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Child
+module Ui.Component.Router.Menu.Style.Item.Child
   ( child
   , child_
   , staticClass

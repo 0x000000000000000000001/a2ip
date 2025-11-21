@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Timeline
+module Ui.Component.Common.Timeline.Style.Timeline
   ( staticClass
   , staticClassWhenLoading
   , style
@@ -9,17 +9,16 @@ module App.Component.Common.Timeline.Style.Timeline
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.DownArrow as DownArrow
-import App.Component.Common.Timeline.Style.Line as Line
-import App.Component.Common.Timeline.Style.Number as Number
-import App.Component.Common.Timeline.Style.Pin as Pin
-import CSS (border, borderBox, borderRadius, boxSizing, height, inset, rem, solid, white, (|*))
+import Ui.Component.Common.Timeline.Style.DownArrow as DownArrow
+import Ui.Component.Common.Timeline.Style.Line as Line
+import Ui.Component.Common.Timeline.Style.Number as Number
+import Ui.Component.Common.Timeline.Style.Pin as Pin
+import CSS (height, rem, (|*))
 import CSS as CSS
-import Control.Monad.ST (while)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Loading (loading_)
-import Util.Style.Style (alignItemsCenter, backgroundWhite, borderRadius1, borderRadiusRem1, classes, displayFlex, fill, justifyContentCenter, loading, loadingGrey, margin1, margin2, noCss, overflowHidden, positionRelative, refineClass', reflectStaticClass, svg, transparent, (.&.), (.?), (:?), (:|*.))
+import Util.Style.Style (alignItemsCenter, borderRadiusRem1, classes, displayFlex, fill, justifyContentCenter, loading, loadingGrey, margin2, noCss, positionRelative, refineClass', reflectStaticClass, svg, (.&.), (.?), (:?), (:|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

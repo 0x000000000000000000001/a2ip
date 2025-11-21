@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Timeline.Label.Title
+module Ui.Component.Page.Seminars.Style.Timeline.Label.Title
   ( staticClass
   , style
   , title

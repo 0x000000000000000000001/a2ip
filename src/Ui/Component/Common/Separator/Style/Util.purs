@@ -1,4 +1,4 @@
-module App.Component.Common.Separator.Style.Util
+module Ui.Component.Common.Separator.Style.Util
   ( grey
   )
   where

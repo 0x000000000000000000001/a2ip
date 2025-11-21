@@ -1,4 +1,4 @@
-module App.Component.Common.Vault.Style.Message
+module Ui.Component.Common.Vault.Style.Message
   ( message
   , message_
   , staticClass

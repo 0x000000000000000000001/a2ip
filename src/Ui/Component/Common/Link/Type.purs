@@ -1,4 +1,4 @@
-module App.Component.Common.Link.Type
+module Ui.Component.Common.Link.Type
   ( Action(..)
   , LinkM
   , Input
@@ -10,9 +10,9 @@ module App.Component.Common.Link.Type
   )
   where
 
-import App.Component.Util.Type (Children, NoQuery, NoSlots, WithId)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (Route(..))
+import Ui.Component.Util.Type (Children, NoQuery, NoSlots, WithId)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (Route(..))
 import CSS (Display, inlineBlock)
 import Data.Maybe (Maybe(..))
 import Halogen (HalogenM)

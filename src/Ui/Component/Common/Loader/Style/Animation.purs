@@ -1,4 +1,4 @@
-module App.Component.Common.Loader.Style.Animation
+module Ui.Component.Common.Loader.Style.Animation
   ( animation
   , animation_
   , classWithColor

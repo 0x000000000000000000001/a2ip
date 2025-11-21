@@ -1,4 +1,4 @@
-module Bin.Util.Capability.BinM
+module Cli.Util.Capability.BinM
   ( BinM
   , runBinAff
   , runBinM
@@ -7,7 +7,7 @@ module Bin.Util.Capability.BinM
 
 import Proem
 
-import Bin.Util.Exit (exitError, exitSuccess)
+import Cli.Util.Exit (exitError, exitSuccess)
 import Config.Config (Config, config)
 import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)

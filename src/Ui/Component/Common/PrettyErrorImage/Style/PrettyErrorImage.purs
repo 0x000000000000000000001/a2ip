@@ -1,4 +1,4 @@
-module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
+module Ui.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
   ( class'
   , prettyErrorImage
   , prettyErrorImage_
@@ -9,13 +9,13 @@ module App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage
 
 import Proem hiding (div, top)
 
-import App.Component.Common.PrettyErrorImage.Type (State, Try(..))
-import App.Component.Util.Type (applyToSize)
+import Ui.Component.Common.PrettyErrorImage.Type (State, Try(..))
+import Ui.Component.Util.Type (applyToSize)
 import CSS (backgroundColor, borderColor, height, hover, solid, width)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidth1, class_, classes, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, noCss, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
+import Util.Style.Style (alignItemsCenter, borderRadius1, borderStyle, borderWidth1, classes, displayFlex, inferClass, justifyContentCenter, loading, loadingGrey, noCss, overflowHidden, positionRelative, reflectStaticClass, (.&), (.?), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

@@ -1,4 +1,4 @@
-module App.Component.Common.Tooltip.Style.Outer.Outer
+module Ui.Component.Common.Tooltip.Style.Outer.Outer
   ( outer
   , outer_
   , staticClass

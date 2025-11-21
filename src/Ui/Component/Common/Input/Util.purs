@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Util
+module Ui.Component.Common.Input.Util
   ( inputRef
   ) 
   where

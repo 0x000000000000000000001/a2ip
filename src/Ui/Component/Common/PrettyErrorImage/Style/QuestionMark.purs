@@ -1,4 +1,4 @@
-module App.Component.Common.PrettyErrorImage.Style.QuestionMark
+module Ui.Component.Common.PrettyErrorImage.Style.QuestionMark
   ( class'
   , questionMark
   , questionMark_
@@ -9,8 +9,8 @@ module App.Component.Common.PrettyErrorImage.Style.QuestionMark
 
 import Proem hiding (top)
 
-import App.Component.Common.PrettyErrorImage.Type (State)
-import App.Component.Util.Type (Size(..), applyToSize)
+import Ui.Component.Common.PrettyErrorImage.Type (State)
+import Ui.Component.Util.Type (Size(..), applyToSize)
 import CSS (darken, opacity, width)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

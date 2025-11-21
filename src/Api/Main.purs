@@ -1,4 +1,4 @@
-module Server.Main where
+module Api.Main where
 
 import Proem
 
@@ -43,7 +43,7 @@ main = do
   let netServer = toNetServer server
       scheme = "http"
       host = "api.dev.a2ip-psychanalyse.org"
-      port = 80
+      port = 8080
       
   netServer # once_ listeningH do
     log $ 
@@ -52,6 +52,5 @@ main = do
       <> "://" 
       <> host 
       <> (port == 80 ? "" ↔ ":" <> show port) 
-      <> "/"
 
   listenTcp netServer { host, port }

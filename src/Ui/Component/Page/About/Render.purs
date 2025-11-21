@@ -1,25 +1,25 @@
-module App.Component.Page.About.Render
+module Ui.Component.Page.About.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
-import App.Component.Common.PrettyErrorImage.Type (defaultInput)
-import App.Component.Common.Separator.Component (separator)
-import App.Component.Common.Separator.Type (TextElementTag(..))
-import App.Component.Page.About.Style.About (about_)
-import App.Component.Page.About.Style.Card.Card (card_)
-import App.Component.Page.About.Style.Card.Line (line_)
-import App.Component.Page.About.Style.Card.Names (names_)
-import App.Component.Page.About.Style.Card.Portrait (portrait_)
-import App.Component.Page.About.Style.Card.Portrait as Portrait
-import App.Component.Page.About.Style.Collaborators (collaborators_)
-import App.Component.Page.About.Style.Members (members_)
-import App.Component.Page.About.Style.Sheet (sheet)
-import App.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
-import App.Component.Page.Util.Image (ourImageRelativePath)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
+import Ui.Component.Common.PrettyErrorImage.Type (defaultInput)
+import Ui.Component.Common.Separator.Component (separator)
+import Ui.Component.Common.Separator.Type (TextElementTag(..))
+import Ui.Component.Page.About.Style.About (about_)
+import Ui.Component.Page.About.Style.Card.Card (card_)
+import Ui.Component.Page.About.Style.Card.Line (line_)
+import Ui.Component.Page.About.Style.Card.Names (names_)
+import Ui.Component.Page.About.Style.Card.Portrait (portrait_)
+import Ui.Component.Page.About.Style.Card.Portrait as Portrait
+import Ui.Component.Page.About.Style.Collaborators (collaborators_)
+import Ui.Component.Page.About.Style.Members (members_)
+import Ui.Component.Page.About.Style.Sheet (sheet)
+import Ui.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
+import Ui.Component.Page.Util.Image (ourImageRelativePath)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Array (mapWithIndex, replicate)
 import Data.Maybe (Maybe(..))
 import Data.String (trim)

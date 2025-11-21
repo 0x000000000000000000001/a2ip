@@ -1,11 +1,11 @@
-module App.Component.Page.Home.HandleInputOutput
+module Ui.Component.Page.Home.HandleInputOutput
   ( handleInputOutput
   )
   where
 
 
-import App.Component.Common.Input.Type as Input
-import App.Component.Page.Home.Type (Action(..))
+import Ui.Component.Common.Input.Type as Input
+import Ui.Component.Page.Home.Type (Action(..))
 
 handleInputOutput :: Input.Output -> Action
 handleInputOutput _ = DoNothing

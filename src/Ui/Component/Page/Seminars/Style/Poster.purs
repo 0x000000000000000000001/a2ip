@@ -1,4 +1,4 @@
-module App.Component.Page.Seminars.Style.Poster
+module Ui.Component.Page.Seminars.Style.Poster
   ( poster
   , poster_
   , staticClass

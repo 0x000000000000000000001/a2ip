@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Menu
+module Ui.Component.Router.Menu.Style.Menu
   ( backgroundBlackAlpha
   , class'
   , foldWidth
@@ -13,7 +13,7 @@ module App.Component.Router.Menu.Style.Menu
 
 import Proem hiding (top)
 
-import App.Component.Router.Menu.Type (State)
+import Ui.Component.Router.Menu.Type (State)
 import CSS (alignItems, backgroundColor, borderRight, column, flexDirection, flexStart, height, hover, rem, rgba, solid, vh)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLnav)

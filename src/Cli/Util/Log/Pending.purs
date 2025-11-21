@@ -1,4 +1,4 @@
-module Bin.Util.Log.Pending
+module Cli.Util.Log.Pending
   ( pending
   , pendingAfterNewline
   , pendingColor
@@ -17,7 +17,7 @@ module Bin.Util.Log.Pending
 import Proem
 
 import Ansi.Codes (Color(..))
-import Bin.Util.Log.Log (colorize, newline, prefixed)
+import Cli.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Console as Console
 

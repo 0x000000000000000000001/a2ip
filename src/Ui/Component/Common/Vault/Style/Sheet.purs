@@ -1,16 +1,16 @@
-module App.Component.Common.Vault.Style.Sheet
+module Ui.Component.Common.Vault.Style.Sheet
   ( sheet
   ) where
 
 import Proem (discard)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
-import App.Component.Common.Vault.Style.Vault as Vault
-import App.Component.Common.Vault.Style.Core as Core
-import App.Component.Common.Vault.Style.Door as Door
-import App.Component.Common.Vault.Style.Front as Front
-import App.Component.Common.Vault.Style.Lock as Lock
-import App.Component.Common.Vault.Style.Message as Message
+import Ui.Component.Common.Vault.Style.Vault as Vault
+import Ui.Component.Common.Vault.Style.Core as Core
+import Ui.Component.Common.Vault.Style.Door as Door
+import Ui.Component.Common.Vault.Style.Front as Front
+import Ui.Component.Common.Vault.Style.Lock as Lock
+import Ui.Component.Common.Vault.Style.Message as Message
 
 sheet :: ∀ w i. HTML w i
 sheet = stylesheet do

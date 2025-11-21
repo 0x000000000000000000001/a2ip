@@ -1,18 +1,18 @@
-module App.Component.Page.Home.Render
+module Ui.Component.Page.Home.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Carrousel.Component as Carrousel
-import App.Component.Common.Carrousel.Type (Media(..))
-import App.Component.Common.Modal.Component (modal)
-import App.Component.Common.Tooltip.Tooltip (tooltip)
-import App.Component.Common.Tooltip.Type (defaultInput)
-import App.Component.Page.Home.HandleModalOutput (handleModalOutput)
-import App.Component.Page.Home.Type (Action(..), Slots, State)
-import App.Component.Util.Type (noSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Carrousel.Component as Carrousel
+import Ui.Component.Common.Carrousel.Type (Media(..))
+import Ui.Component.Common.Modal.Component (modal)
+import Ui.Component.Common.Tooltip.Tooltip (tooltip)
+import Ui.Component.Common.Tooltip.Type (defaultInput)
+import Ui.Component.Page.Home.HandleModalOutput (handleModalOutput)
+import Ui.Component.Page.Home.Type (Action(..), Slots, State)
+import Ui.Component.Util.Type (noSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (div, div_, text)

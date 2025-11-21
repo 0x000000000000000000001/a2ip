@@ -1,13 +1,13 @@
-module App.Component.Common.Timeline.HandleAction.HandleHandleDocScrollEnd
+module Ui.Component.Common.Timeline.HandleAction.HandleHandleDocScrollEnd
   ( handleHandleDocScrollEnd
   ) where
 
 import Proem
 
-import App.Component.Common.Timeline.HandleAction.HandleSelectItemByDate (handleSelectItemByDate)
-import App.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
-import App.Component.Common.Timeline.Type (TimelineM)
-import App.Component.Common.Timeline.Util (parseDateDataAttr)
+import Ui.Component.Common.Timeline.HandleAction.HandleSelectItemByDate (handleSelectItemByDate)
+import Ui.Component.Common.Timeline.HandleAction.Util (getAllDateElements, isDateVisible)
+import Ui.Component.Common.Timeline.Type (TimelineM)
+import Ui.Component.Common.Timeline.Util (parseDateDataAttr)
 import Data.Foldable (for_, minimumBy)
 import Data.Maybe (Maybe(..))
 import Data.Number (abs)

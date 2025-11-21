@@ -1,4 +1,4 @@
-module App.Component.Common.Input.Style.Input
+module Ui.Component.Common.Input.Style.Input
   ( input
   , input_
   , staticClass
@@ -9,7 +9,7 @@ module App.Component.Common.Input.Style.Input
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Input.Style.Label as Label
+import Ui.Component.Common.Input.Style.Label as Label
 import CSS (position, relative, rem, transform, translate)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

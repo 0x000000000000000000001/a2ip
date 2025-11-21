@@ -1,4 +1,4 @@
-module App.Component.Common.Tooltip.Style.Inner
+module Ui.Component.Common.Tooltip.Style.Inner
   ( inner
   , inner_
   , staticClass

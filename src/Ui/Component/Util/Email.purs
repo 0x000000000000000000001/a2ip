@@ -1,4 +1,4 @@
-module App.Component.Util.Email where
+module Ui.Component.Util.Email where
 
 emailOfSophie :: String 
 emailOfSophie = "s.mijollamellor@gmail.com"

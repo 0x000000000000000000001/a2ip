@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Control.Icon
+module Ui.Component.Common.Carrousel.Style.Control.Icon
   ( icon
   , icon_
   , staticClass

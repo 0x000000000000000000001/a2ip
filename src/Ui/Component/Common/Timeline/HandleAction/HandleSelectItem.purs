@@ -1,10 +1,10 @@
-module App.Component.Common.Timeline.HandleAction.HandleSelectItem
+module Ui.Component.Common.Timeline.HandleAction.HandleSelectItem
   ( handleSelectItem
   ) where
 
 import Proem
 
-import App.Component.Common.Timeline.Type (Output(..), TimelineM, Item)
+import Ui.Component.Common.Timeline.Type (Output(..), TimelineM, Item)
 import Data.Maybe (Maybe(..))
 import Halogen (modify_, raise)
 

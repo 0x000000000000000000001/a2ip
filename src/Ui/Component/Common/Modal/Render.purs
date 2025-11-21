@@ -1,18 +1,18 @@
-module App.Component.Common.Modal.Render
+module Ui.Component.Common.Modal.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
-import App.Component.Common.Modal.Style.Core.Close (close)
-import App.Component.Common.Modal.Style.Core.Core (core_)
-import App.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
-import App.Component.Common.Modal.Style.Modal (modal)
-import App.Component.Common.Modal.Style.Sheet (sheet)
-import App.Component.Common.Modal.Type (Action(..), Slots, State)
-import App.Component.Util.Type (noHtml, noSlotAddressIndex)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Modal.HandleInnerOutput (handleInnerOutput)
+import Ui.Component.Common.Modal.Style.Core.Close (close)
+import Ui.Component.Common.Modal.Style.Core.Core (core_)
+import Ui.Component.Common.Modal.Style.Core.Sheet (sheet) as Core
+import Ui.Component.Common.Modal.Style.Modal (modal)
+import Ui.Component.Common.Modal.Style.Sheet (sheet)
+import Ui.Component.Common.Modal.Type (Action(..), Slots, State)
+import Ui.Component.Util.Type (noHtml, noSlotAddressIndex)
+import Ui.Util.Capability.AppM (AppM)
 import Halogen (Component, ComponentHTML)
 import Halogen.HTML (slot)
 import Halogen.HTML.Events (onClick)

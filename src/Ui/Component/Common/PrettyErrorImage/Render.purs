@@ -1,15 +1,15 @@
-module App.Component.Common.PrettyErrorImage.Render
+module Ui.Component.Common.PrettyErrorImage.Render
   ( render
   ) where
 
 import Proem hiding (div)
 
-import App.Component.Common.PrettyErrorImage.Style.Image (image)
-import App.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (prettyErrorImage_)
-import App.Component.Common.PrettyErrorImage.Style.QuestionMark (questionMark_)
-import App.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
-import App.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.PrettyErrorImage.Style.Image (image)
+import Ui.Component.Common.PrettyErrorImage.Style.PrettyErrorImage (prettyErrorImage_)
+import Ui.Component.Common.PrettyErrorImage.Style.QuestionMark (questionMark_)
+import Ui.Component.Common.PrettyErrorImage.Style.Sheet (sheet)
+import Ui.Component.Common.PrettyErrorImage.Type (Action(..), Slots, State, Try(..))
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML.Events (onError)

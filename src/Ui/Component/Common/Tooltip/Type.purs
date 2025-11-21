@@ -1,6 +1,6 @@
-module App.Component.Common.Tooltip.Type where
+module Ui.Component.Common.Tooltip.Type where
 
-import App.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Halogen (ComponentHTML)
 import Halogen.HTML (text)

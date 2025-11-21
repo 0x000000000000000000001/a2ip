@@ -1,13 +1,13 @@
-module App.Component.Router.Component where
+module Ui.Component.Router.Component where
 
 import Proem
 
-import App.Component.Router.HandleAction (handleAction)
-import App.Component.Router.HandleQuery (handleQuery)
-import App.Component.Router.Render (render)
-import App.Component.Router.Type (Action(..), Input, Output, Query)
-import App.Util.Capability.AppM (AppM)
-import App.Util.Capability.Navigate (Route(..))
+import Ui.Component.Router.HandleAction (handleAction)
+import Ui.Component.Router.HandleQuery (handleQuery)
+import Ui.Component.Router.Render (render)
+import Ui.Component.Router.Type (Action(..), Input, Output, Query)
+import Ui.Util.Capability.AppM (AppM)
+import Ui.Util.Capability.Navigate (Route(..))
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

@@ -1,4 +1,4 @@
-module App.Component.Common.YoutubeVideo.Component
+module Ui.Component.Common.YoutubeVideo.Component
   ( component
   , youtubeVideo
   )
@@ -6,11 +6,11 @@ module App.Component.Common.YoutubeVideo.Component
 
 import Proem
 
-import App.Component.Common.YoutubeVideo.HandleAction (handleAction)
-import App.Component.Common.YoutubeVideo.Render (render)
-import App.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
-import App.Component.Util.Type (withId, noOutputAction)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.YoutubeVideo.HandleAction (handleAction)
+import Ui.Component.Common.YoutubeVideo.Render (render)
+import Ui.Component.Common.YoutubeVideo.Type (Action(..), Output, Query, Input)
+import Ui.Component.Util.Type (withId, noOutputAction)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, ComponentHTML, Slot, defaultEval, mkComponent, mkEval)

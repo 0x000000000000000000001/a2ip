@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Pin
+module Ui.Component.Common.Timeline.Style.Pin
   ( pin
   , pin_
   , staticClass
@@ -8,7 +8,7 @@ module App.Component.Common.Timeline.Style.Pin
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.Util (grey)
+import Ui.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)

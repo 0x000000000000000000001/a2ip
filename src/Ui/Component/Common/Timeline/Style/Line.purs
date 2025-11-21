@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Style.Line
+module Ui.Component.Common.Timeline.Style.Line
   ( line
   , line_
   , staticClass
@@ -8,7 +8,7 @@ module App.Component.Common.Timeline.Style.Line
 
 import Proem hiding (div, top)
 
-import App.Component.Common.Timeline.Style.Util (grey)
+import Ui.Component.Common.Timeline.Style.Util (grey)
 import CSS (backgroundColor)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

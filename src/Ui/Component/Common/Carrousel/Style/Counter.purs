@@ -1,4 +1,4 @@
-module App.Component.Common.Carrousel.Style.Counter
+module Ui.Component.Common.Carrousel.Style.Counter
   ( counter
   , counter_
   , staticClass

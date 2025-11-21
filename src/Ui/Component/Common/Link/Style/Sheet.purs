@@ -1,9 +1,9 @@
-module App.Component.Common.Link.Style.Sheet
+module Ui.Component.Common.Link.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.Link.Style.Link as Link
-import App.Component.Common.Link.Type (State)
+import Ui.Component.Common.Link.Style.Link as Link
+import Ui.Component.Common.Link.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 

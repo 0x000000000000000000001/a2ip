@@ -1,4 +1,4 @@
-module App.Component.Common.Link.Component
+module Ui.Component.Common.Link.Component
   ( component
   , link
   )
@@ -6,11 +6,11 @@ module App.Component.Common.Link.Component
 
 import Proem
 
-import App.Component.Common.Link.HandleAction (handleAction)
-import App.Component.Common.Link.Render (render)
-import App.Component.Common.Link.Type (Action(..), Input, Output, Query)
-import App.Component.Util.Type (withId)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Link.HandleAction (handleAction)
+import Ui.Component.Common.Link.Render (render)
+import Ui.Component.Common.Link.Type (Action(..), Input, Output, Query)
+import Ui.Component.Util.Type (withId)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 import Halogen (Component, Slot, ComponentHTML, defaultEval, mkComponent, mkEval)

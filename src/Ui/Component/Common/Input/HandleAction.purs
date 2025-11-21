@@ -1,11 +1,11 @@
-module App.Component.Common.Input.HandleAction
+module Ui.Component.Common.Input.HandleAction
   ( handleAction
   ) where
 
 import Proem
 
-import App.Component.Common.Input.Type (Action(..), InputM, Output(..))
-import App.Component.Common.Input.Util (inputRef)
+import Ui.Component.Common.Input.Type (Action(..), InputM, Output(..))
+import Ui.Component.Common.Input.Util (inputRef)
 import Data.Maybe (Maybe(..))
 import Data.Traversable (for_)
 import Effect.Ref (new, read, write)

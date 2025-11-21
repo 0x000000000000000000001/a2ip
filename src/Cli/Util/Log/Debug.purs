@@ -1,4 +1,4 @@
-module Bin.Util.Log.Debug
+module Cli.Util.Log.Debug
   ( debug
   , debugAfterNewline
   , debugColor
@@ -17,7 +17,7 @@ module Bin.Util.Log.Debug
 import Proem
 
 import Ansi.Codes (Color(..))
-import Bin.Util.Log.Log (colorize, newline, prefixed)
+import Cli.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Console as Console
 

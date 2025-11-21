@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Card.Line
+module Ui.Component.Page.About.Style.Card.Line
   ( line
   , line_
   , staticClass
@@ -18,7 +18,7 @@ import Type.Prelude (Proxy)
 import Util.Proxy.Dictionary.Email (email_)
 import Util.Proxy.Dictionary.Phone (phone_)
 import Util.Proxy.Dictionary.Role (role_)
-import Util.Style.Style (all, before, class_, classes, content, displayInlineBlock, fontSizePct, fontWeightBold, marginTop, noCss, raw, refineClass', reflectStaticClass, widthPct, (.&.), (.?), (.|>), (:?))
+import Util.Style.Style (all, before, classes, content, displayInlineBlock, fontSizePct, fontWeightBold, marginTop, noCss, raw, refineClass', reflectStaticClass, widthPct, (.&.), (.?), (.|>), (:?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

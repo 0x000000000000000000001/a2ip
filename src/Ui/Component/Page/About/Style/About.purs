@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.About
+module Ui.Component.Page.About.Style.About
   ( about
   , about_
   , staticClass

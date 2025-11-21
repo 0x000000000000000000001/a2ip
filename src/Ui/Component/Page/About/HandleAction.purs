@@ -1,12 +1,12 @@
-module App.Component.Page.About.HandleAction
+module Ui.Component.Page.About.HandleAction
   ( handleAction
   , toPerson
   ) where
 
 import Proem
 
-import App.Component.Page.About.Type (AboutM, Action(..), Person, _collaborators, _members)
-import App.Component.Util.Remote (fetchModify)
+import Ui.Component.Page.About.Type (AboutM, Action(..), Person, _collaborators, _members)
+import Ui.Component.Util.Remote (fetchModify)
 import Halogen (fork)
 import Util.Google.Drive (extractPortraitIdFromViewUrl)
 import Util.Google.Sheet (Converter)

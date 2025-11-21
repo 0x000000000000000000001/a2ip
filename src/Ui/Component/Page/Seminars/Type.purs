@@ -1,16 +1,16 @@
-module App.Component.Page.Seminars.Type where
+module Ui.Component.Page.Seminars.Type where
 
 import Proem
 
-import App.Component.Common.Fragment.Type as Fragment
-import App.Component.Common.Modal.Type as Modal
-import App.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
-import App.Component.Common.Timeline.Type as Timeline
-import App.Component.Common.Vault.Type as Vault
-import App.Component.Common.YoutubeVideo.Type as YoutubeVideo
-import App.Component.Util.Email (emailOfJoel, emailOfSophie)
-import App.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
-import App.Util.Capability.AppM (AppM)
+import Ui.Component.Common.Fragment.Type as Fragment
+import Ui.Component.Common.Modal.Type as Modal
+import Ui.Component.Common.PrettyErrorImage.Type as PrettyErrorImage
+import Ui.Component.Common.Timeline.Type as Timeline
+import Ui.Component.Common.Vault.Type as Vault
+import Ui.Component.Common.YoutubeVideo.Type as YoutubeVideo
+import Ui.Component.Util.Email (emailOfJoel, emailOfSophie)
+import Ui.Component.Util.Type (NoInput, NoOutput, NoQuery, NoSlotAddressIndex, Remote)
+import Ui.Util.Capability.AppM (AppM)
 import Data.Date (Date)
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe(..))

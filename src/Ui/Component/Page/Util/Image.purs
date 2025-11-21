@@ -1,4 +1,4 @@
-module App.Component.Page.Util.Image
+module Ui.Component.Page.Util.Image
   ( ourImageRelativePath
   )
   where

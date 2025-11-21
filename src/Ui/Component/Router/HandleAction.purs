@@ -1,9 +1,9 @@
-module App.Component.Router.HandleAction where
+module Ui.Component.Router.HandleAction where
 
 import Proem hiding (div)
 
-import App.Component.Router.Type (Action, RouteM)
-import App.Util.Capability.Navigate (Route, routePath)
+import Ui.Component.Router.Type (Action, RouteM)
+import Ui.Util.Capability.Navigate (Route, routePath)
 import Data.Maybe (Maybe(..))
 import Effect.Class (class MonadEffect)
 import Util.LocalStorage (setInLocalStorage)

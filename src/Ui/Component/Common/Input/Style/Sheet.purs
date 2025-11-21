@@ -1,11 +1,11 @@
-module App.Component.Common.Input.Style.Sheet
+module Ui.Component.Common.Input.Style.Sheet
   ( sheet
   ) where
 
-import App.Component.Common.Input.Style.Field as Field
-import App.Component.Common.Input.Style.Input as Input
-import App.Component.Common.Input.Style.Label as Label
-import App.Component.Common.Input.Type (State)
+import Ui.Component.Common.Input.Style.Field as Field
+import Ui.Component.Common.Input.Style.Input as Input
+import Ui.Component.Common.Input.Style.Label as Label
+import Ui.Component.Common.Input.Type (State)
 import Halogen.HTML (HTML)
 import Halogen.HTML.CSS (stylesheet)
 import Proem (discard)

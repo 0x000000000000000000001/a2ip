@@ -1,4 +1,4 @@
-module App.Component.Page.About.Style.Card.Names
+module Ui.Component.Page.About.Style.Card.Names
   ( names
   , names_
   , staticClass

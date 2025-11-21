@@ -1,4 +1,4 @@
-module Bin.Util.Log.Upload
+module Cli.Util.Log.Upload
   ( upload
   , uploadAfterNewline
   , uploadColor
@@ -17,7 +17,7 @@ module Bin.Util.Log.Upload
 import Proem
 
 import Ansi.Codes (Color(..))
-import Bin.Util.Log.Log (colorize, newline, prefixed)
+import Cli.Util.Log.Log (colorize, newline, prefixed)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Console as Console
 

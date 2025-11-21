@@ -1,4 +1,4 @@
-module App.Component.Common.Timeline.Util
+module Ui.Component.Common.Timeline.Util
   ( dateToDataAttr
   , parseDateDataAttr
   )

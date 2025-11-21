@@ -1,11 +1,11 @@
-module App.Component.Common.Separator.HandleAction
+module Ui.Component.Common.Separator.HandleAction
   ( handleAction
   )
   where
 
 import Proem
 
-import App.Component.Common.Separator.Type (Action(..), SeparatorM)
+import Ui.Component.Common.Separator.Type (Action(..), SeparatorM)
 import Halogen (modify_)
 
 handleAction :: Action -> SeparatorM Unit

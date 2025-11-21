@@ -1,4 +1,4 @@
-module App.Component.Router.Menu.Style.Item.Children
+module Ui.Component.Router.Menu.Style.Item.Children
   ( children
   , children_
   , staticClass
@@ -8,7 +8,7 @@ module App.Component.Router.Menu.Style.Item.Children
 
 import Proem hiding (top, div)
 
-import App.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
+import Ui.Component.Router.Menu.Style.Menu (backgroundBlackAlpha)
 import CSS (backgroundColor, rgba)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
