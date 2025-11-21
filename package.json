@@ -6,6 +6,7 @@
     "build": "./bin/build",
     "conf": "./bin/conf",
     "dev": "./bin/dev",
+    "dev:server": "spago run --main Server.Main",
     "run": "./bin/run",
     "test": "./bin/test"
   },
