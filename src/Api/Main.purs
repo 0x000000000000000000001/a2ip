@@ -5,14 +5,14 @@ import Proem
 import Effect (Effect)
 import Effect.Console (log)
 import Node.Encoding (Encoding(..))
-import Node.EventEmitter (once_)
+import Node.EventEmitter (on_)
 import Node.HTTP (createServer)
 import Node.HTTP.IncomingMessage (method, url)
 import Node.HTTP.OutgoingMessage (setHeader, toWriteable)
 import Node.HTTP.Server (requestH, toNetServer)
 import Node.HTTP.ServerResponse (setStatusCode, toOutgoingMessage)
 import Node.HTTP.Types (IMServer, IncomingMessage, ServerResponse)
-import Node.Net.Server (listenTcp, listeningH)
+import Node.Net.Server (listenTcp)
 import Node.Stream (end, writeString)
 
 handleRequest :: IncomingMessage IMServer -> ServerResponse -> Effect Unit
@@ -38,19 +38,18 @@ handleRequest req res = do
 main :: Effect Unit
 main = do
   server <- createServer
-  server # once_ requestH handleRequest
+  server # on_ requestH handleRequest
 
   let netServer = toNetServer server
       scheme = "http"
       host = "api.dev.a2ip-psychanalyse.org"
       port = 8080
       
-  netServer # once_ listeningH do
-    log $ 
-      "Server running at " 
-      <> scheme 
-      <> "://" 
-      <> host 
-      <> (port == 80 ? "" ↔ ":" <> show port) 
-
-  listenTcp netServer { host, port }
+  listenTcp netServer { host: "0.0.0.0", port }
+  
+  log $ 
+    "Server running at " 
+    <> scheme 
+    <> "://" 
+    <> host 
+    <> (port == 80 ? "" ↔ ":" <> show port)
