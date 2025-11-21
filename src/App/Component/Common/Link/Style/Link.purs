@@ -14,7 +14,7 @@ import CSS (display, noneTextDecoration, textDecoration)
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLa)
 import Halogen.HTML (HTML, Node, a)
-import Util.Style.Style (classes, inferClass, reflectStaticClass, (.?))
+import Util.Style.Style (classes, cursorPointer, inferClass, reflectStaticClass, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
@@ -26,6 +26,7 @@ style :: State -> CSS.CSS
 style { id, input: { display: display_ } } = do
   staticClass .? do 
     textDecoration noneTextDecoration
+    cursorPointer
 
   class' id .? do
     display display_
