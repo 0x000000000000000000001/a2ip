@@ -1,4 +1,9 @@
 {
   "env": "$ENV",
-  "googleDriveApiKey": "$GOOGLE_DRIVE_API_KEY"
+  "googleDriveApiKey": "$GOOGLE_DRIVE_API_KEY", 
+  "api": {
+    "host": "api.dev.a2ip-psychanalyse.org",
+    "port": 80,
+    "scheme": "http"
+  }
 }

@@ -13,6 +13,11 @@ import Data.Show.Generic (genericShow)
 foreign import _config :: 
   { env :: String
   , googleDriveApiKey :: String
+  , api :: 
+      { host :: String
+      , port :: Int
+      , scheme :: String
+      }
   }
 
 type Config = 
@@ -22,6 +27,11 @@ type Config =
   , stage :: Boolean
   , prod :: Boolean
   , googleDriveApiKey :: String
+  , api :: 
+      { host :: String
+      , port :: Int
+      , scheme :: String
+      }
   }
 
 config :: Config
@@ -32,6 +42,7 @@ config =
   , prod: Prod == env
   , env
   , googleDriveApiKey: _config.googleDriveApiKey
+  , api: _config.api
   }
 
 data Env = Dev | Test | Stage | Prod

@@ -17,7 +17,7 @@ import CSS as CSS
 import CSS.Overflow (overflow, overflowAuto)
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
-import Util.Style.Style (class_, classes, displayFlex, displayNone, heightPct, inferClass, justifyContentCenter, left0, noCss, positionFixed, reflectStaticClass, top0, widthPct100, (.?))
+import Util.Style.Style (classes, displayFlex, displayNone, heightPct, inferClass, justifyContentCenter, left0, noCss, positionFixed, reflectStaticClass, top0, widthPct100, (.?))
 
 staticClass :: String
 staticClass = reflectStaticClass ι
