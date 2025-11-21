@@ -17,7 +17,7 @@ if ! command -v browser-sync &> /dev/null; then
   echo "browser-sync is not installed. Installing now..."
   npm install -g browser-sync
 fi
-browser-sync start --server --files "index.html,output/Ui.*/**/*.js" --reload-debounce 500 --host dev.a2ip-psychanalyse.org --port 80 --no-open --single &
+browser-sync start --server --files "index.html,output/Ui.*/**/*.js" --reload-debounce 500 --host dev.a2ip-psychanalyse.org --port 8080 --no-open --single &
 SERVER_PID=$!
 
 echo "Development server started!"
@@ -34,6 +34,3 @@ trap cleanup INT TERM
 
 # Wait indefinitely (or uncomment spago watch below)
 wait $SERVER_PID
-
-# Start file watcher in foreground (n.b. may not needed with Purescript extensions)
-#spago build --watch --purs-args "-g js,sourcemaps"

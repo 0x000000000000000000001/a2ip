@@ -3,12 +3,12 @@
   "googleDriveApiKey": "$GOOGLE_DRIVE_API_KEY", 
   "api": {
     "host": "api.dev.a2ip-psychanalyse.org",
-    "port": 80,
+    "port": 8081,
     "scheme": "http"
   },
   "ui": {
     "host": "dev.a2ip-psychanalyse.org",
-    "port": 80,
+    "port": 8080,
     "scheme": "http"
   }
 }

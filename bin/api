@@ -5,4 +5,4 @@ set -e
 dir=$(dirname "$0")/..
 cd "$dir"
 
-spago run --main Api.Main
+nodemon --watch 'src/Api.*' --exec 'spago run --main Api.Main'

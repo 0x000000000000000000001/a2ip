@@ -43,7 +43,7 @@ main = do
   let netServer = toNetServer server
       scheme = "http"
       host = "api.dev.a2ip-psychanalyse.org"
-      port = 8080
+      port = 8081
       
   listenTcp netServer { host: "0.0.0.0", port }
   
