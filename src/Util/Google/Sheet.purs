@@ -52,7 +52,7 @@ tab p =
       ans 
         | members_ == p_ = { id: "0", name: "Membres A2IP" }
         | collaborators_ == p_ = { id: "2092489064", name: "Comité international" }
-        | otherwise = { id: "1531940447", name: "Séminaires" }
+        | otherwise = { id: "1531940447", name: "Séminaires.Dates" }
   in ans
 
 googleSheetUrl :: String
