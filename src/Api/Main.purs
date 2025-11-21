@@ -31,7 +31,7 @@ handleRequest req res = do
 
   setHeader "Content-Type" "text/plain" msg
 
-  void $ writeString (toWriteable msg) UTF8 responseBody
+  ø $ writeString (toWriteable msg) UTF8 responseBody
 
   end (toWriteable msg)
 
