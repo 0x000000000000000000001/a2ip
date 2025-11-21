@@ -6,7 +6,7 @@ module Ui.Component.Page.Seminars.Style.Timeline.Label.Quote
   )
   where
 
-import Proem hiding (top)
+import Proem hiding (top, div)
 
 import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)

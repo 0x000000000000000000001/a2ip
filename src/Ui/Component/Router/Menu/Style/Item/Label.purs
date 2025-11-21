@@ -13,8 +13,8 @@ import Ui.Component.Router.Menu.Type (State)
 import CSS (opacity, visibility)
 import CSS as CSS
 import CSS.Common (hidden, visible)
-import DOM.HTML.Indexed (HTMLdiv, HTMLlabel)
-import Halogen.HTML (HTML, Node, div)
+import DOM.HTML.Indexed (HTMLlabel)
+import Halogen.HTML (HTML, Node)
 import Halogen.HTML as HH
 import Util.Style.Style (classes, cursorPointer, flexGrow1, inferClass, marginLeft, overflowHidden, reflectStaticClass, widthRem, (.?))
 
