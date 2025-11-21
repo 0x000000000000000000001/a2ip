@@ -6,40 +6,52 @@ import Effect (Effect)
 import Effect.Console (log)
 import Node.Encoding (Encoding(..))
 import Node.EventEmitter (once_)
-import Node.HTTP as HTTP
-import Node.HTTP.IncomingMessage as IM
-import Node.HTTP.OutgoingMessage as OM
-import Node.HTTP.Server as Server
-import Node.HTTP.ServerResponse as ServerResponse
+import Node.HTTP (createServer)
+import Node.HTTP.IncomingMessage (method, url)
+import Node.HTTP.OutgoingMessage (setHeader, toWriteable)
+import Node.HTTP.Server (requestH, toNetServer)
+import Node.HTTP.ServerResponse (setStatusCode, toOutgoingMessage)
 import Node.HTTP.Types (IMServer, IncomingMessage, ServerResponse)
-import Node.Net.Server (listenTcp)
-import Node.Net.Server as NetServer
-import Node.Stream as Stream
+import Node.Net.Server (listenTcp, listeningH)
+import Node.Stream (end, writeString)
 
 handleRequest :: IncomingMessage IMServer -> ServerResponse -> Effect Unit
 handleRequest req res = do
-  let url = IM.url req
-  let method = IM.method req
+  let url' = url req
+      method' = method req
 
-  log $ method <> " " <> url
+  log $ method' <> " " <> url'
   
-  let responseBody = if url == "/ping" then "pong" else "404 Not Found"
-  let statusCode = if url == "/ping" then 200 else 404
+  let responseBody = if url' == "/ping" then "pong" else "404 Not Found"
+      statusCode = if url' == "/ping" then 200 else 404
   
-  ServerResponse.setStatusCode statusCode res
-  let om = ServerResponse.toOutgoingMessage res
-  OM.setHeader "Content-Type" "text/plain" om
-  void $ Stream.writeString (OM.toWriteable om) UTF8 responseBody
-  Stream.end (OM.toWriteable om)
+  setStatusCode statusCode res
+
+  let msg = toOutgoingMessage res
+
+  setHeader "Content-Type" "text/plain" msg
+
+  void $ writeString (toWriteable msg) UTF8 responseBody
+
+  end (toWriteable msg)
 
 main :: Effect Unit
 main = do
-  server <- HTTP.createServer
-  server # once_ Server.requestH handleRequest
-  let netServer = Server.toNetServer server
+  server <- createServer
+  server # once_ requestH handleRequest
+
+  let netServer = toNetServer server
       scheme = "http"
       host = "api.dev.a2ip-psychanalyse.org"
       port = 80
-  netServer # once_ NetServer.listeningH do
-    log $ "Server running at " <> scheme <> "://" <> host <> (port == 80 ? "" ↔ ":" <> show port) <> "/"
+      
+  netServer # once_ listeningH do
+    log $ 
+      "Server running at " 
+      <> scheme 
+      <> "://" 
+      <> host 
+      <> (port == 80 ? "" ↔ ":" <> show port) 
+      <> "/"
+
   listenTcp netServer { host, port }
