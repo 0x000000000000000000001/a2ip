@@ -16,7 +16,7 @@ import CSS as CSS
 import DOM.HTML.Indexed (HTMLdiv)
 import Halogen.HTML (HTML, Node, div)
 import Proem (discard, when, ι, (<>))
-import Util.Style.Style (alignItemsCenter, backgroundColorRed, class_, classes, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
+import Util.Style.Style (alignItemsCenter, backgroundColorRed, classes, cursorPointer, displayFlex, heightRem, inferClass, justifyContentCenter, noCss, padding2, positionRelative, raw, reflectStaticClass, userSelectNone, widthPct100, (.&), (.?), (:?), (|*.))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι

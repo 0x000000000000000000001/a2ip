@@ -5,8 +5,8 @@
   "scripts": {
     "build": "./bin/build",
     "conf": "./bin/conf",
-    "dev": "./bin/dev",
-    "dev:server": "spago run --main Server.Main",
+    "ui": "./bin/ui",
+    "api": "./bin/api",
     "run": "./bin/run",
     "test": "./bin/test"
   },
