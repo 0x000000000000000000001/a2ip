@@ -26,21 +26,21 @@ export const _unzipGoogleSheetAndExtractHtml = function(filename) {
     
     const filename_ = filename + '.html';
     const files = Object.keys(loadedZip.files);
-
+    
     let targetFile;
-
+    
     if (filename && filename !== '') {
       targetFile = files.find(name => name === filename_);
       
       if (!targetFile) throw new Error(`File '${filename_}' not found in ZIP`);
     } else {
       targetFile = files.find(name => name.endsWith('.html'));
-
+      
       if (!targetFile) throw new Error('No HTML file found in ZIP');
     }
-
+    
     const targetFileCacheKey = loadCacheKey + '_' + targetFile;
-
+    
     if (!targetFileCache[targetFileCacheKey]) {
       targetFileCache[targetFileCacheKey] = await loadedZip.files[targetFile].async('string');
     }
