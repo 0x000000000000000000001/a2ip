@@ -18,6 +18,11 @@ foreign import _config ::
       , port :: Int
       , scheme :: String
       }
+  , ui :: 
+      { host :: String
+      , port :: Int
+      , scheme :: String
+      }
   }
 
 type Config = 
@@ -28,6 +33,11 @@ type Config =
   , prod :: Boolean
   , googleDriveApiKey :: String
   , api :: 
+      { host :: String
+      , port :: Int
+      , scheme :: String
+      }
+  , ui :: 
       { host :: String
       , port :: Int
       , scheme :: String
@@ -43,6 +53,7 @@ config =
   , env
   , googleDriveApiKey: _config.googleDriveApiKey
   , api: _config.api
+  , ui: _config.ui
   }
 
 data Env = Dev | Test | Stage | Prod

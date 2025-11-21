@@ -26,7 +26,7 @@ import Data.Tuple.Nested ((/\))
 import Halogen.HTML (HTML, Node, div)
 import Util.Proxy.Dictionary.Incorrect (incorrect_)
 import Util.Proxy.Dictionary.Phase (phase_)
-import Util.Style.Style (alignItemsCenter, class_, classes, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
+import Util.Style.Style (alignItemsCenter, classes, displayFlex, heightPct100, inferAnimationId, justifyContentCenter, leftPct, limegreen, noCss, overflowHidden, pointerEventsNone, positionRelative, red, refineClass, refineClass', reflectStaticClass, rightPct, topLeftToTopLeft, widthPct100, (.&.), (.?), (.|*.), (:?), (:|*.), (:|*:), (|*.))
 
 staticClass :: String
 staticClass = reflectStaticClass ι

@@ -5,5 +5,10 @@
     "host": "api.dev.a2ip-psychanalyse.org",
     "port": 80,
     "scheme": "http"
+  },
+  "ui": {
+    "host": "dev.a2ip-psychanalyse.org",
+    "port": 80,
+    "scheme": "http"
   }
 }
