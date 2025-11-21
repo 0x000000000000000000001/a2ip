@@ -3,7 +3,6 @@ module App.Component.Router.Menu.Render (render) where
 import Proem hiding (top, div)
 
 import App.Component.Common.Link.Component (link)
-import App.Component.Common.Link.Component as Link
 import App.Component.Router.Menu.HandleLinkOutput (handleLinkOutput)
 import App.Component.Router.Menu.Style.Item.Child (child_)
 import App.Component.Router.Menu.Style.Item.Children (children_)
@@ -21,7 +20,7 @@ import CSS (flex, fromString)
 import Data.Maybe (Maybe(..))
 import Data.Tuple.Nested ((/\))
 import Halogen (ComponentHTML)
-import Halogen.HTML (slot, text)
+import Halogen.HTML (text)
 import Halogen.HTML.Events (onMouseLeave, onMouseOver)
 import Halogen.HTML.Properties (alt, src)
 import Util.Proxy.Dictionary.Items (items')

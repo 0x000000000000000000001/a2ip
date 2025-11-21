@@ -16,7 +16,7 @@ import CSS.Common (hidden, visible)
 import DOM.HTML.Indexed (HTMLdiv, HTMLlabel)
 import Halogen.HTML (HTML, Node, div)
 import Halogen.HTML as HH
-import Util.Style.Style (classes, flexGrow1, inferClass, marginLeft, overflowHidden, reflectStaticClass, widthRem, (.?))
+import Util.Style.Style (classes, cursorPointer, flexGrow1, inferClass, marginLeft, overflowHidden, reflectStaticClass, widthRem, (.?))
 
 staticClass :: String 
 staticClass = reflectStaticClass ι
@@ -31,6 +31,7 @@ style { id, unfold } = do
     marginLeft 1.4
     widthRem 10.0
     overflowHidden
+    cursorPointer
   
   class' id .? do 
     visibility (unfold ? visible ↔ hidden)
