@@ -4,6 +4,17 @@ module Ui.Component.Page.About.Render
 
 import Proem hiding (div)
 
+import Data.Array (mapWithIndex, replicate)
+import Data.Maybe (Maybe(..))
+import Data.String (trim)
+import Data.Symbol (class IsSymbol)
+import Halogen (ComponentHTML)
+import Halogen.HTML (HTML, text)
+import Html.Renderer.Halogen (render_)
+import Network.RemoteData (isSuccess, toMaybe)
+import Prim.Row (class Cons)
+import Record (get)
+import Type.Prelude (Proxy)
 import Ui.Component.Common.PrettyErrorImage.Component (prettyErrorImage)
 import Ui.Component.Common.PrettyErrorImage.Type (defaultInput)
 import Ui.Component.Common.Separator.Component (separator)
@@ -20,17 +31,6 @@ import Ui.Component.Page.About.Style.Sheet (sheet)
 import Ui.Component.Page.About.Type (Action, Person, PersonRow, Slots, State)
 import Ui.Component.Page.Util.Image (ourImageRelativePath)
 import Ui.Util.Capability.AppM (AppM)
-import Data.Array (mapWithIndex, replicate)
-import Data.Maybe (Maybe(..))
-import Data.String (trim)
-import Data.Symbol (class IsSymbol)
-import Halogen (ComponentHTML)
-import Halogen.HTML (HTML, text)
-import Html.Renderer.Halogen (render_)
-import Network.RemoteData (isSuccess, toMaybe)
-import Prim.Row (class Cons)
-import Record (get)
-import Type.Prelude (Proxy)
 import Util.Proxy.Dictionary.Collaborators (collaborators')
 import Util.Proxy.Dictionary.Country (country')
 import Util.Proxy.Dictionary.Email (email')
@@ -40,7 +40,6 @@ import Util.Proxy.Dictionary.Phone (phone')
 import Util.Proxy.Dictionary.Portraits (portraits')
 import Util.Proxy.Dictionary.Role (role')
 import Util.Proxy.Dictionary.Separators (separators')
-import Util.String (slugify)
 
 render :: State -> ComponentHTML Action Slots AppM
 render s =
@@ -82,7 +81,6 @@ loadingPerson =
   , phone: loadingPlaceholder
   , email: loadingPlaceholder
   , country: loadingPlaceholder
-  , portraitId: loadingPlaceholder
   }
 
 renderCard :: ∀ sym. IsSymbol sym => Proxy sym -> Boolean -> Int -> Person -> ComponentHTML Action Slots AppM
@@ -98,20 +96,24 @@ renderCard section isLoading idx member =
               )
               defaultInput 
                 { loading = isLoading
-                , sources =
-                    { first: 
-                        ourImageRelativePath
-                          ( member.portraitId == ""
-                              ? (slugify $ member.firstname <> "-" <> member.lastname)
-                              ↔ member.portraitId
-                          )
-                    , fallback: 
-                        Just $ ourImageRelativePath
-                          ( member.portraitId /= ""
-                              ? (slugify $ member.firstname <> "-" <> member.lastname)
-                              ↔ "anonymous"
-                          )
+                , sources = 
+                    { first: ourImageRelativePath "anonymous"
+                    , fallback: Nothing
                     }
+                -- , sources =
+                --     { first: 
+                --         ourImageRelativePath
+                --           ( member.portraitId == ""
+                --               ? (slugify $ member.firstname <> "-" <> member.lastname)
+                --               ↔ member.portraitId
+                --           )
+                --     , fallback: 
+                --         Just $ ourImageRelativePath
+                --           ( member.portraitId /= ""
+                --               ? (slugify $ member.firstname <> "-" <> member.lastname)
+                --               ↔ "anonymous"
+                --           )
+                --     }
                 , style = Portrait.prettyErrorImageStyle
                 }
           ]

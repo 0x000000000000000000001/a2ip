@@ -31,15 +31,11 @@ handleAction = case _ of
 
 toPerson :: Converter Person
 toPerson get row =
-  let
-    portraitId_ = extractPortraitIdFromViewUrl $ untag $ get portraitId' row
-  in
-    { firstname: get firstname' row
-    , lastname: get lastname' row
-    , role: get role' row
-    , job: get job' row
-    , phone: get phone' row
-    , email: get email' row
-    , country: get country' row
-    , portraitId: portraitId_ ??⇒ ""
-    }
+  { firstname: get firstname' row
+  , lastname: get lastname' row
+  , role: get role' row
+  , job: get job' row
+  , phone: get phone' row
+  , email: get email' row
+  , country: get country' row
+  }

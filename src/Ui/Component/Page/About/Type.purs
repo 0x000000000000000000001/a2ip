@@ -20,13 +20,16 @@ type Slots =
   , separators :: Slot Separator.Query Separator.Output String
   )
 
+type Members = Remote (Array Person)
+type Collaborators = Remote (Array Person)
+
 type State =
-  { members :: Remote (Array Person)
-  , collaborators :: Remote (Array Person)
+  { members :: Members
+  , collaborators :: Collaborators
   }
 
-_members = prop members' :: Lens' State (Remote (Array Person))
-_collaborators = prop collaborators' :: Lens' State (Remote (Array Person))
+_members = prop members' :: Lens' State Members
+_collaborators = prop collaborators' :: Lens' State Collaborators
 
 data Action = Load
 
@@ -42,7 +45,6 @@ type PersonRow =
   , job :: String
   , phone :: String
   , email :: String
-  , portraitId :: String
   , country :: String
   )
 
