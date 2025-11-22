@@ -1,4 +1,4 @@
-module Cli.Command.DownloadGoogleSheetImages.Main (main) where
+module Cli.Command.DownloadUnzipGoogleSheet.Main (main) where
 
 import Proem
 
