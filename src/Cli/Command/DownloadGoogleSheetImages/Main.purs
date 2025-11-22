@@ -6,7 +6,7 @@ import Affjax (printError)
 import Affjax.ResponseFormat (arrayBuffer)
 import Cli.Util.Capability.BinM (runBinM)
 import Cli.Util.Log.Error (errorShowAfterNewline)
-import Cli.Util.Log.Info (infoShowAfterNewline)
+import Cli.Util.Log.Info (info, infoAfterNewline)
 import Cli.Util.Log.Log (log)
 import Cli.Util.Log.Success (successShortAfterNewline)
 import Effect (Effect)
@@ -18,13 +18,13 @@ import Util.Http.Http (get)
 
 main :: Effect Unit
 main = runBinM false do
-  infoShowAfterNewline "Downloading..."
+  infoAfterNewline "Downloading..."
 
   result <- ʌ' $ get arrayBuffer googleSheetHtmlZipDownloadUrl
   result
     ?!
       ( \response -> do
-          infoShowAfterNewline "Unzipping..."
+          info "Unzipping..."
       
           res <- ʌ' $ unzipToDirectory (rootDirAbsolutePath <> "asset/sheet/") response.body
           res 
