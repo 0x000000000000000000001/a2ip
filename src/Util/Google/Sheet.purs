@@ -18,17 +18,16 @@ module Util.Google.Sheet
 import Proem
 
 import Affjax (printError)
-import Affjax.ResponseFormat (arrayBuffer)
+import Affjax.ResponseFormat (string)
 import Data.Array (drop, length, (!!))
 import Data.Either (Either(..))
 import Data.Map (Map, empty, lookup)
 import Data.String (trim)
 import Data.Symbol (class IsSymbol)
 import Effect.Aff.Class (class MonadAff)
-import Effect.Exception (message)
 import Type.Prelude (Proxy)
 import Util.Array.Map (arrayToIndexMap)
-import Util.File.Unzip (unzipGoogleSheetAndExtractHtml)
+import Util.File.Path (assetDirAbsolutePath)
 import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
 import Util.Proxy.Dictionary.Collaborators (collaborators_)
@@ -63,15 +62,9 @@ googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
 fetchTableHtml :: ∀ m. MonadAff m => Tab -> m (Either String String)
 fetchTableHtml tab_ = do
-  result <- ʌ' $ get arrayBuffer googleSheetHtmlZipDownloadUrl
+  result <- ʌ' $ get string (assetDirAbsolutePath <> "sheet/" <> tab_.name)
   result
-    ?!
-      ( \response -> do
-          htmlContent <- ʌ' $ unzipGoogleSheetAndExtractHtml tab_.name response.body
-          htmlContent
-            ?! (η ◁ Right)
-            ⇿ \e_ -> η $ Left $ "Failed to unzip: " <> message e_
-      )
+    ?! (η ◁ Right ◁ _.body)
     ⇿ \e -> η $ Left $ "Failed to fetch ZIP: " <> printError e
 
 fetch :: ∀ sym m o. IsSymbol sym => MonadAff m => Proxy sym -> Converter o -> m (Either String (Array o))
