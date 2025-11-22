@@ -32,6 +32,37 @@ export const _unzipGoogleSheetAndExtractHtml = function(filename) {
   };
 };
 
+export const _unzipToDirectory = function(outputPath) {
+  return async function(zipContent) {
+    const { mkdir, writeFile } = await import('fs/promises');
+    const path = await import('path');
+    
+    const loadedZip = await _unzipGoogleSheet(zipContent);
+    const files = Object.keys(loadedZip.files);
+    
+    await mkdir(outputPath, { recursive: true });
+    
+    for (const filename of files) {
+      const file = loadedZip.files[filename];
+      
+      if (file.dir) {
+        const dirPath = path.join(outputPath, filename);
+        await mkdir(dirPath, { recursive: true });
+      } else {
+        const filePath = path.join(outputPath, filename);
+        const fileDir = path.dirname(filePath);
+        
+        await mkdir(fileDir, { recursive: true });
+        
+        const content = await file.async('nodebuffer');
+        await writeFile(filePath, content);
+      }
+    }
+    
+    return outputPath;
+  };
+};
+
 export const _unzipGoogleSheet = async function(zipContent) {
   if (!JSZipModule) // 'jszip' alone will not work for the browser.
     JSZipModule = await import('../../node_modules/jszip/dist/jszip.js');  
