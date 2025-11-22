@@ -6,7 +6,7 @@ import Ui.Component.Router.Component as RouterComponent
 import Ui.Component.Router.Type as RouterType
 import Ui.Util.Capability.AppM (runAppM)
 import Ui.Util.Capability.Navigate (routeCodec, routeTitle)
-import Config.Config (config)
+import Meta.Config.Config (config)
 import Data.DateTime.Instant (toDateTime)
 import Data.Formatter.DateTime (formatDateTime)
 import Effect (Effect)

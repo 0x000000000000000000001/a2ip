@@ -2,7 +2,7 @@ module Ui.Util.Capability.AppM (AppM, runAppM) where
 
 import Proem
 
-import Config.Config (Config)
+import Meta.Config.Config (Config)
 import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, ask, runReaderT)
 import Effect.Aff (Aff)

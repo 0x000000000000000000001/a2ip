@@ -5,8 +5,8 @@ old_wd=$(pwd)
 dir=$(dirname "$0")/..
 cd "$dir"
 
-inFile=conf/Config.dist.json
-outFile=output/Config.Config/config.json
+inFile=meta/Config/config.dist.json
+outFile=output/Meta.Config.Config/config.json
 
 cp $inFile $outFile
 envsubst < $inFile > $outFile

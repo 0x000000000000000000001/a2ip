@@ -2,7 +2,7 @@ module Util.Capability.ReadConfig where
 
 import Proem
 
-import Config.Config (Config)
+import Meta.Config.Config (Config)
 import Control.Monad.Reader (lift)
 import Halogen (HalogenM)
 

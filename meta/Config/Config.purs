@@ -1,4 +1,4 @@
-module Config.Config
+module Meta.Config.Config
   ( Env(..)
   , Config
   , config

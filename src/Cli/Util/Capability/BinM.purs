@@ -8,7 +8,7 @@ module Cli.Util.Capability.BinM
 import Proem
 
 import Cli.Util.Exit (exitError, exitSuccess)
-import Config.Config (Config, config)
+import Meta.Config.Config (Config, config)
 import Control.Monad.Error.Class (class MonadError, class MonadThrow)
 import Control.Monad.Reader (class MonadAsk, ReaderT, runReaderT)
 import Control.Monad.Reader.Class (ask)

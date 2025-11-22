@@ -71,5 +71,5 @@ You can edit this file as you like.
   , "web-uievents"
   ]
 , packages = ./packages.dhall
-, sources = [ "conf/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
+, sources = [ "meta/**/*.purs", "src/**/*.purs", "test/**/*.purs" ]
 }
