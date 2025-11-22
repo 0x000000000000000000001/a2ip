@@ -32,6 +32,7 @@ import Util.Html.Table (extractInnerCellsFromHtml)
 import Util.Http.Http (get)
 import Util.Proxy.Dictionary.Collaborators (collaborators_)
 import Util.Proxy.Dictionary.Members (members_)
+import Util.Proxy.Dictionary.Persons (persons_)
 
 type ExtractedData = { keys :: Array String, keyIndices :: Map String Int, values :: Array (Array String) }
 
@@ -49,6 +50,7 @@ tab :: ∀ sym. IsSymbol sym => Proxy sym -> Tab
 tab p = 
   let p_ = ᴠ p 
       ans 
+        | persons_ == p_ = { id: "261799651", name: "Personnes" }
         | members_ == p_ = { id: "0", name: "Membres A2IP" }
         | collaborators_ == p_ = { id: "2092489064", name: "Comité international" }
         | otherwise = { id: "1531940447", name: "Séminaires.Dates" }
