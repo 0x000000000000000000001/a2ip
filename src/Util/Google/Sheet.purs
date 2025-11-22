@@ -88,10 +88,8 @@ convertExtractedData to extractedData =
 
     get :: CellExtractor
     get key row =
-      let
-        idx = lookup (ᴠ key) keyIndices
-      in
-        idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
+      let idx = lookup (ᴠ key) keyIndices
+      in idx ?? (\i -> trim $ row !! i ??⇒ "") ⇔ ""
 
   in
     values <#> (to get)
