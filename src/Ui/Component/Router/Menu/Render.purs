@@ -50,7 +50,7 @@ items =
           ]
       }
   , ParentItem { label: "Colloques", route: Nothing, iconFileName: "micro-2", children: [] }
-  , ParentItem { label: "Conférences", route: Nothing, iconFileName: "presentation-1", children: [] }
+  , ParentItem { label: "Conférences", route: Nothing, iconFileName: "presentation", children: [] }
   , ParentItem { label: "Archives", route: Nothing, iconFileName: "archive", children: [] }
   , ParentItem { label: "Publications des membres", route: Nothing, iconFileName: "book", children: [] }
   , ParentItem { label: "Contact et mentions légales", route: Nothing, iconFileName: "contact", children: [] }

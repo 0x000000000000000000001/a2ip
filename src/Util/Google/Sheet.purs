@@ -62,7 +62,7 @@ googleSheetHtmlZipDownloadUrl = googleSheetUrl <> "/export?format=zip"
 
 fetchTableHtml :: ∀ m. MonadAff m => Tab -> m (Either String String)
 fetchTableHtml tab_ = do
-  result <- ʌ' $ get string (assetDirAbsolutePath <> "sheet/" <> tab_.name)
+  result <- ʌ' $ get string (assetDirAbsolutePath <> "sheet/" <> tab_.name <> ".html")
   result
     ?! (η ◁ Right ◁ _.body)
     ⇿ \e -> η $ Left $ "Failed to fetch ZIP: " <> printError e
