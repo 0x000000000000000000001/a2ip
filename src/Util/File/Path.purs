@@ -5,25 +5,27 @@ module Util.File.Path
   , imageDirRelativePath
   , ourAssetUrl
   , ourImageUrl
-  , rootDirPath
+  , outputDirAbsolutePath
+  , outputDirRelativePath
+  , rootDirAbsolutePath
   )
   where
 
 import Proem
 
-foreign import rootDirPath :: String
+foreign import rootDirAbsolutePath :: String
 
 assertDirRelativePath :: String
-assertDirRelativePath = "/asset/"
+assertDirRelativePath = "asset/"
 
 assetDirAbsolutePath :: String
-assetDirAbsolutePath = rootDirPath <> assertDirRelativePath
+assetDirAbsolutePath = rootDirAbsolutePath <> assertDirRelativePath
 
 imageDirRelativePath :: String
 imageDirRelativePath = assertDirRelativePath <> "image/"
 
 imageDirAbsolutePath :: String
-imageDirAbsolutePath = rootDirPath <> imageDirRelativePath
+imageDirAbsolutePath = rootDirAbsolutePath <> imageDirRelativePath
 
 ourAssetUrl :: String -> String 
 ourAssetUrl assetRelativePath = assertDirRelativePath <> assetRelativePath
@@ -31,3 +33,8 @@ ourAssetUrl assetRelativePath = assertDirRelativePath <> assetRelativePath
 ourImageUrl :: String -> String 
 ourImageUrl imageRelativePath = imageDirRelativePath <> imageRelativePath
 
+outputDirRelativePath :: String
+outputDirRelativePath = "output/"
+
+outputDirAbsolutePath :: String 
+outputDirAbsolutePath = rootDirAbsolutePath <> outputDirRelativePath

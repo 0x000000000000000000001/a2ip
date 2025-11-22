@@ -20,7 +20,7 @@ import Effect.Aff (Aff, attempt)
 import Node.FS.Aff (stat)
 import Util.File.Image.Common (googleDriveImageUrl, suffixWithExt)
 import Util.File.Image.Node (downloadImage)
-import Util.File.Path (rootDirPath)
+import Util.File.Path (rootDirAbsolutePath)
 import Util.Google.Sheet (fetch)
 import Util.Proxy.Dictionary.Members (members')
 import Util.Semaphor (Sem, lock, lockAcq, lockRel, parTraverseBounded)
@@ -91,7 +91,7 @@ updateLine lock totalLines lineIdx message = do
 
 download :: Sem -> Int -> Image -> Aff Unit
 download lock totalLines { idx, id, url, filename } = do
-  let filePath = rootDirPath <> ourImageRelativePath id
+  let filePath = rootDirAbsolutePath <> ourImageRelativePath id
       updateLine' prefixedFn prefix suffix = updateLine lock totalLines idx (prefixedFn prefix true true <> filename <> suffix)
   
   fileExistsResult <- attempt $ stat filePath
