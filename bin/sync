@@ -1,0 +1,10 @@
+#!/bin/sh
+
+old_wd=$(pwd)
+
+dir=$(dirname "$0")/..
+cd "$dir"
+
+$ROOT_DIR/bin/run Sync
+
+cd "$old_wd"
