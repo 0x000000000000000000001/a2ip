@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "api": "./bin/api",
     "build": "./bin/build",
     "conf": "./bin/conf",
-    "ui": "./bin/ui",
-    "api": "./bin/api",
     "run": "./bin/run",
-    "test": "./bin/test"
+    "sync": "./bin/sync",
+    "test": "./bin/test",
+    "ui": "./bin/ui"
   },
   "keywords": [],
   "author": "",
