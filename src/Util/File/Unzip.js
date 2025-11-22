@@ -5,24 +5,7 @@ let targetFileCache = {};
 
 export const _unzipGoogleSheetAndExtractHtml = function(filename) {
   return async function(zipContent) {
-    if (!JSZipModule) // 'jszip' alone will not work for the browser.
-      JSZipModule = await import('../../node_modules/jszip/dist/jszip.js');  
-
-    const JSZip = JSZipModule.default || window.JSZip;
-
-    if (!xxHashAPI) {
-      const xxhashModule = await import('../../node_modules/xxhash-wasm/esm/xxhash-wasm.js');
-      xxHashAPI = await xxhashModule.default();
-    }
-
-    const zip = new JSZip();
-    const loadCacheKey = xxHashAPI.h32Raw(zipContent);
-
-    if (!loadCache[loadCacheKey]) {
-      loadCache[loadCacheKey] = await zip.loadAsync(zipContent, { base64: false });
-    }
-    
-    const loadedZip = loadCache[loadCacheKey];
+    const loadedZip = await _unzipGoogleSheet(zipContent);
     
     const filename_ = filename + '.html';
     const files = Object.keys(loadedZip.files);
@@ -47,4 +30,25 @@ export const _unzipGoogleSheetAndExtractHtml = function(filename) {
 
     return targetFileCache[targetFileCacheKey];
   };
+};
+
+export const _unzipGoogleSheet = async function(zipContent) {
+  if (!JSZipModule) // 'jszip' alone will not work for the browser.
+    JSZipModule = await import('../../node_modules/jszip/dist/jszip.js');  
+
+  const JSZip = JSZipModule.default || window.JSZip;
+
+  if (!xxHashAPI) {
+    const xxhashModule = await import('../../node_modules/xxhash-wasm/esm/xxhash-wasm.js');
+    xxHashAPI = await xxhashModule.default();
+  }
+
+  const zip = new JSZip();
+  const loadCacheKey = xxHashAPI.h32Raw(zipContent);
+
+  if (!loadCache[loadCacheKey]) {
+    loadCache[loadCacheKey] = await zip.loadAsync(zipContent, { base64: false });
+  }
+  
+  return loadCache[loadCacheKey];
 };
